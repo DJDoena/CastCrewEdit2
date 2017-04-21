@@ -1,0 +1,2112 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html
+xmlns:og="http://ogp.me/ns#"
+xmlns:fb="http://www.facebook.com/2008/fbml">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="apple-itunes-app" content="app-id=342792525, app-argument=imdb:///title/tt0758745?src=mdot">
+        
+    
+            <script type="text/javascript">var ue_t0=window.ue_t0||+new Date();</script>
+            <script type="text/javascript">
+                var ue_mid = "A1EVAM02EL8SFB"; 
+                var ue_sn = "www.imdb.com";  
+                var ue_furl = "fls-na.amazon.com";
+                var ue_sid = "876-1945732-3064322";
+                var ue_id = "1MANSKGZ83FH8CM7P432";
+                (function(e){var c=e;var a=c.ue||{};a.main_scope="mainscopecsm";a.q=[];a.t0=c.ue_t0||+new Date();a.d=g;function g(h){return +new Date()-(h?0:a.t0)}function d(h){return function(){a.q.push({n:h,a:arguments,t:a.d()})}}function b(m,l,h,j,i){var k={m:m,f:l,l:h,c:""+j,err:i,fromOnError:1,args:arguments};c.ueLogError(k);return false}b.skipTrace=1;e.onerror=b;function f(){c.uex("ld")}if(e.addEventListener){e.addEventListener("load",f,false)}else{if(e.attachEvent){e.attachEvent("onload",f)}}a.tag=d("tag");a.log=d("log");a.reset=d("rst");c.ue_csm=c;c.ue=a;c.ueLogError=d("err");c.ues=d("ues");c.uet=d("uet");c.uex=d("uex");c.uet("ue")})(window);(function(e,d){var a=e.ue||{};function c(g){if(!g){return}var f=d.head||d.getElementsByTagName("head")[0]||d.documentElement,h=d.createElement("script");h.async="async";h.src=g;f.insertBefore(h,f.firstChild)}function b(){var k=e.ue_cdn||"z-ecx.images-amazon.com",g=e.ue_cdns||"images-na.ssl-images-amazon.com",j="/images/G/01/csminstrumentation/",h=e.ue_file||"ue-full-11e51f253e8ad9d145f4ed644b40f692._V1_.js",f,i;if(h.indexOf("NSTRUMENTATION_FIL")>=0){return}if("ue_https" in e){f=e.ue_https}else{f=e.location&&e.location.protocol=="https:"?1:0}i=f?"https://":"http://";i+=f?g:k;i+=j;i+=h;c(i)}if(!e.ue_inline){if(a.loadUEFull){a.loadUEFull()}else{b()}}a.uels=c;e.ue=a})(window,document);
+                if (!('CS' in window)) { window.CS = {}; }
+                    window.CS.loginLocation = "https://www.imdb.com/registration/signin?u=%2Ftitle%2Ftt0758745%2Fepisodes%3Fseason%3D1";
+            </script>
+ 
+
+        
+        <script type="text/javascript">var IMDbTimer={starttime: new Date().getTime(),pt:'java'};</script>
+        
+  <script>(function(t){ (t.events = t.events || {})["csm_head_pre_title"] = new Date().getTime(); })(IMDbTimer);</script>
+        <title>Friday Night Lights (TV Series 2006–2011) - Episodes - IMDb</title>
+  <script>(function(t){ (t.events = t.events || {})["csm_head_post_title"] = new Date().getTime(); })(IMDbTimer);</script>
+        
+            <link rel="canonical" href="http://www.imdb.com/title/tt0758745/episodes" />
+            <meta property="og:url" content="http://www.imdb.com/title/tt0758745/episodes" />
+        
+  <script>(function(t){ (t.events = t.events || {})["csm_head_pre_icon"] = new Date().getTime(); })(IMDbTimer);</script>
+        <link href="http://ia.media-imdb.com/images/G/01/imdb/images/safari-favicon-517611381._CB522736552_.svg" mask rel="icon" sizes="any">
+        <link rel="icon" type="image/ico" href="http://ia.media-imdb.com/images/G/01/imdb/images/favicon-2165806970._CB522736556_.ico" />
+        <meta name="theme-color" content="#000000" />
+        <link rel="shortcut icon" type="image/x-icon" href="http://ia.media-imdb.com/images/G/01/imdb/images/desktop-favicon-2165806970._CB522736561_.ico" />
+        <link href="http://ia.media-imdb.com/images/G/01/imdb/images/mobile/apple-touch-icon-web-4151659188._CB522736129_.png" rel="apple-touch-icon"> 
+        <link href="http://ia.media-imdb.com/images/G/01/imdb/images/mobile/apple-touch-icon-web-76x76-53536248._CB522736233_.png" rel="apple-touch-icon" sizes="76x76"> 
+        <link href="http://ia.media-imdb.com/images/G/01/imdb/images/mobile/apple-touch-icon-web-120x120-2442878471._CB522736253_.png" rel="apple-touch-icon" sizes="120x120"> 
+        <link href="http://ia.media-imdb.com/images/G/01/imdb/images/mobile/apple-touch-icon-web-152x152-1475823641._CB522736557_.png" rel="apple-touch-icon" sizes="152x152">            
+        <link rel="search" type="application/opensearchdescription+xml" href="http://ia.media-imdb.com/images/G/01/imdb/images/imdbsearch-3349468880._CB522736605_.xml" title="IMDb" />
+  <script>(function(t){ (t.events = t.events || {})["csm_head_post_icon"] = new Date().getTime(); })(IMDbTimer);</script>
+        
+        <meta property="pageId" content="tt0758745" />
+        <meta property="pageType" content="title" />
+        <meta property="subpageType" content="episodes" />
+
+
+        <link rel='image_src' href="https://images-na.ssl-images-amazon.com/images/M/MV5BMTYwNjIyMTYwOV5BMl5BanBnXkFtZTcwMTA2MDU1MQ@@._V1_UY1200_CR135,0,630,1200_AL_.jpg">
+        <meta property='og:image' content="https://images-na.ssl-images-amazon.com/images/M/MV5BMTYwNjIyMTYwOV5BMl5BanBnXkFtZTcwMTA2MDU1MQ@@._V1_UY1200_CR135,0,630,1200_AL_.jpg" />
+
+        <meta property='og:type' content="video.tv_show" />
+    <meta property='fb:app_id' content='115109575169727' />
+
+    <meta property='og:title' content="Friday Night Lights (TV Series 2006–2011)" />
+    <meta property='og:site_name' content='IMDb' />
+    <meta name="title" content="Friday Night Lights (TV Series 2006–2011) - IMDb" />
+        <meta name="description" content="" />
+        <meta property="og:description" content="" />
+        <meta name="keywords" content="Episodes" />
+        <meta name="request_id" content="1MANSKGZ83FH8CM7P432" />
+        
+  <script>(function(t){ (t.events = t.events || {})["csm_head_pre_css"] = new Date().getTime(); })(IMDbTimer);</script>
+<!-- h=ics-1a-c3-2xl-dbf9117d.us-east-1 -->
+
+            <link rel="stylesheet" type="text/css" href="http://ia.media-imdb.com/images/G/01/imdb/css/collections/title-flat-1732923380._CB530008519_.css" />
+            <!--[if IE]><link rel="stylesheet" type="text/css" href="http://ia.media-imdb.com/images/G/01/imdb/css/collections/ie-1170868033._CB522736261_.css" /><![endif]-->
+            <link rel="stylesheet" type="text/css" href="http://ia.media-imdb.com/images/G/01/imdb/css/site/consumer-navbar-mega-238568768._CB532297092_.css" />
+        <noscript>
+            <link rel="stylesheet" type="text/css" href="http://ia.media-imdb.com/images/G/01/imdb/css/wheel/nojs-2827156349._CB522739048_.css">
+        </noscript>
+  <script>(function(t){ (t.events = t.events || {})["csm_head_post_css"] = new Date().getTime(); })(IMDbTimer);</script>
+        
+  <script>(function(t){ (t.events = t.events || {})["csm_head_pre_ads"] = new Date().getTime(); })(IMDbTimer);</script>
+        <script>
+window.ads_js_start = new Date().getTime();
+var imdbads = imdbads || {}; imdbads.cmd = imdbads.cmd || [];
+</script>
+<!-- begin SRA -->
+<script>
+!function a(b,c,d){function e(g,h){if(!c[g]){if(!b[g]){var i="function"==typeof require&&require;if(!h&&i)return i(g,!0);if(f)return f(g,!0);var j=new Error("Cannot find module '"+g+"'");throw j.code="MODULE_NOT_FOUND",j}var k=c[g]={exports:{}};b[g][0].call(k.exports,function(a){var c=b[g][1][a];return e(c?c:a)},k,k.exports,a,b,c,d)}return c[g].exports}for(var f="function"==typeof require&&require,g=0;g<d.length;g++)e(d[g]);return e}({1:[function(a,b,c){"use strict";a(2)},{2:2}],2:[function(a,b,c){"use strict";!function(){var a,b,c=function(a){return"[object Array]"===Object.prototype.toString.call(a)},d=function(a,b){for(var c=0;c<a.length;c++)c in a&&b.call(null,a[c],c)},e=[],f=!1,g=!1,h=function(){var a=[],b=[],c={};return d(e,function(e){var f="";d(e.dartsite.split("/"),function(b){""!==b&&(b in c||(c[b]=a.length,a.push(b)),f+="/"+c[b])}),b.push(f)}),{iu_parts:a,enc_prev_ius:b}},i=function(){var a=[];return d(e,function(b){var c=[];d(b.sizes,function(a){c.push(a.join("x"))}),a.push(c.join("|"))}),a},j=function(){var a=[];return d(e,function(b){a.push(k(b.targeting))}),a.join("|")},k=function(a,b){var c,d=[];for(var e in a){c=[];for(var f=0;f<a[e].length;f++)c.push(encodeURIComponent(a[e][f]));b?d.push(e+"="+encodeURIComponent(c.join(","))):d.push(e+"="+c.join(","))}return d.join("&")},l=function(){var a=+new Date;g||document.readyState&&"loaded"!==document.readyState||(g=!0,f&&imdbads.cmd.push(function(){for(var b=0;b<e.length;b++)generic.monitoring.record_metric(e[b].name+".fail",csm.duration(a))}))};window.tinygpt={define_slot:function(a,b,c,d){e.push({dartsite:a.replace(/\/$/,""),sizes:b,name:c,targeting:d})},set_targeting:function(b){a=b},callback:function(a){var c,d,f={},g=+new Date;try{for(var h=0;h<e.length;h++)c=e[h].dartsite,d=e[h].name,a[h][c]?f[d]=a[h][c]:window.console&&console.error&&console.error("Unable to correlate GPT response for "+d);imdbads.cmd.push(function(){for(var a=0;a<e.length;a++)ad_utils.slot_events.trigger(e[a].name,"request",{timestamp:b}),ad_utils.slot_events.trigger(e[a].name,"tagdeliver",{timestamp:g});ad_utils.gpt.handle_response(f)})}catch(i){window.console&&console.error&&console.error("Exception in GPT callback: "+i.message)}},send:function(){var d,g,m=[],n=function(a,b){c(b)&&(b=b.join(",")),b&&m.push(a+"="+encodeURIComponent(""+b))};if(0===e.length)return void tinygpt.callback({});n("gdfp_req","1"),n("correlator",Math.floor(4503599627370496*Math.random())),n("output","json_html"),n("callback","tinygpt.callback"),n("impl","fifs"),n("json_a","1");var o=h();n("iu_parts",o.iu_parts),n("enc_prev_ius",o.enc_prev_ius),n("prev_iu_szs",i()),n("prev_scp",j()),n("cust_params",k(a,!0)),d=document.createElement("script"),g=document.getElementsByTagName("script")[0],d.async=!0,d.type="text/javascript",d.src="http://pubads.g.doubleclick.net/gampad/ads?"+m.join("&"),d.id="tinygpt",d.onload=d.onerror=d.onreadystatechange=l,f=!0,g.parentNode.insertBefore(d,g),b=+new Date}}}()},{}]},{},[1]);</script>
+<script>
+tinygpt.define_slot('/4215/imdb2.consumer.tv/',
+[[728,90],[1008,150],[1008,200],[1008,30],[970,250],[9,1]],
+'top_ad',
+{
+'p': ['top','t']
+});
+tinygpt.define_slot('/4215/imdb2.consumer.tv/',
+[[300,250],[300,600],[11,1]],
+'top_rhs',
+{
+'p': ['tr']
+});
+tinygpt.set_targeting({
+'tt' : ['tv'],
+'coo' : ['us'],
+'c' : ['3'],
+'s' : ['3075','32'],
+'g' : ['sp','dr'],
+'id' : ['tt0758745'],
+'u': ['725973804431'],
+'oe': ['utf-8']
+});
+tinygpt.send();
+</script>
+<!-- begin ads header -->
+<script src="https://ia.media-imdb.com/images/G/01/imdbads/js/collections/tarnhelm-4000355955._CB533829584_.js"></script>
+<script id="ads_doWithAds">
+doWithAds = function(inside, failureMessage){
+if ('consoleLog' in window &&
+'generic' in window &&
+'ad_utils' in window &&
+'custom' in window &&
+'monitoring' in generic &&
+'document_is_ready' in generic) {
+try{
+inside.call(this);
+}catch(e) {
+if ( window.ueLogError ) {
+if(typeof failureMessage !== 'undefined'){
+e.message = failureMessage;
+}
+e.attribution = "Advertising";
+e.logLevel = "ERROR";
+ueLogError(e);
+}
+if( (document.location.hash.match('debug=1')) &&
+(typeof failureMessage !== 'undefined') ){
+console.error(failureMessage);
+}
+}
+} else {
+if( (document.location.hash.match('debug=1')) &&
+(typeof failureMessage !== 'undefined') ){
+console.error(failureMessage);
+}
+}
+};
+</script><script id="ads_monitoring_setup">
+doWithAds(function(){
+generic.monitoring.set_forester_info("title");
+generic.monitoring.set_twilight_info(
+"title_subpage",
+"DE",
+"b61d2764560b878e61715a6d96c863135f5cf7cd",
+"2017-04-07T09%3A49%3A43GMT",
+"https://s.media-imdb.com/twilight/?",
+"consumer");
+generic.monitoring.start_timing("page_load");
+generic.seconds_to_midnight = 76217;
+generic.days_to_midnight = 0.8821412324905396;
+},"Generic not defined, skipping monitoring setup.");
+</script>
+<script src="https://images-na.ssl-images-amazon.com/images/G/01/dacx/sf/DAsf-1.34_FX1._V275812351_.js"></script>
+<script id="ads_safeframe_setup">
+doWithAds(function(){
+if (typeof DAsf != 'undefined' && typeof DAsf.registerCustomMessageListener === 'function') {
+DAsf.registerCustomMessageListener('adFeedback', window.ad_utils.show_ad_feedback);
+DAsf.registerCustomMessageListener('sendMetrics', window.generic.monitoring.update_sf_slot_metrics);
+DAsf.registerCustomMessageListener('expand', window.ad_utils.expand_overlay);
+DAsf.registerCustomMessageListener('collapse', window.ad_utils.collapse_overlay);
+}
+},"ads js missing, skipping safeframe setup.");
+</script>
+<script id="ads_general_setup">
+doWithAds(function(){
+generic.monitoring.record_metric("ads_js_request_to_done", (new Date().getTime()) - window.ads_js_start);
+generic.send_csm_head_metrics && generic.send_csm_head_metrics();
+ad_utils.set_slots_on_page({ 'injected_billboard':1, 'injected_navstrip':1, 'top_ad':1, 'btf_rhs2':1, 'top_rhs':1, 'rhs_cornerstone':1 });
+custom.full_page.data_url = "https://ia.media-imdb.com/images/G/01/imdbads/js/graffiti_data-538221799._CB536725280_.js";
+consoleLog('advertising initialized','ads');
+},"ads js missing, skipping general setup.");
+var _gaq = _gaq || [];
+_gaq.push(['_setCustomVar', 4, 'ads_abtest_treatment', '']);
+</script>
+<script>doWithAds(function() { ad_utils.ads_header.done(); });</script>
+<!-- end ads header -->
+        <script  type="text/javascript">
+            // ensures js doesn't die if ads service fails.  
+            // Note that we need to define the js here, since ad js is being rendered inline after this.
+            (function(f) {
+                // Fallback javascript, when the ad Service call fails.  
+                
+                if((window.csm == null || window.generic == null || window.consoleLog == null)) {
+                    if (window.console && console.log) {
+                        console.log("one or more of window.csm, window.generic or window.consoleLog has been stubbed...");
+                    }
+                }
+                
+                window.csm = window.csm || { measure:f, record:f, duration:f, listen:f, metrics:{} };
+                window.generic = window.generic || { monitoring: { start_timing: f, stop_timing: f } };
+                window.consoleLog = window.consoleLog || f;
+            })(function() {});
+        </script>
+  <script>
+    if ('csm' in window) {
+      csm.measure('csm_head_delivery_finished');
+    }
+  </script>
+        </head>
+    <body id="styleguide-v2" class="fixed">
+<script>
+    if (typeof uet == 'function') {
+      uet("bb");
+    }
+</script>
+  <script>
+    if ('csm' in window) {
+      csm.measure('csm_body_delivery_started');
+    }
+  </script>
+        <div id="wrapper">
+            <div id="root" class="redesign">
+<script>
+    if (typeof uet == 'function') {
+      uet("ns");
+    }
+</script>
+<div id="nb20" class="navbarSprite">
+<div id="supertab">	
+	
+<!-- begin TOP_AD -->
+<div id="top_ad_wrapper" class="dfp_slot">
+<script>
+window.generic = window.generic || {};
+generic.alphalfaComponents = {
+"alphalfa-container.html" : "https://ia.media-imdb.com/images/G/01/imdbads/alphalfa-container-253150330._CB522736199_.html",
+"js/collections/alphalfa.js" : "https://ia.media-imdb.com/images/G/01/imdbads/js/collections/alphalfa-3292747090._CB522736629_.js"
+};
+</script>
+<script type="text/javascript">
+doWithAds(function(){
+if ('dfp_slot' != 'injected_slot') {
+ad_utils.register_ad('top_ad');
+}
+});
+</script>
+<iframe allowtransparency="true" class="yesScript" data-dart-params="#doubleclick;u=725973804431;ord=725973804431?" frameborder="0" id="top_ad" marginwidth="0" marginheight="0" name="top_ad" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="0" data-original-height="85" width="0" height="85" ></iframe> </div>
+<noscript> <a href="http://pubads.g.doubleclick.net/gampad/jump?&iu=4215/imdb2.consumer.tv/&sz=728x90|1008x150|1008x200|1008x30|970x250|9x1&t=p%3Dtop%26p%3Dt%26g%3Dsp%26g%3Ddr%26tt%3Dtv%26coo%3Dus%26id%3Dtt0758745%26c%3D3&tile=0&c=725973804431" target="_blank"> <img src="http://pubads.g.doubleclick.net/gampad/ad?&iu=4215/imdb2.consumer.tv/&sz=728x90|1008x150|1008x200|1008x30|970x250|9x1&t=p%3Dtop%26p%3Dt%26g%3Dsp%26g%3Ddr%26tt%3Dtv%26coo%3Dus%26id%3Dtt0758745%26c%3D3&tile=0&c=725973804431" border="0" alt="advertisement" /> </a> </noscript>
+<div id="top_ad_reflow_helper"></div>
+<script id="top_ad_rendering">
+doWithAds(function(){
+if ('dfp_slot' == 'injected_slot') {
+ad_utils.inject_ad.register('top_ad');
+} else {
+ad_utils.gpt.render_ad('top_ad');
+}
+}, "ad_utils not defined, unable to render client-side GPT ad or injected ad.");
+</script>
+<!-- End TOP_AD -->
+	
+</div>
+  <div id="navbar" class="navbarSprite">
+<noscript>
+  <link rel="stylesheet" type="text/css" href="http://ia.media-imdb.com/images/G/01/imdb/css/site/consumer-navbar-no-js-3652782989._CB522736526_.css" />
+</noscript>
+<!--[if IE]><link rel="stylesheet" type="text/css" href="http://ia.media-imdb.com/images/G/01/imdb/css/site/consumer-navbar-ie-2133976414._CB522736582_.css"><![endif]-->
+<span id="home_img_holder">
+<a href="/?ref_=nv_home"
+title="Home" class="navbarSprite" id="home_img" ></a>  <span class="alt_logo">
+    <a href="/?ref_=nv_home"
+title="Home" >IMDb</a>
+  </span>
+</span>
+<form
+ method="get"
+ action="/find"
+ class="nav-searchbar-inner"
+ id="navbar-form"
+
+>
+  <div id="nb_search">
+    <noscript><div id="more_if_no_javascript"><a href="/search/">More</a></div></noscript>
+    <button id="navbar-submit-button" class="primary btn" type="submit"><div class="magnifyingglass navbarSprite"></div></button>
+    <input type="hidden" name="ref_" value="nv_sr_fn" />
+    <input type="text" autocomplete="off" value="" name="q" id="navbar-query" placeholder="Find Movies, TV shows, Celebrities and more...">
+    <div class="quicksearch_dropdown_wrapper">
+      <select name="s" id="quicksearch" class="quicksearch_dropdown navbarSprite"
+              onchange="jumpMenu(this); suggestionsearch_dropdown_choice(this);">
+        <option value="all" >All</option>
+        <option value="tt" >Titles</option>
+        <option value="ep" >TV Episodes</option>
+        <option value="nm" >Names</option>
+        <option value="co" >Companies</option>
+        <option value="kw" >Keywords</option>
+        <option value="ch" >Characters</option>
+        <option value="qu" >Quotes</option>
+        <option value="bi" >Bios</option>
+        <option value="pl" >Plots</option>
+      </select>
+    </div>
+    <div id="navbar-suggestionsearch"></div>
+  </div>
+</form>
+<div id="megaMenu">
+    <ul id="consumer_main_nav" class="main_nav">
+        <li class="spacer"></li>
+        <li class="css_nav_item" id="navTitleMenu">
+            <p class="navCategory">
+                <a href="/movies-in-theaters/?ref_=nv_tp_inth_1"
+>Movies</a>,
+                <a href="/chart/toptv/?ref_=nv_tp_tv250_2"
+>TV</a><br />
+                & <a href="/showtimes/?ref_=nv_tp_sh_3"
+>Showtimes</a></p>
+            <span class="downArrow"></span>
+            <div id="navMenu1" class="sub_nav">
+                <div id="titleAd"></div>
+                <div class="subNavListContainer">
+                    <h5>MOVIES</h5>
+                    <ul>
+                        <li><a href="/movies-in-theaters/?ref_=nv_mv_inth_1"
+>In Theaters</a></li>
+                        <li><a href="/showtimes/?ref_=nv_mv_sh_2"
+>Showtimes & Tickets</a></li>
+                        <li><a href="/trailers/?ref_=nv_mv_tr_3"
+>Latest Trailers</a></li>
+                        <li><a href="/movies-coming-soon/?ref_=nv_mv_cs_4"
+>Coming Soon</a></li>
+                        <li><a href="/calendar/?ref_=nv_mv_cal_5"
+>Release Calendar</a></li>
+                        <li><a href="/chart/top?ref_=nv_mv_250_6"
+>Top Rated Movies</a></li>
+                        <li><a href="/chart/top-indian-movies?ref_=nv_mv_250_in_7"
+>Top Rated Indian Movies</a></li>
+                        <li><a href="/chart/moviemeter?ref_=nv_mv_mpm_8"
+>Most Popular Movies</a></li>
+                    </ul>
+                    <h5>CHARTS & TRENDS</h5>
+                    <ul>
+                        <li><a href="/chart/?ref_=nv_ch_cht_1"
+>Box Office</a></li>
+                        <li><a href="/search/title?count=100&groups=oscar_best_picture_winners&sort=year,desc&ref_=nv_ch_osc_2"
+>Oscar Winners</a></li>
+                        <li><a href="/genre/?ref_=nv_ch_gr_3"
+>Most Popular by Genre</a></li>
+                    </ul>
+                </div>
+                <div class="subNavListContainer">
+                    <h5>TV & VIDEO</h5>
+                    <ul>
+                        <li><a href="/tv/?ref_=nv_tvv_tv_1"
+>IMDb TV</a></li>
+                        <li><a href="/tvgrid/?ref_=nv_tvv_ls_2"
+>On Tonight</a></li>
+                        <li><a href="/chart/toptv/?ref_=nv_tvv_250_3"
+>Top Rated TV Shows</a></li>
+                        <li><a href="/chart/tvmeter?ref_=nv_tvv_mptv_4"
+>Most Popular TV Shows</a></li>
+                        <li><a href="/feature/watch-now-on-amazon/?ref_=nv_tvv_wn_5"
+>Watch Now on Amazon</a></li>
+                        <li><a href="/sections/dvd/?ref_=nv_tvv_dvd_6"
+>DVD & Blu-Ray</a></li>
+                    </ul>
+                    <h5>SPECIAL FEATURES</h5>
+                    <ul>
+                        <li><a href="/imdbpicks/?ref_=nv_sf_picks_1"
+>IMDb Picks</a></li>
+                        <li><a href="/scary-good/?ref_=nv_sf_sg_2"
+>Scary Good</a></li>
+                        <li><a href="/amazon-originals/?ref_=nv_sf_ams_3"
+>Amazon Originals</a></li>
+                        <li><a href="/star-wars/?ref_=nv_sf_stw_4"
+>Star Wars on IMDb</a></li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li class="spacer"></li>
+        <li class="css_nav_item" id="navNameMenu">
+            <p class="navCategory">
+                <a href="/search/name?gender=male,female&ref_=nv_tp_cel_1"
+>Celebs</a>,
+                <a href="/awards-central/?ref_=nv_tp_awrd_2"
+>Events</a><br />
+                & <a href="/gallery/rg784964352?ref_=nv_tp_ph_3"
+>Photos</a></p>
+            <span class="downArrow"></span>
+            <div id="navMenu2" class="sub_nav">
+                <div id="nameAd"></div>
+                <div class="subNavListContainer">
+                    <h5>CELEBS</h5>
+                    <ul>
+                            <li><a href="/search/name?birth_monthday=04-07&refine=birth_monthday&ref_=nv_cel_brn_1"
+>Born Today</a></li>
+                        <li><a href="/news/celebrity?ref_=nv_cel_nw_2"
+>Celebrity News</a></li>
+                        <li><a href="/search/name?gender=male,female&ref_=nv_cel_m_3"
+>Most Popular Celebs</a></li>
+                    </ul>
+                    <h5>PHOTOS</h5>
+                    <ul>
+                        <li><a href="/gallery/rg1859820288?ref_=nv_ph_ls_1"
+>Latest Stills</a></li>
+                        <li><a href="/gallery/rg1624939264?ref_=nv_ph_lp_2"
+>Latest Posters</a></li>
+                        <li><a href="/gallery/rg1641716480?ref_=nv_ph_lv_3"
+>Photos We Love</a></li>
+                    </ul>
+                </div>
+                <div class="subNavListContainer">
+                    <h5>EVENTS</h5>
+                    <ul>
+                        <li><a href="/awards-central/?ref_=nv_ev_awrd_1"
+>Awards Central</a></li>
+                        <li><a href="/oscars/?ref_=nv_ev_acd_2"
+>Oscars</a></li>
+                        <li><a href="/golden-globes/?ref_=nv_ev_gg_3"
+>Golden Globes</a></li>
+                        <li><a href="/sundance/?ref_=nv_ev_sun_4"
+>Sundance</a></li>
+                        <li><a href="/cannes/?ref_=nv_ev_can_5"
+>Cannes</a></li>
+                        <li><a href="/comic-con/?ref_=nv_ev_comic_6"
+>Comic-Con</a></li>
+                        <li><a href="/emmys/?ref_=nv_ev_rte_7"
+>Emmy Awards</a></li>
+                        <li><a href="/venice/?ref_=nv_ev_venice_8"
+>Venice Film Festival</a></li>
+                        <li><a href="/toronto/?ref_=nv_ev_tff_9"
+>Toronto Film Festival</a></li>
+                        <li><a href="/festival-central/?ref_=nv_ev_fc_10"
+>Festival Central</a></li>
+                        <li><a href="/festival-central/tribeca?ref_=nv_ev_tff_11"
+>Tribeca</a></li>
+                        <li><a href="/event/all/?ref_=nv_ev_all_12"
+>All Events</a></li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li class="spacer"></li>
+        <li class="css_nav_item" id="navNewsMenu">
+            <p class="navCategory">
+                <a href="/news/top?ref_=nv_tp_nw_1"
+>News</a> &<br />
+                <a href="/czone/?ref_=nv_cm_cz_2"
+>Community</a>
+            </p>
+            <span class="downArrow"></span>
+            <div id="navMenu3" class="sub_nav">
+                <div id="latestHeadlines">
+                    <div class="subNavListContainer">
+                        <h5>LATEST HEADLINES</h5>
+    <ul>
+                <li itemprop="headline">
+<a href="/news/ni60967692/?ref_=nv_nw_tn_1"
+> 'Smurfs 3' and 'Going in Style' Debut as Moviegoers Await 'Fast and Furious 8'
+</a><br />
+                        <span class="time">13 hours ago</span>
+                </li>
+                <li itemprop="headline">
+<a href="/news/ni60966735/?ref_=nv_nw_tn_2"
+> Don Rickles, Legendary Comic, Dies at 90
+</a><br />
+                        <span class="time">15 hours ago</span>
+                </li>
+                <li itemprop="headline">
+<a href="/news/ni60964261/?ref_=nv_nw_tn_3"
+> Christian Bale, Steve Carell, and Amy Adams Circling Adam McKay’s Dick Cheney Biopic
+</a><br />
+                        <span class="time">6 April 2017 12:24 AM, UTC</span>
+                </li>
+    </ul>
+                    </div>
+                </div>
+                <div class="subNavListContainer">
+                    <h5>NEWS</h5>
+                    <ul>
+                        <li><a href="/news/top?ref_=nv_nw_tp_1"
+>Top News</a></li>
+                        <li><a href="/news/movie?ref_=nv_nw_mv_2"
+>Movie News</a></li>
+                        <li><a href="/news/tv?ref_=nv_nw_tv_3"
+>TV News</a></li>
+                        <li><a href="/news/celebrity?ref_=nv_nw_cel_4"
+>Celebrity News</a></li>
+                        <li><a href="/news/indie?ref_=nv_nw_ind_5"
+>Indie News</a></li>
+                    </ul>
+                    <h5>COMMUNITY</h5>
+                    <ul>
+                        <li><a href="/czone/?ref_=nv_cm_cz_2"
+>Contributor Zone</a></li>
+                        <li><a href="/poll/?ref_=nv_cm_pl_3"
+>Polls</a></li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li class="spacer"></li>
+        <li class="css_nav_item" id="navWatchlistMenu">
+<p class="navCategory singleLine watchlist">
+    <a href="/list/watchlist?ref_=nv_wl_all_0"
+>Watchlist</a>
+</p>
+<span class="downArrow"></span>
+<div id="navMenu4" class="sub_nav">
+    <h5>
+            YOUR WATCHLIST
+    </h5>
+    <ul id="navWatchlist">
+    </ul>
+    <script>
+    if (!('imdb' in window)) { window.imdb = {}; }
+    window.imdb.watchlistTeaserData = [
+                {
+                        href : "/list/watchlist",
+                src : "http://ia.media-imdb.com/images/G/01/imdb/images/navbar/watchlist_slot1_logged_out-1670046337._CB522736556_.jpg"
+                },
+                {
+                    href : "/search/title?count=100&title_type=feature,tv_series",
+                src : "http://ia.media-imdb.com/images/G/01/imdb/images/navbar/watchlist_slot2_popular-4090757197._CB522736562_.jpg"
+                },
+                {
+                    href : "/chart/top",
+                src : "http://ia.media-imdb.com/images/G/01/imdb/images/navbar/watchlist_slot3_top250-575799966._CB522736596_.jpg"
+                }
+    ];
+    </script>
+</div>
+        </li>
+        <li class="spacer"></li>
+    </ul>
+<script>
+if (!('imdb' in window)) { window.imdb = {}; }
+window.imdb.navbarAdSlots = {
+    titleAd : {
+            clickThru : "/title/tt0317248/",
+            imageUrl : "http://ia.media-imdb.com/images/M/MV5BMTc5MzkzNzk5MV5BMl5BanBnXkFtZTcwMjc4MTE5Ng@@._V1._SY315_CR110,0,410,315_.jpg",
+            titleYears : "2002",
+            rank : 21,
+                    headline : "City of God"
+    },
+    nameAd : {
+            clickThru : "/name/nm0000098/",
+            imageUrl : "http://ia.media-imdb.com/images/M/MV5BMjA4MDU4MjIyMl5BMl5BanBnXkFtZTcwOTM2OTE0Nw@@._V1._SX250_CR0,0,250,315_.jpg",
+            rank : 186,
+            headline : "Jennifer Aniston"
+    }
+}
+</script>
+</div>
+<div id="nb_extra">
+    <ul id="nb_extra_nav" class="main_nav">
+        <li class="css_nav_item" id="navProMenu">
+            <p class="navCategory">
+<a href="http://pro.imdb.com/signup/index.html?rf=cons_nb_hm&ref_=cons_nb_hm"
+> <img alt="IMDbPro Menu" src="http://ia.media-imdb.com/images/G/01/imdb/images/navbar/imdbpro_logo_nb-3000473826._CB530713470_.png" />
+</a>            </p>
+            <span class="downArrow"></span>
+            <div id="navMenuPro" class="imdb-pro-ad sub_nav">
+<a href="http://pro.imdb.com/signup/index.html?rf=cons_nb_hm&ref_=cons_nb_hm"
+class="imdp-pro-ad__link" > <div id="proAd" class="imdb-pro-ad__image">
+<img alt="Go to IMDbPro" height="180" width="174"
+src="http://ia.media-imdb.com/images/G/01/imdb/images/navbar/imdbpro_menu_user-4091932618._CB530713443_.png"
+srcset="http://ia.media-imdb.com/images/G/01/imdb/images/navbar/imdbpro_menu_user-4091932618._CB530713443_.png 1x,
+http://ia.media-imdb.com/images/G/01/imdb/images/navbar/imdbpro_menu_user_2x-2074318947._CB530713441_.png 2x" />
+</div>
+<section class="imdb-pro-ad__content">
+<h1 class="imdb-pro-ad__title">The leading information resource for the entertainment industry</h1>
+<p class="imdb-pro-ad__line">Find industry contacts &amp; talent representation</p>
+<p class="imdb-pro-ad__line">Manage your photos, credits, &amp; more</p>
+<p class="imdb-pro-ad__line">Showcase yourself on IMDb &amp; Amazon</p>
+<span role="button" class="imdb-pro-ad__button">Go to IMDbPro</a>
+</section>
+</a>            </div>
+        </li>
+        <li class="spacer"><span class="ghost">|</span></li>
+        <li>
+            <a href="/help/?ref_=nb_hlp"
+>Help</a>
+        </li>
+        <li class="social">
+
+    <a href="/offsite/?page-action=fol_fb&token=BCYsOsSG96lstfUvUvDaOYhTgrx7Rjg4lMHJhsncwzM9cleRvi-lpF7B6cY8MQ4SaKmv7dVLWCm4%0D%0ANAB8dPLJ4QvLOpbzBzfiTb6X5pAzV2x70f-m3wTuO8Bh6qcb1bPNbvHJKxvOXTQ2Zi_yNsbDZa8G%0D%0Av7MBGrNvQ0lV0jBY1-UtqUs_KNfbwDNgB7gBibVtY2YKY2keYPA4NeNeWTBtiHL00g%0D%0A&ref_=nv_fol_fb"
+title="Follow IMDb on Facebook" target="_blank" itemprop='url'> <span class="desktop-sprite follow-facebook" ></span>
+</a>
+    <a href="/offsite/?page-action=fol_tw&token=BCYp2Z_fi5T7rr2RBtyr8pp89w9A7vjOnNOA1SSK6CI_CKaFOd2jvcEtRswLznoN-OOKg3osS8ln%0D%0AH4CFWJ5E7tg5gquZpGT1x4wVOlSAF2W6DAVfyr8fiJh133HA0XjRC1ixgPW7gnX_3aALHVLA1R5d%0D%0AlHg9GMj2yIhRDD2kmEy8tcjxXWTzhw-Dw95xkVj0EXJx%0D%0A&ref_=nv_fol_tw"
+title="Follow IMDb on Twitter" target="_blank" itemprop='url'> <span class="desktop-sprite follow-twitter" ></span>
+</a>
+    <a href="/offsite/?page-action=fol_inst&token=BCYhLWo4HbFJEAvn07wv-aZGgUzPrnCFlLN2S9BN_8J8latu9Hwwqk_tOvbddTApy2JRnIOkQ6TB%0D%0Aht7yVFf4Joe0-1Qka4d4Oa-lH0mawd7W_yJt3T-H6JHDpAqzIpdBcOv6rSsGvQSZsA4bd_ISB60c%0D%0AlQnwqEQQC8sTTbkR-1TbFztuNpmOcqddnACt3Efg9uus%0D%0A&ref_=nv_fol_inst"
+title="Follow IMDb on Instagram" target="_blank" itemprop='url'> <span class="desktop-sprite follow-instagram" ></span>
+</a>
+        </li>
+    </ul>
+</div>
+<div id="nb_personal">
+    <ul id="consumer_user_nav" class="main_nav">
+
+            <li class="css_nav_menu no_arrow" id="navUserMenu">
+            <p class="navCategory singleLine">
+                <a id="facebook-signin-link" href="https://graph.facebook.com/v2.8/oauth/authorize?client_id=127059960673829&scope=email%2Cuser_about_me%2Cuser_birthday&state=eyI0OWU2YyI6IjIwYzAiLCJ1IjoiaHR0cHM6Ly93d3cuaW1kYi5jb20vP3JlZl89bnZfZmJfbGdpbiIsIm1hbnVhbExpbmsiOiJmYWxzZSJ9&redirect_uri=https%3A%2F%2Fwww.imdb.com%2Fregistration%2Ffacebookhandler%2F" class="signin-button">
+                <span class="facebook-logo"></span>
+                <span class="signin-facebook-text">Sign in with Facebook</span></a>
+                <a href="https://www.imdb.com/registration/signin?u=/title/tt0758745/episodes%3Fseason%3D1&ref_=nv_usr_lgin_1"
+rel="login" class="signin-other-options-text" id="nblogin" >Other Sign in options</a>
+                </p>
+        </li>
+    </ul>
+</div>
+  </div>
+</div>
+	
+	<!-- no content received for slot: navstrip -->
+	
+	
+	
+<!-- begin INJECTED_NAVSTRIP -->
+<div id="injected_navstrip_wrapper" class="injected_slot">
+<script type="text/javascript">
+doWithAds(function(){
+if ('injected_slot' != 'injected_slot') {
+ad_utils.register_ad('injected_navstrip');
+}
+});
+</script>
+<iframe allowtransparency="true" class="yesScript" data-dart-params="#doubleclick;u=725973804431;ord=725973804431?" frameborder="0" id="injected_navstrip" marginwidth="0" marginheight="0" name="injected_navstrip" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="0" data-original-height="0" width="0" height="0" ></iframe> </div>
+<div id="injected_navstrip_reflow_helper"></div>
+<script id="injected_navstrip_rendering">
+doWithAds(function(){
+if ('injected_slot' == 'injected_slot') {
+ad_utils.inject_ad.register('injected_navstrip');
+} else {
+ad_utils.gpt.render_ad('injected_navstrip');
+}
+}, "ad_utils not defined, unable to render client-side GPT ad or injected ad.");
+</script>
+<!-- End INJECTED_NAVSTRIP -->
+	
+<script>
+    if (typeof uet == 'function') {
+      uet("ne");
+    }
+</script>
+              
+
+                    <div id="pagecontent" class="pagecontent" itemscope itemtype="http://schema.org/TVSeries">
+	
+	
+<!-- begin INJECTED_BILLBOARD -->
+<div id="injected_billboard_wrapper" class="injected_slot">
+<script type="text/javascript">
+doWithAds(function(){
+if ('injected_slot' != 'injected_slot') {
+ad_utils.register_ad('injected_billboard');
+}
+});
+</script>
+<iframe allowtransparency="true" class="yesScript" data-dart-params="#doubleclick;u=725973804431;ord=725973804431?" frameborder="0" id="injected_billboard" marginwidth="0" marginheight="0" name="injected_billboard" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="0" data-original-height="0" width="0" height="0" ></iframe> </div>
+<div id="injected_billboard_reflow_helper"></div>
+<script id="injected_billboard_rendering">
+doWithAds(function(){
+if ('injected_slot' == 'injected_slot') {
+ad_utils.inject_ad.register('injected_billboard');
+} else {
+ad_utils.gpt.render_ad('injected_billboard');
+}
+}, "ad_utils not defined, unable to render client-side GPT ad or injected ad.");
+</script>
+<!-- End INJECTED_BILLBOARD -->
+	
+
+<div id="content-2-wide" class="redesign">
+<div id="main">
+
+<div class="article listo list">
+
+  
+<div class="subpage_title_block">
+<a href="/title/tt0758745/?ref_=ttep_ep_tt"
+> <img itemprop="image"
+class="poster"
+height="98"
+width="67"
+alt="Friday Night Lights (TV Series 2006–2011) Poster"
+src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTYwNjIyMTYwOV5BMl5BanBnXkFtZTcwMTA2MDU1MQ@@._V1_UY98_CR3,0,67,98_AL_.jpg" />
+</a>  <div class="parent">   
+    <h3 itemprop="name">
+<a href="/title/tt0758745/?ref_=ttep_ep_tt"
+itemprop='url'>Friday Night Lights</a>         <span class="nobr">
+             (2006–2011)
+         </span>
+    </h3>
+  </div>
+  <script>
+    if ('csm' in window) {
+      csm.measure('csm_body_delivery_started');
+    }
+  </script>
+  <h1 class="header">Episode List</h1>
+</div>
+  <div id="episodes_content" class="header" itemscope itemtype="http://schema.org/TVSeries">
+    <meta itemprop="name" content="Friday Night Lights (TV Series 2006–2011)"/>
+  <div class="seasonAndYearNav">
+    <div class="episode-list-select">
+  <div>
+    <label for="bySeason">Season:</label>
+    <select id="bySeason" tconst="tt0758745" class="current">
+      <!--
+      This ensures that we don't wind up accidentally marking two options
+      (Unknown and the blank one) as selected.
+      -->
+      <option selected="selected" value="1">
+        1
+      </option>
+      <!--
+      This ensures that we don't wind up accidentally marking two options
+      (Unknown and the blank one) as selected.
+      -->
+      <option  value="2">
+        2
+      </option>
+      <!--
+      This ensures that we don't wind up accidentally marking two options
+      (Unknown and the blank one) as selected.
+      -->
+      <option  value="3">
+        3
+      </option>
+      <!--
+      This ensures that we don't wind up accidentally marking two options
+      (Unknown and the blank one) as selected.
+      -->
+      <option  value="4">
+        4
+      </option>
+      <!--
+      This ensures that we don't wind up accidentally marking two options
+      (Unknown and the blank one) as selected.
+      -->
+      <option  value="5">
+        5
+      </option>
+    </select>
+  </div>
+            <span class="season-year-separator">&nbsp;OR&nbsp;</span>
+  <div>
+    <label for="byYear">Year:</label>
+    <select id="byYear" tconst="tt0758745" class="">
+      <option selected="selected">&nbsp;</option>
+      <!--
+      This ensures that we don't wind up accidentally marking two options
+      (Unknown and the blank one) as selected.
+      -->
+      <option  value="2006">
+        2006
+      </option>
+      <!--
+      This ensures that we don't wind up accidentally marking two options
+      (Unknown and the blank one) as selected.
+      -->
+      <option  value="2007">
+        2007
+      </option>
+      <!--
+      This ensures that we don't wind up accidentally marking two options
+      (Unknown and the blank one) as selected.
+      -->
+      <option  value="2008">
+        2008
+      </option>
+      <!--
+      This ensures that we don't wind up accidentally marking two options
+      (Unknown and the blank one) as selected.
+      -->
+      <option  value="2009">
+        2009
+      </option>
+      <!--
+      This ensures that we don't wind up accidentally marking two options
+      (Unknown and the blank one) as selected.
+      -->
+      <option  value="2010">
+        2010
+      </option>
+      <!--
+      This ensures that we don't wind up accidentally marking two options
+      (Unknown and the blank one) as selected.
+      -->
+      <option  value="2011">
+        2011
+      </option>
+    </select>
+  </div>
+    </div>
+  </div>
+  <div class="clear" itemscope itemtype="http://schema.org/TVSeason">
+        <meta itemprop="numberofEpisodes" content="22"/>
+            <div class="sort">
+                <button data-direction="asc" class="small sort_direction btn sort_asc" title="Reverse the order">&nbsp;</button>
+            </div>
+    <h3 id="episode_top"  itemprop="name">Season&nbsp;1</h3>
+  <div class="list detail eplist">
+      <div class="list_item odd">
+  <div class="image">
+<a href="/title/tt0868133/?ref_=ttep_ep1"
+title="Pilot" itemprop="url"> <div data-const="tt0868133" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Pilot" src="https://images-na.ssl-images-amazon.com/images/M/MV5BODkzMzg1MjM3NV5BMl5BanBnXkFtZTgwNjg4ODg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep1</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="1"/>
+    <div class="airdate">
+            29 Jan. 2009
+    </div>
+    <strong><a href="/title/tt0868133/?ref_=ttep_ep1"
+title="Pilot" itemprop="name">Pilot</a></strong>
+    <div class="item_description" itemprop="description">
+New head coach Eric Taylor finds his every move scrutinized as he takes over leadership of Texas's No. 1 high school football team.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0868133" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item even">
+  <div class="image">
+<a href="/title/tt0871137/?ref_=ttep_ep2"
+title="Eyes Wide Open" itemprop="url"> <div data-const="tt0871137" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Eyes Wide Open" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMzk5NjIyNDU2Nl5BMl5BanBnXkFtZTgwNTcwMzk0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep2</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="2"/>
+    <div class="airdate">
+            5 Feb. 2009
+    </div>
+    <strong><a href="/title/tt0871137/?ref_=ttep_ep2"
+title="Eyes Wide Open" itemprop="name">Eyes Wide Open</a></strong>
+    <div class="item_description" itemprop="description">
+With Jason seriously injured, Matt must step up and become the team's first-string quarterback.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0871137" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item odd">
+  <div class="image">
+<a href="/title/tt0863502/?ref_=ttep_ep3"
+title="Wind Sprints" itemprop="url"> <div data-const="tt0863502" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Wind Sprints" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTEyNDI2OTAzNzdeQTJeQWpwZ15BbWU4MDY5MzY4NDIx._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep3</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="3"/>
+    <div class="airdate">
+            12 Feb. 2009
+    </div>
+    <strong><a href="/title/tt0863502/?ref_=ttep_ep3"
+title="Wind Sprints" itemprop="name">Wind Sprints</a></strong>
+    <div class="item_description" itemprop="description">
+The Panthers suffer a humiliating loss. Lydia tries to help Jason believe that he will walk again.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0863502" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item even">
+  <div class="image">
+<a href="/title/tt0872912/?ref_=ttep_ep4"
+title="Who's Your Daddy" itemprop="url"> <div data-const="tt0872912" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Who's Your Daddy" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjA2MDUyODg5Nl5BMl5BanBnXkFtZTgwODEyMTk0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep4</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="4"/>
+    <div class="airdate">
+            19 Feb. 2009
+    </div>
+    <strong><a href="/title/tt0872912/?ref_=ttep_ep4"
+title="Who's Your Daddy" itemprop="name">Who's Your Daddy</a></strong>
+    <div class="item_description" itemprop="description">
+Coach Taylor deals with outside influences on who to start at quarterback, with the biggest game of the year coming up against their rivals, who have taken it upon themselves to raise the bar by trashing the Panthers' locker room. His wife has no picnic, either, as she is given two days to plan a team tradition barbecue and the visiting list keeps getting bigger. Jason is moved to a rehab unit, still not accepting his situation, as his replacement and Matt, deals with competition when a new quarterback is brought in from Louisiana as a refugee from Hurricane Katrina.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0872912" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item odd">
+  <div class="image">
+<a href="/title/tt0863503/?ref_=ttep_ep5"
+title="Git'er Done" itemprop="url"> <div data-const="tt0863503" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Git'er Done" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTgxODc0MjQ0MV5BMl5BanBnXkFtZTgwMTY0Njg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep5</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="5"/>
+    <div class="airdate">
+            26 Feb. 2009
+    </div>
+    <strong><a href="/title/tt0863503/?ref_=ttep_ep5"
+title="Git'er Done" itemprop="name">Git'er Done</a></strong>
+    <div class="item_description" itemprop="description">
+While only two days away from their next game, Coach Taylor still doesn't know who to start at quarterback, and Jason still doesn't know that his best friend is spending a lot of time with his girlfriend.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0863503" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item even">
+  <div class="image">
+<a href="/title/tt0877087/?ref_=ttep_ep6"
+title="El Accidente" itemprop="url"> <div data-const="tt0877087" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="El Accidente" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjM4NDA4MDg0MF5BMl5BanBnXkFtZTgwMjY1MTg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep6</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="6"/>
+    <div class="airdate">
+            5 Mar. 2009
+    </div>
+    <strong><a href="/title/tt0877087/?ref_=ttep_ep6"
+title="El Accidente" itemprop="name">El Accidente</a></strong>
+    <div class="item_description" itemprop="description">
+Coach Taylor questions his principles regarding Voodoo's eligibility and is confronted with another problem when his #1 defensive player is arrested for assaulting a fellow student. Tim and Lila break Jason out of the hospital for the afternoon.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0877087" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item odd">
+  <div class="image">
+<a href="/title/tt0875325/?ref_=ttep_ep7"
+title="Homecoming" itemprop="url"> <div data-const="tt0875325" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Homecoming" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMzU0MjU4MTMyNV5BMl5BanBnXkFtZTgwNzY4Mjg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep7</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="7"/>
+    <div class="airdate">
+            12 Mar. 2009
+    </div>
+    <strong><a href="/title/tt0875325/?ref_=ttep_ep7"
+title="Homecoming" itemprop="name">Homecoming</a></strong>
+    <div class="item_description" itemprop="description">
+Coach Taylor asks Jason to attend the upcoming Homecoming game, who begins to suspect there's something going on between Tim and Lila. Smash feels the pressure of college scouts, even though he's still a junior. Tyra and Billy plan the ultimate party for after the game.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0875325" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item even">
+  <div class="image">
+<a href="/title/tt0875324/?ref_=ttep_ep8"
+title="Crossing the Line" itemprop="url"> <div data-const="tt0875324" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Crossing the Line" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTg4MjkyOTIwNV5BMl5BanBnXkFtZTgwNTY4Mjg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep8</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="8"/>
+    <div class="airdate">
+            19 Mar. 2009
+    </div>
+    <strong><a href="/title/tt0875324/?ref_=ttep_ep8"
+title="Crossing the Line" itemprop="name">Crossing the Line</a></strong>
+    <div class="item_description" itemprop="description">
+Jason confronts Lila about her and Tim. Matt asks Coach Taylor's daughter is she would like to go out sometime leading Taylor and his wife to worry about her.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0875324" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item odd">
+  <div class="image">
+<a href="/title/tt0886859/?ref_=ttep_ep9"
+title="Full Hearts" itemprop="url"> <div data-const="tt0886859" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Full Hearts" src="https://images-na.ssl-images-amazon.com/images/M/MV5BODYwNDQxMjM4M15BMl5BanBnXkFtZTgwMDcyMzk0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep9</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="9"/>
+    <div class="airdate">
+            26 Mar. 2009
+    </div>
+    <strong><a href="/title/tt0886859/?ref_=ttep_ep9"
+title="Full Hearts" itemprop="name">Full Hearts</a></strong>
+    <div class="item_description" itemprop="description">
+With a very intimidating opponent on the horizon, Coach Taylor deals with his former starting quarterback and his unfaithful girlfriend and his new starting quarterback dating his own daughter. Lila and Tim face repercussions of their own actions, and Smash deals with having to go back to his old hometown for the big game and dealing with old feelings regarding his father, all the while facing the issues surrounding his secret steroid use, especially when his sister begins to notice the changes in him.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0886859" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item even">
+  <div class="image">
+<a href="/title/tt0890844/?ref_=ttep_ep10"
+title="It's Different for Girls" itemprop="url"> <div data-const="tt0890844" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="It's Different for Girls" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTUwMDA3MjM2MV5BMl5BanBnXkFtZTgwNDQ5Mzg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep10</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="10"/>
+    <div class="airdate">
+            2 Apr. 2009
+    </div>
+    <strong><a href="/title/tt0890844/?ref_=ttep_ep10"
+title="It's Different for Girls" itemprop="name">It's Different for Girls</a></strong>
+    <div class="item_description" itemprop="description">
+While everyone is focused on the cheerleaders, who have an upcoming competition, they focus on giving Lila a hard time. Smash begins to show signs of steroid abuse, and Coach Taylor finds another way to occupy his starting quarterback in an effort to squash Matt's efforts with the coach's daughter.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0890844" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item odd">
+  <div class="image">
+<a href="/title/tt0894070/?ref_=ttep_ep11"
+title="Nevermind" itemprop="url"> <div data-const="tt0894070" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Nevermind" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQxMzg3MjE4OF5BMl5BanBnXkFtZTgwOTA0Njg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep11</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="11"/>
+    <div class="airdate">
+            9 Apr. 2009
+    </div>
+    <strong><a href="/title/tt0894070/?ref_=ttep_ep11"
+title="Nevermind" itemprop="name">Nevermind</a></strong>
+    <div class="item_description" itemprop="description">
+The Panthers are preparing yet again for another game they can't afford to lose. Jason (Scott Porter) still finds it difficult to adjust to life at home, and the feelings he still has for Lyla (Minka Kelly) don't make it any easier. Meanwhile, at what couldn't seem like a better time, Matt's (Zach Gilford) dad comes home from Iraq, but the homecoming is not what Matt expected. To make situations even more complicated, UT has taken an interest in Coach Taylor, whose popularity continues to grow, and Smash becomes more and more dependent on unnatural substances to keep ...    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0894070" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item even">
+  <div class="image">
+<a href="/title/tt0902589/?ref_=ttep_ep12"
+title="What to Do While You're Waiting" itemprop="url"> <div data-const="tt0902589" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="What to Do While You're Waiting" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ3MTU5MTc5MV5BMl5BanBnXkFtZTgwNTQ3ODg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep12</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="12"/>
+    <div class="airdate">
+            16 Apr. 2009
+    </div>
+    <strong><a href="/title/tt0902589/?ref_=ttep_ep12"
+title="What to Do While You're Waiting" itemprop="name">What to Do While You're Waiting</a></strong>
+    <div class="item_description" itemprop="description">
+Matt's dad decides to stay home instead of returning to Iraq, while Jason's parents level a lawsuit against the coach for negligence. Smash tries to get closer to a girl, but he keeps getting in the way, himself. The whole town awaits another game involving two other schools, with the results determining the Panthers' post-season hopes.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0902589" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item odd">
+  <div class="image">
+<a href="/title/tt0921960/?ref_=ttep_ep13"
+title="Little Girl I Wanna Marry You" itemprop="url"> <div data-const="tt0921960" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Little Girl I Wanna Marry You" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ0MDc4MzYxN15BMl5BanBnXkFtZTgwMjE0MDk0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep13</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="13"/>
+    <div class="airdate">
+            23 Apr. 2009
+    </div>
+    <strong><a href="/title/tt0921960/?ref_=ttep_ep13"
+title="Little Girl I Wanna Marry You" itemprop="name">Little Girl I Wanna Marry You</a></strong>
+    <div class="item_description" itemprop="description">
+Smash's mom finds his steroids and reports them to Coach Taylor, forcing the coach to bench Smash for the next game. Matt's dad is recalled to Iraq leaving Matt to once again take care of his grandma. Lila's dad sets her up with a date and Jason gets upset.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0921960" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item even">
+  <div class="image">
+<a href="/title/tt0916979/?ref_=ttep_ep14"
+title="Upping the Ante" itemprop="url"> <div data-const="tt0916979" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Upping the Ante" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjI4MDU0MDg4Ml5BMl5BanBnXkFtZTgwMTc0Mjk0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep14</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="14"/>
+    <div class="airdate">
+            30 Apr. 2009
+    </div>
+    <strong><a href="/title/tt0916979/?ref_=ttep_ep14"
+title="Upping the Ante" itemprop="name">Upping the Ante</a></strong>
+    <div class="item_description" itemprop="description">
+Coach Taylor continues to ride Smash while the team gets ready for their upcoming playoff game. Tim goes in search of his father and Jason stands up to Buddy Garrity, which sets him apart from Lyla.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0916979" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item odd">
+  <div class="image">
+<a href="/title/tt0921959/?ref_=ttep_ep15"
+title="Blinders" itemprop="url"> <div data-const="tt0921959" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Blinders" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTkzMDg5MDAxMl5BMl5BanBnXkFtZTgwNDE0MDk0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep15</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="15"/>
+    <div class="airdate">
+            7 May 2009
+    </div>
+    <strong><a href="/title/tt0921959/?ref_=ttep_ep15"
+title="Blinders" itemprop="name">Blinders</a></strong>
+    <div class="item_description" itemprop="description">
+When an assistant coach is quoted in the media with racial intentions, he draws a line between the team, right at playoff time. Julie and Tyra are forced to join the powderpuff game as a result for skipping class, and Julie's dad is a bit elated when she's picked for quarterback by Matt. Tyra, meanwhile, has a hard time dealing with her mother's growing relationship with Buddy Garrity, and starts taking it out on his daughter, Lila. Jason gets an invite to join the local rugby team.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0921959" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item even">
+  <div class="image">
+<a href="/title/tt0941552/?ref_=ttep_ep16"
+title="Black Eyes and Broken Hearts" itemprop="url"> <div data-const="tt0941552" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Black Eyes and Broken Hearts" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjI5ODc4ODY5Ml5BMl5BanBnXkFtZTgwNzU4NTg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep16</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="16"/>
+    <div class="airdate">
+            14 May 2009
+    </div>
+    <strong><a href="/title/tt0941552/?ref_=ttep_ep16"
+title="Black Eyes and Broken Hearts" itemprop="name">Black Eyes and Broken Hearts</a></strong>
+    <div class="item_description" itemprop="description">
+Julie is confronted by her parents regarding her growing relationship with Tyra. Matt tries his hardest to get back in Julie's good graces. Meanwhile, the post-season is in jeopardy as Coach Taylor remains divided over firing his offensive coordinator or standing by his friend, which is the key to one quarter of the team taking a stand by sitting out of the next game.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0941552" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item odd">
+  <div class="image">
+<a href="/title/tt0962354/?ref_=ttep_ep17"
+title="I Think We Should Have Sex" itemprop="url"> <div data-const="tt0962354" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="I Think We Should Have Sex" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ3MDY3MDUxMV5BMl5BanBnXkFtZTgwOTU5MTg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep17</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="17"/>
+    <div class="airdate">
+            21 May 2009
+    </div>
+    <strong><a href="/title/tt0962354/?ref_=ttep_ep17"
+title="I Think We Should Have Sex" itemprop="name">I Think We Should Have Sex</a></strong>
+    <div class="item_description" itemprop="description">
+Mrs. Taylor confronts Julie after seeing Matt buying condoms; Coach Taylor accuses Tim's father of stealing a camera from his office; Buddy Garrity fires Tyra's mother from the dealership.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0962354" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item even">
+  <div class="image">
+<a href="/title/tt0975253/?ref_=ttep_ep18"
+title="Extended Families" itemprop="url"> <div data-const="tt0975253" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Extended Families" src="https://images-na.ssl-images-amazon.com/images/M/MV5BNTI2Njk4NTk1N15BMl5BanBnXkFtZTgwNzk5OTg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep18</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="18"/>
+    <div class="airdate">
+            28 May 2009
+    </div>
+    <strong><a href="/title/tt0975253/?ref_=ttep_ep18"
+title="Extended Families" itemprop="name">Extended Families</a></strong>
+    <div class="item_description" itemprop="description">
+When his wife throws him out of the house, Buddy Garrity turns to Coach Taylor and Lila turns to Jason. Julie turns to her mother when an accident happens involving Tyra's mother, even though she knows she's not supposed to be hanging out with Tyra. And Waverly's father turns to Smash when he fears that she has taken a personal change without consulting her father.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0975253" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item odd">
+  <div class="image">
+<a href="/title/tt0974104/?ref_=ttep_ep19"
+title="Ch-Ch-Ch-Ch-Changes" itemprop="url"> <div data-const="tt0974104" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Ch-Ch-Ch-Ch-Changes" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjIxMDIzODY3NF5BMl5BanBnXkFtZTgwOTY0OTg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep19</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="19"/>
+    <div class="airdate">
+            5 Jun. 2009
+    </div>
+    <strong><a href="/title/tt0974104/?ref_=ttep_ep19"
+title="Ch-Ch-Ch-Ch-Changes" itemprop="name">Ch-Ch-Ch-Ch-Changes</a></strong>
+    <div class="item_description" itemprop="description">
+With TMU trying to recruit Coach Taylor, Julie insists that she will not be moved away from Matt and Dillon. The quad rugby recruiters in Austin deliver some bad news to Jason. Riggins becomes friends with a single mother and her son.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0974104" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item even">
+  <div class="image">
+<a href="/title/tt0967676/?ref_=ttep_ep20"
+title="Mud Bowl" itemprop="url"> <div data-const="tt0967676" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Mud Bowl" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTYwMTMzODg4Nl5BMl5BanBnXkFtZTgwNDMyNDg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep20</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="20"/>
+    <div class="airdate">
+            5 Jun. 2009
+    </div>
+    <strong><a href="/title/tt0967676/?ref_=ttep_ep20"
+title="Mud Bowl" itemprop="name">Mud Bowl</a></strong>
+    <div class="item_description" itemprop="description">
+A chemical spill forces Coach Taylor and the Panthers to seek another facility in which to play the crucial State semifinal game.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0967676" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item odd">
+  <div class="image">
+<a href="/title/tt0979518/?ref_=ttep_ep21"
+title="Best Laid Plans" itemprop="url"> <div data-const="tt0979518" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="Best Laid Plans" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTgyOTI2Mjk0OF5BMl5BanBnXkFtZTgwMzE2Mzk0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep21</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="21"/>
+    <div class="airdate">
+            12 Jun. 2009
+    </div>
+    <strong><a href="/title/tt0979518/?ref_=ttep_ep21"
+title="Best Laid Plans" itemprop="name">Best Laid Plans</a></strong>
+    <div class="item_description" itemprop="description">
+Coach Taylor makes a final decision about whether to take the job at Texas Methodist University, while Tyra's secret is revealed.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0979518" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+      <div class="list_item even">
+  <div class="image">
+<a href="/title/tt0998353/?ref_=ttep_ep22"
+title="State" itemprop="url"> <div data-const="tt0998353" class="hover-over-image zero-z-index ">
+<img width="200" height="112" class="zero-z-index" alt="State" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjI2Mzg1MDg0M15BMl5BanBnXkFtZTgwNjk1MTg0MjE@._V1_UX200_CR0,0,200,112_AL_.jpg">
+<div>S1, Ep22</div>
+</div>
+</a>  </div>
+  <div class="info" itemprop="episodes" itemscope itemtype="http://schema.org/TVEpisode">
+    <meta itemprop="episodeNumber" content="22"/>
+    <div class="airdate">
+            12 Jun. 2009
+    </div>
+    <strong><a href="/title/tt0998353/?ref_=ttep_ep22"
+title="State" itemprop="name">State</a></strong>
+    <div class="item_description" itemprop="description">
+The Panthers gear up for the state championship, as the rumor about Coach Taylor spreads. Meanwhile, Tami receives some news.    </div>
+    <div class="wtw-option-standalone" data-tconst="tt0998353" data-watchtype="minibar" data-baseref="ttep"></div>
+  </div>
+  <div class="clear">&nbsp;</div>
+      </div>
+  </div>
+  <hr>
+  <div>
+
+    &nbsp;<strong>Season 1</strong>&nbsp;
+<span>|&nbsp;</span><a href="?season=2&ref_=ttep_ep_sn_nx"
+id="load_next_episodes" >Season 2</a>
+      &nbsp;&raquo;
+  </div>
+  </div>
+  </div>
+</div>
+
+
+
+    <div class="article" id="see_also">
+        <h2>See also</h2>
+        <p>
+                            <span class="nobr">
+<a href="/title/tt0758745/epcast?ref_=ttep_sa_1"
+class="link" >Episode Cast</a>
+<span class="ghost">|</span></span>                            <span class="nobr">
+<a href="/title/tt0758745/eprate?ref_=ttep_sa_2"
+class="link" >Rated Episodes</a>
+(by <a href="/title/tt0758745/epdate?ref_=ttep_sa_3"
+class="link" >date</a> / <a href="/title/tt0758745/epvote?ref_=ttep_sa_4"
+class="link" >vote</a>)<span class="ghost">|</span></span>                            <span class="nobr">
+<a href="/title/tt0758745/tvschedule?ref_=ttep_sa_5"
+class="link ghost" >TV Schedule</a>
+</span>        </p>
+    </div>
+    
+  <script>
+    if ('csm' in window) {
+      csm.measure('csm_TitleContributeWidget_started');
+    }
+  </script>
+    <div class="article contribute">
+        <div class="rightcornerlink">
+<a href="/help/?adding/&ref_=ttep_cn_hlp"
+>Getting Started</a>
+            <span>|</span>
+<a href="/czone/?ref_=ttep_cn_cz"
+>Contributor Zone</a>&nbsp;&raquo;</div>
+        <h2>Contribute to This Page</h2>
+
+        
+
+    
+        <div class="button-box">
+            <form method="get" action="https://contribute.imdb.com/updates">
+                <input type="hidden" name="ref_" value="ttep_cn_eps" />
+                <input type="hidden" name="update" value="episode" />
+                <input type="hidden" name="parent" value="tt0758745" />
+                <button class="btn large primary" type="submit">Add episode</button>
+            </form>
+        </div>
+
+    
+    
+    </div>
+
+  <script>
+    if ('csm' in window) {
+      csm.measure('csm_TitleContributeWidget_finished');
+    }
+  </script>
+    
+</div> 
+
+
+<div id="sidebar">
+	
+	
+<!-- begin TOP_RHS -->
+<div id="top_rhs_wrapper" class="dfp_slot">
+<script>
+window.generic = window.generic || {};
+generic.alphalfaComponents = {
+"alphalfa-container.html" : "https://ia.media-imdb.com/images/G/01/imdbads/alphalfa-container-253150330._CB522736199_.html",
+"js/collections/alphalfa.js" : "https://ia.media-imdb.com/images/G/01/imdbads/js/collections/alphalfa-3292747090._CB522736629_.js"
+};
+</script>
+<script type="text/javascript">
+doWithAds(function(){
+if ('dfp_slot' != 'injected_slot') {
+ad_utils.register_ad('top_rhs');
+}
+});
+</script>
+<iframe allowtransparency="true" class="yesScript" data-dart-params="#doubleclick;u=725973804431;ord=725973804431?" frameborder="0" id="top_rhs" marginwidth="0" marginheight="0" name="top_rhs" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="300" data-original-height="250" width="300" height="250" ></iframe> </div>
+<noscript> <a href="http://pubads.g.doubleclick.net/gampad/jump?&iu=4215/imdb2.consumer.tv/&sz=300x250|300x600|11x1&t=p%3Dtr%26g%3Dsp%26g%3Ddr%26tt%3Dtv%26coo%3Dus%26id%3Dtt0758745%26c%3D3&tile=1&c=725973804431" target="_blank"> <img src="http://pubads.g.doubleclick.net/gampad/ad?&iu=4215/imdb2.consumer.tv/&sz=300x250|300x600|11x1&t=p%3Dtr%26g%3Dsp%26g%3Ddr%26tt%3Dtv%26coo%3Dus%26id%3Dtt0758745%26c%3D3&tile=1&c=725973804431" border="0" alt="advertisement" /> </a> </noscript>
+<div id="top_rhs_reflow_helper"></div>
+<div id="top_rhs_after" class="after_ad" style="visibility:hidden;">
+<a class="yesScript" href="#" onclick="ad_utils.show_ad_feedback('top_rhs');return false;" id="ad_feedback_top_rhs">ad feedback</a>
+</div>
+<script id="top_rhs_rendering">
+doWithAds(function(){
+if ('dfp_slot' == 'injected_slot') {
+ad_utils.inject_ad.register('top_rhs');
+} else {
+ad_utils.gpt.render_ad('top_rhs');
+}
+}, "ad_utils not defined, unable to render client-side GPT ad or injected ad.");
+</script>
+<!-- End TOP_RHS -->
+	
+            
+    
+    
+    <div class="aux-content-widget-2 links subnav" div="quicklinks">
+
+<a href="/title/tt0758745/?ref_=ttep_ql"
+class="subnav_heading" >Friday Night Lights</a>              <span class="nobr">
+                (TV Series)
+              </span>
+                <hr/>
+
+
+        <h4>TV</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main subnav_selected">
+<a href="/title/tt0758745/episodes?ref_=ttep_ql_1"
+class="link" >Episode List</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/epcast?ref_=ttep_ql_2"
+class="link" >Episode Cast</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/eprate?ref_=ttep_ql_3"
+class="link" >Rated Episodes</a>
+(by <a href="/title/tt0758745/epdate?ref_=ttep_ql_4"
+class="link" >date</a> / <a href="/title/tt0758745/epvote?ref_=ttep_ql_5"
+class="link" >vote</a>)                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/tvschedule?ref_=ttep_ql_6"
+class="link ghost" >TV Schedule</a>
+                </li>
+    </ul>
+        <hr/>
+
+        <div id="full_subnav">
+
+
+        <h4>Details</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/fullcredits?ref_=ttep_ql_dt_1"
+class="link" >Full Cast and Crew</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/releaseinfo?ref_=ttep_ql_dt_2"
+class="link" >Release Dates</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/officialsites?ref_=ttep_ql_dt_3"
+class="link" >Official Sites</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/business?ref_=ttep_ql_dt_4"
+class="link ghost" >Box Office/Business</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/companycredits?ref_=ttep_ql_dt_5"
+class="link" >Company Credits</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/locations?ref_=ttep_ql_dt_6"
+class="link" >Filming Locations</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/technical?ref_=ttep_ql_dt_7"
+class="link" >Technical Specs</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/literature?ref_=ttep_ql_dt_8"
+class="link ghost" >Literature</a>
+                </li>
+    </ul>
+
+
+        <h4>Storyline</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/taglines?ref_=ttep_ql_stry_1"
+class="link" >Taglines</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/plotsummary?ref_=ttep_ql_stry_2"
+class="link" >Plot Summary</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/synopsis?ref_=ttep_ql_stry_3"
+class="link ghost" >Synopsis</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/keywords?ref_=ttep_ql_stry_4"
+class="link" >Plot Keywords</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/parentalguide?ref_=ttep_ql_stry_5"
+class="link" >Parents Guide</a>
+                </li>
+    </ul>
+
+
+        <h4>Did You Know?</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/trivia?ref_=ttep_ql_trv_1"
+class="link" >Trivia</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/goofs?ref_=ttep_ql_trv_2"
+class="link" >Goofs</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/crazycredits?ref_=ttep_ql_trv_3"
+class="link ghost" >Crazy Credits</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/quotes?ref_=ttep_ql_trv_4"
+class="link" >Quotes</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/alternateversions?ref_=ttep_ql_trv_5"
+class="link ghost" >Alternate Versions</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/movieconnections?ref_=ttep_ql_trv_6"
+class="link" >Connections</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/soundtrack?ref_=ttep_ql_trv_7"
+class="link ghost" >Soundtracks</a>
+                </li>
+    </ul>
+
+
+        <h4>Photo & Video</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/mediaindex?ref_=ttep_ql_pv_1"
+class="link" >Photo Gallery</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/videogallery?ref_=ttep_ql_pv_2"
+class="link ghost" >Trailers and Videos</a>
+                </li>
+    </ul>
+
+
+        <h4>Opinion</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/awards?ref_=ttep_ql_op_1"
+class="link" >Awards</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/faq?ref_=ttep_ql_op_2"
+class="link" >FAQ</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/reviews?ref_=ttep_ql_op_3"
+class="link" >User Reviews</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/ratings?ref_=ttep_ql_op_4"
+class="link" >User Ratings</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/externalreviews?ref_=ttep_ql_op_5"
+class="link" >External Reviews</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/criticreviews?ref_=ttep_ql_op_6"
+class="link ghost" >Metacritic Reviews</a>
+                </li>
+    </ul>
+
+
+
+        <h4>Related Items</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/news?ref_=ttep_ql_rel_1"
+class="link" >NewsDesk</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0758745/externalsites?ref_=ttep_ql_rel_2"
+class="link" >External Sites</a>
+                </li>
+    </ul>
+            <hr/>
+        </div>
+
+        <div class="show_more"><span class="titlePageSprite arrows show"></span>Explore More</div>
+        <div class="show_less"><span class="titlePageSprite arrows hide"></span>Show Less</div>
+    </div>
+  <div class="aux-content-widget-2" id="social-share-widget"> 
+    
+    <div class="social">
+      <div class="social_networking"> 
+       <span><strong>Share</strong> this page:</span>
+  <a onclick="window.open(&quot;http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0758745%2F&quot;, 'newWindow', 'width=626, height=436'); return false;" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0758745%2F" target="_blank" title="Share on Facebook" class="share_icon facebook"></a>
+  <a onclick="window.open(&quot;http://twitter.com/intent/tweet?text=Friday%20Night%20Lights%20(TV%20Series%202006%E2%80%932011)%20-%20http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0758745%2F&quot;, 'newWindow', 'width=815, height=436'); return false;" href="http://twitter.com/intent/tweet?text=Friday%20Night%20Lights%20(TV%20Series%202006%E2%80%932011)%20-%20http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0758745%2F" target="_blank" title="Share on Twitter" class="share_icon twitter"></a>
+  <a onclick="$('div.social input[name=share-link]').show().select(); return false;" title="Share the page" class="share_icon share_url_link" href="http://www.imdb.com/title/tt0758745/"></a>
+      </div>
+      <input type="text" name="share-link" value="http://www.imdb.com/title/tt0758745/" readonly>
+    </div>
+  <script type="text/javascript">if (uet) { uet('bb', 'facebook_like_iframe', {wb: 1}); }</script>
+  <div class="social_networking_like">
+    <iframe
+      id="iframe_like"
+      name="fbLikeIFrame_0"
+      class="social-iframe"
+      scrolling="no"
+      frameborder="0"
+      allowTransparency="allowTransparency"
+      ref="http://www.imdb.com/title/tt0758745/"
+      width=280
+      height=65></iframe>
+  </div>
+  </div>
+<script>
+    if (typeof uet == 'function') {
+      uet("bb", "RelatedListsWidget", {wb: 1});
+    }
+</script>
+        <div class="aux-content-widget-2">
+            <div id="relatedListsWidget">
+                <div class="rightcornerlink">
+                    <a href="/list/create?ref_=tt_rls"
+>Create a list</a>&nbsp;&raquo;
+                </div>
+                <h3>User Lists</h3>
+                <p>Related lists from IMDb users</p>
+
+    <div class="list-preview even">
+        <div class="list-preview-item-narrow">
+<a href="/list/ls000033753?ref_=rls_1"
+><img height="86" width="86" alt="list image" title="list image"src="/images/nopicture/medium/tv.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BMjA3NzMyMzU1MV5BMl5BanBnXkFtZTcwNjc1ODUwMg@@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+        <div class="list_name">
+            <strong><a href="/list/ls000033753?ref_=rls_1"
+>
+My favourite TV-shows of all-time
+</a></strong>
+        </div>
+        <div class="list_meta">
+            a list of 40 titles
+            <br />created 04&nbsp;Jan&nbsp;2011
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div class="list-preview odd">
+        <div class="list-preview-item-narrow">
+<a href="/list/ls056534099?ref_=rls_2"
+><img height="86" width="86" alt="list image" title="list image"src="/images/nopicture/medium/tv.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BMjAxMjU3NDkwOV5BMl5BanBnXkFtZTgwMDI3Mzg0MTI@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+        <div class="list_name">
+            <strong><a href="/list/ls056534099?ref_=rls_2"
+>
+Series watchlist 2013
+</a></strong>
+        </div>
+        <div class="list_meta">
+            a list of 22 titles
+            <br />created 27&nbsp;Jul&nbsp;2013
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div class="list-preview even">
+        <div class="list-preview-item-narrow">
+<a href="/list/ls075709901?ref_=rls_3"
+><img height="86" width="86" alt="list image" title="list image"src="/images/nopicture/medium/tv.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BMjAxOGRiNzYtNDBlMy00Y2I5LWFiOGItNTA1OTEyODc0NWZiXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+        <div class="list_name">
+            <strong><a href="/list/ls075709901?ref_=rls_3"
+>
+TV - seen
+</a></strong>
+        </div>
+        <div class="list_meta">
+            a list of 28 titles
+            <br />created 26&nbsp;Aug&nbsp;2014
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div class="list-preview odd">
+        <div class="list-preview-item-narrow">
+<a href="/list/ls079032695?ref_=rls_4"
+><img height="86" width="86" alt="list image" title="list image"src="/images/nopicture/medium/film.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BZTRmNjQ1ZDYtNDgzMy00OGE0LWE4N2YtNTkzNWQ5ZDhlNGJmL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+        <div class="list_name">
+            <strong><a href="/list/ls079032695?ref_=rls_4"
+>
+Have to watch!
+</a></strong>
+        </div>
+        <div class="list_meta">
+            a list of 23 titles
+            <br />created 31&nbsp;Aug&nbsp;2015
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div class="list-preview even">
+        <div class="list-preview-item-narrow">
+<a href="/list/ls062408071?ref_=rls_5"
+><img height="86" width="86" alt="list image" title="list image"src="/images/nopicture/medium/tv.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BMTYwNjIyMTYwOV5BMl5BanBnXkFtZTcwMTA2MDU1MQ@@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+        <div class="list_name">
+            <strong><a href="/list/ls062408071?ref_=rls_5"
+>
+tv shows that I have finished
+</a></strong>
+        </div>
+        <div class="list_meta">
+            a list of 30 titles
+            <br />created 1&nbsp;month&nbsp;ago
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+                <div class="see-more">
+                    <a href="/lists/tt0758745?ref_=rls_sm"
+>See all related lists</a>&nbsp;&raquo;
+                </div>
+            </div>
+        </div>
+<script>
+    if (typeof uet == 'function') {
+      uet("be", "RelatedListsWidget", {wb: 1});
+    }
+</script>
+<script>
+    if (typeof uex == 'function') {
+      uex("ld", "RelatedListsWidget", {wb: 1});
+    }
+</script>
+	
+	<!-- no content received for slot: bottom_rhs -->
+	
+	
+	
+<!-- begin RHS_CORNERSTONE -->
+<div id="rhs_cornerstone_wrapper" class="cornerstone_slot">
+<script type="text/javascript">
+doWithAds(function(){
+if ('cornerstone_slot' != 'injected_slot') {
+ad_utils.register_ad('rhs_cornerstone');
+}
+});
+</script>
+<iframe allowtransparency="true" class="yesScript" data-blank-serverside frameborder="0" id="rhs_cornerstone" marginwidth="0" marginheight="0" name="rhs_cornerstone" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="300" data-original-height="125" width="300" height="125" ></iframe> </div>
+<div id="rhs_cornerstone_reflow_helper"></div>
+<script id="rhs_cornerstone_rendering">
+doWithAds(function(){
+if ('cornerstone_slot' == 'injected_slot') {
+ad_utils.inject_ad.register('rhs_cornerstone');
+} else {
+ad_utils.gpt.render_ad('rhs_cornerstone');
+}
+}, "ad_utils not defined, unable to render client-side GPT ad or injected ad.");
+</script>
+<!-- End RHS_CORNERSTONE -->
+	
+	
+	
+<!-- begin BTF_RHS2 -->
+<div id="btf_rhs2_wrapper" class="cornerstone_slot">
+<script type="text/javascript">
+doWithAds(function(){
+if ('cornerstone_slot' != 'injected_slot') {
+ad_utils.register_ad('btf_rhs2');
+}
+});
+</script>
+<iframe allowtransparency="true" class="yesScript" data-blank-serverside frameborder="0" id="btf_rhs2" marginwidth="0" marginheight="0" name="btf_rhs2" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="300" data-original-height="250" width="300" height="250" ></iframe> </div>
+<div id="btf_rhs2_reflow_helper"></div>
+<script id="btf_rhs2_rendering">
+doWithAds(function(){
+if ('cornerstone_slot' == 'injected_slot') {
+ad_utils.inject_ad.register('btf_rhs2');
+} else {
+ad_utils.gpt.render_ad('btf_rhs2');
+}
+}, "ad_utils not defined, unable to render client-side GPT ad or injected ad.");
+</script>
+<!-- End BTF_RHS2 -->
+	
+</div> 
+
+</div> 
+
+<div id="content-1" class="redesign clear">
+</div>
+
+                   <br class="clear" />
+                </div>
+
+
+
+
+
+
+    <div id="footer" class="ft">
+
+            <div id="rvi-div">
+                <div class="recently-viewed">&nbsp;</div>
+                <br class="clear">
+            </div>
+
+	
+	
+	
+
+        <div class="container footer-grid-wrapper">
+            <div class="row footer-row">
+                <div class="col outside">
+    <h3>IMDb Everywhere</h3>
+    <div class="app-links">
+    <a href="/offsite/?page-action=ft_app_apple&token=BCYv0XN09JhSvVklAzct27HDNpbCCP1l0tI7hLK1wvAcXO-m4YZdFDMEDDBnsfthsmsbN0iR_7qQ%0D%0ABev8h-6Z1ks-1qIFQoFqZlUrsUH3dPBaE78-Y9Jpa-2I-e4dqhKN_Y70SHvdXL0uvr7dzsiK9oUM%0D%0ANPQTMiereCgoSE6AmXzZGi8tKiGdHJVLmOr_oWr5CRT-oD3g7q9Dquc-f9UXvnFduvGo9uWwrkRN%0D%0AiKwEioURbxA%0D%0A&ref_=ft_app_apple"
+title="Get the IMDb App on the Apple App Store" target="_blank" itemprop='url'> <span class="desktop-sprite appstore-apple" ></span>
+</a>
+    <a href="/offsite/?page-action=ft_app_google&token=BCYiQKofQEjZr07kKu0mn8uU7RmCtIsQ3yapfJ_K9wx6Pc2rosOgIvB495Groxb-YehvSxrsM7Nc%0D%0AxiKD1VBM37WUVtmDTNQ70To9guArjtH1ijDdPCRMsa-CG_BDhYLZUulNH2l9jm_1MbTno_6XRcum%0D%0AfqeXKvHtgM36aB3UQZjCw5f8KTXTvH32sPxM1KOHvhMxlqPm2aTA2b8XJ0OfNrV4wxiZk6y-yOJO%0D%0A4Z846yiolBk%0D%0A&ref_=ft_app_google"
+title="Get the IMDb app on Google Play" target="_blank" itemprop='url'> <span class="desktop-sprite appstore-google" ></span>
+</a>
+    <a href="/offsite/?page-action=ft_app_amazon&token=BCYkixnAPnnqCSzbL70MG0MFdqoy1V89cksOepGrMJuhIP74_abrw6aljT5_0p6mRe7sQxHBgaBW%0D%0AVYt1Zi4n7vwYFpx7BNBYsefagwUQSMZC112cyLn4HLkrw6L3r8YRobpxJAZjrhH_t_sp-iTDjgiV%0D%0A1MdBCk9Ss2HuLcMSQe4utXx_9dX1W1bGZ1TUNGigaXni9A2H_GFK36ff2xPI7SopeK-f-xEEeEVd%0D%0AL_r9qjqxI3o2nMxm1wfUDxpDpAC-YMC1sz3k0Kqegjwr1v8WDipvDB9o5QoVzzEGiU0I3PQPz5gC%0D%0AoaIjV45oDFJ8GxjLuQNNOC8hCp--ooV5NTlxweCZ6oLTy7y46jkj7-dcFX63NpgLiCCb7vRJHDsF%0D%0AYrtvpzeFW-9_YlUS3TLhymfMLpd0FfUxexqIZJwnNjaQaPZDlrA%0D%0A&ref_=ft_app_amazon"
+title="Get the IMDb app on Amazon Appstore for Android" target="_blank" itemprop='url'> <span class="desktop-sprite appstore-amazon" ></span>
+</a>
+    </div>
+
+    <p>Find showtimes, watch trailers, browse photos, track your Watchlist and rate your favorite movies and TV shows on your phone or tablet!</p>
+
+    <a href="http://m.imdb.com?ref_=ft_mdot"
+class="touchlink" >IMDb Mobile site</a>
+                </div>
+                <div class="col center">
+  <div class="link-bar icon-link-bar">
+    <h3>
+      Follow IMDb on
+      <div>
+
+    <a href="/offsite/?page-action=fol_fb&token=BCYozPn3JvGh-BkDJqbGTyOz-ltQzrqEf4kbwXBuXHTimSLvWh4EARotSUR-65SkYwMs7vwIAdu0%0D%0AbL2IDC3BaOiMHpFsDs5st3tSFkK-CRdG4aDURIINyH3YSvB_K-1qqjiplQy2I8m3OZYmE1_88bLh%0D%0Ai-c3UG_gqRcZd06Smdml8E-4tsrz3Sn-X7sB92IEHYq88TPOnM84QOnWulrLbkQapw%0D%0A&ref_=ft_fol_fb"
+title="Follow IMDb on Facebook" target="_blank" itemprop='url'> <span class="desktop-sprite follow-facebook" ></span>
+</a>
+    <a href="/offsite/?page-action=fol_tw&token=BCYg-ifkuNl8_7nn4cJawbrrPGabivb33Kion9nGjDTpLiz0lyAKyBGTonL60Aby0mdqbwxsCzDb%0D%0AGbPZGatgtAqUT_H2iIQRviU54caCv-i8SknHlrubk_WMOzSwpuuEhPpr7owYZQuHpnDChRah5lBv%0D%0AsgWmUesyd1olM84vqJCILX9jqB1baTeOHBG6EO4Xy4WV%0D%0A&ref_=ft_fol_tw"
+title="Follow IMDb on Twitter" target="_blank" itemprop='url'> <span class="desktop-sprite follow-twitter" ></span>
+</a>
+    <a href="/offsite/?page-action=fol_inst&token=BCYqttPbOPgmTBDWEl_OUSv0tuSIOk-DbmkoM2_54yDe0tr3fj9UMp3s6eMuy_4MAZVHiS_65JVc%0D%0Au_Ea44lVqEdpyGVUbQkLAkCoZMJExJStWJ8otej_b2cEZPGkcHA9Ksa6AEoVoTlNGszH4k7XzAVf%0D%0AzvM-I9ACxz0_8qgawIBlKomku5Kz5-7l7aGL51tjI6or%0D%0A&ref_=ft_fol_inst"
+title="Follow IMDb on Instagram" target="_blank" itemprop='url'> <span class="desktop-sprite follow-instagram" ></span>
+</a>
+      </div>
+    </h3>
+  </div>
+                </div>
+                <div class="col outside">
+    <div class="row">
+        <div class="col col-4">
+            <ul class="unstyled">
+                <li><a href="/?ref_=ft_hm"
+>Home</a></li>
+                <li><a href="/chart/top?ref_=ft_250"
+>Top Rated Movies</a></li>
+                <li><a href="/chart/?ref_=ft_cht"
+>Box Office</a></li>
+                <li><a href="/sections/tv/?ref_=ft_tv"
+>TV</a></li>
+                <li><a href="/movies-coming-soon/?ref_=ft_cs"
+>Coming Soon</a></li>
+                <li><a href="/a2z?ref_=ft_si"
+>Site Index</a></li>
+                <li><a href="/search?ref_=ft_sr"
+>Search</a></li>
+                <li><a href="/movies-in-theaters/?ref_=ft_inth"
+>In Theaters</a></li>
+            </ul>
+        </div>
+        <div class="col col-4">
+            <ul class="unstyled">
+                <li><a href="/helpdesk/contact?ref_=ft_con"
+>Contact Us</a></li>
+                <li>        <a href="https://secure.imdb.com/register-imdb/form-v2?ref_=ft_reg"
+>Register</a>
+</li>
+                <li><a href="/news/?ref_=ft_nw"
+>News</a></li>
+                <li class="spacer"></li>
+                <li><a href="/pressroom/?ref_=ft_pr"
+>Press Room</a></li>
+                <li><a href="/advertising/?ref_=ft_ad"
+>Advertising</a></li>
+                <li><a href="/jobs?ref_=ft_jb"
+>Jobs</a></li>
+            </ul>
+        </div>
+        <div class="col col-4">
+            <ul class="unstyled">
+                <li><a href="http://pro.imdb.com/signup/index.html?rf=cons_ft_hm&ref_=cons_ft_hm"
+>IMDbPro</a></li>
+                <li>    <a href="/offsite/?page-action=ft-mojo&token=BCYuik-4h6csGFH1O63QbUwbo3iTiKLg1ArkBH78AQVlVgkRKU5M-445T1JCTtvvkTX4X_bkmpJ8%0D%0AFaF5e4VGsTPmvg2D5E2i5aMnIh558NdWkdD5O1aiDmQU82urdRjId8EWDcxqoCvuf2drldML0JqA%0D%0ADo3b3x_tUGEcwgztQ8MPbYb1VlKpPErVB_mxLuxRf9E2%0D%0A&ref_=ft_bom"
+itemprop='url'>Box Office Mojo</a>
+</li>
+                <li>    <a href="/offsite/?page-action=ft-wab&token=BCYusHSUzKdooni68SPVY9Lw0ZvvUuOZ0mOyvdNLGHNpyFkY31BDMUlrUdHmPdnGgTAkhqq0ZpBj%0D%0AKBmMjps7e74nyETSHeRr3iipuMIXISJcSp16KcXZRqvZ9zdZAMsiUcEK773pyTR_4fCcOu2Q4WuS%0D%0ArBtscCws07c97veZuvo50g8w5ZB4qqoE_Rkm6nw34omQ%0D%0A&ref_=ft_wab"
+itemprop='url'>Withoutabox</a>
+</li>
+                <li class="spacer"></li>
+                <li><a href="/help/show_article?conditions&ref_=ft_cou"
+>Conditions of Use</a></li>
+                <li><a href="/privacy?ref_=ft_pvc"
+>Privacy Policy</a></li>
+                <li>    <a href="/offsite/?page-action=ft-iba&token=BCYmHVmXdyt3ZQzr-R66dqw4HRpZxiXtLgxTAvUIrxwjDMwRTn_WJxKsq4zOd3sYiNsZKu9B479L%0D%0AZVzJL8GRjbbx6WD6GQcz46RH6WrVQSZzoRoC2JDQNxHAKOvpuZNRiULZ2cBssDhNdGPpRZBJNikY%0D%0AtudroCNy5Ooqb6gCn1RlTdtootbnOwlof4B_Tz55wEfw2_PuMGxL-T-lTI3hxqyQ7df47NSpqsVr%0D%0AFwPYfN3jTOOfshbhxYgA6c2YAUGHxA_h%0D%0A&ref_=ft_iba"
+itemprop='url'>Interest-Based Ads</a>
+</li>
+                <li class="spacer"></li>
+            </ul>
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ft-copy float-right">
+                <a
+href="/help/show_article?conditions"
+>Copyright &copy;</a> 1990-2017
+                <a
+href="/help/"
+>IMDb.com, Inc.</a>
+            </div>
+            <div>
+                An <span id="amazon_logo" class="footer_logo" align="middle">Amazon.com</span> company.
+            </div>
+        </div>
+
+
+
+
+
+    <table class="footer" id="amazon-affiliates">
+        <tr>
+            <td colspan="8">
+                Amazon Affiliates
+            </td>
+        </tr>
+        <tr>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-aiv&token=BCYsYyn1sBUrbrmILadFd1k-vrJ2WhLql3MoffS5kIwvXuWnlF8oC4nfYe3q1z8AKe7mnCAqnsdg%0D%0A5OK66dyhQVnE18_iiEzsPKU8Dao95ED75T0hKUZeTmMHHoy76K4lSrBjaIQdQBkxN05TXgKGGOO3%0D%0A4DZavcl-bjzh38ghFK5WJew3ACN6PirVdSC1TcmwxhHD7koB0tof4OPtv0O8XvDcf9R6ETJgKEsv%0D%0AIqxmJ-AjbUfRxFIVbRHVvCMBOm0k8SSm%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Amazon Video</span><br>
+                <span class="amazon-affiliate-site-desc">Watch Movies &<br>TV Online</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-piv&token=BCYpkGvK0N4Ywbl-1IoXgY3PyFxwS4NlXU0eXhOWIal5qHaxSovxkPJWEpQs9hMrsx5OD9zHiCVd%0D%0Au6edDHAoUwyjCFt-61qGZM5DX6M284piU2oDL7gNYMTvaVIwC3_bxhFBTl9pWJHxEsg7NkjjD9XE%0D%0Ad1PL3najz-JiBdhxOvbOnhREFbeDTTiLX6Xv9zvbbncIkF4WoAQWQo7cFXcYQ_Fe-aE8XEJMT1-N%0D%0Ar1_xMDeRRuU%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Prime Video</span><br>
+                <span class="amazon-affiliate-site-desc">Unlimited Streaming<br>of Movies & TV</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-amzn-de&token=BCYulPyppSC1W6hg3oieU7T90H28n03wS45n5YKhvZV8BJYiibMSLJR7FFf1BjaTv0bRdoj4LmKf%0D%0A626jmJp_IaMnVijzT7O5F08hk7rM1QQfKugs_UgVNXoQj5EqCKGdTOsU0QNPW_ULLetz6bht8yGx%0D%0A6bfiUp2Ufo81Yg73u5KxKzK4_9SsaNXYAbdjgdIjhZIl2wSgPcDWq8KiDw8boUJp_PnRD3vqnNwO%0D%0AW38KuCnn7FE%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Amazon Germany</span><br>
+                <span class="amazon-affiliate-site-desc">Buy Movies on<br>DVD & Blu-ray</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-amzn-it&token=BCYmmSvAPVuX8vQ10PXreUymCmaMQQn35TzYMATmFe1I6IbWAAtQxsFIaYIJ1Irh-aAkYCrtHV12%0D%0AZVGUaX1golhXzJHDgMDyGRq-LF0FkinwPp_fZchqKoqg1S2xuDEY2PmP2A6lbGo3LAoWP9QQqNfU%0D%0ApzoL7H6cIp2bdX0jJDg9oeeelMW_VNKctGBp0dXghoLgSotkglcUnCMRNV9yfjsm4S-65k09jmWy%0D%0AYre7lOaXasY%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Amazon Italy</span><br>
+                <span class="amazon-affiliate-site-desc">Buy Movies on<br>DVD & Blu-ray</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-amzn-fr&token=BCYhldBQ8EP9jdRbNxCcAVRzzmlwXJFGa9JBtYX7tVZPYbc8z_2zzoNwMeEWQq1z9Ii1FyuyIqJf%0D%0A0P99edADjG9bx-5L4LGyEdJ1Or5O1q54kuTWy6K49ZQmFpu1CcyFYnWfdlpQX-8rnAUFk_oltDnK%0D%0AEVx_pQ7beTddyVowX3B3xVwunoH9CUvCqIFAyug6pDDhJsqLntWsjlZAnffrpHgdOiB1kGbzwPsU%0D%0APgO7VPI7ACo%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Amazon France</span><br>
+                <span class="amazon-affiliate-site-desc">Buy Movies on<br>DVD & Blu-ray</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-amzn-in&token=BCYhZRxqNApiwgkbV31v8stsyI1iYRPTAQmOZVVA6jENDN-q1OXYrORp6YoggYdCgUYa8_I8egod%0D%0AQ4v-6_FYRv9RseS5FR2VfWkW_13P3TmH9ssBIr7iSkV6KLMgQwhoJgOFwFD9fUkTQa5iVLG5kqfW%0D%0Arfv0TBhBq-x62xmB0scM97dKZXai0VFI9HSVgqxj9UBZDZeuBGvWH8IEnbFUTleBVSu0TY4HYp2s%0D%0AiE52epXt3FvGfHdZu6IusDLFDyJqtztp%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Amazon India</span><br>
+                <span class="amazon-affiliate-site-desc">Buy Movie and<br>TV Show DVDs</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-amzn-dpr&token=BCYuMSAM9U5sgiwFrASzbacq4Qy_QWPwa4uxDBbezkerbGFcOrs6rvkh5n5U0cK5Uv1AJcp5Q0d6%0D%0APAD-MHh9C83t_4VwfFVmE00KxDLRouOTptndJ96yPBvje7hBzsBgnIrYaATh9SvYgwjew8kB-hnt%0D%0AgHyHg3l_es0gNf-u668XAck%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">DPReview</span><br>
+                <span class="amazon-affiliate-site-desc">Digital<br>Photography</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-amzn-aud&token=BCYgypmmuh3q7FcDfUG60Q4wy3DsZC7WT9WPySSfRUOufs3n0MutMy6iaqmEWNPnbbpJBqtJ-jNk%0D%0AIQuMAghBaFTdlVZg1erV8yB1dC_t31Zx0io9jhZ-0RW6vsRL_cexAlNG-zp3dhmXYcrv9KYoi7t9%0D%0Amgzk1RR_BB7CpgNeDaPhJdA%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Audible</span><br>
+                <span class="amazon-affiliate-site-desc">Download<br>Audio Books</span>
+            </a>
+        </div>
+    </td>
+        </tr>
+    </table>
+      </div>
+            </div>
+        </div>
+
+
+
+<script type="text/javascript" src="http://ia.media-imdb.com/images/G/01/imdb/js/collections/common-485701321._CB522736548_.js"></script>
+<script type="text/javascript" src="http://ia.media-imdb.com/images/G/01/imdb/js/collections/title-2684581222._CB529954247_.js"></script>
+
+<script type="text/javascript" id="login">
+(function(){
+    var readyTimeout = setInterval(function() {
+        if (window.jQuery && window.imdb && window.imdb.login_lightbox) {
+            clearTimeout(readyTimeout);
+            window.imdb.login_lightbox();
+        }
+    }, 100);
+})();
+</script>
+
+        <script type="text/javascript">
+        function jQueryOnReady(remaining_count) {
+            if (window.jQuery && typeof $.fn.watchlistRibbon !== 'undefined') {
+                jQuery(
+                             function() {
+           var isAdvertisingThemed = !!(window.custom && window.custom.full_page && window.custom.full_page.theme),
+               url = "http://www.facebook.com/widgets/like.php?width=280&show_faces=1&layout=standard&href=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0758745%2F&colorscheme=light",
+               like = document.getElementById('iframe_like');
+
+           if (!isAdvertisingThemed && like) {
+              like.src = url;
+              like.onload = function () { 
+                  if (uex) { uex('ld', 'facebook_like_iframe', {wb: 1}); }
+              };
+           } else if (isAdvertisingThemed) {
+              $('.social_networking_like').closest('.aux-content-widget-2').hide();
+           }
+        }
+
+                );
+            } else if (remaining_count > 0) {
+                setTimeout(function() { jQueryOnReady(remaining_count-1) }, 100);
+            }
+        }
+        jQueryOnReady(50);
+        </script>
+
+<!-- begin ads footer -->
+
+<!-- Begin SIS code --> 
+<iframe id="sis_pixel_sitewide" width="1" height="1" frameborder="0" marginwidth="0" marginheight="0" style="display: none;"></iframe>
+<script>
+    setTimeout(function(){
+        try{
+            //sis3.0 pixel
+            var url_sis3 = 'https://aax-eu.amazon-adsystem.com/s/iu3?',
+                params_sis3 = [
+                    "d=imdb.com",
+                    "a1=",
+                    "a2=0101d2bbe44132ef94474f38d040d67121b401f169202b4d5c1b2133bd73d5f8f3a3",
+                    "pId=tt0758745",
+                    "r=1",
+                    "rP=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0758745%2Fepisodes%3Fseason%3D1",
+                    "encoding=server",
+                    "cb=725973804431"  
+                ];
+        
+            if (document.getElementById('sis_pixel_sitewide')) {
+                (document.getElementById('sis_pixel_sitewide')).src = url_sis3 + params_sis3.join('&');
+            }
+        }
+        catch(e){
+            if ('consoleLog' in window){
+                consoleLog('Pixel failure ' + e.toString(),'sis');
+            }
+            if (window.ueLogError) { 
+                window.ueLogError(e);
+            }
+        }
+    }, 20);
+</script>
+<!-- End SIS code -->
+
+<!-- begin comscore beacon -->
+<script type="text/javascript" src='https://ia.media-imdb.com/images/G/01/imdbads/js/beacon-1792157672._CB522736519_.js'></script>
+<script type="text/javascript">
+if(window.COMSCORE){
+COMSCORE.beacon({
+c1: 2,
+c2:"6034961",
+c3:"",
+c4:"http://www.imdb.com/title/tt0758745/episodes?season=1",
+c5:"",
+c6:"",
+c15:""
+});
+}
+</script>
+<noscript>
+<img src="https://sb.scorecardresearch.com/p?c1=2&c2=6034961&c3=&c4=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0758745%2Fepisodes%3Fseason%3D1&c5=c6=&15=&cj=1"/>
+</noscript>
+<!-- end comscore beacon -->
+
+<script>
+    doWithAds(function(){
+        (new Image()).src = "http://www.amazon.com/aan/2009-05-01/imdb/default?slot=sitewide-iframe&u=725973804431&ord=725973804431";
+    },"unable to request AAN pixel");
+</script>
+
+<!-- end ads footer -->
+
+<div id="servertime" time="271"/>
+
+
+
+<script>
+    if (typeof uet == 'function') {
+      uet("be");
+    }
+</script>
+
+    </body>
+</html>
+

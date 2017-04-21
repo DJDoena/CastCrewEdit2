@@ -1,0 +1,56 @@
+﻿<Window x:Class="DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations"
+        mc:Ignorable="d"
+        Title="Find Merged IMDb Cast &amp; Crew" Height="170" Width="640" Icon="/FindMergedCastCrew;component/DJDSOFT.ICO" ResizeMode="NoResize">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="bvc"/>
+    </Window.Resources>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Load Session Data" Command="{Binding LoadSessionDataCommand}" />
+                <MenuItem Header="_Save Session Data" Command="{Binding SaveSessionDataCommand}" />
+            </MenuItem>
+        </Menu>
+
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="40" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="5,0,5,6" VerticalAlignment="Bottom">Source File:</TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="5,0,5,6" VerticalAlignment="Bottom">Target File:</TextBlock>
+
+            <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="True" Margin="5,0,5,5" VerticalAlignment="Bottom"
+             Text="{Binding Path=SourceFileName, Mode=OneWay}" />
+            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsReadOnly="True" Margin="5,0,5,5" VerticalAlignment="Bottom"
+             Text="{Binding Path=TargetFileName, Mode=OneWay}" />
+
+            <Button Grid.Row="0" Grid.Column="3" Margin="5,0,5,6" VerticalAlignment="Bottom" Command="{Binding SelectSourceFileCommand}">...</Button>
+            <Button Grid.Row="1" Grid.Column="3" Margin="5,0,5,6" VerticalAlignment="Bottom" Command="{Binding SelectTargetFileCommand}">...</Button>
+            <Button Grid.Row="2" Grid.Column="2" Margin="5,0,5,6" VerticalAlignment="Bottom" Command="{Binding ProcessCommand}" 
+                    Visibility="{Binding Path=TaskIsNotRunning, Mode=OneWay, Converter={StaticResource bvc}}" Grid.ColumnSpan="2">Process</Button>
+            <Button Grid.Row="2" Grid.Column="2" Margin="5,0,5,6" VerticalAlignment="Bottom" Command="{Binding PauseCommand}" 
+                    Visibility="{Binding Path=TaskIsRunning, Mode=OneWay, Converter={StaticResource bvc}}" Grid.ColumnSpan="2">Pause</Button>
+
+            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,10,5,6">
+                <ProgressBar Minimum="0" Maximum="{Binding Path=ProgressMax, Mode=OneWay}" Value="{Binding Path=ProgressValue, Mode=OneWay}"
+                         Visibility="{Binding Path=TaskIsRunning, Mode=OneWay, Converter={StaticResource bvc}}"
+                         IsIndeterminate="{Binding Path=ProgressIndeterminate, Mode=OneWay}" />
+                <TextBlock Text="{Binding ProgressText}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>

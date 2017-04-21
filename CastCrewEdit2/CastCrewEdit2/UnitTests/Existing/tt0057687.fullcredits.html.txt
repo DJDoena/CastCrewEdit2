@@ -1,0 +1,2710 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html
+xmlns:og="http://ogp.me/ns#"
+xmlns:fb="http://www.facebook.com/2008/fbml">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="apple-itunes-app" content="app-id=342792525, app-argument=imdb:///title/tt0057687?src=mdot">
+        
+    
+            <script type="text/javascript">var ue_t0=window.ue_t0||+new Date();</script>
+            <script type="text/javascript">
+                var ue_mid = "A1EVAM02EL8SFB"; 
+                var ue_sn = "www.imdb.com";  
+                var ue_furl = "fls-na.amazon.com";
+                var ue_sid = "164-0779018-3049840";
+                var ue_id = "1MGGZ97RG62HVVYZ9DTM";
+                (function(e){var c=e;var a=c.ue||{};a.main_scope="mainscopecsm";a.q=[];a.t0=c.ue_t0||+new Date();a.d=g;function g(h){return +new Date()-(h?0:a.t0)}function d(h){return function(){a.q.push({n:h,a:arguments,t:a.d()})}}function b(m,l,h,j,i){var k={m:m,f:l,l:h,c:""+j,err:i,fromOnError:1,args:arguments};c.ueLogError(k);return false}b.skipTrace=1;e.onerror=b;function f(){c.uex("ld")}if(e.addEventListener){e.addEventListener("load",f,false)}else{if(e.attachEvent){e.attachEvent("onload",f)}}a.tag=d("tag");a.log=d("log");a.reset=d("rst");c.ue_csm=c;c.ue=a;c.ueLogError=d("err");c.ues=d("ues");c.uet=d("uet");c.uex=d("uex");c.uet("ue")})(window);(function(e,d){var a=e.ue||{};function c(g){if(!g){return}var f=d.head||d.getElementsByTagName("head")[0]||d.documentElement,h=d.createElement("script");h.async="async";h.src=g;f.insertBefore(h,f.firstChild)}function b(){var k=e.ue_cdn||"z-ecx.images-amazon.com",g=e.ue_cdns||"images-na.ssl-images-amazon.com",j="/images/G/01/csminstrumentation/",h=e.ue_file||"ue-full-11e51f253e8ad9d145f4ed644b40f692._V1_.js",f,i;if(h.indexOf("NSTRUMENTATION_FIL")>=0){return}if("ue_https" in e){f=e.ue_https}else{f=e.location&&e.location.protocol=="https:"?1:0}i=f?"https://":"http://";i+=f?g:k;i+=j;i+=h;c(i)}if(!e.ue_inline){if(a.loadUEFull){a.loadUEFull()}else{b()}}a.uels=c;e.ue=a})(window,document);
+                if (!('CS' in window)) { window.CS = {}; }
+                    window.CS.loginLocation = "https://www.imdb.com/registration/signin?u=%2Ftitle%2Ftt0057687%2Ffullcredits%2F";
+            </script>
+ 
+
+        
+        <script type="text/javascript">var IMDbTimer={starttime: new Date().getTime(),pt:'java'};</script>
+        
+  <script>(function(t){ (t.events = t.events || {})["csm_head_pre_title"] = new Date().getTime(); })(IMDbTimer);</script>
+        <title>Winnetou - 1. Teil (1963) - Full Cast &amp; Crew - IMDb</title>
+  <script>(function(t){ (t.events = t.events || {})["csm_head_post_title"] = new Date().getTime(); })(IMDbTimer);</script>
+        
+            <link rel="canonical" href="http://www.imdb.com/title/tt0057687/fullcredits/" />
+            <meta property="og:url" content="http://www.imdb.com/title/tt0057687/fullcredits/" />
+        
+  <script>(function(t){ (t.events = t.events || {})["csm_head_pre_icon"] = new Date().getTime(); })(IMDbTimer);</script>
+        <link href="http://ia.media-imdb.com/images/G/01/imdb/images/safari-favicon-517611381._CB522736552_.svg" mask rel="icon" sizes="any">
+        <link rel="icon" type="image/ico" href="http://ia.media-imdb.com/images/G/01/imdb/images/favicon-2165806970._CB522736556_.ico" />
+        <meta name="theme-color" content="#000000" />
+        <link rel="shortcut icon" type="image/x-icon" href="http://ia.media-imdb.com/images/G/01/imdb/images/desktop-favicon-2165806970._CB522736561_.ico" />
+        <link href="http://ia.media-imdb.com/images/G/01/imdb/images/mobile/apple-touch-icon-web-4151659188._CB522736129_.png" rel="apple-touch-icon"> 
+        <link href="http://ia.media-imdb.com/images/G/01/imdb/images/mobile/apple-touch-icon-web-76x76-53536248._CB522736233_.png" rel="apple-touch-icon" sizes="76x76"> 
+        <link href="http://ia.media-imdb.com/images/G/01/imdb/images/mobile/apple-touch-icon-web-120x120-2442878471._CB522736253_.png" rel="apple-touch-icon" sizes="120x120"> 
+        <link href="http://ia.media-imdb.com/images/G/01/imdb/images/mobile/apple-touch-icon-web-152x152-1475823641._CB522736557_.png" rel="apple-touch-icon" sizes="152x152">            
+        <link rel="search" type="application/opensearchdescription+xml" href="http://ia.media-imdb.com/images/G/01/imdb/images/imdbsearch-3349468880._CB522736605_.xml" title="IMDb" />
+  <script>(function(t){ (t.events = t.events || {})["csm_head_post_icon"] = new Date().getTime(); })(IMDbTimer);</script>
+        
+        <meta property="pageId" content="tt0057687" />
+        <meta property="pageType" content="title" />
+        <meta property="subpageType" content="fullcredits" />
+
+
+        <link rel='image_src' href="https://images-na.ssl-images-amazon.com/images/M/MV5BMTMwNjEzMjM1NF5BMl5BanBnXkFtZTcwOTEzNDQzMQ@@._V1_UY1200_CR252,0,630,1200_AL_.jpg">
+        <meta property='og:image' content="https://images-na.ssl-images-amazon.com/images/M/MV5BMTMwNjEzMjM1NF5BMl5BanBnXkFtZTcwOTEzNDQzMQ@@._V1_UY1200_CR252,0,630,1200_AL_.jpg" />
+
+        <meta property='og:type' content="video.movie" />
+    <meta property='fb:app_id' content='115109575169727' />
+
+    <meta property='og:title' content="Winnetou (1963)" />
+    <meta property='og:site_name' content='IMDb' />
+    <meta name="title" content="Winnetou - 1. Teil (1963) - IMDb" />
+        <meta name="description" content="Winnetou - 1. Teil (1963) cast and crew credits, including actors, actresses, directors, writers and more." />
+        <meta property="og:description" content="Winnetou - 1. Teil (1963) cast and crew credits, including actors, actresses, directors, writers and more." />
+        <meta name="keywords" content="Reviews, Showtimes, DVDs, Photos, Message Boards, User Ratings, Synopsis, Trailers, Credits" />
+        <meta name="request_id" content="1MGGZ97RG62HVVYZ9DTM" />
+        
+  <script>(function(t){ (t.events = t.events || {})["csm_head_pre_css"] = new Date().getTime(); })(IMDbTimer);</script>
+<!-- h=ics-1a-c3-2xl-dbf9117d.us-east-1 -->
+
+            <link rel="stylesheet" type="text/css" href="http://ia.media-imdb.com/images/G/01/imdb/css/collections/title-flat-1732923380._CB530008519_.css" />
+            <!--[if IE]><link rel="stylesheet" type="text/css" href="http://ia.media-imdb.com/images/G/01/imdb/css/collections/ie-1170868033._CB522736261_.css" /><![endif]-->
+            <link rel="stylesheet" type="text/css" href="http://ia.media-imdb.com/images/G/01/imdb/css/site/consumer-navbar-mega-238568768._CB532297092_.css" />
+        <noscript>
+            <link rel="stylesheet" type="text/css" href="http://ia.media-imdb.com/images/G/01/imdb/css/wheel/nojs-2827156349._CB522739048_.css">
+        </noscript>
+  <script>(function(t){ (t.events = t.events || {})["csm_head_post_css"] = new Date().getTime(); })(IMDbTimer);</script>
+        
+  <script>(function(t){ (t.events = t.events || {})["csm_head_pre_ads"] = new Date().getTime(); })(IMDbTimer);</script>
+        <script>
+window.ads_js_start = new Date().getTime();
+var imdbads = imdbads || {}; imdbads.cmd = imdbads.cmd || [];
+</script>
+<!-- begin SRA -->
+<script>
+!function a(b,c,d){function e(g,h){if(!c[g]){if(!b[g]){var i="function"==typeof require&&require;if(!h&&i)return i(g,!0);if(f)return f(g,!0);var j=new Error("Cannot find module '"+g+"'");throw j.code="MODULE_NOT_FOUND",j}var k=c[g]={exports:{}};b[g][0].call(k.exports,function(a){var c=b[g][1][a];return e(c?c:a)},k,k.exports,a,b,c,d)}return c[g].exports}for(var f="function"==typeof require&&require,g=0;g<d.length;g++)e(d[g]);return e}({1:[function(a,b,c){"use strict";a(2)},{2:2}],2:[function(a,b,c){"use strict";!function(){var a,b,c=function(a){return"[object Array]"===Object.prototype.toString.call(a)},d=function(a,b){for(var c=0;c<a.length;c++)c in a&&b.call(null,a[c],c)},e=[],f=!1,g=!1,h=function(){var a=[],b=[],c={};return d(e,function(e){var f="";d(e.dartsite.split("/"),function(b){""!==b&&(b in c||(c[b]=a.length,a.push(b)),f+="/"+c[b])}),b.push(f)}),{iu_parts:a,enc_prev_ius:b}},i=function(){var a=[];return d(e,function(b){var c=[];d(b.sizes,function(a){c.push(a.join("x"))}),a.push(c.join("|"))}),a},j=function(){var a=[];return d(e,function(b){a.push(k(b.targeting))}),a.join("|")},k=function(a,b){var c,d=[];for(var e in a){c=[];for(var f=0;f<a[e].length;f++)c.push(encodeURIComponent(a[e][f]));b?d.push(e+"="+encodeURIComponent(c.join(","))):d.push(e+"="+c.join(","))}return d.join("&")},l=function(){var a=+new Date;g||document.readyState&&"loaded"!==document.readyState||(g=!0,f&&imdbads.cmd.push(function(){for(var b=0;b<e.length;b++)generic.monitoring.record_metric(e[b].name+".fail",csm.duration(a))}))};window.tinygpt={define_slot:function(a,b,c,d){e.push({dartsite:a.replace(/\/$/,""),sizes:b,name:c,targeting:d})},set_targeting:function(b){a=b},callback:function(a){var c,d,f={},g=+new Date;try{for(var h=0;h<e.length;h++)c=e[h].dartsite,d=e[h].name,a[h][c]?f[d]=a[h][c]:window.console&&console.error&&console.error("Unable to correlate GPT response for "+d);imdbads.cmd.push(function(){for(var a=0;a<e.length;a++)ad_utils.slot_events.trigger(e[a].name,"request",{timestamp:b}),ad_utils.slot_events.trigger(e[a].name,"tagdeliver",{timestamp:g});ad_utils.gpt.handle_response(f)})}catch(i){window.console&&console.error&&console.error("Exception in GPT callback: "+i.message)}},send:function(){var d,g,m=[],n=function(a,b){c(b)&&(b=b.join(",")),b&&m.push(a+"="+encodeURIComponent(""+b))};if(0===e.length)return void tinygpt.callback({});n("gdfp_req","1"),n("correlator",Math.floor(4503599627370496*Math.random())),n("output","json_html"),n("callback","tinygpt.callback"),n("impl","fifs"),n("json_a","1");var o=h();n("iu_parts",o.iu_parts),n("enc_prev_ius",o.enc_prev_ius),n("prev_iu_szs",i()),n("prev_scp",j()),n("cust_params",k(a,!0)),d=document.createElement("script"),g=document.getElementsByTagName("script")[0],d.async=!0,d.type="text/javascript",d.src="http://pubads.g.doubleclick.net/gampad/ads?"+m.join("&"),d.id="tinygpt",d.onload=d.onerror=d.onreadystatechange=l,f=!0,g.parentNode.insertBefore(d,g),b=+new Date}}}()},{}]},{},[1]);</script>
+<script>
+tinygpt.define_slot('/4215/imdb2.consumer.title/',
+[[728,90],[1008,150],[1008,200],[1008,30],[970,250],[9,1]],
+'top_ad',
+{
+'p': ['top','t']
+});
+tinygpt.define_slot('/4215/imdb2.consumer.title/',
+[[300,250],[300,600],[11,1]],
+'top_rhs',
+{
+'p': ['tr']
+});
+tinygpt.set_targeting({
+'tt' : ['f'],
+'coo' : ['xwg','it','xyu'],
+'c' : ['3'],
+'s' : ['3075','32'],
+'g' : ['ad','we'],
+'id' : ['tt0057687'],
+'u': ['701301906518'],
+'oe': ['utf-8']
+});
+tinygpt.send();
+</script>
+<!-- begin ads header -->
+<script src="https://ia.media-imdb.com/images/G/01/imdbads/js/collections/tarnhelm-4000355955._CB533829584_.js"></script>
+<script id="ads_doWithAds">
+doWithAds = function(inside, failureMessage){
+if ('consoleLog' in window &&
+'generic' in window &&
+'ad_utils' in window &&
+'custom' in window &&
+'monitoring' in generic &&
+'document_is_ready' in generic) {
+try{
+inside.call(this);
+}catch(e) {
+if ( window.ueLogError ) {
+if(typeof failureMessage !== 'undefined'){
+e.message = failureMessage;
+}
+e.attribution = "Advertising";
+e.logLevel = "ERROR";
+ueLogError(e);
+}
+if( (document.location.hash.match('debug=1')) &&
+(typeof failureMessage !== 'undefined') ){
+console.error(failureMessage);
+}
+}
+} else {
+if( (document.location.hash.match('debug=1')) &&
+(typeof failureMessage !== 'undefined') ){
+console.error(failureMessage);
+}
+}
+};
+</script><script id="ads_monitoring_setup">
+doWithAds(function(){
+generic.monitoring.set_forester_info("title");
+generic.monitoring.set_twilight_info(
+"title_subpage",
+"DE",
+"8fa01d3298d907cdac79376e67dc89114d172a78",
+"2017-04-07T09%3A49%3A37GMT",
+"https://s.media-imdb.com/twilight/?",
+"consumer");
+generic.monitoring.start_timing("page_load");
+generic.seconds_to_midnight = 76223;
+generic.days_to_midnight = 0.8822106719017029;
+},"Generic not defined, skipping monitoring setup.");
+</script>
+<script src="https://images-na.ssl-images-amazon.com/images/G/01/dacx/sf/DAsf-1.34_FX1._V275812351_.js"></script>
+<script id="ads_safeframe_setup">
+doWithAds(function(){
+if (typeof DAsf != 'undefined' && typeof DAsf.registerCustomMessageListener === 'function') {
+DAsf.registerCustomMessageListener('adFeedback', window.ad_utils.show_ad_feedback);
+DAsf.registerCustomMessageListener('sendMetrics', window.generic.monitoring.update_sf_slot_metrics);
+DAsf.registerCustomMessageListener('expand', window.ad_utils.expand_overlay);
+DAsf.registerCustomMessageListener('collapse', window.ad_utils.collapse_overlay);
+}
+},"ads js missing, skipping safeframe setup.");
+</script>
+<script id="ads_general_setup">
+doWithAds(function(){
+generic.monitoring.record_metric("ads_js_request_to_done", (new Date().getTime()) - window.ads_js_start);
+generic.send_csm_head_metrics && generic.send_csm_head_metrics();
+ad_utils.set_slots_on_page({ 'injected_billboard':1, 'injected_navstrip':1, 'top_ad':1, 'btf_rhs2':1, 'top_rhs':1, 'rhs_cornerstone':1 });
+custom.full_page.data_url = "https://ia.media-imdb.com/images/G/01/imdbads/js/graffiti_data-538221799._CB536725280_.js";
+consoleLog('advertising initialized','ads');
+},"ads js missing, skipping general setup.");
+var _gaq = _gaq || [];
+_gaq.push(['_setCustomVar', 4, 'ads_abtest_treatment', '']);
+</script>
+<script>doWithAds(function() { ad_utils.ads_header.done(); });</script>
+<!-- end ads header -->
+        <script  type="text/javascript">
+            // ensures js doesn't die if ads service fails.  
+            // Note that we need to define the js here, since ad js is being rendered inline after this.
+            (function(f) {
+                // Fallback javascript, when the ad Service call fails.  
+                
+                if((window.csm == null || window.generic == null || window.consoleLog == null)) {
+                    if (window.console && console.log) {
+                        console.log("one or more of window.csm, window.generic or window.consoleLog has been stubbed...");
+                    }
+                }
+                
+                window.csm = window.csm || { measure:f, record:f, duration:f, listen:f, metrics:{} };
+                window.generic = window.generic || { monitoring: { start_timing: f, stop_timing: f } };
+                window.consoleLog = window.consoleLog || f;
+            })(function() {});
+        </script>
+  <script>
+    if ('csm' in window) {
+      csm.measure('csm_head_delivery_finished');
+    }
+  </script>
+        </head>
+    <body id="styleguide-v2" class="fixed">
+<script>
+    if (typeof uet == 'function') {
+      uet("bb");
+    }
+</script>
+  <script>
+    if ('csm' in window) {
+      csm.measure('csm_body_delivery_started');
+    }
+  </script>
+        <div id="wrapper">
+            <div id="root" class="redesign">
+<script>
+    if (typeof uet == 'function') {
+      uet("ns");
+    }
+</script>
+<div id="nb20" class="navbarSprite">
+<div id="supertab">	
+	
+<!-- begin TOP_AD -->
+<div id="top_ad_wrapper" class="dfp_slot">
+<script>
+window.generic = window.generic || {};
+generic.alphalfaComponents = {
+"alphalfa-container.html" : "https://ia.media-imdb.com/images/G/01/imdbads/alphalfa-container-253150330._CB522736199_.html",
+"js/collections/alphalfa.js" : "https://ia.media-imdb.com/images/G/01/imdbads/js/collections/alphalfa-3292747090._CB522736629_.js"
+};
+</script>
+<script type="text/javascript">
+doWithAds(function(){
+if ('dfp_slot' != 'injected_slot') {
+ad_utils.register_ad('top_ad');
+}
+});
+</script>
+<iframe allowtransparency="true" class="yesScript" data-dart-params="#doubleclick;u=701301906518;ord=701301906518?" frameborder="0" id="top_ad" marginwidth="0" marginheight="0" name="top_ad" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="0" data-original-height="85" width="0" height="85" ></iframe> </div>
+<noscript> <a href="http://pubads.g.doubleclick.net/gampad/jump?&iu=4215/imdb2.consumer.title/&sz=728x90|1008x150|1008x200|1008x30|970x250|9x1&t=p%3Dtop%26p%3Dt%26g%3Dad%26g%3Dwe%26tt%3Df%26coo%3Dxwg%26coo%3Dit%26coo%3Dxyu%26id%3Dtt0057687%26c%3D3&tile=0&c=701301906518" target="_blank"> <img src="http://pubads.g.doubleclick.net/gampad/ad?&iu=4215/imdb2.consumer.title/&sz=728x90|1008x150|1008x200|1008x30|970x250|9x1&t=p%3Dtop%26p%3Dt%26g%3Dad%26g%3Dwe%26tt%3Df%26coo%3Dxwg%26coo%3Dit%26coo%3Dxyu%26id%3Dtt0057687%26c%3D3&tile=0&c=701301906518" border="0" alt="advertisement" /> </a> </noscript>
+<div id="top_ad_reflow_helper"></div>
+<script id="top_ad_rendering">
+doWithAds(function(){
+if ('dfp_slot' == 'injected_slot') {
+ad_utils.inject_ad.register('top_ad');
+} else {
+ad_utils.gpt.render_ad('top_ad');
+}
+}, "ad_utils not defined, unable to render client-side GPT ad or injected ad.");
+</script>
+<!-- End TOP_AD -->
+	
+</div>
+  <div id="navbar" class="navbarSprite">
+<noscript>
+  <link rel="stylesheet" type="text/css" href="http://ia.media-imdb.com/images/G/01/imdb/css/site/consumer-navbar-no-js-3652782989._CB522736526_.css" />
+</noscript>
+<!--[if IE]><link rel="stylesheet" type="text/css" href="http://ia.media-imdb.com/images/G/01/imdb/css/site/consumer-navbar-ie-2133976414._CB522736582_.css"><![endif]-->
+<span id="home_img_holder">
+<a href="/?ref_=nv_home"
+title="Home" class="navbarSprite" id="home_img" ></a>  <span class="alt_logo">
+    <a href="/?ref_=nv_home"
+title="Home" >IMDb</a>
+  </span>
+</span>
+<form
+ method="get"
+ action="/find"
+ class="nav-searchbar-inner"
+ id="navbar-form"
+
+>
+  <div id="nb_search">
+    <noscript><div id="more_if_no_javascript"><a href="/search/">More</a></div></noscript>
+    <button id="navbar-submit-button" class="primary btn" type="submit"><div class="magnifyingglass navbarSprite"></div></button>
+    <input type="hidden" name="ref_" value="nv_sr_fn" />
+    <input type="text" autocomplete="off" value="" name="q" id="navbar-query" placeholder="Find Movies, TV shows, Celebrities and more...">
+    <div class="quicksearch_dropdown_wrapper">
+      <select name="s" id="quicksearch" class="quicksearch_dropdown navbarSprite"
+              onchange="jumpMenu(this); suggestionsearch_dropdown_choice(this);">
+        <option value="all" >All</option>
+        <option value="tt" >Titles</option>
+        <option value="ep" >TV Episodes</option>
+        <option value="nm" >Names</option>
+        <option value="co" >Companies</option>
+        <option value="kw" >Keywords</option>
+        <option value="ch" >Characters</option>
+        <option value="qu" >Quotes</option>
+        <option value="bi" >Bios</option>
+        <option value="pl" >Plots</option>
+      </select>
+    </div>
+    <div id="navbar-suggestionsearch"></div>
+  </div>
+</form>
+<div id="megaMenu">
+    <ul id="consumer_main_nav" class="main_nav">
+        <li class="spacer"></li>
+        <li class="css_nav_item" id="navTitleMenu">
+            <p class="navCategory">
+                <a href="/movies-in-theaters/?ref_=nv_tp_inth_1"
+>Movies</a>,
+                <a href="/chart/toptv/?ref_=nv_tp_tv250_2"
+>TV</a><br />
+                & <a href="/showtimes/?ref_=nv_tp_sh_3"
+>Showtimes</a></p>
+            <span class="downArrow"></span>
+            <div id="navMenu1" class="sub_nav">
+                <div id="titleAd"></div>
+                <div class="subNavListContainer">
+                    <h5>MOVIES</h5>
+                    <ul>
+                        <li><a href="/movies-in-theaters/?ref_=nv_mv_inth_1"
+>In Theaters</a></li>
+                        <li><a href="/showtimes/?ref_=nv_mv_sh_2"
+>Showtimes & Tickets</a></li>
+                        <li><a href="/trailers/?ref_=nv_mv_tr_3"
+>Latest Trailers</a></li>
+                        <li><a href="/movies-coming-soon/?ref_=nv_mv_cs_4"
+>Coming Soon</a></li>
+                        <li><a href="/calendar/?ref_=nv_mv_cal_5"
+>Release Calendar</a></li>
+                        <li><a href="/chart/top?ref_=nv_mv_250_6"
+>Top Rated Movies</a></li>
+                        <li><a href="/chart/top-indian-movies?ref_=nv_mv_250_in_7"
+>Top Rated Indian Movies</a></li>
+                        <li><a href="/chart/moviemeter?ref_=nv_mv_mpm_8"
+>Most Popular Movies</a></li>
+                    </ul>
+                    <h5>CHARTS & TRENDS</h5>
+                    <ul>
+                        <li><a href="/chart/?ref_=nv_ch_cht_1"
+>Box Office</a></li>
+                        <li><a href="/search/title?count=100&groups=oscar_best_picture_winners&sort=year,desc&ref_=nv_ch_osc_2"
+>Oscar Winners</a></li>
+                        <li><a href="/genre/?ref_=nv_ch_gr_3"
+>Most Popular by Genre</a></li>
+                    </ul>
+                </div>
+                <div class="subNavListContainer">
+                    <h5>TV & VIDEO</h5>
+                    <ul>
+                        <li><a href="/tv/?ref_=nv_tvv_tv_1"
+>IMDb TV</a></li>
+                        <li><a href="/tvgrid/?ref_=nv_tvv_ls_2"
+>On Tonight</a></li>
+                        <li><a href="/chart/toptv/?ref_=nv_tvv_250_3"
+>Top Rated TV Shows</a></li>
+                        <li><a href="/chart/tvmeter?ref_=nv_tvv_mptv_4"
+>Most Popular TV Shows</a></li>
+                        <li><a href="/feature/watch-now-on-amazon/?ref_=nv_tvv_wn_5"
+>Watch Now on Amazon</a></li>
+                        <li><a href="/sections/dvd/?ref_=nv_tvv_dvd_6"
+>DVD & Blu-Ray</a></li>
+                    </ul>
+                    <h5>SPECIAL FEATURES</h5>
+                    <ul>
+                        <li><a href="/imdbpicks/?ref_=nv_sf_picks_1"
+>IMDb Picks</a></li>
+                        <li><a href="/scary-good/?ref_=nv_sf_sg_2"
+>Scary Good</a></li>
+                        <li><a href="/amazon-originals/?ref_=nv_sf_ams_3"
+>Amazon Originals</a></li>
+                        <li><a href="/star-wars/?ref_=nv_sf_stw_4"
+>Star Wars on IMDb</a></li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li class="spacer"></li>
+        <li class="css_nav_item" id="navNameMenu">
+            <p class="navCategory">
+                <a href="/search/name?gender=male,female&ref_=nv_tp_cel_1"
+>Celebs</a>,
+                <a href="/awards-central/?ref_=nv_tp_awrd_2"
+>Events</a><br />
+                & <a href="/gallery/rg784964352?ref_=nv_tp_ph_3"
+>Photos</a></p>
+            <span class="downArrow"></span>
+            <div id="navMenu2" class="sub_nav">
+                <div id="nameAd"></div>
+                <div class="subNavListContainer">
+                    <h5>CELEBS</h5>
+                    <ul>
+                            <li><a href="/search/name?birth_monthday=04-07&refine=birth_monthday&ref_=nv_cel_brn_1"
+>Born Today</a></li>
+                        <li><a href="/news/celebrity?ref_=nv_cel_nw_2"
+>Celebrity News</a></li>
+                        <li><a href="/search/name?gender=male,female&ref_=nv_cel_m_3"
+>Most Popular Celebs</a></li>
+                    </ul>
+                    <h5>PHOTOS</h5>
+                    <ul>
+                        <li><a href="/gallery/rg1859820288?ref_=nv_ph_ls_1"
+>Latest Stills</a></li>
+                        <li><a href="/gallery/rg1624939264?ref_=nv_ph_lp_2"
+>Latest Posters</a></li>
+                        <li><a href="/gallery/rg1641716480?ref_=nv_ph_lv_3"
+>Photos We Love</a></li>
+                    </ul>
+                </div>
+                <div class="subNavListContainer">
+                    <h5>EVENTS</h5>
+                    <ul>
+                        <li><a href="/awards-central/?ref_=nv_ev_awrd_1"
+>Awards Central</a></li>
+                        <li><a href="/oscars/?ref_=nv_ev_acd_2"
+>Oscars</a></li>
+                        <li><a href="/golden-globes/?ref_=nv_ev_gg_3"
+>Golden Globes</a></li>
+                        <li><a href="/sundance/?ref_=nv_ev_sun_4"
+>Sundance</a></li>
+                        <li><a href="/cannes/?ref_=nv_ev_can_5"
+>Cannes</a></li>
+                        <li><a href="/comic-con/?ref_=nv_ev_comic_6"
+>Comic-Con</a></li>
+                        <li><a href="/emmys/?ref_=nv_ev_rte_7"
+>Emmy Awards</a></li>
+                        <li><a href="/venice/?ref_=nv_ev_venice_8"
+>Venice Film Festival</a></li>
+                        <li><a href="/toronto/?ref_=nv_ev_tff_9"
+>Toronto Film Festival</a></li>
+                        <li><a href="/festival-central/?ref_=nv_ev_fc_10"
+>Festival Central</a></li>
+                        <li><a href="/festival-central/tribeca?ref_=nv_ev_tff_11"
+>Tribeca</a></li>
+                        <li><a href="/event/all/?ref_=nv_ev_all_12"
+>All Events</a></li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li class="spacer"></li>
+        <li class="css_nav_item" id="navNewsMenu">
+            <p class="navCategory">
+                <a href="/news/top?ref_=nv_tp_nw_1"
+>News</a> &<br />
+                <a href="/czone/?ref_=nv_cm_cz_2"
+>Community</a>
+            </p>
+            <span class="downArrow"></span>
+            <div id="navMenu3" class="sub_nav">
+                <div id="latestHeadlines">
+                    <div class="subNavListContainer">
+                        <h5>LATEST HEADLINES</h5>
+    <ul>
+                <li itemprop="headline">
+<a href="/news/ni60967692/?ref_=nv_nw_tn_1"
+> 'Smurfs 3' and 'Going in Style' Debut as Moviegoers Await 'Fast and Furious 8'
+</a><br />
+                        <span class="time">13 hours ago</span>
+                </li>
+                <li itemprop="headline">
+<a href="/news/ni60966735/?ref_=nv_nw_tn_2"
+> Don Rickles, Legendary Comic, Dies at 90
+</a><br />
+                        <span class="time">15 hours ago</span>
+                </li>
+                <li itemprop="headline">
+<a href="/news/ni60964261/?ref_=nv_nw_tn_3"
+> Christian Bale, Steve Carell, and Amy Adams Circling Adam McKay’s Dick Cheney Biopic
+</a><br />
+                        <span class="time">6 April 2017 12:24 AM, UTC</span>
+                </li>
+    </ul>
+                    </div>
+                </div>
+                <div class="subNavListContainer">
+                    <h5>NEWS</h5>
+                    <ul>
+                        <li><a href="/news/top?ref_=nv_nw_tp_1"
+>Top News</a></li>
+                        <li><a href="/news/movie?ref_=nv_nw_mv_2"
+>Movie News</a></li>
+                        <li><a href="/news/tv?ref_=nv_nw_tv_3"
+>TV News</a></li>
+                        <li><a href="/news/celebrity?ref_=nv_nw_cel_4"
+>Celebrity News</a></li>
+                        <li><a href="/news/indie?ref_=nv_nw_ind_5"
+>Indie News</a></li>
+                    </ul>
+                    <h5>COMMUNITY</h5>
+                    <ul>
+                        <li><a href="/czone/?ref_=nv_cm_cz_2"
+>Contributor Zone</a></li>
+                        <li><a href="/poll/?ref_=nv_cm_pl_3"
+>Polls</a></li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li class="spacer"></li>
+        <li class="css_nav_item" id="navWatchlistMenu">
+<p class="navCategory singleLine watchlist">
+    <a href="/list/watchlist?ref_=nv_wl_all_0"
+>Watchlist</a>
+</p>
+<span class="downArrow"></span>
+<div id="navMenu4" class="sub_nav">
+    <h5>
+            YOUR WATCHLIST
+    </h5>
+    <ul id="navWatchlist">
+    </ul>
+    <script>
+    if (!('imdb' in window)) { window.imdb = {}; }
+    window.imdb.watchlistTeaserData = [
+                {
+                        href : "/list/watchlist",
+                src : "http://ia.media-imdb.com/images/G/01/imdb/images/navbar/watchlist_slot1_logged_out-1670046337._CB522736556_.jpg"
+                },
+                {
+                    href : "/search/title?count=100&title_type=feature,tv_series",
+                src : "http://ia.media-imdb.com/images/G/01/imdb/images/navbar/watchlist_slot2_popular-4090757197._CB522736562_.jpg"
+                },
+                {
+                    href : "/chart/top",
+                src : "http://ia.media-imdb.com/images/G/01/imdb/images/navbar/watchlist_slot3_top250-575799966._CB522736596_.jpg"
+                }
+    ];
+    </script>
+</div>
+        </li>
+        <li class="spacer"></li>
+    </ul>
+<script>
+if (!('imdb' in window)) { window.imdb = {}; }
+window.imdb.navbarAdSlots = {
+    titleAd : {
+            clickThru : "/title/tt0317248/",
+            imageUrl : "http://ia.media-imdb.com/images/M/MV5BMTc5MzkzNzk5MV5BMl5BanBnXkFtZTcwMjc4MTE5Ng@@._V1._SY315_CR110,0,410,315_.jpg",
+            titleYears : "2002",
+            rank : 21,
+                    headline : "City of God"
+    },
+    nameAd : {
+            clickThru : "/name/nm0000098/",
+            imageUrl : "http://ia.media-imdb.com/images/M/MV5BMjA4MDU4MjIyMl5BMl5BanBnXkFtZTcwOTM2OTE0Nw@@._V1._SX250_CR0,0,250,315_.jpg",
+            rank : 186,
+            headline : "Jennifer Aniston"
+    }
+}
+</script>
+</div>
+<div id="nb_extra">
+    <ul id="nb_extra_nav" class="main_nav">
+        <li class="css_nav_item" id="navProMenu">
+            <p class="navCategory">
+<a href="http://pro.imdb.com/signup/index.html?rf=cons_nb_hm&ref_=cons_nb_hm"
+> <img alt="IMDbPro Menu" src="http://ia.media-imdb.com/images/G/01/imdb/images/navbar/imdbpro_logo_nb-3000473826._CB530713470_.png" />
+</a>            </p>
+            <span class="downArrow"></span>
+            <div id="navMenuPro" class="imdb-pro-ad sub_nav">
+<a href="http://pro.imdb.com/signup/index.html?rf=cons_nb_hm&ref_=cons_nb_hm"
+class="imdp-pro-ad__link" > <div id="proAd" class="imdb-pro-ad__image">
+<img alt="Go to IMDbPro" height="180" width="174"
+src="http://ia.media-imdb.com/images/G/01/imdb/images/navbar/imdbpro_menu_user-4091932618._CB530713443_.png"
+srcset="http://ia.media-imdb.com/images/G/01/imdb/images/navbar/imdbpro_menu_user-4091932618._CB530713443_.png 1x,
+http://ia.media-imdb.com/images/G/01/imdb/images/navbar/imdbpro_menu_user_2x-2074318947._CB530713441_.png 2x" />
+</div>
+<section class="imdb-pro-ad__content">
+<h1 class="imdb-pro-ad__title">The leading information resource for the entertainment industry</h1>
+<p class="imdb-pro-ad__line">Find industry contacts &amp; talent representation</p>
+<p class="imdb-pro-ad__line">Manage your photos, credits, &amp; more</p>
+<p class="imdb-pro-ad__line">Showcase yourself on IMDb &amp; Amazon</p>
+<span role="button" class="imdb-pro-ad__button">Go to IMDbPro</a>
+</section>
+</a>            </div>
+        </li>
+        <li class="spacer"><span class="ghost">|</span></li>
+        <li>
+            <a href="/help/?ref_=nb_hlp"
+>Help</a>
+        </li>
+        <li class="social">
+
+    <a href="/offsite/?page-action=fol_fb&token=BCYggzsFyRDapWhBEovWkPtYXU-K7ZIkdNMTahpdtZH_-876EQ0FsNiJ8xDsf1r9QiDtAF42Z_mY%0D%0AGVPyKlZIA35xbkBi6fHquNEpFrKCQWotpBvXu_0PRXA8lijp8cHMO1UkgUC-DKRZbRejGe3G9Ose%0D%0AS9jbalSwUMF61JGn99tAxsJo8ek_szFRkDkaNQoMHCtgynDnVFpxVlsEYsGdQkR7UQ%0D%0A&ref_=nv_fol_fb"
+title="Follow IMDb on Facebook" target="_blank" itemprop='url'> <span class="desktop-sprite follow-facebook" ></span>
+</a>
+    <a href="/offsite/?page-action=fol_tw&token=BCYvo4EgdrAMJ6vvuCd4RdluCvnaUdNo2wlG1HjwnBfyUJyafGJ8nOiIDGYIPGmpnQSSbxgLVvFG%0D%0AIo-bP12OC5t-3vW2LJZLIaJ6qVdRNSEnnWIQcYZdM0SXBz7yb2S3CjxDAEsWXy4P0EQUq8lRAy7H%0D%0AB9ZcFG5Qxug7CG9n_PTtXZ0Na9iUKusyVbeuGiaoNzED%0D%0A&ref_=nv_fol_tw"
+title="Follow IMDb on Twitter" target="_blank" itemprop='url'> <span class="desktop-sprite follow-twitter" ></span>
+</a>
+    <a href="/offsite/?page-action=fol_inst&token=BCYpBAM7rNRpxGLt1wr5nbhI5ojANPCXmeKxo7emlQoLXlwFUnuifl2o9rkiSrSHyWWWBpU2Iu18%0D%0AfAzKMwzs0IK8zYErHFi1RWMArgAROhD0w8UkedBlVmw_qo8MA5So0DIUf4kz6yV4e9046pkUxoMW%0D%0AfBNf2ygsFg5ELzxZCD2TadKzRm2zVos0dXyGoSBkxVoB%0D%0A&ref_=nv_fol_inst"
+title="Follow IMDb on Instagram" target="_blank" itemprop='url'> <span class="desktop-sprite follow-instagram" ></span>
+</a>
+        </li>
+    </ul>
+</div>
+<div id="nb_personal">
+    <ul id="consumer_user_nav" class="main_nav">
+
+            <li class="css_nav_menu no_arrow" id="navUserMenu">
+            <p class="navCategory singleLine">
+                <a id="facebook-signin-link" href="https://graph.facebook.com/v2.8/oauth/authorize?client_id=127059960673829&scope=email%2Cuser_about_me%2Cuser_birthday&state=eyI0OWU2YyI6ImIwOTAiLCJ1IjoiaHR0cHM6Ly93d3cuaW1kYi5jb20vP3JlZl89bnZfZmJfbGdpbiIsIm1hbnVhbExpbmsiOiJmYWxzZSJ9&redirect_uri=https%3A%2F%2Fwww.imdb.com%2Fregistration%2Ffacebookhandler%2F" class="signin-button">
+                <span class="facebook-logo"></span>
+                <span class="signin-facebook-text">Sign in with Facebook</span></a>
+                <a href="https://www.imdb.com/registration/signin?u=/title/tt0057687/fullcredits/&ref_=nv_usr_lgin_1"
+rel="login" class="signin-other-options-text" id="nblogin" >Other Sign in options</a>
+                </p>
+        </li>
+    </ul>
+</div>
+  </div>
+</div>
+	
+	<!-- no content received for slot: navstrip -->
+	
+	
+	
+<!-- begin INJECTED_NAVSTRIP -->
+<div id="injected_navstrip_wrapper" class="injected_slot">
+<script type="text/javascript">
+doWithAds(function(){
+if ('injected_slot' != 'injected_slot') {
+ad_utils.register_ad('injected_navstrip');
+}
+});
+</script>
+<iframe allowtransparency="true" class="yesScript" data-dart-params="#doubleclick;u=701301906518;ord=701301906518?" frameborder="0" id="injected_navstrip" marginwidth="0" marginheight="0" name="injected_navstrip" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="0" data-original-height="0" width="0" height="0" ></iframe> </div>
+<div id="injected_navstrip_reflow_helper"></div>
+<script id="injected_navstrip_rendering">
+doWithAds(function(){
+if ('injected_slot' == 'injected_slot') {
+ad_utils.inject_ad.register('injected_navstrip');
+} else {
+ad_utils.gpt.render_ad('injected_navstrip');
+}
+}, "ad_utils not defined, unable to render client-side GPT ad or injected ad.");
+</script>
+<!-- End INJECTED_NAVSTRIP -->
+	
+<script>
+    if (typeof uet == 'function') {
+      uet("ne");
+    }
+</script>
+              
+
+                    <div id="pagecontent" class="pagecontent" itemscope itemtype="http://schema.org/Movie">
+	
+	
+<!-- begin INJECTED_BILLBOARD -->
+<div id="injected_billboard_wrapper" class="injected_slot">
+<script type="text/javascript">
+doWithAds(function(){
+if ('injected_slot' != 'injected_slot') {
+ad_utils.register_ad('injected_billboard');
+}
+});
+</script>
+<iframe allowtransparency="true" class="yesScript" data-dart-params="#doubleclick;u=701301906518;ord=701301906518?" frameborder="0" id="injected_billboard" marginwidth="0" marginheight="0" name="injected_billboard" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="0" data-original-height="0" width="0" height="0" ></iframe> </div>
+<div id="injected_billboard_reflow_helper"></div>
+<script id="injected_billboard_rendering">
+doWithAds(function(){
+if ('injected_slot' == 'injected_slot') {
+ad_utils.inject_ad.register('injected_billboard');
+} else {
+ad_utils.gpt.render_ad('injected_billboard');
+}
+}, "ad_utils not defined, unable to render client-side GPT ad or injected ad.");
+</script>
+<!-- End INJECTED_BILLBOARD -->
+	
+
+<div id="content-2-wide" class="redesign">
+<div id="main">
+  <div class="article listo">
+    <span class=rightcornerlink >
+            <a href="/register/login?why=edit&ref_=ttfc_fc_edt"
+rel="login">Edit</a>
+    </span>
+<div class="subpage_title_block">
+<a href="/title/tt0057687/?ref_=ttfc_fc_tt"
+> <img itemprop="image"
+class="poster"
+height="98"
+width="67"
+alt="Winnetou - 1. Teil (1963) Poster"
+src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTMwNjEzMjM1NF5BMl5BanBnXkFtZTcwOTEzNDQzMQ@@._V1_UY98_CR13,0,67,98_AL_.jpg" />
+</a>  <div class="parent">   
+    <h3 itemprop="name">
+<a href="/title/tt0057687/?ref_=ttfc_fc_tt"
+itemprop='url'>Winnetou - 1. Teil</a>         <span class="nobr">
+             (1963)
+         </span>
+    </h3>
+  </div>
+  <script>
+    if ('csm' in window) {
+      csm.measure('csm_body_delivery_started');
+    }
+  </script>
+  <h1 class="header">Full Cast & Crew</h1>
+</div>
+    <div id="fullcredits_content" class="header">
+  
+    <h4 class="dataHeaderWithBorder">Directed by&nbsp;</h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+          
+        <tr>
+        <td class="name">
+<a href="/name/nm0718243/?ref_=ttfc_fc_dr1"
+> Harald Reinl
+</a>        </td>
+          <td colspan="2"></td>
+        </tr>        
+    </tbody>
+    </table>
+    <h4 class="dataHeaderWithBorder">Writing Credits
+    &nbsp;
+    </h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+      <tr>
+        <td class="name">
+<a href="/name/nm0562015/?ref_=ttfc_fc_wr1"
+> Karl May
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            (novel)
+          </td>
+      </tr>  
+        <tr><td colspan="3">&nbsp;</td></tr>
+      <tr>
+        <td class="name">
+<a href="/name/nm0677457/?ref_=ttfc_fc_wr2"
+> Harald G. Petersson
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            (as H.G. Petersson)
+          </td>
+      </tr>  
+    </tbody>
+    </table>
+    <h4 name="cast" id="cast" class="dataHeaderWithBorder">
+        
+      Cast
+          <span>(in credits order)</span>
+        <span> complete, awaiting verification </span>
+    &nbsp;
+    </h4>
+    <table class="cast_list">    
+  <tr><td colspan="4" class="castlist_label"></td></tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0000851/?ref_=ttfc_fc_cl_i1"
+><img height="44" width="32" alt="Lex Barker" title="Lex Barker"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BMTM2MDc5OTM5NV5BMl5BanBnXkFtZTcwMTAxOTUyOA@@._V1_UY44_CR2,0,32,44_AL_.jpg" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0000851/?ref_=ttfc_fc_cl_t1"
+itemprop='url'> <span class="itemprop" itemprop="name">Lex Barker</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            <a href="/character/ch0033816/?ref_=ttfc_fc_cl_t1" >Old Shatterhand</a> 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0108523/?ref_=ttfc_fc_cl_i2"
+><img height="44" width="32" alt="Pierre Brice" title="Pierre Brice"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BNTQzODg2ZDQtZGRmMS00N2UzLThiMGUtYjcwOTJmYTM0M2VlXkEyXkFqcGdeQXVyMjU5OTg5NDc@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0108523/?ref_=ttfc_fc_cl_t2"
+itemprop='url'> <span class="itemprop" itemprop="name">Pierre Brice</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            <a href="/character/ch0033790/?ref_=ttfc_fc_cl_t2" >Winnetou</a> 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0894949/?ref_=ttfc_fc_cl_i3"
+><img height="44" width="32" alt="Marie Versini" title="Marie Versini"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BNzUxMjIzMjM3Ml5BMl5BanBnXkFtZTcwMjU3NjcxMw@@._V1_UY44_CR2,0,32,44_AL_.jpg" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0894949/?ref_=ttfc_fc_cl_t3"
+itemprop='url'> <span class="itemprop" itemprop="name">Marie Versini</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            <a href="/character/ch0033837/?ref_=ttfc_fc_cl_t3" >Nscho-tschi</a> 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0000728/?ref_=ttfc_fc_cl_i4"
+><img height="44" width="32" alt="Mario Adorf" title="Mario Adorf"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BNDliNTUxZDgtYzVlOS00NzQ2LTk4NjUtZTM5NWNkNDM4N2VjL2ltYWdlXkEyXkFqcGdeQXVyNDkzNTM2ODg@._V1_UY44_CR17,0,32,44_AL_.jpg" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0000728/?ref_=ttfc_fc_cl_t4"
+itemprop='url'> <span class="itemprop" itemprop="name">Mario Adorf</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Frederick Santer 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0055812/?ref_=ttfc_fc_cl_i5"
+><img height="44" width="32" alt="Walter Barnes" title="Walter Barnes"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BZGJiZWJhYTUtNTkzZC00MjZmLTk4ZTYtOWU1MjE5MTkyYTNkXkEyXkFqcGdeQXVyMzI5NDcxNzI@._V1_UY44_CR1,0,32,44_AL_.jpg" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0055812/?ref_=ttfc_fc_cl_t5"
+itemprop='url'> <span class="itemprop" itemprop="name">Walter Barnes</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Bill Jones 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0398193/?ref_=ttfc_fc_cl_i6"
+><img height="44" width="32" alt="Chris Howland" title="Chris Howland"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0398193/?ref_=ttfc_fc_cl_t6"
+itemprop='url'> <span class="itemprop" itemprop="name">Chris Howland</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Lord Tuff-Tuff 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0938754/?ref_=ttfc_fc_cl_i7"
+><img height="44" width="32" alt="Ralf Wolter" title="Ralf Wolter"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0938754/?ref_=ttfc_fc_cl_t7"
+itemprop='url'> <span class="itemprop" itemprop="name">Ralf Wolter</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            <a href="/character/ch0033800/?ref_=ttfc_fc_cl_t7" >Sam Hawkens</a> 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0691471/?ref_=ttfc_fc_cl_i8"
+><img height="44" width="32" alt="Milivoje Popovic-Mavid" title="Milivoje Popovic-Mavid"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0691471/?ref_=ttfc_fc_cl_t8"
+itemprop='url'> <span class="itemprop" itemprop="name">Milivoje Popovic-Mavid</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            <a href="/character/ch0033841/?ref_=ttfc_fc_cl_t8" >Intschu-tschuna</a> 
+  
+  
+  (as Mavid Popovic)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0707479/?ref_=ttfc_fc_cl_i9"
+><img height="44" width="32" alt="Dunja Rajter" title="Dunja Rajter"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0707479/?ref_=ttfc_fc_cl_t9"
+itemprop='url'> <span class="itemprop" itemprop="name">Dunja Rajter</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Belle 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0820212/?ref_=ttfc_fc_cl_i10"
+><img height="44" width="32" alt="Niksa Stefanini" title="Niksa Stefanini"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0820212/?ref_=ttfc_fc_cl_t10"
+itemprop='url'> <span class="itemprop" itemprop="name">Niksa Stefanini</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Bullock 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0819349/?ref_=ttfc_fc_cl_i11"
+><img height="44" width="32" alt="Branko Spoljar" title="Branko Spoljar"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0819349/?ref_=ttfc_fc_cl_t11"
+itemprop='url'> <span class="itemprop" itemprop="name">Branko Spoljar</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Bancroft 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0170110/?ref_=ttfc_fc_cl_i12"
+><img height="44" width="32" alt="Husein Cokic" title="Husein Cokic"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0170110/?ref_=ttfc_fc_cl_t12"
+itemprop='url'> <span class="itemprop" itemprop="name">Husein Cokic</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Will Parker 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0084459/?ref_=ttfc_fc_cl_i13"
+><img height="44" width="32" alt="Demeter Bitenc" title="Demeter Bitenc"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0084459/?ref_=ttfc_fc_cl_t13"
+itemprop='url'> <span class="itemprop" itemprop="name">Demeter Bitenc</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Dick Stone 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0258579/?ref_=ttfc_fc_cl_i14"
+><img height="44" width="32" alt="Tomoslav Erak" title="Tomoslav Erak"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0258579/?ref_=ttfc_fc_cl_t14"
+itemprop='url'> <span class="itemprop" itemprop="name">Tomoslav Erak</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Tangua 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0263784/?ref_=ttfc_fc_cl_i15"
+><img height="44" width="32" alt="Hrvoje Svob" title="Hrvoje Svob"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0263784/?ref_=ttfc_fc_cl_t15"
+itemprop='url'> <span class="itemprop" itemprop="name">Hrvoje Svob</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            <a href="/character/ch0033842/?ref_=ttfc_fc_cl_t15" >Klekih-petra</a> 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0229944/?ref_=ttfc_fc_cl_i16"
+><img height="44" width="32" alt="Dusko Dobudj" title="Dusko Dobudj"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0229944/?ref_=ttfc_fc_cl_t16"
+itemprop='url'> <span class="itemprop" itemprop="name">Dusko Dobudj</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Schwarzer Adler 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0472437/?ref_=ttfc_fc_cl_i17"
+><img height="44" width="32" alt="Vladimir Krstulovic" title="Vladimir Krstulovic"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0472437/?ref_=ttfc_fc_cl_t17"
+itemprop='url'> <span class="itemprop" itemprop="name">Vladimir Krstulovic</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Harvey 
+  
+  
+  (as Vlado Krstulovic)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0412402/?ref_=ttfc_fc_cl_i18"
+><img height="44" width="32" alt="Ilija Ivezic" title="Ilija Ivezic"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0412402/?ref_=ttfc_fc_cl_t18"
+itemprop='url'> <span class="itemprop" itemprop="name">Ilija Ivezic</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Joaquin 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0832780/?ref_=ttfc_fc_cl_i19"
+><img height="44" width="32" alt="Tedy Sotosek" title="Tedy Sotosek"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0832780/?ref_=ttfc_fc_cl_t19"
+itemprop='url'> <span class="itemprop" itemprop="name">Tedy Sotosek</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Randolph 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0620548/?ref_=ttfc_fc_cl_i20"
+><img height="44" width="32" alt="Antun Nalis" title="Antun Nalis"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0620548/?ref_=ttfc_fc_cl_t20"
+itemprop='url'> <span class="itemprop" itemprop="name">Antun Nalis</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Barman Hicks 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0098049/?ref_=ttfc_fc_cl_i21"
+><img height="44" width="32" alt="Vladimir Bosnjak" title="Vladimir Bosnjak"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0098049/?ref_=ttfc_fc_cl_t21"
+itemprop='url'> <span class="itemprop" itemprop="name">Vladimir Bosnjak</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Lemmy 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0469774/?ref_=ttfc_fc_cl_i22"
+><img height="44" width="32" alt="Ana Kranjcec" title="Ana Kranjcec"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0469774/?ref_=ttfc_fc_cl_t22"
+itemprop='url'> <span class="itemprop" itemprop="name">Ana Kranjcec</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Vollmond 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0415547/?ref_=ttfc_fc_cl_i23"
+><img height="44" width="32" alt="Sime Jagarinac" title="Sime Jagarinac"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0415547/?ref_=ttfc_fc_cl_t23"
+itemprop='url'> <span class="itemprop" itemprop="name">Sime Jagarinac</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Apache 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0471683/?ref_=ttfc_fc_cl_i24"
+><img height="44" width="32" alt="Ivo Kristof" title="Ivo Kristof"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0471683/?ref_=ttfc_fc_cl_t24"
+itemprop='url'> <span class="itemprop" itemprop="name">Ivo Kristof</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Treck Man 
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0593900/?ref_=ttfc_fc_cl_i25"
+><img height="44" width="32" alt="Gojko Mitic" title="Gojko Mitic"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BZDM5OWQ2MjktYmFiOC00MmUyLTk2NTEtZmI0ZTc3ZTY1ZDI2XkEyXkFqcGdeQXVyNDE4MDU5OTE@._V1_UY44_CR17,0,32,44_AL_.jpg" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0593900/?ref_=ttfc_fc_cl_t25"
+itemprop='url'> <span class="itemprop" itemprop="name">Gojko Mitic</span>
+</a>          </td>
+          <td class="ellipsis">
+          </td>
+          <td class="character">
+              <div>
+                  
+              </div>
+          </td>
+      </tr>
+  <tr><td colspan="4" class="castlist_label">Rest of cast listed alphabetically:</td></tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm1289046/?ref_=ttfc_fc_cl_i26"
+><img height="44" width="32" alt="Curt Ackermann" title="Curt Ackermann"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm1289046/?ref_=ttfc_fc_cl_t26"
+itemprop='url'> <span class="itemprop" itemprop="name">Curt Ackermann</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Narrator 
+  
+  
+  (voice) (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0104989/?ref_=ttfc_fc_cl_i27"
+><img height="44" width="32" alt="Rainer Brandt" title="Rainer Brandt"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0104989/?ref_=ttfc_fc_cl_t27"
+itemprop='url'> <span class="itemprop" itemprop="name">Rainer Brandt</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Frederick Santer 
+  
+  
+  (voice) (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0197983/?ref_=ttfc_fc_cl_i28"
+><img height="44" width="32" alt="Karl Dall" title="Karl Dall"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0197983/?ref_=ttfc_fc_cl_t28"
+itemprop='url'> <span class="itemprop" itemprop="name">Karl Dall</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Saloon Cast 
+  
+  
+  (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0245228/?ref_=ttfc_fc_cl_i29"
+><img height="44" width="32" alt="Gerd Duwner" title="Gerd Duwner"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0245228/?ref_=ttfc_fc_cl_t29"
+itemprop='url'> <span class="itemprop" itemprop="name">Gerd Duwner</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Tangua 
+  
+  
+  (voice) (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0367310/?ref_=ttfc_fc_cl_i30"
+><img height="44" width="32" alt="Knut Hartwig" title="Knut Hartwig"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0367310/?ref_=ttfc_fc_cl_t30"
+itemprop='url'> <span class="itemprop" itemprop="name">Knut Hartwig</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            <a href="/character/ch0033842/?ref_=ttfc_fc_cl_t30" >Klekih-petra</a> 
+  
+  
+  (voice) (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm1229576/?ref_=ttfc_fc_cl_i31"
+><img height="44" width="32" alt="Toni Herbert" title="Toni Herbert"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm1229576/?ref_=ttfc_fc_cl_t31"
+itemprop='url'> <span class="itemprop" itemprop="name">Toni Herbert</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Bancroft 
+  
+  
+  (voice) (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0382212/?ref_=ttfc_fc_cl_i32"
+><img height="44" width="32" alt="Ursula Heyer" title="Ursula Heyer"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0382212/?ref_=ttfc_fc_cl_t32"
+itemprop='url'> <span class="itemprop" itemprop="name">Ursula Heyer</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Belle 
+  
+  
+  (voice) (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0389152/?ref_=ttfc_fc_cl_i33"
+><img height="44" width="32" alt="Benno Hoffmann" title="Benno Hoffmann"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0389152/?ref_=ttfc_fc_cl_t33"
+itemprop='url'> <span class="itemprop" itemprop="name">Benno Hoffmann</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            <a href="/character/ch0033841/?ref_=ttfc_fc_cl_t33" >Intschu-tschuna</a> 
+  
+  
+  (voice) (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0389176/?ref_=ttfc_fc_cl_i34"
+><img height="44" width="32" alt="Gert Günther Hoffmann" title="Gert Günther Hoffmann"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0389176/?ref_=ttfc_fc_cl_t34"
+itemprop='url'> <span class="itemprop" itemprop="name">Gert Günther Hoffmann</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            <a href="/character/ch0033816/?ref_=ttfc_fc_cl_t34" >Old Shatterhand</a> 
+  
+  
+  (voice) (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0491546/?ref_=ttfc_fc_cl_i35"
+><img height="44" width="32" alt="Heinz Lausch" title="Heinz Lausch"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0491546/?ref_=ttfc_fc_cl_t35"
+itemprop='url'> <span class="itemprop" itemprop="name">Heinz Lausch</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Bullock 
+  
+  
+  (voice) (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm0549899/?ref_=ttfc_fc_cl_i36"
+><img height="44" width="32" alt="Arnold Marquis" title="Arnold Marquis"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0549899/?ref_=ttfc_fc_cl_t36"
+itemprop='url'> <span class="itemprop" itemprop="name">Arnold Marquis</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Bill Jones 
+  
+  
+  (voice) (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0656588/?ref_=ttfc_fc_cl_i37"
+><img height="44" width="32" alt="Ilse Pagé" title="Ilse Pagé"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0656588/?ref_=ttfc_fc_cl_t37"
+itemprop='url'> <span class="itemprop" itemprop="name">Ilse Pagé</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            <a href="/character/ch0033837/?ref_=ttfc_fc_cl_t37" >Nscho-tschi</a> 
+  
+  
+  (voice) (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="odd">
+          <td class="primary_photo">
+<a href="/name/nm1162289/?ref_=ttfc_fc_cl_i38"
+><img height="44" width="32" alt="Jochen Schröder" title="Jochen Schröder"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png" class="" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm1162289/?ref_=ttfc_fc_cl_t38"
+itemprop='url'> <span class="itemprop" itemprop="name">Jochen Schröder</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            Barmann Hicks 
+  
+  
+  (voice) (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+      <tr class="even">
+          <td class="primary_photo">
+<a href="/name/nm0938212/?ref_=ttfc_fc_cl_i39"
+><img height="44" width="32" alt="Christian Wolff" title="Christian Wolff"src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB522736171_.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BMjAxNTQzNDgzNl5BMl5BanBnXkFtZTgwMTUzNTA0MzE@._V1_UY44_CR0,0,32,44_AL_.jpg" /></a>          </td>
+          <td class="itemprop" itemprop="actor" itemscope itemtype="http://schema.org/Person">
+<a href="/name/nm0938212/?ref_=ttfc_fc_cl_t39"
+itemprop='url'> <span class="itemprop" itemprop="name">Christian Wolff</span>
+</a>          </td>
+          <td class="ellipsis">
+              ...
+          </td>
+          <td class="character">
+              <div>
+            <a href="/character/ch0033790/?ref_=ttfc_fc_cl_t39" >Winnetou</a> 
+  
+  
+  (voice) (uncredited)
+  
+                  
+              </div>
+          </td>
+      </tr>
+    </table>
+      <div class="full_cast form-box">
+          <form method="post" action="/character/create?ref_=ttfc_fc_chcr" accept-charset="ISO-8859-1">
+              <input type="hidden" value="tt0057687" name="title">
+              <div class="form-txt">Create a character page for:
+                <select id="character_select" name="name" data-tconst="tt0057687">
+                        <option value="Frederick Santer">Frederick Santer</option>
+                        <option value="Bill Jones">Bill Jones</option>
+                        <option value="Lord Tuff-Tuff">Lord Tuff-Tuff</option>
+                        <option value="Belle">Belle</option>
+                        <option value="Bullock">Bullock</option>
+                        <option value="Bancroft">Bancroft</option>
+                        <option value="Will Parker">Will Parker</option>
+                        <option value="Dick Stone">Dick Stone</option>
+                        <option value="Tangua">Tangua</option>
+                        <option value="Schwarzer Adler">Schwarzer Adler</option>
+                        <option value="Harvey">Harvey</option>
+                        <option value="Joaquin">Joaquin</option>
+                        <option value="Randolph">Randolph</option>
+                        <option value="Barman Hicks">Barman Hicks</option>
+                        <option value="Lemmy">Lemmy</option>
+                        <option value="Vollmond">Vollmond</option>
+                        <option value="Apache">Apache</option>
+                        <option value="Treck Man">Treck Man</option>
+                        <option value="Narrator">Narrator</option>
+                        <option value="Frederick Santer">Frederick Santer</option>
+                        <option value="Saloon Cast">Saloon Cast</option>
+                        <option value="Tangua">Tangua</option>
+                        <option value="Bancroft">Bancroft</option>
+                        <option value="Belle">Belle</option>
+                        <option value="Bullock">Bullock</option>
+                        <option value="Bill Jones">Bill Jones</option>
+                        <option value="Barmann Hicks">Barmann Hicks</option>
+                </select>
+                <button class="btn small">Create &raquo;</button>
+                <a href="/help/show_leaf?createchar&ref_=ttfc_fc_chcr_hlp"
+class="btn small" >?</a>
+              </div>
+          </form>
+      </div>
+    <h4 class="dataHeaderWithBorder">Produced by&nbsp;</h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+          
+        <tr>
+        <td class="name">
+<a href="/name/nm0339657/?ref_=ttfc_fc_cr2"
+> Horst Wendlandt
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            producer            
+          </td>
+        </tr>        
+    </tbody>
+    </table>
+    <h4 class="dataHeaderWithBorder">Music by&nbsp;</h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+          
+        <tr>
+        <td class="name">
+<a href="/name/nm0005989/?ref_=ttfc_fc_cr3"
+> Martin Böttcher
+</a>        </td>
+          <td colspan="2"></td>
+        </tr>        
+    </tbody>
+    </table>
+    <h4 class="dataHeaderWithBorder">Cinematography by&nbsp;</h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+          
+        <tr>
+        <td class="name">
+<a href="/name/nm0005752/?ref_=ttfc_fc_cr4"
+> Ernst W. Kalinke
+</a>        </td>
+          <td colspan="2"></td>
+        </tr>        
+    </tbody>
+    </table>
+    <h4 class="dataHeaderWithBorder">Film Editing by&nbsp;</h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+          
+        <tr>
+        <td class="name">
+<a href="/name/nm0356409/?ref_=ttfc_fc_cr5"
+> Hermann Haller
+</a>        </td>
+          <td colspan="2"></td>
+        </tr>        
+    </tbody>
+    </table>
+    <h4 class="dataHeaderWithBorder">Production Design by&nbsp;</h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+          
+        <tr>
+        <td class="name">
+<a href="/name/nm0846290/?ref_=ttfc_fc_cr6"
+> Vladimir Tadej
+</a>        </td>
+          <td colspan="2"></td>
+        </tr>        
+    </tbody>
+    </table>
+    <h4 class="dataHeaderWithBorder">Makeup Department&nbsp;</h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+          
+        <tr>
+        <td class="name">
+<a href="/name/nm1408260/?ref_=ttfc_fc_cr7"
+> Gerda Wegener
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            makeup artist            
+          </td>
+        </tr>        
+    
+        <tr>
+        <td class="name">
+<a href="/name/nm0917474/?ref_=ttfc_fc_cr8"
+> Walter Wegener
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            makeup artist            
+          </td>
+        </tr>        
+    </tbody>
+    </table>
+    <h4 class="dataHeaderWithBorder">Production Management&nbsp;</h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+          
+        <tr>
+        <td class="name">
+<a href="/name/nm0321195/?ref_=ttfc_fc_cr9"
+> Erwin Gitt
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            production manager            
+          </td>
+        </tr>        
+    
+        <tr>
+        <td class="name">
+<a href="/name/nm0525783/?ref_=ttfc_fc_cr10"
+> Josip Lulic
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            production manager: second unit            
+          </td>
+        </tr>        
+    </tbody>
+    </table>
+    <h4 class="dataHeaderWithBorder">Second Unit Director or Assistant Director&nbsp;</h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+          
+        <tr>
+        <td class="name">
+<a href="/name/nm0028425/?ref_=ttfc_fc_cr11"
+> Slavko Andres
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            assistant director            
+          </td>
+        </tr>        
+    
+        <tr>
+        <td class="name">
+<a href="/name/nm0217159/?ref_=ttfc_fc_cr12"
+> Stipe Delic
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            second unit director            
+          </td>
+        </tr>        
+    
+        <tr>
+        <td class="name">
+<a href="/name/nm0906762/?ref_=ttfc_fc_cr13"
+> Charles Wakefield
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            assistant director            
+          </td>
+        </tr>        
+    </tbody>
+    </table>
+    <h4 class="dataHeaderWithBorder">Sound Department&nbsp;</h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+          
+        <tr>
+        <td class="name">
+<a href="/name/nm0420523/?ref_=ttfc_fc_cr14"
+> Fedor Jeler
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            sound            
+          </td>
+        </tr>        
+    </tbody>
+    </table>
+    <h4 class="dataHeaderWithBorder">Camera and Electrical Department&nbsp;</h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+          
+        <tr>
+        <td class="name">
+<a href="/name/nm0314822/?ref_=ttfc_fc_cr15"
+> Kreso Grcevic
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            cinematographer: second unit            
+          </td>
+        </tr>        
+    
+        <tr>
+        <td class="name">
+<a href="/name/nm0245634/?ref_=ttfc_fc_cr16"
+> Evo Dycke
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            camera operator (uncredited)            
+          </td>
+        </tr>        
+    </tbody>
+    </table>
+    <h4 class="dataHeaderWithBorder">Costume and Wardrobe Department&nbsp;</h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+          
+        <tr>
+        <td class="name">
+<a href="/name/nm0667129/?ref_=ttfc_fc_cr17"
+> Irms Pauli
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            costume advisor            
+          </td>
+        </tr>        
+    </tbody>
+    </table>
+    <h4 class="dataHeaderWithBorder">Other crew&nbsp;</h4>
+    <table class="simpleTable simpleCreditsTable">
+    <colgroup>
+      <col class="column1">
+      <col class="column2">
+      <col class="column3">
+    </colgroup>
+    <tbody>
+          
+        <tr>
+        <td class="name">
+<a href="/name/nm0273033/?ref_=ttfc_fc_cr18"
+> Peter Fernandez
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            English language version            
+          </td>
+        </tr>        
+    
+        <tr>
+        <td class="name">
+<a href="/name/nm0389152/?ref_=ttfc_fc_cr19"
+> Benno Hoffmann
+</a>        </td>
+          <td>...</td>
+          <td class="credit">
+            voice dubbing (uncredited)            
+          </td>
+        </tr>        
+    </tbody>
+    </table>
+    
+        <span> Crew believed to be complete </span>
+    </div>
+  </div> 
+
+
+
+    <div class="article" id="see_also">
+        <h2>See also</h2>
+        <p>
+                            <span class="nobr">
+<a href="/title/tt0057687/releaseinfo?ref_=ttfc_sa_1"
+class="link" >Release Dates</a>
+<span class="ghost">|</span></span>                            <span class="nobr">
+<a href="/title/tt0057687/officialsites?ref_=ttfc_sa_2"
+class="link ghost" >Official Sites</a>
+<span class="ghost">|</span></span>                            <span class="nobr">
+<a href="/title/tt0057687/business?ref_=ttfc_sa_3"
+class="link ghost" >Box Office/Business</a>
+<span class="ghost">|</span></span>                            <span class="nobr">
+<a href="/title/tt0057687/companycredits?ref_=ttfc_sa_4"
+class="link" >Company Credits</a>
+<span class="ghost">|</span></span>                            <span class="nobr">
+<a href="/title/tt0057687/locations?ref_=ttfc_sa_5"
+class="link" >Filming Locations</a>
+<span class="ghost">|</span></span>                            <span class="nobr">
+<a href="/title/tt0057687/technical?ref_=ttfc_sa_6"
+class="link" >Technical Specs</a>
+<span class="ghost">|</span></span>                            <span class="nobr">
+<a href="/title/tt0057687/literature?ref_=ttfc_sa_7"
+class="link ghost" >Literature</a>
+</span>        </p>
+    </div>
+    
+  <script>
+    if ('csm' in window) {
+      csm.measure('csm_TitleContributeWidget_started');
+    }
+  </script>
+    <div class="article contribute">
+        <div class="rightcornerlink">
+<a href="/help/?adding/&ref_=ttfc_cn_hlp"
+>Getting Started</a>
+            <span>|</span>
+<a href="/czone/?ref_=ttfc_cn_cz"
+>Contributor Zone</a>&nbsp;&raquo;</div>
+        <h2>Contribute to This Page</h2>
+
+                <div class="button-box">
+                    <form method="get" action="https://contribute.imdb.com/updates">
+                        <input type="hidden" name="ref_" value="ttfc_cn_edt" />
+                        <input type="hidden" name="edit" value="legacy/title/tt0057687/" />
+                            <button class="btn primary large" rel="login" type="submit">Edit page</button>
+                    </form>
+                </div>
+        
+
+    
+
+    
+    
+    </div>
+
+  <script>
+    if ('csm' in window) {
+      csm.measure('csm_TitleContributeWidget_finished');
+    }
+  </script>
+    
+</div> 
+
+
+<div id="sidebar">
+	
+	
+<!-- begin TOP_RHS -->
+<div id="top_rhs_wrapper" class="dfp_slot">
+<script>
+window.generic = window.generic || {};
+generic.alphalfaComponents = {
+"alphalfa-container.html" : "https://ia.media-imdb.com/images/G/01/imdbads/alphalfa-container-253150330._CB522736199_.html",
+"js/collections/alphalfa.js" : "https://ia.media-imdb.com/images/G/01/imdbads/js/collections/alphalfa-3292747090._CB522736629_.js"
+};
+</script>
+<script type="text/javascript">
+doWithAds(function(){
+if ('dfp_slot' != 'injected_slot') {
+ad_utils.register_ad('top_rhs');
+}
+});
+</script>
+<iframe allowtransparency="true" class="yesScript" data-dart-params="#doubleclick;u=701301906518;ord=701301906518?" frameborder="0" id="top_rhs" marginwidth="0" marginheight="0" name="top_rhs" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="300" data-original-height="250" width="300" height="250" ></iframe> </div>
+<noscript> <a href="http://pubads.g.doubleclick.net/gampad/jump?&iu=4215/imdb2.consumer.title/&sz=300x250|300x600|11x1&t=p%3Dtr%26g%3Dad%26g%3Dwe%26tt%3Df%26coo%3Dxwg%26coo%3Dit%26coo%3Dxyu%26id%3Dtt0057687%26c%3D3&tile=1&c=701301906518" target="_blank"> <img src="http://pubads.g.doubleclick.net/gampad/ad?&iu=4215/imdb2.consumer.title/&sz=300x250|300x600|11x1&t=p%3Dtr%26g%3Dad%26g%3Dwe%26tt%3Df%26coo%3Dxwg%26coo%3Dit%26coo%3Dxyu%26id%3Dtt0057687%26c%3D3&tile=1&c=701301906518" border="0" alt="advertisement" /> </a> </noscript>
+<div id="top_rhs_reflow_helper"></div>
+<div id="top_rhs_after" class="after_ad" style="visibility:hidden;">
+<a class="yesScript" href="#" onclick="ad_utils.show_ad_feedback('top_rhs');return false;" id="ad_feedback_top_rhs">ad feedback</a>
+</div>
+<script id="top_rhs_rendering">
+doWithAds(function(){
+if ('dfp_slot' == 'injected_slot') {
+ad_utils.inject_ad.register('top_rhs');
+} else {
+ad_utils.gpt.render_ad('top_rhs');
+}
+}, "ad_utils not defined, unable to render client-side GPT ad or injected ad.");
+</script>
+<!-- End TOP_RHS -->
+	
+            
+    
+    
+    <div class="aux-content-widget-2 links subnav" div="quicklinks">
+
+<a href="/title/tt0057687/?ref_=ttfc_ql"
+class="subnav_heading" >Winnetou - 1. Teil</a>                <hr/>
+
+
+        <h4>Details</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main subnav_selected">
+<a href="/title/tt0057687/fullcredits?ref_=ttfc_ql_1"
+class="link" >Full Cast and Crew</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/releaseinfo?ref_=ttfc_ql_2"
+class="link" >Release Dates</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/officialsites?ref_=ttfc_ql_3"
+class="link ghost" >Official Sites</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/business?ref_=ttfc_ql_4"
+class="link ghost" >Box Office/Business</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/companycredits?ref_=ttfc_ql_5"
+class="link" >Company Credits</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/locations?ref_=ttfc_ql_6"
+class="link" >Filming Locations</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/technical?ref_=ttfc_ql_7"
+class="link" >Technical Specs</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/literature?ref_=ttfc_ql_8"
+class="link ghost" >Literature</a>
+                </li>
+    </ul>
+        <hr/>
+
+        <div id="full_subnav">
+
+
+
+        <h4>Storyline</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/taglines?ref_=ttfc_ql_stry_1"
+class="link" >Taglines</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/plotsummary?ref_=ttfc_ql_stry_2"
+class="link" >Plot Summary</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/synopsis?ref_=ttfc_ql_stry_3"
+class="link ghost" >Synopsis</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/keywords?ref_=ttfc_ql_stry_4"
+class="link" >Plot Keywords</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/parentalguide?ref_=ttfc_ql_stry_5"
+class="link ghost" >Parents Guide</a>
+                </li>
+    </ul>
+
+
+        <h4>Did You Know?</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/trivia?ref_=ttfc_ql_trv_1"
+class="link ghost" >Trivia</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/goofs?ref_=ttfc_ql_trv_2"
+class="link ghost" >Goofs</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/crazycredits?ref_=ttfc_ql_trv_3"
+class="link ghost" >Crazy Credits</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/quotes?ref_=ttfc_ql_trv_4"
+class="link ghost" >Quotes</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/alternateversions?ref_=ttfc_ql_trv_5"
+class="link" >Alternate Versions</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/movieconnections?ref_=ttfc_ql_trv_6"
+class="link" >Connections</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/soundtrack?ref_=ttfc_ql_trv_7"
+class="link ghost" >Soundtracks</a>
+                </li>
+    </ul>
+
+
+        <h4>Photo & Video</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/mediaindex?ref_=ttfc_ql_pv_1"
+class="link" >Photo Gallery</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/videogallery?ref_=ttfc_ql_pv_2"
+class="link ghost" >Trailers and Videos</a>
+                </li>
+    </ul>
+
+
+        <h4>Opinion</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/awards?ref_=ttfc_ql_op_1"
+class="link" >Awards</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/faq?ref_=ttfc_ql_op_2"
+class="link ghost" >FAQ</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/reviews?ref_=ttfc_ql_op_3"
+class="link" >User Reviews</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/ratings?ref_=ttfc_ql_op_4"
+class="link" >User Ratings</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/externalreviews?ref_=ttfc_ql_op_5"
+class="link" >External Reviews</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/criticreviews?ref_=ttfc_ql_op_6"
+class="link ghost" >Metacritic Reviews</a>
+                </li>
+    </ul>
+
+
+        <h4>TV</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/tvschedule?ref_=ttfc_ql_tv_1"
+class="link ghost" >TV Schedule</a>
+                </li>
+    </ul>
+
+
+        <h4>Related Items</h4>
+    <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/news?ref_=ttfc_ql_rel_1"
+class="link" >NewsDesk</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/showtimes/title/tt0057687?ref_=ttfc_ql_rel_2"
+class="link ghost" >Showtimes</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt0057687/externalsites?ref_=ttfc_ql_rel_3"
+class="link" >External Sites</a>
+                </li>
+    </ul>
+            <hr/>
+        </div>
+
+        <div class="show_more"><span class="titlePageSprite arrows show"></span>Explore More</div>
+        <div class="show_less"><span class="titlePageSprite arrows hide"></span>Show Less</div>
+    </div>
+  <div class="aux-content-widget-2" id="social-share-widget"> 
+    
+    <div class="social">
+      <div class="social_networking"> 
+       <span><strong>Share</strong> this page:</span>
+  <a onclick="window.open(&quot;http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0057687%2F&quot;, 'newWindow', 'width=626, height=436'); return false;" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0057687%2F" target="_blank" title="Share on Facebook" class="share_icon facebook"></a>
+  <a onclick="window.open(&quot;http://twitter.com/intent/tweet?text=Winnetou%20-%201.%20Teil%20(1963)%20-%20http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0057687%2F&quot;, 'newWindow', 'width=815, height=436'); return false;" href="http://twitter.com/intent/tweet?text=Winnetou%20-%201.%20Teil%20(1963)%20-%20http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0057687%2F" target="_blank" title="Share on Twitter" class="share_icon twitter"></a>
+  <a onclick="$('div.social input[name=share-link]').show().select(); return false;" title="Share the page" class="share_icon share_url_link" href="http://www.imdb.com/title/tt0057687/"></a>
+      </div>
+      <input type="text" name="share-link" value="http://www.imdb.com/title/tt0057687/" readonly>
+    </div>
+  <script type="text/javascript">if (uet) { uet('bb', 'facebook_like_iframe', {wb: 1}); }</script>
+  <div class="social_networking_like">
+    <iframe
+      id="iframe_like"
+      name="fbLikeIFrame_0"
+      class="social-iframe"
+      scrolling="no"
+      frameborder="0"
+      allowTransparency="allowTransparency"
+      ref="http://www.imdb.com/title/tt0057687/"
+      width=280
+      height=65></iframe>
+  </div>
+  </div>
+<script>
+    if (typeof uet == 'function') {
+      uet("bb", "RelatedListsWidget", {wb: 1});
+    }
+</script>
+        <div class="aux-content-widget-2">
+            <div id="relatedListsWidget">
+                <div class="rightcornerlink">
+                    <a href="/list/create?ref_=ttfc_rls"
+>Create a list</a>&nbsp;&raquo;
+                </div>
+                <h3>User Lists</h3>
+                <p>Related lists from IMDb users</p>
+
+    <div class="list-preview even">
+        <div class="list-preview-item-narrow">
+<a href="/list/ls075155435?ref_=rls_1"
+><img height="86" width="86" alt="list image" title="list image"src="/images/nopicture/medium/film.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BY2IzZGY2YmEtYzljNS00NTM5LTgwMzUtMzM1NjQ4NGI0OTk0XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+        <div class="list_name">
+            <strong><a href="/list/ls075155435?ref_=rls_1"
+>
+The Classics list
+</a></strong>
+        </div>
+        <div class="list_meta">
+            a list of 27 titles
+            <br />created 03&nbsp;Sep&nbsp;2014
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div class="list-preview odd">
+        <div class="list-preview-item-narrow">
+<a href="/list/ls031802719?ref_=rls_2"
+><img height="86" width="86" alt="list image" title="list image"src="/images/nopicture/medium/film.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BNGMyMzlhZmQtOTVlOC00ZmJjLTkwZmMtNzg2ZmUzMTg1ZWIwXkEyXkFqcGdeQXVyMTM3NzAyMg@@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+        <div class="list_name">
+            <strong><a href="/list/ls031802719?ref_=rls_2"
+>
+iffr 2016
+</a></strong>
+        </div>
+        <div class="list_meta">
+            a list of 33 titles
+            <br />created 20&nbsp;Jan&nbsp;2016
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div class="list-preview even">
+        <div class="list-preview-item-narrow">
+<a href="/list/ls034654636?ref_=rls_3"
+><img height="86" width="86" alt="list image" title="list image"src="/images/nopicture/medium/film.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BMTczODQ4NDE0M15BMl5BanBnXkFtZTcwNDc4ODU0MQ@@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+        <div class="list_name">
+            <strong><a href="/list/ls034654636?ref_=rls_3"
+>
+20th century movies
+</a></strong>
+        </div>
+        <div class="list_meta">
+            a list of 42 titles
+            <br />created 31&nbsp;Mar&nbsp;2016
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div class="list-preview odd">
+        <div class="list-preview-item-narrow">
+<a href="/list/ls063385324?ref_=rls_4"
+><img height="86" width="86" alt="list image" title="list image"src="/images/nopicture/medium/film.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BOTQ5NDI3MTI4MF5BMl5BanBnXkFtZTgwNDQ4ODE5MDE@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+        <div class="list_name">
+            <strong><a href="/list/ls063385324?ref_=rls_4"
+>
+Howard Hughes' Top 20 Spaghetti Westerns (including Runner-Ups) - The Spaghetti Western Database
+</a></strong>
+        </div>
+        <div class="list_meta">
+            a list of 41 titles
+            <br />created 8&nbsp;months&nbsp;ago
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div class="list-preview even">
+        <div class="list-preview-item-narrow">
+<a href="/list/ls066022615?ref_=rls_5"
+><img height="86" width="86" alt="list image" title="list image"src="/images/nopicture/medium/tv.png"class="loadlate hidden " loadlate="https://images-na.ssl-images-amazon.com/images/M/MV5BMTg0NTc4NzA2MF5BMl5BanBnXkFtZTcwMDc0NTQyMQ@@._V1._CR19,2,308,430_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+        <div class="list_name">
+            <strong><a href="/list/ls066022615?ref_=rls_5"
+>
+My Childhood's Cartoons
+</a></strong>
+        </div>
+        <div class="list_meta">
+            a list of 49 titles
+            <br />created 6&nbsp;months&nbsp;ago
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+                <div class="see-more">
+                    <a href="/lists/tt0057687?ref_=rls_sm"
+>See all related lists</a>&nbsp;&raquo;
+                </div>
+            </div>
+        </div>
+<script>
+    if (typeof uet == 'function') {
+      uet("be", "RelatedListsWidget", {wb: 1});
+    }
+</script>
+<script>
+    if (typeof uex == 'function') {
+      uex("ld", "RelatedListsWidget", {wb: 1});
+    }
+</script>
+	
+	<!-- no content received for slot: bottom_rhs -->
+	
+	
+	
+<!-- begin RHS_CORNERSTONE -->
+<div id="rhs_cornerstone_wrapper" class="cornerstone_slot">
+<script type="text/javascript">
+doWithAds(function(){
+if ('cornerstone_slot' != 'injected_slot') {
+ad_utils.register_ad('rhs_cornerstone');
+}
+});
+</script>
+<iframe allowtransparency="true" class="yesScript" data-blank-serverside frameborder="0" id="rhs_cornerstone" marginwidth="0" marginheight="0" name="rhs_cornerstone" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="300" data-original-height="125" width="300" height="125" ></iframe> </div>
+<div id="rhs_cornerstone_reflow_helper"></div>
+<script id="rhs_cornerstone_rendering">
+doWithAds(function(){
+if ('cornerstone_slot' == 'injected_slot') {
+ad_utils.inject_ad.register('rhs_cornerstone');
+} else {
+ad_utils.gpt.render_ad('rhs_cornerstone');
+}
+}, "ad_utils not defined, unable to render client-side GPT ad or injected ad.");
+</script>
+<!-- End RHS_CORNERSTONE -->
+	
+	
+	
+<!-- begin BTF_RHS2 -->
+<div id="btf_rhs2_wrapper" class="cornerstone_slot">
+<script type="text/javascript">
+doWithAds(function(){
+if ('cornerstone_slot' != 'injected_slot') {
+ad_utils.register_ad('btf_rhs2');
+}
+});
+</script>
+<iframe allowtransparency="true" class="yesScript" data-blank-serverside frameborder="0" id="btf_rhs2" marginwidth="0" marginheight="0" name="btf_rhs2" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="300" data-original-height="250" width="300" height="250" ></iframe> </div>
+<div id="btf_rhs2_reflow_helper"></div>
+<script id="btf_rhs2_rendering">
+doWithAds(function(){
+if ('cornerstone_slot' == 'injected_slot') {
+ad_utils.inject_ad.register('btf_rhs2');
+} else {
+ad_utils.gpt.render_ad('btf_rhs2');
+}
+}, "ad_utils not defined, unable to render client-side GPT ad or injected ad.");
+</script>
+<!-- End BTF_RHS2 -->
+	
+</div> 
+
+</div> 
+
+<div id="content-1" class="redesign clear">
+</div>
+
+                   <br class="clear" />
+                </div>
+
+
+
+
+
+
+    <div id="footer" class="ft">
+
+            <div id="rvi-div">
+                <div class="recently-viewed">&nbsp;</div>
+                <br class="clear">
+            </div>
+
+	
+	
+	
+
+        <div class="container footer-grid-wrapper">
+            <div class="row footer-row">
+                <div class="col outside">
+    <h3>IMDb Everywhere</h3>
+    <div class="app-links">
+    <a href="/offsite/?page-action=ft_app_apple&token=BCYrq8wqXWv1-gGEpDmxq6DoftCmc6PAdxMC27JG9abnlR_Fp7Dg2M_TEfAFBcbEGXMXuEPa2E9T%0D%0Ai4Q1OhGc3kBA52msXpIZWOIZ2eYQVLWxuc61bbpEtieCGGtPSw7GzLX_eAmYn-5hQgVB-uXrBzd1%0D%0AEcuP2EM84jiJsPDiO7F2Bgxfle0FTWejQcbsUf24J9iIdm26_1K2u8NgsLBp33fRu-qUZAYG26AT%0D%0AoG_-H2sOfHY%0D%0A&ref_=ft_app_apple"
+title="Get the IMDb App on the Apple App Store" target="_blank" itemprop='url'> <span class="desktop-sprite appstore-apple" ></span>
+</a>
+    <a href="/offsite/?page-action=ft_app_google&token=BCYkbTz3Wi6G3Dy-0dqD41fOUrKSQg5AyQ9dk9Xu_-QYAGfe7VHm_XgujQwx5MmpBMpMQPD2VImA%0D%0AKBLxE3xOUkbH0fRZTmAiu-ZMdTDY3OLWbbhK1i4VmXP1kMpajsJqfyESAWFQXU0QeZMsGUZlhe4Z%0D%0AI0N1_LPqWNWelbIOLMc--j65mmWqs-YxG24UqGgNg10MWPrGgQW7-pMmkETMMV5xGQbUp2OkoE5E%0D%0AVJEg7XK7xzQ%0D%0A&ref_=ft_app_google"
+title="Get the IMDb app on Google Play" target="_blank" itemprop='url'> <span class="desktop-sprite appstore-google" ></span>
+</a>
+    <a href="/offsite/?page-action=ft_app_amazon&token=BCYutwF_FW8AmOLGx2Sqezj-9Ses_aK9BQHgJ4gcGE1xgEwPIo3wJtvMYXI7SjY3WrX3OAvdWkij%0D%0A9rHxn1JuxYdQS7AmcBKc3tGV7Xh57NXcaF-mZXQYXp95B5ZjKig0w-Rujh-NyUrLBkRV-fMP5Z6v%0D%0AaQOACu8jSi1hhTOA3YDilodApcgeSF1QsWO0IazPvImoYGuhvr7MiOjZfyWTskfeKmPT7DGmzYmK%0D%0AbK9FzQRiSxr8XkfoFTmeASsTDk4V_pRgNr2F4wCwkGQnXXAH4hkqttn_NoeGYkaygLo7Ot5LvdhM%0D%0A9R6HOZ2Wlp_NH_1i9RbYjBQkKFMZtqSPtaO_5fR2uakdCOHFnEql-9QKi7e98kLu3nUG7SlTDucj%0D%0AbqFWxLA57HRskfF6o_LcOWDz_cXJtFWo5FPxpQYzLopCDpBNUhY%0D%0A&ref_=ft_app_amazon"
+title="Get the IMDb app on Amazon Appstore for Android" target="_blank" itemprop='url'> <span class="desktop-sprite appstore-amazon" ></span>
+</a>
+    </div>
+
+    <p>Find showtimes, watch trailers, browse photos, track your Watchlist and rate your favorite movies and TV shows on your phone or tablet!</p>
+
+    <a href="http://m.imdb.com?ref_=ft_mdot"
+class="touchlink" >IMDb Mobile site</a>
+                </div>
+                <div class="col center">
+  <div class="link-bar icon-link-bar">
+    <h3>
+      Follow IMDb on
+      <div>
+
+    <a href="/offsite/?page-action=fol_fb&token=BCYj7osG2PycuW3SOtf7NFUuW_gZMCIk3aN1tFxryEJcc1VvKi1nyN8pab3C2RQJVHiXi4ELYzt3%0D%0A54J8sPGuRESzpZNCDMiXJ4Vou9QCKLy7fpu5nrfLKPJ1bP2oetvvZNmxPItcT1DFiRcAlsRuTxjw%0D%0Abiv35k4BvsM1vL6awSi2t9voAoX7CPjS5_AL42QBWnneb0A6fiUk_anMNBAOhxS4LA%0D%0A&ref_=ft_fol_fb"
+title="Follow IMDb on Facebook" target="_blank" itemprop='url'> <span class="desktop-sprite follow-facebook" ></span>
+</a>
+    <a href="/offsite/?page-action=fol_tw&token=BCYmk1TYgaQGrTqPwU2fQy6FLG_27mDXbKRvKSsYklK0QSBo2-r7PKUNWLfC5CcZbxxOUx1DdXH6%0D%0Ax1uT4MuWNMbqGELQ75_LLXuyUvd-JIwtmwr__ySfpqcOI-0n9QxBlBR_6Zs5WZ99uJYas67-kYHV%0D%0AoRMHOW-JbB41SpkckKfrcvR-_ftwCofw1BTO0EoSnEbX%0D%0A&ref_=ft_fol_tw"
+title="Follow IMDb on Twitter" target="_blank" itemprop='url'> <span class="desktop-sprite follow-twitter" ></span>
+</a>
+    <a href="/offsite/?page-action=fol_inst&token=BCYsCWkyd0uzW1yi3OSeDANcfLj9C2hnS0JX-h_5A9_GSqnZZDWyuvfrCEvjhJarw5Ya7Tpmnjh2%0D%0AIpeL6IXlVDvrcIRuy0dgFg3NBuWHZlEzlfzsBsD9YUD0rS4vULN3bESw2-VNCvUdyEK11OrXYg76%0D%0ABCH2OmiHG1Yb_dZ3nsI8ac59IbDqs7Nmwkgd-7IG3yIH%0D%0A&ref_=ft_fol_inst"
+title="Follow IMDb on Instagram" target="_blank" itemprop='url'> <span class="desktop-sprite follow-instagram" ></span>
+</a>
+      </div>
+    </h3>
+  </div>
+                </div>
+                <div class="col outside">
+    <div class="row">
+        <div class="col col-4">
+            <ul class="unstyled">
+                <li><a href="/?ref_=ft_hm"
+>Home</a></li>
+                <li><a href="/chart/top?ref_=ft_250"
+>Top Rated Movies</a></li>
+                <li><a href="/chart/?ref_=ft_cht"
+>Box Office</a></li>
+                <li><a href="/sections/tv/?ref_=ft_tv"
+>TV</a></li>
+                <li><a href="/movies-coming-soon/?ref_=ft_cs"
+>Coming Soon</a></li>
+                <li><a href="/a2z?ref_=ft_si"
+>Site Index</a></li>
+                <li><a href="/search?ref_=ft_sr"
+>Search</a></li>
+                <li><a href="/movies-in-theaters/?ref_=ft_inth"
+>In Theaters</a></li>
+            </ul>
+        </div>
+        <div class="col col-4">
+            <ul class="unstyled">
+                <li><a href="/helpdesk/contact?ref_=ft_con"
+>Contact Us</a></li>
+                <li>        <a href="https://secure.imdb.com/register-imdb/form-v2?ref_=ft_reg"
+>Register</a>
+</li>
+                <li><a href="/news/?ref_=ft_nw"
+>News</a></li>
+                <li class="spacer"></li>
+                <li><a href="/pressroom/?ref_=ft_pr"
+>Press Room</a></li>
+                <li><a href="/advertising/?ref_=ft_ad"
+>Advertising</a></li>
+                <li><a href="/jobs?ref_=ft_jb"
+>Jobs</a></li>
+            </ul>
+        </div>
+        <div class="col col-4">
+            <ul class="unstyled">
+                <li><a href="http://pro.imdb.com/signup/index.html?rf=cons_ft_hm&ref_=cons_ft_hm"
+>IMDbPro</a></li>
+                <li>    <a href="/offsite/?page-action=ft-mojo&token=BCYoNrMwsm6M5T745yBhcM4PYw2FDvN4GsCuMl20XWym7y9By0NwGdH2SpzDeUkNgRLC4DkoXoE3%0D%0ATYJQFWhQdrOLIVyDXf9rsqCPqJaT6A0i9A4BOEGfvshO4jXb-6PZqRZLFMI7Z8XcaQKhQ6d5JgTi%0D%0AxW41ReRM6x2uqiv1tvR73yK9oALLFLyaOyEMCjp_-Vbk%0D%0A&ref_=ft_bom"
+itemprop='url'>Box Office Mojo</a>
+</li>
+                <li>    <a href="/offsite/?page-action=ft-wab&token=BCYhpcRwOQQewkXhksFrE3gLdoIg4ymw7dfuig1PFc_Fq3S-fZIB5coEtb89DFtLLoSe489MhwnX%0D%0AAaLcjNwEuEfpNRzoTmqxmIAQrpL3hfw-RMz1l0yfj7o84sq0HYbtgwyER1iNdxnfS-Jn1uRY7q0b%0D%0AoKlvzmsBj1OeiAWuP7x6DFJVTzd2akrWGX82ktyGTnWo%0D%0A&ref_=ft_wab"
+itemprop='url'>Withoutabox</a>
+</li>
+                <li class="spacer"></li>
+                <li><a href="/help/show_article?conditions&ref_=ft_cou"
+>Conditions of Use</a></li>
+                <li><a href="/privacy?ref_=ft_pvc"
+>Privacy Policy</a></li>
+                <li>    <a href="/offsite/?page-action=ft-iba&token=BCYk0GD-7eAGCk6xcwU3H7-pQd4108EmAG-C10e0wKugGxuNZOf6BmU_V92MjGBzuLtdJT3Awlq1%0D%0AmDD42ko2vI3r0nYLx4K1TgqSDt-Zk6Dep1tWjHA1dOwhBIGsgLJwg146tEb4lxiq68nQMETIFG0f%0D%0AbOrtVOP4pkvb-cmawgOTQibBHhrOtmr4civFft_3N_BysSOGc9Ro3omTJEBWX7bfFUolmE_q5qPC%0D%0AKfYmbdEzMAj2rCfyr__nLmQxf6rN8-La%0D%0A&ref_=ft_iba"
+itemprop='url'>Interest-Based Ads</a>
+</li>
+                <li class="spacer"></li>
+            </ul>
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="ft-copy float-right">
+                <a
+href="/help/show_article?conditions"
+>Copyright &copy;</a> 1990-2017
+                <a
+href="/help/"
+>IMDb.com, Inc.</a>
+            </div>
+            <div>
+                An <span id="amazon_logo" class="footer_logo" align="middle">Amazon.com</span> company.
+            </div>
+        </div>
+
+
+
+
+
+    <table class="footer" id="amazon-affiliates">
+        <tr>
+            <td colspan="8">
+                Amazon Affiliates
+            </td>
+        </tr>
+        <tr>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-aiv&token=BCYkW7KlKuGoHLIpGFedRum6SdQDPfF05l6RzHrEG-9GfZdr79HyGt8PpUIu2gviyhGbaqsrJ7FI%0D%0A5RbHkkPgEBTN1sWAGOsyuRqVfdByvFpCZjTzQ6KB05PLHHbz57lOZyFAJ6grTYtG-bCL2FsOsXjK%0D%0AbvRB31djFCG1utG1kEM7TG-1O4UM9xKsJnZDU3rCr9RE85TeCuTeVqAWg5XrqURtLUl1P00Uyytg%0D%0Aug4naNjc44LJymcObm00dqMHzWhtrJ2g%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Amazon Video</span><br>
+                <span class="amazon-affiliate-site-desc">Watch Movies &<br>TV Online</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-piv&token=BCYieVpl_BxUYleVfZ7hpmICFddv8LgL_fzph29a874FeAtPynCU7DbZgaqLJVHk4za1-NCskuHC%0D%0AlqtUo3yjyUnMDBlxtRXqoCYlAIIrVdHbMZEOCmG8C4u8oy6dn_1OsqwksGkoGX-KOa8auHqyC0tU%0D%0AnK_6PgseeqHbYltfwqygHRU-TywhotdqEdDnQsV7uWunRfiXF8VEGcHQ3X4XiT_olfFZ0FLDVCl4%0D%0APIklg9fBHPY%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Prime Video</span><br>
+                <span class="amazon-affiliate-site-desc">Unlimited Streaming<br>of Movies & TV</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-amzn-de&token=BCYp3Ikkg5_LqwdPvLxiOGKliQs1s0AFVvjTUh549u5D2WOxKMJqJznOhIkj9DR9lMs-gqb8uNiK%0D%0AQGC2wOWD9OOklKhSa5KVgr0Hw_jsde-39BrnZxYvIgpfqwA3EgJ6rwU1injPjVg22jZsEjchbIc_%0D%0ABUW6svvkLMQcSc4VggtWHdRh2Uayf74mN4RRuYExreRPK_DS8aK7G0iF7CFOmbtXNF05IkBfIzOz%0D%0AIregQVwG1VQ%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Amazon Germany</span><br>
+                <span class="amazon-affiliate-site-desc">Buy Movies on<br>DVD & Blu-ray</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-amzn-it&token=BCYsEWKAfPITA8yJn0o_Ha7iQ6-xdNikEN7Jxu6eXhvmGk71rUCnQ1XDfg6afp0HA4_XG_-O0q9l%0D%0AqT-rPODiFvnShiFXaxEvkRO14Qp111slVaStQ9YaKDRW_ss7BAwLzEoUorFo87tmCf-SauFjDEbP%0D%0AZy1zDAyg9b1g6KWTrApVJ4mkqy1DVsT6FRwNadnmYcgiiyzKzARs4XyeUynemv__dSjV5EGPRBsL%0D%0AVjMs7G4r_Ug%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Amazon Italy</span><br>
+                <span class="amazon-affiliate-site-desc">Buy Movies on<br>DVD & Blu-ray</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-amzn-fr&token=BCYmE2N7I1ZGe51FD3VpTM792Vdf43d76AtnhPY7fGyAvj-Q8qjd9z8PIqpPDmC73otbLvmYR6eo%0D%0ArOrGIqr-Ax-LIbLPpgdfz7Ld7hPFN7qi4wepvrylLxKpWnj_JWKQllu3a4hRtdcZdgGlezH0kI0e%0D%0ATjchk9BS5IDdFJBROI4bnvaIDZUs1-umGGO2SLhQCOmrJL6IEJKnC56n67i1U7D83-Tlf_UstneB%0D%0Aa92QsKMwH7I%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Amazon France</span><br>
+                <span class="amazon-affiliate-site-desc">Buy Movies on<br>DVD & Blu-ray</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-amzn-in&token=BCYput-zaBgJjUgfIieFgbT2Kk_xkpHcEGx7cVZ9oGIbR8HsGgDQjmd4ii6reuJrlnIXW0zj9cqr%0D%0AJH5T3wFyMONb9Juth9yfRvG-liyUjRcVH8DFRImxQhSUq7u-CB2Y0j7bAkxub2Z7a60muVCkPO6u%0D%0A0juWMfHZlc_he80OAHaTTz188kOe7w7QN9kSOSjotYzG6tM7mV5GQSEenb0_UjT88EuXdynJJB02%0D%0ACzbMvi5jerHYreFO66GLkQxpFH7nxAXl%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Amazon India</span><br>
+                <span class="amazon-affiliate-site-desc">Buy Movie and<br>TV Show DVDs</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-amzn-dpr&token=BCYszk5iqMudD4EhsfEeBxmIOaKWetPB83VXdfytbyuK9JAQvr4jp2sg77Je3jGmH_3OganCKXGt%0D%0Az38BhTww93fu0QAQFFgh4iFT_LREb-nvLfIvQCE5XMVhcR85V0Jvb2YTOu7qtqEs_ugdVWdmlj8z%0D%0Asg3rzpwmtc84HP1cGaqclhQ%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">DPReview</span><br>
+                <span class="amazon-affiliate-site-desc">Digital<br>Photography</span>
+            </a>
+        </div>
+    </td>
+
+    <td>
+        <div>
+            <a href="/offsite/?page-action=ft-amzn-aud&token=BCYlY19nC1us1s8JVQnvc95zeS4YBCJOzBdzKFT3xOG2h6KB0Oa1AvZN_QNY3FQGtGa9Qd_PWSP7%0D%0A-2plpEwW5_8h3ut51j5lIh-4ES1uKfxGaiWsWNwbdAfO7QKmmVOVIPsTDVn2gz3IZBC0BO8i4aFd%0D%0AcI-SPiFD8G6sBNyhYYCREdA%0D%0A" class="amazon-affiliate-site-link">
+                <span class="amazon-affiliate-site-name">Audible</span><br>
+                <span class="amazon-affiliate-site-desc">Download<br>Audio Books</span>
+            </a>
+        </div>
+    </td>
+        </tr>
+    </table>
+      </div>
+            </div>
+        </div>
+
+
+
+<script type="text/javascript" src="http://ia.media-imdb.com/images/G/01/imdb/js/collections/common-485701321._CB522736548_.js"></script>
+<script type="text/javascript" src="http://ia.media-imdb.com/images/G/01/imdb/js/collections/title-2684581222._CB529954247_.js"></script>
+
+<script type="text/javascript" id="login">
+(function(){
+    var readyTimeout = setInterval(function() {
+        if (window.jQuery && window.imdb && window.imdb.login_lightbox) {
+            clearTimeout(readyTimeout);
+            window.imdb.login_lightbox();
+        }
+    }, 100);
+})();
+</script>
+
+        <script type="text/javascript">
+        function jQueryOnReady(remaining_count) {
+            if (window.jQuery && typeof $.fn.watchlistRibbon !== 'undefined') {
+                jQuery(
+                             function() {
+           var isAdvertisingThemed = !!(window.custom && window.custom.full_page && window.custom.full_page.theme),
+               url = "http://www.facebook.com/widgets/like.php?width=280&show_faces=1&layout=standard&href=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0057687%2F&colorscheme=light",
+               like = document.getElementById('iframe_like');
+
+           if (!isAdvertisingThemed && like) {
+              like.src = url;
+              like.onload = function () { 
+                  if (uex) { uex('ld', 'facebook_like_iframe', {wb: 1}); }
+              };
+           } else if (isAdvertisingThemed) {
+              $('.social_networking_like').closest('.aux-content-widget-2').hide();
+           }
+        }
+
+                );
+            } else if (remaining_count > 0) {
+                setTimeout(function() { jQueryOnReady(remaining_count-1) }, 100);
+            }
+        }
+        jQueryOnReady(50);
+        </script>
+
+<!-- begin ads footer -->
+
+<!-- Begin SIS code --> 
+<iframe id="sis_pixel_sitewide" width="1" height="1" frameborder="0" marginwidth="0" marginheight="0" style="display: none;"></iframe>
+<script>
+    setTimeout(function(){
+        try{
+            //sis3.0 pixel
+            var url_sis3 = 'https://aax-eu.amazon-adsystem.com/s/iu3?',
+                params_sis3 = [
+                    "d=imdb.com",
+                    "a1=",
+                    "a2=0101486a4e0f3742701f87e574eb6f86a17f45072b66de5a78bcb9d99cb5fcb5f72e",
+                    "pId=tt0057687",
+                    "r=1",
+                    "rP=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0057687%2Ffullcredits%2F",
+                    "encoding=server",
+                    "cb=701301906518"  
+                ];
+        
+            if (document.getElementById('sis_pixel_sitewide')) {
+                (document.getElementById('sis_pixel_sitewide')).src = url_sis3 + params_sis3.join('&');
+            }
+        }
+        catch(e){
+            if ('consoleLog' in window){
+                consoleLog('Pixel failure ' + e.toString(),'sis');
+            }
+            if (window.ueLogError) { 
+                window.ueLogError(e);
+            }
+        }
+    }, 20);
+</script>
+<!-- End SIS code -->
+
+<!-- begin comscore beacon -->
+<script type="text/javascript" src='https://ia.media-imdb.com/images/G/01/imdbads/js/beacon-1792157672._CB522736519_.js'></script>
+<script type="text/javascript">
+if(window.COMSCORE){
+COMSCORE.beacon({
+c1: 2,
+c2:"6034961",
+c3:"",
+c4:"http://www.imdb.com/title/tt0057687/fullcredits/",
+c5:"",
+c6:"",
+c15:""
+});
+}
+</script>
+<noscript>
+<img src="https://sb.scorecardresearch.com/p?c1=2&c2=6034961&c3=&c4=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0057687%2Ffullcredits%2F&c5=c6=&15=&cj=1"/>
+</noscript>
+<!-- end comscore beacon -->
+
+<script>
+    doWithAds(function(){
+        (new Image()).src = "http://www.amazon.com/aan/2009-05-01/imdb/default?slot=sitewide-iframe&u=701301906518&ord=701301906518";
+    },"unable to request AAN pixel");
+</script>
+
+<!-- end ads footer -->
+
+<div id="servertime" time="282"/>
+
+
+
+<script>
+    if (typeof uet == 'function') {
+      uet("be");
+    }
+</script>
+
+    </body>
+</html>

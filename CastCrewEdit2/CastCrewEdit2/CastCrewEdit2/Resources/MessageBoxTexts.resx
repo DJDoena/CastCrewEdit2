@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AnotherInstanceRunning" xml:space="preserve">
+    <value>There's already an instance running. If you start another one, you could invalidate your cache. Continue?</value>
+  </data>
+  <data name="BirthYearCastHasChanged" xml:space="preserve">
+    <value>Birth year of cast member "{0}" ({3}) has changed.
+Old: {1}
+New: {2}
+Check your DVD Profiler for consistency.</value>
+  </data>
+  <data name="BirthYearCrewHasChanged" xml:space="preserve">
+    <value>Birth year of crew member "{0}" ({3}) has changed.
+Old: {1}
+New: {2}
+Check your DVD Profiler for consistency.</value>
+  </data>
+  <data name="CastDataCopySuccessful" xml:space="preserve">
+    <value>Data successfully copied to Clipboard. You can now open the Cast Edit Screen in DVD Profiler and paste the data into it.</value>
+  </data>
+  <data name="CommonCastNameHasChanged" xml:space="preserve">
+    <value>Common name of cast member "{0}" ({3}) has changed.
+Old: {1}
+New: {2}
+Check your DVD Profiler for consistency.</value>
+  </data>
+  <data name="CommonCrewNameHasChanged" xml:space="preserve">
+    <value>Common name of crew member "{0}" ({3}) has changed.
+Old: {1}
+New: {2}
+Check your DVD Profiler for consistency.</value>
+  </data>
+  <data name="ContinueHeader" xml:space="preserve">
+    <value>Continue?</value>
+  </data>
+  <data name="CopyToClipboardFailed" xml:space="preserve">
+    <value>Copying data to the Clipboard has failed. Please try again.</value>
+  </data>
+  <data name="CrewDataCopySuccessful" xml:space="preserve">
+    <value>Data successfully copied to Clipboard. You can now open the Crew Edit Screen in DVD Profiler and paste the data into it.</value>
+  </data>
+  <data name="CriticalError" xml:space="preserve">
+    <value>{0}
+
+A log file was created under "{1}". Please send it to karsten@yajirobi.de.</value>
+  </data>
+  <data name="CriticalErrorHeader" xml:space="preserve">
+    <value>Critical Error!</value>
+  </data>
+  <data name="DataCopySuccessfulHeader" xml:space="preserve">
+    <value>Copying Successful.</value>
+  </data>
+  <data name="DontContributeIMDbData" xml:space="preserve">
+    <value>You must not contribute IMDb data to the DVD Profiler Online Database. Do you understand?</value>
+  </data>
+  <data name="DontContributeIMDbDataHeader" xml:space="preserve">
+    <value>Do NOT contribute IMDb data!</value>
+  </data>
+  <data name="DuplicateFullName" xml:space="preserve">
+    <value>You have the same full name twice!</value>
+  </data>
+  <data name="EmptyFirstName" xml:space="preserve">
+    <value>A first name field is empty!</value>
+  </data>
+  <data name="EmptyFullName" xml:space="preserve">
+    <value>A full name field is empty!</value>
+  </data>
+  <data name="Error503" xml:space="preserve">
+    <value>The Webserver has blocked further requests.
+Please press the "{0}" button until the program tells you that the parsing is complete.</value>
+  </data>
+  <data name="ErrorHeader" xml:space="preserve">
+    <value>Error!</value>
+  </data>
+  <data name="FakeBirthYearZeroCast" xml:space="preserve">
+    <value>Due to this actor's IMDb of {0}, he has gotten an empty fake birth year assigned.
+
+{1}</value>
+  </data>
+  <data name="FakeBirthYearZeroCrew" xml:space="preserve">
+    <value>Due to this crew member's IMDb of {0}, he has gotten an empty fake birth year assigned.
+
+{1}</value>
+  </data>
+  <data name="FileCantBeRead" xml:space="preserve">
+    <value>"{0}" can't be read.</value>
+  </data>
+  <data name="FileCantBeWritten" xml:space="preserve">
+    <value>"{0}" can't be written.</value>
+  </data>
+  <data name="FileDoesNotExist" xml:space="preserve">
+    <value>"{0}" does not exist.</value>
+  </data>
+  <data name="FilesWillNowBeMoved" xml:space="preserve">
+    <value>The files will now be moved. Existing files in the target directory will be removed. Continue?</value>
+  </data>
+  <data name="HeadShotsTargetDirectoryInvalid" xml:space="preserve">
+    <value>The target folder for the headshots is invalid. Please check the folder in DVDProfiler -&gt; Tools -&gt; Options -&gt; File Folders -&gt; Credit Photos.</value>
+  </data>
+  <data name="HeadShotsTargetDirectoryInvalidHeader" xml:space="preserve">
+    <value>Credit Photos Folder is Invalid!</value>
+  </data>
+  <data name="NewFakeBirthYears" xml:space="preserve">
+    <value>These people have gotten fake birth years assigned. Make sure that you have different entries for these people in DVDProfiler before you paste the data.
+{0}</value>
+  </data>
+  <data name="NoEpisodeSelected" xml:space="preserve">
+    <value>Please select at least one episode.</value>
+  </data>
+  <data name="NoEpisodeSelectedHeader" xml:space="preserve">
+    <value>No Episode Selected!</value>
+  </data>
+  <data name="NoEpisodesFound" xml:space="preserve">
+    <value>No episodes have been found. Please re-scan the page.</value>
+  </data>
+  <data name="NoEpisodesFoundHeader" xml:space="preserve">
+    <value>Episode List is Missing!</value>
+  </data>
+  <data name="NoSeasonSelected" xml:space="preserve">
+    <value>Please select at least one season.</value>
+  </data>
+  <data name="NoSeasonSelectedHeader" xml:space="preserve">
+    <value>No Season Selected!</value>
+  </data>
+  <data name="ParsingComplete" xml:space="preserve">
+    <value>Parsing Complete.</value>
+  </data>
+  <data name="PossibleDuplicates" xml:space="preserve">
+    <value>You have the same name with and without a birth year. Make sure that you have different entries for these people in DVDProfiler before you paste the data.
+{0}</value>
+  </data>
+  <data name="PossibleSameYearDuplicates" xml:space="preserve">
+    <value>You have the same name with the same birth year multiple times. At this point there's nothing we can do about that - but be aware of the fact.
+{0}</value>
+  </data>
+  <data name="SaveData" xml:space="preserve">
+    <value>Save Data?</value>
+  </data>
+  <data name="UpdatePersonsXml" xml:space="preserve">
+    <value>Before running this new version, you have to update the Persons.xml first.
+Please read the Versions Hints of the readme.html and run
+ConvertCastCrewEdit2PersonFile.exe.</value>
+  </data>
+  <data name="UrlIsEmpty" xml:space="preserve">
+    <value>URL is empty!</value>
+  </data>
+  <data name="UrlIsEmptyHeader" xml:space="preserve">
+    <value>Empty URL!</value>
+  </data>
+  <data name="UrlIsIncorrect" xml:space="preserve">
+    <value>URL is incorrect! Please use an URL of the form http://www.imdb.com/title/tt0000000/.</value>
+  </data>
+  <data name="UrlIsIncorrectHeader" xml:space="preserve">
+    <value>Incorrect URL!</value>
+  </data>
+  <data name="WarningHeader" xml:space="preserve">
+    <value>Warning!</value>
+  </data>
+</root>

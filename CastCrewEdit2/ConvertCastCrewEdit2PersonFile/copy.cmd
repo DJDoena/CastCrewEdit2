@@ -1,0 +1,1 @@
+xcopy.exe /y ConvertCastCrewEdit2PersonFile.* ..\..\..\..\CastCrewEdit2\CastCrewEdit2\bin\%1\CastCrewEdit2

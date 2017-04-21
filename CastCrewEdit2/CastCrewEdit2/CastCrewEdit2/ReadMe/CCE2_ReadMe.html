@@ -1,0 +1,1528 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Read Me</title>
+<style type="text/css">
+a:link, a:visited { color: #0000FF;}
+p, li { font-family:Verdana,Arial,sans-serif; font-size: 11pt; }
+</style>
+</head>
+<body>
+<p><a href="CCE2_LiesMich.html"><img src="german.gif" alt="" title="Lies mich" border="0"></a></p>
+
+<h1>Cast/Crew Edit 2</h1>
+
+<h2><a name="TOC">Table of Contents</a></h2>
+
+<ol>
+<li><a href="#GeneralInfo">General Info</a></li>
+<li><a href="#ParseMovie">Parse Movie</a></li>
+<li><a href="#ParseTVShow">Parse TV Show</a></li>
+<li><a href="#Settings">Settings in Settings Dialog and on the Main Form</a></li>
+<li><a href="#GetBirthYears">About "Get Birth Years"</a></li>
+<li><a href="#Cache">Local Birth Years and Persons Cache</a></li>
+<li><a href="#PersonsCache">Local Cache Files  \Data\Cast.xml &amp; \Data\Crew.xml</a></li>
+<li>
+<a href="#ConfigFiles">Parsing Configuration Files</a>
+<ol>
+<li><a href="#IMDbToDVDProfilerCrewRoleTransformation">\Data\IMDbToDVDProfilerCrewRoleTransformation.xml</a></li>
+<li><a href="#KnownFirstnamePrefixes">\Data\KnownFirstnamePrefixes.txt</a></li>
+<li><a href="#KnownLastnamePrefixes">\Data\KnownLastnamePrefixes.txt</a></li>
+<li><a href="#KnownLastNameSuffixes">\Data\KnownLastNameSuffixes.txt</a></li>
+<li><a href="#StageNames">\Data\StageNames.txt</a></li>
+<li><a href="#IgnoreCustomInIMDbCategory">\Data\IgnoreCustomInIMDbCategory.txt</a></li>
+<li><a href="#IgnoreIMDbCategoryInOther">\Data\IgnoreIMDbCategoryInOther.txt</a></li>
+<li><a href="#KnownNames">\Data\KnownNames.txt</a></li>
+<li><a href="#ForcedFakeBirthYears">\Data\ForcedFakeBirthYears.txt</a></li>
+</ol>
+</li>
+<li><a href="#SettingsFile">Settings File \Data\CastCrewEdit2Settings.xml</a></li>
+<li>
+<a href="#StartupParameters">Startup Parameters</a>
+<ol>
+<li><a href="#skipversioncheck">/skipversioncheck</a></li>
+<li><a href="#lang">/lang</a></li>
+</ol>
+</li>
+<li><a href="#RowColours">Row Colours</a></li>
+<li><a href="#EditableCells">Editable Cells</a></li>
+<li><a href="#UpDownRemoveRow">Up, Down and Remove Row Buttons</a></li>
+<li><a href="#DownloadHeadshots">Download Headshots</a></li>
+<li><a href="#DownloadTrivia">Download Trivia</a></li>
+<li><a href="#Warranty">Exclusion of Warranty</a></li>
+<li><a href="#WebLocation">Web Location</a></li>
+<li><a href="#Contact">Contact</a></li>
+
+<li><a href="#VersionHints">Version Hints</a></li>
+</ol>
+
+<h2><a name="GeneralInfo">General Info</a></h2>
+
+<p>
+This program helps you to <a href="http://en.wikipedia.org/wiki/Parsing" target="_blank">parse</a> movie / TV Show sites
+from IMDb to use the cast, character and crew information in DVD Profiler.
+</p><p>
+Please use only the us-english version of the IMDb website (<a href="http://www.imdb.com">www.imdb.com</a>), it won't
+work in other languages.
+</p><p>
+This program is for personal use only, commercial use of IMDb data is forbidden by IMDb and the use of IMDb data in the
+DVD Profiler online database is forbidden by Invelos.
+</p><p>
+You can select (click on the row header) one or more rows in the crew result grid and then delete them by
+pressing DEL on your keyboard.
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="ParseMovie">Parse Movie</a></h2>
+
+<ol>
+<li>Search for the movie you want to find<br><br><img src="movie1.png" alt=""><br><br></li>
+<li>Open the page in the internal web browser<br><br><img src="movie2.png" alt=""><br><br><img src="movie3.png" alt=""><br><br></li>
+<li>Press "Scan Page"<br><br><img src="movie4.png" alt=""><br><br></li>
+<li>Press "Copy Cast to Clipboard"<br><br><img src="movie5.png" alt=""><br><br></li>
+<li>Open the Edit Screen in DVD Profiler, switch to the Cast tab, right click on the right list and choose "Paste All
+Cast"<br><br><img src="movie6.png" alt=""><br><br></li>
+</ol>
+<p>The same applies for crew data, just use the other tab in both programs.</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="ParseTVShow">Parse TV Show</a></h2>
+
+<ol>
+<li>Search for the TV show you want to find<br><br><img src="tvshow1.png" alt=""><br><br></li>
+<li>Open the page in the internal web browser<br><br><img src="tvshow2.png" alt=""><br><br><img src="tvshow3.png" alt=""><br><br></li>
+<li>Press "Scan Page"<br><br><img src="tvshow4.png" alt=""><br><br></li>
+<li>Select the season(s) you wish to parse.</li>
+<li>Press "Search for Episodes"<br><br><img src="tvshow5.png" alt=""><br><br></li>
+<li>Select the episode(s) you wish to parse.</li>
+<li>Press "Scan Episodes"<br><br><img src="tvshow6.png" alt=""><br><br></li>
+<li>Press "Copy Cast to Clipboard"<br><br><img src="tvshow7.png" alt=""><br><br></li>
+<li>Open the Edit Screen in DVD Profiler, switch to the Cast tab, right click on the right list and choose "Paste All
+Cast"<br><br><img src="tvshow8.png" alt=""><br><br></li>
+</ol>
+<p>The same applies for crew data, just use the other tab in both programs.</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="Settings">Settings in Settings Dialog and on the Main Form</a></h2>
+
+<p>
+The features you enable or disable in the Setting dialog will be made permanent. When you start uo the program these
+are the settings that will be set.
+</p><p>
+But you can override them on the main dialog by enabling/disabling a feature for this session.
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="GetBirthYears">About "Get Birth Years"</a></h2>
+
+<p>
+It's not possible to get too many birth year informations at a time, the IMDb server blocks the calls after a 
+varying number of requests.
+</p><p>
+Therefore I only get the cast list without attempting to get the birth years, too.
+</p><p>
+You have to retrieve the birth years afterwards by pressing "Get Birth Years". Even then an error might come up that
+says "503 Webservice unavailable". Simply try to press "Get Birth Years" again until the program tells you that the 
+parsing is finished.
+</p><p>
+Then you can press "Copy Cast/Crew to Clipboard" as usual.
+</p><p>
+If you don't want or don't need the birth years you can also skip this entire step and simply press "Copy Cast/Crew to
+Clipboard" after retrieving the cast data.
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="Cache">Local Birth Years and Persons Cache</a></h2>
+
+<p>
+In order to ensure linkability for the cast and crew the "common name" and the birth year of a person must be identical.
+IMDb ensures this, that's the whole reason this program exists. Still, even on IMDb a common name or the birth year can
+change. If that happens, all data parsed after that point are incompatible with the ones that were parsed before (e.g.
+birth year of "John Smith" changes from 1920 to 1921.
+</p><p>
+To find such changes, all queried persons are stored in two local files: 
+<a href="Data\Cast.xml" target="_blank">\Data\Cast.xml</a> and <a href="Data\Crew.xml" target="_blank">\Data\Crew.xml</a>
+</p><p>
+It contains the parsed name and the birth year (if available). The identifier is the IMDb link. If the common name or
+the birth year changes, the program will inform you of this.
+</p><p>
+Since parsing the birth years is a time-consuming task, the program stores birth years in a local cache that will be
+cleared when the program ends. The cache is only valid during the run of the program.
+</p><p>
+But there's a new perfomance-enhancing option: You can chose to take the birth year from the above persons cache instead
+of parsing IMDb. The program will still parse IMDb if the birth year is not in the local person cache, but if it has
+already parsed this person for his/her birth year in a former run of the program, it will take it from the local cache.
+</p><p>
+Warning: If you enable this perfomance enhancement, you won't notice if the birth year on IMDb has changed.
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="PersonsCache"></a>Lokale Cachedateien <a href="..\Data\Cast.xml" target="_blank">\Data\Cast.xml</a>
+&amp; <a href="..\Data\Crew.xml" target="_blank">\Data\Crew.xml</a></h2>
+
+<p>
+For the purpose of these files, see <a href="#Cache">Local Birth Years and Persons Cache</a>.
+</p><p>
+<span style="color:#FF0000; font-weight:bold;">DO NOT</span> delete this file, even when you are installing a new
+version of this program. If you delete this file the program can't check whether common names or birth years have
+changed since you've started using this program. This could lead to inconsistencies in your DVD Profiler database and
+break the linking feature.
+</p><p>
+These files are not part of the install package.
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="ConfigFiles">Parsing Configuration Files</a></h2>
+
+<p>
+The program comes with a number of text files that can be edited by the user to enhance the parsing process.
+</p>
+
+<h3><a name="IMDbToDVDProfilerCrewRoleTransformation"></a><a href="..\Data\IMDbToDVDProfilerCrewRoleTransformation.xml" target="_blank">\Data\IMDbToDVDProfilerCrewRoleTransformation.xml</a></h3>
+
+<p>
+This file contains the mapping information from the crew roles in IMDb to the ones in DVD Profiler. 
+</p><p>
+In IMDb every crew member belongs to a certain section (like "Direction" or "Art Department"). You can find these
+sections when you open a movie / TV Show episode in IMDb and click on the link "full cast and crew" in the left
+navigation bar.
+</p><p>
+The easiest way to edit IMDbToDVDProfilerCrewRoleTransformation.xml is to use the program 
+"EditIMDbToDVDProfilerCrewRoleTransformation.exe". It will open the file and present the data in a comprehensive way.
+You can edit it there and then save it with the program.
+</p>
+
+<h3><a name="KnownFirstnamePrefixes"></a><a href="..\Data\KnownFirstnamePrefixes.txt" target="_blank">\Data\KnownFirstnamePrefixes.txt</a></h3>
+
+<p>
+Usually the first word of the name becomes the firstname and the rest will be parsed into middlename and lastname. But
+there are circumstances where the first word is only part of the firstname, for example if it is a royal or a military
+title ("Dame", "Capt.").<br/>
+You can edit the file and add additional firstname prefixes there (only one word per line though).
+</p>
+
+<h3><a name="KnownLastnamePrefixes"></a><a href="..\Data\KnownLastnamePrefixes.txt" target="_blank">\Data\KnownLastnamePrefixes.txt</a></h3>
+
+<p>
+Usually the last word of the name becomes the lastname and the rest will be parsed into firstname and middlename. But
+there are circumstances where a word before the lastname is part of the lastname, for example if it is a dashless
+lastname or a royal prefix ("de la", "van", "Bonham" as in "Bonham Carter").<br/>
+You can edit the file and add additional lastname prefixes there (only one word per line though).
+</p>
+
+<h3><a name="KnownLastNameSuffixes"></a><a href="..\Data\KnownLastNameSuffixes.txt" target="_blank">\Data\KnownLastNameSuffixes.txt</a></h3>
+
+<p>
+Usually the last word of the name becomes the lastname and the rest will be parsed into firstname and middlename. But
+there are circumstances where the last word is only part of the lastname, for example if it is a military
+title or an inherited name ("USMC", "III", "Jr.").<br/>
+You can edit the file and add additional lastname suffixes there (only one word per line though).
+</p>
+
+<h3><a name="StageNames"></a><a href="..\Data\StageNames.txt" target="_blank">\Data\StageNames.txt</a></h3>
+
+<p>
+This file has become obsolete since 1.8.0.0.
+</p>
+  
+<h3><a name="IgnoreCustomInIMDbCategory"></a><a href="..\Data\IgnoreCustomInIMDbCategory.txt" target="_blank">\Data\IgnoreCustomInIMDbCategory.txt</a></h3>
+
+<p>
+This file is optional, thus it won't be delivered with Cast / Crew Edit 2.<br/>
+It is created as soon at it's needed.<br/>
+Sie wird erstellt, sobal sie benötigt wird.<br/>
+If you want "Custom" crew, you still might not want "Custom" crew from all IMDb Categories.
+These are listed here (e.g. "Music Department").<br/>
+You can edit the file and add (additional) IMDb Categories there (one per line).
+</p>
+  
+<h3><a name="IgnoreIMDbCategoryInOther"></a><a href="..\Data\IgnoreIMDbCategoryInOther.txt" target="_blank">\Data\IgnoreIMDbCategoryInOther.txt</a></h3>
+
+<p>
+This file is optional, thus it won't be delivered with Cast / Crew Edit 2.<br/>
+It is created as soon at it's needed.<br/>
+If you want to have "Other" crew, you still might not want all IMDb Categories.
+These are listed here (e.g. "Transportation Department").<br/>
+You can edit the file and add (additional) IMDb Categories there (one per line).
+</p>
+  
+<h3><a name="KnownNames"></a><a href="..\Data\KnownNames.txt" target="_blank">\Data\KnownNames.txt</a></h3>
+
+<p>
+In this file names are stored that require special parsing. They can be stage names (e.g. "Meat Loaf"), or
+people with complex last names (e.g. "Helena Bonham Carter", where "Bonham Carter" is the last name).<br/>
+Every line has to contain three semicolons (";"). The divison is as follows:<br/><br/>
+&lt;Complete IMDb Name&gt;;&lt;First Name&gt;;&lt;Middle Name&gt;;&lt;Last Name&gt;<br/><br/>
+You can edit the file and add additional names there (one name per line).
+</p>
+    
+<h3><a name="ForcedFakeBirthYears"></a><a href="..\Data\ForcedFakeBirthYears.txt" target="_blank">\Data\ForcedFakeBirthYears.txt</a></h3>
+
+<p>
+In this file IMDb IDs are stored for which a manual birth year is determined.<br />
+It can be used to seperate people with the same names and birth years, or to re-unite identical people that have two different IMDb IDs.<br/>
+An entry in this list overrides any other Birth Year setting.<br/>
+Every line has to contain one semicolon (";"). The divison is as follows:<br/><br/>
+&lt;IMDb-ID&gt;;&lt;Fake Birth Year (between 1 and 65535)&gt;<br/><br/>
+You can edit the file and add additional IDs there (one ID per line).
+</p>
+
+<h2><a name="SettingsFile"></a>Settings File <a href="..\Data\CastCrewEdit2Settings.xml" target="_blank">\Data\CastCrewEdit2Settings.xml</a></h2>
+
+<p>
+The file \Data\CastCrewEdit2Settings.xml contains the settings you have set in the
+<a href="#Settings">Settings Dialog</a>.
+</p><p>
+This file is not part of the install package.
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="StartupParameters">Startup Parameters</a></h2>
+
+<h3><a name="skipversioncheck">/skipversioncheck</a></h3>
+
+<p>
+If you start the program with the parameter /skipversioncheck then it won't check if a new version is available for
+download.
+</p>
+<h3><a name="lang">/lang</a></h3>
+
+<p>
+The program has english and german UI texts. If your Windows is set to a german UI, the program will present itself in
+german. If it's in english or any other language, it will present itself in english.
+If you wish to override that behaviour, add the startup parameter /lang=de or /lang=en.
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="RowColours">Row Colours</a></h2>
+
+<p>
+<span style="background-color:#E0FFFF; font-weight: bold">Light Cyan:</span> Contains the title of the movie / TV Show.
+</p><p>
+<span style="background-color:#ADD8E6; font-weight: bold">Light Blue:</span> Contains the divider for the TV Show
+episode.
+</p><p>
+<span style="background-color:#90EE90; font-weight: bold">Light Green:</span> If you have checked the box "Parse Roles
+with '/' into multiple lines" and the program splits such a credit into several rows, the additional rows become light
+green for faster recognition.
+</p><p>
+My personal handle on this issue is that a credit will be split if the actor actually plays different people (for
+example Michael J. Fox played in "Back to the Future: Part III" the characters "Marty McFly" and "Seamus McFly") but not
+if it is the same person (for example "Bruce Wayne / Batman").
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="EditableCells">Editable Cells</a></h2>
+
+<p>
+Simply double-click on the cell you wish to edit. The data you change will remain, unless you re-scan or re-parse 
+the IMDb page.
+</p><p>
+<span style="font-weight: bold">Title Row:</span> You can edit the Last Name and thus the title of the movie / TV Show.
+</p><p>
+<span style="font-weight: bold">Divider Row:</span> You can edit the Middle Name and thus the episode number and the Last
+Name and thus the episode name.
+</p><p>
+<span style="font-weight: bold">Cast Row:</span> You can edit Role, Voice, Uncredited and Credited As.
+</p><p>
+<span style="font-weight: bold">Crew Row:</span> You can edit Category, Role, Custom Role and Credited As.
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="UpDownRemoveRows">Up, Down and Remove Row Buttons</a></h2>
+
+<p>
+<span style="font-weight: bold">Up / Down Button:</span> By pressing up or down on a cast line this line will be moved
+in that direction, thus allowing re-ordering of cast without outside help.<br>When you press it on a divider, you will
+move an entire episode and it's cast/crew up/down.
+</p><p>
+<span style="font-weight: bold">Remove Row Button:</span> Removes the row.
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="DownloadHeadshots">Download Headshots</a></h2>
+
+<p>
+If you press the "Get Headshots" button all available Headshots for cast and crew are downloaded and copied to
+<a href="..\Images\DVD Profiler" target="_blank">\Images\DVD Profiler</a>. From there you can copy them to the CreditPhotos folder
+in your &lt;My Documents&gt;\DVD Profiler folder.
+</p>
+<p>
+You can also activate the option to copy them automatically in the CreditPhotos folder of DVD Profiler.
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="DownloadTrivia">Download Trivia</a></h2>
+
+<p>
+If you enable the option to download trivia for a movie, you can use this in combination with the
+<a href="http://www.invelos.com/Forums.aspx?task=viewtopic&topicID=432352&PageNum=1" target="_blank">Movie Trivia for HTML Window</a>.
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="Warranty">Exclusion of Warranty</a></h2>
+
+<p>
+It's highly unlikely that this program will do any damage to your computer. But you are still running it at your own
+risk, I can't be held accountable for any damage it causes.
+</p><p>
+Should the program behave erratically on startup, try to delete the following file: \Data\CastCrewEdit2Settings.xml
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="WebLocation">Web Location</a></h2>
+
+<p>
+You can find this program and other DVD Profiler related programs under 
+<a href="http://doena-journal.net/en/dvd-profiler-tools" target="_blank">http://doena-journal.net/en/dvd-profiler-tools</a>
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="Contact">Contact</a></h2>
+
+<p>
+<a href="mailto:Karsten@yajirobi.de" target="_blank">Karsten@yajirobi.de</a>
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="FCCE">Freestyle Cast/Crew Edit</a></h2>
+
+<p>
+On <a href="http://doena-journal.net/en/dvd-profiler-tools#FreestyleCastCrewEdit" target="_blank">my home page</a> you can
+find a program with which you can edit cast/crew data further. Or the DVD Profiler cast/crew data in general.
+</p><p>
+Warning: If you change the names or birth years there, the consitency of the data cannot be ensured anymore.
+</p>
+<p><a href="#TOC">Table of Contents</a></p>
+
+<h2><a name="VersionHints">Version Hints</a></h2>
+
+<h3>Version 2.1.3.0</h3>
+
+<ul>
+    <li>Added option to suppress "Duplicate birth year" message boxes</li>
+</ul>
+
+<h3>Version 2.1.2.2</h3>
+
+<ul>
+    <li>Fix in recognizing redirect parsing setting</li>
+</ul>
+
+<h3>Version 2.1.2.1</h3>
+
+<ul>
+    <li>Caching of confirmed duplicate birth years</li>
+</ul>
+
+<h3>Version 2.1.2.0</h3>
+
+<ul>
+    <li>Better distinction between first, middla and last name in HTML log.</li>
+    <li>Better performance in crew parsing.</li>
+    <li>New column: original role. It will not be a part of the export to DVD Profiler but it can help to verify if the parser did everything right.</li>
+</ul>
+
+
+<h3>Version 2.1.1.0</h3>
+
+<ul>
+    <li>Added option to disable ID link check.</li>
+</ul>
+
+<h3>Version 2.1.0.0</h3>
+
+<ul>
+  <li>Added clickable link in all log entries that did not have one (e.g. &quot;birth year has changed&quot;, &quot;common name has changed&quot;).</li>
+  <li>Added additional cast/crew ID check to detect profile merges by IMDb. Unfortunately this makes the parsing a bit slower but is necessary to ensure the consistency of the data.</li>
+  <li>
+    Added new tool: FindMergedCastCrew.<br/>
+    This tool will allow you to scan your local cast and crew file for profile merges done by IMDb (see above). It will give you the results so you can adapt your DVD Profiler database.<br />
+    The option to save the result in a different file was deliberately so your original file remains untouched. Once you've processed the results you can simply delete your original file and 
+    rename the new one. Or you can choose to overwrite your cast/crew file immediately.<br />
+    The result will look like this:
+    <p style="font-family:Courier New, Courier, monospace; background-color: #FFFFE0;">
+        These people are considered identical by IMDb. Any call to the first person will lead to the second person. Please adapt your DVD Profiler data accordingly.<br />
+        <a href="http://www.imdb.com/name/nm0742789/" target="_blank">nm0742789</a>: <span style="color:Blue;">Laurence</span> <span style="color:Red;">Todd</span> <span style="color:Green;">Rosenthal</span> (42789)<br />
+        <a href="http://www.imdb.com/name/nm0742787/" target="_blank">nm0742787</a>: <span style="color:Blue;">Laurence</span> <span style="color:Red;">Todd</span> <span style="color:Green;">Rosenthal</span> (42787) (<a href="http://akas.imdb.com/title/tt0112178/" target="_blank">Star Trek: Voyager (TV Series 1995–2001) - Episodes - IMDb</a>)<br />
+
+    </p>
+    <p style="font-family:Courier New, Courier, monospace; background-color: #ADD8E6;">
+        These people are considered identical by IMDb. Any call to the first person will lead to the second person. But since the data is identical by DVD Profiler's standards, nothing needs to be done.<br />
+        <a href="http://www.imdb.com/name/nm0604747/" target="_blank">nm0604747</a>: <span style="color:Blue;">Jeffrey</span> <span style="color:Red;">Dean</span> <span style="color:Green;">Morgan</span> (1966) (<a href="http://akas.imdb.com/title/tt1234719/" target="_blank">Red Dawn (2012)</a>, <a href="http://akas.imdb.com/title/tt0431308/" target="_blank">P.S. Ich Liebe Dich (2007)</a>, <a href="http://akas.imdb.com/title/tt0362359/" target="_blank">O.C., California (2003–2007) - Episodes - IMDb</a>)<br />
+        <a href="http://www.imdb.com/name/nm0604742/" target="_blank">nm0604742</a>: <span style="color:Blue;">Jeffrey</span> <span style="color:Red;">Dean</span> <span style="color:Green;">Morgan</span> (1966) (<a href="http://akas.imdb.com/title/tt0244365/" target="_blank">Star Trek: Enterprise (TV Series 2001–2005) - Episodes - IMDb</a>, <a href="http://akas.imdb.com/title/tt0413573/" target="_blank">Grey's Anatomy (TV Series 2005– ) - Episodes - IMDb</a>)<br />
+
+    </p>
+    <p style="font-family:Courier New, Courier, monospace; background-color: #ADD8E6;">
+        This person has gotten a new link which did not yet exist in your cache: <a href="http://www.imdb.com/name/nm0289255/" target="_blank">nm0289255</a>. Nothing needs to be done.<br />
+        <a href="http://www.imdb.com/name/nm0289256/" target="_blank">nm0289256</a>: <span style="color:Blue;">Melodee</span> <span style="color:Green;">Spevack</span> (1953)<br />
+
+    </p>
+    <p style="font-family:Courier New, Courier, monospace; background-color: #F08080;">
+        This person could not be resolved due to the follwing error.<br />
+        <a href="http://www.imdb.com/name/nm1638131/" target="_blank">nm1638131</a>: <span style="color:Blue;">Krishnar</span> (1982)<br />
+        <br />
+        The remote server returned an error: (404) Not Found.
+    </p>
+    <p style="font-family:Courier New, Courier, monospace; background-color: #ADD8E6;">
+        This person has gotten a new link which did not yet exist in your cache: <a href="http://www.imdb.com/name/nm2180757/" target="_blank">nm2180757</a>. Nothing needs to be done.<br />
+        <a href="http://www.imdb.com/name/nm5272213/" target="_blank">nm5272213</a>: <span style="color:Blue;">Dennis</span> <span style="color:Green;">Adkins</span> (2213) (<a href="http://akas.imdb.com/title/tt1103987/" target="_blank">Leverage (TV Series 2008– ) - Episodes - IMDb</a>)<br />
+
+    </p>
+    <p style="font-family:Courier New, Courier, monospace; background-color: #FFFFE0;">
+        These people are considered identical by IMDb. Any call to the first person will lead to the second person. Please adapt your DVD Profiler data accordingly.<br />
+        <a href="http://www.imdb.com/name/nm5275684/" target="_blank">nm5275684</a>: <span style="color:Blue;">Dennis</span> <span style="color:Green;">Adkins</span> (5684) (<a href="http://akas.imdb.com/title/tt1103987/" target="_blank">Leverage (TV Series 2008– ) - Episodes - IMDb</a>)<br />
+        <a href="http://www.imdb.com/name/nm2180757/" target="_blank">nm2180757</a>: <span style="color:Blue;">Dennis</span> <span style="color:Green;">Adkins</span> (2213) (<a href="http://akas.imdb.com/title/tt1103987/" target="_blank">Leverage (TV Series 2008– ) - Episodes - IMDb</a>)<br />
+
+    </p>
+    Warning: This tool might be running for several hours, depending on the size of your cast/crew file. But you can start it twice and have your cast and your crew file checked simultaneously.<br />
+    Due to the long running time it is possible to pause the scan, save the intermediate result and continue the scan at a later time. There will not be an output file until the scan is completed.<br />
+    I would run FindMergeCastCrew every few months, depending on your purchase volume.
+  </li>
+  <li>Added API to remote-control CCE2 from another application and use the CCE2 scan results without any need for copy&amp;paste.</li>
+</ul>
+
+<h3>Version 2.0.2.3</h3>
+
+<ul>
+    <li>Force display of English titles.</li>
+</ul>
+
+<h3>Version 2.0.2.2</h3>
+
+<ul>
+    <li>Display of IMDb name Ids for better differentiation.</li>
+</ul>
+
+<h3>Version 2.0.2.1</h3>
+
+<ul>
+    <li>Display of IMDb name Ids for better differentiation.</li>
+</ul>
+
+<h3>Version 2.0.2.0</h3>
+
+<ul>
+    <li>Optimized internet connection settings</li>
+    <li>Better naming of photo files for unusual names</li>
+</ul>
+
+<h3>Version 1.9.1.0</h3>
+
+<ul>
+    <li>Small improvements in regards to MessageBoxes.</li>
+</ul>
+
+<h3>Version 1.9.0.0</h3>
+
+<ul>
+    <li>
+        Added additional tool: MergeCacheFiles.<br />
+        It allows the merging of two different cache files that were created with CCE2 v1.8.9.1 or later.<br />
+        This way if you work with CCE2 on two different computers and forgot to copy the cache files first you can merge them now.
+    </li>
+</ul>
+
+<h3>Version 1.8.9.1</h3>
+
+<ul>
+    <li>
+        Preparation version for the upcoming cache file merger.<br />
+        If you want to use the cache file merger, you need to have opened your cache file at least once with CCE2 v1.8.9.1 or higher<br />
+        and <i>then</i> create several copies of the file.<br />
+        Otherwise the file that was used last will win, no matter the data inside.
+    </li>
+</ul>
+
+<h3>Version 1.8.9.0</h3>
+
+<ul>
+    <li>Fix Goofs parsing</li>
+    <li>
+        Added ability to create up to 5 backup files for the cache files.<br />
+        Upon program start the existing cache file is backuped.<br />
+        If there's ever a program failure, you can restore your cache file from these backups.
+     </li>
+</ul>
+
+<h3>Version 1.8.8.2</h3>
+
+<ul>
+    <li>Fix in Soundtrack parsing</li>
+    <li>Fix in Trivia parsing</li>
+</ul>
+
+<h3>Version 1.8.8.1</h3>
+
+<ul>
+  <li>Fix in Birth Year parsing</li>
+</ul>
+
+<h3>Version 1.8.8.0</h3>
+
+<ul>
+  <li>Fix in episode list parsing (TV shows)</li>
+  <li>Minor Fix regarding / in cast roles</li>
+</ul>
+
+<h3>Version 1.8.7.0</h3>
+
+<ul>
+  <li>Added split at "/" for multiple crew roles.</li>
+</ul>    
+
+<h3>Version 1.8.6.1</h3>
+
+<ul>
+  <li>Set default "Music by" to "Composer" in EditIMDbToDVDProfilerCrewRoleTransformation.xml.</li>
+</ul>
+
+<h3>Version 1.8.6.0</h3>
+
+<ul>
+  <li>Bugfix in cast parsing.</li>
+  <li>Bugfix in crew parsing.</li>
+  <li>Added "Music by" as IMDb Category to EditIMDbToDVDProfilerCrewRoleTransformation, which contains the same sub categories as "Original Music By".<br />
+  Please look at <a href="http://www.invelos.com/Forums.aspx?task=viewtopic&topicID=378555&PageNum=21&messageID=2183623#M2183623" target="_blank">this forum post</a> for more information.</li>
+</ul>
+    
+<h3>Version 1.8.5.3</h3>
+
+<ul>
+  <li>Bugfix in the Headshots parsing.</li>
+</ul>
+
+<h3>Version 1.8.5.2</h3>
+
+<ul>
+  <li>Bugfix in the Birth Year parsing.</li>
+</ul>
+
+<h3>Version 1.8.5.1</h3>
+
+<ul>
+  <li>Bugfix in the Soundtrack parsing.</li>
+</ul>
+    
+<h3>Version 1.8.5.0</h3>
+
+<ul>
+  <li>Bugfix in the Soundtrack parsing.</li>
+</ul>
+
+<h3>Version 1.8.4.0</h3>
+
+<ul>
+  <li>Forced Fake Birth Years added.<br />It can be used to seperate people with the same names and birth years, or to re-unite identical
+  people that have two different IMDb IDs.</li>
+  <li>If a name starts with "The " (e.g. "The Who") or a digit (e.g. "50 Cent") then it will be parsed completely into the first name.</li>
+</ul>
+
+<h3>Version 1.8.3.1</h3>
+
+<ul>
+  <li>Bugfix in the new Soundtrack parsing.</li>
+</ul>
+
+<h3>Version 1.8.3.1</h3>
+
+<ul>
+  <li>Added "Soundtrack" as new crew category.</li>
+</ul>
+  
+<h3>Version 1.8.2.2</h3>
+
+<ul>
+  <li>Links in the log window open in the default browser now.</li>
+</ul>
+
+<h3>Version 1.8.2.1</h3>
+
+<ul>
+  <li>Bugfix in new HTML Log window.</li>
+</ul>
+
+<h3>Version 1.8.2.0</h3>
+
+<ul>
+  <li>Bugfix for IMDb title URL.</li>
+  <li>New Log window with HTML instead of text (clickable links and stuff...).</li>
+  <li>CCE2 now stores the last three movies names of any given cast/crew member. If there's a case of duplicates, it's easier to determine who's who.</li>
+</ul>
+
+<h3>Version 1.8.1.1</h3>
+
+<ul>
+  <li>Bugfix if new actor is also potential duplicate.</li>
+</ul>
+
+<h3>Version 1.8.1.0</h3>
+
+<ul>
+  <li>Added proper grid for "Known Names".</li>
+  <li>Checked validity of "Known Names".</li>
+</ul>
+
+<h2><a name="VersionHints">Version Hints</a></h2>
+
+<h3>Version 1.8.0.1</h3>
+
+<ul>
+  <li>Fixed AutoSize mode after performance enhancement.</li>
+</ul>
+
+<h3>Version 1.8.0.0</h3>
+
+<ul>
+  <li>Performance of Cast and Crew Grid improved.</li>
+  <li>Taskbar ProgressBar is now always green.</li>
+  <li><span style="background-color:LightBlue;">Blue ProgressBar</span> for the parsing of cast/crew</li>
+  <li><a href="#Stagenames">StageNames.txt</a> removed.</li>
+  <li><a href="#IgnoreCustomInIMDbCategory">IgnoreCustomInIMDbCategory.txt</a> added.</li>
+  <li><a href="#IgnoreIMDbCategoryInOther">IgnoreIMDbCategoryInOther.txt</a> added.</li>
+  <li><a href="#KnownNames">KnownNames.txt</a> added.</li>
+  <li>Parsing of crew roles optimized when they contain a colon.</li>  
+  <li>Added "Music Department" as IMDb Categorie to EditIMDbToDVDProfilerCrewRoleTransformation, which contains the same sub categories as "Original Music By".</li>
+  <li>Browser window becomes only active after first search term was entered.</li>
+</ul>
+
+<h3>Version 1.7.3.0</h3>
+
+<ul>
+  <li>
+    EditIMDbToDVDProfilerCrewRoleTransformation now supports the option that a crew line starts with a certain word.<br/>
+    CCE2 now recognizes not only 'Novel' but also 'Novel "A Time to Kill"' if the option is set for the IMDb sub-category.<br/>
+    By default this option is now active for Writing credits: character, characters, novel, book, short story, graphic novel.
+  </li>
+</ul>
+
+<h3>Version 1.7.2.1</h3>
+
+<ul>
+  <li>BugFix in parsing of suffixes like "M.D." despite the setting to split up initials.</li>
+</ul>
+
+<h3>Version 1.7.2.0</h3>
+
+<ul>
+  <li>Added "Other" as DVD Profiler category to EditIMDbToDVDProfilerCrewRoleTransformation</li>
+  <li>If "Retain Custom Role" is active but there's no "Custom Role" the one from the transformation file is taken.</li>
+  <li>Better parsing of "Crew Role: Location Unit"</li>
+</ul>
+
+<h3>Version 1.7.1.3</h3>
+
+<ul>
+  <li>Bugfix when episode description to another movie or episode.</li>
+</ul>
+
+<h3>Version 1.7.1.2</h3>
+
+<ul>
+  <li>Bugfix in ProgressBar in case the webserver denies connection.</li>
+</ul>
+
+<h3>Version 1.7.1.1</h3>
+
+<ul>
+  <li>Added progress bars in the program itself (same colour as below).</li>
+</ul>
+
+<h3>Version 1.7.1.0</h3>
+
+<ul>
+  <li>
+    <span style="color:#FF0000; font-weight:bold;">Attention:</span> Cast/Crew Edit 2 requires at least .NET Framework 3.5 to run properly from now on.
+    <br /><br />
+    .NET Framework 3.5 can be downloaded <a href="http://www.microsoft.com/en-us/download/details.aspx?id=22" target="_blank">from here at Microsoft</a>.
+  </li>
+  <li>This help file updated (especially the first steps with the screenshots).</li>
+  <li>
+    Progress bars added (only available in Vista and higher).<br />
+    <ul>
+      <li><span style="background-color:LightGreen;">Green progress bar</span> for "Scan Episodes"</li>
+      <li><span style="background-color:LightCoral;">Red progress bar</span> for "Get Birth Years"</li>
+      <li><span style="background-color:LightGreen;">Green progress bar</span> for "Get Headshots"</li>
+    </ul>    
+  </li>
+</ul>
+
+<h3>Version 1.7.0.3</h3>
+
+<ul>    
+    <li>Bugfix when copying fake birth years that are actually real birth years.</li>
+</ul>
+  
+<h3>Version 1.7.0.2</h3>
+
+<ul>    
+    <li>Fixed waring "Fake Birth Year = 0" so that it also shows the name of the person.</li>
+    <li>
+      Added option to not remove the headshots from Images\CCViewer and Images\DVD Profiler before next parsing.
+      The default is <span style="color:#FF0000;">OFF</span>.
+    </li>
+</ul>
+
+<h3>Version 1.7.0.1</h3>
+
+<ul>
+    <li><img src="http://upload.wikimedia.org/wikipedia/en/1/1a/USS_Enterprise_%28NCC-1701%29%2C_ENT1231.jpg" /></li>
+    <li>Added warning when converting IMDb ID to fake birth year results in a 0.</li>
+    
+</ul>
+
+<h3>Version 1.7.0.0</h3>
+
+<ul>
+  <li>Bugfix when alerting about a new birth year.</li>
+  <li>New option to save the Log permanently. The default is <span style="color:#FF0000;">OFF</span>.</li>
+  <li>
+    New option to use fake birth years. The default is  <span style="color:#FF0000;">OFF</span>.<br /><br />
+    If this option is used, all cast and crew member which do not have a birth year of their own
+    (because birth years are generally not read from IMDb or IMDb has none for that particular person)
+    get a fake birth year based on their IMDb ID.<br /><br />
+    This way you can distinguish between people who appear to be identical from DVD Profiler's point of view
+    (see also the ReadMen of &quot;Check for Duplicates in Cast/Crew Edit 2 Cache&quot; farther down).<br /><br />
+    Bevor you start using the new fake birth years, you should use the programs
+    &quot;Check for Duplicates in Cast/Crew Edit 2 Cache&quot; and &quot;Compare ProfilerXML and Cast/Crew Edit 2 Cache&quot;
+    to compare the local cache of &quot;Cast/Crew Edit 2&quot; and your local DVD Profiler data and clean it if necessary.
+  </li>
+  <li>
+    New version of &quot;<a href="http://doena-journal.net/en/dvd-profiler-tools#CompareProfilerXMLAndCastCrewEdit2Cache">Compare
+    ProfilerXML and Cast/Crew Edit 2 Cache</a>&quot; (1.2.0.0) which can handle fake birth years.
+  </li>
+  <li>
+    New version of &quot;<a href="http://doena-journal.net/en/dvd-profiler-tools#CheckForDuplicatesInCastCrewEdit2Cache">Check
+    for Duplicates in Cast/Crew Edit 2 Cache</a>&quot; (1.3.0.0) which can handle fake birth years.<br /><br />
+    ReadMe of &quot;Check for Duplicates in Cast/Crew Edit 2 Cache&quot;:<br /><br />
+    <pre>
+
+      WARNING: Do NOT run "Check for Duplicates in Cast/Crew Edit 2 Cache" and "Cast/Crew Edit 2" at the
+      same time.
+
+
+
+      DVD Profiler can distinguish people only by four criteria:
+      Last Name
+      First Name
+      Middle Name
+      Birth Year
+
+      If these four things are all IDentical DVD Profiler cannot tell these two people apart.
+
+      "Check for Duplicates in Cast/Crew Edit 2 Cache" helps you to find such possible collsions.
+
+      In the tab "Everything IDentical" you see all the entries that could be such mismatches.
+
+      "Could" because of the introduction of fake birth years, derived from the IMDb ID of the
+      actors/actresses.
+
+      The comparison if two actors possibly clash is done under the exclusion of the fake birth year and
+      only looks at the "real" data.
+
+      But IMDb is not perfect either. Sometimes they create a new actor page for an actor that already
+      exists.
+
+      When they notice their mistake, one of the IDs is forwarded to the other, pretty much transparent to
+      the user (only visible in the URL of the website).
+
+      By the time IMDb notices their mistake, you might already have both IDs in your local cache.
+
+      Until now this wasn't a problem because of DVD Profiler's concept. It simply merged these two entries
+      again.
+
+      With the introduction of fake birth years it might happen that this one person is actually
+      consIDered two different people in your local database.
+
+      Here's an example: The actor Benjamin Hoffman was listed under the IDs nm2200880 and nm1887263 in
+      my local database, but both IDs led to the latter one, see: http://www.imdb.com/name/nm2200880/
+
+      To find these possibly IDentical people, switch to the "Everything IDentical" tab and check if
+      the pairs are actually only one person. If so, simply remove the outdated ID.
+
+      If this outdated ID already has a fake birth year assigned you should check your DVD Profiler
+      database and merge the actors there, too.
+
+      Another interesting case was  Elizabeth Rodriguez whom I had as nm1879985 and nm3318694 but both
+      IDs led to nm0735300 which I hadn't.
+
+      So I saved and closed "Check for Duplicates in Cast/Crew Edit 2 Cache", opened "Cast/Crew Edit 2"
+      and scanned one of her works that has few cast in it (for time-saving purposes), in her case
+      "Beadhead" http://www.imdb.com/title/tt0165634/
+
+      Now I had three IDs of hers in my cache and could savely remove the two outdated ones.
+    </pre>
+  </li>
+</ul>
+
+<h3>Version 1.6.1.2</h3>
+
+<ul>
+  <li>Fix for crew custom roles.</li>
+</ul>
+  
+<h3>Version 1.6.1.1</h3>
+
+<ul>
+  <li>IMDb changed their page encoding from ISO-8859-1 to UTF-8.</li>
+</ul>
+
+<h3>Version 1.6.1.0</h3>
+
+<ul>
+  <li>Fix in reading the birth year (problem has been there since early january!)</li>
+</ul>
+
+<h3>Version 1.6.0.2</h3>
+
+<ul>
+<li>Yet another season number fix.</li>
+</ul>
+
+<h3>Version 1.6.0.1</h3>
+
+<ul>
+<li>Season number / episode name download fixed to match new IMDb code.</li>
+</ul>
+
+<h3>Version 1.6.0.0</h3>
+
+<ul>
+<li>To improve the detection of possible duplicate entries, I decided to treat cast and crew seperately - just like DVD Profiler.<br/>
+Thus from version 1.6.0.0 on the local cache file Persons.xml will be replaced by two files:<br/>
+Cast.xml and Crew.xml.<br/>
+<br/>
+With the help of the added tool ConvertCastCrewEdit2PersonFile.exe the existing Persons.xml can be split into the new files.<br/>
+To achieve this it's necessary to use the actual DVD Profiler collection as reference.<br/>
+It has to be exported completely via &quot;DVD Profiler -> File -> Export Profile Database&quot;.<br/>
+Based on that file I try to determine which entry is a cast and which is a crew member..<br/>
+If the backup option is used, a file called Persons.xml.org is created which is identical to the original Persons.xml and remains unchanged.<br/>
+All persons that cannot be find in either the cast or the crew list, will be put into a third (unused) file called Persons.xml.old.<br/>
+<br/>
+After the conversion Cast/Crew Edit 2 can be used normally again.<br/>
+<br/>
+Note: This process will not be perfect. If there's an actor Joe Sixpack (1977) and a different screenwriter Joe Sixpack (1977),<br/>
+both entries will land in both files because based on the DVD Profiler collection data I cannot tell them apart.<br/>
+</li>
+</ul>
+
+<h3>Version 1.5.4.2</h3>
+
+<ul>
+<li>Goof download fixed to match new IMDb code</li>
+</ul>
+
+<h3>Version 1.5.4.1</h3>
+
+<ul>
+<li>Bugfix in Crew Parsing</li>
+</ul>
+
+<h3>Version 1.5.4.0</h3>
+
+<ul>
+<li>Trivia download fixed to watch new IMDb code (again :-/).</li>
+<li>Added option to download goofs, too.</li>
+</ul>
+
+<h3>Version 1.5.3.1</h3>
+
+<ul>
+<li>Trivia download fixed to match new IMDb code.</li>
+</ul>
+
+<h3>Version 1.5.3.0</h3>
+
+<ul>
+<li>Added option to download headshots directly after parsing.</li>
+<li>
+  Improved check on possible duplicates. If one name has a birth year (John Doe 1950) and the other has not (John Doe)
+  and in DVD Profiler exists only one entry then DVD Profiler will add the data to the existing profile.
+  You have to make sure, two entries exist.
+  <br/><br/>
+  It may be best to check with <a href="http://doena-journal.net/en/dvd-profiler-tools#CheckForDuplicatesInCastCrewEdit2Cache" target="_blank">Check for Duplicates in Cast/Crew Edit 2 Cache</a>
+  if that might have happened already.
+  </li>
+</ul>
+
+<h3>Version 1.5.2.1</h3>
+
+<ul>
+<li>Bugfix in download headshots code.</li>
+</ul>
+
+<h3>Version 1.5.2.0</h3>
+
+<ul>
+<li>Fixed download of headshots.</li>
+<li>Added option to automatically copy headshots to the appropriate DVD Profiler folder.</li>
+</ul>
+
+<h3>Version 1.5.1.1</h3>
+
+<ul>
+<li>Adapted season parsing to the new IMDb layout (again).</li>
+</ul>
+
+<h3>Version 1.5.1.0</h3>
+
+<ul>
+<li>Adapted season parsing to the new IMDb layout.</li>
+<li>Adapted birth year parsing to the new IMDb layout.</li>
+</ul>
+
+<h3>Version 1.5.0.2</h3>
+
+<ul>
+<li>Adapted Trivia parsing to new IMDb format.</li>
+</ul>
+
+<h3>Version 1.5.0.1</h3>
+
+<ul>
+<li>Adapted Crew parsing to new IMDb format.</li>
+</ul>
+
+<h3>Version 1.5.0.0</h3>
+
+<ul>
+<li>First Version that was built for DVD Profiler 3.6.0.</li>
+</ul>
+
+<h3>Version 1.4.6.3</h3>
+
+<ul>
+<li>Cleared the Trivia list when parsing a new movie.</li>
+<li>Enhanced the performance of the web browser.</li>
+</ul>
+
+<h3>Version 1.4.6.2</h3>
+
+<ul>
+<li>Bugfix when copying the Voice, Uncredited information into DVD Profiler.</li>
+<li>Added &lt;div&gt;s around the trivia section.</li>
+</ul>
+
+<h3>Version 1.4.6.1</h3>
+
+<ul>
+<li>Bugfix with URLs in new Trivia parsing.</li>
+</ul>
+
+<h3>Version 1.4.6.0</h3>
+
+<ul>
+<li>Option download the trivia of a movie, to be used with the
+<a href="http://www.invelos.com/Forums.aspx?task=viewtopic&topicID=432352&PageNum=1" target="_blank">Movie Trivia for HTML Window</a>.</li>
+</ul>
+
+<h3>Version 1.4.5.0</h3>
+
+<ul>
+<li>Option to seperately disable the download of cast and crew headshots</li>
+</ul>
+
+<h3>Version 1.4.4.0</h3>
+
+<ul>
+<li>adapted to the new way IMDb presents birth years</li>
+</ul>
+
+<h3>Version 1.4.3.1</h3>
+
+<ul>
+<li>minor adjustments to increase the stability which has become necessary due to the new IE plugin.</li>
+</ul>
+
+<h3>Version 1.4.3.0</h3>
+
+<ul>
+<li>automatic transfer of Browser URL</li>
+<li>better search function for titles</li>
+<li>option to save data, settings and image files elsewhere</li>
+</ul>
+
+<h3>Version 1.4.2.0</h3>
+
+<ul>
+<li>Check if there's already an instance running</li>
+<li>Added in-program Web Browser (plugin based on Internet Explorer engine).</li>
+</ul>
+
+<h3>Version 1.4.1.1</h3>
+
+<ul>
+<li>Bugfix in TV shows with "Retain 'Credited As'"</li>
+</ul>
+
+<h3>Version 1.4.1.0</h3>
+
+<ul>
+<li>Added possibility to download headshots for CCViewer</li>
+<li>Changed the way how to format episode titles (check new settings!)</li>
+</ul>
+
+<h3>Version 1.4.0.0</h3>
+
+<ul>
+<li>Added possibility to download headshots for DVDProfiler</li>
+</ul>
+
+<h3>Version 1.3.4.2</h3>
+
+<ul>
+<li>Bugfix in parsing of Category Prefix</li>
+<li>Bugfix when editing roles on TV Shows</li>
+</ul>
+
+<h3>Version 1.3.4.1</h3>
+
+<ul>
+<li>
+  Corrected the parsing of birth years which seems to have changed recently. It might be best if you reparse your last
+  profiles again and enable the option "Retrieve Birth Year from IMDb again, if it was empty on previous retrieval".
+</li>
+</ul>
+
+<h3>Version 1.3.4.0</h3>
+
+<ul>
+<li>Tried to reduce the numer of "Webserver has blocked further request" messages.</li>
+</ul>
+
+<h3>Version 1.3.3.0</h3>
+
+<ul>
+<li>Added a button to scan all episodes regardless of selection.</li>
+</ul>
+
+<h3>Version 1.3.2.1</h3>
+
+<ul>
+<li>Language Bugfix on the english version of the Cast & Crew for TV Shows dialog</li>
+</ul>
+
+<h3>Version 1.3.2.0</h3>
+
+<ul>
+<li>Added a german language pack.</li>
+</ul>
+
+<h3>Version 1.3.1.0</h3>
+
+<ul>
+<li>Added the option to not to use the season number in the divider.</li>
+</ul>
+
+<h3>Version 1.3.0.1</h3>
+
+<ul>
+<li>Bugfix on deleting crew, I accidentally disabled that, too.</li>
+</ul>
+
+<h3>Version 1.3.0.0</h3>
+
+<ul>
+<li>Bugfix - maximized window wasn't remembered.</li>
+<li>Added documentation for <a href="#EditableCells">editable cells</a>.</li>
+<li>Added option to movie cast up and down, see <a href="#UpDownRemoveRows">here</a>.</li>
+<li>Up until now it was possible to remove rows simply by selecting them and then pressing "DEL". Due to the new
+sorting I had to disable this and added an individual button for each row.</li>
+<li>Added the option to choose the season-episode dividing character.</li>
+<li>Added the option to not to use the episode number in the divider.</li>
+</ul>
+
+<h3>Version 1.2.5.0</h3>
+
+<ul>
+<li>Added "Meat Loaf" as stage name.</li>
+<li>Added Option to try to get birth years from persons who currently have none - even when the cache is activated.</li>
+<li>Added clickable links in the title and episode rows.</li>
+</ul>
+
+<h3>Version 1.2.4.0</h3>
+
+<ul>
+<li>Added option to get the birht years automatically after the name parsing has been completed.</li>
+<li>Bugfix when parsing custom crew roles (removal of " and " worked unexpectedly).</li>
+</ul>
+
+<h3>Version 1.2.3.0</h3>
+
+<ul>
+<li>Added option to retain/suppress "credited as" individually for cast and crew.</li>
+</ul>
+
+<h3>Version 1.2.2.1</h3>
+
+<ul>
+<li>Bugfix when splitting firstnames like "J.K." into first and middle name.</li>
+<li>Added "LL Cool J" as stage name.</li>
+<li>New Transformation data (character -> Original Characters By).</li>
+<li>Bugfix when editing Transofrmation Data from within Cast/Crew Edit 2.</li>
+<li>added "père" as lastname suffix (as in "Alexandre Dumas père")</li>
+<li>New Transformation data (screen story -> Screenwriter).</li>
+</ul>
+
+<h3>Version 1.2.2.0</h3>
+
+<ul>
+<li>Added the option to re-apply the parsing settings/filters (e.g. after changing them) without having to re-scan the
+IMDb webpage.</li>
+<li>I had a spelling mistake in the "Capitalize Custom Roles" setting which I corrected. But that means, the setting
+will be unset the first time you start this new version. If you had it set, you have to re-set it in the Settings
+Dialog.</li>
+<li>Added option to ignore "(unconfirmed)".</li>
+<li>New Transformation data (graphic novel -> Original Material By).</li>
+</ul>
+
+<h3>Version 1.2.1.0</h3>
+
+<ul>
+<li>Added option to ignore "(&lt;language&gt; version)" (e.g. "(German version)") credits.</li>
+<li>Added indicator of where birth years have not been retrieved yet.</li>
+</ul>
+
+<h3>Version 1.2.0.0</h3>
+
+<ul>
+<li>Added option to ignore "(scenes deleted)" credits.</li>
+<li>Added option to ignore "(archive footage)" credits.</li>
+<li>Added menu bar on every window.</li>
+<li>Added possibility to inspect the caches.</li>
+<li>Added link to the cast/crew member's page on IMDb.</li>
+</ul>
+
+<h3>Version 1.1.0.0</h3>
+
+<ul>
+<li>Moved config files into own folder "Data".</li>
+<li>Moved settings file into folder "Data".</li>
+<li>Moved persons cache file into folder "Data".</li>
+<li>Added option to suppress message boxes.</li>
+<li>Added option to ignore "(credit only)" credits.</li>
+<li>Added option to parse "J.K." into firstname and middlename instead of just firstname</li>
+<li>Added option to take birth year from local cache, if available.</li>
+<li>Aded log window for warnings, when cache differs from actual data.</li>
+<li>Enhanced parsing for names.</li>
+</ul>
+
+<h3>Version 1.0.0.0</h3>
+
+<ul>
+<li>This version unites the code lines of Cast/Crew Edit 2 For TV Shows v0.8.3.0 and Cast/Crew Edit 2 v0.9.3.0.</li>
+<li>Added a possibility to edit the config files directly in the program. The changes will applied immediately, without 
+having to restart the program.</li>
+</ul>
+
+<h3>Version 0.9.3.0</h3>
+
+<ul>
+<li>New Transformation data (novel, book, short story -> Original Material By).</li>
+<li>Enhanced parsing of voice cast.</li>
+<li>Enhanced parsing of birth years (see new chapter "Local Birth Years and Persons Cache" above).</li>
+</ul>
+
+<h3>Version 0.9.2.0</h3>
+
+<ul>
+<li>Added addional checks for the case that someone runs the exe in a different working directory.</li>
+<li>Cosmetic enhancements.</li>
+</ul>
+
+<h3>Version 0.9.1.2</h3>
+
+<ul>
+<li>Forgot the title headline in the crew tab.</li>
+</ul>
+
+<h3>Version 0.9.1.1</h3>
+
+<ul>
+<li>Minor cosmetic bugfixes.</li>
+</ul>
+
+<h3>Version 0.9.1.0</h3>
+
+<ul>
+<li>Added a lot of documentation (see above).</li>
+<li>Added a new name parsing feature: In addition to define known lastname suffixes like "Jr." or "III" and known
+lastname prefixes like "de la" or "van" you can now also define known firstname prefixes like "Dame" or "Capt.".</li>
+<li>Added a little indicator of how many cast/crew members and their birth years are stored in the local cache.</li>
+</ul>
+
+<h3>Version 0.9.0.0</h3>
+
+<ul>
+<li>First draft.</li>
+<li>Cast/Crew Edit 2 is based upon Cast Edit 2 v1.2.4.5 and Crew Edit 2 v1.0.0.0.</li>
+</ul>
+
+<h3>Cast Edit 2 Version Hints</h3>
+
+<pre>
+End of Development: v1.2.4.5 is the last version of Cast Edit 2. Please upgrade
+to Cast/Crew Edit 2, which can also be found under
+http://doena-soft.de/dvdprofiler/index_en.php
+
+== Version 1.2.4.5 ==
+Minor Bugfix regarding exlusion of uncredited cast.
+
+== Version 1.2.4.4 ==
+IMDb has once again changed their HTML code. I tried to optimze my Regular
+Expressions so that it is more lenient. 
+Hope that helps.
+
+== Version 1.2.4.3 ==
+Sorry for so many versions in such a short time, but this time IMDb has changed
+somtehing again and I had to adapt.
+
+== Version 1.2.4.2 ==
+Error when copying to clipboard.
+
+== Version 1.2.4.1 ==
+Minor parsing bug in character names.
+
+Error when copying to clipboard.
+
+== Version 1.2.4.0 ==
+Code Optimization and adaptions to IMDb's recent changes.
+
+Use command line parameter "/skipversioncheck" to skip version check on startup.
+
+Reorganized the Help menues.
+
+== Version 1.2.3.1 ==
+Check, whether or not the readme.txt is actually there.
+
+== Version 1.2.3.0 ==
+IMDb has adapted it's HTML code and I had to react.
+
+== Version 1.2.2.0 ==
+I've created an additional file that stores all actor info you've retrieved from
+IMDb. This way I can check whether a common name or a birth year has changed
+when you scan the same actor at a later time. The program will then give you a
+warning, that you should check your actor list in DVD Profiler. You can also use
+my program "Find Name Duplicates" to check your database.
+
+Additionally I created a check on startup, if a new version is available.
+
+== Version 1.2.1.0 ==
+
+It's no longer possible to get too many birth year informations at a time, the
+IMDb server blocks the calls after a varying number of requests.
+
+Therefore I only get the cast list without attempting to get the birth years,
+too.
+
+You have to retrieve the birth years afterwards by pressing "Get Birth Years".
+Even then an error might come up that says "503 Webservice unavailable". Simply
+try to press "Get Birth Years" again until the program tells you that the
+parsing is finished.
+
+Then you can press "Generate" as usual.
+
+If you don't want or don't need the birth years you can also skip this entire
+step and simply press "Generate" after retrieving the cast data.
+</pre>
+
+<h3>Crew Edit 2 Version Hints</h3>
+
+<pre>
+End of Development: v1.0.0.0 is the last version of Crew Edit 2. Please upgrade
+to Cast/Crew Edit 2, which can also be found under
+http://doena-soft.de/dvdprofiler/index_en.php
+
+== Version 1.0.0.0 ==
+Upgraded version number to final v1.0.0.0
+
+== Version 0.3.1.4 ==
+Enhanced parsing on job names.
+
+== Version 0.3.1.3 ==
+Error when copying to clipboard.
+
+== Version 0.3.1.2 ==
+Minor parsing bug in job names.
+
+Added "written for the screen" and "written for the screen by" -> "Screenwriter"
+
+== Version 0.3.1.1 ==
+Reorganized the Help menues.
+
+== Version 0.3.1.0 ==
+new setting "Capitalize CustomName"
+
+Use command line parameter "/skipversioncheck" to skip version check on startup.
+
+== Version 0.3.0.2 ==
+added story->Story by and characters->Original Characters by to list
+
+== Version 0.3.0.1 ==
+bugfixes in EditIMDbToDVDProfilerCrewRoleTransformation.exe -> Version 0.1.1.0
+
+== Version 0.3.0.0 ==
+CheckBoxes for the CreditTypes to choose/not choose them.
+
+Also added EditIMDbToDVDProfilerCrewRoleTransformation.exe for comfortable
+editing of IMDbToDVDProfilerCrewRoleTransformation.xml
+
+== Version 0.2.1.0 ==
+Changed CreditType and CreditSubtype to DropDowns, now they are changable.
+
+== Version 0.2.0.0 ==
+New features added
+retain original credit: if checked, that the custom role will be filled with the
+                        credit from IMDb even if a match to a DVD Profiler has
+                        been found
+include credit type prefix: if checked, credits that fall under the CreditType
+                            Other/Custom will get a prefix of the IMDb
+                            CreditType
+
+== Version 0.1.0.1 ==
+If it is a Other/Custom credit without any description I take the IMDb
+CreditType name
+
+== Version 0.1.0.0 ==
+First draft of the program. Please report all bugs you encounter.
+
+Please note, that it is necessary to "map" the IMDb crew roles to the
+DVD Profiler crew roles. For this you have to edit the file 
+"IMDbToDVDProfilerCrewRoleTransformation.xml". You find all valid combinations
+for DVD Profiler in the sample file "AllDVDProfilerCrewRoles.xml".
+
+It's no longer possible to get too many birth year informations at a time, the
+IMDb server blocks the calls after a varying number of requests.
+
+Therefore I only get the cast list without attempting to get the birth years,
+too.
+
+You have to retrieve the birth years afterwards by pressing "Get Birth Years".
+Even then an error might come up that says "503 Webservice unavailable". Simply
+try to press "Get Birth Years" again until the program tells you that the 
+parsing is finished.
+
+Then you can press "Generate" as usual.
+
+If you don't want or don't need the birth years you can also skip this entire
+step and simply press "Generate" after retrieving the cast data.
+</pre>
+
+<h3>Cast/Crew Edit 2 For TV Shows Version Hints</h3>
+
+<pre>
+End of Development: v1.0.0.0 is the last version of Cast/Crew Edit 2 For 
+TV Shows. Please upgrade to Cast/Crew Edit 2, which can also be found under
+http://doena-soft.de/dvdprofiler/index_en.php
+
+== Version 1.0.0.0 ==
+Upgraded version number to final v1.0.0.0
+
+== Version 0.8.3.0 ==
+
+New Transformation data (novel, book, short story -> Original Material By).
+
+Enhanced parsing of voice cast.
+
+Enhanced parsing of birth years (see new chapter "Local Birth Years and Persons
+Cache" above).
+
+== Version 0.8.2.0 ==
+
+Added addional checks for the case that someone runs the exe in a different
+working directory.
+
+Cosmetic enhancements.
+
+== Version 0.8.1.1 ==
+
+Minor cosmetic bugfixes.
+
+== Version 0.8.1.0 ==
+
+Added a lot of documentation (see above).
+
+Added a new name parsing feature: In addition to define known lastname suffixes
+like "Jr." or "III" and known lastname prefixes like "de la" or "van" you can
+now also define known firstname prefixes like "Dame" or "Capt.".
+
+Added a little indicator of how many cast/crew members and their birth years are
+stored in the local cache.
+
+== Version 0.8.0.0 ==
+First draft.
+Cast/Crew Edit 2 is based upon Cast Edit 2 For TV Shows v1.2.5.0.
+</pre>
+<h3>Cast Edit 2 For TV Shows Version Hints</h3>
+<pre>
+End of Development: v1.2.5.1 is the last version of Cast Edit 2 For TV Shows.
+Please upgrade to  Cast/Crew Edit 2 For TV Shows, which can also be found under
+http://doena-soft.de/dvdprofiler/index_en.php.
+
+== Version 1.2.5.1 ==
+Final version.
+
+== Version 1.2.5.0 ==
+It is now possible to change parsing settings on the Cast Screen to and re-scan
+the episodes with these settings.
+
+== Version 1.2.4.4 ==
+IMDb has once again changed their HTML code. I tried to optimze my Regular
+Expressions so that it is more lenient.
+Hope that helps.
+
+== Version 1.2.4.3 ==
+Sorry for so many versions in such a short time, but this time IMDb has changed
+somtehing again and I had to adapt.
+
+== Version 1.2.4.2 ==
+Error when copying to clipboard.
+
+== Version 1.2.4.1 ==
+Minor parsing bug in character names.
+
+Error when copying to clipboard.
+
+== Version 1.2.4.0 ==
+Code Optimization and adaptions to IMDb's recent changes.
+
+Use command line parameter "/skipversioncheck" to skip version check on startup.
+
+Reorganized the Help menues.
+
+== Version 1.2.3.1 ==
+Check, whether or not the readme.txt is actually there.
+
+== Version 1.2.3.0 ==
+IMDb has adapted it's HTML code and I had to react.
+
+== Version 1.2.2.0 ==
+I've created an additional file that stores all actor info you've retrieved from
+IMDb. This way I can check whether a common name or a birth year has changed
+when you scan the same actor at a later time. The program will then give you a
+warning, that you should check your actor list in DVD Profiler. You can also use
+my program "Find Name Duplicates" to check your database.
+
+Additionally I created a check on startup, if a new version is available.
+
+== Version 1.2.1.0 ==
+
+It's no longer possible to get too many birth year informations at a time, the
+IMDb server blocks the calls after a varying number of requests.
+
+Therefore I only get the cast list without attempting to get the birth years,
+too.
+
+You have to retrieve the birth years afterwards by pressing "Get Birth Years".
+Even then an error might come up that says "503 Webservice unavailable". Simply
+try to press "Get Birth Years" again until the program tells you that the 
+parsing is finished.
+
+Then you can press "Generate" as usual.
+
+If you don't want or don't need the birth years you can also skip this entire
+step and simply press "Generate" after retrieving the cast data.
+</pre>
+<p><a href="#TOC">Table of Contents</a></p>
+</body>
+</html>

@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="NewCloseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>406</value>
+  </data>
+  <data name="NewCloseButton.Text" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="IgnoreUnconfirmedCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="IgnoreUnconfirmedCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="IgnoreUnconfirmedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 17</value>
+  </data>
+  <data name="IgnoreUnconfirmedCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>110</value>
+  </data>
+  <data name="IgnoreLanguageVersionCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="IgnoreLanguageVersionCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="IgnoreLanguageVersionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 17</value>
+  </data>
+  <data name="IgnoreLanguageVersionCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>109</value>
+  </data>
+  <data name="IgnoreArchiveFootageCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="IgnoreArchiveFootageCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="IgnoreArchiveFootageCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 17</value>
+  </data>
+  <data name="IgnoreArchiveFootageCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>107</value>
+  </data>
+  <data name="IgnoreScenesDeletedCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="IgnoreScenesDeletedCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="IgnoreScenesDeletedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 17</value>
+  </data>
+  <data name="IgnoreScenesDeletedCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>106</value>
+  </data>
+  <data name="IgnoreCreditOnlyCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="IgnoreCreditOnlyCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="IgnoreCreditOnlyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 17</value>
+  </data>
+  <data name="IgnoreCreditOnlyCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>108</value>
+  </data>
+  <data name="IgnoreUncreditedCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="IgnoreUncreditedCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="IgnoreUncreditedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 17</value>
+  </data>
+  <data name="IgnoreUncreditedCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>105</value>
+  </data>
+  <data name="IgnoreGroupBox.Text" xml:space="preserve">
+    <value>Ignoriere  ...</value>
+  </data>
+  <data name="CastGenerateButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CastGenerateButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>665, 397</value>
+  </data>
+  <data name="CastGenerateButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 23</value>
+  </data>
+  <data name="CastGenerateButton.TabIndex" type="System.Int32, mscorlib">
+    <value>111</value>
+  </data>
+  <data name="CastGenerateButton.Text" xml:space="preserve">
+    <value>Kopiere Darsteller in Zwischenablage</value>
+  </data>
+  <data name="RetainCreditedAsOnCastCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="RetainCreditedAsOnCastCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>509, 19</value>
+  </data>
+  <data name="RetainCreditedAsOnCastCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 17</value>
+  </data>
+  <data name="RetainCreditedAsOnCastCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>104</value>
+  </data>
+  <data name="RetainCreditedAsOnCastCheckBox.Text" xml:space="preserve">
+    <value>Behalte "Aufgeführt als"</value>
+  </data>
+  <data name="ParseCastCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ParseCastCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 17</value>
+  </data>
+  <data name="ParseCastCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>101</value>
+  </data>
+  <data name="ParseCastCheckBox.Text" xml:space="preserve">
+    <value>Parse Darsteller</value>
+  </data>
+  <data name="ParseVoiceOfCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ParseVoiceOfCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 17</value>
+  </data>
+  <data name="ParseVoiceOfCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>102</value>
+  </data>
+  <data name="ParseVoiceOfCheckBox.Text" xml:space="preserve">
+    <value>Parse "Voice of" nach "(voice)"</value>
+  </data>
+  <data name="ParseRoleSlashCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ParseRoleSlashCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>299, 19</value>
+  </data>
+  <data name="ParseRoleSlashCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 17</value>
+  </data>
+  <data name="ParseRoleSlashCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>103</value>
+  </data>
+  <data name="ParseRoleSlashCheckBox.Text" xml:space="preserve">
+    <value>Parse Rollen mit "/" in mehrere Zeilen</value>
+  </data>
+  <data name="CastSettingsGroupBox.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="CastTabPage.Text" xml:space="preserve">
+    <value>Darsteller</value>
+  </data>
+  <data name="CreditTypeSoundtrackCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>646, 42</value>
+  </data>
+  <data name="CreditTypeOtherCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>207</value>
+  </data>
+  <data name="CreditTypeArtCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>455, 65</value>
+  </data>
+  <data name="CreditTypeArtCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>215</value>
+  </data>
+  <data name="CreditTypeSoundCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>309, 65</value>
+  </data>
+  <data name="CreditTypeSoundCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>214</value>
+  </data>
+  <data name="CreditTypeMusicCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>213</value>
+  </data>
+  <data name="CreditTypeFilmEditingCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>212</value>
+  </data>
+  <data name="CreditTypeCinematographyCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>455, 42</value>
+  </data>
+  <data name="CreditTypeCinematographyCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>211</value>
+  </data>
+  <data name="CreditTypeProductionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>309, 42</value>
+  </data>
+  <data name="CreditTypeProductionCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>210</value>
+  </data>
+  <data name="CreditTypeWritingCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>209</value>
+  </data>
+  <data name="CreditTypeDirectionCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>208</value>
+  </data>
+  <data name="CustomCreditsCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>206</value>
+  </data>
+  <data name="CrewIncludingGroupBox.Text" xml:space="preserve">
+    <value>Einschließlich ...</value>
+  </data>
+  <data name="RetainCreditedAsOnCrewCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="RetainCreditedAsOnCrewCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>309, 26</value>
+  </data>
+  <data name="RetainCreditedAsOnCrewCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 17</value>
+  </data>
+  <data name="RetainCreditedAsOnCrewCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>203</value>
+  </data>
+  <data name="RetainCreditedAsOnCrewCheckBox.Text" xml:space="preserve">
+    <value>Behalte "Aufgeführt als"</value>
+  </data>
+  <data name="ParseCrewCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ParseCrewCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>201</value>
+  </data>
+  <data name="RetainOriginalCreditCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="RetainOriginalCreditCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 17</value>
+  </data>
+  <data name="RetainOriginalCreditCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>202</value>
+  </data>
+  <data name="RetainOriginalCreditCheckBox.Text" xml:space="preserve">
+    <value>Behalte "Individuelle Rolle"</value>
+  </data>
+  <data name="IncludePrefixOnOtherCreditsCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="IncludePrefixOnOtherCreditsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>646, 19</value>
+  </data>
+  <data name="IncludePrefixOnOtherCreditsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 30</value>
+  </data>
+  <data name="IncludePrefixOnOtherCreditsCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>205</value>
+  </data>
+  <data name="IncludePrefixOnOtherCreditsCheckBox.Text" xml:space="preserve">
+    <value>Füge Kategorie-Präfix
+bei "Other/Custom"-Rollen ein</value>
+  </data>
+  <data name="CapitalizeCustomRoleCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CapitalizeCustomRoleCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>455, 26</value>
+  </data>
+  <data name="CapitalizeCustomRoleCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 17</value>
+  </data>
+  <data name="CapitalizeCustomRoleCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>204</value>
+  </data>
+  <data name="CapitalizeCustomRoleCheckBox.Text" xml:space="preserve">
+    <value>Schreibe "Individuelle Rolle" groß</value>
+  </data>
+  <data name="CrewSettingsGroupBox.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="CrewGenerateButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>665, 397</value>
+  </data>
+  <data name="CrewGenerateButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 23</value>
+  </data>
+  <data name="CrewGenerateButton.TabIndex" type="System.Int32, mscorlib">
+    <value>216</value>
+  </data>
+  <data name="CrewGenerateButton.Text" xml:space="preserve">
+    <value>Kopiere Crew in Zwischenablage</value>
+  </data>
+  <data name="LogWebBrowser.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="TabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="SettingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 20</value>
+  </data>
+  <data name="SettingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Einstellungen</value>
+  </data>
+  <data name="FirstnamePrefixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>318, 22</value>
+  </data>
+  <data name="FirstnamePrefixesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Vornamen-Präfixe</value>
+  </data>
+  <data name="LastnamePrefixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>318, 22</value>
+  </data>
+  <data name="LastnamePrefixesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nachnamen-&amp;Präfixe</value>
+  </data>
+  <data name="LastnameSuffixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>318, 22</value>
+  </data>
+  <data name="LastnameSuffixesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nachnamen-&amp;Suffixe</value>
+  </data>
+  <data name="KnownNamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>318, 22</value>
+  </data>
+  <data name="KnownNamesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Bekannte Namen</value>
+  </data>
+  <data name="IMDbToDVDProfilerTransformationDataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>318, 22</value>
+  </data>
+  <data name="IMDbToDVDProfilerTransformationDataToolStripMenuItem.Text" xml:space="preserve">
+    <value>"&amp;IMDb nach DVDProfiler"-Umwandlungsdaten</value>
+  </data>
+  <data name="IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>318, 22</value>
+  </data>
+  <data name="IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ignoriere "&amp;Custom" in IMDb-Kategorie</value>
+  </data>
+  <data name="IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>318, 22</value>
+  </data>
+  <data name="IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ignoriere IMDb-Kategorie in "&amp;Other"</value>
+  </data>
+  <data name="ForcedFakeBirthYearsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>318, 22</value>
+  </data>
+  <data name="ForcedFakeBirthYearsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Erzwungene &amp;Fake-Geburtsjahre</value>
+  </data>
+  <data name="EditConfigFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 20</value>
+  </data>
+  <data name="EditConfigFilesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bearbeite &amp;Konfigurationsdatei</value>
+  </data>
+  <data name="ReadmeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 22</value>
+  </data>
+  <data name="ReadmeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Lies mich</value>
+  </data>
+  <data name="AboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 22</value>
+  </data>
+  <data name="AboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Über Cast/Crew Edit 2</value>
+  </data>
+  <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hilfe</value>
+  </data>
+  <data name="PersonsInLocalCacheLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="PersonsInLocalCacheLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>441, 490</value>
+  </data>
+  <data name="PersonsInLocalCacheLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>405</value>
+  </data>
+  <data name="PersonsInLocalCacheTextLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="PersonsInLocalCacheTextLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="PersonsInLocalCacheTextLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>296, 490</value>
+  </data>
+  <data name="PersonsInLocalCacheTextLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 13</value>
+  </data>
+  <data name="PersonsInLocalCacheTextLabel.Text" xml:space="preserve">
+    <value>Personen im lokalen Cache:</value>
+  </data>
+  <data name="BirthYearsInLocalCacheLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BirthYearsInLocalCacheLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>253, 490</value>
+  </data>
+  <data name="BirthYearsInLocalCacheLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>404</value>
+  </data>
+  <data name="BirthYearsInLocalCacheTextLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="BirthYearsInLocalCacheTextLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BirthYearsInLocalCacheTextLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 13</value>
+  </data>
+  <data name="BirthYearsInLocalCacheTextLabel.Text" xml:space="preserve">
+    <value>Geburtsjahre im lokalen Cache:</value>
+  </data>
+  <data name="ReApplySettingsFiltersButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ReApplySettingsFiltersButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>489, 485</value>
+  </data>
+  <data name="ReApplySettingsFiltersButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 23</value>
+  </data>
+  <data name="ReApplySettingsFiltersButton.TabIndex" type="System.Int32, mscorlib">
+    <value>401</value>
+  </data>
+  <data name="ReApplySettingsFiltersButton.Text" xml:space="preserve">
+    <value>Wende Einstellungen/Filter erneut an</value>
+  </data>
+  <data name="GetBirthYearsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="GetBirthYearsButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>777, 485</value>
+  </data>
+  <data name="GetBirthYearsButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 23</value>
+  </data>
+  <data name="GetBirthYearsButton.TabIndex" type="System.Int32, mscorlib">
+    <value>403</value>
+  </data>
+  <data name="GetBirthYearsButton.Text" xml:space="preserve">
+    <value>Hole Geburtsjahre</value>
+  </data>
+  <data name="GetHeadshotsButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>690, 485</value>
+  </data>
+  <data name="GetHeadshotsButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 23</value>
+  </data>
+  <data name="GetHeadshotsButton.TabIndex" type="System.Int32, mscorlib">
+    <value>402</value>
+  </data>
+  <data name="GetHeadshotsButton.Text" xml:space="preserve">
+    <value>Hole Photos</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAIAICAQAAAABADoAgAAJgAAABAQEAAAAAQAKAEAAA4DAAAoAAAAIAAAAEAAAAABAAQAAAAAAAAC
+        AAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAgAAAgAAAAICAAIAAAACAAIAAgIAAAICAgADAwMAAAAD/AAD/
+        AAAA//8A/wAAAP8A/wD//wAA////AIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiI
+        iIiIiIiIiIiIiIiIiIiIiIiIiIgAAACIiIiIiIiIiIiIiIiAAAAACIiIiIiIiIiIiIiIAAAAAACIiIiI
+        iIiIiIiIiAAIiIAACIiIiIiIiIiIiIgACIiIAAiIiIiIiIiIiIiIiIiIiAAIiIiIiIiIiIiIiIiAAAAA
+        CIiIiIiIiIiIiIiIAAAAAIiIiIiIiIiIiIiIgAAAAAiIiIiIiIiIiIiIiIAAiIiIiIiIiIiIiIiIiIiA
+        AIiIiIiIiIiAAAAIiIiIiAAIiIiIiIiAAAAAAAiIiIgAAAAAiIiIgAAAAAAAiIiIgAAAAIiIiIAAiIgA
+        AIiIiIgAAAiIiIiAAIiIgAAIiIiIiIiIiIiIgACIiIgACIiIiIiIiIiIiIAAiIiIAAiIiIiIiIiIiIiA
+        AIiIiAAIiIiIiIiIiIiIgACIiIAACIiIiIiIiIiIiIAAiIiAAIiIiIiIiIiIiIiAAIiAAAiIiIiIiIiI
+        iIiIgACAAACIiIiIiIiIiIiIiIAAAAAIiIiIiIiIiIiIiIiAAACIiIiIiIiIiIiIiIiIgACIiIiIiIiI
+        iIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAoAAAAEAAAACAAAAABAAQAAAAAAIAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAgAAAgAAAAICAAIAA
+        AACAAIAAgIAAAMDAwACAgIAAAAD/AAD/AAAA//8A/wAAAP8A/wD//wAA////AHd3d3d3d3d3d3d3d3AA
+        B3d3d3d3AAAAB3d3d3cHd3AHd3d3d3cAAAd3d3d3cAAAd3d3d3dwB3d3cAAHd3cAAHdwAAB3d3AAd3AH
+        cAd3d3d3cAdwB3d3d3dwB3AHd3d3d3AHAHd3d3d3cAAAd3d3d3dwAHd3d3d3d3d3d3d3d3d3AAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Cast/Crew Edit 2 For TV Shows - Darsteller &amp; Crew</value>
+  </data>
+</root>

@@ -1,0 +1,59 @@
+
+WARNUNG: Führe "Check for Duplicates in Cast/Crew Edit 2 Cache" und "Cast/Crew Edit 2" NICHT zur 
+         gleichen Zeit aus.
+
+
+
+DVD Profiler kann Leute nur duch vier Kriterien unterscheiden:
+Nachname
+Vorname
+Mittelname
+Geburtsjahr
+
+Wenn diese vier Dinge gleich sind, kann DVD Profiler zwei Leute nicht auseinander halten.
+
+"Check for Duplicates in Cast/Crew Edit 2 Cache" hilft dir, solche möglichen Kollisionen zu finden.
+
+In dem Tab "Everything Identical" sieht man alle Einträge, welche solche fehlerhaften Zuordnungen
+sein könnten.
+
+"Könnten", weil mit der Einführung von Fake-Geburtsjahren die IMDb-ID des/der Darsteller/in
+genommen wird.
+
+Der Vergleich, ob zwei Darsteller miteinander kollidieren könnten wurd unter Ausschluss des Fake-
+Geburtsjahres gemacht und guckt nur auf die "echten" Daten.
+
+Aber auch IMDb ist nicht perfekt. Manchmal erstellen sie eine neue Darsteller-Seite für einen
+Darsteller, der schon existiert.
+
+Wenn sie ihren Fehler bemerken, wird eine der IDs auf die andere weitergeleitet, was für den 
+Benutzer ziemlich transparent abläuft (man sieht es nur in der URL der Webseite).
+
+Wenn IMDb ihren Fehler bemerkt hat, könnte es aber sein, dass du bereits beide IDs in deinem
+lokalen Cache hast. 
+
+Bis jetzt war das aufgrund des Konzepts von DVD Profiler kein Problem. Es hat einfach diese
+beiden Einträge wieder zusammen geführt.
+
+Mit der Einführung von Fake-geburtsjahren kann es aber passieren, dass diese eine Person als
+zwei Personen in deiner lokalen Datenbank geführt wird.
+
+Hier ist ein Beispiel: Der Darsteller Benjamin Hoffman war unter der ID nm2200880 und nm1887263
+in meiner lokalen Datenbank gelistet, aber beide IDs führten zur letzteren, siehe
+http://www.imdb.de/name/nm2200880/
+
+Um diese möglichweise identischen Leute zu finden, muss du zum "Everything Identical"-Tab wechseln
+und prüfen, ob die Paare eigentlich nur eine Person sind. Wenn ja, dann entferne einfach die
+veraltete ID.
+
+Wenn diese veraltete ID bereits ein Fake-geburtsjahr zugeordnet hat, solltest du deinen DVD 
+Profiler prüfen und dort die Darsteller ggf. auch wieder zusammenführen.
+
+Ein weiterer interessanter Fall war Elizabeth Rodriguez, welche ich als nm1879985 und nm3318694 
+hatte, aber welche mich beide zu nm0735300 führten, welche ich nicht hatte.
+
+Also habe ich "Check for Duplicates in Cast/Crew Edit 2 Cache" gespeichert und geschlossen,
+"Cast/Crew Edit 2" geöffnet und eines ihrer Werke gescannt, welches wenige Darsteller hatte
+(aus Zeitspargründen), in ihrem Fall "Beadhead" http://www.imdb.com/title/tt0165634/
+
+Nun hatte ich drei IDs von ihr in meinem Cache und konnte die beiden veraltetet sicher entfernen.

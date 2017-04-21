@@ -1,0 +1,1232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<IMDbToDVDProfilerCrewRoleTransformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <CreditTypeList>
+        <CreditType>
+            <IMDbCreditType>Directed by</IMDbCreditType>
+            <DVDProfilerCreditType>Direction</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype />
+                    <DVDProfilerCreditSubtype>Director</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Director</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>directed by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Director</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Writing credits</IMDbCreditType>
+            <DVDProfilerCreditType>Writing</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>original material by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Original Material By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>screenwriter</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Screenwriter</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>screenplay</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Screenwriter</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>teleplay</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Screenwriter</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>writer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Writer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>written by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Writer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>original characters by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Original Characters By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>created by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Created By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>story by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Story By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>story created by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Story By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>screen story by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Story By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>story</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Story By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype StartsWith="true">characters</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Original Characters By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>creator</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Created By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype StartsWith="true">novel</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Original Material By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype StartsWith="true">book</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Original Material By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype StartsWith="true">short story</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Original Material By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype StartsWith="true">graphic novel</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Original Material By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype StartsWith="true">character</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Original Characters By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>screen story</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Screenwriter</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>Novels</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Original Material By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Produced by</IMDbCreditType>
+            <DVDProfilerCreditType>Production</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>producer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Producer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>produced by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Producer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>executive producer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Executive Producer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>co-producer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Custom</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole>Co-Producer</DVDProfilerCustomRole>
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Cinematography by</IMDbCreditType>
+            <DVDProfilerCreditType>Cinematography</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype />
+                    <DVDProfilerCreditSubtype>Director of Photography</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>director of photography</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Director of Photography</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>cinematographer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Cinematographer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>cinematographer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Cinematographer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>photographed by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Cinematographer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>photography by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Cinematographer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>lighting &amp; photography by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Cinematographer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Film Editing by</IMDbCreditType>
+            <DVDProfilerCreditType>Film Editing</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype />
+                    <DVDProfilerCreditSubtype>Film Editor</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>film editor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Film Editor</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>edited by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Film Editor</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Original Music by</IMDbCreditType>
+            <DVDProfilerCreditType>Music</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype />
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>composer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>music by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>music composed by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>score by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>score composed by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>song writer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Song Writer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>theme by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Theme By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>score</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>score by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype StartsWith="true">composer: song</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Song Writer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Sound Department</IMDbCreditType>
+            <DVDProfilerCreditType>Sound</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>sound</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>sound recording</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>sound recordist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>sound supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>recorded by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>sound designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>sound design</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>supervising sound editor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Supervising Sound Editor</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>supervising editor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Supervising Sound Editor</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>sound editor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound Editor</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>sound re-recording mixer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound Re-Recording Mixer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>re-recording mixer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound Re-Recording Mixer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>sound mixing</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound Re-Recording Mixer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>principal sound mixer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound Re-Recording Mixer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>sound re-recording</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound Re-Recording Mixer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>sound re-recording engineer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound Re-Recording Mixer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>sound re-recordist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Sound Re-Recording Mixer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>production sound mixer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Production Sound Mixer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>production mixer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Production Sound Mixer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>location sound mixer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Production Sound Mixer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>sound mixer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Production Sound Mixer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Art Direction by</IMDbCreditType>
+            <DVDProfilerCreditType>Art</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype />
+                    <DVDProfilerCreditSubtype>Art Director</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>art director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Art Director</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>supervising art director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Art Director</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Production Design by</IMDbCreditType>
+            <DVDProfilerCreditType>Art</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype />
+                    <DVDProfilerCreditSubtype>Production Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>production designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Production Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Costume Design by</IMDbCreditType>
+            <DVDProfilerCreditType>Art</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype />
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>costume design</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>costume designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Costume and Wardrobe Department</IMDbCreditType>
+            <DVDProfilerCreditType>Art</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>costume designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>costumes</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>costumes by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>costume supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>gowns</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>gowns by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>wardrobe</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>wardrobe by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>wardrobe designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>wardrobe supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Makeup Department</IMDbCreditType>
+            <DVDProfilerCreditType>Art</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>make-up artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>makeup artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>chief make-up artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>chief makeup artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>department head</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>key make-up</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>key makeup</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>key make-up artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>key makeup artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>key make-up artist &amp; hairstylist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>key makeup artist &amp; hairstylist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>lead make-up artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>lead makeup artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>make-up</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>makeup</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>make-up and hair designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>makeup and hair designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>make-up designe</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>makeup designe</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>make-up effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>makeup effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special makeup effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special make-up effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special makeup effects by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special make-up effects by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>creature design</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Creature Design</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>creature designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Creature Design</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Visual Effects by</IMDbCreditType>
+            <DVDProfilerCreditType>Art</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>visual effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>digital effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special visual effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>visual effects designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>digital effects designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special effects designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special visual effects designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>visual effects supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>digital effects supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special effects supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special visual effects supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>visual effects director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>digital effects director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special effects director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special visual effects director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Special Effects by</IMDbCreditType>
+            <DVDProfilerCreditType>Art</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>visual effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>digital effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special visual effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>visual effects designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>digital effects designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special effects designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special visual effects designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>visual effects supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>digital effects supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special effects supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special visual effects supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>visual effects director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>digital effects director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special effects director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special visual effects director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Art Department</IMDbCreditType>
+            <DVDProfilerCreditType>Art</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>art director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Art Director</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>supervising art director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Art Director</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>production designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Production Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>costume design</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>costume designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>costumes</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>costumes by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>costume supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>gowns</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>gowns by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>wardrobe</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>wardrobe by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>wardrobe designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>wardrobe supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Costume Designer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>make-up artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>makeup artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>chief make-up artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>chief makeup artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>department head</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>key make-up</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>key makeup</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>key make-up artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>key makeup artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>key make-up artist &amp; hairstylist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>key makeup artist &amp; hairstylist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>lead make-up artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>lead makeup artist</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>make-up</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>makeup</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>make-up and hair designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>makeup and hair designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>make-up designe</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>makeup designe</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Artist</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>make-up effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>makeup effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special makeup effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special make-up effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special makeup effects by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special make-up effects by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Make-up Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>visual effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>digital effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special visual effects</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>visual effects designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>digital effects designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special effects designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special visual effects designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>visual effects supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>digital effects supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special effects supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special visual effects supervisor</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>visual effects director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>digital effects director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special visual effects director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>special visual effects director</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Visual Effects</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>creature design</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Creature Design</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>creature designer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Creature Design</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Music Department</IMDbCreditType>
+            <DVDProfilerCreditType>Music</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>composer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>music by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>music composed by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>score by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>score composed by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>song writer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Song Writer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>theme by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Theme By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>score</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Theme By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>score by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype StartsWith="true">composer: song</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Song Writer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+        <CreditType>
+            <IMDbCreditType>Music by</IMDbCreditType>
+            <DVDProfilerCreditType>Music</DVDProfilerCreditType>
+            <CreditSubtypeList>
+                <CreditSubtype>
+                    <IMDbCreditSubtype />
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>composer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>music by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>music composed by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>score by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>score composed by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>song writer</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Song Writer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>theme by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Theme By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>score</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Theme By</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype>score by</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Composer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+                <CreditSubtype>
+                    <IMDbCreditSubtype StartsWith="true">composer: song</IMDbCreditSubtype>
+                    <DVDProfilerCreditSubtype>Song Writer</DVDProfilerCreditSubtype>
+                    <DVDProfilerCustomRole />
+                </CreditSubtype>
+            </CreditSubtypeList>
+        </CreditType>
+    </CreditTypeList>
+</IMDbToDVDProfilerCrewRoleTransformation>  

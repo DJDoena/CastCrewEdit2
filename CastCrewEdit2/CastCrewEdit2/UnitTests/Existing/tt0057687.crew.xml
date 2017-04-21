@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<CrewInformation>
+  <Title>tt0057687</Title>
+  <Credits>
+    <Credit FirstName="Harald" MiddleName="" LastName="Reinl" BirthYear="0" CreditType="Direction" CreditSubtype="Director" />
+    <Credit FirstName="Karl" MiddleName="" LastName="May" BirthYear="0" CreditType="Writing" CreditSubtype="Original Material By" CreditedAs="" CustomRole="Novel" />
+    <Credit FirstName="Harald" MiddleName="G." LastName="Petersson" BirthYear="0" CreditType="Writing" CreditSubtype="Custom" CreditedAs="H.G. Petersson" />
+    <Credit FirstName="Horst" MiddleName="" LastName="Wendlandt" BirthYear="0" CreditType="Production" CreditSubtype="Producer" CreditedAs="" />
+    <Credit FirstName="Martin" MiddleName="" LastName="Böttcher" BirthYear="0" CreditType="Music" CreditSubtype="Composer" />
+    <Credit FirstName="Ernst" MiddleName="W." LastName="Kalinke" BirthYear="0" CreditType="Cinematography" CreditSubtype="Director of Photography" />
+    <Credit FirstName="Hermann" MiddleName="" LastName="Haller" BirthYear="0" CreditType="Film Editing" CreditSubtype="Film Editor" />
+    <Credit FirstName="Vladimir" MiddleName="" LastName="Tadej" BirthYear="0" CreditType="Art" CreditSubtype="Production Designer" />
+    <Credit FirstName="Gerda" MiddleName="" LastName="Wegener" BirthYear="0" CreditType="Art" CreditSubtype="Make-up Artist" CreditedAs="" CustomRole="Makeup Artist" />
+    <Credit FirstName="Walter" MiddleName="" LastName="Wegener" BirthYear="0" CreditType="Art" CreditSubtype="Make-up Artist" CreditedAs="" CustomRole="Makeup Artist" />
+    <Credit FirstName="Erwin" MiddleName="" LastName="Gitt" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Production Manager" />
+    <Credit FirstName="Josip" MiddleName="" LastName="Lulic" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Production Manager: Second Unit" />
+    <Credit FirstName="Slavko" MiddleName="" LastName="Andres" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Assistant Director" />
+    <Credit FirstName="Stipe" MiddleName="" LastName="Delic" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Second Unit Director" />
+    <Credit FirstName="Charles" MiddleName="" LastName="Wakefield" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Assistant Director" />
+    <Credit FirstName="Fedor" MiddleName="" LastName="Jeler" BirthYear="0" CreditType="Sound" CreditSubtype="Sound" CreditedAs="" />
+    <Credit FirstName="Kreso" MiddleName="" LastName="Grcevic" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Cinematographer: Second Unit" />
+    <Credit FirstName="Irms" MiddleName="" LastName="Pauli" BirthYear="0" CreditType="Art" CreditSubtype="Custom" CreditedAs="" CustomRole="Costume Advisor" />
+    <Credit FirstName="Peter" MiddleName="" LastName="Fernandez" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="English Language Version" />
+  </Credits>
+</CrewInformation>

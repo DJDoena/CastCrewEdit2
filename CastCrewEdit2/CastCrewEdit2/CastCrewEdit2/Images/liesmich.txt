@@ -1,0 +1,12 @@
+﻿Der Ordner "CastCrewEdit2" enthält die Photos (sofern verfügbar) von Darstellern und Crew.
+Die Dateien sind nach dem IMDb-Code der Person benannt.
+
+Der Ordner "DVD Profiler" enthält die Photos (sofern verfügbar) von Darstellern und Crew.
+Die Dateien sind nach der DVD Profiler-Benamungskonvention benannt.
+Der Ordner wird geleert, wenn man den "Hole Photos"-Button drückt und wird dann mit den Photos des aktuellen IMDb-Titels
+gefüllt.
+
+Der Ordner "CCViewer" enthält die Photos (sofern verfügbar) von Darstellern und Crew.
+Die Dateien sind nach der CCViewer-Benamungskonvention benannt.
+Der Ordner wird geleert, wenn man den "Hole Photos"-Button drückt und wird dann mit den Photos des aktuellen IMDb-Titels
+gefüllt.
