@@ -57,8 +57,8 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
             }
             else
             {
-                TaskbarManager.Instance.SetProgressValue(Value, Max);
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
+                TaskbarManager.Instance.SetProgressValue(Value, Max);
             }
         }
     }

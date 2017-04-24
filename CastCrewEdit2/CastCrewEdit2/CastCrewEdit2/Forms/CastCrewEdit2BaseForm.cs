@@ -439,7 +439,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
         {
             if (TaskbarManager.IsPlatformSupported)
             {
-                TaskbarManager.Instance.SetProgressValue(ProgressValue, ProgressMax, Handle);
+                TaskbarManager.Instance.SetProgressValue(ProgressValue, ProgressMax);
             }
 
             TheProgressBar.Value = ProgressValue;
@@ -453,7 +453,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
         {
             if (TaskbarManager.IsPlatformSupported)
             {
-                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress, Handle);
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
+                TaskbarManager.Instance.OwnerHandle = IntPtr.Zero;
             }
 
             TheProgressBar.Value = 0;
@@ -476,8 +477,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
             if (TaskbarManager.IsPlatformSupported)
             {
-                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal, Handle);
-                TaskbarManager.Instance.SetProgressValue(ProgressValue, ProgressMax, Handle);
+                TaskbarManager.Instance.OwnerHandle = Handle;
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
+                TaskbarManager.Instance.SetProgressValue(ProgressValue, ProgressMax);
             }
 
             TheProgressBar.Minimum = ProgressValue;
