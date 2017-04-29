@@ -5,11 +5,11 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
     internal partial class EpisodesForm : CastCrewEdit2BaseForm
     {

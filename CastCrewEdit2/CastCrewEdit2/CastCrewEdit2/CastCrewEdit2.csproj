@@ -52,6 +52,13 @@
       <Link>Properties\CastCrewEdit2.AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CastCrewEditAdapterEventHandler.cs" />
+    <Compile Include="Extended\ExtendedCrewInformation.cs" />
+    <Compile Include="Extended\ExtendedCastInformation.cs" />
+    <Compile Include="Extended\ExtendedCastDivider.cs" />
+    <Compile Include="Extended\ExtendedCrewDivider.cs" />
+    <Compile Include="Extended\ExtendedSerializer.cs" />
+    <Compile Include="Extended\ExtendedCrewSorter.cs" />
+    <Compile Include="Extended\NoTypeAttributeXmlWriter.cs" />
     <Compile Include="Forms\CastCrewEdit2BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +70,8 @@
     </Compile>
     <Compile Include="Helper\BirthYearGetter.cs" />
     <Compile Include="Helper\CastLineProcessor.cs" />
+    <Compile Include="Extended\ExtendedCrewMember.cs" />
+    <Compile Include="Extended\ExtendedCastMember.cs" />
     <Compile Include="Helper\CrewLineProcessor.cs" />
     <Compile Include="Helper\FileNameType.cs" />
     <Compile Include="Helper\FirstNames.cs" />

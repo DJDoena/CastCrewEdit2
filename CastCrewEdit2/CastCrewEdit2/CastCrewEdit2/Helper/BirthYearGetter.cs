@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
     internal static class BirthYearGetter
     {

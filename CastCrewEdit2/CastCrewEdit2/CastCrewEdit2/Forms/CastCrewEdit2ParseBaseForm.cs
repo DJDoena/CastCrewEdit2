@@ -7,9 +7,10 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
     [ComVisible(true)]
     public class CastCrewEdit2ParseBaseForm : CastCrewEdit2BaseForm

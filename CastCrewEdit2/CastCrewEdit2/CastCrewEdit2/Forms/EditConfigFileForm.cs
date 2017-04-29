@@ -1,12 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
     internal partial class EditConfigFileForm : Form
     {
@@ -15,11 +12,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         public EditConfigFileForm(String fileName, String name)
         {
-            FileName = fileName;            
+            FileName = fileName;
             InitializeComponent();
             Text = String.Format(EditWindowNames.EditConfigFile, name);
             DialogResult = DialogResult.None;
-            using(StreamReader sr = new StreamReader(FileName))
+            using (StreamReader sr = new StreamReader(FileName))
             {
                 FileContent = sr.ReadToEnd().Trim();
             }
@@ -38,15 +35,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         private void SaveData()
         {
-            if(File.Exists(FileName + ".bak"))
+            if (File.Exists(FileName + ".bak"))
             {
                 File.Delete(FileName + ".bak");
             }
-            if(File.Exists(FileName))
+            if (File.Exists(FileName))
             {
                 File.Move(FileName, FileName + ".bak");
             }
-            using(StreamWriter sw = new StreamWriter(FileName))
+            using (StreamWriter sw = new StreamWriter(FileName))
             {
                 sw.Write(EditTextBox.Text.Trim());
             }
@@ -55,20 +52,20 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         private void OnEditConfigFileFormFormClosing(Object sender, FormClosingEventArgs e)
         {
-            if((DialogResult != DialogResult.Yes) && (DialogResult != DialogResult.No))
+            if ((DialogResult != DialogResult.Yes) && (DialogResult != DialogResult.No))
             {
-                if(FileContent != EditTextBox.Text)
+                if (FileContent != EditTextBox.Text)
                 {
                     DialogResult result;
 
                     result = MessageBox.Show(this, MessageBoxTexts.SaveData, MessageBoxTexts.SaveData, MessageBoxButtons.YesNoCancel
                         , MessageBoxIcon.Question);
-                    if(result == DialogResult.Cancel)
+                    if (result == DialogResult.Cancel)
                     {
                         e.Cancel = true;
                         return;
                     }
-                    else if(result == DialogResult.Yes)
+                    else if (result == DialogResult.Yes)
                     {
                         SaveData();
                     }
@@ -93,7 +90,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
         private void OnEditConfigFileFormLoad(Object sender, EventArgs e)
         {
             SuspendLayout();
-            if(Program.Settings.EditConfigFilesForm.WindowState == FormWindowState.Normal)
+            if (Program.Settings.EditConfigFilesForm.WindowState == FormWindowState.Normal)
             {
                 Left = Program.Settings.EditConfigFilesForm.Left;
                 Top = Program.Settings.EditConfigFilesForm.Top;
@@ -107,7 +104,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 Width = Program.Settings.EditConfigFilesForm.RestoreBounds.Width;
                 Height = Program.Settings.EditConfigFilesForm.RestoreBounds.Height;
             }
-            if(Program.Settings.EditConfigFilesForm.WindowState != FormWindowState.Minimized)
+            if (Program.Settings.EditConfigFilesForm.WindowState != FormWindowState.Minimized)
             {
                 WindowState = Program.Settings.EditConfigFilesForm.WindowState;
             }

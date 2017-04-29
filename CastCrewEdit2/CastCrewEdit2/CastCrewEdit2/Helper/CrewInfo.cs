@@ -1,7 +1,7 @@
 ﻿using System;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
     [Serializable()]
     public class CrewInfo : PersonInfo

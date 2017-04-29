@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
     internal class Name
     {

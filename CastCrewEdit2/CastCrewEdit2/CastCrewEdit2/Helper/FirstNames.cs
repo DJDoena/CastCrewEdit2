@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
     internal static class FirstNames
     {

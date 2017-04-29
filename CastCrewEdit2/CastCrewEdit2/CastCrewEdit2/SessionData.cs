@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 {
@@ -14,7 +16,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         public static void Serialize(String fileName)
         {
-            using(FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
+            using (FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 BinaryFormatter bf;
                 SessionData sd;
@@ -32,7 +34,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
         {
             try
             {
-                using(FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     BinaryFormatter bf;
                     SessionData sd;
@@ -42,12 +44,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                     IMDbParser.BirthYearCache = sd.BirthYearCache;
                     IMDbParser.HeadshotCache = new Dictionary<PersonInfo, FileInfo>(sd.HeadshotCache.Count);
                     CastCrewEdit2ParseBaseForm.FirstRunGetHeadShots = sd.FirstRunGetHeadShots;
-                    foreach(KeyValuePair<PersonInfo, FileInfo> kvp in sd.HeadshotCache)
+                    foreach (KeyValuePair<PersonInfo, FileInfo> kvp in sd.HeadshotCache)
                     {
-                        if(kvp.Value != null)
+                        if (kvp.Value != null)
                         {
                             kvp.Value.Refresh();
-                            if(kvp.Value.Exists)
+                            if (kvp.Value.Exists)
                             {
                                 IMDbParser.HeadshotCache.Add(kvp.Key, kvp.Value);
                             }

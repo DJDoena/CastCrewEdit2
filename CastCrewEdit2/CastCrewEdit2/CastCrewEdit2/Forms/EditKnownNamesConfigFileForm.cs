@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
     internal partial class EditKnownNamesConfigFileForm : Form
     {
@@ -103,7 +103,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
             sb = new StringBuilder();
             fullNames = new Dictionary<String, Boolean>(KnownNamesDataGridView.Rows.Count);
-            for(Int32 i = 0; i < KnownNamesDataGridView.Rows.Count-1;i++)
+            for (Int32 i = 0; i < KnownNamesDataGridView.Rows.Count - 1; i++)
             {
                 DataGridViewRow row;
                 DataGridViewCell cell;
@@ -195,7 +195,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             {
                 while (true)
                 {
-                    String line;                    
+                    String line;
 
                     line = sr.ReadLine();
                     if (line != null)

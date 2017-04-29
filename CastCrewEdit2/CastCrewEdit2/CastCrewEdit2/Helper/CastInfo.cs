@@ -1,7 +1,7 @@
 ﻿using System;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
     [Serializable()]
     public class CastInfo : PersonInfo
@@ -9,7 +9,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
         private static Int32 s_Identifier;
 
         public Int32 Identifier;
- 
+
         public String Role;
 
         public String Voice;

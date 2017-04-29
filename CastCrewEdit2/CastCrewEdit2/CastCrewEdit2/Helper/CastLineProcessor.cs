@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
     internal static class CastLineProcessor
     {
@@ -38,7 +38,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             castMember.FirstName = name.FirstName.ToString();
             castMember.MiddleName = name.MiddleName.ToString();
             castMember.LastName = name.LastName.ToString();
-            
+
             if (match.Groups[ColumnNames.Role].Success)
             {
                 String role = String.Empty;

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
     internal static class HeadshotGetter
     {

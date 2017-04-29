@@ -6,6 +6,8 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 
@@ -117,7 +119,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                     else if (args[i] == "embedded")
                     {
                         embedded = true;
-                    }                    
+                    }
                 }
 
                 MessageBoxTexts.Culture = Thread.CurrentThread.CurrentUICulture;

@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
     public delegate void SetProgress();
 

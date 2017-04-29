@@ -1,4 +1,4 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
     partial class EpisodesForm
     {

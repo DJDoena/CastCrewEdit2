@@ -149,13 +149,10 @@
   <data name="&gt;&gt;ParseVoiceOfCheckBox.Parent" xml:space="preserve">
     <value>CastSettingsGroupBox</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="MovieCastGenerateButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 23</value>
-  </data>
   <data name="&gt;&gt;TVShowScanPageButton.Parent" xml:space="preserve">
     <value>TVShowTab</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="TVShowUrlTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 8</value>
   </data>
@@ -189,11 +186,17 @@
   <data name="&gt;&gt;CreditTypeMusicCheckBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
   <data name="MovieTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
   <data name="&gt;&gt;MovieCastGenerateButton.Name" xml:space="preserve">
     <value>MovieCastGenerateButton</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="MovieCrewGenerateButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 23</value>
@@ -201,8 +204,8 @@
   <data name="&gt;&gt;MovieCastCrewTabControl.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="RetainCreditedAsOnCrewCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>219</value>
+  <data name="IgnoreCreditOnlyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 17</value>
   </data>
   <data name="&gt;&gt;MovieScanPageButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -252,6 +255,9 @@
   <data name="&gt;&gt;FirstnamePrefixesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="TVShowUrlTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="IgnoreScenesDeletedCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -267,8 +273,8 @@
   <data name="&gt;&gt;CopyTriviaToClipboardButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="GoofsTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="ReApplySettingsFiltersButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="CreditTypeProductionCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -300,11 +306,14 @@
   <data name="CapitalizeCustomRoleCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="IgnoreArchiveFootageCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 17</value>
+  </data>
+  <data name="&gt;&gt;MovieCastGenerateButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="&gt;&gt;CrewTab.Name" xml:space="preserve">
     <value>CrewTab</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
   </data>
   <data name="CreditTypeFilmEditingCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>228</value>
@@ -342,9 +351,6 @@
   <data name="CastTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>837, 370</value>
   </data>
-  <data name="BrowseButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;GoofsTab.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
@@ -352,7 +358,7 @@
     <value>Copy Crew to Clipboard</value>
   </data>
   <data name="AboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 22</value>
+    <value>166, 22</value>
   </data>
   <data name="&gt;&gt;BrowserSearchButton.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -363,8 +369,8 @@
   <data name="CopyTriviaToClipboardButton.TabIndex" type="System.Int32, mscorlib">
     <value>403</value>
   </data>
-  <data name="IMDbMovieUrlLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;MovieUrlTextBox.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="TriviaTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>828, 329</value>
@@ -396,14 +402,11 @@
   <data name="&gt;&gt;MenuStrip.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;GetBirthYearsButton.Name" xml:space="preserve">
-    <value>GetBirthYearsButton</value>
+  <data name="&gt;&gt;LastnamePrefixesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;BirthYearsInLocalCacheTextLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LastnamePrefixesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ParseRoleSlashCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>207</value>
@@ -423,8 +426,8 @@
   <data name="BirthYearsInLocalCacheLabel.TabIndex" type="System.Int32, mscorlib">
     <value>236</value>
   </data>
-  <data name="MovieCastGenerateButton.TabIndex" type="System.Int32, mscorlib">
-    <value>216</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Search Title:</value>
   </data>
   <data name="IgnoreGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 60</value>
@@ -438,8 +441,8 @@
   <data name="CapitalizeCustomRoleCheckBox.Text" xml:space="preserve">
     <value>Capitalize "Custom Role"</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>MainForm</value>
+  <data name="MenuStrip.Text" xml:space="preserve">
+    <value>menuStrip1</value>
   </data>
   <data name="MovieCastGenerateButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -450,14 +453,8 @@
   <data name="GoofsTextBox.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;TVShowSeasonsDataGridView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="CreditTypeProductionCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>226</value>
-  </data>
-  <data name="&gt;&gt;MovieUrlTextBox.ZOrder" xml:space="preserve">
-    <value>10</value>
   </data>
   <data name="&gt;&gt;IgnoreGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -467,9 +464,6 @@
   </data>
   <data name="&gt;&gt;IgnoreCreditOnlyCheckBox.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="CreditTypeCinematographyCheckBox.Text" xml:space="preserve">
-    <value>... "Cinematography" Credits</value>
   </data>
   <data name="GetBirthYearsButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 23</value>
@@ -537,8 +531,11 @@
   <data name="&gt;&gt;ParseRoleSlashCheckBox.Parent" xml:space="preserve">
     <value>CastSettingsGroupBox</value>
   </data>
-  <data name="MenuStrip.Text" xml:space="preserve">
-    <value>menuStrip1</value>
+  <data name="&gt;&gt;MenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CreditTypeCinematographyCheckBox.Text" xml:space="preserve">
+    <value>... "Cinematography" Credits</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>46</value>
@@ -585,14 +582,20 @@
   <data name="CreditTypeDirectionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 42</value>
   </data>
+  <data name="&gt;&gt;CreditTypeDirectionCheckBox.Name" xml:space="preserve">
+    <value>CreditTypeDirectionCheckBox</value>
+  </data>
   <data name="MovieCrewGenerateButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>661, 341</value>
+  </data>
+  <data name="&gt;&gt;BrowserUrlLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;BirthYearsInLocalCacheLabel.Parent" xml:space="preserve">
     <value>MovieTab</value>
   </data>
   <data name="KnownNamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="ReApplySettingsFiltersButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>435, 436</value>
@@ -627,8 +630,8 @@
   <data name="BrowserUrlComboBox.Items" xml:space="preserve">
     <value>http://akas.imdb.com/</value>
   </data>
-  <data name="&gt;&gt;MovieCrewDataGridView.Name" xml:space="preserve">
-    <value>MovieCrewDataGridView</value>
+  <data name="RetainCreditedAsOnCrewCheckBox.Text" xml:space="preserve">
+    <value>Retain "Credited As"</value>
   </data>
   <data name="MovieUrlTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -730,7 +733,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.CastCrewEdit2ParseBaseForm, CastCrewEdit2, Version=2.1.2.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.CastCrewEdit2ParseBaseForm, CastCrewEdit2, Version=2.1.3.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="CreditTypeCinematographyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 17</value>
@@ -741,26 +744,29 @@
   <data name="IgnoreUncreditedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 19</value>
   </data>
+  <data name="ExtendedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 20</value>
+  </data>
   <data name="IncludePrefixOnOtherCreditsCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="PersonsInLocalCacheLabel.TabIndex" type="System.Int32, mscorlib">
     <value>237</value>
   </data>
+  <data name="&gt;&gt;CopyExtendedCastToClipboardToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;BrowseButton.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;CreditTypeDirectionCheckBox.Name" xml:space="preserve">
-    <value>CreditTypeDirectionCheckBox</value>
+  <data name="RetainOriginalCreditCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>148, 26</value>
   </data>
   <data name="&gt;&gt;ReApplySettingsFiltersButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;IgnoreArchiveFootageCheckBox.Parent" xml:space="preserve">
     <value>IgnoreGroupBox</value>
-  </data>
-  <data name="BirthYearsInLocalCacheTextLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
   </data>
   <data name="&gt;&gt;IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Name" xml:space="preserve">
     <value>IgnoreIMDbCreditTypeInOtherToolStripMenuItem</value>
@@ -778,13 +784,13 @@
     <value>RetainCreditedAsOnCastCheckBox</value>
   </data>
   <data name="SettingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 20</value>
+    <value>61, 20</value>
   </data>
   <data name="CreditTypeDirectionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 17</value>
   </data>
-  <data name="&gt;&gt;RetainOriginalCreditCheckBox.Name" xml:space="preserve">
-    <value>RetainOriginalCreditCheckBox</value>
+  <data name="GoofsTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
   </data>
   <data name="IgnoreArchiveFootageCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>212</value>
@@ -801,8 +807,8 @@
   <data name="&gt;&gt;IncludePrefixOnOtherCreditsCheckBox.Name" xml:space="preserve">
     <value>IncludePrefixOnOtherCreditsCheckBox</value>
   </data>
-  <data name="RetainOriginalCreditCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 17</value>
+  <data name="&gt;&gt;GetBirthYearsButton.Name" xml:space="preserve">
+    <value>GetBirthYearsButton</value>
   </data>
   <data name="AboutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;About</value>
@@ -820,7 +826,7 @@
     <value>Lastname &amp;Suffixes</value>
   </data>
   <data name="checkForUpdateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 22</value>
+    <value>166, 22</value>
   </data>
   <data name="CopyGoofsToClipboardButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -837,14 +843,17 @@
   <data name="LogTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
+  <data name="&gt;&gt;RetainOriginalCreditCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;TVShowTab.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>295, 22</value>
   </data>
-  <data name="&gt;&gt;MenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="MovieScanPageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 23</value>
   </data>
   <data name="ParseCrewCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 26</value>
@@ -861,8 +870,8 @@
   <data name="BrowserTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>860, 465</value>
   </data>
-  <data name="GetHeadshotsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="CopyExtendedCrewToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Copy Extended Crew to Clipboard</value>
   </data>
   <data name="&gt;&gt;WebBrowser.Parent" xml:space="preserve">
     <value>BrowserTab</value>
@@ -872,6 +881,9 @@
   </data>
   <data name="ScanForEpisodesButton.Text" xml:space="preserve">
     <value>Search Episodes</value>
+  </data>
+  <data name="MovieCastCrewTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>845, 396</value>
   </data>
   <data name="PersonsInLocalCacheLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 13</value>
@@ -922,13 +934,16 @@
     <value>32</value>
   </data>
   <data name="restoreToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 22</value>
+    <value>113, 22</value>
   </data>
   <data name="ScanForEpisodesButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="&gt;&gt;CrewIncludingGroupBox.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="&gt;&gt;EditConfigFilesToolStripMenuItem.Name" xml:space="preserve">
+    <value>EditConfigFilesToolStripMenuItem</value>
   </data>
   <data name="BrowserUrlLabel.Text" xml:space="preserve">
     <value>URL:</value>
@@ -939,8 +954,8 @@
   <data name="&gt;&gt;CreditTypeMusicCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;BrowserUrlComboBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="PersonsInLocalCacheLabel.Text" xml:space="preserve">
+    <value>00000</value>
   </data>
   <data name="&gt;&gt;TVShowUrlTextBox.Name" xml:space="preserve">
     <value>TVShowUrlTextBox</value>
@@ -950,9 +965,6 @@
   </data>
   <data name="&gt;&gt;CrewTab.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="&gt;&gt;MovieTVShowTabControl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="BirthYearsInLocalCacheLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 13</value>
@@ -1002,8 +1014,8 @@
   <data name="&gt;&gt;IgnoreUnconfirmedCheckBox.Parent" xml:space="preserve">
     <value>IgnoreGroupBox</value>
   </data>
-  <data name="&gt;&gt;IncludePrefixOnOtherCreditsCheckBox.Parent" xml:space="preserve">
-    <value>CrewSettingsGroupBox</value>
+  <data name="&gt;&gt;BrowserUrlLabel.Name" xml:space="preserve">
+    <value>BrowserUrlLabel</value>
   </data>
   <data name="MovieScanPageButton.Text" xml:space="preserve">
     <value>Scan Page</value>
@@ -1011,11 +1023,17 @@
   <data name="&gt;&gt;BirthYearsInLocalCacheLabel.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="GetHeadshotsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="CapitalizeCustomRoleCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>220</value>
   </data>
   <data name="TVShowUrlTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>301</value>
+  </data>
+  <data name="&gt;&gt;WebBrowser.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="ParseCastCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1025,9 +1043,6 @@
   </data>
   <data name="&gt;&gt;CustomCreditsCheckBox.Parent" xml:space="preserve">
     <value>CrewIncludingGroupBox</value>
-  </data>
-  <data name="RetainOriginalCreditCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 26</value>
   </data>
   <data name="&gt;&gt;IgnoreUnconfirmedCheckBox.Name" xml:space="preserve">
     <value>IgnoreUnconfirmedCheckBox</value>
@@ -1071,11 +1086,11 @@
   <data name="&gt;&gt;RetainCreditedAsOnCrewCheckBox.Parent" xml:space="preserve">
     <value>CrewSettingsGroupBox</value>
   </data>
+  <data name="&gt;&gt;CopyExtendedCastToClipboardToolStripMenuItem.Name" xml:space="preserve">
+    <value>CopyExtendedCastToClipboardToolStripMenuItem</value>
+  </data>
   <data name="BrowseButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
-  </data>
-  <data name="ParseVoiceOfCheckBox.Text" xml:space="preserve">
-    <value>Parse "Voice of" into "(voice)"</value>
   </data>
   <data name="MenuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -1086,11 +1101,8 @@
   <data name="&gt;&gt;CopyGoofsToClipboardButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="IMDbMovieUrlLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 11</value>
-  </data>
   <data name="ForcedFakeBirthYearsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="&gt;&gt;ParseCastCheckBox.Name" xml:space="preserve">
     <value>ParseCastCheckBox</value>
@@ -1134,14 +1146,14 @@
   <data name="MovieScanPageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="IncludePrefixOnOtherCreditsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>584, 19</value>
-  </data>
   <data name="IgnoreLanguageVersionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 17</value>
   </data>
   <data name="ParseCrewCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 17</value>
+  </data>
+  <data name="CopyExtendedCrewToClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 22</value>
   </data>
   <data name="&gt;&gt;MovieUrlTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1161,17 +1173,14 @@
   <data name="&gt;&gt;MenuStrip.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;MovieCastGenerateButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
   </data>
   <data name="&gt;&gt;LogTab.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ParseCastCheckBox.Parent" xml:space="preserve">
     <value>CastSettingsGroupBox</value>
-  </data>
-  <data name="CustomCreditsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
   </data>
   <data name="CreditTypeMusicCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1212,8 +1221,8 @@
   <data name="MovieCrewGenerateButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="IgnoreArchiveFootageCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 17</value>
+  <data name="ProgressBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>868, 23</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 13</value>
@@ -1252,6 +1261,9 @@
   <data name="&gt;&gt;ProgressBar.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="&gt;&gt;BrowseButton.Parent" xml:space="preserve">
+    <value>BrowserTab</value>
+  </data>
   <data name="&gt;&gt;MovieTVShowTabControl.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
@@ -1259,7 +1271,7 @@
     <value>4</value>
   </data>
   <data name="LastnamePrefixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="&gt;&gt;BrowserUrlLabel.Parent" xml:space="preserve">
     <value>BrowserTab</value>
@@ -1273,8 +1285,11 @@
   <data name="&gt;&gt;restoreToolStripMenuItem.Name" xml:space="preserve">
     <value>restoreToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;RetainCreditedAsOnCrewCheckBox.Name" xml:space="preserve">
-    <value>RetainCreditedAsOnCrewCheckBox</value>
+  <data name="&gt;&gt;CreditTypeOtherCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IgnoreUnconfirmedCheckBox.Text" xml:space="preserve">
+    <value>... "(unconfirmed)"</value>
   </data>
   <data name="&gt;&gt;ParseRoleSlashCheckBox.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -1315,6 +1330,9 @@
   <data name="&gt;&gt;CopyGoofsToClipboardButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="CreditTypeProductionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>279, 42</value>
+  </data>
   <data name="&gt;&gt;ParseCrewCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1322,10 +1340,7 @@
     <value>True</value>
   </data>
   <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
-  </data>
-  <data name="TVShowUrlTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>613, 20</value>
+    <value>44, 20</value>
   </data>
   <data name="&gt;&gt;BrowserSearchButton.Name" xml:space="preserve">
     <value>BrowserSearchButton</value>
@@ -1336,8 +1351,8 @@
   <data name="&gt;&gt;IgnoreLanguageVersionCheckBox.Parent" xml:space="preserve">
     <value>IgnoreGroupBox</value>
   </data>
-  <data name="&gt;&gt;RetainOriginalCreditCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;KnownNamesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="TVShowTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -1351,14 +1366,17 @@
   <data name="&gt;&gt;TVShowUrlTextBox.Parent" xml:space="preserve">
     <value>TVShowTab</value>
   </data>
+  <data name="&gt;&gt;PersonsInLocalCacheTextLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="ReApplySettingsFiltersButton.Text" xml:space="preserve">
     <value>Re-Apply Settings/Filters</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Search Title:</value>
+  <data name="&gt;&gt;MovieCrewDataGridView.Name" xml:space="preserve">
+    <value>MovieCrewDataGridView</value>
   </data>
-  <data name="&gt;&gt;KnownNamesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;RetainCreditedAsOnCrewCheckBox.Name" xml:space="preserve">
+    <value>RetainCreditedAsOnCrewCheckBox</value>
   </data>
   <data name="ReApplySettingsFiltersButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1384,8 +1402,8 @@
   <data name="IgnoreScenesDeletedCheckBox.Text" xml:space="preserve">
     <value>... "(scenes deleted)"</value>
   </data>
-  <data name="&gt;&gt;MovieCastGenerateButton.Parent" xml:space="preserve">
-    <value>CastTab</value>
+  <data name="&gt;&gt;MovieTVShowTabControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="BirthYearsInLocalCacheLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>147, 441</value>
@@ -1420,9 +1438,6 @@
   <data name="&gt;&gt;TVShowSeasonsDataGridView.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="RetainCreditedAsOnCastCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="&gt;&gt;backupToolStripMenuItem.Name" xml:space="preserve">
     <value>backupToolStripMenuItem</value>
   </data>
@@ -1453,20 +1468,23 @@
   <data name="ReadmeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Read Me</value>
   </data>
+  <data name="IMDbMovieUrlLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="IMDbMovieUrlLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 13</value>
   </data>
   <data name="GetHeadshotsButton.TabIndex" type="System.Int32, mscorlib">
     <value>234</value>
   </data>
-  <data name="&gt;&gt;BrowserUrlLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="CreditTypeMusicCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>229</value>
   </data>
   <data name="&gt;&gt;IgnoreGroupBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;GetHeadshotsButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="MovieCastGenerateButton.TabIndex" type="System.Int32, mscorlib">
+    <value>216</value>
   </data>
   <data name="MovieCrewDataGridView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -1474,17 +1492,14 @@
   <data name="BrowseButton.TabIndex" type="System.Int32, mscorlib">
     <value>102</value>
   </data>
-  <data name="IgnoreScenesDeletedCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>211</value>
-  </data>
-  <data name="IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ignore IMDb Categroy in "&amp;Other"</value>
+  <data name="CustomCreditsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
   </data>
   <data name="GoofsTextBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
     <value>Both</value>
   </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="IMDbMovieUrlLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 11</value>
   </data>
   <data name="BrowseButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 23</value>
@@ -1497,9 +1512,6 @@
   </data>
   <data name="CreditTypeArtCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>231</value>
-  </data>
-  <data name="&gt;&gt;CastSettingsGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="RetainOriginalCreditCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>218</value>
@@ -1515,9 +1527,6 @@
   </data>
   <data name="BrowserTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
-  </data>
-  <data name="&gt;&gt;CreditTypeProductionCheckBox.ZOrder" xml:space="preserve">
-    <value>7</value>
   </data>
   <data name="CrewIncludingGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1543,8 +1552,8 @@
   <data name="PersonsInLocalCacheLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;CreditTypeOtherCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;TVShowSeasonsDataGridView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ProgressBar.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -1555,8 +1564,8 @@
   <data name="&gt;&gt;TriviaTab.Parent" xml:space="preserve">
     <value>MovieCastCrewTabControl</value>
   </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
+  <data name="ScanForEpisodesButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 23</value>
   </data>
   <data name="&gt;&gt;CreditTypeWritingCheckBox.Parent" xml:space="preserve">
     <value>CrewIncludingGroupBox</value>
@@ -1573,9 +1582,6 @@
   <data name="&gt;&gt;MovieTab.Parent" xml:space="preserve">
     <value>MovieTVShowTabControl</value>
   </data>
-  <data name="ScanForEpisodesButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 23</value>
-  </data>
   <data name="TVShowSeasonsDataGridView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -1585,8 +1591,8 @@
   <data name="IgnoreScenesDeletedCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="CreditTypeMusicCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>229</value>
+  <data name="&gt;&gt;PersonsInLocalCacheTextLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;checkForUpdateToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1604,7 +1610,7 @@
     <value>CreditTypeArtCheckBox</value>
   </data>
   <data name="FirstnamePrefixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="&gt;&gt;RetainCreditedAsOnCrewCheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -1639,6 +1645,9 @@
   <data name="&gt;&gt;ParseCastCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="LastnamePrefixesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lastname &amp;Prefixes</value>
+  </data>
   <data name="&gt;&gt;CastTab.Parent" xml:space="preserve">
     <value>MovieCastCrewTabControl</value>
   </data>
@@ -1660,8 +1669,8 @@
   <data name="CreditTypeFilmEditingCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="IgnoreUnconfirmedCheckBox.Text" xml:space="preserve">
-    <value>... "(unconfirmed)"</value>
+  <data name="GoofsTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="ParseRoleSlashCheckBox.Text" xml:space="preserve">
     <value>Parse Roles with "/" into multiple lines</value>
@@ -1681,9 +1690,6 @@
   <data name="BrowserUrlComboBox.Items1" xml:space="preserve">
     <value>http://www.imdb.com/</value>
   </data>
-  <data name="&gt;&gt;BrowserUrlLabel.Name" xml:space="preserve">
-    <value>BrowserUrlLabel</value>
-  </data>
   <data name="BrowserUrlComboBox.Items2" xml:space="preserve">
     <value>http://www.imdb.de/</value>
   </data>
@@ -1699,9 +1705,6 @@
   <data name="&gt;&gt;CrewSettingsGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;PersonsInLocalCacheTextLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="ParseCrewCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1711,14 +1714,11 @@
   <data name="IgnoreCreditOnlyCheckBox.Text" xml:space="preserve">
     <value>... "(credit only)"</value>
   </data>
-  <data name="RetainCreditedAsOnCrewCheckBox.Text" xml:space="preserve">
-    <value>Retain "Credited As"</value>
-  </data>
   <data name="&gt;&gt;CreditTypeSoundCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="&gt;&gt;PersonsInLocalCacheLabel.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -1727,7 +1727,7 @@
     <value>BrowserUrlComboBox</value>
   </data>
   <data name="backupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 22</value>
+    <value>113, 22</value>
   </data>
   <data name="&gt;&gt;IgnoreLanguageVersionCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -1750,20 +1750,23 @@
   <data name="CrewSettingsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>825, 61</value>
   </data>
-  <data name="ReApplySettingsFiltersButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+  <data name="&gt;&gt;BrowserSearchTextBox.Parent" xml:space="preserve">
+    <value>BrowserTab</value>
   </data>
   <data name="ScanForEpisodesButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>739, 436</value>
   </data>
-  <data name="MovieCastCrewTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>845, 396</value>
+  <data name="&gt;&gt;CastSettingsGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="MovieCrewGenerateButton.TabIndex" type="System.Int32, mscorlib">
     <value>232</value>
   </data>
   <data name="PersonsInLocalCacheLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;GetHeadshotsButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;CopyGoofsToClipboardButton.Parent" xml:space="preserve">
     <value>GoofsTab</value>
@@ -1777,8 +1780,8 @@
   <data name="TVShowScanPageButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="CrewTab.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
+  <data name="IncludePrefixOnOtherCreditsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>584, 19</value>
   </data>
   <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Help</value>
@@ -1801,11 +1804,14 @@
   <data name="BrowserUrlComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>101</value>
   </data>
+  <data name="&gt;&gt;sessionDataToolStripMenuItem.Name" xml:space="preserve">
+    <value>sessionDataToolStripMenuItem</value>
+  </data>
   <data name="&gt;&gt;GetBirthYearsButton.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;EditConfigFilesToolStripMenuItem.Name" xml:space="preserve">
-    <value>EditConfigFilesToolStripMenuItem</value>
+  <data name="ParseVoiceOfCheckBox.Text" xml:space="preserve">
+    <value>Parse "Voice of" into "(voice)"</value>
   </data>
   <data name="CapitalizeCustomRoleCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1815,6 +1821,9 @@
   </data>
   <data name="TVShowTab.Text" xml:space="preserve">
     <value>TV Show</value>
+  </data>
+  <data name="CopyExtendedCastToClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 22</value>
   </data>
   <data name="&gt;&gt;TVShowUrlTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1834,6 +1843,9 @@
   <data name="CreditTypeSoundCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>230</value>
   </data>
+  <data name="IgnoreUncreditedCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>209</value>
+  </data>
   <data name="TVShowScanPageButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 23</value>
   </data>
@@ -1843,17 +1855,14 @@
   <data name="IgnoreArchiveFootageCheckBox.Text" xml:space="preserve">
     <value>... "(archive footage)"</value>
   </data>
-  <data name="GoofsTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
   <data name="CreditTypeSoundCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="&gt;&gt;IgnoreUncreditedCheckBox.Parent" xml:space="preserve">
     <value>IgnoreGroupBox</value>
   </data>
-  <data name="&gt;&gt;BrowseButton.Parent" xml:space="preserve">
-    <value>BrowserTab</value>
+  <data name="MovieCastGenerateButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 23</value>
   </data>
   <data name="&gt;&gt;GoofsTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1863,6 +1872,9 @@
   </data>
   <data name="&gt;&gt;ParseVoiceOfCheckBox.Name" xml:space="preserve">
     <value>ParseVoiceOfCheckBox</value>
+  </data>
+  <data name="&gt;&gt;CopyExtendedCrewToClipboardToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="IncludePrefixOnOtherCreditsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>155, 30</value>
@@ -1949,7 +1961,7 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;ProgressBar.Type" xml:space="preserve">
-    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.ColorProgressBar, CastCrewEdit2Library, Version=2.1.2.0, Culture=neutral, PublicKeyToken=c87f42288e849a4f</value>
+    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.ColorProgressBar, CastCrewEdit2Library, Version=2.1.3.0, Culture=neutral, PublicKeyToken=c87f42288e849a4f</value>
   </data>
   <data name="CreditTypeSoundtrackCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>584, 42</value>
@@ -1985,6 +1997,9 @@
   <data name="&gt;&gt;IgnoreUnconfirmedCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;ExtendedToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;MenuStrip.Name" xml:space="preserve">
     <value>MenuStrip</value>
   </data>
@@ -1996,6 +2011,9 @@
   </data>
   <data name="&gt;&gt;CreditTypeSoundtrackCheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="RetainCreditedAsOnCrewCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>219</value>
   </data>
   <data name="ScanForEpisodesButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2027,11 +2045,8 @@
   <data name="backupToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Backup</value>
   </data>
-  <data name="&gt;&gt;sessionDataToolStripMenuItem.Name" xml:space="preserve">
-    <value>sessionDataToolStripMenuItem</value>
-  </data>
-  <data name="MovieScanPageButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 23</value>
+  <data name="BrowseButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 11</value>
@@ -2048,11 +2063,11 @@
   <data name="&gt;&gt;ForcedFakeBirthYearsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="TVShowUrlTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="IgnoreScenesDeletedCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>211</value>
   </data>
   <data name="LastnameSuffixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="PersonsInLocalCacheTextLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 13</value>
@@ -2066,11 +2081,14 @@
   <data name="CastTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
+  <data name="&gt;&gt;GoofsTextBox.Parent" xml:space="preserve">
+    <value>GoofsTab</value>
+  </data>
   <data name="&gt;&gt;IMDbMovieUrlLabel.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="ProgressBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>868, 23</value>
+  <data name="RetainOriginalCreditCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 17</value>
   </data>
   <data name="CreditTypeSoundtrackCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2091,16 +2109,16 @@
     <value>Bottom, Right</value>
   </data>
   <data name="EditConfigFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 20</value>
+    <value>99, 20</value>
   </data>
   <data name="&gt;&gt;MovieCastCrewTabControl.Name" xml:space="preserve">
     <value>MovieCastCrewTabControl</value>
   </data>
+  <data name="&gt;&gt;MovieCastGenerateButton.Parent" xml:space="preserve">
+    <value>CastTab</value>
+  </data>
   <data name="TVShowSeasonsDataGridView.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 35</value>
-  </data>
-  <data name="TVShowScanPageButton.Text" xml:space="preserve">
-    <value>Scan Page</value>
   </data>
   <data name="&gt;&gt;TriviaTextBox.Parent" xml:space="preserve">
     <value>TriviaTab</value>
@@ -2125,6 +2143,9 @@
   </data>
   <data name="CrewSettingsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
+  </data>
+  <data name="PersonsInLocalCacheTextLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="CopyTriviaToClipboardButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>661, 341</value>
@@ -2153,6 +2174,9 @@
   <data name="&gt;&gt;label1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="CopyExtendedCastToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Copy Extended Cast to Clipboard</value>
+  </data>
   <data name="ParseVoiceOfCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>206</value>
   </data>
@@ -2179,6 +2203,9 @@
   </data>
   <data name="TVShowTab.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="&gt;&gt;IncludePrefixOnOtherCreditsCheckBox.Parent" xml:space="preserve">
+    <value>CrewSettingsGroupBox</value>
   </data>
   <data name="&gt;&gt;ScanForEpisodesButton.Parent" xml:space="preserve">
     <value>TVShowTab</value>
@@ -2210,9 +2237,6 @@
   <data name="&gt;&gt;CreditTypeOtherCheckBox.Parent" xml:space="preserve">
     <value>CrewIncludingGroupBox</value>
   </data>
-  <data name="&gt;&gt;BrowserSearchTextBox.Parent" xml:space="preserve">
-    <value>BrowserTab</value>
-  </data>
   <data name="CreditTypeDirectionCheckBox.Text" xml:space="preserve">
     <value>... "Direction" Credits</value>
   </data>
@@ -2228,8 +2252,11 @@
   <data name="BrowserSearchButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="IgnoreUncreditedCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>209</value>
+  <data name="&gt;&gt;ExtendedToolStripMenuItem.Name" xml:space="preserve">
+    <value>ExtendedToolStripMenuItem</value>
+  </data>
+  <data name="TVShowUrlTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>613, 20</value>
   </data>
   <data name="&gt;&gt;ParseRoleSlashCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2240,8 +2267,8 @@
   <data name="&gt;&gt;IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="CreditTypeProductionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>279, 42</value>
+  <data name="&gt;&gt;CreditTypeProductionCheckBox.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="ParseVoiceOfCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2249,14 +2276,17 @@
   <data name="&gt;&gt;CopyTriviaToClipboardButton.Name" xml:space="preserve">
     <value>CopyTriviaToClipboardButton</value>
   </data>
-  <data name="PersonsInLocalCacheTextLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainForm</value>
   </data>
-  <data name="&gt;&gt;GoofsTextBox.Parent" xml:space="preserve">
-    <value>GoofsTab</value>
+  <data name="TVShowScanPageButton.Text" xml:space="preserve">
+    <value>Scan Page</value>
   </data>
-  <data name="LastnamePrefixesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lastname &amp;Prefixes</value>
+  <data name="&gt;&gt;CopyExtendedCrewToClipboardToolStripMenuItem.Name" xml:space="preserve">
+    <value>CopyExtendedCrewToClipboardToolStripMenuItem</value>
+  </data>
+  <data name="IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ignore IMDb Categroy in "&amp;Other"</value>
   </data>
   <data name="GoofsTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 6</value>
@@ -2270,8 +2300,8 @@
   <data name="CastSettingsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
   </data>
-  <data name="&gt;&gt;PersonsInLocalCacheTextLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="CrewTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
   </data>
   <data name="&gt;&gt;ProgressBar.Name" xml:space="preserve">
     <value>ProgressBar</value>
@@ -2281,6 +2311,9 @@
   </data>
   <data name="&gt;&gt;BrowserSearchButton.Parent" xml:space="preserve">
     <value>BrowserTab</value>
+  </data>
+  <data name="&gt;&gt;CreditTypeFilmEditingCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="TriviaTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -2315,9 +2348,6 @@
   <data name="BrowserUrlComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="IgnoreCreditOnlyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 17</value>
-  </data>
   <data name="&gt;&gt;TVShowSeasonsDataGridView.Parent" xml:space="preserve">
     <value>TVShowTab</value>
   </data>
@@ -2331,10 +2361,10 @@
     <value>Bottom, Left</value>
   </data>
   <data name="IMDbToDVDProfilerTransformationDataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 22</value>
+    <value>295, 22</value>
   </data>
-  <data name="&gt;&gt;WebBrowser.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="RetainCreditedAsOnCastCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="CreditTypeSoundtrackCheckBox.Text" xml:space="preserve">
     <value>... "Soundtrack" Credits</value>
@@ -2356,9 +2386,6 @@
   </data>
   <data name="CreditTypeSoundCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>114, 17</value>
-  </data>
-  <data name="PersonsInLocalCacheLabel.Text" xml:space="preserve">
-    <value>00000</value>
   </data>
   <data name="MovieCastCrewTabControl.TabIndex" type="System.Int32, mscorlib">
     <value>203</value>
@@ -2384,8 +2411,14 @@
   <data name="CreditTypeCinematographyCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>419, 42</value>
   </data>
+  <data name="&gt;&gt;BrowserUrlComboBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;RetainOriginalCreditCheckBox.Name" xml:space="preserve">
+    <value>RetainOriginalCreditCheckBox</value>
+  </data>
   <data name="ReadmeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 22</value>
+    <value>166, 22</value>
   </data>
   <data name="&gt;&gt;PersonsInLocalCacheTextLabel.Name" xml:space="preserve">
     <value>PersonsInLocalCacheTextLabel</value>
@@ -2407,6 +2440,9 @@
   </data>
   <data name="CreditTypeFilmEditingCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="ExtendedToolStripMenuItem.Text" xml:space="preserve">
+    <value>E&amp;xtended</value>
   </data>
   <data name="&gt;&gt;TVShowTab.Name" xml:space="preserve">
     <value>TVShowTab</value>
@@ -2441,8 +2477,8 @@
   <data name="CreditTypeOtherCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>223</value>
   </data>
-  <data name="&gt;&gt;CreditTypeFilmEditingCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="BirthYearsInLocalCacheTextLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="BrowserUrlLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 13</value>

@@ -7,11 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerXML;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version390;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
     internal static class DataGridViewHelper
     {
@@ -608,6 +609,86 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
         {
             CastInformation ci = new CastInformation();
 
+            CreateCastMember(dataGridView, title, log, useFakeBirthYears, addMessage, embedded, ci, (row) => new CastMember(), (row) => new Divider());
+
+            try
+            {
+                String xml = Utilities.CopyCastInformationToClipboard(ci, embedded);
+
+                Program.AdapterEventHandler.RaiseCastCompleted(xml);
+            }
+            catch (ExternalException)
+            {
+                MessageBox.Show(MessageBoxTexts.CopyToClipboardFailed, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        public static void CopyExtendedCastToClipboard(DataGridView dataGridView
+            , String title
+            , Log log
+            , Boolean useFakeBirthYears
+            , Action<MessageEntry> addMessage)
+        {
+            Func<DataGridViewRow, CastMember> createCastMember = (row) =>
+                    {
+                        ExtendedCastMember castMember = new ExtendedCastMember();
+
+                        castMember.ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString();
+
+                        return (castMember);
+                    }
+                ;
+
+            Func<DataGridViewRow, Divider> createCastDivider = (row) =>
+                    {
+                        ExtendedCastDivider castDivider = new ExtendedCastDivider();
+
+                        castDivider.ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString();
+
+                        return (castDivider);
+                    }
+                ;
+
+            ExtendedCastInformation ci = new ExtendedCastInformation();
+
+            if (dataGridView.Rows.Count > 0)
+            {
+                ci.ImdbLink = dataGridView.Rows[0].Cells[ColumnNames.Link].Value?.ToString();
+            }
+
+            CreateCastMember(dataGridView, title, log, useFakeBirthYears, addMessage, false, ci, createCastMember, createCastDivider);
+
+            try
+            {
+                CopyExtendedCastInformationToClipboard(ci);
+            }
+            catch (ExternalException)
+            {
+                MessageBox.Show(MessageBoxTexts.CopyToClipboardFailed, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        public static void CopyExtendedCastInformationToClipboard(ExtendedCastInformation castInformation)
+        {
+            Type[] addTypes = new[] { typeof(ExtendedCastMember), typeof(ExtendedCastDivider) };
+
+            ExtendedSerializer<ExtendedCastInformation> serializer = new ExtendedSerializer<ExtendedCastInformation>(addTypes, CastInformation.DefaultEncoding);
+
+            String xml = serializer.ToString(castInformation);
+
+            Clipboard.SetDataObject(xml, true, 4, 250);
+        }
+
+        private static void CreateCastMember(DataGridView dataGridView
+            , String title
+            , Log log
+            , Boolean useFakeBirthYears
+            , Action<MessageEntry> addMessage
+            , Boolean embedded
+            , CastInformation ci
+            , Func<DataGridViewRow, CastMember> createCastMember
+            , Func<DataGridViewRow, Divider> createCastDivider)
+        {
             Int32 offset = 0;
 
             if (dataGridView.Rows.Count > 0)
@@ -653,13 +734,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 }
                 else if ((value != null) && (value.ToString() == FirstNames.Divider))
                 {
-                    Divider divider = new Divider();
+                    row = dataGridView.Rows[i];
+
+                    Divider divider = createCastDivider(row);
 
                     ci.CastList[i + offset] = divider;
 
                     String name = String.Empty;
-
-                    row = dataGridView.Rows[i];
 
                     value = row.Cells[ColumnNames.MiddleName].Value;
 
@@ -680,7 +761,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 }
                 else
                 {
-                    CastMember castMember = new CastMember();
+                    CastMember castMember = createCastMember(row);
 
                     ci.CastList[i + offset] = castMember;
 
@@ -751,16 +832,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                             , Program.CastCache, true, addMessage);
                     }
                 }
-            }
-            try
-            {
-                String xml = Utilities.CopyCastInformationToClipboard(ci, embedded);
-
-                Program.AdapterEventHandler.RaiseCastCompleted(xml);
-            }
-            catch (ExternalException)
-            {
-                MessageBox.Show(MessageBoxTexts.CopyToClipboardFailed, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -1026,8 +1097,94 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             , Action<MessageEntry> addMessage
             , Boolean embedded)
         {
+            Func<DataGridViewRow, CrewMember> createCrewMember = (row) => new CrewMember();
+
             CrewInformation ci = new CrewInformation();
 
+            CreateCrewMember(dataGridView, title, log, useFakeBirthYears, addMessage, embedded, ci, (row) => new CrewMember(), (row) => new CrewDivider());
+
+            try
+            {
+                String xml = Utilities.CopyCrewInformationToClipboard(ci, embedded);
+
+                Program.AdapterEventHandler.RaiseCrewCompleted(xml);
+            }
+            catch (ExternalException)
+            {
+                MessageBox.Show(MessageBoxTexts.CopyToClipboardFailed, MessageBoxTexts.ErrorHeader
+                    , MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        public static void CopyExtendedCrewToClipboard(DataGridView dataGridView
+            , String title
+            , Log log
+            , Boolean useFakeBirthYears
+            , Action<MessageEntry> addMessage)
+        {
+            Func<DataGridViewRow, CrewMember> createCrewMember = (row) =>
+                    {
+                        ExtendedCrewMember crewMember = new ExtendedCrewMember();
+
+                        crewMember.ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString();
+
+                        return (crewMember);
+                    }
+                ;
+
+            Func<DataGridViewRow, CrewDivider> createCrewDivider = (row) =>
+                    {
+                        ExtendedCrewDivider crewDivider = new ExtendedCrewDivider();
+
+                        crewDivider.ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString();
+
+                        return (crewDivider);
+                    }
+               ;
+
+            ExtendedCrewInformation ci = new ExtendedCrewInformation();
+
+            if (dataGridView.Rows.Count > 0)
+            {
+                ci.ImdbLink = dataGridView.Rows[0].Cells[ColumnNames.Link].Value?.ToString();
+            }
+
+            CreateCrewMember(dataGridView, title, log, useFakeBirthYears, addMessage, false, ci, createCrewMember, createCrewDivider);
+
+            try
+            {
+                CopyExtendedCrewToClipboard(ci);
+            }
+            catch (ExternalException)
+            {
+                MessageBox.Show(MessageBoxTexts.CopyToClipboardFailed, MessageBoxTexts.ErrorHeader
+                    , MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        public static void CopyExtendedCrewToClipboard(ExtendedCrewInformation crewInformation)
+        {
+            crewInformation = ExtendedCrewSorter.GetSortedCrew(crewInformation);
+
+            Type[] addTypes = new[] { typeof(ExtendedCrewMember), typeof(ExtendedCrewDivider) };
+
+            ExtendedSerializer<ExtendedCrewInformation> serializer = new ExtendedSerializer<ExtendedCrewInformation>(addTypes, CrewInformation.DefaultEncoding);
+
+            String xml = serializer.ToString(crewInformation);
+
+            Clipboard.SetDataObject(xml, true, 4, 250);
+        }
+
+        private static void CreateCrewMember(DataGridView dataGridView
+            , String title
+            , Log log
+            , Boolean useFakeBirthYears
+            , Action<MessageEntry> addMessage
+            , Boolean embedded
+            , CrewInformation ci
+            , Func<DataGridViewRow, CrewMember> createCrewMember
+            , Func<DataGridViewRow, CrewDivider> createEpisodeDivider)
+        {
             Int32 offset = 0;
 
             if (dataGridView.Rows.Count > 0)
@@ -1074,7 +1231,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
                 else if ((value != null) && (value.ToString() == FirstNames.Divider))
                 {
-                    CrewDivider divider = new CrewDivider();
+                    CrewDivider divider = createEpisodeDivider(row);
 
                     ci.CrewList[i + offset] = divider;
 
@@ -1099,7 +1256,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 }
                 else
                 {
-                    CrewMember crewMember = new CrewMember();
+                    CrewMember crewMember = createCrewMember(row);
 
                     ci.CrewList[i + offset] = crewMember;
 
@@ -1173,17 +1330,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                             , Program.CrewCache, false, addMessage);
                     }
                 }
-            }
-            try
-            {
-                String xml = Utilities.CopyCrewInformationToClipboard(ci, embedded);
-
-                Program.AdapterEventHandler.RaiseCrewCompleted(xml);
-            }
-            catch (ExternalException)
-            {
-                MessageBox.Show(MessageBoxTexts.CopyToClipboardFailed, MessageBoxTexts.ErrorHeader
-                    , MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

@@ -10,10 +10,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Windows.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
     #region COM Interfaces
     public enum BrowserOptions : uint
@@ -1733,6 +1734,60 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             {
                 Process.Start(e.Url.AbsoluteUri);
                 e.Cancel = true;
+            }
+        }
+
+        private void OnCopyExtendedCastToClipboardToolStripMenuItemClick(Object sender
+            , EventArgs e)
+        {
+            if (HasAgreed == false)
+            {
+                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader
+                    , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            HasAgreed = true;
+
+            DataGridViewHelper.CopyExtendedCastToClipboard(MovieCastDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage);
+
+            Log.Show(LogWebBrowser);
+
+            ProcessMessageQueue();
+
+            if (Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox == false)
+            {
+                MessageBox.Show(this, MessageBoxTexts.CastDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader
+                    , MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void OnCopyExtendedCrewToClipboardToolStripMenuItemClick(Object sender
+            , EventArgs e)
+        {
+            if (HasAgreed == false)
+            {
+                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader
+                    , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            HasAgreed = true;
+
+            DataGridViewHelper.CopyExtendedCrewToClipboard(MovieCrewDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage);
+
+            Log.Show(LogWebBrowser);
+
+            ProcessMessageQueue();
+
+            if (Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox == false)
+            {
+                MessageBox.Show(this, MessageBoxTexts.CrewDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader
+                    , MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

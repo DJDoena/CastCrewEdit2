@@ -9,11 +9,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 using Microsoft.WindowsAPICodePack.Taskbar;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
     [ComVisible(true)]
     public class CastCrewEdit2BaseForm : Form

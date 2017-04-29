@@ -1,10 +1,10 @@
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 using System;
 using System.IO;
 using System.Windows.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
+using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
     internal partial class SettingsForm : Form
     {

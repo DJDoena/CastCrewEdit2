@@ -124,6 +124,15 @@
   <data name="NewCloseButton.Text" xml:space="preserve">
     <value>Schließen</value>
   </data>
+  <data name="TabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="CastTabPage.Text" xml:space="preserve">
+    <value>Darsteller</value>
+  </data>
+  <data name="IgnoreGroupBox.Text" xml:space="preserve">
+    <value>Ignoriere  ...</value>
+  </data>
   <data name="IgnoreUnconfirmedCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -198,9 +207,6 @@
   <data name="IgnoreUncreditedCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>105</value>
   </data>
-  <data name="IgnoreGroupBox.Text" xml:space="preserve">
-    <value>Ignoriere  ...</value>
-  </data>
   <data name="CastGenerateButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -215,6 +221,9 @@
   </data>
   <data name="CastGenerateButton.Text" xml:space="preserve">
     <value>Kopiere Darsteller in Zwischenablage</value>
+  </data>
+  <data name="CastSettingsGroupBox.Text" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
   <data name="RetainCreditedAsOnCastCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -270,11 +279,8 @@
   <data name="ParseRoleSlashCheckBox.Text" xml:space="preserve">
     <value>Parse Rollen mit "/" in mehrere Zeilen</value>
   </data>
-  <data name="CastSettingsGroupBox.Text" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="CastTabPage.Text" xml:space="preserve">
-    <value>Darsteller</value>
+  <data name="CrewIncludingGroupBox.Text" xml:space="preserve">
+    <value>Einschließlich ...</value>
   </data>
   <data name="CreditTypeSoundtrackCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>646, 42</value>
@@ -321,8 +327,8 @@
   <data name="CustomCreditsCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>206</value>
   </data>
-  <data name="CrewIncludingGroupBox.Text" xml:space="preserve">
-    <value>Einschließlich ...</value>
+  <data name="CrewSettingsGroupBox.Text" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
   <data name="RetainCreditedAsOnCrewCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -388,9 +394,6 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="CapitalizeCustomRoleCheckBox.Text" xml:space="preserve">
     <value>Schreibe "Individuelle Rolle" groß</value>
   </data>
-  <data name="CrewSettingsGroupBox.Text" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
   <data name="CrewGenerateButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>665, 397</value>
   </data>
@@ -406,14 +409,17 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="LogWebBrowser.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>20, 20</value>
   </data>
-  <data name="TabControl.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
   <data name="SettingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 20</value>
   </data>
   <data name="SettingsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Einstellungen</value>
+  </data>
+  <data name="EditConfigFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 20</value>
+  </data>
+  <data name="EditConfigFilesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bearbeite &amp;Konfigurationsdatei</value>
   </data>
   <data name="FirstnamePrefixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>318, 22</value>
@@ -463,11 +469,26 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="ForcedFakeBirthYearsToolStripMenuItem.Text" xml:space="preserve">
     <value>Erzwungene &amp;Fake-Geburtsjahre</value>
   </data>
-  <data name="EditConfigFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 20</value>
+  <data name="ExtendedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
   </data>
-  <data name="EditConfigFilesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bearbeite &amp;Konfigurationsdatei</value>
+  <data name="ExtendedToolStripMenuItem.Text" xml:space="preserve">
+    <value>E&amp;weitert</value>
+  </data>
+  <data name="CopyExtendedCastToClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>322, 22</value>
+  </data>
+  <data name="CopyExtendedCastToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kopiere erweiterte Darsteller in Zwischenablage</value>
+  </data>
+  <data name="copyExtendedCrewToClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>322, 22</value>
+  </data>
+  <data name="copyExtendedCrewToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kopiere Crew in Zwischenablage</value>
+  </data>
+  <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hilfe</value>
   </data>
   <data name="ReadmeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 22</value>
@@ -480,12 +501,6 @@ bei "Other/Custom"-Rollen ein</value>
   </data>
   <data name="AboutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Über Cast/Crew Edit 2</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Hilfe</value>
   </data>
   <data name="PersonsInLocalCacheLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
