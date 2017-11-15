@@ -43,6 +43,7 @@
     <Credit FirstName="Glen" MiddleName="" LastName="Kennedy" BirthYear="0" CreditType="Art" CreditSubtype="Custom" CreditedAs="" CustomRole="Set Dresser" />
     <Credit FirstName="Robert" MiddleName="" LastName="Lucas" BirthYear="0" CreditType="Art" CreditSubtype="Custom" CreditedAs="" CustomRole="Lead Man" />
     <Credit FirstName="Don" MiddleName="" LastName="Miloyevich" BirthYear="0" CreditType="Art" CreditSubtype="Custom" CreditedAs="" CustomRole="Property Master" />
+    <Credit FirstName="Joe" MiddleName="" LastName="Northrop" BirthYear="0" CreditType="Art" CreditSubtype="Custom" CreditedAs="" CustomRole="Standby Painter" />
     <Credit FirstName="Glenn" MiddleName="H." LastName="Roberts" BirthYear="0" CreditType="Art" CreditSubtype="Custom" CreditedAs="" CustomRole="Set Dresser" />
     <Credit FirstName="Doug" MiddleName="" LastName="Sieck" BirthYear="0" CreditType="Art" CreditSubtype="Custom" CreditedAs="" CustomRole="Set Dresser" />
     <Credit FirstName="Randle" MiddleName="" LastName="Akerson" BirthYear="0" CreditType="Sound" CreditSubtype="Custom" CreditedAs="Randle Akerson M.P.S.E." CustomRole="Sound Design &amp; Supervision" />
@@ -155,8 +156,8 @@
     <Credit FirstName="Timothy" MiddleName="P." LastName="Ryan" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Transportation" />
     <Credit FirstName="Gary" MiddleName="" LastName="Shephard" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Transportation Coordinator" />
     <Credit FirstName="Larry" MiddleName="" LastName="Shephard" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Transportation Coordinator" />
-    <Credit FirstName="Phil" MiddleName="" LastName="Bautista" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Production Assistant" />
     <Credit FirstName="David" MiddleName="" LastName="Allsberry" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Animal Handler" />
+    <Credit FirstName="Phil" MiddleName="" LastName="Bautista" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Production Assistant" />
     <Credit FirstName="Jack" MiddleName="I." LastName="Bernstein" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Assistant To Director" />
     <Credit FirstName="Michael" MiddleName="E." LastName="Boyle" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="Michael Boyle" CustomRole="Animal Handler" />
     <Credit FirstName="Jeanie" MiddleName="" LastName="Daniels" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CreditedAs="" CustomRole="Payroll Accountant" />

@@ -77,12 +77,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
         }
 
         internal static Int32 PersonCacheCount
-        {
-            get
-            {
-                return (CastCache.Values.Count + CrewCache.Values.Count);
-            }
-        }
+            => (CastCache.Values.Count + CrewCache.Values.Count);
+
+        internal static String PersonCacheCountString
+            => (PersonCacheCount.ToString("#,##0"));
 
         [STAThread]
         public static void Main(String[] args)

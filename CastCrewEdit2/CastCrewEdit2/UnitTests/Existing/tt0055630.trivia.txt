@@ -9,30 +9,40 @@
 
 <trivia=<a href="http://www.imdb.com/name/nm2728142">Masaru Sato</a> was instructed by <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> to write "whatever you like" so long as it was not the usual period samurai film music so commonly used by all the major studios at the time. He ended up writing something that was inspired by one of his idols, <a href="http://www.imdb.com/name/nm0000049">Henry Mancini</a>, whom he had the pleasure of meeting shortly after the film was released, where they discussed his "Yojimbo" soundtrack. />
 
-<trivia=In one scene the samurai shows incredible skill at knife-throwing by impaling a blowing leaf against a wooden floor. This was accomplished by running the shot backwards. In the frame before the knife hits the leaf, you can see a slit in the leaf the same size and at the exact point where the knife penetrates it a frame later. />
-
 <trivia=<a href="http://www.imdb.com/name/nm0001466">Sergio Leone</a> was inspired by this film and made the famous "spaghetti western" <a href="http://www.imdb.com/title/tt0058461">F&uuml;r eine Handvoll Dollar</a> (1964) with a similar plot. However, because Leone did not officially get permission to remake this film, which was copyrighted, <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> sued him. />
+
+<trivia=In one scene the samurai shows incredible skill at knife-throwing by impaling a blowing leaf against a wooden floor. This was accomplished by running the shot backwards. In the frame before the knife hits the leaf, you can see a slit in the leaf the same size and at the exact point where the knife penetrates it a frame later. />
 
 <trivia=<a href="http://www.imdb.com/name/nm0619938">Tatsuya Nakadai</a>, who plays the flamboyant, pistol-waving Unosuke here, also plays the main villain role in the sequel, <a href="http://www.imdb.com/title/tt0056443">Sanjuro</a> (1962). />
 
 <trivia=<a href="http://www.imdb.com/name/nm0462030">Masaki Kobayashi</a> pushed back the filming of <a href="http://www.imdb.com/title/tt0055233">Barfu&szlig; durch die H&ouml;lle, 3. Teil: ...und dann kam das Ende</a> (1961) so that <a href="http://www.imdb.com/name/nm0619938">Tatsuya Nakadai</a> could do this film. He explained that he thought it would be good for him to play a totally different character for a while. />
 
-<trivia=<a href="http://www.imdb.com/title/tt0060315">Django</a> (1966) was unofficially inspired by this movie. />
-
 <trivia=Yojimbo was an obvious inspiration for Sergio Leone's classic For a Fistful of Dollars (1964) although it was not credited as the source material for the film. Walter Hill however also remade Yojimbo years later as Last Man Standing (1996) starring Bruce Willis, and credited Kurosawa's film as the original source. All three films follow a very similar plot although each takes place in a far different setting and time in human history. />
-
-<trivia=The film is included on <a href="http://www.imdb.com/name/nm0001170">Roger Ebert</a>'s "Great Movies" list. />
 
 <trivia=After <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> scolded <a href="http://www.imdb.com/name/nm0001536">Toshirô Mifune</a> for arriving late to the set one morning, Mifune made it a point to be ready on set at 6:00 AM every day in full makeup and costume for the rest of the film's shooting schedule. />
 
-<trivia=This was the second film where <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> worked with cinematographer <a href="http://www.imdb.com/name/nm0594335">Kazuo Miyagawa</a>. />
+<trivia=<a href="http://www.imdb.com/title/tt0060315">Django</a> (1966) was unofficially inspired by this movie. />
+
+<trivia=This was a deliberate attempt by <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> to revise the cinema's attitude towards onscreen violence. He wanted to show the damaging effect of violence, rather than the slightly anodyne way that it had usually been depicted before. (He would later come to regret this move, as it spawned a mass movement in international cinema that hasn't abated even today.) />
+
+<trivia=The fact that the main villain sports a gun shows the slow creep of Westernization and pitches the film as roughly taking place in the 1860s. It was around about this time that the USA started forcing Japan to come out of its isolationist policy that had effectively kept the country stalled in a feudal, almost medieval society. />
 
 <trivia=When asked his name, the samurai calls himself "Kuwabatake Sanjuro", which he seems to make up while looking at a mulberry field by the town. Thus, the character can be viewed as an early example of the "Man with No Name". />
 
+<trivia=The film was so successful that <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a>'s next project - already in pre-production, and ultimately called _Sanjuro_ - had to be revised to accommodate <a href="http://www.imdb.com/name/nm0001536">Toshirô Mifune</a>'s title character. />
+
+<trivia=This film brought <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> his greatest domestic success. />
+
+<trivia=<a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> was heavily influenced by the American Western for this film, particularly <a href="http://www.imdb.com/title/tt0044706">Zw&ouml;lf Uhr mittags</a> (1952) and <a href="http://www.imdb.com/title/tt0046303">Mein gro&szlig;er Freund Shane</a> (1953). He also admitted to being heavily influenced by the film noir <a href="http://www.imdb.com/title/tt0034798">Der gl&auml;serne Schl&uuml;ssel</a> (1942). />
+
+<trivia=The film is included on <a href="http://www.imdb.com/name/nm0001170">Roger Ebert</a>'s "Great Movies" list. />
+
+<trivia=This was the second film where <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> worked with cinematographer <a href="http://www.imdb.com/name/nm0594335">Kazuo Miyagawa</a>. />
+
 <trivia=<a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a>: [weather] Like in most Kurosawa films, rainy weather is present in a few scenes, increasing the effect of the characters' discomfort. The windy weather all throughout the film represents the chaotic life in the town. />
 
-<trivia=The massive amount of dust seen being blown about was actually imported by the truckload from an abandoned firing range. When the wind machines started, it was nearly impossible for the actors to keep their eyes open because they were being engulfed in the dust. When <a href="http://www.imdb.com/name/nm0619938">Tatsuya Nakadai</a> was shooting his death scene, over the course of three days, the combination of the fake blood and the blowing dust made him break out in hives that lasted for weeks after filming. />
-
 <trivia=This is an uncredited film version of <a href="http://www.imdb.com/name/nm0358591">Dashiell Hammett</a>'s novel "Red Harvest", which, has never been officially filmed. It is about a detective who comes to a small city and pits both sides in a gang war against each other until both are almost completely wiped out. The scenes where <a href="http://www.imdb.com/name/nm0001536">Toshirô Mifune</a>'s character is held and beaten, however, was taken from Hammett's novel "The Glass Key", which has been adapted for the screen twice. />
+
+<trivia=The massive amount of dust seen being blown about was actually imported by the truckload from an abandoned firing range. When the wind machines started, it was nearly impossible for the actors to keep their eyes open because they were being engulfed in the dust. When <a href="http://www.imdb.com/name/nm0619938">Tatsuya Nakadai</a> was shooting his death scene, over the course of three days, the combination of the fake blood and the blowing dust made him break out in hives that lasted for weeks after filming. />
 
 </div>

@@ -344,14 +344,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             BirthYearsInLocalCacheLabel.Text = IMDbParser.PersonHashCount;
 
-            PersonsInLocalCacheLabel.Text = Program.PersonCacheCount.ToString();
+            PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
 
             if (Log.Length > 0)
             {
                 Log.Show(LogWebBrowser);
             }
 
-            EndLongAction();
+            EndLongActionWithGrids();
 
             if ((Program.Settings.DefaultValues.DisableParsingCompleteMessageBox == false)
                 && (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing == false)
@@ -378,6 +378,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             DataGridViewHelper.CopyCastToClipboard(CastDataGridView, TVShowTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
             DataGridViewHelper.CopyCrewToClipboard(CrewDataGridView, TVShowTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
+        }
+
+        private void EndLongActionWithGrids()
+        {
+            EndLongAction();
+
+            CastDataGridView.Refresh();
+            CrewDataGridView.Refresh();
         }
 
         private void OnCastDataGridViewCellValueChanged(Object sender, DataGridViewCellEventArgs e)
@@ -472,7 +480,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 Log.Show(LogWebBrowser);
             }
 
-            EndLongAction();
+            EndLongActionWithGrids();
 
             if ((Program.Settings.DefaultValues.DisableParsingCompleteMessageBox == false)
                 && (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing == false)

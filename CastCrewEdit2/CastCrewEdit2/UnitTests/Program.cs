@@ -1,7 +1,4 @@
-﻿using DoenaSoft.DVDProfiler.CastCrewEdit2;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
-using DoenaSoft.DVDProfiler.DVDProfilerXML.Version390;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -10,6 +7,11 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
+using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using DoenaSoft.DVDProfiler.DVDProfilerXML.Version390;
 
 namespace UnitTests
 {
@@ -20,13 +22,14 @@ namespace UnitTests
         private const String Winnetou = "tt0057687";
         private const String EmmaWatson = "nm0914612";
         private const String AlexanderRhodes = "nm4659673";
-        private const String Tamara = "nm0848453";
+        //private const String Tamara = "nm0848453";
         private const String ThisIsSpinalTap = "tt0088258";
         private const String Ferdinand = "tt1307254";
         private const String Yojimbo = "tt0055630";
         private const String HotShots = "tt0102059";
         private const String LoveIsTheDrug = "tt0266732";
         private const String FridayNightLights = "tt0758745";
+        private const String ABiggerSplash = "tt2056771";
 
         [STAThread]
         public static void Main()
@@ -42,7 +45,7 @@ namespace UnitTests
             Test(MovieCrewWinnetou);
             Test(PersonWithHeadshotEmmaWatson);
             Test(PersonWithoutHeadshotAlexanderRhodes);
-            Test(PersonWithCircaBirthYearTamara);
+            //Test(PersonWithCircaBirthYearTamara);
             Test(PersonWithBirthYearEmmaWatson);
             Test(SoundtrackThisIsSpinalTap);
             Test(GoofsYojimbo);
@@ -51,7 +54,7 @@ namespace UnitTests
             Test(EpisodeCrewFerdinand);
             Test(MovieCastHotShots);
             Test(MovieCrewHotShots);
-
+            Test(MovieCastABiggerSplash);
         }
 
         private static void TestFixtureSetup()
@@ -60,7 +63,7 @@ namespace UnitTests
             Program.Main(null);
             CreateMockWebResponse(IMDbParser.PersonUrl, EmmaWatson);
             CreateMockWebResponse(IMDbParser.PersonUrl, AlexanderRhodes);
-            CreateMockWebResponse(IMDbParser.PersonUrl, Tamara);
+            //CreateMockWebResponse(IMDbParser.PersonUrl, Tamara);
             CreateMockWebResponse(IMDbParser.TitleUrl, ThisIsSpinalTap, "soundtrack");
             CreateMockWebResponse(IMDbParser.TitleUrl, Winnetou, "fullcredits");
             CreateMockWebResponse(IMDbParser.TitleUrl, Ferdinand, "fullcredits");
@@ -70,9 +73,24 @@ namespace UnitTests
             CreateMockWebResponse(IMDbParser.TitleUrl, HotShots, "fullcredits");
             CreateMockWebResponse(IMDbParser.TitleUrl, LoveIsTheDrug, "fullcredits");
             CreateMockWebResponse(IMDbParser.TitleUrl, FridayNightLights, "episodes?season=1");
+            CreateMockWebResponse(IMDbParser.TitleUrl, ABiggerSplash, "fullcredits");
         }
 
         #region Tests
+        private static void MovieCastABiggerSplash()
+        {
+            List<Match> castMatches;
+            Int32 progressBarMaxValue;
+            List<CastInfo> castList;
+            FileInfo existing;
+            FileInfo current;
+            MovieCast(ABiggerSplash, out castMatches, out castList, out progressBarMaxValue, out existing, out current);
+
+            Assert.AreEqual(33, castMatches.Count, "castMatches.Count");
+            Assert.AreEqual(33, castList.Count, "castList.Count");
+            Assert.AreEqual(existing.Length, current.Length, "current.Length");
+        }
+
         private static void MovieCastHotShots()
         {
             List<Match> castMatches;
@@ -97,8 +115,8 @@ namespace UnitTests
 
             MovieCrew(HotShots, out crewMatches, out crewList, out progressBarMaxValue, out existing, out current);
             Assert.AreEqual(26, crewMatches.Count, "castMatches.Count");
-            Assert.AreEqual(193, progressBarMaxValue, "progressBarMaxValue");
-            Assert.AreEqual(184, crewList.Count, "castList.Count");
+            Assert.AreEqual(195, progressBarMaxValue, "progressBarMaxValue");
+            Assert.AreEqual(185, crewList.Count, "castList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
@@ -211,9 +229,9 @@ namespace UnitTests
             FileInfo current;
 
             Soundtrack(ThisIsSpinalTap, out matches, out crewList, out progressBarMaxValue, out existing, out current);
-            Assert.AreEqual(16, matches.Count, "matches.Count");
-            Assert.AreEqual(94, progressBarMaxValue, "progressBarMaxValue");
-            Assert.AreEqual(94, crewList.Count, "crewList.Count");
+            Assert.AreEqual(17, matches.Count, "matches.Count");
+            Assert.AreEqual(95, progressBarMaxValue, "progressBarMaxValue");
+            Assert.AreEqual(95, crewList.Count, "crewList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
@@ -227,15 +245,15 @@ namespace UnitTests
             Assert.AreEqual("1990", personInfo.BirthYear, "personInfo.BirthYear");
         }
 
-        private static void PersonWithCircaBirthYearTamara()
-        {
-            PersonInfo personInfo;
+        //private static void PersonWithCircaBirthYearTamara()
+        //{
+        //    PersonInfo personInfo;
 
-            personInfo = new PersonInfo();
-            personInfo.PersonLink = Tamara;
-            IMDbParser.GetBirthYear(personInfo);
-            Assert.AreEqual("1910", personInfo.BirthYear, "personInfo.BirthYear");
-        }
+        //    personInfo = new PersonInfo();
+        //    personInfo.PersonLink = Tamara;
+        //    IMDbParser.GetBirthYear(personInfo);
+        //    Assert.AreEqual("1910", personInfo.BirthYear, "personInfo.BirthYear");
+        //}
 
         private static void PersonWithHeadshotEmmaWatson()
         {

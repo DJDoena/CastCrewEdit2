@@ -49,7 +49,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 castMember.CreditedAs = String.Empty;
 
                 role = match.Groups[ColumnNames.Role].Value;
-                role = Regex.Replace(role, "<a href=\"/character/ch[0-9]+/.*?>", String.Empty, RegexOptions.Compiled);
+                role = Regex.Replace(role, "<a .+?>", String.Empty, RegexOptions.Compiled);
                 role = role.Replace("</a>", String.Empty);
                 role = HttpUtility.HtmlDecode(role);
 

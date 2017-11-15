@@ -146,9 +146,6 @@
   <data name="WebBrowser.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>20, 20</value>
   </data>
-  <data name="MovieTab.Text" xml:space="preserve">
-    <value>Film</value>
-  </data>
   <data name="GetHeadshotsButton.Text" xml:space="preserve">
     <value>Hole Photos</value>
   </data>
@@ -185,20 +182,14 @@
   <data name="GetBirthYearsButton.Text" xml:space="preserve">
     <value>Hole Geburtsjahre</value>
   </data>
-  <data name="CastTab.Text" xml:space="preserve">
-    <value>Darsteller</value>
-  </data>
-  <data name="IgnoreGroupBox.Text" xml:space="preserve">
-    <value>Ignoriere  ...</value>
-  </data>
   <data name="IgnoreUnconfirmedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>299, 42</value>
   </data>
   <data name="IgnoreArchiveFootageCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>299, 19</value>
   </data>
-  <data name="CastSettingsGroupBox.Text" xml:space="preserve">
-    <value>Einstellungen</value>
+  <data name="IgnoreGroupBox.Text" xml:space="preserve">
+    <value>Ignoriere  ...</value>
   </data>
   <data name="RetainCreditedAsOnCastCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>509, 19</value>
@@ -230,6 +221,9 @@
   <data name="ParseRoleSlashCheckBox.Text" xml:space="preserve">
     <value>Parse Rollen mit "/" in mehrere Zeilen</value>
   </data>
+  <data name="CastSettingsGroupBox.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
   <data name="MovieCastGenerateButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>641, 341</value>
   </data>
@@ -239,8 +233,8 @@
   <data name="MovieCastGenerateButton.Text" xml:space="preserve">
     <value>Kopiere Darsteller in Zwischenablage</value>
   </data>
-  <data name="CrewIncludingGroupBox.Text" xml:space="preserve">
-    <value>Einschließlich ...</value>
+  <data name="CastTab.Text" xml:space="preserve">
+    <value>Darsteller</value>
   </data>
   <data name="CreditTypeSoundtrackCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>646, 42</value>
@@ -257,8 +251,8 @@
   <data name="CreditTypeProductionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>309, 42</value>
   </data>
-  <data name="CrewSettingsGroupBox.Text" xml:space="preserve">
-    <value>Einstellungen</value>
+  <data name="CrewIncludingGroupBox.Text" xml:space="preserve">
+    <value>Einschließlich ...</value>
   </data>
   <data name="RetainCreditedAsOnCrewCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>309, 26</value>
@@ -294,6 +288,9 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="CapitalizeCustomRoleCheckBox.Text" xml:space="preserve">
     <value>Schreibe "Individuelle Rolle" groß</value>
   </data>
+  <data name="CrewSettingsGroupBox.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
   <data name="MovieCrewGenerateButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>641, 341</value>
   </data>
@@ -303,19 +300,13 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="MovieCrewGenerateButton.Text" xml:space="preserve">
     <value>Kopiere Crew in Zwischenablage</value>
   </data>
-  <data name="TriviaTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="TriviaTab.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
   <data name="CopyTriviaToClipboardButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>641, 341</value>
   </data>
   <data name="CopyTriviaToClipboardButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 23</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="CopyTriviaToClipboardButton.TabIndex" type="System.Int32, mscorlib">
     <value>404</value>
   </data>
@@ -330,6 +321,12 @@ bei "Other/Custom"-Rollen ein</value>
   </data>
   <data name="TriviaTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>403</value>
+  </data>
+  <data name="TriviaTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="TriviaTab.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="CopyGoofsToClipboardButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>641, 341</value>
@@ -355,8 +352,8 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="MovieUrlTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>639, 20</value>
   </data>
-  <data name="TVShowTab.Text" xml:space="preserve">
-    <value>Serie</value>
+  <data name="MovieTab.Text" xml:space="preserve">
+    <value>Film</value>
   </data>
   <data name="ScanForEpisodesButton.Text" xml:space="preserve">
     <value>Suche Folgen</value>
@@ -376,6 +373,9 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="TVShowUrlTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>627, 20</value>
   </data>
+  <data name="TVShowTab.Text" xml:space="preserve">
+    <value>Serie</value>
+  </data>
   <data name="LogWebBrowser.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>20, 20</value>
   </data>
@@ -384,33 +384,6 @@ bei "Other/Custom"-Rollen ein</value>
   </data>
   <data name="SettingsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Einstellungen</value>
-  </data>
-  <data name="EditConfigFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 20</value>
-  </data>
-  <data name="EditConfigFilesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bearbeite &amp;Konfigurationsdatei</value>
-  </data>
-  <data name="CopyExtendedCastToClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 22</value>
-  </data>
-  <data name="CopyExtendedCastToClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Kopiere erweiterte Darsteller in Zwischenablage</value>
-  </data>
-  <data name="CopyExtendedCrewToClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 22</value>
-  </data>
-  <data name="CopyExtendedCrewToClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Kopiere Crew in Zwischenablage</value>
-  </data>
-  <data name="ExtendedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 20</value>
-  </data>
-  <data name="ExtendedToolStripMenuItem.Text" xml:space="preserve">
-    <value>E&amp;rweitert</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Hilfe</value>
   </data>
   <data name="FirstnamePrefixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>318, 22</value>
@@ -460,6 +433,30 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="ForcedFakeBirthYearsToolStripMenuItem.Text" xml:space="preserve">
     <value>Erzwungene &amp;Fake-Geburtsjahre</value>
   </data>
+  <data name="EditConfigFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 20</value>
+  </data>
+  <data name="EditConfigFilesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bearbeite &amp;Konfigurationsdatei</value>
+  </data>
+  <data name="CopyExtendedCastToClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>322, 22</value>
+  </data>
+  <data name="CopyExtendedCastToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kopiere erweiterte Darsteller in Zwischenablage</value>
+  </data>
+  <data name="CopyExtendedCrewToClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>322, 22</value>
+  </data>
+  <data name="CopyExtendedCrewToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kopiere Crew in Zwischenablage</value>
+  </data>
+  <data name="ExtendedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="ExtendedToolStripMenuItem.Text" xml:space="preserve">
+    <value>E&amp;rweitert</value>
+  </data>
   <data name="ReadmeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>196, 22</value>
   </data>
@@ -477,6 +474,9 @@ bei "Other/Custom"-Rollen ein</value>
   </data>
   <data name="AboutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Über</value>
+  </data>
+  <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hilfe</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

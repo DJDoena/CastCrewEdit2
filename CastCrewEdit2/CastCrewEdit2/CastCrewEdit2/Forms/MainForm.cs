@@ -436,11 +436,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     Program.FlushPersonCache();
                 }
 
-                PersonsInLocalCacheLabel.Text = Program.PersonCacheCount.ToString();
+                PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
 
                 SetMovieFormText();
 
-                EndLongAction();
+                EndLongActionWithGrids();
             }
 
             if ((failed == false) && (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing))
@@ -460,6 +460,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 DataGridViewHelper.CopyCastToClipboard(MovieCastDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
                 DataGridViewHelper.CopyCrewToClipboard(MovieCrewDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
             }
+        }
+
+        private void EndLongActionWithGrids()
+        {
+            EndLongAction();
+
+            MovieCastDataGridView.Refresh();
+            MovieCrewDataGridView.Refresh();
         }
 
         private void SetMovieFormText()
@@ -513,41 +521,16 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void ParseTitle(String key)
         {
-            WebResponse webResponse;
-            String webSite;
-            String line;
+            String targetUrl = IMDbParser.TitleUrl + key + "/fullcredits";
 
-            webResponse = null;
-            try
-            {
-                webResponse = IMDbParser.GetWebResponse(IMDbParser.TitleUrl + key + "/fullcredits");
-                using (Stream stream = webResponse.GetResponseStream())
-                {
-                    using (StreamReader sr = new StreamReader(stream, IMDbParser.Encoding))
-                    {
-                        webSite = sr.ReadToEnd();
-                    }
-                }
-            }
-            finally
-            {
-                try
-                {
-                    if (webResponse != null)
-                    {
-                        webResponse.Close();
-                    }
-                }
-                catch
-                {
-                }
-            }
+            String webSite = IMDbParser.GetWebSite(targetUrl);
+
             #region Parse for Title
             using (StringReader sr = new StringReader(webSite))
             {
                 while (sr.Peek() != -1)
                 {
-                    line = sr.ReadLine();
+                    String line = sr.ReadLine();
 
                     if (String.IsNullOrEmpty(MovieTitle))
                     {
@@ -572,67 +555,45 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void ParseTrivia()
         {
-            WebResponse webResponse;
-
             TriviaTextBox.Text = String.Empty;
-            webResponse = null;
-            try
+            if (Program.Settings.DefaultValues.DownloadTrivia)
             {
-                if (Program.Settings.DefaultValues.DownloadTrivia)
+                String triviaUrl = IMDbParser.TitleUrl + MovieTitleLink + "/trivia";
+
+                String webSite = IMDbParser.GetWebSite(triviaUrl);
+
+                using (StringReader sr = new StringReader(webSite))
                 {
-                    String triviaUrl;
+                    StringBuilder trivia;
+                    Boolean triviaFound;
 
-                    triviaUrl = IMDbParser.TitleUrl + MovieTitleLink + "/trivia";
-                    webResponse = IMDbParser.GetWebResponse(triviaUrl);
-                    using (Stream stream = webResponse.GetResponseStream())
+                    triviaFound = false;
+                    trivia = new StringBuilder();
+                    while (sr.Peek() != -1)
                     {
-                        using (StreamReader sr = new StreamReader(stream, IMDbParser.Encoding))
+                        String line;
+                        Match beginMatch;
+                        //Match endMatch;
+
+                        line = sr.ReadLine();
+                        if (triviaFound == false)
                         {
-                            StringBuilder trivia;
-                            Boolean triviaFound;
-
-                            triviaFound = false;
-                            trivia = new StringBuilder();
-                            while (sr.EndOfStream == false)
+                            beginMatch = IMDbParser.TriviaStartRegex.Match(line);
+                            if (beginMatch.Success)
                             {
-                                String line;
-                                Match beginMatch;
-                                //Match endMatch;
-
-                                line = sr.ReadLine();
-                                if (triviaFound == false)
-                                {
-                                    beginMatch = IMDbParser.TriviaStartRegex.Match(line);
-                                    if (beginMatch.Success)
-                                    {
-                                        triviaFound = true;
-                                        continue;
-                                    }
-                                }
-                                if (triviaFound)
-                                {
-                                    trivia.AppendLine(line);
-                                }
-                            }
-                            if (trivia.Length > 0)
-                            {
-                                ParseTrivia(trivia, triviaUrl);
+                                triviaFound = true;
+                                continue;
                             }
                         }
+                        if (triviaFound)
+                        {
+                            trivia.AppendLine(line);
+                        }
                     }
-                }
-            }
-            finally
-            {
-                try
-                {
-                    if (webResponse != null)
+                    if (trivia.Length > 0)
                     {
-                        webResponse.Close();
+                        ParseTrivia(trivia, triviaUrl);
                     }
-                }
-                catch
-                {
                 }
             }
         }
@@ -677,67 +638,45 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void ParseGoofs()
         {
-            WebResponse webResponse;
-
             GoofsTextBox.Text = String.Empty;
-            webResponse = null;
-            try
+            if (Program.Settings.DefaultValues.DownloadGoofs)
             {
-                if (Program.Settings.DefaultValues.DownloadGoofs)
+                String goofsUrl = IMDbParser.TitleUrl + MovieTitleLink + "/goofs";
+
+                String webSite = IMDbParser.GetWebSite(goofsUrl);
+
+                using (StringReader sr = new StringReader(webSite))
                 {
-                    String goofsUrl;
+                    StringBuilder goofs;
+                    Boolean goofsFound;
 
-                    goofsUrl = IMDbParser.TitleUrl + MovieTitleLink + "/goofs";
-                    webResponse = IMDbParser.GetWebResponse(goofsUrl);
-                    using (Stream stream = webResponse.GetResponseStream())
+                    goofsFound = false;
+                    goofs = new StringBuilder();
+                    while (sr.Peek() != -1)
                     {
-                        using (StreamReader sr = new StreamReader(stream, IMDbParser.Encoding))
+                        String line;
+                        Match beginMatch;
+                        //Match endMatch;
+
+                        line = sr.ReadLine();
+                        if (goofsFound == false)
                         {
-                            StringBuilder goofs;
-                            Boolean goofsFound;
-
-                            goofsFound = false;
-                            goofs = new StringBuilder();
-                            while (sr.EndOfStream == false)
+                            beginMatch = IMDbParser.GoofsStartRegex.Match(line);
+                            if (beginMatch.Success)
                             {
-                                String line;
-                                Match beginMatch;
-                                //Match endMatch;
-
-                                line = sr.ReadLine();
-                                if (goofsFound == false)
-                                {
-                                    beginMatch = IMDbParser.GoofsStartRegex.Match(line);
-                                    if (beginMatch.Success)
-                                    {
-                                        goofsFound = true;
-                                        continue;
-                                    }
-                                }
-                                if (goofsFound)
-                                {
-                                    goofs.AppendLine(line);
-                                }
-                            }
-                            if (goofs.Length > 0)
-                            {
-                                ParseGoofs(goofs, goofsUrl);
+                                goofsFound = true;
+                                continue;
                             }
                         }
+                        if (goofsFound)
+                        {
+                            goofs.AppendLine(line);
+                        }
                     }
-                }
-            }
-            finally
-            {
-                try
-                {
-                    if (webResponse != null)
+                    if (goofs.Length > 0)
                     {
-                        webResponse.Close();
+                        ParseGoofs(goofs, goofsUrl);
                     }
-                }
-                catch
-                {
                 }
             }
         }
@@ -845,7 +784,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
             ResumeLayout();
             BirthYearsInLocalCacheLabel.Text = IMDbParser.PersonHashCount;
-            PersonsInLocalCacheLabel.Text = Program.PersonCacheCount.ToString();
+            PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
             RegisterEvents();
             if (Program.Settings.CurrentVersion != Assembly.GetExecutingAssembly().GetName().Version.ToString())
             {
@@ -1135,7 +1074,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             {
                 SetTVShowFormText();
 
-                EndLongAction();
+                EndLongActionWithGrids();
             }
         }
 
@@ -1161,13 +1100,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
             else
             {
-                WebResponse webResponse;
                 List<EpisodeInfo> episodes;
 
                 StartLongAction();
 
                 SuspendLayout();
-                webResponse = null;
                 episodes = new List<EpisodeInfo>();
                 try
                 {
@@ -1190,84 +1127,79 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     //    }));
                     foreach (Int32 season in seasons)
                     {
-                        String targetUrl;
+                        String targetUrl = IMDbParser.TitleUrl + TVShowTitleLink + "/episodes?season=" + season;
 
-                        targetUrl = IMDbParser.TitleUrl + TVShowTitleLink + "/episodes?season=" + season;
-                        webResponse = IMDbParser.GetWebResponse(targetUrl);
-                        using (Stream stream = webResponse.GetResponseStream())
+                        String webSite = IMDbParser.GetWebSite(targetUrl);
+
+                        using (StringReader sr = new StringReader(webSite))
                         {
-                            using (StreamReader sr = new StreamReader(stream, IMDbParser.Encoding))
+                            while (sr.Peek() != -1)
                             {
-                                while (sr.EndOfStream == false)
+                                Match episodeStartMatch;
+                                String line;
+
+                                line = sr.ReadLine();
+                                episodeStartMatch = EpisodeStartRegex.Match(line);
+                                if (episodeStartMatch.Success)
                                 {
-                                    Match episodeStartMatch;
-                                    String line;
+                                    EpisodeInfo episodeInfo;
+                                    EpisodeParts parts;
+                                    Boolean episodeLinkFound;
+                                    Boolean episodeNumberFound;
+                                    Boolean episodeNameFound;
 
-                                    line = sr.ReadLine();
-                                    episodeStartMatch = EpisodeStartRegex.Match(line);
-                                    if (episodeStartMatch.Success)
+                                    episodeLinkFound = false;
+                                    episodeNumberFound = false;
+                                    episodeNameFound = false;
+                                    episodeInfo = new EpisodeInfo();
+                                    parts = EpisodeParts.None;
+                                    while (EpisodeEndRegex.Match(line).Success == false)
                                     {
-                                        EpisodeInfo episodeInfo;
-                                        EpisodeParts parts;
-                                        Boolean episodeLinkFound;
-                                        Boolean episodeNumberFound;
-                                        Boolean episodeNameFound;
+                                        Match match;
 
-                                        episodeLinkFound = false;
-                                        episodeNumberFound = false;
-                                        episodeNameFound = false;
-                                        episodeInfo = new EpisodeInfo();
-                                        parts = EpisodeParts.None;
-                                        while (EpisodeEndRegex.Match(line).Success == false)
+                                        line = sr.ReadLine();
+                                        if (episodeLinkFound == false)
                                         {
-                                            Match match;
-
-                                            line = sr.ReadLine();
-                                            if (episodeLinkFound == false)
+                                            match = EpisodeLinkRegex.Match(line);
+                                            if (match.Success)
                                             {
-                                                match = EpisodeLinkRegex.Match(line);
-                                                if (match.Success)
-                                                {
-                                                    episodeInfo.Link = match.Groups["EpisodeLink"].Value.ToString();
-                                                    parts |= EpisodeParts.Link;
-                                                    episodeLinkFound = true;
-                                                    continue;
-                                                }
-                                            }
-                                            if (episodeNumberFound == false)
-                                            {
-                                                match = EpisodeNumberRegex.Match(line);
-                                                if (match.Success)
-                                                {
-                                                    episodeInfo.EpisodeNumber = match.Groups["EpisodeNumber"].Value.ToString();
-                                                    parts |= EpisodeParts.Number;
-                                                    episodeNumberFound = true;
-                                                    continue;
-                                                }
-                                            }
-                                            if (episodeNameFound == false)
-                                            {
-                                                match = EpisodeNameRegex.Match(line);
-                                                if (match.Success)
-                                                {
-                                                    episodeInfo.EpisodeName = HttpUtility.HtmlDecode(match.Groups["EpisodeName"].Value.ToString());
-                                                    parts |= EpisodeParts.Name;
-                                                    episodeNameFound = true;
-                                                    continue;
-                                                }
+                                                episodeInfo.Link = match.Groups["EpisodeLink"].Value.ToString();
+                                                parts |= EpisodeParts.Link;
+                                                episodeLinkFound = true;
+                                                continue;
                                             }
                                         }
-                                        episodeInfo.SeasonNumber = season.ToString();
-                                        if (parts == (EpisodeParts.Link | EpisodeParts.Name | EpisodeParts.Number))
+                                        if (episodeNumberFound == false)
                                         {
-                                            episodes.Add(episodeInfo);
+                                            match = EpisodeNumberRegex.Match(line);
+                                            if (match.Success)
+                                            {
+                                                episodeInfo.EpisodeNumber = match.Groups["EpisodeNumber"].Value.ToString();
+                                                parts |= EpisodeParts.Number;
+                                                episodeNumberFound = true;
+                                                continue;
+                                            }
                                         }
+                                        if (episodeNameFound == false)
+                                        {
+                                            match = EpisodeNameRegex.Match(line);
+                                            if (match.Success)
+                                            {
+                                                episodeInfo.EpisodeName = HttpUtility.HtmlDecode(match.Groups["EpisodeName"].Value.ToString());
+                                                parts |= EpisodeParts.Name;
+                                                episodeNameFound = true;
+                                                continue;
+                                            }
+                                        }
+                                    }
+                                    episodeInfo.SeasonNumber = season.ToString();
+                                    if (parts == (EpisodeParts.Link | EpisodeParts.Name | EpisodeParts.Number))
+                                    {
+                                        episodes.Add(episodeInfo);
                                     }
                                 }
                             }
                         }
-                        webResponse.Close();
-                        webResponse = null;
                     }
                 }
                 catch (Exception ex)
@@ -1277,19 +1209,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 }
                 finally
                 {
-                    try
-                    {
-                        if (webResponse != null)
-                        {
-                            webResponse.Close();
-                        }
-                    }
-                    catch
-                    { }
-
                     ResumeLayout();
 
-                    EndLongAction();
+                    EndLongActionWithGrids();
                 }
 
                 if (episodes.Count == 0)
@@ -1320,84 +1242,65 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     }
                 }
                 BirthYearsInLocalCacheLabel.Text = IMDbParser.PersonHashCount;
-                PersonsInLocalCacheLabel.Text = Program.PersonCacheCount.ToString();
+                PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
             }
         }
 
         private void ScanForSeasons()
         {
-            WebResponse webResponse;
+            String targetUrl = IMDbParser.TitleUrl + TVShowTitleLink + "/episodes";
 
-            webResponse = null;
-            try
+            String webSite = IMDbParser.GetWebSite(targetUrl);
+
+            using (StringReader sr = new StringReader(webSite))
             {
-                webResponse = IMDbParser.GetWebResponse(IMDbParser.TitleUrl + TVShowTitleLink + "/episodes");
-                using (Stream stream = webResponse.GetResponseStream())
+                while (sr.Peek() != -1)
                 {
-                    using (StreamReader sr = new StreamReader(stream, IMDbParser.Encoding))
+                    String line;
+                    Match seasonsMatch;
+
+                    line = sr.ReadLine();
+                    if (String.IsNullOrEmpty(TVShowTitle))
                     {
-                        while (sr.EndOfStream == false)
+                        Match titleMatch;
+
+                        titleMatch = IMDbParser.TitleRegex.Match(line);
+                        if (titleMatch.Success)
                         {
-                            String line;
-                            Match seasonsMatch;
+                            TVShowTitle = HttpUtility.HtmlDecode(titleMatch.Groups["Title"].Value);
+
+                            TVShowTitle = TVShowTitle.Replace(" - IMDb", String.Empty).Replace(" - Episodes", String.Empty).Trim();
+
+                            continue;
+                        }
+                    }
+                    seasonsMatch = SeasonsBeginRegex.Match(line);
+                    if (seasonsMatch.Success)
+                    {
+                        while (sr.Peek() != -1)
+                        {
+                            Match seasonMatch;
 
                             line = sr.ReadLine();
-                            if (String.IsNullOrEmpty(TVShowTitle))
-                            {
-                                Match titleMatch;
-
-                                titleMatch = IMDbParser.TitleRegex.Match(line);
-                                if (titleMatch.Success)
-                                {
-                                    TVShowTitle = HttpUtility.HtmlDecode(titleMatch.Groups["Title"].Value);
-
-                                    TVShowTitle = TVShowTitle.Replace(" - IMDb", String.Empty).Replace(" - Episodes", String.Empty).Trim();
-
-                                    continue;
-                                }
-                            }
-                            seasonsMatch = SeasonsBeginRegex.Match(line);
+                            seasonsMatch = SeasonsEndRegex.Match(line);
                             if (seasonsMatch.Success)
                             {
-                                while (sr.EndOfStream == false)
+                                return;
+                            }
+                            seasonMatch = SeasonRegex.Match(line);
+                            if (seasonMatch.Success)
+                            {
+                                if (seasonMatch.Success)
                                 {
-                                    Match seasonMatch;
+                                    DataGridViewRow row;
 
-                                    line = sr.ReadLine();
-                                    seasonsMatch = SeasonsEndRegex.Match(line);
-                                    if (seasonsMatch.Success)
-                                    {
-                                        return;
-                                    }
-                                    seasonMatch = SeasonRegex.Match(line);
-                                    if (seasonMatch.Success)
-                                    {
-                                        if (seasonMatch.Success)
-                                        {
-                                            DataGridViewRow row;
-
-                                            row = TVShowSeasonsDataGridView.Rows[TVShowSeasonsDataGridView.Rows.Add()];
-                                            row.DefaultCellStyle.BackColor = Color.White;
-                                            row.Cells["Season Number"].Value = seasonMatch.Groups["SeasonNumber"].Value.ToString();
-                                        }
-                                    }
+                                    row = TVShowSeasonsDataGridView.Rows[TVShowSeasonsDataGridView.Rows.Add()];
+                                    row.DefaultCellStyle.BackColor = Color.White;
+                                    row.Cells["Season Number"].Value = seasonMatch.Groups["SeasonNumber"].Value.ToString();
                                 }
                             }
                         }
                     }
-                }
-            }
-            finally
-            {
-                try
-                {
-                    if (webResponse != null)
-                    {
-                        webResponse.Close();
-                    }
-                }
-                catch
-                {
                 }
             }
         }
@@ -1470,7 +1373,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             UpdateUI();
 
-            EndLongAction();
+            EndLongActionWithGrids();
 
             if ((Program.Settings.DefaultValues.DisableParsingCompleteMessageBox == false)
                 && (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing == false)

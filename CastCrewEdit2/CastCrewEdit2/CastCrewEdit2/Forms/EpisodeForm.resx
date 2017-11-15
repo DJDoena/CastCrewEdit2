@@ -120,9 +120,6 @@
   <data name="&gt;&gt;LogWebBrowser.Name" xml:space="preserve">
     <value>LogWebBrowser</value>
   </data>
-  <data name="CastTabPage.Text" xml:space="preserve">
-    <value>Cast</value>
-  </data>
   <data name="&gt;&gt;IgnoreCreditOnlyCheckBox.Parent" xml:space="preserve">
     <value>IgnoreGroupBox</value>
   </data>
@@ -184,14 +181,14 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;ParseVoiceOfCheckBox.Name" xml:space="preserve">
     <value>ParseVoiceOfCheckBox</value>
   </data>
+  <data name="&gt;&gt;IgnoreCreditOnlyCheckBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="&gt;&gt;CastDataGridView.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="ProgressBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>869, 23</value>
-  </data>
-  <data name="CreditTypeProductionCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="CrewIncludingGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 73</value>
   </data>
   <data name="&gt;&gt;IgnoreUncreditedCheckBox.Parent" xml:space="preserve">
     <value>IgnoreGroupBox</value>
@@ -253,8 +250,11 @@ on "Other/Custom" Credits</value>
   <data name="IgnoreLanguageVersionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>116, 42</value>
   </data>
-  <data name="&gt;&gt;CastGenerateButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;CustomCreditsCheckBox.Name" xml:space="preserve">
+    <value>CustomCreditsCheckBox</value>
+  </data>
+  <data name="ParseCastCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
   </data>
   <data name="&gt;&gt;PersonsInLocalCacheLabel.Name" xml:space="preserve">
     <value>PersonsInLocalCacheLabel</value>
@@ -262,20 +262,14 @@ on "Other/Custom" Credits</value>
   <data name="CreditTypeDirectionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 42</value>
   </data>
-  <data name="ParseVoiceOfCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 17</value>
-  </data>
-  <data name="&gt;&gt;IgnoreLanguageVersionCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="CreditTypeProductionCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;CreditTypeWritingCheckBox.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
   <data name="&gt;&gt;CrewDataGridView.Parent" xml:space="preserve">
     <value>CrewTabPage</value>
-  </data>
-  <data name="SettingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Settings</value>
   </data>
   <data name="&gt;&gt;ReadmeToolStripMenuItem.Name" xml:space="preserve">
     <value>ReadmeToolStripMenuItem</value>
@@ -337,11 +331,11 @@ on "Other/Custom" Credits</value>
   <data name="CapitalizeCustomRoleCheckBox.Text" xml:space="preserve">
     <value>Capitalize Custom Role</value>
   </data>
-  <data name="CreditTypeDirectionCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="CreditTypeArtCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>419, 65</value>
   </data>
-  <data name="&gt;&gt;CrewDataGridView.Name" xml:space="preserve">
-    <value>CrewDataGridView</value>
+  <data name="&gt;&gt;CapitalizeCustomRoleCheckBox.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;ParseCrewCheckBox.Name" xml:space="preserve">
     <value>ParseCrewCheckBox</value>
@@ -349,14 +343,11 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;CapitalizeCustomRoleCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="RetainOriginalCreditCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+  <data name="ParseRoleSlashCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;CustomCreditsCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ParseRoleSlashCheckBox.Name" xml:space="preserve">
-    <value>ParseRoleSlashCheckBox</value>
   </data>
   <data name="BirthYearsInLocalCacheLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -366,9 +357,6 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="&gt;&gt;BirthYearsInLocalCacheTextLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ParseRoleSlashCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="&gt;&gt;CustomCreditsCheckBox.ZOrder" xml:space="preserve">
     <value>10</value>
@@ -436,8 +424,8 @@ on "Other/Custom" Credits</value>
   <data name="CreditTypeArtCheckBox.Text" xml:space="preserve">
     <value>... "Art" Credits</value>
   </data>
-  <data name="FirstnamePrefixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>295, 22</value>
+  <data name="CapitalizeCustomRoleCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>419, 26</value>
   </data>
   <data name="&gt;&gt;ParseVoiceOfCheckBox.Parent" xml:space="preserve">
     <value>CastSettingsGroupBox</value>
@@ -449,7 +437,7 @@ on "Other/Custom" Credits</value>
     <value>136, 17</value>
   </data>
   <data name="PersonsInLocalCacheLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 13</value>
+    <value>43, 13</value>
   </data>
   <data name="IgnoreGroupBox.Text" xml:space="preserve">
     <value>Ignore ...</value>
@@ -490,8 +478,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;ParseCrewCheckBox.Parent" xml:space="preserve">
     <value>CrewSettingsGroupBox</value>
   </data>
-  <data name="&gt;&gt;CreditTypeCinematographyCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;CastTabPage.Name" xml:space="preserve">
+    <value>CastTabPage</value>
   </data>
   <data name="CapitalizeCustomRoleCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>42</value>
@@ -511,8 +499,14 @@ on "Other/Custom" Credits</value>
   <data name="CastGenerateButton.Text" xml:space="preserve">
     <value>Copy Cast to Clipboard</value>
   </data>
+  <data name="&gt;&gt;MenuStrip.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
   <data name="CrewTabPage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
+  </data>
+  <data name="CrewSettingsGroupBox.Text" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="BirthYearsInLocalCacheLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>234, 490</value>
@@ -533,7 +527,7 @@ on "Other/Custom" Credits</value>
     <value>295, 22</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.CastCrewEdit2ParseBaseForm, CastCrewEdit2, Version=2.1.3.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.Forms.CastCrewEdit2ParseBaseForm, CastCrewEdit2, Version=2.1.4.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>295, 22</value>
@@ -544,11 +538,17 @@ on "Other/Custom" Credits</value>
   <data name="RetainOriginalCreditCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 17</value>
   </data>
+  <data name="ParseVoiceOfCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 17</value>
+  </data>
   <data name="&gt;&gt;IgnoreUnconfirmedCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;BirthYearsInLocalCacheLabel.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CrewSettingsGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;GetBirthYearsButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -610,8 +610,11 @@ on "Other/Custom" Credits</value>
   <data name="copyExtendedCrewToClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
-  <data name="ParseCrewCheckBox.Text" xml:space="preserve">
-    <value>Parse Crew</value>
+  <data name="&gt;&gt;IncludePrefixOnOtherCreditsCheckBox.Parent" xml:space="preserve">
+    <value>CrewSettingsGroupBox</value>
+  </data>
+  <data name="ProgressBar.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
   </data>
   <data name="ParseRoleSlashCheckBox.Text" xml:space="preserve">
     <value>Parse Roles with "/" into multiple lines</value>
@@ -664,14 +667,17 @@ on "Other/Custom" Credits</value>
   <data name="CrewGenerateButton.TabIndex" type="System.Int32, mscorlib">
     <value>47</value>
   </data>
+  <data name="CreditTypeDirectionCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="CreditTypeOtherCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 17</value>
   </data>
   <data name="&gt;&gt;NewCloseButton.Name" xml:space="preserve">
     <value>NewCloseButton</value>
   </data>
-  <data name="&gt;&gt;ExtendedToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="CastGenerateButton.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
   </data>
   <data name="CrewGenerateButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 23</value>
@@ -681,9 +687,6 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="IgnoreArchiveFootageCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 24</value>
-  </data>
-  <data name="CastSettingsGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
   </data>
   <data name="LastnamePrefixesToolStripMenuItem.Text" xml:space="preserve">
     <value>Lastname &amp;Prefixes</value>
@@ -697,14 +700,14 @@ on "Other/Custom" Credits</value>
   <data name="CreditTypeCinematographyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 17</value>
   </data>
-  <data name="&gt;&gt;CastTabPage.Name" xml:space="preserve">
-    <value>CastTabPage</value>
+  <data name="CrewIncludingGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
-  <data name="ReadmeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 22</value>
+  <data name="IgnoreUnconfirmedCheckBox.Text" xml:space="preserve">
+    <value>... "(unconfirmed)"</value>
   </data>
-  <data name="&gt;&gt;CustomCreditsCheckBox.Name" xml:space="preserve">
-    <value>CustomCreditsCheckBox</value>
+  <data name="&gt;&gt;IncludePrefixOnOtherCreditsCheckBox.Name" xml:space="preserve">
+    <value>IncludePrefixOnOtherCreditsCheckBox</value>
   </data>
   <data name="&gt;&gt;IgnoreArchiveFootageCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -726,9 +729,6 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="&gt;&gt;ProgressBar.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;IgnoreGroupBox.Name" xml:space="preserve">
-    <value>IgnoreGroupBox</value>
   </data>
   <data name="CreditTypeWritingCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>43</value>
@@ -760,8 +760,8 @@ on "Other/Custom" Credits</value>
   <data name="CastDataGridView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="IncludePrefixOnOtherCreditsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>584, 19</value>
+  <data name="CastTabPage.Text" xml:space="preserve">
+    <value>Cast</value>
   </data>
   <data name="ProgressBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 514</value>
@@ -817,11 +817,11 @@ on "Other/Custom" Credits</value>
   <data name="ReApplySettingsFiltersButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 23</value>
   </data>
-  <data name="&gt;&gt;IncludePrefixOnOtherCreditsCheckBox.Name" xml:space="preserve">
-    <value>IncludePrefixOnOtherCreditsCheckBox</value>
-  </data>
   <data name="CrewSettingsGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;TabControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="IgnoreArchiveFootageCheckBox.Text" xml:space="preserve">
     <value>... "(archive footage)"</value>
@@ -834,6 +834,9 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="copyExtendedCrewToClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>Copy Extended Crew to Clipboard</value>
+  </data>
+  <data name="ReadmeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 22</value>
   </data>
   <data name="&gt;&gt;PersonsInLocalCacheTextLabel.Name" xml:space="preserve">
     <value>PersonsInLocalCacheTextLabel</value>
@@ -850,8 +853,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;ReadmeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ParseCrewCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
+  <data name="&gt;&gt;CreditTypeCinematographyCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;PersonsInLocalCacheTextLabel.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -864,6 +867,9 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="TabControl.Size" type="System.Drawing.Size, System.Drawing">
     <value>869, 452</value>
+  </data>
+  <data name="CrewTabPage.Text" xml:space="preserve">
+    <value>Crew</value>
   </data>
   <data name="CrewDataGridView.TabIndex" type="System.Int32, mscorlib">
     <value>46</value>
@@ -901,9 +907,6 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;CastDataGridView.Name" xml:space="preserve">
     <value>CastDataGridView</value>
   </data>
-  <data name="IgnoreLanguageVersionCheckBox.Text" xml:space="preserve">
-    <value>... "(&lt;language&gt; version)"</value>
-  </data>
   <data name="NewCloseButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
@@ -913,14 +916,14 @@ on "Other/Custom" Credits</value>
   <data name="PersonsInLocalCacheTextLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
-  <data name="IgnoreUncreditedCheckBox.Text" xml:space="preserve">
-    <value>... "(uncredited)"</value>
-  </data>
-  <data name="IgnoreUnconfirmedCheckBox.Text" xml:space="preserve">
-    <value>... "(unconfirmed)"</value>
+  <data name="&gt;&gt;CrewDataGridView.Name" xml:space="preserve">
+    <value>CrewDataGridView</value>
   </data>
   <data name="BirthYearsInLocalCacheTextLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;TabControl.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;CreditTypeCinematographyCheckBox.Parent" xml:space="preserve">
     <value>CrewIncludingGroupBox</value>
@@ -948,9 +951,6 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="&gt;&gt;ParseCastCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="BirthYearsInLocalCacheLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
   </data>
   <data name="MenuStrip.Text" xml:space="preserve">
     <value>menuStrip1</value>
@@ -985,8 +985,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;CrewGenerateButton.Name" xml:space="preserve">
     <value>CrewGenerateButton</value>
   </data>
-  <data name="CreditTypeArtCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>419, 65</value>
+  <data name="&gt;&gt;IgnoreGroupBox.Name" xml:space="preserve">
+    <value>IgnoreGroupBox</value>
   </data>
   <data name="IgnoreCreditOnlyCheckBox.Text" xml:space="preserve">
     <value>... "(credit only)"</value>
@@ -1009,8 +1009,8 @@ on "Other/Custom" Credits</value>
   <data name="RetainCreditedAsOnCastCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 17</value>
   </data>
-  <data name="GetHeadshotsButton.Text" xml:space="preserve">
-    <value>Get Headshots</value>
+  <data name="TabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 27</value>
   </data>
   <data name="&gt;&gt;CreditTypeDirectionCheckBox.Parent" xml:space="preserve">
     <value>CrewIncludingGroupBox</value>
@@ -1021,14 +1021,11 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;CreditTypeSoundCheckBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;IgnoreCreditOnlyCheckBox.Name" xml:space="preserve">
-    <value>IgnoreCreditOnlyCheckBox</value>
-  </data>
   <data name="&gt;&gt;copyExtendedCrewToClipboardToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;IncludePrefixOnOtherCreditsCheckBox.Parent" xml:space="preserve">
-    <value>CrewSettingsGroupBox</value>
+  <data name="&gt;&gt;IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;CreditTypeWritingCheckBox.Name" xml:space="preserve">
     <value>CreditTypeWritingCheckBox</value>
@@ -1045,8 +1042,11 @@ on "Other/Custom" Credits</value>
   <data name="IgnoreLanguageVersionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 24</value>
   </data>
-  <data name="CapitalizeCustomRoleCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>419, 26</value>
+  <data name="&gt;&gt;CastGenerateButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="BirthYearsInLocalCacheLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
   </data>
   <data name="CreditTypeDirectionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 17</value>
@@ -1055,7 +1055,7 @@ on "Other/Custom" Credits</value>
     <value>CrewIncludingGroupBox</value>
   </data>
   <data name="&gt;&gt;ProgressBar.Type" xml:space="preserve">
-    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.ColorProgressBar, CastCrewEdit2Library, Version=2.1.3.0, Culture=neutral, PublicKeyToken=c87f42288e849a4f</value>
+    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.ColorProgressBar, CastCrewEdit2Library, Version=2.1.4.0, Culture=neutral, PublicKeyToken=c87f42288e849a4f</value>
   </data>
   <data name="CopyExtendedCastToClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>Copy Extended Cast to Clipboard</value>
@@ -1069,14 +1069,14 @@ on "Other/Custom" Credits</value>
   <data name="ForcedFakeBirthYearsToolStripMenuItem.Text" xml:space="preserve">
     <value>Forced Fake &amp;Birth Years</value>
   </data>
-  <data name="CastSettingsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>849, 48</value>
-  </data>
   <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Help</value>
   </data>
   <data name="CreditTypeArtCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
+  </data>
+  <data name="EditConfigFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 20</value>
   </data>
   <data name="&gt;&gt;RetainOriginalCreditCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1089,6 +1089,9 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="LogWebBrowser.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
+  </data>
+  <data name="RetainOriginalCreditCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
   </data>
   <data name="GetBirthYearsButton.Text" xml:space="preserve">
     <value>Get Birth Years</value>
@@ -1125,6 +1128,9 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="&gt;&gt;CreditTypeDirectionCheckBox.Name" xml:space="preserve">
     <value>CreditTypeDirectionCheckBox</value>
+  </data>
+  <data name="GetHeadshotsButton.Text" xml:space="preserve">
+    <value>Get Headshots</value>
   </data>
   <data name="&gt;&gt;CreditTypeFilmEditingCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1214,7 +1220,7 @@ on "Other/Custom" Credits</value>
     <value>299, 42</value>
   </data>
   <data name="PersonsInLocalCacheLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>405, 490</value>
+    <value>412, 490</value>
   </data>
   <data name="TabControl.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -1237,11 +1243,11 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;CrewGenerateButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="CreditTypeMusicCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="SettingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Settings</value>
   </data>
-  <data name="CastDataGridView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 137</value>
+  <data name="PersonsInLocalCacheLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
   </data>
   <data name="&gt;&gt;HelpToolStripMenuItem.Name" xml:space="preserve">
     <value>HelpToolStripMenuItem</value>
@@ -1249,26 +1255,20 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;CustomCreditsCheckBox.Parent" xml:space="preserve">
     <value>CrewIncludingGroupBox</value>
   </data>
-  <data name="CrewIncludingGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
   <data name="&gt;&gt;CreditTypeMusicCheckBox.Parent" xml:space="preserve">
     <value>CrewIncludingGroupBox</value>
   </data>
-  <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
+  <data name="&gt;&gt;IgnoreCreditOnlyCheckBox.Name" xml:space="preserve">
+    <value>IgnoreCreditOnlyCheckBox</value>
   </data>
   <data name="IgnoreUncreditedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 19</value>
   </data>
-  <data name="&gt;&gt;ExtendedToolStripMenuItem.Name" xml:space="preserve">
-    <value>ExtendedToolStripMenuItem</value>
+  <data name="ParseCrewCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
   </data>
-  <data name="&gt;&gt;CrewSettingsGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="PersonsInLocalCacheLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
+  <data name="&gt;&gt;IgnoreScenesDeletedCheckBox.Name" xml:space="preserve">
+    <value>IgnoreScenesDeletedCheckBox</value>
   </data>
   <data name="&gt;&gt;LogTabPage.Name" xml:space="preserve">
     <value>LogTabPage</value>
@@ -1276,14 +1276,14 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;LastnameSuffixesToolStripMenuItem.Name" xml:space="preserve">
     <value>LastnameSuffixesToolStripMenuItem</value>
   </data>
-  <data name="CrewIncludingGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 73</value>
+  <data name="&gt;&gt;BirthYearsInLocalCacheTextLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="&gt;&gt;CastTabPage.Parent" xml:space="preserve">
     <value>TabControl</value>
   </data>
-  <data name="&gt;&gt;IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ProgressBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>869, 23</value>
   </data>
   <data name="&gt;&gt;RetainCreditedAsOnCastCheckBox.Name" xml:space="preserve">
     <value>RetainCreditedAsOnCastCheckBox</value>
@@ -1321,8 +1321,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;BirthYearsInLocalCacheLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;MenuStrip.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="CreditTypeFilmEditingCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;LastnameSuffixesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1342,14 +1342,11 @@ on "Other/Custom" Credits</value>
   <data name="CustomCreditsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 19</value>
   </data>
-  <data name="IgnoreLanguageVersionCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+  <data name="CrewDataGridView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 173</value>
   </data>
   <data name="&gt;&gt;ReApplySettingsFiltersButton.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;CapitalizeCustomRoleCheckBox.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="&gt;&gt;IgnoreUncreditedCheckBox.Name" xml:space="preserve">
     <value>IgnoreUncreditedCheckBox</value>
@@ -1372,8 +1369,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;CreditTypeArtCheckBox.Name" xml:space="preserve">
     <value>CreditTypeArtCheckBox</value>
   </data>
-  <data name="CrewSettingsGroupBox.Text" xml:space="preserve">
-    <value>Settings</value>
+  <data name="ParseCrewCheckBox.Text" xml:space="preserve">
+    <value>Parse Crew</value>
   </data>
   <data name="&gt;&gt;PersonsInLocalCacheLabel.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -1387,6 +1384,9 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;CastGenerateButton.Name" xml:space="preserve">
     <value>CastGenerateButton</value>
   </data>
+  <data name="CreditTypeMusicCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="&gt;&gt;RetainOriginalCreditCheckBox.Parent" xml:space="preserve">
     <value>CrewSettingsGroupBox</value>
   </data>
@@ -1396,8 +1396,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;ParseRoleSlashCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;CrewDataGridView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="FirstnamePrefixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>295, 22</value>
   </data>
   <data name="&gt;&gt;BirthYearsInLocalCacheTextLabel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1408,17 +1408,11 @@ on "Other/Custom" Credits</value>
   <data name="GetHeadshotsButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 23</value>
   </data>
-  <data name="ProgressBar.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
   <data name="RetainCreditedAsOnCrewCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 17</value>
   </data>
-  <data name="&gt;&gt;CrewSettingsGroupBox.Parent" xml:space="preserve">
-    <value>CrewTabPage</value>
-  </data>
-  <data name="&gt;&gt;IgnoreGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
   </data>
   <data name="&gt;&gt;HelpToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1429,14 +1423,11 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;ParseVoiceOfCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="TabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 27</value>
-  </data>
   <data name="&gt;&gt;LastnamePrefixesToolStripMenuItem.Name" xml:space="preserve">
     <value>LastnamePrefixesToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;TabControl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;ExtendedToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>893, 550</value>
@@ -1445,7 +1436,7 @@ on "Other/Custom" Credits</value>
     <value>114, 17</value>
   </data>
   <data name="PersonsInLocalCacheLabel.Text" xml:space="preserve">
-    <value>00000</value>
+    <value>000000</value>
   </data>
   <data name="LastnameSuffixesToolStripMenuItem.Text" xml:space="preserve">
     <value>Lastname &amp;Suffixes</value>
@@ -1467,6 +1458,9 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="IgnoreCreditOnlyCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
+  </data>
+  <data name="&gt;&gt;CrewDataGridView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ParseCastCheckBox.Parent" xml:space="preserve">
     <value>CastSettingsGroupBox</value>
@@ -1517,11 +1511,8 @@ on "Other/Custom" Credits</value>
   <data name="ReApplySettingsFiltersButton.Text" xml:space="preserve">
     <value>Re-Apply Settings/Filters</value>
   </data>
-  <data name="CrewDataGridView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 173</value>
-  </data>
-  <data name="CreditTypeFilmEditingCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;IgnoreLanguageVersionCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="CreditTypeSoundCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1532,11 +1523,11 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;MenuStrip.Name" xml:space="preserve">
     <value>MenuStrip</value>
   </data>
-  <data name="&gt;&gt;BirthYearsInLocalCacheTextLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="IgnoreLanguageVersionCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
   </data>
-  <data name="&gt;&gt;NewCloseButton.ZOrder" xml:space="preserve">
-    <value>10</value>
+  <data name="CastSettingsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>849, 48</value>
   </data>
   <data name="&gt;&gt;NewCloseButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1547,14 +1538,17 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;IgnoreGroupBox.Parent" xml:space="preserve">
     <value>CastTabPage</value>
   </data>
+  <data name="&gt;&gt;ExtendedToolStripMenuItem.Name" xml:space="preserve">
+    <value>ExtendedToolStripMenuItem</value>
+  </data>
   <data name="LogTabPage.Text" xml:space="preserve">
     <value>Log</value>
   </data>
   <data name="CrewTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;TabControl.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;CrewSettingsGroupBox.Parent" xml:space="preserve">
+    <value>CrewTabPage</value>
   </data>
   <data name="&gt;&gt;IgnoreLanguageVersionCheckBox.Name" xml:space="preserve">
     <value>IgnoreLanguageVersionCheckBox</value>
@@ -1568,14 +1562,11 @@ on "Other/Custom" Credits</value>
   <data name="CreditTypeSoundtrackCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="CastGenerateButton.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="&gt;&gt;IgnoreScenesDeletedCheckBox.Name" xml:space="preserve">
-    <value>IgnoreScenesDeletedCheckBox</value>
+  <data name="IgnoreUncreditedCheckBox.Text" xml:space="preserve">
+    <value>... "(uncredited)"</value>
   </data>
   <data name="PersonsInLocalCacheTextLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>270, 490</value>
+    <value>277, 490</value>
   </data>
   <data name="&gt;&gt;LastnamePrefixesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1583,11 +1574,11 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;CreditTypeFilmEditingCheckBox.Name" xml:space="preserve">
     <value>CreditTypeFilmEditingCheckBox</value>
   </data>
-  <data name="EditConfigFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 20</value>
+  <data name="CastSettingsGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
-  <data name="ParseCastCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+  <data name="CastDataGridView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 137</value>
   </data>
   <data name="LogTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -1595,11 +1586,14 @@ on "Other/Custom" Credits</value>
   <data name="ParseCrewCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 26</value>
   </data>
+  <data name="IncludePrefixOnOtherCreditsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>584, 19</value>
+  </data>
   <data name="&gt;&gt;copyExtendedCrewToClipboardToolStripMenuItem.Name" xml:space="preserve">
     <value>copyExtendedCrewToClipboardToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;IgnoreCreditOnlyCheckBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="IgnoreLanguageVersionCheckBox.Text" xml:space="preserve">
+    <value>... "(&lt;language&gt; version)"</value>
   </data>
   <data name="&gt;&gt;CrewGenerateButton.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -1607,8 +1601,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;CreditTypeDirectionCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="CrewTabPage.Text" xml:space="preserve">
-    <value>Crew</value>
+  <data name="&gt;&gt;ParseRoleSlashCheckBox.Name" xml:space="preserve">
+    <value>ParseRoleSlashCheckBox</value>
   </data>
   <data name="&gt;&gt;ParseCastCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -1618,6 +1612,9 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="CrewTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
+  </data>
+  <data name="&gt;&gt;NewCloseButton.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="BirthYearsInLocalCacheTextLabel.Text" xml:space="preserve">
     <value>Birth Years in Local Cache:</value>
@@ -1645,6 +1642,9 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="&gt;&gt;CrewTabPage.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;IgnoreGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;SettingsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

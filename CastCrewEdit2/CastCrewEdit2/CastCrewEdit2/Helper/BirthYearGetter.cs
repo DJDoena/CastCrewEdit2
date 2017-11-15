@@ -24,50 +24,29 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         internal static String Get(String personId)
         {
-            String targetUrl = IMDbParser.PersonUrl + personId;
+            String webSite = IMDbParser.GetWebSite(IMDbParser.PersonUrl + personId);
 
-            WebResponse webResponse = null;
-            try
+            using (StringReader sr = new StringReader(webSite))
             {
-                webResponse = IMDbParser.GetWebResponse(targetUrl);
-
-                using (Stream stream = webResponse.GetResponseStream())
+                while (sr.Peek() != -1)
                 {
-                    using (StreamReader sr = new StreamReader(stream, IMDbParser.Encoding))
+                    String line = sr.ReadLine();
+
+                    Match match = DateOfBirthRegex.Match(line);
+
+                    if (match.Success)
                     {
-                        while (sr.EndOfStream == false)
-                        {
-                            String line = sr.ReadLine();
-
-                            Match match = DateOfBirthRegex.Match(line);
-
-                            if (match.Success)
-                            {
-                                return (GetBirthYear(sr));
-                            }
-                        }
+                        return (GetBirthYear(sr));
                     }
                 }
+            }
 
-                return (String.Empty);
-            }
-            finally
-            {
-                try
-                {
-                    if (webResponse != null)
-                    {
-                        webResponse.Close();
-                    }
-                }
-                catch
-                { }
-            }
+            return (String.Empty);
         }
 
-        private static String GetBirthYear(StreamReader sr)
+        private static String GetBirthYear(StringReader sr)
         {
-            while (sr.EndOfStream == false)
+            while (sr.Peek() != -1)
             {
                 String line = sr.ReadLine();
 

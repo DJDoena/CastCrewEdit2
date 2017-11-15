@@ -75,51 +75,62 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             ShowCache(new List<PersonInfo>(persons), "Local Person Cache");
         }
 
-        private void ShowCache(List<PersonInfo> persons, String cacheName)
+        private void ShowCache(List<PersonInfo> persons
+            , String cacheName)
         {
-            persons.Sort(new Comparison<PersonInfo>(delegate (PersonInfo left, PersonInfo right)
-                    {
-                        Int32 compare;
+            persons.Sort(ComparePersonInfos);
 
-                        compare = left.LastName.CompareTo(right.LastName);
-                        if (compare != 0)
-                        {
-                            return (compare);
-                        }
-                        compare = left.FirstName.CompareTo(right.FirstName);
-                        if (compare != 0)
-                        {
-                            return (compare);
-                        }
-                        compare = left.MiddleName.CompareTo(right.MiddleName);
-                        if (compare != 0)
-                        {
-                            return (compare);
-                        }
-                        if ((left.BirthYearWasRetrieved) && (String.IsNullOrEmpty(left.BirthYear) == false))
-                        {
-                            compare = left.BirthYear.CompareTo(right.BirthYear);
-                        }
-                        else
-                        {
-                            compare = String.Empty.CompareTo(right.BirthYear);
-                        }
-                        if (String.IsNullOrEmpty(left.FakeBirthYear) == false)
-                        {
-                            compare = left.FakeBirthYear.CompareTo(right.FakeBirthYear);
-                        }
-                        else
-                        {
-                            compare = String.Empty.CompareTo(right.FakeBirthYear);
-                        }
-                        return (compare);
-                    }
-                ));
             Cursor = Cursors.Default;
+
             using (CacheForm form = new CacheForm(persons, cacheName))
             {
                 form.ShowDialog(this);
             }
+        }
+
+        private static Int32 ComparePersonInfos(PersonInfo left
+            , PersonInfo right)
+        {
+            Int32 compare = left.LastName.CompareTo(right.LastName);
+
+            if (compare != 0)
+            {
+                return (compare);
+            }
+
+            compare = left.FirstName.CompareTo(right.FirstName);
+
+            if (compare != 0)
+            {
+                return (compare);
+            }
+
+            compare = left.MiddleName.CompareTo(right.MiddleName);
+
+            if (compare != 0)
+            {
+                return (compare);
+            }
+
+            if ((left.BirthYearWasRetrieved) && (String.IsNullOrEmpty(left.BirthYear) == false))
+            {
+                compare = left.BirthYear.CompareTo(right.BirthYear);
+            }
+            else
+            {
+                compare = String.Empty.CompareTo(right.BirthYear);
+            }
+
+            if (String.IsNullOrEmpty(left.FakeBirthYear) == false)
+            {
+                compare = left.FakeBirthYear.CompareTo(right.FakeBirthYear);
+            }
+            else
+            {
+                compare = String.Empty.CompareTo(right.FakeBirthYear);
+            }
+
+            return (compare);
         }
 
         protected void OnDataGridViewCellContentClick(Object sender, DataGridViewCellEventArgs e)
@@ -141,7 +152,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                         + row.Cells[ColumnNames.Link].Value.ToString());
                 }
             }
-            else if (e.ColumnIndex == 9)
+            else if (((DataGridView)sender).Columns[e.ColumnIndex].Name == ColumnNames.MoveUp)
             {
                 DataGridViewHelper.DataGridViewDisableButtonCell cell;
                 DataGridViewRow row;
@@ -154,7 +165,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     MoveRow((CastInfo)(row.Tag), true);
                 }
             }
-            else if (e.ColumnIndex == 10)
+            else if (((DataGridView)sender).Columns[e.ColumnIndex].Name == ColumnNames.MoveDown)
             {
                 DataGridViewHelper.DataGridViewDisableButtonCell cell;
                 DataGridViewRow row;
@@ -167,7 +178,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     MoveRow((CastInfo)(row.Tag), false);
                 }
             }
-            else if (e.ColumnIndex == 11)
+            else if (((DataGridView)sender).Columns[e.ColumnIndex].Name == ColumnNames.RemoveRow)
             {
                 DataGridViewHelper.DataGridViewDisableButtonCell cell;
                 DataGridViewRow row;

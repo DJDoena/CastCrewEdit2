@@ -31,7 +31,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         public static readonly Regex GoofsStartRegex;
         public static readonly Regex GoofsLiRegex;
         public static readonly Regex GoofSpoilerRegex;
+#if UnitTest
         public static readonly Encoding Encoding;
+#else
+        private static readonly Encoding Encoding;
+#endif
         internal static readonly Regex UncreditedRegex;
         internal static readonly Regex CreditedAsRegex;
         private static readonly Regex CastRegex;
@@ -60,6 +64,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         private static readonly Object UpdatedPersonLock;
         private static readonly Object GetBirthYearLock;
 
+        private static Dictionary<String, String> WebSites;
+
 #if UnitTest
         public static Dictionary<String, WebResponse> WebResponses;
 #endif
@@ -77,7 +83,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             UncreditedRegex = new Regex(@"\(?uncredited\)?", RegexOptions.Compiled);
             CreditedAsRegex = new Regex(@"\(as (?'CreditedAs'.+?)\)", RegexOptions.Compiled);
             CastRegex
-                = new Regex("<td class=\"primary_photo\"><a href=\"/name/(?'PersonLink'[a-z0-9]+)/.*?<span class=\"itemprop\" itemprop=\"name\">(?'PersonName'.+?)</span></a>          </td><td class=\"ellipsis\">(...)?</td><td class=\"character\"><div>(?'Role'.*)</div></td>"
+                = new Regex("<td class=\"primary_photo\"><a href=\"/name/(?'PersonLink'[a-z0-9]+)/.*?<span class=\"itemprop\" itemprop=\"name\">(?'PersonName'.+?)</span></a>          </td><td class=\"ellipsis\">(...)?</td><td class=\"character\"><div>(?'Role'.*?)</div></td>"
                     , RegexOptions.Compiled);
 
             CreditTypeRegex = new Regex("<h4 class=\"dataHeaderWithBorder\">(?'CreditType'.+?)(<span.+?)?(&nbsp;)?</h4>", RegexOptions.Compiled);
@@ -102,6 +108,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             PersonUrlRegex = new Regex(DomainPrefix + "name/(?'PersonLink'nm[0-9]+)/.*$", RegexOptions.Compiled);
             UpdatedPersonLinks = new Dictionary<String, String>();
             IsInitialized = false;
+            WebSites = new Dictionary<String, String>();
+
 
 #if UnitTest
             WebResponses = new Dictionary<String, WebResponse>();
@@ -122,21 +130,33 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         }
 
-        public static String PersonHashCount
+        public static String GetWebSite(String targetUrl)
         {
-            get
+            String webSite;
+            if (WebSites.TryGetValue(targetUrl, out webSite))
             {
-                return (BirthYearCache.Count.ToString());
+                return (webSite);
+            }
+
+            using (WebResponse webResponse = GetWebResponse(targetUrl))
+            {
+                using (Stream stream = webResponse.GetResponseStream())
+                {
+                    using (StreamReader sr = new StreamReader(stream, Encoding))
+                    {
+                        webSite = sr.ReadToEnd();
+
+                        return (webSite);
+                    }
+                }
             }
         }
 
+        public static String PersonHashCount
+            => (BirthYearCache.Count.ToString());
+
         public static Dictionary<PersonInfo, String> PersonHash
-        {
-            get
-            {
-                return (BirthYearCache);
-            }
-        }
+            => (BirthYearCache);
 
         public static void Initialize(IWin32Window windowHandle)
         {
@@ -623,17 +643,31 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                                             }
                                             if (contentLength == -1)
                                             {
-                                                //File either don't exist, couldn't be determined remotely or is of different size
-                                                webClient = OnlineAccess.CreateSystemSettingsWebClient();
-                                                if (remoteFile.EndsWith("jpg", StringComparison.InvariantCultureIgnoreCase))
+                                                try
                                                 {
-                                                    webClient.DownloadFile(remoteFile, jpg.FullName);
-                                                    jpg.Refresh();
+                                                    //File either don't exist, couldn't be determined remotely or is of different size
+                                                    webClient = OnlineAccess.CreateSystemSettingsWebClient();
+                                                    if (remoteFile.EndsWith("jpg", StringComparison.InvariantCultureIgnoreCase))
+                                                    {
+                                                        webClient.DownloadFile(remoteFile, jpg.FullName);
+                                                        jpg.Refresh();
+                                                    }
+                                                    else if (remoteFile.EndsWith("gif", StringComparison.InvariantCultureIgnoreCase))
+                                                    {
+                                                        webClient.DownloadFile(remoteFile, gif.FullName);
+                                                        gif.Refresh();
+                                                    }
                                                 }
-                                                else if (remoteFile.EndsWith("gif", StringComparison.InvariantCultureIgnoreCase))
+                                                catch (WebException webEx)
                                                 {
-                                                    webClient.DownloadFile(remoteFile, gif.FullName);
-                                                    gif.Refresh();
+                                                    if (webEx.Message.Contains("404"))
+                                                    {
+                                                        return (CheckExistingFile(person, jpg, gif));
+                                                    }
+                                                    else
+                                                    {
+                                                        throw;
+                                                    }
                                                 }
                                             }
                                             return (CheckExistingFile(person, jpg, gif));

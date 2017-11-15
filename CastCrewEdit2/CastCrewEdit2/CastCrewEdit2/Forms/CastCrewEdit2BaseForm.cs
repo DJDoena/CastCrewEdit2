@@ -92,35 +92,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             , ref List<CrewInfo> crewList
             , ref Dictionary<String, List<Match>> soundtrackMatches)
         {
-            WebResponse webResponse;
-            String webSite;
-            String line;
+            String targetUrl = IMDbParser.TitleUrl + key + "/fullcredits";
 
-            webResponse = null;
-            try
-            {
-                webResponse = IMDbParser.GetWebResponse(IMDbParser.TitleUrl + key + "/fullcredits");
-                using (Stream stream = webResponse.GetResponseStream())
-                {
-                    using (StreamReader sr = new StreamReader(stream, IMDbParser.Encoding))
-                    {
-                        webSite = sr.ReadToEnd();
-                    }
-                }
-            }
-            finally
-            {
-                try
-                {
-                    if (webResponse != null)
-                    {
-                        webResponse.Close();
-                    }
-                }
-                catch
-                {
-                }
-            }
+            String webSite = IMDbParser.GetWebSite(targetUrl);
+                        
             if (initializeLists)
             {
                 castList = new List<CastInfo>();
@@ -132,11 +107,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             #region Parse for Cast
             if (parseCast)
             {
-                using (StringReader sr = new StringReader(webSite.ToString()))
+                using (StringReader sr = new StringReader(webSite))
                 {
                     while (sr.Peek() != -1)
                     {
-                        line = sr.ReadLine();
+                        String line = sr.ReadLine();
                         if (CastBlockStartRegex.Match(line).Success)
                         {
                             StringBuilder block;
@@ -173,7 +148,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 {
                     while (sr.Peek() != -1)
                     {
-                        line = sr.ReadLine();
+                        String line = sr.ReadLine();
                         if (CrewBlockStartRegex.Match(line).Success)
                         {
                             StringBuilder block;
@@ -327,65 +302,45 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         protected static Dictionary<String, List<Match>> ParseSoundtrack(String titleLink)
         {
-            WebResponse webResponse;
             Dictionary<String, List<Match>> soundtrackEntries;
 
-            webResponse = null;
             soundtrackEntries = null;
-            try
+
+            String soundtrackUrl = IMDbParser.TitleUrl + titleLink + "/soundtrack";
+
+            String webSite = IMDbParser.GetWebSite(soundtrackUrl);
+
+            using (StringReader sr = new StringReader(webSite))
             {
-                String soundtrackUrl;
+                StringBuilder soundtrack;
+                Boolean soundtrackFound;
 
-                soundtrackUrl = IMDbParser.TitleUrl + titleLink + "/soundtrack";
-                webResponse = IMDbParser.GetWebResponse(soundtrackUrl);
-                using (Stream stream = webResponse.GetResponseStream())
+                soundtrackFound = false;
+                soundtrack = new StringBuilder();
+                while (sr.Peek() != -1)
                 {
-                    using (StreamReader sr = new StreamReader(stream, IMDbParser.Encoding))
+                    String line;
+                    Match beginMatch;
+                    //Match endMatch;
+
+                    line = sr.ReadLine();
+                    if (soundtrackFound == false)
                     {
-                        StringBuilder soundtrack;
-                        Boolean soundtrackFound;
-
-                        soundtrackFound = false;
-                        soundtrack = new StringBuilder();
-                        while (sr.EndOfStream == false)
+                        beginMatch = IMDbParser.SoundtrackStartRegex.Match(line);
+                        if (beginMatch.Success)
                         {
-                            String line;
-                            Match beginMatch;
-                            //Match endMatch;
-
-                            line = sr.ReadLine();
-                            if (soundtrackFound == false)
-                            {
-                                beginMatch = IMDbParser.SoundtrackStartRegex.Match(line);
-                                if (beginMatch.Success)
-                                {
-                                    soundtrackFound = true;
-                                    continue;
-                                }
-                            }
-                            if (soundtrackFound)
-                            {
-                                soundtrack.AppendLine(line);
-                            }
-                        }
-                        if (soundtrack.Length > 0)
-                        {
-                            soundtrackEntries = IMDbParser.ParseSoundtrack(soundtrack);
+                            soundtrackFound = true;
+                            continue;
                         }
                     }
-                }
-            }
-            finally
-            {
-                try
-                {
-                    if (webResponse != null)
+                    if (soundtrackFound)
                     {
-                        webResponse.Close();
+                        soundtrack.AppendLine(line);
                     }
                 }
-                catch
+                if (soundtrack.Length > 0)
                 {
+                    soundtrackEntries = IMDbParser.ParseSoundtrack(soundtrack);
                 }
             }
             if (soundtrackEntries == null)
