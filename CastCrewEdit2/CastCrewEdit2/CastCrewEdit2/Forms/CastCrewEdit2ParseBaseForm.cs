@@ -453,7 +453,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     DataGridViewHelper.GetHeadshots(crewDataGridView, Program.Settings.DefaultValues.UseFakeBirthYears, false
                         , AddMessage, SetProgress);
                 }
-                if (Program.Settings.DefaultValues.AutoCopyHeadShots)
+                if ((Program.Settings.DefaultValues.AutoCopyHeadShots)
+                    && (Program.Settings.DefaultValues.OverwriteExistingImages == false))
                 {
                     if (Directory.Exists(Program.Settings.DefaultValues.CreditPhotosFolder))
                     {

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Text;
-using DoenaSoft.AbstractionLayer.IOServices;
-using DoenaSoft.DVDProfiler.CastCrewEdit2;
-
-namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Implementations
+﻿namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Implementations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
+    using System.Text;
+    using AbstractionLayer.IOServices;
+    using CastCrewEdit2;
+
     public sealed class Log : ILog
     {
         private const String PersonUrl = @"http://www.imdb.com/name/";
@@ -88,7 +88,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Implementations
         {
             using (Stream fs = IOServices.GetFileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
             {
-                using (StreamWriter sr = IOServices.GetStreamWriter(fs))
+                using (StreamWriter sr = new StreamWriter(fs, Encoding.UTF8))
                 {
                     String text = ToString();
 

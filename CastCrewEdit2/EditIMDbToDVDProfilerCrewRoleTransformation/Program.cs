@@ -55,7 +55,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                 {
                     try
                     {
-                        Settings = Serializer<Settings>.Deserialize(SettingsFile);
+                        Settings = DVDProfilerSerializer<Settings>.Deserialize(SettingsFile);
                     }
                     catch
                     {
@@ -66,7 +66,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                 {
                     try
                     {
-                        TransformationData = Serializer<IMDbToDVDProfilerCrewRoleTransformation>.Deserialize(FileName);
+                        TransformationData = DVDProfilerSerializer<IMDbToDVDProfilerCrewRoleTransformation>.Deserialize(FileName);
                     }
                     catch
                     {
@@ -94,7 +94,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                     {
                         File.Move(FileName, FileName + ".bak");
                     }
-                    Serializer<IMDbToDVDProfilerCrewRoleTransformation>.Serialize(FileName, TransformationData);
+                    DVDProfilerSerializer<IMDbToDVDProfilerCrewRoleTransformation>.Serialize(FileName, TransformationData);
                     Environment.ExitCode = 1;
                 }
                 else
@@ -103,7 +103,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                 }
                 try
                 {
-                    Serializer<Settings>.Serialize(SettingsFile, Settings);
+                    DVDProfilerSerializer<Settings>.Serialize(SettingsFile, Settings);
                 }
                 catch
                 {
@@ -121,7 +121,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                         File.Delete(ErrorFile);
                     }
                     exceptionXml = new ExceptionXml(ex);
-                    Serializer<ExceptionXml>.Serialize(ErrorFile, exceptionXml);
+                    DVDProfilerSerializer<ExceptionXml>.Serialize(ErrorFile, exceptionXml);
                 }
                 catch
                 {

@@ -111,7 +111,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             {
                 if (m_ProcessCommand == null)
                 {
-                    m_ProcessCommand = new CancelableCommandAsync(Process, CanExecuteProcess);
+                    m_ProcessCommand = new CancelableRelayCommandAsync(Process, CanExecuteProcess);
                 }
 
                 return (m_ProcessCommand);
@@ -372,7 +372,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
             String logFile = fi.NameWithoutExtension + ".html";
 
-            logFile = IOServices.Path.Combine(fi.DirectoryName, logFile);
+            logFile = IOServices.Path.Combine(fi.FolderName, logFile);
 
             return (logFile);
         }

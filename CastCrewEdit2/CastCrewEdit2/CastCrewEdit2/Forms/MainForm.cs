@@ -300,7 +300,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             //SeasonRegex = new Regex("<option value=\"1\"", RegexOptions.Compiled);
             EpisodeStartRegex = new Regex("<div class=\"list_item (even|odd)\">", RegexOptions.Compiled);
             EpisodeLinkRegex = new Regex("href=\"/title/(?'EpisodeLink'[a-z0-9]+)/", RegexOptions.Compiled);
-            EpisodeNumberRegex = new Regex("itemprop=\"episodeNumber\" content=\"(?'EpisodeNumber'[0-9]+)\"", RegexOptions.Compiled);
+            EpisodeNumberRegex = new Regex("itemprop=\"episodeNumber\" content=\"(?'EpisodeNumber'[0-9,]+)\"", RegexOptions.Compiled);
             EpisodeNameRegex = new Regex("itemprop=\"name\">(?'EpisodeName'.*?)</a>", RegexOptions.Compiled);
             EpisodeEndRegex = new Regex("<div class=\"clear\">&nbsp;</div>", RegexOptions.Compiled);
         }

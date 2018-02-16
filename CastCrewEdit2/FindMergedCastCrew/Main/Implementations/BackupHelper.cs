@@ -14,7 +14,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
                 String backupFile = fi.Name + ".bak";
 
-                backupFile = ioServices.Path.Combine(fi.DirectoryName, backupFile);
+                backupFile = ioServices.Path.Combine(fi.FolderName, backupFile);
 
                 ioServices.File.Move(fileName, backupFile);
             }

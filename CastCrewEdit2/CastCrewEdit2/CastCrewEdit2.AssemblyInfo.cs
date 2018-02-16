@@ -9,7 +9,7 @@
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Doena Soft.")]
 [assembly: AssemblyProduct("Cast/Crew Edit 2")]
-[assembly: AssemblyCopyright("Copyright © Doena Soft. 2009 - 2017")]
+[assembly: AssemblyCopyright("Copyright © Doena Soft. 2009 - 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -23,5 +23,5 @@
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.1.4.1")]
-[assembly: AssemblyFileVersion("2.1.4.1")]
+[assembly: AssemblyVersion("2.1.4.2")]
+[assembly: AssemblyFileVersion("2.1.4.2")]

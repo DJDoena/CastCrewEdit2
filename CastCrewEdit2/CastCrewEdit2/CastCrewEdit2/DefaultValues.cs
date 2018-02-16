@@ -84,6 +84,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         public Boolean GetCrewHeadShots = false;
 
+        public Boolean OverwriteExistingImages = true;
+
         public Boolean AutoCopyHeadShots = false;
 
         public Boolean DownloadTrivia = false;

@@ -86,6 +86,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             GetCrewHeadshotCheckBox.Checked = DefaultValues.GetCrewHeadShots;
             AutoCopyHeadShotsCheckBox.Checked = DefaultValues.AutoCopyHeadShots;
             GetHeadshotsDirectlyAfterNameParsingCheckBox.Checked = DefaultValues.GetHeadShotsDirectlyAfterNameParsing;
+            OverwriteExistingHeadshotsCheckBox.Checked = DefaultValues.OverwriteExistingImages;
             DownloadTriviaCheckBox.Checked = DefaultValues.DownloadTrivia;
             DownloadGoofsCheckBox.Checked = DefaultValues.DownloadGoofs;
             UseFakeBirthYearsCheckBox.Checked = DefaultValues.UseFakeBirthYears;
@@ -161,6 +162,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             DefaultValues.GetCrewHeadShots = GetCrewHeadshotCheckBox.Checked;
             DefaultValues.AutoCopyHeadShots = AutoCopyHeadShotsCheckBox.Checked;
             DefaultValues.GetHeadShotsDirectlyAfterNameParsing = GetHeadshotsDirectlyAfterNameParsingCheckBox.Checked;
+            DefaultValues.OverwriteExistingImages = OverwriteExistingHeadshotsCheckBox.Checked;
             DefaultValues.DownloadTrivia = DownloadTriviaCheckBox.Checked;
             DefaultValues.DownloadGoofs = DownloadGoofsCheckBox.Checked;
             DefaultValues.UseFakeBirthYears = UseFakeBirthYearsCheckBox.Checked;

@@ -402,7 +402,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 
                 backupFile = fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length);
                 backupFile += ".bak";
-                backupFile = m_IOServices.Path.Combine(fileInfo.DirectoryName, backupFile);
+                backupFile = m_IOServices.Path.Combine(fileInfo.FolderName, backupFile);
                 if (m_IOServices.File.Exists(backupFile))
                 {
                     m_IOServices.File.Delete(backupFile);

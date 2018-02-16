@@ -91,6 +91,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.SelectDataPathButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.HeadshotsTab = new System.Windows.Forms.TabPage();
+            this.OverwriteExistingHeadshotsCheckBox = new System.Windows.Forms.CheckBox();
             this.StoreHeadshotsPerSessionCheckBox = new System.Windows.Forms.CheckBox();
             this.GetHeadshotsDirectlyAfterNameParsingCheckBox = new System.Windows.Forms.CheckBox();
             this.AutoCopyHeadShotsCheckBox = new System.Windows.Forms.CheckBox();
@@ -136,20 +137,20 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // 
             // SettingsTabControl
             // 
+            resources.ApplyResources(this.SettingsTabControl, "SettingsTabControl");
             this.SettingsTabControl.Controls.Add(this.ParsingTab);
             this.SettingsTabControl.Controls.Add(this.MessageBoxTabPage);
             this.SettingsTabControl.Controls.Add(this.RootPathTab);
             this.SettingsTabControl.Controls.Add(this.HeadshotsTab);
             this.SettingsTabControl.Controls.Add(this.TriviaTab);
             this.SettingsTabControl.Controls.Add(this.LogTab);
-            resources.ApplyResources(this.SettingsTabControl, "SettingsTabControl");
             this.SettingsTabControl.Name = "SettingsTabControl";
             this.SettingsTabControl.SelectedIndex = 0;
             // 
             // ParsingTab
             // 
-            this.ParsingTab.Controls.Add(this.ParsingTabControl);
             resources.ApplyResources(this.ParsingTab, "ParsingTab");
+            this.ParsingTab.Controls.Add(this.ParsingTabControl);
             this.ParsingTab.Name = "ParsingTab";
             this.ParsingTab.UseVisualStyleBackColor = true;
             // 
@@ -165,8 +166,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // 
             // PeopleParsingTab
             // 
-            this.PeopleParsingTab.Controls.Add(this.ParsingPeopleTabControl);
             resources.ApplyResources(this.PeopleParsingTab, "PeopleParsingTab");
+            this.PeopleParsingTab.Controls.Add(this.ParsingPeopleTabControl);
             this.PeopleParsingTab.Name = "PeopleParsingTab";
             this.PeopleParsingTab.UseVisualStyleBackColor = true;
             // 
@@ -181,8 +182,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // 
             // NameParsingTab
             // 
-            this.NameParsingTab.Controls.Add(this.ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox);
             resources.ApplyResources(this.NameParsingTab, "NameParsingTab");
+            this.NameParsingTab.Controls.Add(this.ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox);
             this.NameParsingTab.Name = "NameParsingTab";
             this.NameParsingTab.UseVisualStyleBackColor = true;
             // 
@@ -194,11 +195,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // 
             // BirthYearsParsingTab
             // 
+            resources.ApplyResources(this.BirthYearsParsingTab, "BirthYearsParsingTab");
             this.BirthYearsParsingTab.Controls.Add(this.UseFakeBirthYearsCheckBox);
             this.BirthYearsParsingTab.Controls.Add(this.RetrieveBirthYearWhenLocalCacheEmptyCheckBox);
             this.BirthYearsParsingTab.Controls.Add(this.GetBirthYearsDirectlyAfterNameParsingCheckBox);
             this.BirthYearsParsingTab.Controls.Add(this.TakeBirthYearFromLocalPersonCacheCheckBox);
-            resources.ApplyResources(this.BirthYearsParsingTab, "BirthYearsParsingTab");
             this.BirthYearsParsingTab.Name = "BirthYearsParsingTab";
             this.BirthYearsParsingTab.UseVisualStyleBackColor = true;
             // 
@@ -228,8 +229,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // 
             // LinksTab
             // 
-            this.LinksTab.Controls.Add(this.CheckLinksCheckBox);
             resources.ApplyResources(this.LinksTab, "LinksTab");
+            this.LinksTab.Controls.Add(this.CheckLinksCheckBox);
             this.LinksTab.Name = "LinksTab";
             this.LinksTab.UseVisualStyleBackColor = true;
             // 
@@ -241,6 +242,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // 
             // CastParsingTab
             // 
+            resources.ApplyResources(this.CastParsingTab, "CastParsingTab");
             this.CastParsingTab.Controls.Add(this.ParseCastCheckBox);
             this.CastParsingTab.Controls.Add(this.RetainCreditedAsOnCastCheckBox);
             this.CastParsingTab.Controls.Add(this.IgnoreUnconfirmedCheckBox);
@@ -251,7 +253,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.CastParsingTab.Controls.Add(this.IgnoreUncreditedCheckBox);
             this.CastParsingTab.Controls.Add(this.ParseVoiceOfCheckBox);
             this.CastParsingTab.Controls.Add(this.ParseRoleSlashCheckBox);
-            resources.ApplyResources(this.CastParsingTab, "CastParsingTab");
             this.CastParsingTab.Name = "CastParsingTab";
             this.CastParsingTab.UseVisualStyleBackColor = true;
             // 
@@ -318,6 +319,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // 
             // CrewParsingTab
             // 
+            resources.ApplyResources(this.CrewParsingTab, "CrewParsingTab");
             this.CrewParsingTab.Controls.Add(this.IncludingCreditTypeSoundtrackCheckBox);
             this.CrewParsingTab.Controls.Add(this.IncludePrefixOnOtherCreditsCheckBox);
             this.CrewParsingTab.Controls.Add(this.RetainCreditedAsOnCrewCheckBox);
@@ -334,7 +336,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.CrewParsingTab.Controls.Add(this.RetainOriginalCreditCheckbox);
             this.CrewParsingTab.Controls.Add(this.IncludingCreditTypeOtherCheckBox);
             this.CrewParsingTab.Controls.Add(this.IncludingCustomCredits);
-            resources.ApplyResources(this.CrewParsingTab, "CrewParsingTab");
             this.CrewParsingTab.Name = "CrewParsingTab";
             this.CrewParsingTab.UseVisualStyleBackColor = true;
             // 
@@ -437,12 +438,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // 
             // SeasonsParsingTab
             // 
+            resources.ApplyResources(this.SeasonsParsingTab, "SeasonsParsingTab");
             this.SeasonsParsingTab.Controls.Add(this.UseDoubleDigitsEpisodeNumberCheckBox);
             this.SeasonsParsingTab.Controls.Add(this.label2);
             this.SeasonsParsingTab.Controls.Add(this.EpisodeSeperatorSampleLabel);
             this.SeasonsParsingTab.Controls.Add(this.label1);
             this.SeasonsParsingTab.Controls.Add(this.EpisodeFormatTextBox);
-            resources.ApplyResources(this.SeasonsParsingTab, "SeasonsParsingTab");
             this.SeasonsParsingTab.Name = "SeasonsParsingTab";
             this.SeasonsParsingTab.UseVisualStyleBackColor = true;
             // 
@@ -475,12 +476,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // 
             // MessageBoxTabPage
             // 
+            resources.ApplyResources(this.MessageBoxTabPage, "MessageBoxTabPage");
             this.MessageBoxTabPage.Controls.Add(this.DisableDuplicatesMessageBoxCheckBox);
             this.MessageBoxTabPage.Controls.Add(this.DisableParsingCompleteMessageBoxForGetHeadshotsCheckBox);
             this.MessageBoxTabPage.Controls.Add(this.DisableParsingCompleteMessageBoxForGetBirthYearsCheckBox);
             this.MessageBoxTabPage.Controls.Add(this.DisableCopyingSuccessfulMessageBoxCheckBox);
             this.MessageBoxTabPage.Controls.Add(this.DisableParsingCompleteMessageBoxCheckBox);
-            resources.ApplyResources(this.MessageBoxTabPage, "MessageBoxTabPage");
             this.MessageBoxTabPage.Name = "MessageBoxTabPage";
             this.MessageBoxTabPage.UseVisualStyleBackColor = true;
             // 
@@ -516,11 +517,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // 
             // RootPathTab
             // 
+            resources.ApplyResources(this.RootPathTab, "RootPathTab");
             this.RootPathTab.Controls.Add(this.DataPathTextBox);
             this.RootPathTab.Controls.Add(this.label4);
             this.RootPathTab.Controls.Add(this.SelectDataPathButton);
             this.RootPathTab.Controls.Add(this.label3);
-            resources.ApplyResources(this.RootPathTab, "RootPathTab");
             this.RootPathTab.Name = "RootPathTab";
             this.RootPathTab.UseVisualStyleBackColor = true;
             // 
@@ -549,14 +550,21 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // 
             // HeadshotsTab
             // 
+            resources.ApplyResources(this.HeadshotsTab, "HeadshotsTab");
+            this.HeadshotsTab.Controls.Add(this.OverwriteExistingHeadshotsCheckBox);
             this.HeadshotsTab.Controls.Add(this.StoreHeadshotsPerSessionCheckBox);
             this.HeadshotsTab.Controls.Add(this.GetHeadshotsDirectlyAfterNameParsingCheckBox);
             this.HeadshotsTab.Controls.Add(this.AutoCopyHeadShotsCheckBox);
             this.HeadshotsTab.Controls.Add(this.GetCrewHeadshotCheckBox);
             this.HeadshotsTab.Controls.Add(this.GetCastHeadshotCheckBox);
-            resources.ApplyResources(this.HeadshotsTab, "HeadshotsTab");
             this.HeadshotsTab.Name = "HeadshotsTab";
             this.HeadshotsTab.UseVisualStyleBackColor = true;
+            // 
+            // OverwriteExistingHeadshotsCheckBox
+            // 
+            resources.ApplyResources(this.OverwriteExistingHeadshotsCheckBox, "OverwriteExistingHeadshotsCheckBox");
+            this.OverwriteExistingHeadshotsCheckBox.Name = "OverwriteExistingHeadshotsCheckBox";
+            this.OverwriteExistingHeadshotsCheckBox.UseVisualStyleBackColor = true;
             // 
             // StoreHeadshotsPerSessionCheckBox
             // 
@@ -590,9 +598,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // 
             // TriviaTab
             // 
+            resources.ApplyResources(this.TriviaTab, "TriviaTab");
             this.TriviaTab.Controls.Add(this.DownloadGoofsCheckBox);
             this.TriviaTab.Controls.Add(this.DownloadTriviaCheckBox);
-            resources.ApplyResources(this.TriviaTab, "TriviaTab");
             this.TriviaTab.Name = "TriviaTab";
             this.TriviaTab.UseVisualStyleBackColor = true;
             // 
@@ -610,8 +618,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // 
             // LogTab
             // 
-            this.LogTab.Controls.Add(this.SaveLogFileCheckBox);
             resources.ApplyResources(this.LogTab, "LogTab");
+            this.LogTab.Controls.Add(this.SaveLogFileCheckBox);
             this.LogTab.Name = "LogTab";
             this.LogTab.UseVisualStyleBackColor = true;
             // 
@@ -661,6 +669,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.HeadshotsTab.ResumeLayout(false);
             this.HeadshotsTab.PerformLayout();
             this.TriviaTab.ResumeLayout(false);
+            this.TriviaTab.PerformLayout();
             this.LogTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -740,5 +749,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         private System.Windows.Forms.TabPage LinksTab;
         private System.Windows.Forms.CheckBox CheckLinksCheckBox;
         private System.Windows.Forms.CheckBox DisableDuplicatesMessageBoxCheckBox;
+        private System.Windows.Forms.CheckBox OverwriteExistingHeadshotsCheckBox;
     }
 }

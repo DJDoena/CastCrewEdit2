@@ -179,8 +179,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             options = new OpenFileDialogOptions();
             options.CheckFileExists = true;
             options.Filter = "Cast file|cast*.xml|Crew file|crew*.xml";
-            options.InitialDirectory = GetInitialDirectory(currentFileName);
-            options.RestoreDirectory = true;
+            options.InitialFolder = GetInitialDirectory(currentFileName);
+            options.RestoreFolder = true;
             options.Title = "Please select cache file.";
             return (UIServices.ShowOpenFileDialog(options, out fileName));
         }
@@ -194,10 +194,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             options.AddExtension = true;
             options.DefaultExt = ".xml";
             options.Filter = "Cast file|cast*.xml|Crew file|crew*.xml";
-            options.InitialDirectory = GetInitialDirectory(currentFileName);
+            options.InitialFolder = GetInitialDirectory(currentFileName);
             options.OverwritePrompt = true;
-            options.RestoreDirectory = true;
-            options.ValidateNames = true;
+            options.RestoreFolder = true;
+            options.ValidateName = true;
             options.Title = "Please select target cache file.";
             return (UIServices.ShowSaveFileDialog(options, out fileName));
         }
@@ -210,7 +210,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             {
                 IFileInfo fi = IOServices.GetFileInfo(fileName);
 
-                iniDir = fi.DirectoryName + @"\";
+                iniDir = fi.FolderName + @"\";
             }
 
             return (iniDir);

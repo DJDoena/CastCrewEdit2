@@ -580,6 +580,12 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="RootPathTab.Text" xml:space="preserve">
     <value>Datenpfad</value>
   </data>
+  <data name="OverwriteExistingHeadshotsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 17</value>
+  </data>
+  <data name="OverwriteExistingHeadshotsCheckBox.Text" xml:space="preserve">
+    <value>Bestehende Photos überschreiben</value>
+  </data>
   <data name="StoreHeadshotsPerSessionCheckBox.Text" xml:space="preserve">
     <value>Speichere Photos pro Sitzung im Images\DVD Profiler und Images\CCViewer-Ordner</value>
   </data>

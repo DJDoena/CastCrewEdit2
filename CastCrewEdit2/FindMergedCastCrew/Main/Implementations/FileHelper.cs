@@ -30,8 +30,8 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
             options.CheckFileExists = true;
             options.Filter = filter;
-            options.InitialDirectory = GetInitialDirectory(suggestedFileName);
-            options.RestoreDirectory = true;
+            options.InitialFolder = GetInitialDirectory(suggestedFileName);
+            options.RestoreFolder = true;
             options.Title = title;
             options.FileName = GetInitialFileName(suggestedFileName, true);
 
@@ -50,10 +50,10 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
             options.AddExtension = true;
             options.DefaultExt = ".xml";
             options.Filter = filter;
-            options.InitialDirectory = GetInitialDirectory(suggestedFileName);
+            options.InitialFolder = GetInitialDirectory(suggestedFileName);
             options.OverwritePrompt = true;
-            options.RestoreDirectory = true;
-            options.ValidateNames = true;
+            options.RestoreFolder = true;
+            options.ValidateName = true;
             options.Title = title;
             options.FileName = GetInitialFileName(suggestedFileName, false);
 
@@ -112,7 +112,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
             {
                 IFileInfo fi = IOServices.GetFileInfo(fileName);
 
-                iniDir = fi.DirectoryName + @"\";
+                iniDir = fi.FolderName + @"\";
             }
 
             return (iniDir);
@@ -171,7 +171,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
                 fileName = fi.NameWithoutExtension + ".cache";
 
-                fileName = IOServices.Path.Combine(fi.DirectoryName, fileName);
+                fileName = IOServices.Path.Combine(fi.FolderName, fileName);
             }
 
             return (fileName);

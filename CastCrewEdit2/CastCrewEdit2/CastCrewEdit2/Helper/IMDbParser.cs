@@ -72,7 +72,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         static IMDbParser()
         {
-            const String DomainPrefix = "http://((akas.)*|(www.)*|(us.)*|(german.)*)imdb.(com|de)/";
+            const String DomainPrefix = "https?://((akas.)*|(www.)*|(us.)*|(german.)*)imdb.(com|de)/";
 
             UpdatedPersonLock = new Object();
             GetBirthYearLock = new Object();
@@ -237,7 +237,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             {
                 try
                 {
-                    TransformationData = Serializer<IMDbToDVDProfilerCrewRoleTransformation>.Deserialize(fileName);
+                    TransformationData = DVDProfilerSerializer<IMDbToDVDProfilerCrewRoleTransformation>.Deserialize(fileName);
                 }
                 catch
                 {
