@@ -1,11 +1,11 @@
 ﻿<div style="display:none">
 <trivia=<a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> told <a href="http://www.imdb.com/name/nm0001536">Toshirô Mifune</a> that his character was like a wolf or a dog and told <a href="http://www.imdb.com/name/nm0619938">Tatsuya Nakadai</a> that his character was like a snake. Inspired by this direction, Mifune came up with Sanjuro's trademark shoulder twitch, similar to the way a dog or wolf tries to get off fleas. />
 
-<trivia=<a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> asked his sound engineer <a href="http://www.imdb.com/name/nm0590988">Ichirô Minawa</a> to come up with a sound effect to be used when a sword is cutting, and killing, someone. After testing out slicing a sword into beef and pork, he finally found the perfect sample--putting two wooden chopsticks inside a raw chicken, then hacking it with a sword. />
-
 <trivia=<a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> challenged his assistant directors to come up with an image for the film to let Sanjuro know he was entering a bad town. He shot down all of their ideas, since all of them had already been done. Kurosawa himself then came up with the idea of the dog carrying the human hand. />
 
 <trivia="Yojimbo" means "bodyguard" in Japanese. />
+
+<trivia=<a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> asked his sound engineer <a href="http://www.imdb.com/name/nm0590988">Ichirô Minawa</a> to come up with a sound effect to be used when a sword is cutting, and killing, someone. After testing out slicing a sword into beef and pork, he finally found the perfect sample--putting two wooden chopsticks inside a raw chicken, then hacking it with a sword. />
 
 <trivia=<a href="http://www.imdb.com/name/nm2728142">Masaru Sato</a> was instructed by <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> to write "whatever you like" so long as it was not the usual period samurai film music so commonly used by all the major studios at the time. He ended up writing something that was inspired by one of his idols, <a href="http://www.imdb.com/name/nm0000049">Henry Mancini</a>, whom he had the pleasure of meeting shortly after the film was released, where they discussed his "Yojimbo" soundtrack. />
 
@@ -21,19 +21,19 @@
 
 <trivia=After <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> scolded <a href="http://www.imdb.com/name/nm0001536">Toshirô Mifune</a> for arriving late to the set one morning, Mifune made it a point to be ready on set at 6:00 AM every day in full makeup and costume for the rest of the film's shooting schedule. />
 
-<trivia=<a href="http://www.imdb.com/title/tt0060315">Django</a> (1966) was unofficially inspired by this movie. />
+<trivia=When asked his name, the samurai calls himself "Kuwabatake Sanjuro", which he seems to make up while looking at a mulberry field by the town. Thus, the character can be viewed as an early example of the "Man with No Name". />
 
 <trivia=This was a deliberate attempt by <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> to revise the cinema's attitude towards onscreen violence. He wanted to show the damaging effect of violence, rather than the slightly anodyne way that it had usually been depicted before. (He would later come to regret this move, as it spawned a mass movement in international cinema that hasn't abated even today.) />
 
 <trivia=The fact that the main villain sports a gun shows the slow creep of Westernization and pitches the film as roughly taking place in the 1860s. It was around about this time that the USA started forcing Japan to come out of its isolationist policy that had effectively kept the country stalled in a feudal, almost medieval society. />
 
-<trivia=When asked his name, the samurai calls himself "Kuwabatake Sanjuro", which he seems to make up while looking at a mulberry field by the town. Thus, the character can be viewed as an early example of the "Man with No Name". />
+<trivia=<a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> was heavily influenced by the American Western for this film, particularly <a href="http://www.imdb.com/title/tt0044706">Zw&ouml;lf Uhr mittags</a> (1952) and <a href="http://www.imdb.com/title/tt0046303">Mein gro&szlig;er Freund Shane</a> (1953). He also admitted to being heavily influenced by the film noir <a href="http://www.imdb.com/title/tt0034798">Der gl&auml;serne Schl&uuml;ssel</a> (1942). />
 
 <trivia=The film was so successful that <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a>'s next project - already in pre-production, and ultimately called _Sanjuro_ - had to be revised to accommodate <a href="http://www.imdb.com/name/nm0001536">Toshirô Mifune</a>'s title character. />
 
-<trivia=This film brought <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> his greatest domestic success. />
+<trivia=<a href="http://www.imdb.com/title/tt0060315">Django</a> (1966) was unofficially inspired by this movie. />
 
-<trivia=<a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> was heavily influenced by the American Western for this film, particularly <a href="http://www.imdb.com/title/tt0044706">Zw&ouml;lf Uhr mittags</a> (1952) and <a href="http://www.imdb.com/title/tt0046303">Mein gro&szlig;er Freund Shane</a> (1953). He also admitted to being heavily influenced by the film noir <a href="http://www.imdb.com/title/tt0034798">Der gl&auml;serne Schl&uuml;ssel</a> (1942). />
+<trivia=This film brought <a href="http://www.imdb.com/name/nm0000041">Akira Kurosawa</a> his greatest domestic success. />
 
 <trivia=The film is included on <a href="http://www.imdb.com/name/nm0001170">Roger Ebert</a>'s "Great Movies" list. />
 

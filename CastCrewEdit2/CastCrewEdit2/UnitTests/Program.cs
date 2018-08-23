@@ -115,8 +115,8 @@ namespace UnitTests
 
             MovieCrew(HotShots, out crewMatches, out crewList, out progressBarMaxValue, out existing, out current);
             Assert.AreEqual(26, crewMatches.Count, "castMatches.Count");
-            Assert.AreEqual(195, progressBarMaxValue, "progressBarMaxValue");
-            Assert.AreEqual(185, crewList.Count, "castList.Count");
+            Assert.AreEqual(196, progressBarMaxValue, "progressBarMaxValue");
+            Assert.AreEqual(186, crewList.Count, "castList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
@@ -129,8 +129,8 @@ namespace UnitTests
             episodeInfo.SeasonNumber = "1";
             episodeInfo.EpisodeNumber = "1";
             EpisodeCrew(episodeInfo);
-            Assert.AreEqual(17, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
-            Assert.AreEqual(28, episodeInfo.CrewList.Count, "episodeInfo.CrewList.Count");
+            Assert.AreEqual(19, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
+            Assert.AreEqual(30, episodeInfo.CrewList.Count, "episodeInfo.CrewList.Count");
         }
 
         private static void EpisodeCastFerdinand()
@@ -142,9 +142,9 @@ namespace UnitTests
             episodeInfo.SeasonNumber = "1";
             episodeInfo.EpisodeNumber = "1";
             EpisodeCast(episodeInfo);
-            Assert.AreEqual(29, episodeInfo.CastMatches.Count, "episodeInfo.CastMatches.Count");
-            Assert.AreEqual(29, episodeInfo.CastList.Count, "episodeInfo.CastList.Count");
-            Assert.AreEqual("True", episodeInfo.CastList[28].Uncredited, "episodeInfo.CastList[28].Uncredited");
+            Assert.AreEqual(30, episodeInfo.CastMatches.Count, "episodeInfo.CastMatches.Count");
+            Assert.AreEqual(30, episodeInfo.CastList.Count, "episodeInfo.CastList.Count");
+            Assert.AreEqual("True", episodeInfo.CastList[29].Uncredited, "episodeInfo.CastList[29].Uncredited");
         }
 
         private static void TriviaYojimbo()

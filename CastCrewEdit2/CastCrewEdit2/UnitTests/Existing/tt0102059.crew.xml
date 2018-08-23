@@ -2,7 +2,7 @@
 <CrewInformation>
   <Title>tt0102059</Title>
   <Credits>
-    <Credit FirstName="Jim" MiddleName="" LastName="Abrahams" BirthYear="0" CreditType="Direction" CreditSubtype="Director" />
+    <Credit FirstName="Jim" MiddleName="" LastName="Abrahams" BirthYear="0" CreditType="Direction" CreditSubtype="Director" CreditedAs="" CustomRole="Directed By" />
     <Credit FirstName="Jim" MiddleName="" LastName="Abrahams" BirthYear="0" CreditType="Writing" CreditSubtype="Writer" CreditedAs="" CustomRole="Written By" />
     <Credit FirstName="Pat" MiddleName="" LastName="Proft" BirthYear="0" CreditType="Writing" CreditSubtype="Writer" CreditedAs="" CustomRole="Written By" />
     <Credit FirstName="Bill" MiddleName="" LastName="Badalato" BirthYear="0" CreditType="Production" CreditSubtype="Producer" CreditedAs="" />
@@ -16,6 +16,7 @@
     <Credit FirstName="Eric" MiddleName="A." LastName="Sears" BirthYear="0" CreditType="Film Editing" CreditSubtype="Film Editor" />
     <Credit FirstName="Mali" MiddleName="" LastName="Finn" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CustomRole="Casting By" />
     <Credit FirstName="William" MiddleName="A." LastName="Elliott" BirthYear="0" CreditType="Art" CreditSubtype="Production Designer" />
+    <Credit FirstName="Ken" MiddleName="" LastName="Kaufman" BirthYear="0" CreditType="Art" CreditSubtype="Production Designer" />
     <Credit FirstName="Greg" MiddleName="" LastName="Papalia" BirthYear="0" CreditType="Art" CreditSubtype="Art Director" CreditedAs="" CustomRole="Supervising Art Director" />
     <Credit FirstName="Jerie" MiddleName="" LastName="Kelter" BirthYear="0" CreditType="Other" CreditSubtype="Custom" CustomRole="Set Decoration by" />
     <Credit FirstName="Mary" MiddleName="" LastName="Malin" BirthYear="0" CreditType="Art" CreditSubtype="Costume Designer" />

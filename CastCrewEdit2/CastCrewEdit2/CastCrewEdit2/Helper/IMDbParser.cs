@@ -83,7 +83,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             UncreditedRegex = new Regex(@"\(?uncredited\)?", RegexOptions.Compiled);
             CreditedAsRegex = new Regex(@"\(as (?'CreditedAs'.+?)\)", RegexOptions.Compiled);
             CastRegex
-                = new Regex("<td class=\"primary_photo\"><a href=\"/name/(?'PersonLink'[a-z0-9]+)/.*?<span class=\"itemprop\" itemprop=\"name\">(?'PersonName'.+?)</span></a>          </td><td class=\"ellipsis\">(...)?</td><td class=\"character\"><div>(?'Role'.*?)</div></td>"
+                = new Regex("<td class=\"primary_photo\">.*?<td><a href=\"/name/(?'PersonLink'[a-z0-9]+)/.*?>(?'PersonName'.+?)</a>          </td><td class=\"ellipsis\">(...)?</td><td class=\"character\">(<div>)?(?'Role'.*?)(</div>)?</td>"
                     , RegexOptions.Compiled);
 
             CreditTypeRegex = new Regex("<h4 class=\"dataHeaderWithBorder\">(?'CreditType'.+?)(<span.+?)?(&nbsp;)?</h4>", RegexOptions.Compiled);
