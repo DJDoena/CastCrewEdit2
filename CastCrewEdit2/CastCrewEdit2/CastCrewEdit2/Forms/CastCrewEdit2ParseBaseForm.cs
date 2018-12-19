@@ -453,20 +453,22 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     DataGridViewHelper.GetHeadshots(crewDataGridView, Program.Settings.DefaultValues.UseFakeBirthYears, false
                         , AddMessage, SetProgress);
                 }
-                if ((Program.Settings.DefaultValues.AutoCopyHeadShots)
-                    && (Program.Settings.DefaultValues.OverwriteExistingImages == false))
+                if (Program.Settings.DefaultValues.AutoCopyHeadShots)
                 {
                     if (Directory.Exists(Program.Settings.DefaultValues.CreditPhotosFolder))
                     {
-                        String[] files;
+                        var files = Directory.GetFiles(Program.RootPath + @"\Images\DVD Profiler", "*.*");
 
-                        files = Directory.GetFiles(Program.RootPath + @"\Images\DVD Profiler", "*.*");
-                        foreach (String file in files)
+                        foreach (var file in files)
                         {
-                            FileInfo fileInfo;
+                            var sourceFileInfo = new FileInfo(file);
 
-                            fileInfo = new FileInfo(file);
-                            fileInfo.CopyTo(Program.Settings.DefaultValues.CreditPhotosFolder + @"\" + fileInfo.Name, true);
+                            var targetFileInfo = new FileInfo(Path.Combine(Program.Settings.DefaultValues.CreditPhotosFolder, sourceFileInfo.Name));
+
+                            if (!targetFileInfo.Exists || Program.Settings.DefaultValues.OverwriteExistingImages)
+                            {
+                                sourceFileInfo.CopyTo(targetFileInfo.FullName, true);
+                            }
                         }
                     }
                     else
