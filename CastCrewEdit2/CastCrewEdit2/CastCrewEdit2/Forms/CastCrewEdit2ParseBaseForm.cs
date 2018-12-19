@@ -32,7 +32,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         }
 
         protected static Boolean ItsMe
-            => ((Environment.UserName == "Karsten") || (Environment.UserName == "z0036ckx"));
+            => (Environment.UserName == "djdoe");
 
         protected static Boolean HasAgreed
         {
@@ -571,6 +571,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
                 GetHeadshots(castDataGridView, crewDataGridView, getHeadshotButton.Text);
             }
+            catch (AggregateException ex)
+            {
+                MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Program.WriteError(ex);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -618,6 +623,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             try
             {
                 GetBirthYears(parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButton.Text, logWebBrowser);
+            }
+            catch (AggregateException ex)
+            {
+                MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Program.WriteError(ex);
             }
             catch (Exception ex)
             {

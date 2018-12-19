@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -414,6 +413,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                         MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
+                catch (AggregateException ex)
+                {
+                    failed = true;
+
+                    MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                    Program.WriteError(ex);
+                }
                 catch (Exception ex)
                 {
                     failed = true;
@@ -422,6 +429,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
                     Program.WriteError(ex);
                 }
+            }
+            catch (AggregateException ex)
+            {
+                MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                Program.WriteError(ex);
             }
             catch (Exception ex)
             {
@@ -1059,11 +1072,21 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                             , MessageBoxIcon.Information);
                     }
                 }
+                catch (AggregateException ex)
+                {
+                    MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    Program.WriteError(ex);
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     Program.WriteError(ex);
                 }
+            }
+            catch (AggregateException ex)
+            {
+                MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Program.WriteError(ex);
             }
             catch (Exception ex)
             {
@@ -1201,6 +1224,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                             }
                         }
                     }
+                }
+                catch (AggregateException ex)
+                {
+                    MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    Program.WriteError(ex);
                 }
                 catch (Exception ex)
                 {

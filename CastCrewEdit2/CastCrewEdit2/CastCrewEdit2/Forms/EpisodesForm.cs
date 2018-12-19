@@ -199,6 +199,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 {
                     ScanRows(DataGridView.SelectedRows, ScanEpisodesButton.Text);
                 }
+                catch (AggregateException ex)
+                {
+                    MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    Program.WriteError(ex);
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -349,6 +354,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             try
             {
                 ScanRows(DataGridView.Rows, ScanAllEpisodesButton.Text);
+            }
+            catch (AggregateException ex)
+            {
+                MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Program.WriteError(ex);
             }
             catch (Exception ex)
             {

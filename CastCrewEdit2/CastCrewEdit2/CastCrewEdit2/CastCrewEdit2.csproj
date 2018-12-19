@@ -85,6 +85,7 @@
     <Compile Include="Helper\CrewInfo.cs" />
     <Compile Include="Helper\DataGridViewHelper.cs" />
     <Compile Include="Helper\Name.cs" />
+    <Compile Include="Helper\NameParser.cs" />
     <Compile Include="Helper\SountrackLineProcessor.cs" />
     <Compile Include="Resources\DataGridViewTexts.Designer.cs">
       <AutoGen>True</AutoGen>

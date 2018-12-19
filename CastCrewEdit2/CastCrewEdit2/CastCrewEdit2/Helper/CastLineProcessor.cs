@@ -33,7 +33,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
             CastInfo castMember = new CastInfo();
 
-            Name name = IMDbParser.ParsePersonName(match.Groups["PersonName"].Value);
+            Name name = NameParser.Parse(match.Groups["PersonName"].Value);
 
             castMember.FirstName = name.FirstName.ToString();
             castMember.MiddleName = name.MiddleName.ToString();

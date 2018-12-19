@@ -11,7 +11,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         {
             CrewInfo crewMember = new CrewInfo();
 
-            Name name = IMDbParser.ParsePersonName(crewMatch.Groups["PersonName"].Value.ToString());
+            Name name = NameParser.Parse(crewMatch.Groups["PersonName"].Value.ToString());
 
             crewMember.FirstName = name.FirstName.ToString();
             crewMember.MiddleName = name.MiddleName.ToString();

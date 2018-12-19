@@ -288,8 +288,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK
-                                    , MessageBoxIcon.Exclamation);
+                                MessageBox.Show(ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 Program.WriteError(ex);
                                 return;
                             }

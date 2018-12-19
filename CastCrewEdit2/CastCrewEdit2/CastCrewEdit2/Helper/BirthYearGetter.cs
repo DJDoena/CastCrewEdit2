@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
@@ -11,54 +10,54 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
     internal static class BirthYearGetter
     {
-        private static readonly Regex BirthYearRegex;
-        private static readonly Regex DateOfBirthRegex;
+        private static readonly Regex _birthYearRegex;
+        private static readonly Regex _dateOfBirthRegex;
 
         static BirthYearGetter()
         {
-            BirthYearRegex = new Regex("<a.+?href=\"/search/name\\?birth_year=(?'BirthYear'[0-9]+)", RegexOptions.Compiled);
-            DateOfBirthRegex = new Regex("<h4 class=\"inline\">Born:</h4>", RegexOptions.Compiled);
+            _birthYearRegex = new Regex("<a.+?href=\"/search/name\\?birth_year=(?'BirthYear'[0-9]+)", RegexOptions.Compiled);
+            _dateOfBirthRegex = new Regex("<h4 class=\"inline\">Born:</h4>", RegexOptions.Compiled);
         }
 
         #region From IMDbParser
 
-        internal static String Get(String personId)
+        internal static string Get(string personId)
         {
-            String webSite = IMDbParser.GetWebSite(IMDbParser.PersonUrl + personId);
+            var webSite = IMDbParser.GetWebSite(IMDbParser.PersonUrl + personId);
 
-            using (StringReader sr = new StringReader(webSite))
+            using (var sr = new StringReader(webSite))
             {
                 while (sr.Peek() != -1)
                 {
-                    String line = sr.ReadLine();
+                    var line = sr.ReadLine();
 
-                    Match match = DateOfBirthRegex.Match(line);
-
-                    if (match.Success)
+                    if (_dateOfBirthRegex.Match(line).Success)
                     {
-                        return (GetBirthYear(sr));
+                        var birthYear = GetBirthYear(sr);
+
+                        return birthYear;
                     }
                 }
             }
 
-            return (String.Empty);
+            return string.Empty;
         }
 
-        private static String GetBirthYear(StringReader sr)
+        private static string GetBirthYear(StringReader sr)
         {
             while (sr.Peek() != -1)
             {
-                String line = sr.ReadLine();
+                var line = sr.ReadLine();
 
-                Match match = BirthYearRegex.Match(line);
+                var match = _birthYearRegex.Match(line);
 
                 if (match.Success)
                 {
-                    return (match.Groups["BirthYear"].Value);
+                    return match.Groups["BirthYear"].Value;
                 }
             }
 
-            return (String.Empty);
+            return string.Empty;
         }
 
         #endregion
@@ -67,136 +66,143 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         #region GetBirthYear
 
-        internal static List<IAsyncResult> GetBirthYear(Dictionary<String, PersonInfo> persons
-            , DefaultValues defaultValues
-            , Log log
-            , Boolean isCast
-            , Action<MessageEntry> addMessage
-            , DataGridViewRow row)
+        internal static List<IAsyncResult> GetBirthYear(Dictionary<string, PersonInfo> persons, DefaultValues defaultValues, Log log, bool isCast, Action<MessageEntry> addMessage, DataGridViewRow row)
         {
-            List<IAsyncResult> invokeResults = new List<IAsyncResult>();
+            var invokeResults = new List<IAsyncResult>();
 
-            PersonInfo person = (PersonInfo)(row.Tag);
+            var person = (PersonInfo)(row.Tag);
 
-            CastInfo castMember = person as CastInfo;
+            var castMember = isCast ? (CastInfo)person : null;
 
-            if ((person.FirstName != FirstNames.Title) && (person.FirstName != FirstNames.Divider) && (String.IsNullOrEmpty(person.BirthYear)))
+            if (person.FirstName == FirstNames.Title || person.FirstName == FirstNames.Divider || !string.IsNullOrEmpty(person.BirthYear))
             {
-                PersonInfo other = persons[person.PersonLink];
+                return invokeResults;
+            }
 
-                if (IMDbParser.ForcedFakeBirthYears.ContainsKey(person.PersonLink))
+            var other = persons[person.PersonLink];
+
+            if (IMDbParser.ForcedFakeBirthYears.ContainsKey(person.PersonLink))
+            {
+                UseForcedFakeBirthYear(row, person, other, log, castMember, addMessage, invokeResults);
+            }
+            else if (defaultValues.TakeBirthYearFromLocalCache)
+            {
+                UseBirthYearFromLocalCache(row, person, other, log, castMember, addMessage, invokeResults);
+            }
+            else
+            {
+                DownloadBirthYear(row, person, other, log, castMember, addMessage, invokeResults);
+            }
+
+            return invokeResults;
+        }
+
+        private static void UseForcedFakeBirthYear(DataGridViewRow row, PersonInfo person, PersonInfo other, Log log, CastInfo castMember, Action<MessageEntry> addMessage, List<IAsyncResult> invokeResults)
+        {
+            string previousBirthYear = null;
+
+            if (string.IsNullOrEmpty(other.BirthYear) == false)
+            {
+                previousBirthYear = other.BirthYear;
+            }
+            else if (string.IsNullOrEmpty(other.FakeBirthYear) == false)
+            {
+                previousBirthYear = other.FakeBirthYear;
+            }
+
+            other.BirthYear = string.Empty;
+            other.FakeBirthYear = IMDbParser.ForcedFakeBirthYears[person.PersonLink].ToString();
+            other.BirthYearWasRetrieved = false;
+
+            person.BirthYear = other.BirthYear;
+            person.FakeBirthYear = other.FakeBirthYear;
+            person.BirthYearWasRetrieved = other.BirthYearWasRetrieved;
+
+            if ((string.IsNullOrEmpty(previousBirthYear) == false) && (previousBirthYear != other.FakeBirthYear))
+            {
+                ShowBirthYearMessageBox(log, person, previousBirthYear, castMember, addMessage);
+            }
+
+            ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Value = other.FakeBirthYear);
+
+            if ((castMember == null) || (castMember.IsAdditionalRow == false))
+            {
+                ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Style.BackColor = Color.White);
+            }
+        }
+
+        private static void UseBirthYearFromLocalCache(DataGridViewRow row, PersonInfo person, PersonInfo other, Log log, CastInfo castMember, Action<MessageEntry> addMessage, List<IAsyncResult> invokeResults)
+        {
+            if (other.BirthYearWasRetrieved)
+            {
+                if (string.IsNullOrEmpty(other.BirthYear))
                 {
-                    String previousBirthYear = null;
-
-                    if (String.IsNullOrEmpty(other.BirthYear) == false)
+                    if ((Program.Settings.DefaultValues.RetrieveBirthYearWhenLocalCacheEmpty))
                     {
-                        previousBirthYear = other.BirthYear;
-                    }
-                    else if (String.IsNullOrEmpty(other.FakeBirthYear) == false)
-                    {
-                        previousBirthYear = other.FakeBirthYear;
-                    }
-
-                    other.BirthYear = String.Empty;
-                    other.FakeBirthYear = IMDbParser.ForcedFakeBirthYears[person.PersonLink].ToString();
-                    other.BirthYearWasRetrieved = false;
-
-                    person.BirthYear = other.BirthYear;
-                    person.FakeBirthYear = other.FakeBirthYear;
-                    person.BirthYearWasRetrieved = other.BirthYearWasRetrieved;
-
-                    if ((String.IsNullOrEmpty(previousBirthYear) == false) && (previousBirthYear != other.FakeBirthYear))
-                    {
-                        ShowBirthYearMessageBox(log, person, previousBirthYear, isCast, addMessage);
-                    }
-
-                    ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Value = other.FakeBirthYear);
-
-                    if ((castMember == null) || (castMember.IsAdditionalRow == false))
-                    {
-                        ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Style.BackColor = Color.White);
-                    }
-                }
-                else if (defaultValues.TakeBirthYearFromLocalCache)
-                {
-                    if (other.BirthYearWasRetrieved)
-                    {
-                        if (String.IsNullOrEmpty(other.BirthYear))
-                        {
-                            if ((Program.Settings.DefaultValues.RetrieveBirthYearWhenLocalCacheEmpty))
-                            {
-                                invokeResults.AddRange(GetBirthYear(row, person, other, log, isCast, addMessage));
-                            }
-                            else
-                            {
-                                person.BirthYear = other.BirthYear;
-                                person.BirthYearWasRetrieved = other.BirthYearWasRetrieved;
-
-                                ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Value = other.BirthYear);
-                            }
-                        }
-                        else
-                        {
-                            person.BirthYear = other.BirthYear;
-                            person.BirthYearWasRetrieved = other.BirthYearWasRetrieved;
-
-                            ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Value = other.BirthYear);
-
-                            if (String.IsNullOrEmpty(other.FakeBirthYear) == false)
-                            {
-                                ShowBirthYearMessageBox(log, other, person.FakeBirthYear, isCast, addMessage);
-
-                                person.FakeBirthYear = null;
-                                other.FakeBirthYear = null;
-                            }
-                        }
+                        invokeResults.AddRange(GetBirthYear(row, person, other, log, castMember, addMessage));
                     }
                     else
                     {
-                        invokeResults.AddRange(GetBirthYear(row, person, other, log, isCast, addMessage));
-                    }
+                        person.BirthYear = other.BirthYear;
+                        person.BirthYearWasRetrieved = other.BirthYearWasRetrieved;
 
-                    if ((castMember == null) || (castMember.IsAdditionalRow == false))
-                    {
-                        ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Style.BackColor = Color.White);
+                        ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Value = other.BirthYear);
                     }
                 }
                 else
                 {
-                    String previousBirthYear = other.BirthYear;
+                    person.BirthYear = other.BirthYear;
+                    person.BirthYearWasRetrieved = other.BirthYearWasRetrieved;
 
-                    invokeResults.AddRange(GetBirthYear(row, person, other, log, isCast, addMessage));
+                    ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Value = other.BirthYear);
 
-                    if ((castMember == null) || (castMember.IsAdditionalRow == false))
+                    if (string.IsNullOrEmpty(other.FakeBirthYear) == false)
                     {
-                        ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Style.BackColor = Color.White);
-                    }
+                        ShowBirthYearMessageBox(log, other, person.FakeBirthYear, castMember, addMessage);
 
-                    if ((String.IsNullOrEmpty(person.BirthYear) == false) && (String.IsNullOrEmpty(previousBirthYear) == false))
-                    {
-                        if (person.BirthYear != previousBirthYear)
-                        {
-                            ShowBirthYearMessageBox(log, person, previousBirthYear, isCast, addMessage);
-                        }
-                    }
-                    else if ((String.IsNullOrEmpty(person.BirthYear)) && (String.IsNullOrEmpty(previousBirthYear) == false))
-                    {
-                        ShowBirthYearMessageBox(log, person, previousBirthYear, isCast, addMessage);
+                        person.FakeBirthYear = null;
+                        other.FakeBirthYear = null;
                     }
                 }
             }
+            else
+            {
+                invokeResults.AddRange(GetBirthYear(row, person, other, log, castMember, addMessage));
+            }
 
-            return (invokeResults);
+            if ((castMember == null) || (castMember.IsAdditionalRow == false))
+            {
+                ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Style.BackColor = Color.White);
+            }
         }
 
-        private static List<IAsyncResult> GetBirthYear(DataGridViewRow row
-            , PersonInfo person
-            , PersonInfo other
-            , Log log
-            , Boolean isCast
-            , Action<MessageEntry> addMessage)
+        private static void DownloadBirthYear(DataGridViewRow row, PersonInfo person, PersonInfo other, Log log, CastInfo castMember, Action<MessageEntry> addMessage, List<IAsyncResult> invokeResults)
         {
-            List<IAsyncResult> invokeResults = new List<IAsyncResult>();
+            var previousBirthYear = other.BirthYear;
+
+            invokeResults.AddRange(GetBirthYear(row, person, other, log, castMember, addMessage));
+
+            if ((castMember == null) || (castMember.IsAdditionalRow == false))
+            {
+                ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Style.BackColor = Color.White);
+            }
+
+            if ((string.IsNullOrEmpty(person.BirthYear) == false) && (string.IsNullOrEmpty(previousBirthYear) == false))
+            {
+                if (person.BirthYear != previousBirthYear)
+                {
+                    ShowBirthYearMessageBox(log, person, previousBirthYear, castMember, addMessage);
+                }
+            }
+            else if ((string.IsNullOrEmpty(person.BirthYear)) && (string.IsNullOrEmpty(previousBirthYear) == false))
+            {
+                ShowBirthYearMessageBox(log, person, previousBirthYear, castMember, addMessage);
+            }
+        }
+
+        private static List<IAsyncResult> GetBirthYear(DataGridViewRow row, PersonInfo person, PersonInfo other, Log log, CastInfo castMember, Action<MessageEntry> addMessage)
+        {
+            var invokeResults = new List<IAsyncResult>();
 
             IMDbParser.GetBirthYear(person);
 
@@ -206,9 +212,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
             other.BirthYearWasRetrieved = true;
 
-            if ((String.IsNullOrEmpty(other.BirthYear) == false) && (String.IsNullOrEmpty(other.FakeBirthYear) == false))
+            if ((string.IsNullOrEmpty(other.BirthYear) == false) && (string.IsNullOrEmpty(other.FakeBirthYear) == false))
             {
-                ShowBirthYearMessageBox(log, other, person.FakeBirthYear, isCast, addMessage);
+                ShowBirthYearMessageBox(log, other, person.FakeBirthYear, castMember, addMessage);
 
                 person.FakeBirthYear = null;
                 other.FakeBirthYear = null;
@@ -217,11 +223,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             return (invokeResults);
         }
 
-        private static void ExecuteAction(DataGridViewRow row
-            , List<IAsyncResult> invokeResults
-            , Action action)
+        private static void ExecuteAction(DataGridViewRow row, List<IAsyncResult> invokeResults, Action action)
         {
-            DataGridView dataGridView = row.DataGridView;
+            var dataGridView = row.DataGridView;
 
             if (dataGridView.InvokeRequired)
             {
@@ -233,37 +237,22 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
         }
 
-        private static void ShowBirthYearMessageBox(Log log
-            , PersonInfo person
-            , String previousBirthYear
-            , Boolean isCast
-            , Action<MessageEntry> addMessage)
+        private static void ShowBirthYearMessageBox(Log log, PersonInfo person, String previousBirthYear, CastInfo castMember, Action<MessageEntry> addMessage)
         {
-            String text;
-            String logText;
-
-            PersonInfo old = new PersonInfo(person);
-
-            old.BirthYear = previousBirthYear;
-
-            Boolean useFakeBirthYears = Program.Settings.DefaultValues.UseFakeBirthYears;
-
-            if (isCast)
+            var old = new PersonInfo(person)
             {
-                text = String.Format(MessageBoxTexts.BirthYearCastHasChanged, old.FormatPersonNameWithoutMarkers()
-                    , old.FormatActorNameWithBirthYearWithMarkers(useFakeBirthYears), person.FormatActorNameWithBirthYearWithMarkers(useFakeBirthYears), old.PersonLink);
+                BirthYear = previousBirthYear,
+            };
 
-                logText = String.Format(MessageBoxTexts.BirthYearCastHasChanged, old.FormatPersonNameWithoutMarkers()
-                    , old.FormatActorNameWithBirthYearWithMarkersAsHtml(useFakeBirthYears, new[] { person }), person.FormatActorNameWithBirthYearWithMarkersAsHtml(useFakeBirthYears, new[] { old }), DataGridViewHelper.CreatePersonLinkHtml(old));
-            }
-            else
-            {
-                text = String.Format(MessageBoxTexts.BirthYearCrewHasChanged, old.FormatPersonNameWithoutMarkers()
-                    , old.FormatActorNameWithBirthYearWithMarkers(useFakeBirthYears), person.FormatActorNameWithBirthYearWithMarkers(useFakeBirthYears), old.PersonLink);
+            var useFakeBirthYears = Program.Settings.DefaultValues.UseFakeBirthYears;
 
-                logText = String.Format(MessageBoxTexts.BirthYearCrewHasChanged, old.FormatPersonNameWithoutMarkers()
-                    , old.FormatActorNameWithBirthYearWithMarkersAsHtml(useFakeBirthYears, new[] { person }), person.FormatActorNameWithBirthYearWithMarkersAsHtml(useFakeBirthYears, new[] { old }), DataGridViewHelper.CreatePersonLinkHtml(old));
-            }
+            var text = castMember != null
+                ? string.Format(MessageBoxTexts.BirthYearCastHasChanged, old.FormatPersonNameWithoutMarkers(), old.FormatActorNameWithBirthYearWithMarkers(useFakeBirthYears), person.FormatActorNameWithBirthYearWithMarkers(useFakeBirthYears), old.PersonLink)
+                : string.Format(MessageBoxTexts.BirthYearCrewHasChanged, old.FormatPersonNameWithoutMarkers(), old.FormatActorNameWithBirthYearWithMarkers(useFakeBirthYears), person.FormatActorNameWithBirthYearWithMarkers(useFakeBirthYears), old.PersonLink);
+
+            var logText = castMember != null
+                ? string.Format(MessageBoxTexts.BirthYearCastHasChanged, old.FormatPersonNameWithoutMarkers(), old.FormatActorNameWithBirthYearWithMarkersAsHtml(useFakeBirthYears, new[] { person }), person.FormatActorNameWithBirthYearWithMarkersAsHtml(useFakeBirthYears, new[] { old }), DataGridViewHelper.CreatePersonLinkHtml(old))
+                : string.Format(MessageBoxTexts.BirthYearCrewHasChanged, old.FormatPersonNameWithoutMarkers(), old.FormatActorNameWithBirthYearWithMarkersAsHtml(useFakeBirthYears, new[] { person }), person.FormatActorNameWithBirthYearWithMarkersAsHtml(useFakeBirthYears, new[] { old }), DataGridViewHelper.CreatePersonLinkHtml(old));
 
             log.AppendParagraph(logText);
 
@@ -272,16 +261,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         #endregion
 
-        internal static Dictionary<String, List<DataGridViewRow>> GetGroupedBirthYears(DataGridView dataGridView)
+        internal static Dictionary<string, List<DataGridViewRow>> GetGroupedBirthYears(DataGridView dataGridView)
         {
-            Dictionary<String, List<DataGridViewRow>> dict = new Dictionary<String, List<DataGridViewRow>>(dataGridView.Rows.Count);
+            var dict = new Dictionary<string, List<DataGridViewRow>>(dataGridView.Rows.Count);
 
             foreach (DataGridViewRow row in dataGridView.Rows)
             {
-                PersonInfo person = (PersonInfo)(row.Tag);
+                var person = (PersonInfo)(row.Tag);
 
-                List<DataGridViewRow> list;
-                if (dict.TryGetValue(person.PersonLink, out list) == false)
+                if (dict.TryGetValue(person.PersonLink, out List<DataGridViewRow> list) == false)
                 {
                     list = new List<DataGridViewRow>(1);
 
@@ -291,7 +279,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 list.Add(row);
             }
 
-            return (dict);
+            return dict;
         }
 
         #endregion

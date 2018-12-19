@@ -16,29 +16,30 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             CCVLock = new Object();
         }
 
-        internal static void Get(Boolean useFakeBirthYears
-            , Boolean isCast
+        internal static void Get(bool useFakeBirthYears
+            , bool isCast
             , Action<MessageEntry> addMessage
             , PersonInfo person)
         {
             if ((person.FirstName != FirstNames.Title) && (person.FirstName != FirstNames.Divider))
             {
-                String target = ProfilePhotoHelper.FileNameFromCreditName(person.FirstName, person.MiddleName, person.LastName, 0);
+                var target = ProfilePhotoHelper.FileNameFromCreditName(person.FirstName, person.MiddleName, person.LastName, 0);
 
-                Int32 birthYear;
-                if (String.IsNullOrEmpty(person.BirthYear) == false)
+                if (string.IsNullOrEmpty(person.BirthYear) == false)
                 {
-                    birthYear = Int32.Parse(person.BirthYear);
+                    var birthYear = int.Parse(person.BirthYear);
 
                     target = ProfilePhotoHelper.FileNameFromCreditName(person.FirstName, person.MiddleName, person.LastName, birthYear);
                 }
                 else if (useFakeBirthYears)
                 {
-                    String fakeBirthYear = DataGridViewHelper.CreateFakeBirthYearAsString(person, isCast, addMessage);
+                    var fakeBirthYear = DataGridViewHelper.CreateFakeBirthYearAsString(person, isCast, addMessage);
 
-                    if (String.IsNullOrEmpty(fakeBirthYear) == false)
+                    if (string.IsNullOrEmpty(fakeBirthYear) == false)
                     {
-                        birthYear = Int32.Parse(fakeBirthYear);
+                        var birthYear = int.Parse(fakeBirthYear);
+
+                        target = ProfilePhotoHelper.FileNameFromCreditName(person.FirstName, person.MiddleName, person.LastName, birthYear);
                     }
                 }
 
@@ -106,6 +107,16 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             if (gif.Exists)
             {
                 existingFile = gif;
+
+                return (false);
+            }
+
+
+            FileInfo png = new FileInfo(Program.RootPath + @"\Images\CastCrewEdit2\" + personLink + ".png");
+
+            if (png.Exists)
+            {
+                existingFile = png;
 
                 return (false);
             }
