@@ -49,7 +49,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         public void Show(WebBrowser webBrowser)
         {
-            String file = Path.Combine(Path.GetTempPath(), "cce2log.html");
+            String file = Path.Combine(Path.GetTempPath(), "cce2log.html"); 
 
             using (StreamWriter sw = new StreamWriter(file, false, Encoding.UTF8))
             {
