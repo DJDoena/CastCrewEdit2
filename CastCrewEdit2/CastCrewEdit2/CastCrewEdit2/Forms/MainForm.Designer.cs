@@ -42,7 +42,6 @@
             this.ProgressBar = new DoenaSoft.DVDProfiler.CastCrewEdit2.ColorProgressBar();
             this.MovieTVShowTabControl = new System.Windows.Forms.TabControl();
             this.BrowserTab = new System.Windows.Forms.TabPage();
-            this.WebBrowser = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
             this.label1 = new System.Windows.Forms.Label();
             this.BrowserSearchTextBox = new System.Windows.Forms.TextBox();
             this.BrowserSearchButton = new System.Windows.Forms.Button();
@@ -131,7 +130,6 @@
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MovieTVShowTabControl.SuspendLayout();
             this.BrowserTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.WebBrowser)).BeginInit();
             this.MovieTab.SuspendLayout();
             this.MovieCastCrewTabControl.SuspendLayout();
             this.CastTab.SuspendLayout();
@@ -197,7 +195,6 @@
             // 
             // BrowserTab
             // 
-            this.BrowserTab.Controls.Add(this.WebBrowser);
             this.BrowserTab.Controls.Add(this.label1);
             this.BrowserTab.Controls.Add(this.BrowserSearchTextBox);
             this.BrowserTab.Controls.Add(this.BrowserSearchButton);
@@ -207,13 +204,6 @@
             resources.ApplyResources(this.BrowserTab, "BrowserTab");
             this.BrowserTab.Name = "BrowserTab";
             this.BrowserTab.UseVisualStyleBackColor = true;
-            // 
-            // WebBrowser
-            // 
-            resources.ApplyResources(this.WebBrowser, "WebBrowser");
-            this.WebBrowser.Name = "WebBrowser";
-            this.WebBrowser.NavigationCompleted += new System.EventHandler<Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs>(this.OnWebBrowserNavigationCompleted);
-            this.WebBrowser.NavigationStarting += new System.EventHandler<Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationStartingEventArgs>(this.OnWebBrowserNavigationStarting);
             // 
             // label1
             // 
@@ -877,7 +867,6 @@
             this.MovieTVShowTabControl.ResumeLayout(false);
             this.BrowserTab.ResumeLayout(false);
             this.BrowserTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.WebBrowser)).EndInit();
             this.MovieTab.ResumeLayout(false);
             this.MovieTab.PerformLayout();
             this.MovieCastCrewTabControl.ResumeLayout(false);
@@ -1005,8 +994,7 @@
         private System.Windows.Forms.ToolStripMenuItem ForcedFakeBirthYearsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExtendedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CopyExtendedCastToClipboardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem CopyExtendedCrewToClipboardToolStripMenuItem;
-        private Microsoft.Toolkit.Forms.UI.Controls.WebView WebBrowser;
+        private System.Windows.Forms.ToolStripMenuItem CopyExtendedCrewToClipboardToolStripMenuItem;        
         public ColorProgressBar ProgressBar;
     }
 }

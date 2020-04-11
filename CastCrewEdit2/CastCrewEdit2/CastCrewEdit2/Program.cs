@@ -10,6 +10,7 @@ using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using Microsoft.Win32;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 {
@@ -45,8 +46,32 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         public static readonly CastCrewEditAdapterEventHandler AdapterEventHandler;
 
+        internal static Boolean IsWindows10;
+
+        internal static Boolean IsAtLeastWindows10Update1803;
+
         static Program()
         {
+            IsWindows10 = false;
+
+            IsAtLeastWindows10Update1803 = false;
+
+            var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+
+            var productName = key.GetValue("ProductName") as string ?? string.Empty;
+
+            if (productName.StartsWith("Windows 10"))
+            {
+                IsWindows10 = true;
+
+                var releaseIdString = key.GetValue("ReleaseId") as string ?? string.Empty;
+
+                if (int.TryParse(releaseIdString, out var releaseId) && releaseId >= 1803)
+                {
+                    IsAtLeastWindows10Update1803 = true;
+                }
+            }
+
             RegistryAccess.Init("Doena Soft.", "CastCrewEdit2");
             WindowHandle = new WindowHandle();
             InitPaths();
