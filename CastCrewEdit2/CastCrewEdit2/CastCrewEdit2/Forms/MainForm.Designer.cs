@@ -151,22 +151,22 @@
             // 
             // sessionDataToolStripMenuItem
             // 
-            resources.ApplyResources(this.sessionDataToolStripMenuItem, "sessionDataToolStripMenuItem");
             this.sessionDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.backupToolStripMenuItem,
             this.restoreToolStripMenuItem});
             this.sessionDataToolStripMenuItem.Name = "sessionDataToolStripMenuItem";
+            resources.ApplyResources(this.sessionDataToolStripMenuItem, "sessionDataToolStripMenuItem");
             // 
             // backupToolStripMenuItem
             // 
-            resources.ApplyResources(this.backupToolStripMenuItem, "backupToolStripMenuItem");
             this.backupToolStripMenuItem.Name = "backupToolStripMenuItem";
+            resources.ApplyResources(this.backupToolStripMenuItem, "backupToolStripMenuItem");
             this.backupToolStripMenuItem.Click += new System.EventHandler(this.OnBackupToolStripMenuItemClick);
             // 
             // restoreToolStripMenuItem
             // 
-            resources.ApplyResources(this.restoreToolStripMenuItem, "restoreToolStripMenuItem");
             this.restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
+            resources.ApplyResources(this.restoreToolStripMenuItem, "restoreToolStripMenuItem");
             this.restoreToolStripMenuItem.Click += new System.EventHandler(this.OnRestoreToolStripMenuItemClick);
             // 
             // ProgressBar
@@ -196,7 +196,6 @@
             // 
             // BrowserTab
             // 
-            resources.ApplyResources(this.BrowserTab, "BrowserTab");
             this.BrowserTab.Controls.Add(this.label1);
             this.BrowserTab.Controls.Add(this.BrowserSearchTextBox);
             this.BrowserTab.Controls.Add(this.BrowserSearchButton);
@@ -204,6 +203,7 @@
             this.BrowserTab.Controls.Add(this.WebBrowser);
             this.BrowserTab.Controls.Add(this.BrowseButton);
             this.BrowserTab.Controls.Add(this.BrowserUrlLabel);
+            resources.ApplyResources(this.BrowserTab, "BrowserTab");
             this.BrowserTab.Name = "BrowserTab";
             this.BrowserTab.UseVisualStyleBackColor = true;
             // 
@@ -229,18 +229,14 @@
             // 
             resources.ApplyResources(this.BrowserUrlComboBox, "BrowserUrlComboBox");
             this.BrowserUrlComboBox.FormattingEnabled = true;
-            this.BrowserUrlComboBox.Items.AddRange(new object[] {
-            resources.GetString("BrowserUrlComboBox.Items"),
-            resources.GetString("BrowserUrlComboBox.Items1"),
-            resources.GetString("BrowserUrlComboBox.Items2")});
             this.BrowserUrlComboBox.Name = "BrowserUrlComboBox";
             this.BrowserUrlComboBox.SelectedIndexChanged += new System.EventHandler(this.OnBrowserUrlComboBoxSelectedIndexChanged);
             this.BrowserUrlComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnBrowserUrlComboBoxKeyUp);
             // 
             // WebBrowser
             // 
-            resources.ApplyResources(this.WebBrowser, "WebBrowser");
             this.WebBrowser.AllowWebBrowserDrop = false;
+            resources.ApplyResources(this.WebBrowser, "WebBrowser");
             this.WebBrowser.Name = "WebBrowser";
             this.WebBrowser.ScriptErrorsSuppressed = true;
             this.WebBrowser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.OnWebBrowserNavigated);
@@ -260,7 +256,6 @@
             // 
             // MovieTab
             // 
-            resources.ApplyResources(this.MovieTab, "MovieTab");
             this.MovieTab.Controls.Add(this.GetHeadshotsButton);
             this.MovieTab.Controls.Add(this.ReApplySettingsFiltersButton);
             this.MovieTab.Controls.Add(this.PersonsInLocalCacheLabel);
@@ -272,6 +267,7 @@
             this.MovieTab.Controls.Add(this.IMDbMovieUrlLabel);
             this.MovieTab.Controls.Add(this.MovieScanPageButton);
             this.MovieTab.Controls.Add(this.MovieUrlTextBox);
+            resources.ApplyResources(this.MovieTab, "MovieTab");
             this.MovieTab.Name = "MovieTab";
             this.MovieTab.UseVisualStyleBackColor = true;
             // 
@@ -330,11 +326,11 @@
             // 
             // CastTab
             // 
-            resources.ApplyResources(this.CastTab, "CastTab");
             this.CastTab.Controls.Add(this.IgnoreGroupBox);
             this.CastTab.Controls.Add(this.CastSettingsGroupBox);
             this.CastTab.Controls.Add(this.MovieCastGenerateButton);
             this.CastTab.Controls.Add(this.MovieCastDataGridView);
+            resources.ApplyResources(this.CastTab, "CastTab");
             this.CastTab.Name = "CastTab";
             this.CastTab.UseVisualStyleBackColor = true;
             // 
@@ -429,9 +425,9 @@
             // 
             // MovieCastDataGridView
             // 
-            resources.ApplyResources(this.MovieCastDataGridView, "MovieCastDataGridView");
             this.MovieCastDataGridView.AllowUserToAddRows = false;
             this.MovieCastDataGridView.AllowUserToDeleteRows = false;
+            resources.ApplyResources(this.MovieCastDataGridView, "MovieCastDataGridView");
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -453,11 +449,11 @@
             // 
             // CrewTab
             // 
-            resources.ApplyResources(this.CrewTab, "CrewTab");
             this.CrewTab.Controls.Add(this.CrewIncludingGroupBox);
             this.CrewTab.Controls.Add(this.CrewSettingsGroupBox);
             this.CrewTab.Controls.Add(this.MovieCrewGenerateButton);
             this.CrewTab.Controls.Add(this.MovieCrewDataGridView);
+            resources.ApplyResources(this.CrewTab, "CrewTab");
             this.CrewTab.Name = "CrewTab";
             this.CrewTab.UseVisualStyleBackColor = true;
             // 
@@ -594,8 +590,8 @@
             // 
             // MovieCrewDataGridView
             // 
-            resources.ApplyResources(this.MovieCrewDataGridView, "MovieCrewDataGridView");
             this.MovieCrewDataGridView.AllowUserToAddRows = false;
+            resources.ApplyResources(this.MovieCrewDataGridView, "MovieCrewDataGridView");
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -617,9 +613,9 @@
             // 
             // TriviaTab
             // 
-            resources.ApplyResources(this.TriviaTab, "TriviaTab");
             this.TriviaTab.Controls.Add(this.CopyTriviaToClipboardButton);
             this.TriviaTab.Controls.Add(this.TriviaTextBox);
+            resources.ApplyResources(this.TriviaTab, "TriviaTab");
             this.TriviaTab.Name = "TriviaTab";
             this.TriviaTab.UseVisualStyleBackColor = true;
             // 
@@ -638,9 +634,9 @@
             // 
             // GoofsTab
             // 
-            resources.ApplyResources(this.GoofsTab, "GoofsTab");
             this.GoofsTab.Controls.Add(this.CopyGoofsToClipboardButton);
             this.GoofsTab.Controls.Add(this.GoofsTextBox);
+            resources.ApplyResources(this.GoofsTab, "GoofsTab");
             this.GoofsTab.Name = "GoofsTab";
             this.GoofsTab.UseVisualStyleBackColor = true;
             // 
@@ -676,12 +672,12 @@
             // 
             // TVShowTab
             // 
-            resources.ApplyResources(this.TVShowTab, "TVShowTab");
             this.TVShowTab.Controls.Add(this.ScanForEpisodesButton);
             this.TVShowTab.Controls.Add(this.label4);
             this.TVShowTab.Controls.Add(this.TVShowScanPageButton);
             this.TVShowTab.Controls.Add(this.TVShowUrlTextBox);
             this.TVShowTab.Controls.Add(this.TVShowSeasonsDataGridView);
+            resources.ApplyResources(this.TVShowTab, "TVShowTab");
             this.TVShowTab.Name = "TVShowTab";
             this.TVShowTab.UseVisualStyleBackColor = true;
             // 
@@ -711,9 +707,9 @@
             // 
             // TVShowSeasonsDataGridView
             // 
-            resources.ApplyResources(this.TVShowSeasonsDataGridView, "TVShowSeasonsDataGridView");
             this.TVShowSeasonsDataGridView.AllowUserToAddRows = false;
             this.TVShowSeasonsDataGridView.AllowUserToDeleteRows = false;
+            resources.ApplyResources(this.TVShowSeasonsDataGridView, "TVShowSeasonsDataGridView");
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -744,8 +740,8 @@
             // 
             // LogTab
             // 
-            resources.ApplyResources(this.LogTab, "LogTab");
             this.LogTab.Controls.Add(this.LogWebBrowser);
+            resources.ApplyResources(this.LogTab, "LogTab");
             this.LogTab.Name = "LogTab";
             this.LogTab.UseVisualStyleBackColor = true;
             // 
@@ -757,22 +753,21 @@
             // 
             // MenuStrip
             // 
-            resources.ApplyResources(this.MenuStrip, "MenuStrip");
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SettingsToolStripMenuItem,
             this.EditConfigFilesToolStripMenuItem,
             this.ExtendedToolStripMenuItem,
             this.HelpToolStripMenuItem});
+            resources.ApplyResources(this.MenuStrip, "MenuStrip");
             this.MenuStrip.Name = "MenuStrip";
             // 
             // SettingsToolStripMenuItem
             // 
-            resources.ApplyResources(this.SettingsToolStripMenuItem, "SettingsToolStripMenuItem");
             this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
+            resources.ApplyResources(this.SettingsToolStripMenuItem, "SettingsToolStripMenuItem");
             // 
             // EditConfigFilesToolStripMenuItem
             // 
-            resources.ApplyResources(this.EditConfigFilesToolStripMenuItem, "EditConfigFilesToolStripMenuItem");
             this.EditConfigFilesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FirstnamePrefixesToolStripMenuItem,
             this.LastnamePrefixesToolStripMenuItem,
@@ -783,91 +778,92 @@
             this.IgnoreIMDbCreditTypeInOtherToolStripMenuItem,
             this.ForcedFakeBirthYearsToolStripMenuItem});
             this.EditConfigFilesToolStripMenuItem.Name = "EditConfigFilesToolStripMenuItem";
+            resources.ApplyResources(this.EditConfigFilesToolStripMenuItem, "EditConfigFilesToolStripMenuItem");
             // 
             // FirstnamePrefixesToolStripMenuItem
             // 
-            resources.ApplyResources(this.FirstnamePrefixesToolStripMenuItem, "FirstnamePrefixesToolStripMenuItem");
             this.FirstnamePrefixesToolStripMenuItem.Name = "FirstnamePrefixesToolStripMenuItem";
+            resources.ApplyResources(this.FirstnamePrefixesToolStripMenuItem, "FirstnamePrefixesToolStripMenuItem");
             // 
             // LastnamePrefixesToolStripMenuItem
             // 
-            resources.ApplyResources(this.LastnamePrefixesToolStripMenuItem, "LastnamePrefixesToolStripMenuItem");
             this.LastnamePrefixesToolStripMenuItem.Name = "LastnamePrefixesToolStripMenuItem";
+            resources.ApplyResources(this.LastnamePrefixesToolStripMenuItem, "LastnamePrefixesToolStripMenuItem");
             // 
             // LastnameSuffixesToolStripMenuItem
             // 
-            resources.ApplyResources(this.LastnameSuffixesToolStripMenuItem, "LastnameSuffixesToolStripMenuItem");
             this.LastnameSuffixesToolStripMenuItem.Name = "LastnameSuffixesToolStripMenuItem";
+            resources.ApplyResources(this.LastnameSuffixesToolStripMenuItem, "LastnameSuffixesToolStripMenuItem");
             // 
             // KnownNamesToolStripMenuItem
             // 
-            resources.ApplyResources(this.KnownNamesToolStripMenuItem, "KnownNamesToolStripMenuItem");
             this.KnownNamesToolStripMenuItem.Name = "KnownNamesToolStripMenuItem";
+            resources.ApplyResources(this.KnownNamesToolStripMenuItem, "KnownNamesToolStripMenuItem");
             // 
             // IMDbToDVDProfilerTransformationDataToolStripMenuItem
             // 
-            resources.ApplyResources(this.IMDbToDVDProfilerTransformationDataToolStripMenuItem, "IMDbToDVDProfilerTransformationDataToolStripMenuItem");
             this.IMDbToDVDProfilerTransformationDataToolStripMenuItem.Name = "IMDbToDVDProfilerTransformationDataToolStripMenuItem";
+            resources.ApplyResources(this.IMDbToDVDProfilerTransformationDataToolStripMenuItem, "IMDbToDVDProfilerTransformationDataToolStripMenuItem");
             // 
             // IgnoreCustomInIMDbCreditTypeToolStripMenuItem
             // 
-            resources.ApplyResources(this.IgnoreCustomInIMDbCreditTypeToolStripMenuItem, "IgnoreCustomInIMDbCreditTypeToolStripMenuItem");
             this.IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Name = "IgnoreCustomInIMDbCreditTypeToolStripMenuItem";
+            resources.ApplyResources(this.IgnoreCustomInIMDbCreditTypeToolStripMenuItem, "IgnoreCustomInIMDbCreditTypeToolStripMenuItem");
             // 
             // IgnoreIMDbCreditTypeInOtherToolStripMenuItem
             // 
-            resources.ApplyResources(this.IgnoreIMDbCreditTypeInOtherToolStripMenuItem, "IgnoreIMDbCreditTypeInOtherToolStripMenuItem");
             this.IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Name = "IgnoreIMDbCreditTypeInOtherToolStripMenuItem";
+            resources.ApplyResources(this.IgnoreIMDbCreditTypeInOtherToolStripMenuItem, "IgnoreIMDbCreditTypeInOtherToolStripMenuItem");
             // 
             // ForcedFakeBirthYearsToolStripMenuItem
             // 
-            resources.ApplyResources(this.ForcedFakeBirthYearsToolStripMenuItem, "ForcedFakeBirthYearsToolStripMenuItem");
             this.ForcedFakeBirthYearsToolStripMenuItem.Name = "ForcedFakeBirthYearsToolStripMenuItem";
+            resources.ApplyResources(this.ForcedFakeBirthYearsToolStripMenuItem, "ForcedFakeBirthYearsToolStripMenuItem");
             // 
             // ExtendedToolStripMenuItem
             // 
-            resources.ApplyResources(this.ExtendedToolStripMenuItem, "ExtendedToolStripMenuItem");
             this.ExtendedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CopyExtendedCastToClipboardToolStripMenuItem,
             this.CopyExtendedCrewToClipboardToolStripMenuItem});
             this.ExtendedToolStripMenuItem.Name = "ExtendedToolStripMenuItem";
+            resources.ApplyResources(this.ExtendedToolStripMenuItem, "ExtendedToolStripMenuItem");
             // 
             // CopyExtendedCastToClipboardToolStripMenuItem
             // 
-            resources.ApplyResources(this.CopyExtendedCastToClipboardToolStripMenuItem, "CopyExtendedCastToClipboardToolStripMenuItem");
             this.CopyExtendedCastToClipboardToolStripMenuItem.Name = "CopyExtendedCastToClipboardToolStripMenuItem";
+            resources.ApplyResources(this.CopyExtendedCastToClipboardToolStripMenuItem, "CopyExtendedCastToClipboardToolStripMenuItem");
             this.CopyExtendedCastToClipboardToolStripMenuItem.Click += new System.EventHandler(this.OnCopyExtendedCastToClipboardToolStripMenuItemClick);
             // 
             // CopyExtendedCrewToClipboardToolStripMenuItem
             // 
-            resources.ApplyResources(this.CopyExtendedCrewToClipboardToolStripMenuItem, "CopyExtendedCrewToClipboardToolStripMenuItem");
             this.CopyExtendedCrewToClipboardToolStripMenuItem.Name = "CopyExtendedCrewToClipboardToolStripMenuItem";
+            resources.ApplyResources(this.CopyExtendedCrewToClipboardToolStripMenuItem, "CopyExtendedCrewToClipboardToolStripMenuItem");
             this.CopyExtendedCrewToClipboardToolStripMenuItem.Click += new System.EventHandler(this.OnCopyExtendedCrewToClipboardToolStripMenuItemClick);
             // 
             // HelpToolStripMenuItem
             // 
-            resources.ApplyResources(this.HelpToolStripMenuItem, "HelpToolStripMenuItem");
             this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ReadmeToolStripMenuItem,
             this.checkForUpdateToolStripMenuItem,
             this.AboutToolStripMenuItem});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
+            resources.ApplyResources(this.HelpToolStripMenuItem, "HelpToolStripMenuItem");
             // 
             // ReadmeToolStripMenuItem
             // 
-            resources.ApplyResources(this.ReadmeToolStripMenuItem, "ReadmeToolStripMenuItem");
             this.ReadmeToolStripMenuItem.Name = "ReadmeToolStripMenuItem";
+            resources.ApplyResources(this.ReadmeToolStripMenuItem, "ReadmeToolStripMenuItem");
             // 
             // checkForUpdateToolStripMenuItem
             // 
-            resources.ApplyResources(this.checkForUpdateToolStripMenuItem, "checkForUpdateToolStripMenuItem");
             this.checkForUpdateToolStripMenuItem.Name = "checkForUpdateToolStripMenuItem";
+            resources.ApplyResources(this.checkForUpdateToolStripMenuItem, "checkForUpdateToolStripMenuItem");
             this.checkForUpdateToolStripMenuItem.Click += new System.EventHandler(this.OnCheckForUpdateToolStripMenuItemClick);
             // 
             // AboutToolStripMenuItem
             // 
-            resources.ApplyResources(this.AboutToolStripMenuItem, "AboutToolStripMenuItem");
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            resources.ApplyResources(this.AboutToolStripMenuItem, "AboutToolStripMenuItem");
             // 
             // MainForm
             // 

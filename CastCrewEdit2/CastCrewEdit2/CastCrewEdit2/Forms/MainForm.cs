@@ -1545,7 +1545,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void OnBrowserSearchButtonClick(Object sender, EventArgs e)
         {
-            WebBrowser.Navigate("http://akas.imdb.com/find?s=tt&q="
+            WebBrowser.Navigate("https://www.imdb.com/search/title/?title="
                 + System.Web.HttpUtility.UrlEncode(BrowserSearchTextBox.Text));
         }
 
