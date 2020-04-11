@@ -665,7 +665,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void OnLogWebBrowserNavigating(Object sender, WebBrowserNavigatingEventArgs e)
         {
-            if (e.Url.AbsoluteUri.StartsWith("http://akas.imdb.com/"))
+            if (e.Url.AbsoluteUri.StartsWith("https://www.imdb.com/"))
             {
                 Process.Start(e.Url.AbsoluteUri);
                 e.Cancel = true;

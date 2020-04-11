@@ -1065,7 +1065,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         {
             StringBuilder sb;
 
-            sb = new StringBuilder("<a href=\"http://akas.imdb.com/name/");
+            sb = new StringBuilder("<a href=\"https://www.imdb.com/name/");
             sb.Append(person.PersonLink);
             sb.Append("/\">");
             sb.Append(person.PersonLink);

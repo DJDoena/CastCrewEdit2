@@ -491,7 +491,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 {
                     FilmInfo fi = FilmInfoList[i];
 
-                    name.Append("<a href=\"http://akas.imdb.com/title/");
+                    name.Append("<a href=\"https://www.imdb.com/title/");
                     name.Append(fi.FilmLink);
                     name.Append("/\" target=\"_blank\">");
                     name.Append(fi.Name);

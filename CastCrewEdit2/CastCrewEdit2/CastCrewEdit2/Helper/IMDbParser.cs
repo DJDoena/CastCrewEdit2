@@ -20,7 +20,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
     internal static class IMDbParser
     {
         public const int MaxTasks = 4;
-        public const string BaseUrl = @"http://www.imdb.com";
+        public const string BaseUrl = @"https://www.imdb.com";
         public const string PersonUrl = BaseUrl + @"/name/";
         public const string TitleUrl = BaseUrl + @"/title/";
 
