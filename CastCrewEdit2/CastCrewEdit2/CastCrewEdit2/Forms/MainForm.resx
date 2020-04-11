@@ -154,7 +154,7 @@
     <value>ProgressBar</value>
   </data>
   <data name="&gt;&gt;ProgressBar.Type" xml:space="preserve">
-    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.ColorProgressBar, CastCrewEdit2Library, Version=2.1.4.6, Culture=neutral, PublicKeyToken=c87f42288e849a4f</value>
+    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.ColorProgressBar, CastCrewEdit2Library, Version=2.1.5.0, Culture=neutral, PublicKeyToken=c87f42288e849a4f</value>
   </data>
   <data name="&gt;&gt;ProgressBar.Parent" xml:space="preserve">
     <value>$this</value>
@@ -164,6 +164,33 @@
   </data>
   <data name="MovieTVShowTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="WebBrowser.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="WebBrowser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 64</value>
+  </data>
+  <data name="WebBrowser.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="WebBrowser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>845, 395</value>
+  </data>
+  <data name="WebBrowser.TabIndex" type="System.Int32, mscorlib">
+    <value>105</value>
+  </data>
+  <data name="&gt;&gt;WebBrowser.Name" xml:space="preserve">
+    <value>WebBrowser</value>
+  </data>
+  <data name="&gt;&gt;WebBrowser.Type" xml:space="preserve">
+    <value>Microsoft.Toolkit.Forms.UI.Controls.WebView, Microsoft.Toolkit.Forms.UI.Controls.WebView, Version=6.0.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2</value>
+  </data>
+  <data name="&gt;&gt;WebBrowser.Parent" xml:space="preserve">
+    <value>BrowserTab</value>
+  </data>
+  <data name="&gt;&gt;WebBrowser.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -193,7 +220,7 @@
     <value>BrowserTab</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="BrowserSearchTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -217,7 +244,7 @@
     <value>BrowserTab</value>
   </data>
   <data name="&gt;&gt;BrowserSearchTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="BrowserSearchButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -247,7 +274,7 @@
     <value>BrowserTab</value>
   </data>
   <data name="&gt;&gt;BrowserSearchButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="BrowserUrlComboBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -277,30 +304,6 @@
     <value>BrowserTab</value>
   </data>
   <data name="&gt;&gt;BrowserUrlComboBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="WebBrowser.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="WebBrowser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 64</value>
-  </data>
-  <data name="WebBrowser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>845, 395</value>
-  </data>
-  <data name="WebBrowser.TabIndex" type="System.Int32, mscorlib">
-    <value>105</value>
-  </data>
-  <data name="&gt;&gt;WebBrowser.Name" xml:space="preserve">
-    <value>WebBrowser</value>
-  </data>
-  <data name="&gt;&gt;WebBrowser.Type" xml:space="preserve">
-    <value>System.Windows.Forms.WebBrowser, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;WebBrowser.Parent" xml:space="preserve">
-    <value>BrowserTab</value>
-  </data>
-  <data name="&gt;&gt;WebBrowser.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="BrowseButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -2502,6 +2505,6 @@
     <value>MainForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.Forms.CastCrewEdit2ParseBaseForm, CastCrewEdit2, Version=2.1.4.6, Culture=neutral, PublicKeyToken=null</value>
+    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.Forms.CastCrewEdit2ParseBaseForm, CastCrewEdit2, Version=2.1.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

@@ -40,8 +40,8 @@
     <Actor FirstName="Jimmie" MiddleName="Ray" LastName="Weeks" BirthYear="0" Role="Amish Man" CreditedAs="" Voice="false" Uncredited="false" />
     <Actor FirstName="Annie" MiddleName="" LastName="O'Donnell" BirthYear="0" Role="Amish Woman" CreditedAs="" Voice="false" Uncredited="false" />
     <Actor FirstName="Mack" MiddleName="" LastName="Yamaguchi" BirthYear="0" Role="Eskimo" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Charles" MiddleName="" LastName="Barkley" BirthYear="0" Role="Himself" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Bill" MiddleName="" LastName="Laimbeer" BirthYear="0" Role="Himself" CreditedAs="" Voice="false" Uncredited="false" />
+    <Actor FirstName="Charles" MiddleName="" LastName="Barkley" BirthYear="0" Role="Self" CreditedAs="" Voice="false" Uncredited="false" />
+    <Actor FirstName="Bill" MiddleName="" LastName="Laimbeer" BirthYear="0" Role="Self" CreditedAs="" Voice="false" Uncredited="false" />
     <Actor FirstName="Eugene" MiddleName="" LastName="Greytak" BirthYear="0" Role="Pope John Paul II" CreditedAs="Gene Greytak" Voice="false" Uncredited="false" />
     <Actor FirstName="Tony" MiddleName="" LastName="Lorea" BirthYear="0" Role="Humphrey 'Bogie' Bogart" CreditedAs="" Voice="false" Uncredited="false" />
     <Actor FirstName="Jerry" MiddleName="" LastName="Haleva" BirthYear="0" Role="Saddam Hussein" CreditedAs="Jerry Halera" Voice="false" Uncredited="false" />
@@ -71,6 +71,7 @@
     <Actor FirstName="Jack" MiddleName="I." LastName="Bernstein" BirthYear="0" Role="Rabinowitz" CreditedAs="" Voice="false" Uncredited="true" />
     <Actor FirstName="Megan" MiddleName="" LastName="Dupont" BirthYear="0" Role="Bar Patron" CreditedAs="" Voice="false" Uncredited="true" />
     <Actor FirstName="Sean" MiddleName="" LastName="Kanan" BirthYear="0" Role="Barracks Man in Underwear" CreditedAs="" Voice="false" Uncredited="true" />
+    <Actor FirstName="Brandon" MiddleName="" LastName="Loomis" BirthYear="0" Role="School Boy" CreditedAs="" Voice="false" Uncredited="true" />
     <Actor FirstName="Steve" MiddleName="" LastName="Mora" BirthYear="0" Role="Reporter" CreditedAs="" Voice="false" Uncredited="true" />
     <Actor FirstName="Steven" MiddleName="Chester" LastName="Prince" BirthYear="0" Role="Dartman" CreditedAs="" Voice="false" Uncredited="true" />
     <Actor FirstName="Rebecca" MiddleName="" LastName="Ryiz" BirthYear="0" Role="" CreditedAs="" Voice="false" Uncredited="true" />

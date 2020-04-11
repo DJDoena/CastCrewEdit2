@@ -100,8 +100,8 @@ namespace UnitTests
             FileInfo current;
 
             MovieCast(HotShots, out castMatches, out castList, out progressBarMaxValue, out existing, out current);
-            Assert.AreEqual(69, castMatches.Count, "castMatches.Count");
-            Assert.AreEqual(73, castList.Count, "castList.Count");
+            Assert.AreEqual(70, castMatches.Count, "castMatches.Count");
+            Assert.AreEqual(74, castList.Count, "castList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
@@ -115,8 +115,8 @@ namespace UnitTests
 
             MovieCrew(HotShots, out crewMatches, out crewList, out progressBarMaxValue, out existing, out current);
             Assert.AreEqual(26, crewMatches.Count, "castMatches.Count");
-            Assert.AreEqual(196, progressBarMaxValue, "progressBarMaxValue");
-            Assert.AreEqual(186, crewList.Count, "castList.Count");
+            Assert.AreEqual(199, progressBarMaxValue, "progressBarMaxValue");
+            Assert.AreEqual(189, crewList.Count, "castList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
@@ -166,21 +166,21 @@ namespace UnitTests
             FileInfo current;
 
             MovieCrew(LoveIsTheDrug, out crewMatches, out crewList, out progressBarMaxValue, out existing, out current);
-            Assert.AreEqual(23, crewMatches.Count, "crewMatches.Count");
-            Assert.AreEqual(104, progressBarMaxValue, "progressBarMaxValue");
-            Assert.AreEqual(108, crewList.Count, "crewList.Count");
-            Assert.AreEqual("Steven", crewList[50].FirstName, "crewList[50].FirstName");
-            Assert.AreEqual("Avila", crewList[50].LastName, "crewList[50].LastName");
-            Assert.AreEqual("Sound Designer", crewList[50].CreditSubtype, "crewList[50].CreditSubtype");
+            Assert.AreEqual(24, crewMatches.Count, "crewMatches.Count");
+            Assert.AreEqual(105, progressBarMaxValue, "progressBarMaxValue");
+            Assert.AreEqual(109, crewList.Count, "crewList.Count");
             Assert.AreEqual("Steven", crewList[51].FirstName, "crewList[51].FirstName");
             Assert.AreEqual("Avila", crewList[51].LastName, "crewList[51].LastName");
-            Assert.AreEqual("Custom", crewList[51].CreditSubtype, "crewList[51].CreditSubtype");
-            Assert.AreEqual("Trip", crewList[53].FirstName, "crewList[53].FirstName");
-            Assert.AreEqual("Brock", crewList[53].LastName, "crewList[53].LastName");
-            Assert.AreEqual("Sound Re-Recording Mixer", crewList[53].CreditSubtype, "crewList[53].CreditSubtype");
+            Assert.AreEqual("Sound Designer", crewList[51].CreditSubtype, "crewList[51].CreditSubtype");
+            Assert.AreEqual("Steven", crewList[52].FirstName, "crewList[52].FirstName");
+            Assert.AreEqual("Avila", crewList[52].LastName, "crewList[52].LastName");
+            Assert.AreEqual("Custom", crewList[52].CreditSubtype, "crewList[52].CreditSubtype");
             Assert.AreEqual("Trip", crewList[54].FirstName, "crewList[54].FirstName");
             Assert.AreEqual("Brock", crewList[54].LastName, "crewList[54].LastName");
-            Assert.AreEqual("Supervising Sound Editor", crewList[54].CreditSubtype, "crewList[54].CreditSubtype");
+            Assert.AreEqual("Sound Re-Recording Mixer", crewList[54].CreditSubtype, "crewList[54].CreditSubtype");
+            Assert.AreEqual("Trip", crewList[55].FirstName, "crewList[55].FirstName");
+            Assert.AreEqual("Brock", crewList[55].LastName, "crewList[55].LastName");
+            Assert.AreEqual("Supervising Sound Editor", crewList[55].CreditSubtype, "crewList[55].CreditSubtype");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
@@ -208,15 +208,15 @@ namespace UnitTests
             FileInfo current;
 
             MovieCast(Winnetou, out castMatches, out castList, out progressBarMaxValue, out existing, out current);
-            Assert.AreEqual(39, castMatches.Count, "castMatches.Count");
-            Assert.AreEqual(39, castList.Count, "castList.Count");
+            Assert.AreEqual(40, castMatches.Count, "castMatches.Count");
+            Assert.AreEqual(40, castList.Count, "castList.Count");
             Assert.AreEqual("Old Shatterhand", castList[0].Role, "castList[0].Role");
             Assert.AreEqual("Frederick Santer", castList[3].Role, "castList[3].Role");
             Assert.AreEqual("Vlado Krstulovic", castList[16].CreditedAs, "castList[16].CreditedAs");
             Assert.AreEqual("", castList[24].Role, "castList[24].Role");
             Assert.AreEqual("True", castList[25].Voice, "castList[25].Voice");
             Assert.AreEqual("True", castList[25].Uncredited, "castList[25].Uncredited");
-            Assert.AreEqual("Schröder", castList[37].LastName, "castList[37].LastName");
+            Assert.AreEqual("Schröder", castList[38].LastName, "castList[38].LastName");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
