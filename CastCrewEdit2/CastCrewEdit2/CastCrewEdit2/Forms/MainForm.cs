@@ -321,7 +321,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             InitializeComponent();
 
-            if (Program.IsAtLeastWindows10Update1803)
+            if (Program.ShowNewBrowser)
             {
                 WebBrowserNew = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
                 ((System.ComponentModel.ISupportInitialize)(WebBrowserNew)).BeginInit();
@@ -1588,7 +1588,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void OnBrowseButtonClick(Object sender, EventArgs e)
         {
-            if (Program.IsAtLeastWindows10Update1803)
+            if (Program.ShowNewBrowser)
             {
                 WebBrowserNew.Navigate(BrowserUrlComboBox.Text);
             }
@@ -1600,7 +1600,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void OnBrowserSearchButtonClick(Object sender, EventArgs e)
         {
-            if (Program.IsAtLeastWindows10Update1803)
+            if (Program.ShowNewBrowser)
             {
                 WebBrowserNew.Navigate("https://www.imdb.com/search/title/?title=" + System.Web.HttpUtility.UrlEncode(BrowserSearchTextBox.Text));
             }

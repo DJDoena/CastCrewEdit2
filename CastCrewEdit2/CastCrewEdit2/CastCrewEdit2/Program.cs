@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -46,9 +47,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         public static readonly CastCrewEditAdapterEventHandler AdapterEventHandler;
 
-        internal static Boolean IsWindows10;
+        private static Boolean IsWindows10;
 
-        internal static Boolean IsAtLeastWindows10Update1803;
+        private static Boolean IsAtLeastWindows10Update1803;
+
+        private static Boolean RunsAsElevated;
+
+        internal static bool ShowNewBrowser => IsAtLeastWindows10Update1803 && !RunsAsElevated;
 
         static Program()
         {
@@ -71,6 +76,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                     IsAtLeastWindows10Update1803 = true;
                 }
             }
+
+            RunsAsElevated = GetRunsAsElevated();
 
             RegistryAccess.Init("Doena Soft.", "CastCrewEdit2");
             WindowHandle = new WindowHandle();
@@ -465,6 +472,42 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                     Directory.CreateDirectory("errors");
                 }
                 DVDProfilerSerializer<ExceptionXml>.Serialize(@"errors\" + filename.ToString(), xml);
+            }
+        }
+
+        //https://github.com/windows-toolkit/Microsoft.Toolkit.Win32/issues/254#issuecomment-613675375
+        //https://github.com/windows-toolkit/Microsoft.Toolkit.Win32/issues/13
+        private static bool GetRunsAsElevated()
+        {
+            WindowsIdentity user = null;
+
+            try
+            {
+                //get the currently logged in user
+                user = WindowsIdentity.GetCurrent();
+                
+                var principal = new WindowsPrincipal(user);
+                
+                var isElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
+
+                return isElevated;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                //we're conservative here, so we say yes
+                return true;
+            }
+            catch (Exception)
+            {
+                //we're conservative here, so we say yes
+                return true;
+            }
+            finally
+            {
+                if (user != null)
+                {
+                    user.Dispose();
+                }
             }
         }
     }
