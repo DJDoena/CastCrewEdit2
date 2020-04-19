@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -12,7 +13,6 @@ using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 using Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT;
-using System.Runtime.InteropServices;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
@@ -330,7 +330,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 WebBrowserNew.Location = new Point(9, 64);
                 WebBrowserNew.Size = new Size(845, 395);
                 WebBrowserNew.NavigationCompleted += OnWebBrowserNavigationCompleted;
-                WebBrowserNew.NavigationStarting += OnWebBrowserNavigationStarting;                
+                WebBrowserNew.NavigationStarting += OnWebBrowserNavigationStarting;
                 ((System.ComponentModel.ISupportInitialize)(WebBrowserNew)).EndInit();
                 BrowserTab.Controls.Add(WebBrowserNew);
             }
@@ -868,7 +868,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 Program.Settings.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
             CheckForNewVersion(true);
-            //WebBrowser.Navigate(BrowserUrlComboBox.Text);
+            NavigateTo("https://www.imdb.com/find?s=tt&q=");
             BrowserSearchTextBox.Focus();
         }
 
@@ -1600,13 +1600,22 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void OnBrowserSearchButtonClick(Object sender, EventArgs e)
         {
+            const string BaseUrl = "https://www.imdb.com/find?s=tt&q=";
+
+            var url = BaseUrl + System.Web.HttpUtility.UrlEncode(BrowserSearchTextBox.Text);
+
+            NavigateTo(url);
+        }
+
+        private void NavigateTo(string url)
+        {
             if (Program.ShowNewBrowser)
             {
-                WebBrowserNew.Navigate("https://www.imdb.com/search/title/?title=" + System.Web.HttpUtility.UrlEncode(BrowserSearchTextBox.Text));
+                WebBrowserNew.Navigate(url);
             }
             else
             {
-                WebBrowserOld.Navigate("https://www.imdb.com/search/title/?title=" + System.Web.HttpUtility.UrlEncode(BrowserSearchTextBox.Text));
+                WebBrowserOld.Navigate(url);
             }
         }
 
