@@ -19,6 +19,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             InitializeComponent();
             ShowCastOptions = castOptions;
             ShowCrewOptions = crewOptions;
+            Icon = Properties.Resource.djdsoft;
         }
 
         public void SetValues(Int32 left, Int32 top, DefaultValues defaultValues)

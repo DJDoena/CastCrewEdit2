@@ -20,6 +20,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             {
                 FileContent = sr.ReadToEnd().Trim();
             }
+            Icon = Properties.Resource.djdsoft;
         }
 
         private void OnEditConfigFileFormActivated(Object sender, EventArgs e)

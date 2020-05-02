@@ -16,6 +16,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             Persons = persons;
             InitializeComponent();
             Text = cacheName;
+            Icon = Properties.Resource.djdsoft;
         }
 
         private void OnFormLoad(Object sender, EventArgs e)

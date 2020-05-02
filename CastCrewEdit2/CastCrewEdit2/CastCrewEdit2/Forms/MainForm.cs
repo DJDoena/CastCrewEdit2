@@ -349,6 +349,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
 
             TheProgressBar = ProgressBar;
+
+            Icon = Properties.Resource.djdsoft;
         }
 
         [DispId(-5512)]

@@ -30,6 +30,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             InitializeComponent();
 
             TheProgressBar = ProgressBar;
+
+            Icon = Properties.Resource.djdsoft;
         }
 
         private void OnEpisodeFormLoad(Object sender, EventArgs e)

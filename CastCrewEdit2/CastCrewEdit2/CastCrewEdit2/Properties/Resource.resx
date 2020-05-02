@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,103 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ScanEpisodesButton.Text" xml:space="preserve">
-    <value>Scanne Folgen</value>
-  </data>
-  <data name="CloseButton.Text" xml:space="preserve">
-    <value>Schließen</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="SettingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 20</value>
-  </data>
-  <data name="SettingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Einstellungen</value>
-  </data>
-  <data name="FirstnamePrefixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 22</value>
-  </data>
-  <data name="FirstnamePrefixesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Vornamen-Präfixe</value>
-  </data>
-  <data name="LastnamePrefixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 22</value>
-  </data>
-  <data name="LastnamePrefixesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Nachnamen-&amp;Präfixe</value>
-  </data>
-  <data name="LastnameSuffixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 22</value>
-  </data>
-  <data name="LastnameSuffixesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Nachnamen-&amp;Suffixe</value>
-  </data>
-  <data name="KnownNamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 22</value>
-  </data>
-  <data name="KnownNamesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Bekannte Namen</value>
-  </data>
-  <data name="IMDbToDVDProfilerTransformationDataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 22</value>
-  </data>
-  <data name="IMDbToDVDProfilerTransformationDataToolStripMenuItem.Text" xml:space="preserve">
-    <value>"&amp;IMDb nach DVDProfiler"-Umwandlungsdaten</value>
-  </data>
-  <data name="IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 22</value>
-  </data>
-  <data name="IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ignoriere "&amp;Custom" in IMDb-Kategorie</value>
-  </data>
-  <data name="IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 22</value>
-  </data>
-  <data name="IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ignoriere IMDb-Kategorie in "&amp;Other"</value>
-  </data>
-  <data name="ForcedFakeBirthYearsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 22</value>
-  </data>
-  <data name="ForcedFakeBirthYearsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Erzwungene &amp;Fake-Geburtsjahre</value>
-  </data>
-  <data name="EditConfigFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 20</value>
-  </data>
-  <data name="EditConfigFilesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bearbeite &amp;Konfigurationsdatei</value>
-  </data>
-  <data name="ReadmeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
-  </data>
-  <data name="ReadmeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Lies mich</value>
-  </data>
-  <data name="AboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
-  </data>
-  <data name="AboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Über Cast/Crew Edit 2</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Hilfe</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ScanAllEpisodesButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ScanAllEpisodesButton.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="ScanAllEpisodesButton.Text" xml:space="preserve">
-    <value>Scanne alle Folgen</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Cast/Crew Edit 2 For TV Shows - Folgen</value>
+  <data name="djdsoft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\djdsoft.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
