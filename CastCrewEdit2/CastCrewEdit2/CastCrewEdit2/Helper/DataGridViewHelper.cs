@@ -10,7 +10,7 @@ using System.Windows.Forms.VisualStyles;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerXML;
-using DoenaSoft.DVDProfiler.DVDProfilerXML.Version390;
+using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {

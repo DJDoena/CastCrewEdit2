@@ -1,12 +1,12 @@
-﻿using DoenaSoft.DVDProfiler.DVDProfilerHelper;
-using DoenaSoft.DVDProfiler.DVDProfilerXML;
-using DoenaSoft.DVDProfiler.DVDProfilerXML.Version390;
-using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using DoenaSoft.DVDProfiler.DVDProfilerXML;
+using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
+using Microsoft.Win32;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 {
@@ -43,13 +43,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 Collection collection;
                 FileInfo personFI;
 
-                using(OpenFileDialog ofd = new OpenFileDialog())
+                using (OpenFileDialog ofd = new OpenFileDialog())
                 {
                     ofd.CheckFileExists = true;
                     ofd.Filter = "collection.xml|*.xml";
                     ofd.RestoreDirectory = true;
                     ofd.Title = "Select collection.xml file";
-                    if(ofd.ShowDialog(s_WindowHandle) == DialogResult.OK)
+                    if (ofd.ShowDialog(s_WindowHandle) == DialogResult.OK)
                     {
                         collectionFile = ofd.FileName;
                     }
@@ -60,14 +60,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                         return;
                     }
                 }
-                using(OpenFileDialog ofd = new OpenFileDialog())
+                using (OpenFileDialog ofd = new OpenFileDialog())
                 {
                     ofd.InitialDirectory = GetDefaultPath();
                     ofd.CheckFileExists = true;
                     ofd.Filter = "Persons.xml|Persons.xml";
                     ofd.RestoreDirectory = true;
                     ofd.Title = "Select Persons.xml file";
-                    if(ofd.ShowDialog(s_WindowHandle) == DialogResult.OK)
+                    if (ofd.ShowDialog(s_WindowHandle) == DialogResult.OK)
                     {
                         personsFile = ofd.FileName;
                     }
@@ -79,18 +79,18 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                     }
                 }
                 personFI = new FileInfo(personsFile);
-                if(MessageBox.Show(s_WindowHandle, "Backup Personx.xml before continuing?", "Backup?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                if (MessageBox.Show(s_WindowHandle, "Backup Personx.xml before continuing?", "Backup?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                     == DialogResult.Yes)
                 {
                     File.Copy(personsFile, personsFile + ".org", true);
                 }
                 personInfoList = PersonInfos.Deserialize(personsFile);
                 collection = DVDProfilerSerializer<Collection>.Deserialize(collectionFile);
-                if((personInfoList != null) && (personInfoList.PersonInfoList != null)
+                if ((personInfoList != null) && (personInfoList.PersonInfoList != null)
                   && (personInfoList.PersonInfoList.Length > 0))
                 {
                     personCache = new Dictionary<String, List<PersonInfo>>(personInfoList.PersonInfoList.Length);
-                    foreach(PersonInfo personInfo in personInfoList.PersonInfoList)
+                    foreach (PersonInfo personInfo in personInfoList.PersonInfoList)
                     {
                         StringBuilder keyBuilder;
                         String key;
@@ -102,7 +102,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                         keyBuilder.Append("_");
                         keyBuilder.Append(personInfo.LastName);
                         keyBuilder.Append("_");
-                        if(String.IsNullOrEmpty(personInfo.BirthYear))
+                        if (String.IsNullOrEmpty(personInfo.BirthYear))
                         {
                             keyBuilder.Append("0");
                         }
@@ -111,7 +111,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                             keyBuilder.Append(personInfo.BirthYear);
                         }
                         key = keyBuilder.ToString().ToLower();
-                        if(personCache.ContainsKey(key) == false)
+                        if (personCache.ContainsKey(key) == false)
                         {
                             List<PersonInfo> list;
 
@@ -132,21 +132,21 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 }
                 castCache = new Dictionary<String, List<PersonInfo>>(personCache.Count);
                 crewCache = new Dictionary<String, List<PersonInfo>>(personCache.Count);
-                if((collection != null) && (collection.DVDList != null) && (collection.DVDList.Length > 0))
+                if ((collection != null) && (collection.DVDList != null) && (collection.DVDList.Length > 0))
                 {
-                    foreach(DVD dvd in collection.DVDList)
+                    foreach (DVD dvd in collection.DVDList)
                     {
                         CheckForMatch(personCache, dvd.CastList, castCache);
                         CheckForMatch(personCache, dvd.CrewList, crewCache);
                     }
                 }
-                foreach(KeyValuePair<String, List<PersonInfo>> kvp in castCache)
+                foreach (KeyValuePair<String, List<PersonInfo>> kvp in castCache)
                 {
                     personCache.Remove(kvp.Key);
                 }
-                foreach(KeyValuePair<String, List<PersonInfo>> kvp in crewCache)
+                foreach (KeyValuePair<String, List<PersonInfo>> kvp in crewCache)
                 {
-                    if(personCache.ContainsKey(kvp.Key))
+                    if (personCache.ContainsKey(kvp.Key))
                     {
                         personCache.Remove(kvp.Key);
                     }
@@ -158,7 +158,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 Console.WriteLine();
                 Console.WriteLine("Finished.");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine();
                 Console.WriteLine("Error:");
@@ -174,14 +174,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         private static void CheckForMatch(Dictionary<String, List<PersonInfo>> personCache, Object[] list, Dictionary<String, List<PersonInfo>> cache)
         {
-            if((list != null) && (list.Length > 0))
+            if ((list != null) && (list.Length > 0))
             {
-                foreach(Object potentialPerson in list)
+                foreach (Object potentialPerson in list)
                 {
                     IPerson person;
 
                     person = potentialPerson as IPerson;
-                    if(person != null)
+                    if (person != null)
                     {
                         StringBuilder keyBuilder;
                         String key;
@@ -195,7 +195,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                         keyBuilder.Append("_");
                         keyBuilder.Append(person.BirthYear);
                         key = keyBuilder.ToString().ToLower();
-                        if((personCache.ContainsKey(key)) && (cache.ContainsKey(key) == false))
+                        if ((personCache.ContainsKey(key)) && (cache.ContainsKey(key) == false))
                         {
                             cache.Add(key, personCache[key]);
                         }
@@ -211,14 +211,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
             personInfoList = new PersonInfos();
             list = new List<PersonInfo>(personCache.Count + 1000);
-            foreach(KeyValuePair<String, List<PersonInfo>> kvp in personCache)
+            foreach (KeyValuePair<String, List<PersonInfo>> kvp in personCache)
             {
                 list.AddRange(kvp.Value);
             }
             list.Sort
                 (new Comparison<PersonInfo>
                     (
-                        delegate(PersonInfo left, PersonInfo right)
+                        delegate (PersonInfo left, PersonInfo right)
                         {
                             return (left.PersonLink.CompareTo(right.PersonLink));
                         }
@@ -235,20 +235,20 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
             regKey = Registry.CurrentUser.OpenSubKey(@"Software\Doena Soft.\CastCrewEdit2", false);
             path = String.Empty;
-            if(regKey != null)
+            if (regKey != null)
             {
                 path = (String)(regKey.GetValue("DataRoot", String.Empty));
             }
-            if(String.IsNullOrEmpty(path) == false)
+            if (String.IsNullOrEmpty(path) == false)
             {
                 path = Path.Combine(path, "Data");
-                if(Directory.Exists(path))
+                if (Directory.Exists(path))
                 {
                     return (path);
                 }
             }
             path = Path.Combine(Environment.CurrentDirectory, "Data");
-            if(Directory.Exists(path))
+            if (Directory.Exists(path))
             {
                 return (path);
             }
