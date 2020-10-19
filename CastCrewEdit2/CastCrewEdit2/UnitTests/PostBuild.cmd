@@ -1,1 +1,1 @@
-xcopy.exe /y ..\..\..\..\\CastCrewEdit2\bin\x86\CastCrewEdit2\EditIMDbToDVDProfilerCrewRoleTransformation.* .
+xcopy.exe /y ..\..\..\..\CastCrewEdit2\bin\x86\UnitTest\CastCrewEdit2\Data\EditIMDbToDVDProfilerCrewRoleTransformation.* .

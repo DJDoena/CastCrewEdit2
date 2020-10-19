@@ -2,79 +2,80 @@
 <CastInformation>
   <Title>tt0102059</Title>
   <Actors>
-    <Actor FirstName="Charlie" MiddleName="" LastName="Sheen" BirthYear="0" Role="Topper Harley" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Charlie" MiddleName="" LastName="Sheen" BirthYear="0" Role="Rhett Butler" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Charlie" MiddleName="" LastName="Sheen" BirthYear="0" Role="Superman" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Cary" MiddleName="" LastName="Elwes" BirthYear="0" Role="Kent Gregory" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Valeria" MiddleName="" LastName="Golino" BirthYear="0" Role="Ramada Thompson" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Valeria" MiddleName="" LastName="Golino" BirthYear="0" Role="Scarlett O'Hara" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Valeria" MiddleName="" LastName="Golino" BirthYear="0" Role="Lois Lane" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Lloyd" MiddleName="" LastName="Bridges" BirthYear="0" Role="Admiral Benson" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Kevin" MiddleName="" LastName="Dunn" BirthYear="0" Role="Lt. Commander Block" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Jon" MiddleName="" LastName="Cryer" BirthYear="0" Role="Jim 'Wash Out' Pfaffenbach" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="William" MiddleName="" LastName="O'Leary" BirthYear="0" Role="Pete 'Dead Meat' Thompson" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Kristy" MiddleName="" LastName="Swanson" BirthYear="0" Role="Kowalski" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Efrem" MiddleName="" LastName="Zimbalist Jr." BirthYear="0" Role="Wilson" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Bill" MiddleName="" LastName="Irwin" BirthYear="0" Role="Buzz Harley" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Heidi" MiddleName="" LastName="Swedberg" BirthYear="0" Role="Mrs. 'Deat Meat' Thompson" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Bruce" MiddleName="A." LastName="Young" BirthYear="0" Role="'Red' Herring" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Ryan" MiddleName="" LastName="Stiles" BirthYear="0" Role="'Mailman' Farnham" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Rino" MiddleName="" LastName="Thunder" BirthYear="0" Role="Owatonna, 'The Old One'" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Mark" MiddleName="" LastName="Arnott" BirthYear="0" Role="Rosener" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Ryan" MiddleName="" LastName="Cutrona" BirthYear="0" Role="Captain Margolis" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Don" MiddleName="" LastName="Lake" BirthYear="0" Role="Doctor" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Kelly" MiddleName="" LastName="Connell" BirthYear="0" Role="Air Controller" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Tony" MiddleName="" LastName="Simotes" BirthYear="0" Role="Ambulance Driver" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Don" MiddleName="" LastName="Luce" BirthYear="0" Role="Paramedic" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Judith" MiddleName="" LastName="Kahan" BirthYear="0" Role="Nurse" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Jeff" MiddleName="" LastName="Bright" BirthYear="0" Role="Communications Officer" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Jimmy" MiddleName="" LastName="Lennon Jr." BirthYear="0" Role="Ring Announcer" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Marie" MiddleName="" LastName="Thomas" BirthYear="0" Role="Francine, the Secretary" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Ryan" MiddleName="" LastName="Fitzgerald" BirthYear="0" Role="Scooter" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Al" MiddleName="" LastName="Clegg" BirthYear="0" Role="Jazz" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Pat" MiddleName="" LastName="Proft" BirthYear="0" Role="Lawrence Lipps" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Marc" MiddleName="" LastName="Shaiman" BirthYear="0" Role="Piano Player" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Cylk" MiddleName="" LastName="Cozart" BirthYear="0" Role="Drill Sergeant #1" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Christopher" MiddleName="J." LastName="Keene" BirthYear="0" Role="Drill Sergeant #2" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Ed" MiddleName="" LastName="Herschlar" BirthYear="0" Role="Rabbi" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Jimmie" MiddleName="Ray" LastName="Weeks" BirthYear="0" Role="Amish Man" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Annie" MiddleName="" LastName="O'Donnell" BirthYear="0" Role="Amish Woman" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Mack" MiddleName="" LastName="Yamaguchi" BirthYear="0" Role="Eskimo" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Charles" MiddleName="" LastName="Barkley" BirthYear="0" Role="Self" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Bill" MiddleName="" LastName="Laimbeer" BirthYear="0" Role="Self" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Eugene" MiddleName="" LastName="Greytak" BirthYear="0" Role="Pope John Paul II" CreditedAs="Gene Greytak" Voice="false" Uncredited="false" />
-    <Actor FirstName="Tony" MiddleName="" LastName="Lorea" BirthYear="0" Role="Humphrey 'Bogie' Bogart" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Jerry" MiddleName="" LastName="Haleva" BirthYear="0" Role="Saddam Hussein" CreditedAs="Jerry Halera" Voice="false" Uncredited="false" />
-    <Actor FirstName="Bob" MiddleName="" LastName="Lenz" BirthYear="0" Role="Elvis 'The King' Presley" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Willie" MiddleName="" LastName="Collins" BirthYear="0" Role="Liberace" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Robert" MiddleName="" LastName="Puro" BirthYear="0" Role="Precocious Paper Boy" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Richard" MiddleName="" LastName="Lasting" BirthYear="0" Role="Handsome Milkman" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Elston" MiddleName="" LastName="Ridgle" BirthYear="0" Role="Boxer #1" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Max" MiddleName="" LastName="Jones" BirthYear="0" Role="Boxer #2" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Christopher" MiddleName="" LastName="Doyle" BirthYear="0" Role="Conspiratorial Crewman" CreditedAs="Chris Doyle" Voice="false" Uncredited="false" />
-    <Actor FirstName="Pablo" MiddleName="" LastName="Prietto" BirthYear="0" Role="Parking Valet" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="John" MiddleName="" LastName="Bankson" BirthYear="0" Role="Parking Valet" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Nancy" MiddleName="" LastName="Abrahams" BirthYear="0" Role="Family in front of TV Store" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Joseph" MiddleName="" LastName="Abrahams" BirthYear="0" Role="Family in front of TV Store" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Jamie" MiddleName="" LastName="Abrahams" BirthYear="0" Role="Family in front of TV Store" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Cary" MiddleName="" LastName="Brayboy" BirthYear="0" Role="Sleepy Weasel Squadron" CreditedAs="Carey Brayboy" Voice="false" Uncredited="false" />
-    <Actor FirstName="Tony" MiddleName="" LastName="Moreno" BirthYear="0" Role="Sleepy Weasel Squadron" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Kevin" MiddleName="" LastName="Eads" BirthYear="0" Role="Sleepy Weasel Squadron" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Dave" MiddleName="" LastName="Oliver" BirthYear="0" Role="Sleepy Weasel Squadron" CreditedAs="David Oliver" Voice="false" Uncredited="false" />
-    <Actor FirstName="Richard" MiddleName="" LastName="Emanuelle" BirthYear="0" Role="Sleepy Weasel Squadron" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Kip" MiddleName="" LastName="Pierce" BirthYear="0" Role="Sleepy Weasel Squadron" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Brent" MiddleName="" LastName="Freeman" BirthYear="0" Role="Sleepy Weasel Squadron" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Kenton" MiddleName="'Chip'" LastName="Steger" BirthYear="0" Role="Sleepy Weasel Squadron" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Craig" MiddleName="" LastName="McIntosh" BirthYear="0" Role="Sleepy Weasel Squadron" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Sean" MiddleName="" LastName="Wright" BirthYear="0" Role="Sleepy Weasel Squadron" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Joe" MiddleName="" LastName="Allegro" BirthYear="0" Role="Sleepy Weasel Squadron" CreditedAs="" Voice="false" Uncredited="false" />
-    <Actor FirstName="Jack" MiddleName="I." LastName="Bernstein" BirthYear="0" Role="Rabinowitz" CreditedAs="" Voice="false" Uncredited="true" />
-    <Actor FirstName="Megan" MiddleName="" LastName="Dupont" BirthYear="0" Role="Bar Patron" CreditedAs="" Voice="false" Uncredited="true" />
-    <Actor FirstName="Sean" MiddleName="" LastName="Kanan" BirthYear="0" Role="Barracks Man in Underwear" CreditedAs="" Voice="false" Uncredited="true" />
-    <Actor FirstName="Brandon" MiddleName="" LastName="Loomis" BirthYear="0" Role="School Boy" CreditedAs="" Voice="false" Uncredited="true" />
-    <Actor FirstName="Steve" MiddleName="" LastName="Mora" BirthYear="0" Role="Reporter" CreditedAs="" Voice="false" Uncredited="true" />
-    <Actor FirstName="Steven" MiddleName="Chester" LastName="Prince" BirthYear="0" Role="Dartman" CreditedAs="" Voice="false" Uncredited="true" />
-    <Actor FirstName="Rebecca" MiddleName="" LastName="Ryiz" BirthYear="0" Role="" CreditedAs="" Voice="false" Uncredited="true" />
-    <Actor FirstName="Vincent" MiddleName="" LastName="Tumeo" BirthYear="0" Role="Dancing Cadet" CreditedAs="" Voice="false" Uncredited="true" />
+    <Actor Role="Topper Harley" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Charlie" MiddleName="" LastName="Sheen" BirthYear="0" CreditedAs="" />
+    <Actor Role="Rhett Butler" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Charlie" MiddleName="" LastName="Sheen" BirthYear="0" CreditedAs="" />
+    <Actor Role="Superman" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Charlie" MiddleName="" LastName="Sheen" BirthYear="0" CreditedAs="" />
+    <Actor Role="Kent Gregory" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Cary" MiddleName="" LastName="Elwes" BirthYear="0" CreditedAs="" />
+    <Actor Role="Ramada Thompson" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Valeria" MiddleName="" LastName="Golino" BirthYear="0" CreditedAs="" />
+    <Actor Role="Scarlett O'Hara" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Valeria" MiddleName="" LastName="Golino" BirthYear="0" CreditedAs="" />
+    <Actor Role="Lois Lane" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Valeria" MiddleName="" LastName="Golino" BirthYear="0" CreditedAs="" />
+    <Actor Role="Admiral Benson" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Lloyd" MiddleName="" LastName="Bridges" BirthYear="0" CreditedAs="" />
+    <Actor Role="Lt. Commander Block" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Kevin" MiddleName="" LastName="Dunn" BirthYear="0" CreditedAs="" />
+    <Actor Role="Jim 'Wash Out' Pfaffenbach" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Jon" MiddleName="" LastName="Cryer" BirthYear="0" CreditedAs="" />
+    <Actor Role="Pete 'Dead Meat' Thompson" Voice="false" Uncredited="false" Puppeteer="false" FirstName="William" MiddleName="" LastName="O'Leary" BirthYear="0" CreditedAs="" />
+    <Actor Role="Kowalski" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Kristy" MiddleName="" LastName="Swanson" BirthYear="0" CreditedAs="" />
+    <Actor Role="Wilson" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Efrem" MiddleName="" LastName="Zimbalist Jr." BirthYear="0" CreditedAs="" />
+    <Actor Role="Buzz Harley" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Bill" MiddleName="" LastName="Irwin" BirthYear="0" CreditedAs="" />
+    <Actor Role="Mrs. 'Deat Meat' Thompson" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Heidi" MiddleName="" LastName="Swedberg" BirthYear="0" CreditedAs="" />
+    <Actor Role="'Red' Herring" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Bruce" MiddleName="A." LastName="Young" BirthYear="0" CreditedAs="" />
+    <Actor Role="'Mailman' Farnham" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Ryan" MiddleName="" LastName="Stiles" BirthYear="0" CreditedAs="" />
+    <Actor Role="Owatonna, 'The Old One'" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Rino" MiddleName="" LastName="Thunder" BirthYear="0" CreditedAs="" />
+    <Actor Role="Rosener" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Mark" MiddleName="" LastName="Arnott" BirthYear="0" CreditedAs="" />
+    <Actor Role="Captain Margolis" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Ryan" MiddleName="" LastName="Cutrona" BirthYear="0" CreditedAs="" />
+    <Actor Role="Doctor" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Don" MiddleName="" LastName="Lake" BirthYear="0" CreditedAs="" />
+    <Actor Role="Air Controller" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Kelly" MiddleName="" LastName="Connell" BirthYear="0" CreditedAs="" />
+    <Actor Role="Ambulance Driver" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Tony" MiddleName="" LastName="Simotes" BirthYear="0" CreditedAs="" />
+    <Actor Role="Paramedic" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Don" MiddleName="" LastName="Luce" BirthYear="0" CreditedAs="" />
+    <Actor Role="Nurse" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Judith" MiddleName="" LastName="Kahan" BirthYear="0" CreditedAs="" />
+    <Actor Role="Communications Officer" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Jeff" MiddleName="" LastName="Bright" BirthYear="0" CreditedAs="" />
+    <Actor Role="Ring Announcer" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Jimmy" MiddleName="" LastName="Lennon Jr." BirthYear="0" CreditedAs="" />
+    <Actor Role="Francine, the Secretary" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Marie" MiddleName="" LastName="Thomas" BirthYear="0" CreditedAs="" />
+    <Actor Role="Scooter" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Ryan" MiddleName="" LastName="Fitzgerald" BirthYear="0" CreditedAs="" />
+    <Actor Role="Jazz" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Al" MiddleName="" LastName="Clegg" BirthYear="0" CreditedAs="" />
+    <Actor Role="Lawrence Lipps" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Pat" MiddleName="" LastName="Proft" BirthYear="0" CreditedAs="" />
+    <Actor Role="Piano Player" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Marc" MiddleName="" LastName="Shaiman" BirthYear="0" CreditedAs="" />
+    <Actor Role="Drill Sergeant #1" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Cylk" MiddleName="" LastName="Cozart" BirthYear="0" CreditedAs="" />
+    <Actor Role="Drill Sergeant #2" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Christopher" MiddleName="J." LastName="Keene" BirthYear="0" CreditedAs="" />
+    <Actor Role="Rabbi" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Ed" MiddleName="" LastName="Herschlar" BirthYear="0" CreditedAs="" />
+    <Actor Role="Amish Man" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Jimmie" MiddleName="Ray" LastName="Weeks" BirthYear="0" CreditedAs="" />
+    <Actor Role="Amish Woman" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Annie" MiddleName="" LastName="O'Donnell" BirthYear="0" CreditedAs="" />
+    <Actor Role="Eskimo" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Mack" MiddleName="" LastName="Yamaguchi" BirthYear="0" CreditedAs="" />
+    <Actor Role="Self" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Charles" MiddleName="" LastName="Barkley" BirthYear="0" CreditedAs="" />
+    <Actor Role="Self" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Bill" MiddleName="" LastName="Laimbeer" BirthYear="0" CreditedAs="" />
+    <Actor Role="Pope John Paul II" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Eugene" MiddleName="" LastName="Greytak" BirthYear="0" CreditedAs="Gene Greytak" />
+    <Actor Role="Humphrey 'Bogie' Bogart" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Tony" MiddleName="" LastName="Lorea" BirthYear="0" CreditedAs="" />
+    <Actor Role="Saddam Hussein" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Jerry" MiddleName="" LastName="Haleva" BirthYear="0" CreditedAs="Jerry Halera" />
+    <Actor Role="Elvis 'The King' Presley" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Bob" MiddleName="" LastName="Lenz" BirthYear="0" CreditedAs="" />
+    <Actor Role="Liberace" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Willie" MiddleName="" LastName="Collins" BirthYear="0" CreditedAs="" />
+    <Actor Role="Precocious Paper Boy" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Robert" MiddleName="" LastName="Puro" BirthYear="0" CreditedAs="" />
+    <Actor Role="Handsome Milkman" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Richard" MiddleName="" LastName="Lasting" BirthYear="0" CreditedAs="" />
+    <Actor Role="Boxer #1" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Elston" MiddleName="" LastName="Ridgle" BirthYear="0" CreditedAs="" />
+    <Actor Role="Boxer #2" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Max" MiddleName="" LastName="Jones" BirthYear="0" CreditedAs="" />
+    <Actor Role="Conspiratorial Crewman" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Christopher" MiddleName="" LastName="Doyle" BirthYear="0" CreditedAs="Chris Doyle" />
+    <Actor Role="Parking Valet" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Pablo" MiddleName="" LastName="Prietto" BirthYear="0" CreditedAs="" />
+    <Actor Role="Parking Valet" Voice="false" Uncredited="false" Puppeteer="false" FirstName="John" MiddleName="" LastName="Bankson" BirthYear="0" CreditedAs="" />
+    <Actor Role="Family in front of TV Store" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Nancy" MiddleName="" LastName="Abrahams" BirthYear="0" CreditedAs="" />
+    <Actor Role="Family in front of TV Store" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Joseph" MiddleName="" LastName="Abrahams" BirthYear="0" CreditedAs="" />
+    <Actor Role="Family in front of TV Store" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Jamie" MiddleName="" LastName="Abrahams" BirthYear="0" CreditedAs="" />
+    <Actor Role="Sleepy Weasel Squadron" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Cary" MiddleName="" LastName="Brayboy" BirthYear="0" CreditedAs="Carey Brayboy" />
+    <Actor Role="Sleepy Weasel Squadron" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Tony" MiddleName="" LastName="Moreno" BirthYear="0" CreditedAs="" />
+    <Actor Role="Sleepy Weasel Squadron" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Kevin" MiddleName="" LastName="Eads" BirthYear="0" CreditedAs="" />
+    <Actor Role="Sleepy Weasel Squadron" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Dave" MiddleName="" LastName="Oliver" BirthYear="0" CreditedAs="David Oliver" />
+    <Actor Role="Sleepy Weasel Squadron" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Richard" MiddleName="" LastName="Emanuelle" BirthYear="0" CreditedAs="" />
+    <Actor Role="Sleepy Weasel Squadron" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Kip" MiddleName="" LastName="Pierce" BirthYear="0" CreditedAs="" />
+    <Actor Role="Sleepy Weasel Squadron" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Brent" MiddleName="" LastName="Freeman" BirthYear="0" CreditedAs="" />
+    <Actor Role="Sleepy Weasel Squadron" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Kenton" MiddleName="'Chip'" LastName="Steger" BirthYear="0" CreditedAs="" />
+    <Actor Role="Sleepy Weasel Squadron" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Craig" MiddleName="" LastName="McIntosh" BirthYear="0" CreditedAs="" />
+    <Actor Role="Sleepy Weasel Squadron" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Sean" MiddleName="" LastName="Wright" BirthYear="0" CreditedAs="" />
+    <Actor Role="Sleepy Weasel Squadron" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Joe" MiddleName="" LastName="Allegro" BirthYear="0" CreditedAs="" />
+    <Actor Role="Young Girl" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Shana" MiddleName="" LastName="Ballard" BirthYear="0" CreditedAs="" />
+    <Actor Role="Rabinowitz" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Jack" MiddleName="I." LastName="Bernstein" BirthYear="0" CreditedAs="" />
+    <Actor Role="Bar Patron" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Megan" MiddleName="" LastName="Dupont" BirthYear="0" CreditedAs="" />
+    <Actor Role="Barracks Man in Underwear" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Sean" MiddleName="" LastName="Kanan" BirthYear="0" CreditedAs="" />
+    <Actor Role="School Boy" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Brandon" MiddleName="" LastName="Loomis" BirthYear="0" CreditedAs="" />
+    <Actor Role="Reporter" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Steve" MiddleName="" LastName="Mora" BirthYear="0" CreditedAs="" />
+    <Actor Role="Dartman" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Steven" MiddleName="Chester" LastName="Prince" BirthYear="0" CreditedAs="" />
+    <Actor Role="" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Rebecca" MiddleName="" LastName="Ryiz" BirthYear="0" CreditedAs="" />
+    <Actor Role="Dancing Cadet" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Vincent" MiddleName="" LastName="Tumeo" BirthYear="0" CreditedAs="" />
   </Actors>
 </CastInformation>

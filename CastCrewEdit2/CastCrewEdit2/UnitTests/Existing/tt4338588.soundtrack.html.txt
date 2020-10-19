@@ -1,6 +1,5 @@
 ﻿
-
-
+        
 
 
 
@@ -30,11 +29,11 @@ var ue_csm = window,
 pec:0,ts:0,erl:[],ter:[],mxe:50,startTimer:function(){a.ts++;setInterval(function(){d.ue&&a.pec<a.ec&&d.uex("at");a.pec=a.ec},1E4)}};l.skipTrace=1;h.skipTrace=1;h.isStub=1;d.ueLogError=h;d.ue_err=a;e.onerror=l})(ue_csm,window);
 
 
-var ue_id = 'NEG5XMJTRVWKM8N06K5T',
+var ue_id = 'C1ESPQZPQRY5K4NK99SD',
     ue_url,
     ue_navtiming = 1,
     ue_mid = 'A1EVAM02EL8SFB',
-    ue_sid = '141-0146306-8372251',
+    ue_sid = '144-1672637-7516703',
     ue_sn = 'www.imdb.com',
     ue_furl = 'fls-na.amazon.com',
     ue_surl = 'https://unagi-na.amazon.com/1/events/com.amazon.csm.nexusclient.prod',
@@ -43,7 +42,7 @@ var ue_id = 'NEG5XMJTRVWKM8N06K5T',
     ue_urt = 3,
     ue_rpl_ns = 'cel-rpl',
     ue_ddq = 1,
-    ue_fpf = '//fls-na.amazon.com/1/batch/1/OP/A1EVAM02EL8SFB:141-0146306-8372251:NEG5XMJTRVWKM8N06K5T$uedata=s:',
+    ue_fpf = '//fls-na.amazon.com/1/batch/1/OP/A1EVAM02EL8SFB:144-1672637-7516703:C1ESPQZPQRY5K4NK99SD$uedata=s:',
     ue_sbuimp = 1,
     ue_bfd = 1000,
 
@@ -70,17 +69,23 @@ ue.stub(ue,"log");ue.stub(ue,"onunload");ue.stub(ue,"onflush");
 "csm","csm.CSMBaselineEvent.4"),a.count("nexusBaselineCounter",1,{bf:1}))})(ue_csm);
 
 
+(function(g,h,m){if("function"===typeof h.addEventListener&&"function"===typeof m.querySelectorAll){var l,n,u,p,f,v,q,r,w,x=["mouseenter","mouseleave"],y="click dblclick mousedown mouseover mouseout touchstart keydown keypress MSPointerDown pointerdown focusin".split(" ").concat(x),s=!1,t=[];p=function(a){for(var c=[];a;)c.push(a),a=a.parentNode;return c};n=function(a,c){var b=-1,d;for(d=0;d<c.length;d++)if(c[d]===a){b=d;break}return b};r=function(a,c){var b=n(a,c);0<=b&&c.splice(b,1)};u=function(a){var c;
+a=p(a);for(var b,d,e=0;e<a.length;e++)if(d=a[e],(b=d.nodeName)&&b!==m.nodeName){b=b.toLowerCase();if(d.id)return b+"#"+d.id+(c?">"+c:"");(d=d.getAttribute("class"))&&(b=b+"."+d.split(" ").join("."));c=b+(c?">"+c:"")}return c};w=function(a){return a.replace(/[^\w.:\-]/g,function(a){return"#"===a?"::":">"===a?":-":"_"})};q=function(a,c){var b,d,e;if(g.ue&&g.ue.count&&g.ueLogError)for(b=u(a),e=w(b),d="degraded"===c?"A UX degrading element has entered the viewport: "+b:"A "+c+" was not handled on element: "+
+b,g.ueLogError({m:d,fromOnError:1},{logLevel:"ERROR",attribution:b,message:d}),b=["TNR","TNR:"+c,"TNR:"+e,"TNR:"+c+":"+e],f=0;f<b.length;f++)g.ue.count(b[f],(g.ue.count(b[f])||0)+1)};v=function(a){a=a.getBoundingClientRect();return a.top<a.bottom&&a.left<a.right&&0<=a.bottom&&a.top<=h.innerHeight&&0<=a.right&&a.left<=h.innerWidth};l=function(){s||(s=!0,setTimeout(function(){[].forEach.call(m.querySelectorAll("[data-ux-degraded]"),function(a){v(a)?0>n(a,t)&&(t.push(a),q(a,"degraded")):r(a,t)});s=!1},
+250))};h.addEventListener("scroll",l);h.addEventListener("resize",l);l=function(a){var c=!1,b=0>n(a,x);m.addEventListener(a,function(d){if(!c){c=!0;var e=[],f=b?p(d.target):[d.target],k,g,h;for(g=0;g<f.length;g++)k=f[g],k.getAttribute&&("mouseover"===a&&k===d.target&&((h=k.getAttribute("data-ux-jq-mouseenter"))||""===h)&&e.push(k),((h=k.getAttribute("data-ux-"+a))||""===h)&&e.push(k));e.length?(d.ack=d.acknowledge=function(a){a=a||d.currentTarget;r(a,e)},setTimeout(function(){var b;for(b=0;b<e.length;b++)q(e[b],
+a);c=!1},250)):c=!1}},!0)};for(f=0;f<y.length;f++)l(y[f])}})(ue_csm,window,document);
+
 
 var ue_hoe = +new Date();
 }
 window.ueinit = window.ue_ihb;
 </script>
 
-<!-- 3ypeykec11l5 --> 
+<!-- 6uu38qxhieng5 --> 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="apple-itunes-app" content="app-id=342792525, app-argument=imdb:///title/tt0266732?src=mdot">
+    <meta name="apple-itunes-app" content="app-id=342792525, app-argument=imdb:///title/tt4338588?src=mdot">
 
 
 
@@ -92,7 +97,7 @@ window.ueinit = window.ue_ihb;
     }
 </script>
   <script>(function(t){ (t.events = t.events || {})["csm_head_pre_title"] = new Date().getTime(); })(IMDbTimer);</script>
-        <title>Love Is the Drug (2006) - Full Cast &amp; Crew - IMDb</title>
+        <title>&quot;Roots&quot; Part 1 (TV Episode 2016) - Soundtracks - IMDb</title>
   <script>(function(t){ (t.events = t.events || {})["csm_head_post_title"] = new Date().getTime(); })(IMDbTimer);</script>
 <script>
     if (typeof uet == 'function') {
@@ -105,8 +110,8 @@ window.ueinit = window.ue_ihb;
     }
 </script>
 
-        <link rel="canonical" href="https://www.imdb.com/title/tt0266732/fullcredits" />
-        <meta property="og:url" content="http://www.imdb.com/title/tt0266732/fullcredits" />
+        <link rel="canonical" href="https://www.imdb.com/title/tt4338588/soundtrack" />
+        <meta property="og:url" content="http://www.imdb.com/title/tt4338588/soundtrack" />
 
 <script>
     if (typeof uet == 'function') {
@@ -141,24 +146,24 @@ window.ueinit = window.ue_ihb;
     }
 </script>
 
-        <meta property="pageId" content="tt0266732" />
+        <meta property="pageId" content="tt4338588" />
         <meta property="pageType" content="title" />
-        <meta property="subpageType" content="fullcredits" />
+        <meta property="subpageType" content="soundtrack" />
 
 
-        <link rel='image_src' href="https://m.media-amazon.com/images/M/MV5BOTViNmFlMTgtYWE5YS00ZmRhLTlkMTctOTE1ODFlNDdhYWNkXkEyXkFqcGdeQXVyMTk5MjAyMjM@._V1_UY1200_CR135,0,630,1200_AL_.jpg">
-        <meta property='og:image' content="https://m.media-amazon.com/images/M/MV5BOTViNmFlMTgtYWE5YS00ZmRhLTlkMTctOTE1ODFlNDdhYWNkXkEyXkFqcGdeQXVyMTk5MjAyMjM@._V1_UY1200_CR135,0,630,1200_AL_.jpg" />
+        <link rel='image_src' href="https://m.media-amazon.com/images/M/MV5BMTc4MzcwNjMzMF5BMl5BanBnXkFtZTgwNDAyODYxOTE@._V1_UY1200_CR585,0,630,1200_AL_.jpg">
+        <meta property='og:image' content="https://m.media-amazon.com/images/M/MV5BMTc4MzcwNjMzMF5BMl5BanBnXkFtZTgwNDAyODYxOTE@._V1_UY1200_CR585,0,630,1200_AL_.jpg" />
 
-        <meta property='og:type' content="video.movie" />
+        <meta property='og:type' content="video.episode" />
     <meta property='fb:app_id' content='115109575169727' />
 
-      <meta property='og:title' content="Love Is the Drug (2006) - IMDb" />
+      <meta property='og:title' content="&quot;Roots&quot; Part 1 (TV Episode 2016) - IMDb" />
     <meta property='og:site_name' content='IMDb' />
-    <meta name="title" content="Love Is the Drug (2006) - IMDb" />
-        <meta name="description" content="Love Is the Drug (2006) cast and crew credits, including actors, actresses, directors, writers and more." />
-        <meta property="og:description" content="Love Is the Drug (2006) cast and crew credits, including actors, actresses, directors, writers and more." />
-        <meta name="keywords" content="Reviews, Showtimes, DVDs, Photos, Message Boards, User Ratings, Synopsis, Trailers, Credits" />
-        <meta name="request_id" content="NEG5XMJTRVWKM8N06K5T" />
+    <meta name="title" content="&quot;Roots&quot; Part 1 (TV Episode 2016) - IMDb" />
+        <meta name="description" content="&quot;Roots&quot; Part 1 (TV Episode 2016) SoundTracks on IMDb: Memorable quotes and exchanges from movies, TV series and more..." />
+        <meta property="og:description" content="&quot;Roots&quot; Part 1 (TV Episode 2016) SoundTracks on IMDb: Memorable quotes and exchanges from movies, TV series and more..." />
+        <meta name="keywords" content="Quotes, Lines, Dialogue, Scenes " />
+        <meta name="request_id" content="C1ESPQZPQRY5K4NK99SD" />
 
     <script>
         (function (win) {
@@ -218,12 +223,13 @@ window.ueinit = window.ue_ihb;
 </script>
   <script>(function(t){ (t.events = t.events || {})["csm_head_pre_css"] = new Date().getTime(); })(IMDbTimer);</script>
         
-<link rel="stylesheet" type="text/css" href="https://m.media-amazon.com/images/I/31vFYe8A-RL.css" /><link rel="stylesheet" type="text/css" href="https://m.media-amazon.com/images/I/41TJK4vyYvL.css" />
+<link rel="stylesheet" type="text/css" href="https://m.media-amazon.com/images/I/41TJK4vyYvL.css" /><link rel="stylesheet" type="text/css" href="https://m.media-amazon.com/images/I/31vFYe8A-RL.css" />
 
-<!-- h=ics-c52xl-5-1b-e720ea11.us-east-1 -->
+<!-- h=ics-c52xl-3-1d-b4992e83.us-east-1 -->
 
             <link rel="stylesheet" type="text/css" href="https://m.media-amazon.com/images/G/01/imdb/css/collections/title-flat-1915240148._CB419115747_.css" />
             <!--[if IE]><link rel="stylesheet" type="text/css" href="https://m.media-amazon.com/images/G/01/imdb/css/collections/ie-3579153447._CB468514839_.css" /><![endif]-->
+            <link rel="stylesheet" type="text/css" href="https://m.media-amazon.com/images/G/01/imdb/css/app/consumersite/musicplayer/musicplayer-widget-2529656656._CB461844791_.css" />
         <noscript>
             <link rel="stylesheet" type="text/css" href="https://m.media-amazon.com/images/G/01/imdb/css/wheel/nojs-2827156349._CB468153063_.css">
         </noscript>
@@ -296,13 +302,13 @@ generic.monitoring.set_forester_info("main");
 generic.monitoring.set_twilight_info(
 "title",
 "DE",
-"deb1ff3ab8592d6c8cd7f930cc36fd653386227e",
-"2020-10-19T20%3A38%3A53GMT",
+"cc78a0df3148d002ea162e954b5e80b7c70f2abe",
+"2020-10-19T20%3A39%3A00GMT",
 "https://s.media-imdb.com/twilight/?",
 "consumer");
 generic.monitoring.start_timing("page_load");
-generic.seconds_to_midnight = 37267;
-generic.days_to_midnight = 0.4313310086727142;
+generic.seconds_to_midnight = 37260;
+generic.days_to_midnight = 0.4312500059604645;
 },"Generic not defined, skipping monitoring setup.");
 </script>
 <script src="https://images-na.ssl-images-amazon.com/images/G/01/ape/sf/desktop/DAsf-1.50.996289c._V428881811_.js"></script>
@@ -417,7 +423,7 @@ if(window.ue&&uet) { uet('bb'); }
 </script>
     </head>
     <body id="styleguide-v2" class="fixed">
-            <img height="1" width="1" style='display:none;visibility:hidden;' src='//fls-na.amazon.com/1/batch/1/OP/A1EVAM02EL8SFB:141-0146306-8372251:NEG5XMJTRVWKM8N06K5T$uedata=s:%2Frd%2Fuedata%3Fstaticb%26id%3DNEG5XMJTRVWKM8N06K5T:0' alt="" onload="window.ue_sbl && window.ue_sbl();"/>
+            <img height="1" width="1" style='display:none;visibility:hidden;' src='//fls-na.amazon.com/1/batch/1/OP/A1EVAM02EL8SFB:144-1672637-7516703:C1ESPQZPQRY5K4NK99SD$uedata=s:%2Frd%2Fuedata%3Fstaticb%26id%3DC1ESPQZPQRY5K4NK99SD:0' alt="" onload="window.ue_sbl && window.ue_sbl();"/>
 
 
 <script>
@@ -429,14 +435,14 @@ if (window.csa) {
         'Events.Namespace': 'csa',
         'ObfuscatedMarketplaceId': 'A1EVAM02EL8SFB',
         'Events.SushiEndpoint': 'https://unagi.amazon.com/1/events/com.amazon.csm.csa.prod',
-        'CacheDetection.RequestID': "NEG5XMJTRVWKM8N06K5T",
+        'CacheDetection.RequestID': "C1ESPQZPQRY5K4NK99SD",
         'CacheDetection.Callback': window.ue && ue.reset,
         'LCP.elementDedup': 1
     });
 
     csa("Events")("setEntity", {
-        page: {requestId: "NEG5XMJTRVWKM8N06K5T", meaningful: "interactive"},
-        session: {id: "141-0146306-8372251"}
+        page: {requestId: "C1ESPQZPQRY5K4NK99SD", meaningful: "interactive"},
+        session: {id: "144-1672637-7516703"}
     });
 }
 !function(n){var e,o,r="splice",i=n.csa,t={},u={},f=n.csa._s,c=0,a={},s={},g={},l=setTimeout,h=Object.keys;function d(n,t){return i(n,t)}function v(n,t){var i=u[n]||{};O(i,t),u[n]=i,l(S,0)}function p(n,t,i){var e=!0;i&&i.buffered&&(e=(g[n]||[]).every(function(n){return!1!==t(n)})),e&&(a[n]||(a[n]=[]),a[n].push(t))}function m(n,t){if(n in s)t(s[n]);else{p(n,function(n){return t(n),!1})}}function b(n){if(i("Errors")("logError",n),t.DEBUG)throw n}function w(){return Math.abs(4294967295*Math.random()|0).toString(36)}function y(n,t){return function(){try{n.apply(this,arguments)}catch(n){b(n.message||n)}}}function S(){for(var n=0;n<f.length;){var t=f[n],i=t[0]in u;if(!i&&!o)return void(c=t.length);i?(f[r](c=n,1),D(t)):n++}}function D(n){var arguments,t=u[n[0]],i=(arguments=n[1])[0];if(!t||!t[i])return b("Undefined function: "+t+"/"+i);e=n[3],u[n[2]]=t[i].apply(t,arguments.slice(1))||{},e=0}function E(){o=1,S()}function O(t,i){h(i).forEach(function(n){t[n]=i[n]})}m("$beforeunload",E),v("Config",{instance:function(n){O(t,n)}}),i.plugin=y(function(n){n(d)}),d.config=t,d.register=v,d.on=p,d.removeListener=function(n,t){var i=a[n];i&&i[r](i.indexOf(t),1)},d.once=m,d.emit=function(n,t,i){for(var e=a[n]||[],o=0;o<e.length;)!1===e[o](t)?e[r](o,1):o++;s[n]=t||{},i&&i.buffered&&(g[n]||(g[n]=[]),100<=g[n].length&&g[n].shift(),g[n].push(t||{}))},d.UUID=function(){return[w(),w(),w(),w()].join("-")},d.time=function(n){var t=e?new Date(e.time):new Date;return"ISO"===n?t.toISOString():t.getTime()},d.error=b,d.exec=y,(d.global=n).csa._s.push=function(n){n[0]in u&&(!f.length||o)?D(n):f[r](c++,0,n)},S(),l(function(){l(E,t.SkipMissingPluginsTimeout||5e3)},1)}("undefined"!=typeof window?window:global);csa.plugin(function(e){var n,r,o={},t="localStorage",c="sessionStorage",u="local",a="session";function i(t,n){var r;try{o[n]=!!(r=e.global[t]),r=r||{}}catch(t){o[n]=!(r={})}return r}function s(){n=n||i(t,u),r=r||i(c,a)}function f(t){return t&&t[a]?r:n}e.store=function(t,n,r){try{s();var e=f(r);if(!t)return Object.keys(e);if(!n)return e[t];e[t]=n}catch(t){}},e.storageSupport=function(){return s(),o},e.deleteStored=function(t,n){try{s(),delete f(n)[t]}catch(t){}}});csa.plugin(function(s){s.register("Errors",{logError:function(r){s("Metrics",{producerId:"csa",dimensions:{message:r}})("recordMetric","jsError",1)}})});csa.plugin(function(r){var o,e=r.global,i=r("Events"),d=e.location,f=e.document,a=((e.performance||{}).navigation||{}).type,t=e.addEventListener,s=r.emit,u={};function n(a,e){var t=!!o,n=(e=e||{}).keepPageAttributes;t&&(s("$beforePageTransition"),s("$pageTransition")),t&&!n&&i("removeEntity","page"),o=r.UUID(),n?u.id=o:u={schemaId:"<ns>.PageEntity.1",id:o,url:d.href,server:d.hostname,path:d.pathname,referrer:f.referrer,title:f.title},Object.keys(a||{}).forEach(function(e){u[e]=a[e]}),i("setEntity",{page:u}),s("$pageChange",u,{buffered:1}),t&&s("$afterPageTransition")}function g(){s("$load"),s("$ready"),s("$afterload")}function l(){s("$ready"),s("$beforeunload"),s("$unload"),s("$afterunload")}d&&f&&(t&&(t("beforeunload",l),t("pagehide",l),"complete"===f.readyState?g():t("load",g)),r.register("SPA",{newPage:n}),n({transitionType:{0:"hard",1:"refresh",2:"back-button"}[a]||"unknown"}))});csa.plugin(function(c){var n="Events",e="UNKNOWN",a="id",u="all",t="messageId",i="timestamp",f="producerId",o="application",r="obfuscatedMarketplaceId",s="entities",d="schemaId",l="version",p="attributes",v="<ns>",g=c.config,h=(c.global.location||{}).host,m=g[n+".Namespace"]||"csa_other",I=g.Application||"Other"+(h?":"+h:""),b=c("Transport"),O={},y=function(n,e){Object.keys(n).forEach(e)};function E(t,i,o){y(i,function(n){var e=o===u||(o||{})[n];n in t||(t[n]={version:1,id:i[n][a]||c.UUID()}),U(t[n],i[n],e)})}function U(e,t,i){y(t,function(n){!0!==i&&1!==i&&!function(n,e){return n===a||!!~(e||[]).indexOf(n)}(n,i)||(e[n]=t[n])})}function N(o,n,r){y(n,function(n){var e=o[n];if(e[d]){var t={},i={};t[a]=e[a],t[f]=e[f]||r,t[d]=e[d],t[l]=e[l]++,t[p]=i,k(t),U(i,e,1),D(i),b("log",t)}})}function k(n){n[i]=function(n){return"number"==typeof n&&(n=new Date(n).toISOString()),n||c.time("ISO")}(n[i]),n[t]=c.UUID(),n[o]=I,n[r]=g.ObfuscatedMarketplaceId||e,n[d]=n[d].replace(v,m)}function D(n){delete n[l],delete n[d],delete n[f]}function S(o){var r={};this.log=function(n,e){var t={},i=(e||{}).ent;return n?"string"!=typeof n[d]?c.error("A valid schema id is required for the event"):(k(n),E(t,O,i),E(t,r,i),E(t,n[s]||{},i),y(t,function(n){D(t[n])}),n[f]=o[f],n[s]=t,void b("log",n)):c.error("The event cannot be undefined")},this.setEntity=function(n){E(r,n,u),N(r,n,o[f])}}c.register(n,{setEntity:function(n){E(O,n,u),N(O,n,"csa")},removeEntity:function(n){delete O[n]},instance:function(n){return new S(n)}})});csa.plugin(function(s){var c,l="Transport",d="post",u="preflight",r="csa.cajun.",i="store",a="deleteStored",n="addEventListener",f="sendBeacon",t=0,e=s.config[l+".BufferSize"]||2e3,g=s.config[l+".RetryDelay"]||1500,o=[],h=0,p=[],v=s.global,y=v.document,m=s.config[l+".FlushInterval"]||5e3,E=0;function T(n){if(864e5<s.time()-+new Date(n.timestamp))return s.error("Event is too old: "+n);h<e&&(o.push(n),h++,!E&&t&&(E=setTimeout(R,m)))}function R(){p.forEach(function(t){var e=[];o.forEach(function(n){t.accepts(n)&&e.push(n)}),e.length&&(t.chunks?t.chunks(e).forEach(function(n){S(t,n)}):S(t,e))}),o=[],E=0}function S(t,e){function o(){s[a](r+n)}var n=s.UUID();s[i](r+n,JSON.stringify(e)),[function(n,t,e){var o=v.navigator||{},r=v.cordova||{};if(!o[f]||!n[d])return 0;n[u]&&r&&"ios"===r.platformId&&!c&&((new Image).src=n[u]().url,c=1);var i=n[d](t);if(!i.type&&o[f](i.url,i.body))return e(),1},function(n,t,e){if(!n[d])return 0;var o=n[d](t),r=o.url,i=o.body,c=o.type,u=new XMLHttpRequest,a=0;function f(n,t,e){u.open("POST",n),e&&u.setRequestHeader("Content-Type",e),u.send(t)}return u.onload=function(){u.status<299?e():s.config[l+".XHRRetries"]&&a<3&&setTimeout(function(){f(r,i,c)},++a*g)},f(r,i,c),1}].some(function(n){try{return n(t,e,o)}catch(n){}})}s.once("$afterload",function(){t=1,function(e){(s[i]()||[]).forEach(function(n){if(!n.indexOf(r))try{var t=s[i](n);s[a](n),JSON.parse(t).forEach(e)}catch(n){s.error(n)}})}(T),y&&y[n]&&y[n]("visibilitychange",R,!1),R()}),s.once("$afterunload",function(){t=1,R()}),s.on("$afterPageTransition",function(){h=0}),s.register(l,{log:T,register:function(n){p.push(n)}})});csa.plugin(function(n){var r=n.config["Events.SushiEndpoint"];n("Transport")("register",{accepts:function(n){return n.schemaId},post:function(n){var t=n.map(function(n){return{data:n}});return{url:r,body:JSON.stringify({events:t})}},preflight:function(){var n,t=/\/\/(.*?)\//.exec(r);return t&&t[1]&&(n="https://"+t[1]+"/ping"),{url:n}},chunks:function(n){for(var t=[];500<n.length;)t.push(n.splice(0,500));return t.push(n),t}})});csa.plugin(function(i){var t,a,o,r,d=i.config["PageViews.ImpressionMinimumTime"]||1e3,e="addEventListener",n="hidden",s="innerHeight",c="innerWidth",g="renderedTo",f=g+"Viewed",m=g+"Meaningful",u=g+"Impressed",l=1,v=2,h=3,p=4,P=5,T="loaded",y=7,I=8,w=i.global,E=i("Events",{producerId:"csa"}),V=w.document,$={},b={},M=P;if(!V||!V[e]||void 0===V[n])return C("PageStateChange.2",{state:"ignored"});function S(e){if(!$[y]){var n;if($[e]=i.time(),e!==h&&e!==T||(t=t||$[e]),t&&M===p)a=a||$[e],(n={})[m]=t-o,n[f]=a-o,C("PageView.4",n),r=r||setTimeout(L,d);if(e!==P&&e!==l&&e!==v||(clearTimeout(r),r=0),e!==l&&e!==v||C("PageRender.3",{transitionType:e===l?"hard":"soft"}),e===y)(n={})[m]=t-o,n[f]=a-o,n[u]=$[e]-o,C("PageImpressed.2",n)}}function C(e,n){b[e]||(n.schemaId="<ns>."+e,E("log",n,{ent:"all"}),b[e]=1)}function H(){0===w[s]&&0===w[c]?(M=I,i("Events")("setEntity",{page:{viewport:"hidden-iframe"}})):M=V[n]?P:p,S(M)}function L(){S(y),r=0}function R(){var e=o?v:l;$={},b={},a=t=0,o=i.time(),S(e),H()}function W(){var e=V.readyState;"interactive"===e&&S(h),"complete"===e&&S(T)}R(),V[e]("visibilitychange",H,!1),V[e]("readystatechange",W,!1),i.on("$afterPageTransition",R),i.once("$load",W),i.on("$timing:loaded",W)});csa.plugin(function(c){var n=c.global,u=c.emit,d=5,m="click";function f(n){if(n.id)return"//*[@id='"+n.id+"']";var t=function(n){var t,e=1;for(t=n.previousSibling;t;t=t.previousSibling)t.nodeName===n.nodeName&&(e+=1);return e}(n),e=n.nodeName;return 1!==t&&(e+="["+t+"]"),n.parentNode&&(e=f(n.parentNode)+"/"+e),e}function t(n,t,e){var a=c("Content",{target:e}),i={schemaId:"<ns>.ContentInteraction.1",interaction:n,interactionData:t,messageId:c.UUID()},r=f(e);if(r&&(i.attribution=r),n===m){var o=function(n){for(var t=n,e=t.tagName,a=!1,i=0;i<d;i++){if(!t||!t.parentElement){a=!0;break}e=(t=t.parentElement).tagName+"/"+e}return a||(e=".../"+e),e}(e);o&&(i.interactionData.parentChain=o)}a("log",i),u("$content.interaction",i)}function e(n){c.exec(function(){t(m,{interactionX:""+n.pageX,interactionY:""+n.pageY},n.target)})()}(n.document||{}).documentElement.addEventListener(m,e,{capture:!0,passive:!0})});
@@ -470,7 +476,7 @@ if (window.csa) {
 <script>
     setTimeout(function() {
         var el = document.getElementById("sis_pixel_sitewide");
-        el.src="https://aax-eu.amazon-adsystem.com/s/iu3?d=imdb.com&a1=&a2=0101b26d211e450303565c7628da9c25e08de274abbb7f719b4d723ae91106b141a9&cb=154580577243&pId=tt0266732&r=1&rP=https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0266732%2Ffullcredits&encoding=server&prid=010167c2e81c76314c20811dad2f752aaf4b6ad1771bbbc3d23e3169ab45c76bb43c";
+        el.src="https://aax-eu.amazon-adsystem.com/s/iu3?d=imdb.com&a1=&a2=0101f04b2d0aa6572d13382446184b4ae8deabac86d9cd994a12428f037b68484cd8&cb=806386186121&pId=tt4338588&r=1&rP=https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt4338588%2Fsoundtrack&encoding=server&prid=0101772fc531f8b51871f318d550aa3b67dd2974b0488710153b356017456a98bf58";
         el.onload = function() {
             if (typeof uex == 'function') {
                 uex("ld", "LoadSis", {wb: 1});
@@ -493,7 +499,7 @@ if (window.csa) {
                     c1: 2,
                     c2:"6034961",
                     c3:"",
-                    c4:"https://www.imdb.com/title/tt0266732/fullcredits",
+                    c4:"https://www.imdb.com/title/tt4338588/soundtrack",
                     c5:"",
                     c6:"",
                     c15:"",
@@ -503,7 +509,7 @@ if (window.csa) {
 </script>
 
 <noscript>
-    <img src="https://sb.scorecardresearch.com/p?c1=2&c2=6034961&c3=&c4=https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0266732%2Ffullcredits&c5=c6=&15=&cj=1"/>
+    <img src="https://sb.scorecardresearch.com/p?c1=2&c2=6034961&c3=&c4=https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt4338588%2Fsoundtrack&c5=c6=&15=&cj=1"/>
 </noscript>
 <!-- end comscore beacon -->
 
@@ -618,8 +624,8 @@ ad_utils.register_ad('top_ad');
 <div id="top_ad_reflow_helper"></div>
 <script id="top_ad_rendering">
 doWithAds(function(){
-ad_utils.set_aax_instrumentation_pixel_url('TOP_AD', 'https://aax-eu.amazon-adsystem.com/x/px/QkqHj5zShGA6kMxzU9S2K3cAAAF1QpYVdQMAAADKAUftrVA/');
-ad_utils.inject_serverside_ad('top_ad', '<script>document.defaultAd = {h:250,w:970}; document.ad = document.defaultAd;<\/script> <!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"UTF-8\">\n <title></title>\n <style>@font-face{font-family:\'Amazon Ember\';src:url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_rg-cc7ebaa05a2cd3b02c0929ac0475a44ab30b7efa._V2_.woff2) format(\"woff2\"),url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_rg-8a9db402d8966ae93717c348b9ab0bd08703a7a7._V2_.woff) format(\"woff\")}@font-face{font-family:\'Amazon Ember\';font-style:italic;src:url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_rgit-9cc1bb64eb270135f1adf3a4881c2ee5e7c37be5._V2_.woff2) format(\"woff2\"),url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_rgit-a4dc98d644ff2aedd41da3da462f09ffce86eafb._V2_.woff) format(\"woff\")}@font-face{font-family:\'Amazon Ember\';font-weight:700;src:url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_bd-46b91bda68161c14e554a779643ef4957431987b._V2_.woff2) format(\"woff2\"),url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_bd-b605252f87b8b3df5ae206596dac0938fc5888bc._V2_.woff) format(\"woff\")}@font-face{font-family:\'Amazon Ember\';font-style:italic;font-weight:700;src:url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_bdit-80ff7aba37dd1ff5a6b90233a19e3a780a96dc2f._V2_.woff2) format(\"woff2\"),url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_bdit-57598ce426a612be5a1d15eee08252668fca5e7a._V2_.woff) format(\"woff\")}\n\n.fadeIn{-webkit-animation:animateIn 1s 1 forwards;animation:animateIn 1s 1 forwards}.fadeOut{-webkit-animation:animateOut 1s 1 forwards;animation:animateOut 1s 1 forwards}\n\n#ad,#div-gpt-ad,body,html{margin:0;font-family:\'Amazon Ember\',arial,sans-serif;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;font-size:13px;line-height:18px;width:100%;height:100%}\n\n.flex-container{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex}.flex-direction-row{-ms-flex-direction:row;flex-direction:row}.flex-direction-column{-ms-flex-direction:column;flex-direction:column}.flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.flex-nowrap{-ms-flex-wrap:none;-ms-flex-wrap:nowrap;flex-wrap:nowrap}.flex-align-start{-ms-flex-align:start;align-items:flex-start}.flex-align-center{-ms-flex-align:center;align-items:center}.flex-align-baseline{-ms-flex-align:baseline;align-items:baseline}.flex-align-end{-ms-flex-align:end;align-items:flex-end}.flex-justify-start{-ms-flex-pack:start;justify-content:flex-start}.flex-justify-center{-ms-flex-pack:center;justify-content:center}.flex-justify-space-between{-ms-flex-pack:justify;justify-content:space-between}.flex-justify-space-around{-ms-flex-pack:justify;justify-content:space-around}.flex-justify-end{-ms-flex-pack:end;justify-content:flex-end}.flex-grow-1{-webkit-flex-grow:1;flex-grow:1}.flex-grow-0-15{-webkit-flex-grow:.15;flex-grow:.15}.flex-shrink-0{-webkit-flex-shrink:0;flex-shrink:0}</style>\n \n</head>\n<body>\n\n<script>\n var PerformanceEventManager=function(e){var n={};function t(r){if(n[r])return n[r].exports;var i=n[r]={i:r,l:!1,exports:{}};return e[r].call(i.exports,i,i.exports,t),i.l=!0,i.exports}return t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.r=function(e){Object.defineProperty(e,\"__esModule\",{value:!0})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,\"a\",n),n},t.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},t.p=\"\",t(t.s=3)}([function(e,n,t){\"use strict\";Object.defineProperty(n,\"__esModule\",{value:!0});var r=function(){function e(e,n){for(var t=0;t<n.length;t++){var r=n[t];r.enumerable=r.enumerable||!1,r.configurable=!0,\"value\"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(n,t,r){return t&&e(n.prototype,t),r&&e(n,r),n}}(),i=n.UNCAUGHT_ERROR=\"uncaughtError\",o=n.CREATIVE_LOAD_LATENCY=\"creativeLoadLatency\",a=n.VISUAL_COMPLETENESS_LATENCY=\"visualCompletenessLatency\",u=function(){function e(n){if(function(n,t){if(!(n instanceof e))throw new TypeError(\"Cannot call a class as a function\")}(this),this.events=function(e,n,t){return n in e?Object.defineProperty(e,n,{value:t,enumerable:!0,configurable:!0,writable:!0}):e[n]=t,e}({},i,{}),this.timers={},this.onNewError=function(){},this.window=n&&n.window||\"undefined\"!=typeof window&&window,!this.window||!this.window.document)throw new Error(\"Window and/or document is not defined\");this.trackLoadLatency(),this.trackVisualCompletenessLatency(),this.addErrorListener()}return r(e,[{key:\"trackLoadLatency\",value:function(){this.timers[o]=new Date}},{key:\"trackVisualCompletenessLatency\",value:function(){this.timers[a]=new Date}},{key:\"addErrorListener\",value:function(){var e=this,n=this.events[i];this.addListener(this.window,\"error\",function(t){var r=t.message;if(t.error&&t.error.stack){var i=t.message+\" : \"+t.error.stack;r=i.length<500?i:i.substring(0,500)}void 0===n[r]&&(n[r]=!0,e.onNewError(r))})}},{key:\"addListener\",value:function(e,n,t){var r=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:window.event;return t(e)};if(e.addEventListener)e.addEventListener(n,r,!0);else if(n=\"on\"+n,e.attachEvent)e.attachEvent(n,r);else{var i=e[n];e[n]=function(){r.apply(this,arguments),\"function\"==typeof i&&i.apply(this,arguments)}}}}]),e}();n.default=u},,,function(e,n,t){e.exports=t(0)}]);;\n var performanceEventManager = new PerformanceEventManager.default();\n \n<\/script>\n<div id=\"ad\"><div style=\"width:100%;height:100%\"><div style=\"overflow:hidden;width:100%;height:100%\" class=\"\"><div class=\"flex-container\n flex-direction-row\n flex-justify-end\n \" style=\"position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;background-color:#fff;border:1px solid #ccc;box-sizing:border-box;padding:15px 30px\"><div class=\"flex-container flex-direction-column flex-grow-1 \" style=\"min-width:0;max-width:58.7%\"><div class=\"flex-container flex-direction-row flex-grow-1\" style=\"min-width:0\"><div class=\"flex-container flex-direction-column flex-justify-center flex-align-center flex-grow-1\" style=\"min-width:0;padding-right:30px\"><div class=\"flex-container flex-align-center flex-justify-center\"><img alt=\"\" aria-hidden=\"true\" src=\"https://images-eu.ssl-images-amazon.com/images/G/01/dacx/AdForge/white-image-3-de639699-0a25-45fa-9f18-c0271a344162._CB407427098_AC_AC_SX200_SY100_.jpg\" style=\"max-width:200px;max-height:100px\"/></div><div class=\"flex-container flex-align-center flex-justify-center\" style=\"text-align:center;margin-top:20px;min-width:0\"><div style=\"min-width:0\"><span style=\"font-size:21px;line-height:27px;color:#333;font-style:italic;min-width:0;word-break:break-word;font-weight:normal\" color=\"base\">Verantwortungsvoller Genuss ab 18 Jahren</span></div></div></div><div class=\"flex-container flex-align-center flex-justify-center\" style=\"width:auto;height:auto;padding-left:30px;border-left:1px solid #ccc\"><img alt=\"\" aria-hidden=\"true\" src=\"https://m.media-amazon.com/images/I/71MCrfz1MiL._AC_SX220_SY220_.jpg\" style=\"max-width:220px;max-height:220px\"/></div></div></div><div style=\"max-height:100%;flex-direction:column;padding:0 0 0 30px;width:41.2%;height:100%;right:0;box-sizing:border-box\" class=\"flex-container flex-justify-center\"><div class=\"flex-container flex-direction-column flex-shrink-0 \"><div><div style=\"color:#111111;font-size:17px;font-weight:400;flex-shrink:0;height:auto;line-height:19px;max-height:60px;margin-bottom:0;overflow:hidden;word-wrap:break-word\"><span>Bombay Sapphire London Dry Gin (1 x 1 l)</span></div></div><div class=\"flex-container flex-direction-row flex-nowrap flex-align-end flex-justify-space-between flex-shrink-0\"><div style=\"-ms-flex:0 1 100%;flex-grow:0;flex-shrink:1;display:inline-block\" class=\"\"><a class=\"flex-container\" style=\"background:transparent url(&quot;https://m.media-amazon.com/images/G/01/d16g/kpw/transparent-1x1.png&quot;) repeat 0 0;bottom:0;cursor:pointer;left:0;position:relative;right:0;top:0;z-index:1000;text-decoration:none\" href=\"https://www.amazon.de/dp/B00BBTIONE?ref=dacx_dp_8437761270202_7533311980202&amp;me=A3JWKAKR8XB7XF&amp;aaxitk=TtfuriPrAtCwqzGE8pS2Ag\" target=\"_top\"><div class=\"starRatingWrapper\" style=\"font-size:unset;line-height:1;padding-bottom:4px;padding-top:4px\"><div><div style=\"background-repeat:no-repeat;background-size:344px 15px;display:inline-block;vertical-align:middle;height:16px;width:80px;background-image:url(&quot;https://images-eu.ssl-images-amazon.com/images/G/03/da/creatives/aui-mini-sprite-2015-02.png&quot;);background-position:0px 0px\"></div><span style=\"display:inline-block;width:0.385em\"></span><span color=\"tertiary\" style=\"font-size:14px;line-height:1;color:#555;display:inline;vertical-align:middle\">2.596</span></div><div></div></div></a><div style=\"align-content:flex-start;flex-wrap:wrap;line-height:normal;width:100%;margin-bottom:0\" class=\"\"><div class=\"flex-container flex-direction-row flex-align-baseline flex-justify-start flex-wrap\"><span style=\"display:inline-block;margin-right:4px;margin-bottom:-2px\"><span class=\"\" style=\"font-size:14px;color:#555;line-height:1\">22,90</span><span class=\"\" style=\"color:#555;line-height:normal;font-size:14px;margin-left:3px\">\u20ac</span></span><span color=\"secondary\" style=\"font-size:11px;line-height:1.465;color:#767676;display:inline-block;margin-bottom:-2px;margin-right:5px\">inkl. MwSt.</span></div></div></div></div></div></div><a style=\"background:transparent url(&quot;https://m.media-amazon.com/images/G/01/d16g/kpw/transparent-1x1.png&quot;) repeat 0 0;bottom:0;cursor:pointer;left:0;position:absolute;right:0;top:0;z-index:500\" href=\"https://www.amazon.de/dp/B00BBTIONE?ref=dacx_dp_8437761270202_7533311980202&amp;me=A3JWKAKR8XB7XF&amp;aaxitk=TtfuriPrAtCwqzGE8pS2Ag\" target=\"_top\"></a></div></div></div></div>\n<script>var arrayPrototypeIncludes=function(r){var e={};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}return t.m=r,t.c=e,t.d=function(r,e,n){t.o(r,e)||Object.defineProperty(r,e,{configurable:!1,enumerable:!0,get:n})},t.r=function(r){Object.defineProperty(r,\"__esModule\",{value:!0})},t.n=function(r){var e=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(e,\"a\",e),e},t.o=function(r,e){return Object.prototype.hasOwnProperty.call(r,e)},t.p=\"\",t(t.s=3)}([,,function(r,e,t){\"use strict\";Array.prototype.includes||(Array.prototype.includes=function(r){if(null==this)throw new TypeError(\"Array.prototype.includes called on null or undefined\");var e=Object(this),t=parseInt(e.length,10)||0;if(0===t)return!1;var n=parseInt(arguments[1],10)||0,o=void 0;n>=0?o=n:(o=t+n)<0&&(o=0);for(var u=void 0;o<t;){if(r===(u=e[o])||r!=r&&u!=u)return!0;o++}return!1})},function(r,e,t){r.exports=t(2)}]);\n\nvar objectAssign=function(n){var t={};function e(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return n[r].call(o.exports,o,o.exports,e),o.l=!0,o.exports}return e.m=n,e.c=t,e.d=function(n,t,r){e.o(n,t)||Object.defineProperty(n,t,{configurable:!1,enumerable:!0,get:r})},e.r=function(n){Object.defineProperty(n,\"__esModule\",{value:!0})},e.n=function(n){var t=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(t,\"a\",t),t},e.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},e.p=\"\",e(e.s=1)}([function(n,t,e){\"use strict\";\"function\"!=typeof Object.assign&&(Object.assign=function(n){if(void 0===n||null===n)throw new TypeError(\"Cannot convert undefined or null to object\");for(var t=Object(n),e=1;e<arguments.length;e++){var r=arguments[e];if(void 0!==r&&null!==r)for(var o in r)Object.prototype.hasOwnProperty.call(r,o)&&(t[o]=r[o])}return t})},function(n,t,e){n.exports=e(0)}]);<\/script>\n<script crossorigin=\"anonymous\" charset=\"UTF-8\" src=\"https://m.media-amazon.com/images/G/01/dacx/build/DACXDynamicTemplates/LoggingClientManager.bundle.min-5bcdec31d54c4289599a1bcac62c919018a58eca._V1_.js#DACXDynamicTemplates-DynamicEcommerceTemplate_1.0.201680.0\"><\/script>\n<script>\n var loggingManager = new LoggingClientManager.default({\"shazamId\":\"63572350\",\"templateName\":\"Dynamic eCommerce\",\"templateMajorVersion\":\"1\",\"templateMinorVersion\":\"523\",\"locale\":\"DE\",\"adServer\":\"cornerstone\",\"adId\":\"7533311980202\",\"creativeId\":\"8437761270202\",\"impressionId\":\"SoePnNKEYDqQzHNT1LYrdw\",\"isDebug\":null,\"stage\":\"prod\",\"renderId\":\"02e73b3c-d958-40d1-a73b-3cd95880d18d\",\"requiredElementsForVisualCompleteness\":[\"productImage\",\"brandLogo\",\"starRating\"],\"preDefinedUrlsForVisualCompleteness\":{\"adChoices\":\"https://images-eu.ssl-images-amazon.com/images/G/03/da/adchoices/ac-topright-sprite.png\",\"primeLogo\":\"https://images-eu.ssl-images-amazon.com/images/G/03/da/creatives/prime-2x-20170531.png\",\"starRating\":\"https://images-eu.ssl-images-amazon.com/images/G/03/da/creatives/aui-mini-sprite-2015-02.png\"},\"currentDate\":\"2020-10-19T20:38:53.582Z\"}, performanceEventManager);\n<\/script>\n\n<script src=\"https://images-na.ssl-images-amazon.com/images/G/01/dacx/js/react-bundle-16.4.0.min._V1_.js\"><\/script>\n<script crossorigin=\"anonymous\" charset=\"UTF-8\" src=\"https://m.media-amazon.com/images/G/01/dacx/build/DACXDynamicTemplates/ProductDetailsDesktop.bundle.min-0221b9d8d58052154af9d21fd42fc0844d914ecc._V1_.js#DACXDynamicTemplates-DynamicEcommerceTemplate_1.0.201680.0\"><\/script>\n<script>\n var $ad = document.getElementById(\'ad\');\n ReactDOM.hydrate(React.createElement(Library.default, {\"aaxRenderingContext\":{\"impressionToken\":\"TtfuriPrAtCwqzGE8pS2Ag\"},\"brandLogoUrl\":\"https://images-eu.ssl-images-amazon.com/images/G/01/dacx/AdForge/white-image-3-de639699-0a25-45fa-9f18-c0271a344162._CB407427098_AC_.jpg\",\"brandImageRectUrl\":\"\",\"brandImageSquareUrl\":\"\",\"clickUrls\":[\"https://aax-eu.amazon-adsystem.com/x/c/QkqHj5zShGA6kMxzU9S2K3cAAAF1QpYVdQMAAADKAUftrVA/\",\"\"],\"headline\":\"Verantwortungsvoller Genuss ab 18 Jahren\",\"height\":250,\"impressionUrls\":[\"\"],\"isBlackjack\":false,\"isR2GatewaySlot\":false,\"isCarousel\":false,\"isLargeBillboardSlot\":false,\"isMobile\":false,\"isMultiAsinCard\":false,\"isMultiAsinStack\":false,\"isOffsite\":false,\"isPreview\":false,\"isTeaseDisabled\":false,\"locale\":\"DE\",\"mediaCentralPath\":\"https://images-eu.ssl-images-amazon.com/images/G/03\",\"privacyUrl\":\"https://www.amazon.de/adprefs\",\"privacyIntent\":\"amazonmobile://intent?intent=com.amazon.mobile.shopping.web%3A%2F%2Fwww.amazon.de%2Fadprefs&intent=https%3A%2F%2Fwww.amazon.de%2Fadprefs\",\"teaseType\":\"brandLogo\",\"width\":970,\"isPDAStyle\":false,\"newStyleTurnOff\":null,\"hasPrimeDayDeal\":false,\"productImage\":{\"url\":\"https://m.media-amazon.com/images/I/71MCrfz1MiL.jpg\",\"height\":2438,\"width\":971},\"productTitle\":\"Bombay Sapphire London Dry Gin (1 x 1 l)\",\"adLink\":\"https://www.amazon.de/dp/B00BBTIONE?ref=dacx_dp_8437761270202_7533311980202&me=A3JWKAKR8XB7XF&aaxitk=TtfuriPrAtCwqzGE8pS2Ag\",\"customerReviewSummary\":{\"rating\":4.8,\"count\":2596,\"asin\":\"B00BBTIONE\"},\"price\":22.9,\"currencySymbol\":\"\u20ac\",\"formattedPrice\":\"22,90\",\"releaseDateMessage\":\"\",\"priceFormattingFlags\":{\"isSymbolSuperscript\":false,\"symbolPosition\":\"suffixed\"},\"pricePerUnitMessage\":\"\",\"taxMessage\":\"inkl. MwSt.\",\"detailsAndDeliveryMessage\":\"\",\"isDeal\":false,\"isPrime\":false,\"isSnsDiscount\":false,\"snsText\":\"Spar-Abo\",\"dealOffer\":0,\"violatesMap\":false,\"productInStock\":true,\"buttonText\":\"Jetzt kaufen\",\"cascadingIntent\":\"amazonmobile://intent?intent=com.amazon.mobile.shopping.web%3A%2F%2Fwww.amazon.de%2Fdp%2FB00BBTIONE%3Fref%3Ddacx_dp_8437761270202_7533311980202%26me%3DA3JWKAKR8XB7XF%26aaxitk%3DTtfuriPrAtCwqzGE8pS2Ag&intent=https%3A%2F%2Fwww.amazon.de%2Fdp%2FB00BBTIONE%3Fref%3Ddacx_dp_8437761270202_7533311980202%26me%3DA3JWKAKR8XB7XF%26aaxitk%3DTtfuriPrAtCwqzGE8pS2Ag\",\"buttonLink\":\"https://www.amazon.de/dp/B00BBTIONE?ref=dacx_dp_8437761270202_7533311980202&me=A3JWKAKR8XB7XF&aaxitk=TtfuriPrAtCwqzGE8pS2Ag\",\"reviewLink\":\"https://www.amazon.de/product-reviews/B00BBTIONE?aaxitk=TtfuriPrAtCwqzGE8pS2Ag\",\"buttonProps\":{\"buttonType\":\"primary\",\"size\":\"regular\"},\"format\":\"shop now\",\"slotName\":\"t\"}), $ad);\n loggingManager.addViewabilityListener($ad);\n<\/script>\n\n</body>\n</html>\n\n <div id=\"top_ad_webbug\" style=\"display:none;\">\n <img src=\"https://aax-eu.amazon-adsystem.com/e/loi/imp?b=IkqHj5zShGA6kMxzU9S2K3cAAAF1QpYVhgMAAADKAUftrVA\" border=\"0\" height=\"1\" width=\"1\" alt=\"\"/>\n </div>\n');
+ad_utils.set_aax_instrumentation_pixel_url('TOP_AD', 'https://aax-eu.amazon-adsystem.com/x/px/QkV5KILaBfQD9cpNRX1gQrUAAAF1QpYvqwMAAADKAY3NBRY/');
+ad_utils.inject_serverside_ad('top_ad', '<script>document.defaultAd = {h:250,w:970}; document.ad = document.defaultAd;<\/script> <!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"UTF-8\">\n <title></title>\n <style>@font-face{font-family:\'Amazon Ember\';src:url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_rg-cc7ebaa05a2cd3b02c0929ac0475a44ab30b7efa._V2_.woff2) format(\"woff2\"),url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_rg-8a9db402d8966ae93717c348b9ab0bd08703a7a7._V2_.woff) format(\"woff\")}@font-face{font-family:\'Amazon Ember\';font-style:italic;src:url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_rgit-9cc1bb64eb270135f1adf3a4881c2ee5e7c37be5._V2_.woff2) format(\"woff2\"),url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_rgit-a4dc98d644ff2aedd41da3da462f09ffce86eafb._V2_.woff) format(\"woff\")}@font-face{font-family:\'Amazon Ember\';font-weight:700;src:url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_bd-46b91bda68161c14e554a779643ef4957431987b._V2_.woff2) format(\"woff2\"),url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_bd-b605252f87b8b3df5ae206596dac0938fc5888bc._V2_.woff) format(\"woff\")}@font-face{font-family:\'Amazon Ember\';font-style:italic;font-weight:700;src:url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_bdit-80ff7aba37dd1ff5a6b90233a19e3a780a96dc2f._V2_.woff2) format(\"woff2\"),url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_bdit-57598ce426a612be5a1d15eee08252668fca5e7a._V2_.woff) format(\"woff\")}\n\n.fadeIn{-webkit-animation:animateIn 1s 1 forwards;animation:animateIn 1s 1 forwards}.fadeOut{-webkit-animation:animateOut 1s 1 forwards;animation:animateOut 1s 1 forwards}\n\n#ad,#div-gpt-ad,body,html{margin:0;font-family:\'Amazon Ember\',arial,sans-serif;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;font-size:13px;line-height:18px;width:100%;height:100%}\n\n.flex-container{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex}.flex-direction-row{-ms-flex-direction:row;flex-direction:row}.flex-direction-column{-ms-flex-direction:column;flex-direction:column}.flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.flex-nowrap{-ms-flex-wrap:none;-ms-flex-wrap:nowrap;flex-wrap:nowrap}.flex-align-start{-ms-flex-align:start;align-items:flex-start}.flex-align-center{-ms-flex-align:center;align-items:center}.flex-align-baseline{-ms-flex-align:baseline;align-items:baseline}.flex-align-end{-ms-flex-align:end;align-items:flex-end}.flex-justify-start{-ms-flex-pack:start;justify-content:flex-start}.flex-justify-center{-ms-flex-pack:center;justify-content:center}.flex-justify-space-between{-ms-flex-pack:justify;justify-content:space-between}.flex-justify-space-around{-ms-flex-pack:justify;justify-content:space-around}.flex-justify-end{-ms-flex-pack:end;justify-content:flex-end}.flex-grow-1{-webkit-flex-grow:1;flex-grow:1}.flex-grow-0-15{-webkit-flex-grow:.15;flex-grow:.15}.flex-shrink-0{-webkit-flex-shrink:0;flex-shrink:0}</style>\n \n</head>\n<body>\n\n<script>\n var PerformanceEventManager=function(e){var n={};function t(r){if(n[r])return n[r].exports;var i=n[r]={i:r,l:!1,exports:{}};return e[r].call(i.exports,i,i.exports,t),i.l=!0,i.exports}return t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.r=function(e){Object.defineProperty(e,\"__esModule\",{value:!0})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,\"a\",n),n},t.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},t.p=\"\",t(t.s=3)}([function(e,n,t){\"use strict\";Object.defineProperty(n,\"__esModule\",{value:!0});var r=function(){function e(e,n){for(var t=0;t<n.length;t++){var r=n[t];r.enumerable=r.enumerable||!1,r.configurable=!0,\"value\"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(n,t,r){return t&&e(n.prototype,t),r&&e(n,r),n}}(),i=n.UNCAUGHT_ERROR=\"uncaughtError\",o=n.CREATIVE_LOAD_LATENCY=\"creativeLoadLatency\",a=n.VISUAL_COMPLETENESS_LATENCY=\"visualCompletenessLatency\",u=function(){function e(n){if(function(n,t){if(!(n instanceof e))throw new TypeError(\"Cannot call a class as a function\")}(this),this.events=function(e,n,t){return n in e?Object.defineProperty(e,n,{value:t,enumerable:!0,configurable:!0,writable:!0}):e[n]=t,e}({},i,{}),this.timers={},this.onNewError=function(){},this.window=n&&n.window||\"undefined\"!=typeof window&&window,!this.window||!this.window.document)throw new Error(\"Window and/or document is not defined\");this.trackLoadLatency(),this.trackVisualCompletenessLatency(),this.addErrorListener()}return r(e,[{key:\"trackLoadLatency\",value:function(){this.timers[o]=new Date}},{key:\"trackVisualCompletenessLatency\",value:function(){this.timers[a]=new Date}},{key:\"addErrorListener\",value:function(){var e=this,n=this.events[i];this.addListener(this.window,\"error\",function(t){var r=t.message;if(t.error&&t.error.stack){var i=t.message+\" : \"+t.error.stack;r=i.length<500?i:i.substring(0,500)}void 0===n[r]&&(n[r]=!0,e.onNewError(r))})}},{key:\"addListener\",value:function(e,n,t){var r=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:window.event;return t(e)};if(e.addEventListener)e.addEventListener(n,r,!0);else if(n=\"on\"+n,e.attachEvent)e.attachEvent(n,r);else{var i=e[n];e[n]=function(){r.apply(this,arguments),\"function\"==typeof i&&i.apply(this,arguments)}}}}]),e}();n.default=u},,,function(e,n,t){e.exports=t(0)}]);;\n var performanceEventManager = new PerformanceEventManager.default();\n \n<\/script>\n<div id=\"ad\"><div style=\"width:100%;height:100%\"><div style=\"overflow:hidden;width:100%;height:100%\" class=\"\"><div class=\"flex-container\n flex-direction-row\n flex-justify-end\n \" style=\"position:absolute;overflow:hidden;top:0;left:0;width:100%;height:100%;background-color:#fff;border:1px solid #ccc;box-sizing:border-box;padding:15px 30px\"><div class=\"flex-container flex-direction-column flex-grow-1 \" style=\"min-width:0;max-width:58.7%\"><div class=\"flex-container flex-direction-row flex-grow-1\" style=\"min-width:0\"><div class=\"flex-container flex-direction-column flex-justify-center flex-align-center flex-grow-1\" style=\"min-width:0;padding-right:30px\"><div class=\"flex-container flex-align-center flex-justify-center\"><img alt=\"\" aria-hidden=\"true\" src=\"https://images-eu.ssl-images-amazon.com/images/G/01/dacx/AdForge/white-image-3-de639699-0a25-45fa-9f18-c0271a344162._CB407427098_AC_AC_SX200_SY100_.jpg\" style=\"max-width:200px;max-height:100px\"/></div><div class=\"flex-container flex-align-center flex-justify-center\" style=\"text-align:center;margin-top:20px;min-width:0\"><div style=\"min-width:0\"><span style=\"font-size:21px;line-height:27px;color:#333;font-style:italic;min-width:0;word-break:break-word;font-weight:normal\" color=\"base\">Verantwortungsvoller Genuss ab 18 Jahren</span></div></div></div><div class=\"flex-container flex-align-center flex-justify-center\" style=\"width:auto;height:auto;padding-left:30px;border-left:1px solid #ccc\"><img alt=\"\" aria-hidden=\"true\" src=\"https://m.media-amazon.com/images/I/71MCrfz1MiL._AC_SX220_SY220_.jpg\" style=\"max-width:220px;max-height:220px\"/></div></div></div><div style=\"max-height:100%;flex-direction:column;padding:0 0 0 30px;width:41.2%;height:100%;right:0;box-sizing:border-box\" class=\"flex-container flex-justify-center\"><div class=\"flex-container flex-direction-column flex-shrink-0 \"><div><div style=\"color:#111111;font-size:17px;font-weight:400;flex-shrink:0;height:auto;line-height:19px;max-height:60px;margin-bottom:0;overflow:hidden;word-wrap:break-word\"><span>Bombay Sapphire London Dry Gin (1 x 1 l)</span></div></div><div class=\"flex-container flex-direction-row flex-nowrap flex-align-end flex-justify-space-between flex-shrink-0\"><div style=\"-ms-flex:0 1 100%;flex-grow:0;flex-shrink:1;display:inline-block\" class=\"\"><a class=\"flex-container\" style=\"background:transparent url(&quot;https://m.media-amazon.com/images/G/01/d16g/kpw/transparent-1x1.png&quot;) repeat 0 0;bottom:0;cursor:pointer;left:0;position:relative;right:0;top:0;z-index:1000;text-decoration:none\" href=\"https://www.amazon.de/dp/B00BBTIONE?ref=dacx_dp_8437761270202_7533311980202&amp;me=A3JWKAKR8XB7XF&amp;aaxitk=CVKJLu8395CuOosI96XfPw\" target=\"_top\"><div class=\"starRatingWrapper\" style=\"font-size:unset;line-height:1;padding-bottom:4px;padding-top:4px\"><div><div style=\"background-repeat:no-repeat;background-size:344px 15px;display:inline-block;vertical-align:middle;height:16px;width:80px;background-image:url(&quot;https://images-eu.ssl-images-amazon.com/images/G/03/da/creatives/aui-mini-sprite-2015-02.png&quot;);background-position:0px 0px\"></div><span style=\"display:inline-block;width:0.385em\"></span><span color=\"tertiary\" style=\"font-size:14px;line-height:1;color:#555;display:inline;vertical-align:middle\">2.596</span></div><div></div></div></a><div style=\"align-content:flex-start;flex-wrap:wrap;line-height:normal;width:100%;margin-bottom:0\" class=\"\"><div class=\"flex-container flex-direction-row flex-align-baseline flex-justify-start flex-wrap\"><span style=\"display:inline-block;margin-right:4px;margin-bottom:-2px\"><span class=\"\" style=\"font-size:14px;color:#555;line-height:1\">22,90</span><span class=\"\" style=\"color:#555;line-height:normal;font-size:14px;margin-left:3px\">\u20ac</span></span><span color=\"secondary\" style=\"font-size:11px;line-height:1.465;color:#767676;display:inline-block;margin-bottom:-2px;margin-right:5px\">inkl. MwSt.</span></div></div></div></div></div></div><a style=\"background:transparent url(&quot;https://m.media-amazon.com/images/G/01/d16g/kpw/transparent-1x1.png&quot;) repeat 0 0;bottom:0;cursor:pointer;left:0;position:absolute;right:0;top:0;z-index:500\" href=\"https://www.amazon.de/dp/B00BBTIONE?ref=dacx_dp_8437761270202_7533311980202&amp;me=A3JWKAKR8XB7XF&amp;aaxitk=CVKJLu8395CuOosI96XfPw\" target=\"_top\"></a></div></div></div></div>\n<script>var arrayPrototypeIncludes=function(r){var e={};function t(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return r[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}return t.m=r,t.c=e,t.d=function(r,e,n){t.o(r,e)||Object.defineProperty(r,e,{configurable:!1,enumerable:!0,get:n})},t.r=function(r){Object.defineProperty(r,\"__esModule\",{value:!0})},t.n=function(r){var e=r&&r.__esModule?function(){return r.default}:function(){return r};return t.d(e,\"a\",e),e},t.o=function(r,e){return Object.prototype.hasOwnProperty.call(r,e)},t.p=\"\",t(t.s=3)}([,,function(r,e,t){\"use strict\";Array.prototype.includes||(Array.prototype.includes=function(r){if(null==this)throw new TypeError(\"Array.prototype.includes called on null or undefined\");var e=Object(this),t=parseInt(e.length,10)||0;if(0===t)return!1;var n=parseInt(arguments[1],10)||0,o=void 0;n>=0?o=n:(o=t+n)<0&&(o=0);for(var u=void 0;o<t;){if(r===(u=e[o])||r!=r&&u!=u)return!0;o++}return!1})},function(r,e,t){r.exports=t(2)}]);\n\nvar objectAssign=function(n){var t={};function e(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return n[r].call(o.exports,o,o.exports,e),o.l=!0,o.exports}return e.m=n,e.c=t,e.d=function(n,t,r){e.o(n,t)||Object.defineProperty(n,t,{configurable:!1,enumerable:!0,get:r})},e.r=function(n){Object.defineProperty(n,\"__esModule\",{value:!0})},e.n=function(n){var t=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(t,\"a\",t),t},e.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},e.p=\"\",e(e.s=1)}([function(n,t,e){\"use strict\";\"function\"!=typeof Object.assign&&(Object.assign=function(n){if(void 0===n||null===n)throw new TypeError(\"Cannot convert undefined or null to object\");for(var t=Object(n),e=1;e<arguments.length;e++){var r=arguments[e];if(void 0!==r&&null!==r)for(var o in r)Object.prototype.hasOwnProperty.call(r,o)&&(t[o]=r[o])}return t})},function(n,t,e){n.exports=e(0)}]);<\/script>\n<script crossorigin=\"anonymous\" charset=\"UTF-8\" src=\"https://m.media-amazon.com/images/G/01/dacx/build/DACXDynamicTemplates/LoggingClientManager.bundle.min-5bcdec31d54c4289599a1bcac62c919018a58eca._V1_.js#DACXDynamicTemplates-DynamicEcommerceTemplate_1.0.201680.0\"><\/script>\n<script>\n var loggingManager = new LoggingClientManager.default({\"shazamId\":\"63572350\",\"templateName\":\"Dynamic eCommerce\",\"templateMajorVersion\":\"1\",\"templateMinorVersion\":\"523\",\"locale\":\"DE\",\"adServer\":\"cornerstone\",\"adId\":\"7533311980202\",\"creativeId\":\"8437761270202\",\"impressionId\":\"RXkogtoF9AP1yk1FfWBCtQ\",\"isDebug\":null,\"stage\":\"prod\",\"renderId\":\"a2ca4d4d-2141-4115-8a4d-4d2141e11504\",\"requiredElementsForVisualCompleteness\":[\"productImage\",\"brandLogo\",\"starRating\"],\"preDefinedUrlsForVisualCompleteness\":{\"adChoices\":\"https://images-eu.ssl-images-amazon.com/images/G/03/da/adchoices/ac-topright-sprite.png\",\"primeLogo\":\"https://images-eu.ssl-images-amazon.com/images/G/03/da/creatives/prime-2x-20170531.png\",\"starRating\":\"https://images-eu.ssl-images-amazon.com/images/G/03/da/creatives/aui-mini-sprite-2015-02.png\"},\"currentDate\":\"2020-10-19T20:39:00.292Z\"}, performanceEventManager);\n<\/script>\n\n<script src=\"https://images-na.ssl-images-amazon.com/images/G/01/dacx/js/react-bundle-16.4.0.min._V1_.js\"><\/script>\n<script crossorigin=\"anonymous\" charset=\"UTF-8\" src=\"https://m.media-amazon.com/images/G/01/dacx/build/DACXDynamicTemplates/ProductDetailsDesktop.bundle.min-0221b9d8d58052154af9d21fd42fc0844d914ecc._V1_.js#DACXDynamicTemplates-DynamicEcommerceTemplate_1.0.201680.0\"><\/script>\n<script>\n var $ad = document.getElementById(\'ad\');\n ReactDOM.hydrate(React.createElement(Library.default, {\"aaxRenderingContext\":{\"impressionToken\":\"CVKJLu8395CuOosI96XfPw\"},\"brandLogoUrl\":\"https://images-eu.ssl-images-amazon.com/images/G/01/dacx/AdForge/white-image-3-de639699-0a25-45fa-9f18-c0271a344162._CB407427098_AC_.jpg\",\"brandImageRectUrl\":\"\",\"brandImageSquareUrl\":\"\",\"clickUrls\":[\"https://aax-eu.amazon-adsystem.com/x/c/QkV5KILaBfQD9cpNRX1gQrUAAAF1QpYvqwMAAADKAY3NBRY/\",\"\"],\"headline\":\"Verantwortungsvoller Genuss ab 18 Jahren\",\"height\":250,\"impressionUrls\":[\"\"],\"isBlackjack\":false,\"isR2GatewaySlot\":false,\"isCarousel\":false,\"isLargeBillboardSlot\":false,\"isMobile\":false,\"isMultiAsinCard\":false,\"isMultiAsinStack\":false,\"isOffsite\":false,\"isPreview\":false,\"isTeaseDisabled\":false,\"locale\":\"DE\",\"mediaCentralPath\":\"https://images-eu.ssl-images-amazon.com/images/G/03\",\"privacyUrl\":\"https://www.amazon.de/adprefs\",\"privacyIntent\":\"amazonmobile://intent?intent=com.amazon.mobile.shopping.web%3A%2F%2Fwww.amazon.de%2Fadprefs&intent=https%3A%2F%2Fwww.amazon.de%2Fadprefs\",\"teaseType\":\"brandLogo\",\"width\":970,\"isPDAStyle\":false,\"newStyleTurnOff\":null,\"hasPrimeDayDeal\":false,\"productImage\":{\"url\":\"https://m.media-amazon.com/images/I/71MCrfz1MiL.jpg\",\"height\":2438,\"width\":971},\"productTitle\":\"Bombay Sapphire London Dry Gin (1 x 1 l)\",\"adLink\":\"https://www.amazon.de/dp/B00BBTIONE?ref=dacx_dp_8437761270202_7533311980202&me=A3JWKAKR8XB7XF&aaxitk=CVKJLu8395CuOosI96XfPw\",\"customerReviewSummary\":{\"rating\":4.8,\"count\":2596,\"asin\":\"B00BBTIONE\"},\"price\":22.9,\"currencySymbol\":\"\u20ac\",\"formattedPrice\":\"22,90\",\"releaseDateMessage\":\"\",\"priceFormattingFlags\":{\"isSymbolSuperscript\":false,\"symbolPosition\":\"suffixed\"},\"pricePerUnitMessage\":\"\",\"taxMessage\":\"inkl. MwSt.\",\"detailsAndDeliveryMessage\":\"\",\"isDeal\":false,\"isPrime\":false,\"isSnsDiscount\":false,\"snsText\":\"Spar-Abo\",\"dealOffer\":0,\"violatesMap\":false,\"productInStock\":true,\"buttonText\":\"Jetzt kaufen\",\"cascadingIntent\":\"amazonmobile://intent?intent=com.amazon.mobile.shopping.web%3A%2F%2Fwww.amazon.de%2Fdp%2FB00BBTIONE%3Fref%3Ddacx_dp_8437761270202_7533311980202%26me%3DA3JWKAKR8XB7XF%26aaxitk%3DCVKJLu8395CuOosI96XfPw&intent=https%3A%2F%2Fwww.amazon.de%2Fdp%2FB00BBTIONE%3Fref%3Ddacx_dp_8437761270202_7533311980202%26me%3DA3JWKAKR8XB7XF%26aaxitk%3DCVKJLu8395CuOosI96XfPw\",\"buttonLink\":\"https://www.amazon.de/dp/B00BBTIONE?ref=dacx_dp_8437761270202_7533311980202&me=A3JWKAKR8XB7XF&aaxitk=CVKJLu8395CuOosI96XfPw\",\"reviewLink\":\"https://www.amazon.de/product-reviews/B00BBTIONE?aaxitk=CVKJLu8395CuOosI96XfPw\",\"buttonProps\":{\"buttonType\":\"primary\",\"size\":\"regular\"},\"format\":\"shop now\",\"slotName\":\"t\"}), $ad);\n loggingManager.addViewabilityListener($ad);\n<\/script>\n\n</body>\n</html>\n\n <div id=\"top_ad_webbug\" style=\"display:none;\">\n <img src=\"https://aax-eu.amazon-adsystem.com/e/loi/imp?b=IkV5KILaBfQD9cpNRX1gQrUAAAF1QpYvuwMAAADKAY3NBRY\" border=\"0\" height=\"1\" width=\"1\" alt=\"\"/>\n </div>\n');
 }, "ad_utils not defined, unable to inject serverside ad");
 </script>
 <!-- End TOP_AD -->
@@ -697,25 +703,30 @@ ad_utils.inject_ad.register('injected_billboard');
 
 <div id="content-2-wide" class="redesign">
 <div id="main">
-  <div class="article listo">
+
+<div class="article listo">
     <span class=rightcornerlink >
-            <a href="/register/login?why=edit&ref_=ttfc_fc_edt"
+            <a href="/register/login?why=edit&ref_=ttsnd_snd_edit"
 rel="login">Edit</a>
     </span>
 <div class="subpage_title_block">
-<a href="/title/tt0266732/?ref_=ttfc_fc_tt"
+<a href="/title/tt4338588/?ref_=ttsnd_snd_tt"
 > <img itemprop="image"
 class="poster"
 height="98"
 width="67"
-alt="Love Is the Drug (2006) Poster"
-src="https://m.media-amazon.com/images/M/MV5BOTViNmFlMTgtYWE5YS00ZmRhLTlkMTctOTE1ODFlNDdhYWNkXkEyXkFqcGdeQXVyMTk5MjAyMjM@._V1_UY98_CR3,0,67,98_AL_.jpg" />
+alt="&quot;Roots&quot; Part 1 (TV Episode 2016) Poster"
+src="https://m.media-amazon.com/images/M/MV5BMTc4MzcwNjMzMF5BMl5BanBnXkFtZTgwNDAyODYxOTE@._V1_UY98_CR40,0,67,98_AL_.jpg" />
 </a>  <div class="subpage_title_block__right-column">
       <div class="parent">   
+               <h4 itemprop="name">
+<a href="/title/tt3315386/?ref_=ttsnd_snd_tt"
+itemprop='url'>Roots</a>               <span class="nobr">(TV Mini-Series)</span>
+               </h4>
         <h3 itemprop="name">
-<a href="/title/tt0266732/?ref_=ttfc_fc_tt"
-itemprop='url'>Love Is the Drug</a>             <span class="nobr">
-                 (2006)
+<a href="/title/tt4338588/?ref_=ttsnd_snd_tt"
+itemprop='url'>Part 1</a>             <span class="nobr">
+                 (2016)
              </span>
         </h3>
       </div>
@@ -724,1858 +735,57 @@ itemprop='url'>Love Is the Drug</a>             <span class="nobr">
       csm.measure('csm_body_delivery_started');
     }
   </script>
-      <h1 class="header">Full Cast & Crew</h1>
-    <div id=full_cast_title_pro_link class=pro_title_link_with_border>
-<a href="https://pro.imdb.com/title/tt0266732?rf=cons_tt_sp_cc&ref_=cons_tt_sp_cc"
-class="pro_title_href" > <img src="https://m.media-amazon.com/images/G/01/imdb/IMDbConsumerSiteProTitleViews/images/logo/pro_logo_2x-2338481027._CB439959541_.png" class="pro_logo" />
-<span class="pro_title_link_text">
-See agents for this cast & crew on IMDbPro
-</span>
-<img src="https://m.media-amazon.com/images/G/01/imdb/IMDbConsumerSiteProTitleViews/images/icons/link_2x-1783866327._CB468224098_.png"
-class="pro_link_icon">
-</a>    </div>
+      <h1 class="header">Soundtracks</h1>
   </div>
 </div>
-    <div id="fullcredits_content" class="header">
 
-    <h4
-      name="director" id="director"
-      class="dataHeaderWithBorder">Directed by&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm1714255/?ref_=ttfc_fc_dr1"
-> Elliott Lester
-</a>        </td>
-          <td colspan="2"></td>
-        </tr>
-    </tbody>
-    </table>
-    <h4 name="writer" id="writer" class="dataHeaderWithBorder">Writing Credits
-    &nbsp;
-    </h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-      <tr>
-        <td class="name">
-<a href="/name/nm0834338/?ref_=ttfc_fc_wr1"
-> Wesley Strick
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            (screenplay) &
-          </td>
-      </tr>
-      <tr>
-        <td class="name">
-<a href="/name/nm1889786/?ref_=ttfc_fc_wr2"
-> Steve Allison
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            (screenplay)
-          </td>
-      </tr>
-        <tr><td colspan="3">&nbsp;</td></tr>
-      <tr>
-        <td class="name">
-<a href="/name/nm0834338/?ref_=ttfc_fc_wr3"
-> Wesley Strick
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            (story)
-          </td>
-      </tr>
-    </tbody>
-    </table>
-    <h4 name="cast" id="cast" class="dataHeaderWithBorder">
-      
-      Cast
-          <span>(in credits order)</span>
-    &nbsp;
-    </h4>
-    <table class="cast_list">
-  <tr><td colspan="4" class="castlist_label"></td></tr>
-      <tr class="odd">
-          <td class="primary_photo">
-<a href="/name/nm0024511/?ref_=ttfc_fc_cl_i1"
-><img height="44" width="32" alt="John Patrick Amedori" title="John Patrick Amedori" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BZTZiMTYwNTYtZDAyYi00YmU1LWE2MTAtNWE4MzBiNDM1YTIwXkEyXkFqcGdeQXVyMjgyNzkzMQ@@._V1_UY44_CR12,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm0024511/?ref_=ttfc_fc_cl_t1"
-> John Patrick Amedori
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            <a href="/title/tt0266732/characters/nm0024511?ref_=ttfc_fc_cl_t1" >Jonah Brand</a> 
-                  
-          </td>
-      </tr>
-      <tr class="even">
-          <td class="primary_photo">
-<a href="/name/nm0135221/?ref_=ttfc_fc_cl_i2"
-><img height="44" width="32" alt="Lizzy Caplan" title="Lizzy Caplan" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMjA1MDgxNDU0Nl5BMl5BanBnXkFtZTgwNjk4NTgwMTE@._V1_UY44_CR1,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm0135221/?ref_=ttfc_fc_cl_t2"
-> Lizzy Caplan
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            <a href="/title/tt0266732/characters/nm0135221?ref_=ttfc_fc_cl_t2" >Sara Weller</a> 
-                  
-          </td>
-      </tr>
-      <tr class="odd">
-          <td class="primary_photo">
-<a href="/name/nm1366616/?ref_=ttfc_fc_cl_i3"
-><img height="44" width="32" alt="D.J. Cotrona" title="D.J. Cotrona" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMjI0NjM0NjgyM15BMl5BanBnXkFtZTgwNzE1NzcwMjE@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm1366616/?ref_=ttfc_fc_cl_t3"
-> D.J. Cotrona
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            <a href="/title/tt0266732/characters/nm1366616?ref_=ttfc_fc_cl_t3" >Lucas Mitchell</a> 
-                  
-          </td>
-      </tr>
-      <tr class="even">
-          <td class="primary_photo">
-<a href="/name/nm1023127/?ref_=ttfc_fc_cl_i4"
-><img height="44" width="32" alt="Jenny Wade" title="Jenny Wade" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BZWFlNzhhN2UtNWNkOS00MDI4LWE3NDMtMWI3N2Q4YmFmYmMzXkEyXkFqcGdeQXVyNzQ0MzU0Nw@@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm1023127/?ref_=ttfc_fc_cl_t4"
-> Jenny Wade
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Erin Sutherland 
-                  
-          </td>
-      </tr>
-      <tr class="odd">
-          <td class="primary_photo">
-<a href="/name/nm1555200/?ref_=ttfc_fc_cl_i5"
-><img height="44" width="32" alt="Jonathon Trent" title="Jonathon Trent" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMTc4NTIwNDgzOV5BMl5BanBnXkFtZTYwODI5OTAz._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm1555200/?ref_=ttfc_fc_cl_t5"
-> Jonathon Trent
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Troy Daniels 
-                  
-          </td>
-      </tr>
-      <tr class="even">
-          <td class="primary_photo">
-<a href="/name/nm0949340/?ref_=ttfc_fc_cl_i6"
-><img height="44" width="32" alt="Bruce A. Young" title="Bruce A. Young" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMTU3NTYwNDI4N15BMl5BanBnXkFtZTcwNDY5NjAyOA@@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm0949340/?ref_=ttfc_fc_cl_t6"
-> Bruce A. Young
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Phill Hackwith 
-                  
-          </td>
-      </tr>
-      <tr class="odd">
-          <td class="primary_photo">
-<a href="/name/nm0000435/?ref_=ttfc_fc_cl_i7"
-><img height="44" width="32" alt="Daryl Hannah" title="Daryl Hannah" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMjE0MjUyMzMxOF5BMl5BanBnXkFtZTcwNjEzNjI5Ng@@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm0000435/?ref_=ttfc_fc_cl_t7"
-> Daryl Hannah
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Sandra Brand 
-                  
-          </td>
-      </tr>
-      <tr class="even">
-          <td class="primary_photo">
-<a href="/name/nm0470462/?ref_=ttfc_fc_cl_i8"
-><img height="44" width="32" alt="Michael Krawic" title="Michael Krawic" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMTQ1ODkxMzY3Ml5BMl5BanBnXkFtZTcwNjAyMDgyMQ@@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm0470462/?ref_=ttfc_fc_cl_t8"
-> Michael Krawic
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Mr. Miller 
-                  
-          </td>
-      </tr>
-      <tr class="odd">
-          <td class="primary_photo">
-<a href="/name/nm0235011/?ref_=ttfc_fc_cl_i9"
-><img height="44" width="32" alt="David Douglas" title="David Douglas" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMTQ0ODU1MDQ1MV5BMl5BanBnXkFtZTgwODU4Mzg3MzE@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm0235011/?ref_=ttfc_fc_cl_t9"
-> David Douglas
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Danny 
-                  
-          </td>
-      </tr>
-      <tr class="even">
-          <td class="primary_photo">
-<a href="/name/nm0745194/?ref_=ttfc_fc_cl_i10"
-><img height="44" width="32" alt="Will Rothhaar" title="Will Rothhaar" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BZGZlZmRlNDktNGFkNS00MmQ0LTg2ODItMzNlOWNiNzhlY2IzXkEyXkFqcGdeQXVyMjU0OTUyMzc@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm0745194/?ref_=ttfc_fc_cl_t10"
-> Will Rothhaar
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Trevor 
-                  
-          </td>
-      </tr>
-      <tr class="odd">
-          <td class="primary_photo">
-<a href="/name/nm1913153/?ref_=ttfc_fc_cl_i11"
-><img height="44" width="32" alt="Darren Mercer" title="Darren Mercer" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="" /></a>          </td>
-          <td>
-<a href="/name/nm1913153/?ref_=ttfc_fc_cl_t11"
-> Darren Mercer
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Drunk Guy 
-                  
-          </td>
-      </tr>
-      <tr class="even">
-          <td class="primary_photo">
-<a href="/name/nm1556692/?ref_=ttfc_fc_cl_i12"
-><img height="44" width="32" alt="Saige Thompson" title="Saige Thompson" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BZWJmZTNjYmEtNzY5MC00YzQ0LTljOTgtMzIzMGI4OGE2ZTM0XkEyXkFqcGdeQXVyODE4NTQxNDM@._V1_UY44_CR17,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm1556692/?ref_=ttfc_fc_cl_t12"
-> Saige Thompson
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Clare 
-                  
-          </td>
-      </tr>
-      <tr class="odd">
-          <td class="primary_photo">
-<a href="/name/nm1422236/?ref_=ttfc_fc_cl_i13"
-><img height="44" width="32" alt="Leonard Wu" title="Leonard Wu" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMjU3ZGZhNWQtYTBlMy00YTBhLTkwZDEtODE4YmY0NTQ5MzBhXkEyXkFqcGdeQXVyNjQ3NDE4NA@@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm1422236/?ref_=ttfc_fc_cl_t13"
-> Leonard Wu
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Karaoke D.J. 
-                  
-          </td>
-      </tr>
-      <tr class="even">
-          <td class="primary_photo">
-<a href="/name/nm0083948/?ref_=ttfc_fc_cl_i14"
-><img height="44" width="32" alt="Linda Bisesti" title="Linda Bisesti" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BODc2MDViZWEtNTQxZi00Zjg4LTkxZTYtOTllOWJiOGE2ODVlXkEyXkFqcGdeQXVyNDYzNTM3MTM@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm0083948/?ref_=ttfc_fc_cl_t14"
-> Linda Bisesti
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Troy's Mother 
-                  
-          </td>
-      </tr>
-      <tr class="odd">
-          <td class="primary_photo">
-<a href="/name/nm2013781/?ref_=ttfc_fc_cl_i15"
-><img height="44" width="32" alt="Carlos A. Rogers" title="Carlos A. Rogers" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMTk0MzM5NjI1N15BMl5BanBnXkFtZTcwODk5MDUzMQ@@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm2013781/?ref_=ttfc_fc_cl_t15"
-> Carlos A. Rogers
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Teenage Boy 
-                  
-          </td>
-      </tr>
-      <tr class="even">
-          <td class="primary_photo">
-<a href="/name/nm1083380/?ref_=ttfc_fc_cl_i16"
-><img height="44" width="32" alt="Deborah Puette" title="Deborah Puette" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BOTYyMjYzNDg3NF5BMl5BanBnXkFtZTgwMjEwMjAyMDI@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm1083380/?ref_=ttfc_fc_cl_t16"
-> Deborah Puette
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Teacher 
-                  
-          </td>
-      </tr>
-      <tr class="odd">
-          <td class="primary_photo">
-<a href="/name/nm1344057/?ref_=ttfc_fc_cl_i17"
-><img height="44" width="32" alt="Jeff Lam" title="Jeff Lam" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMTMyNzExMTQwMV5BMl5BanBnXkFtZTcwMTM1MDU1MQ@@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm1344057/?ref_=ttfc_fc_cl_t17"
-> Jeff Lam
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Korean Man 
-                  
-          </td>
-      </tr>
-      <tr class="even">
-          <td class="primary_photo">
-<a href="/name/nm1631397/?ref_=ttfc_fc_cl_i18"
-><img height="44" width="32" alt="Cathy Shim" title="Cathy Shim" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BN2I0ODI4ODQtYjc2MS00NzIyLTkwYzMtZjY5ZjgwNjczNjlkXkEyXkFqcGdeQXVyNTM0NzQ1Mg@@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm1631397/?ref_=ttfc_fc_cl_t18"
-> Cathy Shim
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Korean Woman 
-                  
-          </td>
-      </tr>
-  <tr><td colspan="4" class="castlist_label">Rest of cast listed alphabetically:</td></tr>
-      <tr class="odd">
-          <td class="primary_photo">
-<a href="/name/nm3383437/?ref_=ttfc_fc_cl_i19"
-><img height="44" width="32" alt="Luka Apt" title="Luka Apt" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="" /></a>          </td>
-          <td>
-<a href="/name/nm3383437/?ref_=ttfc_fc_cl_t19"
-> Luka Apt
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Party Boy Matt 
-  
-  
-  (uncredited)
-  
-                  
-          </td>
-      </tr>
-      <tr class="even">
-          <td class="primary_photo">
-<a href="/name/nm1492452/?ref_=ttfc_fc_cl_i20"
-><img height="44" width="32" alt="Yvonne Maverick" title="Yvonne Maverick" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="" /></a>          </td>
-          <td>
-<a href="/name/nm1492452/?ref_=ttfc_fc_cl_t20"
-> Yvonne Maverick
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Party Goer 
-  
-  
-  (uncredited)
-  
-                  
-          </td>
-      </tr>
-      <tr class="odd">
-          <td class="primary_photo">
-<a href="/name/nm1987424/?ref_=ttfc_fc_cl_i21"
-><img height="44" width="32" alt="Shaun Montes" title="Shaun Montes" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="" /></a>          </td>
-          <td>
-<a href="/name/nm1987424/?ref_=ttfc_fc_cl_t21"
-> Shaun Montes
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Party Guy 
-  
-  
-  (uncredited)
-  
-                  
-          </td>
-      </tr>
-      <tr class="even">
-          <td class="primary_photo">
-<a href="/name/nm1399960/?ref_=ttfc_fc_cl_i22"
-><img height="44" width="32" alt="Dat Phan" title="Dat Phan" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BODczMjYxMTgtZGRmNS00NzA4LWFlMTEtZjM4ZTFjMTc5M2E4XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_UX32_CR0,0,32,44_AL_.jpg" /></a>          </td>
-          <td>
-<a href="/name/nm1399960/?ref_=ttfc_fc_cl_t22"
-> Dat Phan
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Karaoke D.J. 
-  
-  
-  (uncredited)
-  
-                  
-          </td>
-      </tr>
-      <tr class="odd">
-          <td class="primary_photo">
-<a href="/name/nm2859836/?ref_=ttfc_fc_cl_i23"
-><img height="44" width="32" alt="Christina Trevino" title="Christina Trevino" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="" /></a>          </td>
-          <td>
-<a href="/name/nm2859836/?ref_=ttfc_fc_cl_t23"
-> Christina Trevino
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Party Goer 
-  
-  
-  (uncredited)
-  
-                  
-          </td>
-      </tr>
-      <tr class="even">
-          <td class="primary_photo">
-<a href="/name/nm1985097/?ref_=ttfc_fc_cl_i24"
-><img height="44" width="32" alt="Richard Williamson" title="Richard Williamson" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB468460248_.png" class="" /></a>          </td>
-          <td>
-<a href="/name/nm1985097/?ref_=ttfc_fc_cl_t24"
-> Richard Williamson
-</a>          </td>
-          <td class="ellipsis">
-              ...
-          </td>
-          <td class="character">
-            Mean Drunk 
-  
-  
-  (uncredited)
-  
-                  
-          </td>
-      </tr>
-    </table>
-    <h4
-      name="producer" id="producer"
-      class="dataHeaderWithBorder">Produced by&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm2778653/?ref_=ttfc_fc_cr2"
-> Jason Arnold
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            associate producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1954510/?ref_=ttfc_fc_cr3"
-> Clement Brooke
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            co-executive producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1950080/?ref_=ttfc_fc_cr4"
-> Nancy Brooke
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            co-executive producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm2721150/?ref_=ttfc_fc_cr5"
-> Ryan Carroll II
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            associate producer (as Max Carroll)
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0140971/?ref_=ttfc_fc_cr6"
-> Roland Carroll
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            executive producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0140975/?ref_=ttfc_fc_cr7"
-> Ryan Carroll
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            executive producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm4921588/?ref_=ttfc_fc_cr8"
-> Amitabh Dey
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            co-associate producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1246999/?ref_=ttfc_fc_cr9"
-> Annie Hanlon
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            co-producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm2295068/?ref_=ttfc_fc_cr10"
-> Christie Hsiao
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            consulting producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0428298/?ref_=ttfc_fc_cr11"
-> James Jones
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            associate producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0442234/?ref_=ttfc_fc_cr12"
-> Neil L. Kaufman
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            executive producer (as Neil Kaufman)
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1861629/?ref_=ttfc_fc_cr13"
-> Shea Kerry
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            associate producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0520947/?ref_=ttfc_fc_cr14"
-> Pierre Lorillard
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            line producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm3422797/?ref_=ttfc_fc_cr15"
-> Tom Lutz
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            co-executive producer (as Thomas Lutz)
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0622173/?ref_=ttfc_fc_cr16"
-> Jamee Natella
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            co-producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0634284/?ref_=ttfc_fc_cr17"
-> Jed Nolan
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1723384/?ref_=ttfc_fc_cr18"
-> Lanette Phillips
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            co-producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0834338/?ref_=ttfc_fc_cr19"
-> Wesley Strick
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            executive producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0868805/?ref_=ttfc_fc_cr20"
-> Rene Torres
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            co-producer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm2750636/?ref_=ttfc_fc_cr21"
-> Jack Venturo
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            associate producer
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="cinematographer" id="cinematographer"
-      class="dataHeaderWithBorder">Cinematography by&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm1368079/?ref_=ttfc_fc_cr22"
-> Florian Stadler
-</a>        </td>
-          <td colspan="2"></td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="editor" id="editor"
-      class="dataHeaderWithBorder">Film Editing by&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm0715961/?ref_=ttfc_fc_cr23"
-> Steve Rees
-</a>        </td>
-          <td colspan="2"></td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="casting_director" id="casting_director"
-      class="dataHeaderWithBorder">Casting By&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm0565056/?ref_=ttfc_fc_cr24"
-> Anne McCarthy
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            (as Annie McCarthy)
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1179178/?ref_=ttfc_fc_cr25"
-> Jay Scully
-</a>        </td>
-          <td colspan="2"></td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="production_designer" id="production_designer"
-      class="dataHeaderWithBorder">Production Design by&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm0204368/?ref_=ttfc_fc_cr26"
-> Chris Davis
-</a>        </td>
-          <td colspan="2"></td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="set_decorator" id="set_decorator"
-      class="dataHeaderWithBorder">Set Decoration by&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm1730176/?ref_=ttfc_fc_cr27"
-> Jenna Sylvester
-</a>        </td>
-          <td colspan="2"></td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1281869/?ref_=ttfc_fc_cr28"
-> Yvonne von Wallenberg
-</a>        </td>
-          <td colspan="2"></td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="costume_designer" id="costume_designer"
-      class="dataHeaderWithBorder">Costume Design by&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm1756564/?ref_=ttfc_fc_cr29"
-> Alison Freer
-</a>        </td>
-          <td colspan="2"></td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="make_up_department" id="make_up_department"
-      class="dataHeaderWithBorder">Makeup Department&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm1914032/?ref_=ttfc_fc_cr30"
-> Kelsey Aschberger
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            makeup artist
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1060790/?ref_=ttfc_fc_cr31"
-> Thea Samuels
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            makeup department head
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1681181/?ref_=ttfc_fc_cr32"
-> Traci E. Smithe
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            key hair stylist
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1673164/?ref_=ttfc_fc_cr33"
-> Dahlia Warner
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            makeup artist
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="production_manager" id="production_manager"
-      class="dataHeaderWithBorder">Production Management&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm0186027/?ref_=ttfc_fc_cr34"
-> Tara L. Craig
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            unit production manager
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0520947/?ref_=ttfc_fc_cr35"
-> Pierre Lorillard
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            post-production supervisor
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0797884/?ref_=ttfc_fc_cr36"
-> Michael Silberman
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            unit production manager
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0868805/?ref_=ttfc_fc_cr37"
-> Rene Torres
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            production supervisor
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="assistant_director" id="assistant_director"
-      class="dataHeaderWithBorder">Second Unit Director or Assistant Director&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm1345542/?ref_=ttfc_fc_cr38"
-> Lillian Awa
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            second assistant director
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0118696/?ref_=ttfc_fc_cr39"
-> Thom Buckley
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            second assistant director
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0470488/?ref_=ttfc_fc_cr40"
-> Ryan Krayser
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            additional second assistant director
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0520947/?ref_=ttfc_fc_cr41"
-> Pierre Lorillard
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            second unit director
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1002494/?ref_=ttfc_fc_cr42"
-> Taylor Phillips
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            second second assistant director
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0002449/?ref_=ttfc_fc_cr43"
-> Martin Veselich
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            first assistant director
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="art_department" id="art_department"
-      class="dataHeaderWithBorder">Art Department&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm0969350/?ref_=ttfc_fc_cr44"
-> Carol Hummel
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            props buyer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0401841/?ref_=ttfc_fc_cr45"
-> Kevin Hummel
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            set dresser
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0401853/?ref_=ttfc_fc_cr46"
-> Robert Hummel
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            prop master
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1647237/?ref_=ttfc_fc_cr47"
-> Chris Lockett
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            lead man
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm2034815/?ref_=ttfc_fc_cr48"
-> Michael O'Luasaigh
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            swing
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="sound_department" id="sound_department"
-      class="dataHeaderWithBorder">Sound Department&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-             
-        <tr>
-        <td class="name">
-<a href="/name/nm0043164/?ref_=ttfc_fc_cr49"
-> Steven Avila
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            sound designer / sound effects editor
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0058262/?ref_=ttfc_fc_cr50"
-> Manvel Barsegyan
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            sound mixer
-          </td>
-        </tr>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm0002552/?ref_=ttfc_fc_cr51"
-> Trip Brock
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            re-recording mixer / supervising sound editor
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1236516/?ref_=ttfc_fc_cr52"
-> Derrick Cloud
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            boom operator
-          </td>
-        </tr>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm0289153/?ref_=ttfc_fc_cr53"
-> Michael J. Fox
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            adr mixer / adr supervisor
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1654184/?ref_=ttfc_fc_cr54"
-> Bill Jenkins
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            sound editor
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1185453/?ref_=ttfc_fc_cr55"
-> Peter D. Lago
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            sound effects editor
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0560813/?ref_=ttfc_fc_cr56"
-> Greg Mauer
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            foley mixer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1997315/?ref_=ttfc_fc_cr57"
-> Melissa Oivanki
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            post sound coordinator
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0788945/?ref_=ttfc_fc_cr58"
-> Robert Sharman
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            boom operator
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0873907/?ref_=ttfc_fc_cr59"
-> Robert Troy
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            dialogue editor
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1939100/?ref_=ttfc_fc_cr60"
-> Ben Whitver
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            first assistant sound editor
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="visual_effects" id="visual_effects"
-      class="dataHeaderWithBorder">Visual Effects by&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm1076458/?ref_=ttfc_fc_cr61"
-> Christopher Dusendschon
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            digital imaging supervisor: iO FILM
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="camera_department" id="camera_department"
-      class="dataHeaderWithBorder">Camera and Electrical Department&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm0157753/?ref_=ttfc_fc_cr62"
-> Jeffrey Chin
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            gaffer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0231987/?ref_=ttfc_fc_cr63"
-> Scott Donahue
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            grip
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1926649/?ref_=ttfc_fc_cr64"
-> Jacob Dovalina
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            electrician
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0257468/?ref_=ttfc_fc_cr65"
-> Suzanne England
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            set still photographer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0271131/?ref_=ttfc_fc_cr66"
-> Warren Feldman
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            first assistant camera (as F.W. Zev)
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1187560/?ref_=ttfc_fc_cr67"
-> Bryan Gilbert
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            grip
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1910135/?ref_=ttfc_fc_cr68"
-> Conan Hastrangelo
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            electrician
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1081398/?ref_=ttfc_fc_cr69"
-> Greg HecQ
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            electrician
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1162718/?ref_=ttfc_fc_cr70"
-> James Mann
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            director of photography: second unit
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1630310/?ref_=ttfc_fc_cr71"
-> Alex Markle
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            additional electrician
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1861253/?ref_=ttfc_fc_cr72"
-> Ethan McDonald
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            camera loader
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1534569/?ref_=ttfc_fc_cr73"
-> Nicholas Rini
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            grip
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1208476/?ref_=ttfc_fc_cr74"
-> Joseph Ruiz
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            key grip (as Joe Ruiz)
-          </td>
-        </tr>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm1639191/?ref_=ttfc_fc_cr75"
-> David Sheetz
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            best boy electric / electrician
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm2060770/?ref_=ttfc_fc_cr76"
-> Gene Abel Soto
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            best boy (as Abel Soto)
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="casting_department" id="casting_department"
-      class="dataHeaderWithBorder">Casting Department&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm0906566/?ref_=ttfc_fc_cr77"
-> Debe Waisman
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            extras casting
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="costume_department" id="costume_department"
-      class="dataHeaderWithBorder">Costume and Wardrobe Department&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm1199353/?ref_=ttfc_fc_cr78"
-> Sparka Lee Hall
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            costume supervisor
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1776019/?ref_=ttfc_fc_cr79"
-> Asia Muka
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            costumer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1270640/?ref_=ttfc_fc_cr80"
-> Karen Yan
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            set costumer
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="editorial_department" id="editorial_department"
-      class="dataHeaderWithBorder">Editorial Department&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm2468624/?ref_=ttfc_fc_cr81"
-> Michael Kingsbury
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            negative conformist
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1452837/?ref_=ttfc_fc_cr82"
-> Steve Lemley
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            color timer
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="music_department" id="music_department"
-      class="dataHeaderWithBorder">Music Department&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm1430267/?ref_=ttfc_fc_cr83"
-> Matt Aberle
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            music supervisor
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0352582/?ref_=ttfc_fc_cr84"
-> Scott Hackwith
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            composer: additional music
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1654184/?ref_=ttfc_fc_cr85"
-> Bill Jenkins
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            music editor
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1980163/?ref_=ttfc_fc_cr86"
-> Alison Litton
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            music clearance
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="script_department" id="script_department"
-      class="dataHeaderWithBorder">Script and Continuity Department&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm1535821/?ref_=ttfc_fc_cr87"
-> Carol A. Compton
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            script clearance
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0612513/?ref_=ttfc_fc_cr88"
-> Beth Multer
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            script supervisor
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="transportation_department" id="transportation_department"
-      class="dataHeaderWithBorder">Transportation Department&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm0270045/?ref_=ttfc_fc_cr89"
-> Paul Feddersen
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            transportation coordinator
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0643614/?ref_=ttfc_fc_cr90"
-> Hugo R. Ocana
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            driver (as Hugo Ocana)
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0835013/?ref_=ttfc_fc_cr91"
-> Lew Strong
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            driver
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm6046589/?ref_=ttfc_fc_cr92"
-> Jimmy West
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            driver
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="miscellaneous" id="miscellaneous"
-      class="dataHeaderWithBorder">Additional Crew&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm2388071/?ref_=ttfc_fc_cr93"
-> Luis Bonachea
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            production assistant
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm2719368/?ref_=ttfc_fc_cr94"
-> Kurt Esposito
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            production assistant
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1933323/?ref_=ttfc_fc_cr95"
-> Fran Freedman
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            production counsel
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm0327629/?ref_=ttfc_fc_cr96"
-> Tony Gonzalez
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            choreographer
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm3422797/?ref_=ttfc_fc_cr97"
-> Tom Lutz
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            co-production executive
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1872837/?ref_=ttfc_fc_cr98"
-> Shannyn K. Marlen
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            production office coordinator
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1199775/?ref_=ttfc_fc_cr99"
-> Bernard Natalino
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            production associate
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1457420/?ref_=ttfc_fc_cr100"
-> Lee Ramirez
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            craft service
-          </td>
-        </tr>
- 
-        <tr>
-        <td class="name">
-<a href="/name/nm1545915/?ref_=ttfc_fc_cr101"
-> Josh Weise
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            production associate
-          </td>
-        </tr>
-    </tbody>
-    </table>
-    <h4
-      name="thanks" id="thanks"
-      class="dataHeaderWithBorder">Thanks&nbsp;</h4>
-    <table class="simpleTable simpleCreditsTable">
-    <colgroup>
-      <col class="column1">
-      <col class="column2">
-      <col class="column3">
-    </colgroup>
-    <tbody>
-       
-        <tr>
-        <td class="name">
-<a href="/name/nm1988355/?ref_=ttfc_fc_cr102"
-> Derek Powell
-</a>        </td>
-          <td>...</td>
-          <td class="credit">
-            special thanks
-          </td>
-        </tr>
-    </tbody>
-    </table>
 
-    </div>
-  </div> 
+    
+    
+        <a name="slot_center-1"></a>
+        
+        
+    
+        
+                                
+
+    
+            <script type="text/javascript">if(typeof uet === 'function'){uet('bb','MusicPlayerWidget',{wb:1});}</script>
+                                
+
+                    
+    
+        <span class="ab_widget">
+             <div class="ab_musicplayer">
+<div class="widget_content no_inline_blurb"> <div class="widget_nested"> <div id="center-1-react" class="ab_react"></div> <script type="text/javascript"> IMDbReactWidgets=window.IMDbReactWidgets||{}; IMDbReactWidgets.MusicPlayerWidget=IMDbReactWidgets.MusicPlayerWidget||[]; IMDbReactWidgets.MusicPlayerWidget.push(['center-1-react',{"albumOpenStatus":"lastOpen","isMobile":false,"albumData":{"albumIds":[],"albums":{},"tracks":{}},"widgetTitle":"Soundtrack Samples"}]); IMDbReactInitialState=window.IMDbReactInitialState||[]; IMDbReactInitialState.push({"user":null,"sortOption":null,"viewMode":null,"starbars":{},"ribbons":{},"list":null,"titles":{}}); </script> </div> </div>     </div>
+
+                        
+        </span>
+
+
+
+            <script type="text/javascript">
+                if(typeof uex === 'function'){uex('ld','MusicPlayerWidget',{wb:1});}
+            </script>
+        
+
+
+
+
+        
+    
+
+  <div id="soundtracks_content" class="header">
+
+    <div id="no_content" class="list"><div class="soda even">
+        It looks like we don't have any Soundtracks for this title yet.
+<p>Be the first to contribute!                 Just click the "Edit page" button at the bottom of the page or learn more in the
+<a href="/updates/guide/soundtracks?ref_=ttsnd_emt"
+> Soundtracks submission guide.
+</a>        </p>
+    </div></div>
+  </div>
+</div> 
 
 
 
@@ -2583,20 +793,23 @@ class="pro_link_icon">
         <h2>See also</h2>
         <p>
                         <span class="nobr">
-<a href="/title/tt0266732/releaseinfo?ref_=ttfc_sa_1"
-class="link" >Release Dates</a>
+<a href="/title/tt4338588/trivia?ref_=ttsnd_sa_1"
+class="link" >Trivia</a>
     <span class="ghost">|</span></span>                        <span class="nobr">
-<a href="/title/tt0266732/officialsites?ref_=ttfc_sa_2"
-class="link" >Official Sites</a>
+<a href="/title/tt4338588/goofs?ref_=ttsnd_sa_2"
+class="link" >Goofs</a>
     <span class="ghost">|</span></span>                        <span class="nobr">
-<a href="/title/tt0266732/companycredits?ref_=ttfc_sa_3"
-class="link" >Company Credits</a>
+<a href="/title/tt4338588/crazycredits?ref_=ttsnd_sa_3"
+class="link ghost" >Crazy Credits</a>
     <span class="ghost">|</span></span>                        <span class="nobr">
-<a href="/title/tt0266732/locations?ref_=ttfc_sa_4"
-class="link" >Filming & Production</a>
+<a href="/title/tt4338588/quotes?ref_=ttsnd_sa_4"
+class="link ghost" >Quotes</a>
     <span class="ghost">|</span></span>                        <span class="nobr">
-<a href="/title/tt0266732/technical?ref_=ttfc_sa_5"
-class="link" >Technical Specs</a>
+<a href="/title/tt4338588/alternateversions?ref_=ttsnd_sa_5"
+class="link ghost" >Alternate Versions</a>
+    <span class="ghost">|</span></span>                        <span class="nobr">
+<a href="/title/tt4338588/movieconnections?ref_=ttsnd_sa_6"
+class="link ghost" >Connections</a>
 </span>        </p>
     </div>
 
@@ -2607,17 +820,17 @@ class="link" >Technical Specs</a>
   </script>
     <div class="article contribute">
         <div class="rightcornerlink">
-<a href="https://help.imdb.com/article/contribution/contribution-information/adding-data/G6BXD2JFDCCETUF4?ref_=cons_tt_fc_cn_gs_hlp"
+<a href="https://help.imdb.com/article/contribution/contribution-information/adding-data/G6BXD2JFDCCETUF4?ref_=cons_tt_snd_cn_gs_hlp"
 >Getting Started</a>
             <span>|</span>
-<a href="/czone/?ref_=ttfc_cn_cz"
+<a href="/czone/?ref_=ttsnd_cn_cz"
 >Contributor Zone</a>&nbsp;&raquo;</div>
         <h2>Contribute to This Page</h2>
 
                 <div class="button-box">
                     <form method="get" action="https://contribute.imdb.com/updates">
-                        <input type="hidden" name="ref_" value="ttfc_cn_edt" />
-                        <input type="hidden" name="edit" value="legacy/title/tt0266732/" />
+                        <input type="hidden" name="ref_" value="ttsnd_cn_edt" />
+                        <input type="hidden" name="edit" value="legacy/title/tt4338588/fun-facts" />
                             <button class="btn primary large" rel="login" type="submit">Edit page</button>
                     </form>
                 </div>
@@ -2658,8 +871,8 @@ ad_utils.register_ad('top_rhs');
 <div id="top_rhs_reflow_helper"></div>
 <script id="top_rhs_rendering">
 doWithAds(function(){
-ad_utils.set_aax_instrumentation_pixel_url('TOP_RHS', 'https://aax-eu.amazon-adsystem.com/x/px/QvRQgaL1eO_JFdTlahrhc8IAAAF1QpYVdgMAAADKAQjVgNA/');
-ad_utils.inject_serverside_ad('top_rhs', '<script>document.defaultAd = {h:250,w:300}; document.ad = document.defaultAd;<\/script> <!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"UTF-8\">\n <title></title>\n</head>\n<body style=\"margin:0;position:absolute;top:0;left:0;bottom:0;right:0;\">\n<script>window.t0=+new Date();<\/script>\n<script>\n \n<\/script>\n\n<div id=\"ad\" style=\"width:100%;height:100%;\"><div class=\"creative-container\" style=\"position:absolute;top:0;right:0;bottom:0;left:0;overflow:hidden\" data-reactroot=\"\"><img class=\"ad-background-image\" src=\"https://m.media-amazon.com/images/G/03/shazam/GER-BOM-300X250-NBeUO._V406263863_.jpg\" style=\"max-width:none;max-height:none;width:100%;height:auto;margin-left:50%;-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%)\"/><a style=\"position:absolute;top:0;right:0;bottom:0;left:0;cursor:pointer;background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=) repeat 0 0\" class=\"clickthrough\" href=\"https://www.amazon.de/dp/B00BBTIONE\" target=\"_top\"></a></div></div>\n<script>\n window.$ad = document.getElementById(\'ad\');\n<\/script>\n\n<script crossorigin=\"anonymous\" src=\"https://m.media-amazon.com/images/G/01/dacx/build/DACXImageTemplate/Image.bundle-d602afead092a5e84c76130d491567e28691cbaf._V1_.js#DACXImageTemplate-3.0.258.0\"><\/script>\n\n<script>\n window.imageCreative = Creative.default($ad, {\"cta\":{\"type\":\"url\",\"url\":\"https://www.amazon.de/dp/B00BBTIONE\",\"linkIn\":true},\"backgroundImage\":{\"url\":\"https://m.media-amazon.com/images/G/03/shazam/GER-BOM-300X250-NBeUO._V406263863_.jpg\"},\"backgroundColor\":null,\"adChoicesPosition\":\"topright\",\"impressionUrls\":[],\"additionalHtml\":\"\",\"width\":300,\"height\":250,\"isLowResDisplay\":false,\"creativeImageData\":null,\"locale\":\"DE\",\"region\":\"eu\",\"mediaCentralPath\":\"https://images-eu.ssl-images-amazon.com/images/G/03\",\"privacyUrl\":\"https://www.amazon.de/adprefs\",\"deviceContext\":{\"userAgent\":\"Amazon CloudFront\"},\"isPreview\":false,\"isMobile\":false,\"isBlackjack\":false,\"isOffsite\":false,\"use1pRendering\":false,\"adLink\":\"https://www.amazon.de/dp/B00BBTIONE\",\"cascadingIntent\":null,\"clickTrackerUrls\":[\"https://aax-eu.amazon-adsystem.com/x/c/QvRQgaL1eO_JFdTlahrhc8IAAAF1QpYVdgMAAADKAQjVgNA/\",null],\"isAmazonClickUrl\":true,\"isPrimeNowClickUrl\":false,\"is1pUrlSafe\":true});\n<\/script>\n\n\n</body>\n</html>\n\n <div id=\"top_rhs_webbug\" style=\"display:none;\">\n <img src=\"https://aax-eu.amazon-adsystem.com/e/loi/imp?b=IvRQgaL1eO_JFdTlahrhc8IAAAF1QpYViAMAAADKAQjVgNA\" border=\"0\" height=\"1\" width=\"1\" alt=\"\"/>\n </div>\n');
+ad_utils.set_aax_instrumentation_pixel_url('TOP_RHS', 'https://aax-eu.amazon-adsystem.com/x/px/QrJQgaqnmEjH5pGhs117wuwAAAF1QpYvqgMAAADKARaJQBw/');
+ad_utils.inject_serverside_ad('top_rhs', '<script>document.defaultAd = {h:250,w:300}; document.ad = document.defaultAd;<\/script> <!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"UTF-8\">\n <title></title>\n</head>\n<body style=\"margin:0;position:absolute;top:0;left:0;bottom:0;right:0;\">\n<script>window.t0=+new Date();<\/script>\n<script>\n \n<\/script>\n\n<div id=\"ad\" style=\"width:100%;height:100%;\"><div class=\"creative-container\" style=\"position:absolute;top:0;right:0;bottom:0;left:0;overflow:hidden\" data-reactroot=\"\"><img class=\"ad-background-image\" src=\"https://m.media-amazon.com/images/G/03/shazam/GER-BOM-300X250-NBeUO._V406263863_.jpg\" style=\"max-width:none;max-height:none;width:100%;height:auto;margin-left:50%;-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%)\"/><a style=\"position:absolute;top:0;right:0;bottom:0;left:0;cursor:pointer;background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=) repeat 0 0\" class=\"clickthrough\" href=\"https://www.amazon.de/dp/B00BBTIONE\" target=\"_top\"></a></div></div>\n<script>\n window.$ad = document.getElementById(\'ad\');\n<\/script>\n\n<script crossorigin=\"anonymous\" src=\"https://m.media-amazon.com/images/G/01/dacx/build/DACXImageTemplate/Image.bundle-d602afead092a5e84c76130d491567e28691cbaf._V1_.js#DACXImageTemplate-3.0.258.0\"><\/script>\n\n<script>\n window.imageCreative = Creative.default($ad, {\"cta\":{\"type\":\"url\",\"url\":\"https://www.amazon.de/dp/B00BBTIONE\",\"linkIn\":true},\"backgroundImage\":{\"url\":\"https://m.media-amazon.com/images/G/03/shazam/GER-BOM-300X250-NBeUO._V406263863_.jpg\"},\"backgroundColor\":null,\"adChoicesPosition\":\"topright\",\"impressionUrls\":[],\"additionalHtml\":\"\",\"width\":300,\"height\":250,\"isLowResDisplay\":false,\"creativeImageData\":null,\"locale\":\"DE\",\"region\":\"eu\",\"mediaCentralPath\":\"https://images-eu.ssl-images-amazon.com/images/G/03\",\"privacyUrl\":\"https://www.amazon.de/adprefs\",\"deviceContext\":{\"userAgent\":\"Amazon CloudFront\"},\"isPreview\":false,\"isMobile\":false,\"isBlackjack\":false,\"isOffsite\":false,\"use1pRendering\":false,\"adLink\":\"https://www.amazon.de/dp/B00BBTIONE\",\"cascadingIntent\":null,\"clickTrackerUrls\":[\"https://aax-eu.amazon-adsystem.com/x/c/QrJQgaqnmEjH5pGhs117wuwAAAF1QpYvqgMAAADKARaJQBw/\",null],\"isAmazonClickUrl\":true,\"isPrimeNowClickUrl\":false,\"is1pUrlSafe\":true});\n<\/script>\n\n\n</body>\n</html>\n\n <div id=\"top_rhs_webbug\" style=\"display:none;\">\n <img src=\"https://aax-eu.amazon-adsystem.com/e/loi/imp?b=IrJQgaqnmEjH5pGhs117wuwAAAF1QpYvvAMAAADKARaJQBw\" border=\"0\" height=\"1\" width=\"1\" alt=\"\"/>\n </div>\n');
 }, "ad_utils not defined, unable to inject serverside ad");
 </script>
 <!-- End TOP_RHS -->
@@ -2671,37 +884,44 @@ ad_utils.inject_serverside_ad('top_rhs', '<script>document.defaultAd = {h:250,w:
     
     <div class="aux-content-widget-2 links subnav" div="quicklinks">
 
-<a href="/title/tt0266732/?ref_=ttfc_ql"
-class="subnav_heading" >Love Is the Drug</a>                <hr/>
+<a href="/title/tt4338588/?ref_=ttsnd_ql"
+class="subnav_heading" >Part 1</a>              <span class="nobr">
+                (TV Episode)
+              </span>
+                <hr/>
 
 
 
-        <h4>Details</h4>
+        <h4>Did You Know?</h4>
 
     <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt4338588/trivia?ref_=ttsnd_ql_1"
+class="link" >Trivia</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt4338588/goofs?ref_=ttsnd_ql_2"
+class="link" >Goofs</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt4338588/crazycredits?ref_=ttsnd_ql_3"
+class="link ghost" >Crazy Credits</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt4338588/quotes?ref_=ttsnd_ql_4"
+class="link ghost" >Quotes</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt4338588/alternateversions?ref_=ttsnd_ql_5"
+class="link ghost" >Alternate Versions</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt4338588/movieconnections?ref_=ttsnd_ql_6"
+class="link ghost" >Connections</a>
+                </li>
                 <li class="subnav_item_main subnav_selected">
-<a href="/title/tt0266732/fullcredits?ref_=ttfc_ql_1"
-class="link" >Full Cast and Crew</a>
-                </li>
-                <li class="subnav_item_main">
-<a href="/title/tt0266732/releaseinfo?ref_=ttfc_ql_2"
-class="link" >Release Dates</a>
-                </li>
-                <li class="subnav_item_main">
-<a href="/title/tt0266732/officialsites?ref_=ttfc_ql_3"
-class="link" >Official Sites</a>
-                </li>
-                <li class="subnav_item_main">
-<a href="/title/tt0266732/companycredits?ref_=ttfc_ql_4"
-class="link" >Company Credits</a>
-                </li>
-                <li class="subnav_item_main">
-<a href="/title/tt0266732/locations?ref_=ttfc_ql_5"
-class="link" >Filming & Production</a>
-                </li>
-                <li class="subnav_item_main">
-<a href="/title/tt0266732/technical?ref_=ttfc_ql_6"
-class="link" >Technical Specs</a>
+<a href="/title/tt4338588/soundtrack?ref_=ttsnd_ql_7"
+class="link" >Soundtracks</a>
                 </li>
     </ul>
 
@@ -2712,67 +932,63 @@ class="link" >Technical Specs</a>
 
 
 
+        <h4>Details</h4>
+
+    <ul class="quicklinks">
+                <li class="subnav_item_main">
+<a href="/title/tt4338588/fullcredits?ref_=ttsnd_ql_dt_1"
+class="link" >Full Cast and Crew</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt4338588/releaseinfo?ref_=ttsnd_ql_dt_2"
+class="link" >Release Dates</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt4338588/officialsites?ref_=ttsnd_ql_dt_3"
+class="link ghost" >Official Sites</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt4338588/companycredits?ref_=ttsnd_ql_dt_4"
+class="link" >Company Credits</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt4338588/locations?ref_=ttsnd_ql_dt_5"
+class="link ghost" >Filming & Production</a>
+                </li>
+                <li class="subnav_item_main">
+<a href="/title/tt4338588/technical?ref_=ttsnd_ql_dt_6"
+class="link" >Technical Specs</a>
+                </li>
+    </ul>
+
 
 
         <h4>Storyline</h4>
 
     <ul class="quicklinks">
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/taglines?ref_=ttfc_ql_stry_1"
-class="link" >Taglines</a>
+<a href="/title/tt4338588/taglines?ref_=ttsnd_ql_stry_1"
+class="link ghost" >Taglines</a>
                 </li>
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/plotsummary?ref_=ttfc_ql_stry_2"
+<a href="/title/tt4338588/plotsummary?ref_=ttsnd_ql_stry_2"
 class="link" >Plot Summary</a>
                 </li>
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/synopsis?ref_=ttfc_ql_stry_3"
+<a href="/title/tt4338588/synopsis?ref_=ttsnd_ql_stry_3"
 class="link ghost" >Synopsis</a>
                 </li>
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/keywords?ref_=ttfc_ql_stry_4"
+<a href="/title/tt4338588/keywords?ref_=ttsnd_ql_stry_4"
 class="link" >Plot Keywords</a>
                 </li>
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/parentalguide?ref_=ttfc_ql_stry_5"
+<a href="/title/tt4338588/parentalguide?ref_=ttsnd_ql_stry_5"
 class="link ghost" >Parents Guide</a>
                 </li>
     </ul>
 
 
-
-        <h4>Did You Know?</h4>
-
-    <ul class="quicklinks">
-                <li class="subnav_item_main">
-<a href="/title/tt0266732/trivia?ref_=ttfc_ql_trv_1"
-class="link ghost" >Trivia</a>
-                </li>
-                <li class="subnav_item_main">
-<a href="/title/tt0266732/goofs?ref_=ttfc_ql_trv_2"
-class="link ghost" >Goofs</a>
-                </li>
-                <li class="subnav_item_main">
-<a href="/title/tt0266732/crazycredits?ref_=ttfc_ql_trv_3"
-class="link ghost" >Crazy Credits</a>
-                </li>
-                <li class="subnav_item_main">
-<a href="/title/tt0266732/quotes?ref_=ttfc_ql_trv_4"
-class="link ghost" >Quotes</a>
-                </li>
-                <li class="subnav_item_main">
-<a href="/title/tt0266732/alternateversions?ref_=ttfc_ql_trv_5"
-class="link ghost" >Alternate Versions</a>
-                </li>
-                <li class="subnav_item_main">
-<a href="/title/tt0266732/movieconnections?ref_=ttfc_ql_trv_6"
-class="link ghost" >Connections</a>
-                </li>
-                <li class="subnav_item_main">
-<a href="/title/tt0266732/soundtrack?ref_=ttfc_ql_trv_7"
-class="link ghost" >Soundtracks</a>
-                </li>
-    </ul>
 
 
 
@@ -2780,12 +996,12 @@ class="link ghost" >Soundtracks</a>
 
     <ul class="quicklinks">
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/mediaindex?ref_=ttfc_ql_pv_1"
+<a href="/title/tt4338588/mediaindex?ref_=ttsnd_ql_pv_1"
 class="link" >Photo Gallery</a>
                 </li>
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/videogallery?ref_=ttfc_ql_pv_2"
-class="link" >Trailers and Videos</a>
+<a href="/title/tt4338588/videogallery?ref_=ttsnd_ql_pv_2"
+class="link ghost" >Trailers and Videos</a>
                 </li>
     </ul>
 
@@ -2795,27 +1011,27 @@ class="link" >Trailers and Videos</a>
 
     <ul class="quicklinks">
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/awards?ref_=ttfc_ql_op_1"
+<a href="/title/tt4338588/awards?ref_=ttsnd_ql_op_1"
 class="link ghost" >Awards</a>
                 </li>
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/faq?ref_=ttfc_ql_op_2"
+<a href="/title/tt4338588/faq?ref_=ttsnd_ql_op_2"
 class="link ghost" >FAQ</a>
                 </li>
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/reviews?ref_=ttfc_ql_op_3"
+<a href="/title/tt4338588/reviews?ref_=ttsnd_ql_op_3"
 class="link" >User Reviews</a>
                 </li>
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/ratings?ref_=ttfc_ql_op_4"
+<a href="/title/tt4338588/ratings?ref_=ttsnd_ql_op_4"
 class="link" >User Ratings</a>
                 </li>
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/externalreviews?ref_=ttfc_ql_op_5"
+<a href="/title/tt4338588/externalreviews?ref_=ttsnd_ql_op_5"
 class="link" >External Reviews</a>
                 </li>
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/criticreviews?ref_=ttfc_ql_op_6"
+<a href="/title/tt4338588/criticreviews?ref_=ttsnd_ql_op_6"
 class="link ghost" >Metacritic Reviews</a>
                 </li>
     </ul>
@@ -2826,7 +1042,7 @@ class="link ghost" >Metacritic Reviews</a>
 
     <ul class="quicklinks">
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/tvschedule?ref_=ttfc_ql_tv_1"
+<a href="/title/tt4338588/tvschedule?ref_=ttsnd_ql_tv_1"
 class="link ghost" >TV Schedule</a>
                 </li>
     </ul>
@@ -2837,16 +1053,12 @@ class="link ghost" >TV Schedule</a>
 
     <ul class="quicklinks">
                 <li class="subnav_item_main">
-<a href="/title/tt0266732/news?ref_=ttfc_ql_rel_1"
-class="link" >News</a>
+<a href="/title/tt4338588/news?ref_=ttsnd_ql_rel_1"
+class="link ghost" >News</a>
                 </li>
                 <li class="subnav_item_main">
-<a href="/showtimes/title/tt0266732?ref_=ttfc_ql_rel_2"
-class="link ghost" >Showtimes</a>
-                </li>
-                <li class="subnav_item_main">
-<a href="/title/tt0266732/externalsites?ref_=ttfc_ql_rel_3"
-class="link" >External Sites</a>
+<a href="/title/tt4338588/externalsites?ref_=ttsnd_ql_rel_2"
+class="link ghost" >External Sites</a>
                 </li>
     </ul>
     <hr/>
@@ -2863,7 +1075,7 @@ class="link" >External Sites</a>
         <div class="aux-content-widget-2">
             <div id="relatedListsWidget">
                 <div class="rightcornerlink">
-                    <a href="/list/create?ref_=ttfc_rls"
+                    <a href="/list/create?ref_=ttsnd_rls"
 >Create a list</a>&nbsp;&raquo;
                 </div>
                 <h3>User Lists</h3>
@@ -2871,91 +1083,91 @@ class="link" >External Sites</a>
 
     <div class="list-preview even">
         <div class="list-preview-item-narrow">
-<a href="/list/ls004909789?ref_=rls_1"
-><img height="86" width="86" alt="list image" title="list image" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/medium/film-3385785534._CB468454186_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMTMyNTIxOTQ3M15BMl5BanBnXkFtZTcwMjU2NzAzMw@@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+<a href="/list/ls028304037?ref_=rls_1"
+><img height="86" width="86" alt="list image" title="list image" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/medium/tv-3264496829._CB466698292_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BODRhYmQwNGItYmYzMC00MTA1LWEzZWMtZmNiM2QyOTQ4YzFhXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_UY86_CR33,0,86,86_AL_.jpg" /></a>        </div>
         <div class="list_name">
-            <strong><a href="/list/ls004909789?ref_=rls_1"
+            <strong><a href="/list/ls028304037?ref_=rls_1"
 >
-Favorite Movies
+TV Show - Episodi
 </a></strong>
         </div>
         <div class="list_meta">
-            a list of 37 titles
-            <br />created 18&nbsp;May&nbsp;2012
+            a list of 9454 titles
+            <br />created 17&nbsp;Sep&nbsp;2018
             
         </div>
         <div class="clear">&nbsp;</div>
     </div>
     <div class="list-preview odd">
         <div class="list-preview-item-narrow">
-<a href="/list/ls066987666?ref_=rls_2"
-><img height="86" width="86" alt="list image" title="list image" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/medium/film-3385785534._CB468454186_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMzM5NDQyOTQ3MV5BMl5BanBnXkFtZTcwODg4OTEyMw@@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+<a href="/list/ls074357537?ref_=rls_2"
+><img height="86" width="86" alt="list image" title="list image" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/medium/tv-3264496829._CB466698292_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMjE2NTA2OTA2Nl5BMl5BanBnXkFtZTcwODM0NDM1Ng@@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
         <div class="list_name">
-            <strong><a href="/list/ls066987666?ref_=rls_2"
+            <strong><a href="/list/ls074357537?ref_=rls_2"
 >
-2000's
+TV Shows I Loved 2.0
 </a></strong>
         </div>
         <div class="list_meta">
-            a list of 3239 titles
-            <br />created 28&nbsp;Dec&nbsp;2016
+            a list of 7613 titles
+            <br />created 11&nbsp;Jul&nbsp;2015
             
         </div>
         <div class="clear">&nbsp;</div>
     </div>
     <div class="list-preview even">
         <div class="list-preview-item-narrow">
-<a href="/list/ls002567253?ref_=rls_3"
-><img height="86" width="86" alt="list image" title="list image" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/medium/film-3385785534._CB468454186_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BM2VlNTE1ZmMtOTAyNS00ODYwLWFmY2MtZWEzOTE2YjE1NDE2XkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+<a href="/list/ls068771620?ref_=rls_3"
+><img height="86" width="86" alt="list image" title="list image" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/medium/film-3385785534._CB468454186_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMTg1NjAzODEzOF5BMl5BanBnXkFtZTcwNDY2MDA4Mg@@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
         <div class="list_name">
-            <strong><a href="/list/ls002567253?ref_=rls_3"
+            <strong><a href="/list/ls068771620?ref_=rls_3"
 >
-SEEN IT: start to finish, the whole movie
+Slavery movies
 </a></strong>
         </div>
         <div class="list_meta">
-            a list of 2528 titles
-            <br />created 01&nbsp;Feb&nbsp;2012
+            a list of 186 titles
+            <br />created 11&nbsp;Jun&nbsp;2017
             
         </div>
         <div class="clear">&nbsp;</div>
     </div>
     <div class="list-preview odd">
         <div class="list-preview-item-narrow">
-<a href="/list/ls022013258?ref_=rls_4"
-><img height="86" width="86" alt="list image" title="list image" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/medium/film-3385785534._CB468454186_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BOWZjMjkwM2QtZTJiMy00MmI5LWI2YjEtMmY5NjNiYTE2NTBiXkEyXkFqcGdeQXVyNjQ2MjQ5NzM@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+<a href="/list/ls066864225?ref_=rls_4"
+><img height="86" width="86" alt="list image" title="list image" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/medium/tv-3264496829._CB466698292_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMjA4ODA2NjAxMV5BMl5BanBnXkFtZTgwMTUzOTA4MDI@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
         <div class="list_name">
-            <strong><a href="/list/ls022013258?ref_=rls_4"
+            <strong><a href="/list/ls066864225?ref_=rls_4"
 >
-Short Listed
+Watched in 2017
 </a></strong>
         </div>
         <div class="list_meta">
-            a list of 3835 titles
-            <br />created 03&nbsp;Jun&nbsp;2018
+            a list of 578 titles
+            <br />created 01&nbsp;Jan&nbsp;2017
             
         </div>
         <div class="clear">&nbsp;</div>
     </div>
     <div class="list-preview even">
         <div class="list-preview-item-narrow">
-<a href="/list/ls009354143?ref_=rls_5"
-><img height="86" width="86" alt="list image" title="list image" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/medium/film-3385785534._CB468454186_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BM2IzODhjZTYtMWYzYy00YmI5LWFkZjUtOTRkNzEyNmRlNWZkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UX86_CR0,0,86,86_AL_.jpg" /></a>        </div>
+<a href="/list/ls051625780?ref_=rls_5"
+><img height="86" width="86" alt="list image" title="list image" src="https://m.media-amazon.com/images/G/01/imdb/images/nopicture/medium/tv-3264496829._CB466698292_.png" class="loadlate hidden " loadlate="https://m.media-amazon.com/images/M/MV5BMTYyMDQ0NTg0MV5BMl5BanBnXkFtZTcwMDUxOTMzOQ@@._V1_UY86_CR21,0,86,86_AL_.jpg" /></a>        </div>
         <div class="list_name">
-            <strong><a href="/list/ls009354143?ref_=rls_5"
+            <strong><a href="/list/ls051625780?ref_=rls_5"
 >
-Seen
+Series Watched
 </a></strong>
         </div>
         <div class="list_meta">
-            a list of 2211 titles
-            <br />created 26&nbsp;Jun&nbsp;2012
+            a list of 1812 titles
+            <br />created 20&nbsp;Apr&nbsp;2013
             
         </div>
         <div class="clear">&nbsp;</div>
     </div>
                 <div class="see-more">
-                    <a href="/lists/tt0266732?ref_=rls_sm"
+                    <a href="/lists/tt4338588?ref_=rls_sm"
 >See all related lists</a>&nbsp;&raquo;
                 </div>
             </div>
@@ -3021,12 +1233,12 @@ ad_utils.register_ad('inline80');
 }
 });
 </script>
-<iframe allowtransparency="true" class="yesScript" data-ad-viewability-treatment frameborder="0" id="inline80" marginwidth="0" marginheight="0" name="inline80" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="300" data-original-height="600" width="300" height="600" ></iframe> </div>
+<iframe allowtransparency="true" class="yesScript" data-ad-viewability-treatment frameborder="0" id="inline80" marginwidth="0" marginheight="0" name="inline80" onload="doWithAds.call(this, function(){ ad_utils.on_ad_load(this); });" scrolling="no" data-original-width="300" data-original-height="250" width="300" height="250" ></iframe> </div>
 <div id="inline80_reflow_helper"></div>
 <script id="inline80_rendering">
 doWithAds(function(){
-ad_utils.set_aax_instrumentation_pixel_url('INLINE80', 'https://aax-eu.amazon-adsystem.com/x/px/Qn2heDg1TeLmEeyANitLWfIAAAF1QpYVdQMAAADKARgaleg/');
-ad_utils.inject_serverside_ad('inline80', '<script>document.defaultAd = {h:600,w:300}; document.ad = document.defaultAd;<\/script> <!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"UTF-8\">\n <title></title>\n</head>\n<body style=\"margin:0;position:absolute;top:0;left:0;bottom:0;right:0;\">\n<script>window.t0=+new Date();<\/script>\n<script>\n \n<\/script>\n\n<div id=\"ad\" style=\"width:100%;height:100%;\"><div class=\"creative-container\" style=\"position:absolute;top:0;right:0;bottom:0;left:0;overflow:hidden\" data-reactroot=\"\"><img class=\"ad-background-image\" src=\"https://m.media-amazon.com/images/G/03/shazam/GER-BOM-300X600-On5Jy._V406263966_.jpg\" style=\"max-width:none;max-height:none;width:100%;height:auto;margin-left:50%;-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%)\"/><a style=\"position:absolute;top:0;right:0;bottom:0;left:0;cursor:pointer;background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=) repeat 0 0\" class=\"clickthrough\" href=\"https://www.amazon.de/gp/product/B00BBTIONE\" target=\"_top\"></a></div></div>\n<script>\n window.$ad = document.getElementById(\'ad\');\n<\/script>\n\n<script crossorigin=\"anonymous\" src=\"https://m.media-amazon.com/images/G/01/dacx/build/DACXImageTemplate/Image.bundle-d602afead092a5e84c76130d491567e28691cbaf._V1_.js#DACXImageTemplate-3.0.258.0\"><\/script>\n\n<script>\n window.imageCreative = Creative.default($ad, {\"cta\":{\"type\":\"url\",\"url\":\"https://www.amazon.de/gp/product/B00BBTIONE\",\"linkIn\":true},\"backgroundImage\":{\"url\":\"https://m.media-amazon.com/images/G/03/shazam/GER-BOM-300X600-On5Jy._V406263966_.jpg\"},\"backgroundColor\":null,\"adChoicesPosition\":\"topright\",\"impressionUrls\":[],\"additionalHtml\":\"\",\"width\":300,\"height\":600,\"isLowResDisplay\":false,\"creativeImageData\":null,\"locale\":\"DE\",\"region\":\"eu\",\"mediaCentralPath\":\"https://images-eu.ssl-images-amazon.com/images/G/03\",\"privacyUrl\":\"https://www.amazon.de/adprefs\",\"deviceContext\":{\"userAgent\":\"Amazon CloudFront\"},\"isPreview\":false,\"isMobile\":false,\"isBlackjack\":false,\"isOffsite\":false,\"use1pRendering\":false,\"adLink\":\"https://www.amazon.de/gp/product/B00BBTIONE\",\"cascadingIntent\":null,\"clickTrackerUrls\":[\"https://aax-eu.amazon-adsystem.com/x/c/Qn2heDg1TeLmEeyANitLWfIAAAF1QpYVdQMAAADKARgaleg/\",null],\"isAmazonClickUrl\":true,\"isPrimeNowClickUrl\":false,\"is1pUrlSafe\":true});\n<\/script>\n\n\n</body>\n</html>\n\n <div id=\"inline80_webbug\" style=\"display:none;\">\n <img src=\"https://aax-eu.amazon-adsystem.com/e/loi/imp?b=In2heDg1TeLmEeyANitLWfIAAAF1QpYViwMAAADKARgaleg\" border=\"0\" height=\"1\" width=\"1\" alt=\"\"/>\n </div>\n');
+ad_utils.set_aax_instrumentation_pixel_url('INLINE80', 'https://aax-eu.amazon-adsystem.com/x/px/QqMie51Y1IJFOesAKpuA7xkAAAF1QpYvrwMAAADKAcRQkDM/');
+ad_utils.inject_serverside_ad('inline80', '<script>document.defaultAd = {h:250,w:300}; document.ad = document.defaultAd;<\/script> <!doctype html>\n<html lang=\"en\">\n<head>\n <meta charset=\"UTF-8\">\n <title></title>\n</head>\n<body style=\"margin:0;position:absolute;top:0;left:0;bottom:0;right:0;\">\n<script>window.t0=+new Date();<\/script>\n<script>\n \n<\/script>\n\n<div id=\"ad\" style=\"width:100%;height:100%;\"><div class=\"creative-container\" style=\"position:absolute;top:0;right:0;bottom:0;left:0;overflow:hidden\" data-reactroot=\"\"><img class=\"ad-background-image\" src=\"https://m.media-amazon.com/images/G/03/shazam/GER-BOM-300X250-NBeUO._V406263863_.jpg\" style=\"max-width:none;max-height:none;width:100%;height:auto;margin-left:50%;-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%);transform:translateX(-50%)\"/><a style=\"position:absolute;top:0;right:0;bottom:0;left:0;cursor:pointer;background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=) repeat 0 0\" class=\"clickthrough\" href=\"https://www.amazon.de/dp/B00BBTIONE\" target=\"_top\"></a></div></div>\n<script>\n window.$ad = document.getElementById(\'ad\');\n<\/script>\n\n<script crossorigin=\"anonymous\" src=\"https://m.media-amazon.com/images/G/01/dacx/build/DACXImageTemplate/Image.bundle-d602afead092a5e84c76130d491567e28691cbaf._V1_.js#DACXImageTemplate-3.0.258.0\"><\/script>\n\n<script>\n window.imageCreative = Creative.default($ad, {\"cta\":{\"type\":\"url\",\"url\":\"https://www.amazon.de/dp/B00BBTIONE\",\"linkIn\":true},\"backgroundImage\":{\"url\":\"https://m.media-amazon.com/images/G/03/shazam/GER-BOM-300X250-NBeUO._V406263863_.jpg\"},\"backgroundColor\":null,\"adChoicesPosition\":\"topright\",\"impressionUrls\":[],\"additionalHtml\":\"\",\"width\":300,\"height\":250,\"isLowResDisplay\":false,\"creativeImageData\":null,\"locale\":\"DE\",\"region\":\"eu\",\"mediaCentralPath\":\"https://images-eu.ssl-images-amazon.com/images/G/03\",\"privacyUrl\":\"https://www.amazon.de/adprefs\",\"deviceContext\":{\"userAgent\":\"Amazon CloudFront\"},\"isPreview\":false,\"isMobile\":false,\"isBlackjack\":false,\"isOffsite\":false,\"use1pRendering\":false,\"adLink\":\"https://www.amazon.de/dp/B00BBTIONE\",\"cascadingIntent\":null,\"clickTrackerUrls\":[\"https://aax-eu.amazon-adsystem.com/x/c/QqMie51Y1IJFOesAKpuA7xkAAAF1QpYvrwMAAADKAcRQkDM/\",null],\"isAmazonClickUrl\":true,\"isPrimeNowClickUrl\":false,\"is1pUrlSafe\":true});\n<\/script>\n\n\n</body>\n</html>\n\n <div id=\"inline80_webbug\" style=\"display:none;\">\n <img src=\"https://aax-eu.amazon-adsystem.com/e/loi/imp?b=IqMie51Y1IJFOesAKpuA7xkAAAF1QpYvvwMAAADKAcRQkDM\" border=\"0\" height=\"1\" width=\"1\" alt=\"\"/>\n </div>\n');
 }, "ad_utils not defined, unable to inject serverside ad");
 </script>
 <!-- End INLINE80 -->
@@ -3036,13 +1248,17 @@ ad_utils.inject_serverside_ad('inline80', '<script>document.defaultAd = {h:600,w
     <div class="social">
       <div class="social_networking">
        <span><strong>Share</strong> this page:</span>
-  <a onclick="window.open(&quot;https://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0266732%2F&quot;, 'newWindow', 'width=626, height=436'); return false;" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0266732%2F" target="_blank" title="Share on Facebook" class="share_icon facebook"></a>
-  <a onclick="window.open(&quot;https://twitter.com/intent/tweet?text=Love%20Is%20the%20Drug%20(2006)%20-%20https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0266732%2F&quot;, 'newWindow', 'width=815, height=436'); return false;" href="https://twitter.com/intent/tweet?text=Love%20Is%20the%20Drug%20(2006)%20-%20https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0266732%2F" target="_blank" title="Share on Twitter" class="share_icon twitter"></a>
-  <a onclick="$('div.social input[name=share-link]').show().select(); return false;" title="Share the page" class="share_icon share_url_link" href="http://www.imdb.com/title/tt0266732/"></a>
+  <a onclick="window.open(&quot;https://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt4338588%2F&quot;, 'newWindow', 'width=626, height=436'); return false;" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt4338588%2F" target="_blank" title="Share on Facebook" class="share_icon facebook"></a>
+  <a onclick="window.open(&quot;https://twitter.com/intent/tweet?text=%22Roots%22%20Part%201%20(TV%20Episode%202016)%20-%20https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt4338588%2F&quot;, 'newWindow', 'width=815, height=436'); return false;" href="https://twitter.com/intent/tweet?text=%22Roots%22%20Part%201%20(TV%20Episode%202016)%20-%20https%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt4338588%2F" target="_blank" title="Share on Twitter" class="share_icon twitter"></a>
+  <a onclick="$('div.social input[name=share-link]').show().select(); return false;" title="Share the page" class="share_icon share_url_link" href="http://www.imdb.com/title/tt4338588/"></a>
       </div>
-      <input type="text" name="share-link" value="https://www.imdb.com/title/tt0266732/" readonly>
+      <input type="text" name="share-link" value="https://www.imdb.com/title/tt4338588/" readonly>
     </div>
   </div>
+
+    
+    
+    
 	
 	
 <script type="text/javascript">
@@ -3064,8 +1280,8 @@ ad_utils.register_ad('btf_rhs2');
 <div id="btf_rhs2_reflow_helper"></div>
 <script id="btf_rhs2_rendering">
 doWithAds(function(){
-ad_utils.set_aax_instrumentation_pixel_url('BTF_RHS2', 'https://aax-eu.amazon-adsystem.com/x/px/QgfYKKrcsukEQClwSCK3OeIAAAF1QpYVdQMAAADKAQPAkjU/');
-ad_utils.inject_serverside_ad('btf_rhs2', '<script>document.defaultAd = {h:250,w:300}; document.ad = document.defaultAd;<\/script> <!DOCTYPE html><html><body><\!-- [TOP_AD] --\><\!-- aid : 3024472010002 : cid : 8842755120802 : template : IMDb Static Image-1.144 --\><script>document.ad={aid:\"3024472010002\",cid:\"8842755120802\",w:\"0\",h:\"0\"};<\/script><\!-- [TOP_AD] --\><\!-- aid : 3024472010002 : cid : 8842755120802 : template : IMDb Static Image-1.144 --\><\!-- Third party Impression Tracking --\><style>#mediaviewer-banner-image{margin-left:auto;margin-right:auto;display:block}</style><script>if(document.ad={aid:\"3024472010002\",cid:\"8842755120802\",w:\"300\",h:\"250\"},window.SFClient){var slot=SFClient.getARID();SFClient.customMessage(\"setPartner\",JSON.stringify({slot:slot,partner:\"1P\"}))}else top&&top.generic&&top.generic.monitoring&&top.generic.monitoring.set_partner&&top.generic.monitoring.set_partner(window,\"1P\"),parent&&parent.ad_utils&&parent.ad_utils.expand_ad(this.frameElement);<\/script><a href=\"https://aax-eu.amazon-adsystem.com/x/c/QgfYKKrcsukEQClwSCK3OeIAAAF1QpYVdQMAAADKAQPAkjU/http://www.imdb.com/trailers\" target=\"_blank\"><img src=\"https://images-na.ssl-images-amazon.com/images/G/02/shazam/Trailers300-4b4672d0-e0d4-4a7f-9ffa-223cf5b4ac60-7719edec-3cdb-456f-9835-a783b66e0974.jpg\" id=\"mediaviewer-banner-image\" width=\"300\" height=\"250\" border=\"0\" alt=\"Click here\"></a>\n</body></html><\!-- creativeModDate = 1557286908000 --\>\n <div id=\"btf_rhs2_webbug\" style=\"display:none;\">\n <img src=\"https://aax-eu.amazon-adsystem.com/e/loi/imp?b=IgfYKKrcsukEQClwSCK3OeIAAAF1QpYVhAMAAADKAQPAkjU\" border=\"0\" height=\"1\" width=\"1\" alt=\"\"/>\n </div>\n');
+ad_utils.set_aax_instrumentation_pixel_url('BTF_RHS2', 'https://aax-eu.amazon-adsystem.com/x/px/QnrWjyEz4xeuasKGNK1Pi9gAAAF1QpYvqwMAAADKAd0ctPQ/');
+ad_utils.inject_serverside_ad('btf_rhs2', '<script>document.defaultAd = {h:250,w:300}; document.ad = document.defaultAd;<\/script> <!DOCTYPE html><html><body><\!-- [TOP_AD] --\><\!-- aid : 3024472010002 : cid : 8842755120802 : template : IMDb Static Image-1.144 --\><script>document.ad={aid:\"3024472010002\",cid:\"8842755120802\",w:\"0\",h:\"0\"};<\/script><\!-- [TOP_AD] --\><\!-- aid : 3024472010002 : cid : 8842755120802 : template : IMDb Static Image-1.144 --\><\!-- Third party Impression Tracking --\><style>#mediaviewer-banner-image{margin-left:auto;margin-right:auto;display:block}</style><script>if(document.ad={aid:\"3024472010002\",cid:\"8842755120802\",w:\"300\",h:\"250\"},window.SFClient){var slot=SFClient.getARID();SFClient.customMessage(\"setPartner\",JSON.stringify({slot:slot,partner:\"1P\"}))}else top&&top.generic&&top.generic.monitoring&&top.generic.monitoring.set_partner&&top.generic.monitoring.set_partner(window,\"1P\"),parent&&parent.ad_utils&&parent.ad_utils.expand_ad(this.frameElement);<\/script><a href=\"https://aax-eu.amazon-adsystem.com/x/c/QnrWjyEz4xeuasKGNK1Pi9gAAAF1QpYvqwMAAADKAd0ctPQ/http://www.imdb.com/trailers\" target=\"_blank\"><img src=\"https://images-na.ssl-images-amazon.com/images/G/02/shazam/Trailers300-4b4672d0-e0d4-4a7f-9ffa-223cf5b4ac60-7719edec-3cdb-456f-9835-a783b66e0974.jpg\" id=\"mediaviewer-banner-image\" width=\"300\" height=\"250\" border=\"0\" alt=\"Click here\"></a>\n</body></html><\!-- creativeModDate = 1557286908000 --\>\n <div id=\"btf_rhs2_webbug\" style=\"display:none;\">\n <img src=\"https://aax-eu.amazon-adsystem.com/e/loi/imp?b=InrWjyEz4xeuasKGNK1Pi9gAAAF1QpYvvwMAAADKAd0ctPQ\" border=\"0\" height=\"1\" width=\"1\" alt=\"\"/>\n </div>\n');
 }, "ad_utils not defined, unable to inject serverside ad");
 </script>
 <!-- End BTF_RHS2 -->
@@ -3165,6 +1381,7 @@ ad_utils.inject_serverside_ad('btf_rhs2', '<script>document.defaultAd = {h:250,w
 
 <script type="text/javascript" src="https://m.media-amazon.com/images/G/01/imdb/js/collections/common-2354271187._CB427941191_.js"></script>
 <script type="text/javascript" src="https://m.media-amazon.com/images/G/01/imdb/js/collections/title-2965280763._CB419115744_.js"></script>
+<script type="text/javascript" src="https://m.media-amazon.com/images/G/01/imdb/js/widget/react/MusicPlayerWidget-1221563869._CB427941190_.js"></script>
 
             <script type="text/javascript">
             function jQueryOnReady(remaining_count) {
@@ -3172,7 +1389,7 @@ ad_utils.inject_serverside_ad('btf_rhs2', '<script>document.defaultAd = {h:250,w
                     jQuery(
                                 function() {
            var isAdvertisingThemed = !!(window.custom && window.custom.full_page && window.custom.full_page.theme),
-               url = "https://www.facebook.com/widgets/like.php?width=280&show_faces=1&layout=standard&href=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt0266732%2F&colorscheme=light",
+               url = "https://www.facebook.com/widgets/like.php?width=280&show_faces=1&layout=standard&href=http%3A%2F%2Fwww.imdb.com%2Ftitle%2Ftt4338588%2F&colorscheme=light",
                like = document.getElementById('iframe_like');
 
            if (!isAdvertisingThemed && like) {
@@ -3194,7 +1411,7 @@ ad_utils.inject_serverside_ad('btf_rhs2', '<script>document.defaultAd = {h:250,w
             </script>
 
 
-<script type="text/javascript">window.webpackManifest_IMDbConsumerSiteFooterFeature={}</script><script type="text/javascript">window.webpackManifest_IMDbConsumerSiteNavFeature={}</script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/81TQoDDVgpL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/61SeeyqsNHL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/313VVU76AiL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/01lfk7y+8rL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/61Ka2ezTX9L.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/019vMGkrlkL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/31VYLn8dVDL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/01qhBQyMr+L.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/21QhnrxvhtL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/01EjywnajPL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/01eEXY1YetL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/21a9eB+eAFL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/41tCOS5rc4L.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/816gO+1SZhL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/61vDTVmJCNL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/31827uXCh4L.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/317ZcIHzftL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/41Dm6cYzV6L.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/51GDom0+d0L.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/01ZyMmZoX7L.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/11UNuUz7BzL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/21n5fdlWBhL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/01X4+ME2ObL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/61xZwk5HvtL.js"></script>
+<script type="text/javascript">window.webpackManifest_IMDbConsumerSiteNavFeature={}</script><script type="text/javascript">window.webpackManifest_IMDbConsumerSiteFooterFeature={}</script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/816gO+1SZhL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/61SeeyqsNHL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/61vDTVmJCNL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/31827uXCh4L.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/317ZcIHzftL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/41Dm6cYzV6L.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/51GDom0+d0L.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/01ZyMmZoX7L.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/61Ka2ezTX9L.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/019vMGkrlkL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/11UNuUz7BzL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/21QhnrxvhtL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/01EjywnajPL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/01eEXY1YetL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/21n5fdlWBhL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/21a9eB+eAFL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/01X4+ME2ObL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/61xZwk5HvtL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/81TQoDDVgpL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/313VVU76AiL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/01lfk7y+8rL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/31VYLn8dVDL.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/01qhBQyMr+L.js"></script><script crossorigin="anonymous" type="text/javascript" src="https://m.media-amazon.com/images/I/41tCOS5rc4L.js"></script>
 
 
 <script>
@@ -3210,7 +1427,7 @@ ad_utils.inject_serverside_ad('btf_rhs2', '<script>document.defaultAd = {h:250,w
         <!-- begin ads footer -->
 <!-- end ads footer -->
 
-        <div id="servertime" time="128"/>
+        <div id="servertime" time="124"/>
 
 
 
@@ -3269,7 +1486,7 @@ A)}),A=r(",","@","|",function(a){return a.id}),g=l.impression;n?q():(l.attach("l
 
 var ue_pty = "title";
 
-var ue_spty = "fullcredits";
+var ue_spty = "soundtrack";
 
 
 
@@ -3360,7 +1577,7 @@ attribution:"performanceMetrics"})}}})(ue_csm,window);
 
 if (window.csa) {
     csa("Events")("setEntity", {
-        page:{pageType: "title", subPageType: "fullcredits", pageTypeId: ""}
+        page:{pageType: "title", subPageType: "soundtrack", pageTypeId: ""}
     });
 }
 csa.plugin(function(e){var i="transitionStart",n="pageVisible",t="PageTiming",a="visibilitychange",o=e("Events",{producerId:"csa"}),r=(e.global.performance||{}).timing,d=["navigationStart","unloadEventStart","unloadEventEnd","redirectStart","redirectEnd","fetchStart","domainLookupStart","domainLookupEnd","connectStart","connectEnd","secureConnectionStart","requestStart","responseStart","responseEnd","domLoading","domInteractive","domContentLoadedEventStart","domContentLoadedEventEnd","domComplete","loadEventStart","loadEventEnd"],s=e.global.document||{},c=(r||{}).navigationStart,u=c,l={},m=0,g=0,v=e.config[t+".BatchInterval"]||3e3,f=e.config[t+".pageVisibilityAdjustment"]||!1,p=0,E=!0;if(!r||null===c||c<=0||void 0===c)return e.error("Invalid navigation timing data: "+c);function S(t,n){null!=t&&(n=n||e.time(),t===i&&(u=n),l[t]=n,h(),e.emit("$timing:"+t,n))}function b(){!function(){if(p)return;for(var t=0;t<d.length;t++)r[d[t]]&&S(d[t],r[d[t]]);p=1}(),m=1,h(!0)}function h(t){m&&E&&!g&&(g=setTimeout(y,t?0:v))}function y(){0<Object.keys(l).length&&(o("log",{markers:function(t,n){var e={};for(var i in t)t.hasOwnProperty(i)&&(e[i]=Math.max(0,t[i]-n));return e}(l,u),markerTimestamps:function(t){for(var n in t)t.hasOwnProperty(n)&&(t[n]=Math.floor(t[n]));return t}(l),navigationStartTimestamp:u?new Date(u).toISOString():null,schemaId:"<ns>.PageLatency.5"},{ent:{page:["pageType","subPageType","requestId"]}}),l={}),g=0}function L(){return!s.hidden||"visible"===s.visibilityState}f&&("boolean"==typeof s.hidden||"string"==typeof s.visibilityState)&&s.addEventListener&&s.removeEventListener&&((E=L())?(S(n,c),h()):s.addEventListener(a,function t(){(E=L())&&(u=e.time(),s.removeEventListener(a,t),S(n,u),S(i,u),h())})),e.once("$unload",b),e.once("$load",b),e.on("$beforePageTransition",y),e.on("$pageTransition",function(){u=e.time()}),e.register(t,{mark:S})});csa.plugin(function(e){var m=!!e.config["LCP.elementDedup"],t=!1,n=e("PageTiming"),r=e.global.PerformanceObserver,a=e.global.performance;if(r&&a&&a.timing){var i=e.exec(function(){t||function(o){var l=new r(function(e){var t=e.getEntries();if(0!==t.length){var n=t[t.length-1];if(m&&""!==n.id&&n.element&&"IMG"===n.element.tagName){for(var r={},a=t[0],i=0;i<t.length;i++)t[i].id in r||(""!==t[i].id&&(r[t[i].id]=!0),a.startTime<t[i].startTime&&(a=t[i]));n=a}l.disconnect(),o({startTime:n.startTime,renderTime:n.renderTime,loadTime:n.loadTime})}});try{l.observe({type:"largest-contentful-paint",buffered:!0})}catch(e){}}(function(e){e&&(t=!0,n("mark","largestContentfulPaint",Math.floor(e.startTime+o())),e.renderTime&&n("mark","largestContentfulPaint.render",Math.floor(e.renderTime+o())),e.loadTime&&n("mark","largestContentfulPaint.load",Math.floor(e.loadTime+o())))})});e.once("$unload",i),e.once("$load",i),e.register("LargestContentfulPaint",{})}function o(){return a.timing.navigationStart}});csa.plugin(function(e){var r=e("Metrics",{producerId:"csa"}),t=e.global.PerformanceObserver;function n(e){e=e||0,t.disconnect(),r("recordMetric","firstInputDelay",e)}t&&(t=new t(function(e){var r=e.getEntries();if(0===r.length||!r[0].processingStart||!r[0].startTime)return;n(r[0].processingStart-r[0].startTime)}),function(){try{t.observe({type:"first-input",buffered:!0})}catch(e){}}(),e.once("$unload",e.exec(n)))});csa.plugin(function(u){var a="Metrics";function r(e){var r=e.producerId,n=e.logger,t=n||u("Events",{producerId:r}),i=u.config[a+".BatchInterval"]||3e3,o={},c=(e||{}).dimensions||{},s=0;if(!r&&!n)return u.error("Either a producer id or custom logger must be defined");function d(){Object.keys(o).length&&(t("log",{schemaId:e.schemaId||"<ns>.Metric.3",metrics:o,dimensions:c},e.logOptions||{ent:{page:["pageType","subPageType","requestId"]}}),o={}),s=0}this.recordMetric=function(e,r){o[e]=r,s=s||setTimeout(d,i)},u.on("$beforeunload",d),u.on("$beforePageTransition",d)}new r({producerId:"csa"}).recordMetric("baselineMetricEvent",1),u.register(a,{instance:function(e){return new r(e||{})}})});csa.plugin(function(c){var e="Timers",r=(c.global.performance||{}).timing,s=(r||{}).navigationStart||c.time(),u=c.config[e+".BatchInterval"]||3e3;function n(e){var r=(e=e||{}).producerId,n=e.logger,o={},t=0,i=n||c("Events",{producerId:r});if(!r&&!n)return c.error("Either a producer id or custom logger must be defined");function a(){0<Object.keys(o).length&&(i("log",{markers:o,schemaId:e.schemaId||"<ns>.Timer.1"},e.logOptions),o={}),clearTimeout(t),t=0}this.mark=function(e,r){o[e]=(void 0===r?c.time():r)-s,t=t||setTimeout(a,u)},c.once("$beforeunload",a),c.once("$beforePageTransition",a)}r&&c.register(e,{instance:function(e){return new n(e||{})}})});csa.plugin(function(t){var e="takeRecords",i="disconnect",n="function",a=t("Metrics",{producerId:"csa"}),o=t("PageTiming"),c=t.global,r=c.PerformanceObserver,u=0,f=!1,m=0,s=c.performance,l=c.document,d=null;if(r&&s&&s.timing&&l){r=new r(function(t){d&&clearTimeout(d);t.getEntries().forEach(function(t){t.hadRecentInput||(u+=t.value,m<t.startTime&&(m=t.startTime))}),d=setTimeout(g,5e3)}),function(){try{r.observe({type:"layout-shift",buffered:!0}),d=setTimeout(g,5e3)}catch(t){}}();var v=t.exec(g);l.addEventListener("visibilitychange",function(){"hidden"===l.visibilityState&&v()}),t.once("$unload",v)}function g(){f||(f=!0,clearTimeout(d),typeof r[e]===n&&r[e](),typeof r[i]===n&&r[i](),a("recordMetric","documentCumulativeLayoutShift",u),o("mark","cumulativeLayoutShiftLastTimestamp",Math.floor(m+s.timing.navigationStart)))}});csa.plugin(function(e){var n=e.global,r=n.PerformanceObserver,t=e("Metrics",{producerId:"csa"}),o=0,c=0,i=-1,a=n.Math,l=a.max,f=a.ceil;function u(){t("recordMetric","totalBlockingTime",f(c||0)),t("recordMetric","totalBlockingTimeInclLCP",f(o||0)),t("recordMetric","maxBlockingTime",f(i||0)),c=o=0,i=-1}r&&(new r(e.exec(function(e){e.getEntries().forEach(function(e){var n=e.duration;o+=n,c+=n,i=l(n,i)})})).observe({type:"longtask",buffered:!0}),new r(e.exec(function(e){0<e.getEntries().length&&(c=0,i=-1)})).observe({type:"largest-contentful-paint",buffered:!0}),e.on("$unload",u),e.on("$beforePageTransition",u))});csa.plugin(function(i){var e="CacheDetection",n="csa-cache",s="onsuccess",u="target",d="result",p="exp",f=i.exec,t=i.config,g=t[e+".RequestID"],l=t[e+".Callback"],v=1,c=i.global,r=c.document||{},a=c.indexedDB,h=c.IDBKeyRange,I=i("Events"),x=i("Events",{producerId:"csa"});if(a&&h)try{var o=a.open(n);o.onupgradeneeded=f(function(e){e[u][d].createObjectStore(n).createIndex(p,p)}),o[s]=f(function(e){var o=e[u][d].transaction(n,"readwrite").objectStore(n);o.get(g)[s]=f(function(e){var n=D("session-id"),t=function(e){var n=D("cdn-rid");if(n)return{r:n,s:"cdn"};if(e)return{r:i.UUID().toUpperCase().replace(/-/g,"").slice(0,20),s:"device"}}(e[u][d])||{},c=t.r,r=t.s,a=!!c;!function(e){var n=Date.now(),t=h.upperBound(n);e.index(p).openCursor(t)[s]=f(function(e){var n=e[u][d];n&&(n.delete(),n.continue())}),e.put({exp:n+60*v*60*1e3},g)}(o),function(e,n,t){if(n){I("setEntity",{page:{pageSource:"cache",requestId:e,cacheRequestId:g},session:{id:t}}),x("log",{schemaId:"<ns>.CacheImpression.1"},{ent:"all"})}}(c,a,n),a&&l&&l(c,n,r)})})}catch(e){}function D(e){try{var n=r.cookie.match(RegExp("(^| )"+e+"=([^;]+)"));return n&&n[2].trim()}catch(e){}}});csa.plugin(function(c){var i,t="Content",e="MutationObserver",n="requestAnimationFrame",r="addedNodes",u="querySelectorAll",a="matches",o="getAttributeNames",s="getAttribute",f="dataset",l="producerId",d={ent:{element:1,page:["pageType","subPageType","requestId"]}},m=5,h=10,g="csaC",p=g+"Id",v={},y=c.config,E=y[t+".Selectors"]||[],b=y[t+".WhitelistedAttributes"]||{href:1,class:1},I=y[t+".EnableContentEntities"],w=c.global,A=w.document||{},C=A.documentElement,k=w.HTMLElement,L={},N=[],O=function(t,e,n,i){var r=this,o=c("Events",{producerId:t});r.id=e.id,r.l=o,r.e=e,r.el=n,r.rt=i,r.dlo=d,r.log=function(t,e){o("log",t,e||d)},e.id&&o("setEntity",{element:e})},U=O.prototype;function q(t){var e=(t=t||{}).element,n=t.target;return e?function(t,e){var n;n=t instanceof k?_(t)||S(e[l],t,F,c.time()):L[t.id]||$(e[l],0,t,c.time());return n}(e,t):n?function(t){var e,n=function(t){var e=null,n=0;for(;t&&n<h;){if(n++,T(t,p)){e=t;break}t=t.parentElement}return e}(t);e=n?_(n):new O("csa",{id:null},null,c.time());return e}(n):c.error("No element or target argument provided.")}function T(t,e){if(t&&t.dataset)return t.dataset[e]}function j(t,e,n){N.push({n:n,e:t,t:e}),D()}function x(){for(var t=c.time(),e=0;0<N.length;){var n=N.shift();if(v[n.n](n.e,n.t),++e%10==0&&c.time()-t>m)break}i=0,N.length&&D()}function D(){i=i||w[n](x)}function M(t,e,n){return{n:t,e:e,t:n}}function S(t,e,n,i){var r=c.UUID(),o={id:r};return e[f][p]=r,n(o,e),$(t,e,o,i)}function $(t,e,n,i){I&&(n.schemaId="<ns>.ContentEntity.2"),n.id=n.id||c.UUID();var r=new O(t,n,e,i);return I&&r.log({schemaId:"<ns>.ContentRender.1",timestamp:i}),c.emit("$content.register",r),L[n.id]=r}function _(t){return L[(t[f]||{})[p]]}function F(t,e){o in e&&(function(n,i){Object.keys(n[f]).forEach(function(t){if(!t.indexOf(g)&&g.length<t.length){var e=function(t){return(t[0]||"").toLowerCase()+t.slice(1)}(t.slice(g.length));i[e]=n[f][t]}})}(e,t),function(e,n){(e[o]()||[]).forEach(function(t){t in b&&(n[t]=e[s](t))})}(e,t))}C&&w[n]&&A[u]&&w[e]&&(E.push({selector:"*[data-csa-c-type]",entity:F}),E.push({selector:".celwidget",entity:function(t,e){F(t,e),t.slotId=t.slotId||e[s]("cel_widget_id")||e.id,t.type=t.type||"widget"}}),v[1]=function(t,e){t.forEach(function(t){t[r]&&t[r].constructor&&"NodeList"===t[r].constructor.name&&Array.prototype.forEach.call(t[r],function(t){N.unshift(M(2,t,e))})})},v[2]=function(o,c){u in o&&a in o&&E.forEach(function(t){var e=t.selector,n=o[a](e),i=o[u](e);n&&N.unshift(M(3,{e:o,s:t},c));for(var r=0;r<i.length;r++)N.unshift(M(3,{e:i[r],s:t},c))})},v[3]=function(t,e){var n=t.e;_(n)||S("csa",n,t.s.entity,e)},v[4]=function(){c.register(t,{instance:q})},new w[e](function(t){j(t,c.time(),1)}).observe(C,{childList:!0,subtree:!0}),j(C,c.time(),2),j(null,c.time(),4),c.on("$content.export",function(e){Object.keys(e).forEach(function(t){U[t]=e[t]})}))});csa.plugin(function(n){var i,t="IntersectionObserver",r="getAttribute",o="dataset",s="intersectionRatio",m="csaCId",a=n.config["Content.ImpressionMinimumTime"]||1e3,c=n.global,e=((c.performance||{}).timing||{}).navigationStart||n.time(),l={};function u(t){t&&(t.v=1,function(t){t.vt=n.time(),t.el.log({schemaId:"<ns>.ContentView.2",timeToViewed:t.vt-t.el.rt,pageFirstPaintToElementViewed:t.vt-e})}(t))}function f(t){t&&!t.it&&(t.i=n.time()-t.is>a,function(t){t.it=n.time(),t.el.log({schemaId:"<ns>.ContentImpressed.2",timeToImpressed:t.it-t.el.rt,pageFirstPaintToElementImpressed:t.it-e})}(t))}c[t]&&(i=new c[t](function(t){t.forEach(function(t){var e=function(t){if(t&&t[r])return l[t[o][m]]}(t.target);if(e){var i=t.intersectionRect;t.isIntersecting&&0<i.width&&0<i.height&&(e.v||u(e),.5<=t[s]&&!e.is&&(e.is=n.time(),e.timer=c.setTimeout(f.bind(this,e),a))),t[s]<.5&&!e.it&&e.timer&&(c.clearTimeout(e.timer),e.is=0,e.timer=0)}})},{threshold:[0,.5]}),n.on("$content.register",function(t){var e=t.el;e&&(l[t.id]={el:t,v:0,i:0,is:0,vt:0,it:0},i.observe(e))}))});csa.plugin(function(e){e.emit("$content.export",{mark:function(t,n){var o=this;o.t||(o.t=e("Timers",{logger:o.l,schemaId:"<ns>.ContentLatency.1",logOptions:o.dlo})),o.t("mark",t,n)}})});
@@ -3380,7 +1597,7 @@ csa.plugin(function(e){var i="transitionStart",n="pageVisible",t="PageTiming",a=
 </div>
 
 <noscript>
-    <img height="1" width="1" style='display:none;visibility:hidden;' src='//fls-na.amazon.com/1/batch/1/OP/A1EVAM02EL8SFB:141-0146306-8372251:NEG5XMJTRVWKM8N06K5T$uedata=s:%2Frd%2Fuedata%3Fnoscript%26id%3DNEG5XMJTRVWKM8N06K5T:0' alt=""/>
+    <img height="1" width="1" style='display:none;visibility:hidden;' src='//fls-na.amazon.com/1/batch/1/OP/A1EVAM02EL8SFB:144-1672637-7516703:C1ESPQZPQRY5K4NK99SD$uedata=s:%2Frd%2Fuedata%3Fnoscript%26id%3DC1ESPQZPQRY5K4NK99SD:0' alt=""/>
 </noscript>
 
     </body>

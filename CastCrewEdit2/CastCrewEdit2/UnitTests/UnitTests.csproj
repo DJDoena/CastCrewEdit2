@@ -56,6 +56,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CastCrewEdit2\CastCrewEdit2.csproj">
+      <Project>{ff2b79d8-3e3d-47f2-b3b6-0cf9f6902372}</Project>
+      <Name>CastCrewEdit2</Name>
+    </ProjectReference>
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />
     <ProjectReference Include="..\..\CastCrewEdit2Library\CastCrewEdit2Library.csproj">
@@ -69,10 +73,6 @@
     <ProjectReference Include="..\..\..\DVDProfilerXML\DVDProfilerXML\DVDProfilerXML.csproj">
       <Project>{2E90CC6F-892E-45B3-8812-EE52FFA3B222}</Project>
       <Name>DVDProfilerXML</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CastCrewEdit2\CastCrewEdit2.csproj">
-      <Project>{FF2B79D8-3E3D-47F2-B3B6-0CF9F6902372}</Project>
-      <Name>CastCrewEdit2 %28CastCrewEdit2\CastCrewEdit2%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +153,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Existing\tt2056771.fullcredits.html.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Existing\tt4338588.fullcredits.html.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Existing\tt4338588.soundtrack.html.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

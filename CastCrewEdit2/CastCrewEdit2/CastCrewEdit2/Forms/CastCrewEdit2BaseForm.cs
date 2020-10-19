@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Net;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -46,10 +46,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             TVShowTitle = String.Empty;
             s_HasAgreed = false;
-            CastBlockStartRegex = new Regex("<table class=\"cast_list\">", RegexOptions.Compiled);
+            CastBlockStartRegex = new Regex("<table (.*?)class=\"cast_list\"(.*?)>", RegexOptions.Compiled | RegexOptions.Multiline);
             BlockEndRegex = new Regex("</table>", RegexOptions.Compiled);
-            CastLineRegex = new Regex("<tr class=\"(odd|even)\">.*?</tr>", RegexOptions.Compiled | RegexOptions.Multiline);
-            CrewBlockStartRegex = new Regex("<h4 class=\"dataHeaderWithBorder\">", RegexOptions.Compiled);
+            CastLineRegex = new Regex("<tr (.*?)class=\"(odd|even)\"(.*?)>.*?</tr>", RegexOptions.Compiled | RegexOptions.Multiline);
+            CrewBlockStartRegex = new Regex("<h4 (.*?)class=\"dataHeaderWithBorder\"(.*?)>", RegexOptions.Compiled | RegexOptions.Multiline);
         }
 
         public CastCrewEdit2BaseForm()
@@ -95,7 +95,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             String targetUrl = IMDbParser.TitleUrl + key + "/fullcredits";
 
             String webSite = IMDbParser.GetWebSite(targetUrl);
-                        
+
             if (initializeLists)
             {
                 castList = new List<CastInfo>();
@@ -111,7 +111,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 {
                     while (sr.Peek() != -1)
                     {
-                        String line = sr.ReadLine();
+                        String line = ReadLine(sr);
                         if (CastBlockStartRegex.Match(line).Success)
                         {
                             StringBuilder block;
@@ -121,7 +121,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                             block.Append(line.Trim());
                             while ((BlockEndRegex.Match(line).Success == false) && (sr.Peek() != -1))
                             {
-                                line = sr.ReadLine();
+                                line = ReadLine(sr);
                                 block.Append(line.Trim());
                             }
                             lineMatches = CastLineRegex.Matches(block.ToString());
@@ -148,7 +148,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 {
                     while (sr.Peek() != -1)
                     {
-                        String line = sr.ReadLine();
+                        string line = ReadLine(sr);
                         if (CrewBlockStartRegex.Match(line).Success)
                         {
                             StringBuilder block;
@@ -157,7 +157,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                             block.Append(line.Trim());
                             while ((BlockEndRegex.Match(line).Success == false) && (sr.Peek() != -1))
                             {
-                                line = sr.ReadLine();
+                                line = ReadLine(sr);
                                 block.Append(line.Trim());
                             }
                             IMDbParser.ProcessCrewLine(block.ToString(), crewList, crewMatches
@@ -174,6 +174,32 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
             #endregion
         }
+
+        private static string ReadLine(StringReader sr)
+        {
+            var line = sr.ReadLine();
+
+            var openTagCount = line.Count(c => c == '<');
+
+            var closeTagCount = line.Count(c => c == '>');
+
+            while (openTagCount > closeTagCount && sr.Peek() != -1)
+            {
+                line += sr.ReadLine();
+
+                openTagCount = line.Count(c => c == '<');
+
+                closeTagCount = line.Count(c => c == '>');
+
+                if (line.Contains("</script>"))
+                {
+                    break;
+                }
+            }
+
+            return line;
+        }
+
 
         private void EditConfigFile(String fileName, String name, FileNameType fileNameType, Boolean createFile)
         {
@@ -323,7 +349,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     Match beginMatch;
                     //Match endMatch;
 
-                    line = sr.ReadLine();
+                    line = ReadLine(sr);
                     if (soundtrackFound == false)
                     {
                         beginMatch = IMDbParser.SoundtrackStartRegex.Match(line);

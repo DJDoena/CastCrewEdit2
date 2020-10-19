@@ -88,11 +88,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 = new Regex("<td class=\"primary_photo\">.*?<td><a href=\"/name/(?'PersonLink'[a-z0-9]+)/.*?>(?'PersonName'.+?)</a>          </td><td class=\"ellipsis\">(...)?</td><td class=\"character\">(<div>)?(?'Role'.*?)(</div>)?</td>"
                     , RegexOptions.Compiled);
 
-            _creditTypeRegex = new Regex("<h4 class=\"dataHeaderWithBorder\">(?'CreditType'.+?)(<span.+?)?(&nbsp;)?</h4>", RegexOptions.Compiled);
+            _creditTypeRegex = new Regex("<h4 (.*?)class=\"dataHeaderWithBorder\"(.*?)>(?'CreditType'.+?)(<span.+?)?(&nbsp;)?</h4>", RegexOptions.Compiled | RegexOptions.Multiline);
             //CrewRegex
             //    = new Regex("<td valign=\"top\"><a href=\"/name/(?'PersonLink'[a-z0-9]+)/\">(?'PersonName'.+?)</a></td>((<td( valign=\"top\")*>&nbsp;</td>)|(<td valign=\"top\" nowrap=\"1\"> .... </td>))<td valign=\"top\">(<a.+?>)*(?'Credit'.+?)</td>"
             //        , RegexOptions.Compiled);
-            _crewRegex = new Regex("<td class=\"name\"><a href=\"/name/(?'PersonLink'[a-z0-9]+)/.*?>(?'PersonName'.+?)</a>.*?</td>((<td colspan=\"2\">)|(<td class=\"credit\">))(?'Credit'.*?)</td>", RegexOptions.Compiled);
+            _crewRegex = new Regex("<td (.*?)class=\"name\"(.*?)><a (.*?)href=\"/name/(?'PersonLink'[a-z0-9]+)/(.*?)>(?'PersonName'.+?)</a>.*?</td>((<td colspan=\"(2|3)\">)|(<td (.*?)class=\"credit\"(.*?)>))(?'Credit'.*?)</td>", RegexOptions.Compiled | RegexOptions.Multiline);
             _photoRegex = new Regex("<td.+?id=\"img_primary\".*?>", RegexOptions.Compiled);
             _photoUrlRegex = new Regex("<img (.*?)src=\"(?'PhotoUrl'.+?)\"", RegexOptions.Compiled);
             TriviaStartRegex = new Regex("class=\"soda (even|odd) sodavote\".*?>", RegexOptions.Compiled);

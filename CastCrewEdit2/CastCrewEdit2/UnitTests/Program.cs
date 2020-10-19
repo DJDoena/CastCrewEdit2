@@ -11,7 +11,7 @@ using DoenaSoft.DVDProfiler.CastCrewEdit2;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
-using DoenaSoft.DVDProfiler.DVDProfilerXML.Version390;
+using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
 
 namespace UnitTests
 {
@@ -30,6 +30,7 @@ namespace UnitTests
         private const String LoveIsTheDrug = "tt0266732";
         private const String FridayNightLights = "tt0758745";
         private const String ABiggerSplash = "tt2056771";
+        private const string Roots = "tt4338588";
 
         [STAThread]
         public static void Main()
@@ -55,6 +56,7 @@ namespace UnitTests
             Test(MovieCastHotShots);
             Test(MovieCrewHotShots);
             Test(MovieCastABiggerSplash);
+            Test(EpisodeCrewRoots);
         }
 
         private static void TestFixtureSetup()
@@ -74,6 +76,8 @@ namespace UnitTests
             CreateMockWebResponse(IMDbParser.TitleUrl, LoveIsTheDrug, "fullcredits");
             CreateMockWebResponse(IMDbParser.TitleUrl, FridayNightLights, "episodes?season=1");
             CreateMockWebResponse(IMDbParser.TitleUrl, ABiggerSplash, "fullcredits");
+            CreateMockWebResponse(IMDbParser.TitleUrl, Roots, "fullcredits"); 
+            CreateMockWebResponse(IMDbParser.TitleUrl, Roots, "soundtrack");
         }
 
         #region Tests
@@ -100,8 +104,8 @@ namespace UnitTests
             FileInfo current;
 
             MovieCast(HotShots, out castMatches, out castList, out progressBarMaxValue, out existing, out current);
-            Assert.AreEqual(70, castMatches.Count, "castMatches.Count");
-            Assert.AreEqual(74, castList.Count, "castList.Count");
+            Assert.AreEqual(71, castMatches.Count, "castMatches.Count");
+            Assert.AreEqual(75, castList.Count, "castList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
@@ -114,9 +118,9 @@ namespace UnitTests
             FileInfo current;
 
             MovieCrew(HotShots, out crewMatches, out crewList, out progressBarMaxValue, out existing, out current);
-            Assert.AreEqual(26, crewMatches.Count, "castMatches.Count");
-            Assert.AreEqual(199, progressBarMaxValue, "progressBarMaxValue");
-            Assert.AreEqual(189, crewList.Count, "castList.Count");
+            Assert.AreEqual(27, crewMatches.Count, "castMatches.Count");
+            Assert.AreEqual(200, progressBarMaxValue, "progressBarMaxValue");
+            Assert.AreEqual(190, crewList.Count, "castList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
@@ -129,7 +133,7 @@ namespace UnitTests
             episodeInfo.SeasonNumber = "1";
             episodeInfo.EpisodeNumber = "1";
             EpisodeCrew(episodeInfo);
-            Assert.AreEqual(19, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
+            Assert.AreEqual(20, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
             Assert.AreEqual(30, episodeInfo.CrewList.Count, "episodeInfo.CrewList.Count");
         }
 
@@ -166,7 +170,7 @@ namespace UnitTests
             FileInfo current;
 
             MovieCrew(LoveIsTheDrug, out crewMatches, out crewList, out progressBarMaxValue, out existing, out current);
-            Assert.AreEqual(24, crewMatches.Count, "crewMatches.Count");
+            Assert.AreEqual(25, crewMatches.Count, "crewMatches.Count");
             Assert.AreEqual(105, progressBarMaxValue, "progressBarMaxValue");
             Assert.AreEqual(109, crewList.Count, "crewList.Count");
             Assert.AreEqual("Steven", crewList[51].FirstName, "crewList[51].FirstName");
@@ -193,7 +197,7 @@ namespace UnitTests
             FileInfo current;
 
             MovieCrew(Winnetou, out crewMatches, out crewList, out progressBarMaxValue, out existing, out current);
-            Assert.AreEqual(14, crewMatches.Count, "crewMatches.Count");
+            Assert.AreEqual(15, crewMatches.Count, "crewMatches.Count");
             Assert.AreEqual(21, progressBarMaxValue, "progressBarMaxValue");
             Assert.AreEqual(19, crewList.Count, "crewList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
@@ -233,6 +237,19 @@ namespace UnitTests
             Assert.AreEqual(95, progressBarMaxValue, "progressBarMaxValue");
             Assert.AreEqual(95, crewList.Count, "crewList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
+        }
+
+        private static void EpisodeCrewRoots()
+        {
+            EpisodeInfo episodeInfo;
+
+            episodeInfo = new EpisodeInfo();
+            episodeInfo.Link = Roots;
+            episodeInfo.SeasonNumber = "1";
+            episodeInfo.EpisodeNumber = "1";
+            EpisodeCrew(episodeInfo);
+            Assert.AreEqual(29, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
+            Assert.AreEqual(278, episodeInfo.CrewList.Count, "episodeInfo.CrewList.Count");
         }
 
         private static void PersonWithBirthYearEmmaWatson()
