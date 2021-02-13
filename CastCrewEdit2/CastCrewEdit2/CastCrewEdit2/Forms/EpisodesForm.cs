@@ -324,10 +324,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             Int32 compare;
 
-            compare = left.SeasonNumber.PadLeft(2, '0').CompareTo(right.SeasonNumber.PadLeft(2, '0'));
+            compare = left.SeasonNumber.PadLeft(3, '0').CompareTo(right.SeasonNumber.PadLeft(3, '0'));
             if (compare == 0)
             {
-                compare = left.EpisodeNumber.PadLeft(2, '0').CompareTo(right.EpisodeNumber.PadLeft(2, '0'));
+                compare = left.EpisodeNumber.PadLeft(5, '0').CompareTo(right.EpisodeNumber.PadLeft(5, '0'));
             }
             return (compare);
         }
