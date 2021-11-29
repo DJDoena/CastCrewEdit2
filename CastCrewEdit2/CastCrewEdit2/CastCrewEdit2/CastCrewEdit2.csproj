@@ -424,12 +424,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Toolkit.Forms.UI.Controls.WebView">
-      <Version>6.0.0</Version>
-    </PackageReference>
+    <EmbeddedResource Include="Resources\djdsoft.ico" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\djdsoft.ico" />
+    <PackageReference Include="Microsoft.Web.WebView2">
+      <Version>1.0.1020.30</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

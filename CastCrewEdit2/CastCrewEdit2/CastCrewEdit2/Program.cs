@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -47,37 +46,17 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         public static readonly CastCrewEditAdapterEventHandler AdapterEventHandler;
 
-        private static Boolean IsWindows10;
+        private static readonly bool IsAtLeastWindows10Update1803;
 
-        private static Boolean IsAtLeastWindows10Update1803;
-
-        private static Boolean RunsAsElevated;
+        private static readonly bool RunsAsElevated;
 
         internal static bool ShowNewBrowser => IsAtLeastWindows10Update1803 && !RunsAsElevated;
 
         static Program()
         {
-            IsWindows10 = false;
+            IsAtLeastWindows10Update1803 = GetIsAtLeastWindows10Update1803();
 
-            IsAtLeastWindows10Update1803 = false;
-
-            var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
-
-            var productName = key.GetValue("ProductName") as string ?? string.Empty;
-
-            if (productName.StartsWith("Windows 10"))
-            {
-                IsWindows10 = true;
-
-                var releaseIdString = key.GetValue("ReleaseId") as string ?? string.Empty;
-
-                if (int.TryParse(releaseIdString, out var releaseId) && releaseId >= 1803)
-                {
-                    IsAtLeastWindows10Update1803 = true;
-                }
-            }
-
-            RunsAsElevated = GetRunsAsElevated();
+            RunsAsElevated = false;
 
             RegistryAccess.Init("Doena Soft.", "CastCrewEdit2");
             WindowHandle = new WindowHandle();
@@ -85,6 +64,31 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             ErrorFile = Environment.GetEnvironmentVariable("TEMP") + @"\CastCrewEdit2Crash.xml";
             DebugMode = false;
             AdapterEventHandler = new CastCrewEditAdapterEventHandler();
+        }
+
+        private static bool GetIsAtLeastWindows10Update1803()
+        {
+            var isAtLeastWindows10Update1803 = false;
+
+            var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+
+            var productName = key.GetValue("ProductName") as string ?? string.Empty;
+
+            if (productName.StartsWith("Windows 10"))
+            {
+                var releaseIdString = key.GetValue("ReleaseId") as string ?? string.Empty;
+
+                if (int.TryParse(releaseIdString, out var releaseId) && releaseId >= 1803)
+                {
+                    isAtLeastWindows10Update1803 = true;
+                }
+            }
+            else if (productName.StartsWith("Windows 11"))
+            {
+                isAtLeastWindows10Update1803 = true;
+            }
+
+            return isAtLeastWindows10Update1803;
         }
 
         internal static void InitPaths()
@@ -472,42 +476,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                     Directory.CreateDirectory("errors");
                 }
                 DVDProfilerSerializer<ExceptionXml>.Serialize(@"errors\" + filename.ToString(), xml);
-            }
-        }
-
-        //https://github.com/windows-toolkit/Microsoft.Toolkit.Win32/issues/254#issuecomment-613675375
-        //https://github.com/windows-toolkit/Microsoft.Toolkit.Win32/issues/13
-        private static bool GetRunsAsElevated()
-        {
-            WindowsIdentity user = null;
-
-            try
-            {
-                //get the currently logged in user
-                user = WindowsIdentity.GetCurrent();
-                
-                var principal = new WindowsPrincipal(user);
-                
-                var isElevated = principal.IsInRole(WindowsBuiltInRole.Administrator);
-
-                return isElevated;
-            }
-            catch (UnauthorizedAccessException)
-            {
-                //we're conservative here, so we say yes
-                return true;
-            }
-            catch (Exception)
-            {
-                //we're conservative here, so we say yes
-                return true;
-            }
-            finally
-            {
-                if (user != null)
-                {
-                    user.Dispose();
-                }
             }
         }
     }

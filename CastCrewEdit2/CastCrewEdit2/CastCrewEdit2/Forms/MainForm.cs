@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
-using Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT;
+using Microsoft.Web.WebView2.Core;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
@@ -153,10 +153,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         pClientSite);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int GetClientSite([Out, MarshalAs(UnmanagedType.Interface)]out IOleClientSite site);
+        int GetClientSite([Out, MarshalAs(UnmanagedType.Interface)] out IOleClientSite site);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int SetHostNames([In, MarshalAs(UnmanagedType.LPWStr)] String szContainerApp, [In, MarshalAs(UnmanagedType.LPWStr)]String szContainerObj);
+        int SetHostNames([In, MarshalAs(UnmanagedType.LPWStr)] String szContainerApp, [In, MarshalAs(UnmanagedType.LPWStr)] String szContainerObj);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
         int Close([In, MarshalAs(UnmanagedType.U4)] uint dwSaveOption);
@@ -168,11 +168,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         int GetMoniker([In, MarshalAs(UnmanagedType.U4)] uint dwAssign, [In, MarshalAs(UnmanagedType.U4)] uint dwWhichMoniker, [Out, MarshalAs(UnmanagedType.Interface)] out Object moniker);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int InitFromData([In, MarshalAs(UnmanagedType.Interface)]Object pDataObject, [In, MarshalAs(UnmanagedType.Bool)] Boolean fCreation, [In, MarshalAs(UnmanagedType.U4)] uint dwReserved);
+        int InitFromData([In, MarshalAs(UnmanagedType.Interface)] Object pDataObject, [In, MarshalAs(UnmanagedType.Bool)] Boolean fCreation, [In, MarshalAs(UnmanagedType.U4)] uint dwReserved);
         int GetClipboardData([In, MarshalAs(UnmanagedType.U4)] uint dwReserved, out Object data);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int DoVerb([In, MarshalAs(UnmanagedType.I4)] int iVerb, [In]IntPtr lpmsg, [In, MarshalAs(UnmanagedType.Interface)] IOleClientSite pActiveSite, [In, MarshalAs(UnmanagedType.I4)] int lindex, [In] IntPtr hwndParent, [In] RECT lprcPosRect);
+        int DoVerb([In, MarshalAs(UnmanagedType.I4)] int iVerb, [In] IntPtr lpmsg, [In, MarshalAs(UnmanagedType.Interface)] IOleClientSite pActiveSite, [In, MarshalAs(UnmanagedType.I4)] int lindex, [In] IntPtr hwndParent, [In] RECT lprcPosRect);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
         int EnumVerbs(out Object e); // IEnumOLEVERB
@@ -196,7 +196,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         int GetExtent([In, MarshalAs(UnmanagedType.U4)] uint dwDrawAspect, [Out] Object pSizel); // tagSIZEL
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int Advise([In, MarshalAs(UnmanagedType.Interface)]System.Runtime.InteropServices.ComTypes.IAdviseSink pAdvSink, out int cookie);
+        int Advise([In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IAdviseSink pAdvSink, out int cookie);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
         int Unadvise([In, MarshalAs(UnmanagedType.U4)] int dwConnection);
@@ -283,7 +283,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         private List<CastInfo> CastList;
         private List<CrewInfo> CrewList;
         private System.Windows.Forms.WebBrowser WebBrowserOld;
-        private Microsoft.Toolkit.Forms.UI.Controls.WebView WebBrowserNew;
+        private Microsoft.Web.WebView2.WinForms.WebView2 WebBrowserNew;
 
         [Flags()]
         private enum EpisodeParts
@@ -319,38 +319,47 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             SoundtrackMatches = new Dictionary<String, List<Match>>();
 
-            InitializeComponent();
+            this.InitializeComponent();
 
             if (Program.ShowNewBrowser)
             {
-                WebBrowserNew = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
+                WebBrowserNew = new Microsoft.Web.WebView2.WinForms.WebView2();
+
                 ((System.ComponentModel.ISupportInitialize)(WebBrowserNew)).BeginInit();
+
                 WebBrowserNew.Name = "WebBrowser";
                 WebBrowserNew.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
                 WebBrowserNew.Location = new Point(9, 64);
                 WebBrowserNew.Size = new Size(845, 395);
-                WebBrowserNew.NavigationCompleted += OnWebBrowserNavigationCompleted;
-                WebBrowserNew.NavigationStarting += OnWebBrowserNavigationStarting;
+
                 ((System.ComponentModel.ISupportInitialize)(WebBrowserNew)).EndInit();
+
+                WebBrowserNew.NavigationCompleted += this.OnWebBrowserNavigationCompleted;
+                WebBrowserNew.NavigationStarting += this.OnWebBrowserNavigationStarting;
+
                 BrowserTab.Controls.Add(WebBrowserNew);
             }
             else
             {
-                WebBrowserOld = new System.Windows.Forms.WebBrowser();
-                WebBrowserOld.AllowWebBrowserDrop = false;
-                WebBrowserOld.Name = "WebBrowser";
-                WebBrowserOld.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-                WebBrowserOld.Location = new Point(9, 64);
-                WebBrowserOld.Size = new Size(845, 395);
-                WebBrowserOld.ScriptErrorsSuppressed = true;
-                WebBrowserOld.Navigated += OnWebBrowserNavigated;
-                WebBrowserOld.Navigating += OnWebBrowserNavigating;
+                WebBrowserOld = new System.Windows.Forms.WebBrowser
+                {
+                    AllowWebBrowserDrop = false,
+                    Name = "WebBrowser",
+                    Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                    Location = new Point(9, 64),
+                    Size = new Size(845, 395),
+                    ScriptErrorsSuppressed = true,
+                };
+
+                WebBrowserOld.Navigated += this.OnWebBrowserNavigated;
+                WebBrowserOld.Navigating += this.OnWebBrowserNavigating;
+
                 BrowserTab.Controls.Add(WebBrowserOld);
             }
 
             TheProgressBar = ProgressBar;
 
-            Icon = Properties.Resource.djdsoft;
+            this.Icon = Properties.Resource.djdsoft;
         }
 
         [DispId(-5512)]
@@ -429,7 +438,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             Boolean failed = false;
 
-            StartLongAction();
+            this.StartLongAction();
 
             try
             {
@@ -461,13 +470,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     MovieTitleLink = match.Groups["TitleLink"].Value.ToString();
 
                     //url = IMDbParser.TitleUrl + MovieTitleLink + "/fullcredits";
-                    ParseIMDb(MovieTitleLink);
+                    this.ParseIMDb(MovieTitleLink);
 
                     if ((Program.Settings.DefaultValues.DisableParsingCompleteMessageBox == false)
                         && (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing == false)
                         && (Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing == false))
                     {
-                        ProcessMessageQueue();
+                        this.ProcessMessageQueue();
 
                         MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -510,22 +519,22 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
                 PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
 
-                SetMovieFormText();
+                this.SetMovieFormText();
 
-                EndLongActionWithGrids();
+                this.EndLongActionWithGrids();
             }
 
             if ((failed == false) && (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing))
             {
-                GetBirthYears(Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing);
+                this.GetBirthYears(Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing);
             }
 
             if ((failed == false) && (Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing))
             {
-                OnGetHeadshotsButtonClick(sender, e);
+                this.OnGetHeadshotsButtonClick(sender, e);
             }
 
-            ProcessMessageQueue();
+            this.ProcessMessageQueue();
 
             if (failed == false)
             {
@@ -536,7 +545,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void EndLongActionWithGrids()
         {
-            EndLongAction();
+            this.EndLongAction();
 
             MovieCastDataGridView.Refresh();
             MovieCrewDataGridView.Refresh();
@@ -546,11 +555,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             if (String.IsNullOrEmpty(MovieTitle) == false)
             {
-                Text = "Cast/Crew Edit 2 - " + MovieTitle;
+                this.Text = "Cast/Crew Edit 2 - " + MovieTitle;
             }
             else
             {
-                Text = "Cast/Crew Edit 2";
+                this.Text = "Cast/Crew Edit 2";
             }
         }
 
@@ -558,10 +567,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             DefaultValues defaultValues;
 
-            defaultValues = CopyDefaultValues();
+            defaultValues = this.CopyDefaultValues();
             CastList = new List<CastInfo>();
             CrewList = new List<CrewInfo>();
-            ParseTitle(key);
+            this.ParseTitle(key);
             ParseCastAndCrew(defaultValues, key, ParseCastCheckBox.Checked, ParseCrewCheckBox.Checked, ParseCrewCheckBox.Checked
                 , false, ref CastMatches, ref CastList, ref CrewMatches, ref CrewList, ref SoundtrackMatches);
             try
@@ -578,17 +587,17 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     progressMax += kvp.Value.Count;
                 }
 
-                StartProgress(progressMax, Color.LightBlue);
+                this.StartProgress(progressMax, Color.LightBlue);
 
-                ProcessLines(CastList, CastMatches, CrewList, CrewMatches, SoundtrackMatches, defaultValues);
+                this.ProcessLines(CastList, CastMatches, CrewList, CrewMatches, SoundtrackMatches, defaultValues);
             }
             finally
             {
-                EndProgress();
+                this.EndProgress();
             }
-            UpdateUI();
-            ParseTrivia();
-            ParseGoofs();
+            this.UpdateUI();
+            this.ParseTrivia();
+            this.ParseGoofs();
         }
 
         private void ParseTitle(String key)
@@ -615,7 +624,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
                             MovieTitle = MovieTitle.Replace(" - IMDb", String.Empty).Replace(" - Full Cast & Crew", String.Empty).Trim();
 
-                            CreateTitleRow();
+                            this.CreateTitleRow();
 
                             break;
                         }
@@ -664,7 +673,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     }
                     if (trivia.Length > 0)
                     {
-                        ParseTrivia(trivia, triviaUrl);
+                        this.ParseTrivia(trivia, triviaUrl);
                     }
                 }
             }
@@ -747,7 +756,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     }
                     if (goofs.Length > 0)
                     {
-                        ParseGoofs(goofs, goofsUrl);
+                        this.ParseGoofs(goofs, goofsUrl);
                     }
                 }
             }
@@ -842,7 +851,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void UpdateUI()
         {
-            UpdateUI(CastList, CrewList, MovieCastDataGridView, MovieCrewDataGridView
+            this.UpdateUI(CastList, CrewList, MovieCastDataGridView, MovieCrewDataGridView
                 , ParseCastCheckBox.Checked, ParseCrewCheckBox.Checked, MovieTitleLink, MovieTitle);
             if (Log.Length > 0)
             {
@@ -852,25 +861,25 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void OnMainFormLoad(Object sender, EventArgs e)
         {
-            SuspendLayout();
-            LayoutForm();
-            CreateDataGridViewColumns();
-            SetCheckBoxes();
+            this.SuspendLayout();
+            this.LayoutForm();
+            this.CreateDataGridViewColumns();
+            this.SetCheckBoxes();
             if (ItsMe)
             {
                 MenuStrip.Items.Add(sessionDataToolStripMenuItem);
             }
-            ResumeLayout();
+            this.ResumeLayout();
             BirthYearsInLocalCacheLabel.Text = IMDbParser.PersonHashCount;
             PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
-            RegisterEvents();
+            this.RegisterEvents();
             if (Program.Settings.CurrentVersion != Assembly.GetExecutingAssembly().GetName().Version.ToString())
             {
-                OpenReadme();
+                this.OpenReadme();
                 Program.Settings.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
-            CheckForNewVersion(true);
-            NavigateTo("https://www.imdb.com/find?s=tt&q=");
+            this.CheckForNewVersion(true);
+            this.NavigateTo("https://www.imdb.com/find?s=tt&q=");
             BrowserSearchTextBox.Focus();
         }
 
@@ -881,13 +890,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 if (SkipVersionCheck == false)
                 {
                     OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/3.9.0/versions.xml", this, "CastCrewEdit2"
-                        , GetType().Assembly, silently);
+                        , this.GetType().Assembly, silently);
                 }
             }
             else
             {
                 OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/3.9.0/versions.xml", this, "CastCrewEdit2"
-                        , GetType().Assembly, silently);
+                        , this.GetType().Assembly, silently);
             }
         }
 
@@ -911,72 +920,72 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             if (Program.Settings.MainForm.WindowState == FormWindowState.Normal)
             {
-                Left = Program.Settings.MainForm.Left;
-                Top = Program.Settings.MainForm.Top;
-                if (Program.Settings.MainForm.Width > MinimumSize.Width)
+                this.Left = Program.Settings.MainForm.Left;
+                this.Top = Program.Settings.MainForm.Top;
+                if (Program.Settings.MainForm.Width > this.MinimumSize.Width)
                 {
-                    Width = Program.Settings.MainForm.Width;
+                    this.Width = Program.Settings.MainForm.Width;
                 }
                 else
                 {
-                    Width = MinimumSize.Width;
+                    this.Width = this.MinimumSize.Width;
                 }
-                if (Program.Settings.MainForm.Height > MinimumSize.Height)
+                if (Program.Settings.MainForm.Height > this.MinimumSize.Height)
                 {
-                    Height = Program.Settings.MainForm.Height;
+                    this.Height = Program.Settings.MainForm.Height;
                 }
                 else
                 {
-                    Height = MinimumSize.Height;
+                    this.Height = this.MinimumSize.Height;
                 }
             }
             else
             {
-                Left = Program.Settings.MainForm.RestoreBounds.X;
-                Top = Program.Settings.MainForm.RestoreBounds.Y;
-                if (Program.Settings.MainForm.RestoreBounds.Width > MinimumSize.Width)
+                this.Left = Program.Settings.MainForm.RestoreBounds.X;
+                this.Top = Program.Settings.MainForm.RestoreBounds.Y;
+                if (Program.Settings.MainForm.RestoreBounds.Width > this.MinimumSize.Width)
                 {
-                    Width = Program.Settings.MainForm.RestoreBounds.Width;
+                    this.Width = Program.Settings.MainForm.RestoreBounds.Width;
                 }
                 else
                 {
-                    Width = MinimumSize.Width;
+                    this.Width = this.MinimumSize.Width;
                 }
-                if (Program.Settings.MainForm.RestoreBounds.Height > MinimumSize.Height)
+                if (Program.Settings.MainForm.RestoreBounds.Height > this.MinimumSize.Height)
                 {
-                    Height = Program.Settings.MainForm.RestoreBounds.Height;
+                    this.Height = Program.Settings.MainForm.RestoreBounds.Height;
                 }
                 else
                 {
-                    Height = MinimumSize.Height;
+                    this.Height = this.MinimumSize.Height;
                 }
             }
             if (Program.Settings.MainForm.WindowState != FormWindowState.Minimized)
             {
-                WindowState = Program.Settings.MainForm.WindowState;
+                this.WindowState = Program.Settings.MainForm.WindowState;
             }
         }
 
         private void RegisterEvents()
         {
-            MovieCastDataGridView.CellValueChanged += OnMovieCastDataGridViewCellValueChanged;
-            MovieCrewDataGridView.CellValueChanged += OnMovieCrewDataGridViewCellValueChanged;
-            MovieCastDataGridView.CellContentClick += OnDataGridViewCellContentClick;
-            MovieCrewDataGridView.CellContentClick += OnDataGridViewCellContentClick;
-            SettingsToolStripMenuItem.Click += OnSettingsToolStripMenuItemClick;
-            FirstnamePrefixesToolStripMenuItem.Click += OnFirstnamePrefixesToolStripMenuItemClick;
-            LastnamePrefixesToolStripMenuItem.Click += OnLastnamePrefixesToolStripMenuItemClick;
-            LastnameSuffixesToolStripMenuItem.Click += OnLastnameSuffixesToolStripMenuItemClick;
-            KnownNamesToolStripMenuItem.Click += OnKnownNamesToolStripMenuItemClick;
-            IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Click += OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick;
-            IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Click += OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick;
-            ForcedFakeBirthYearsToolStripMenuItem.Click += OnForcedFakeBirthYearsToolStripMenuItemClick;
+            MovieCastDataGridView.CellValueChanged += this.OnMovieCastDataGridViewCellValueChanged;
+            MovieCrewDataGridView.CellValueChanged += this.OnMovieCrewDataGridViewCellValueChanged;
+            MovieCastDataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
+            MovieCrewDataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
+            SettingsToolStripMenuItem.Click += this.OnSettingsToolStripMenuItemClick;
+            FirstnamePrefixesToolStripMenuItem.Click += this.OnFirstnamePrefixesToolStripMenuItemClick;
+            LastnamePrefixesToolStripMenuItem.Click += this.OnLastnamePrefixesToolStripMenuItemClick;
+            LastnameSuffixesToolStripMenuItem.Click += this.OnLastnameSuffixesToolStripMenuItemClick;
+            KnownNamesToolStripMenuItem.Click += this.OnKnownNamesToolStripMenuItemClick;
+            IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Click += this.OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick;
+            IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Click += this.OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick;
+            ForcedFakeBirthYearsToolStripMenuItem.Click += this.OnForcedFakeBirthYearsToolStripMenuItemClick;
             IMDbToDVDProfilerTransformationDataToolStripMenuItem.Click
-                += OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick;
-            ReadmeToolStripMenuItem.Click += OnReadmeToolStripMenuItemClick;
-            AboutToolStripMenuItem.Click += OnAboutToolStripMenuItemClick;
-            BirthYearsInLocalCacheLabel.LinkClicked += OnBirthYearsInLocalCacheLabelLinkClicked;
-            PersonsInLocalCacheLabel.LinkClicked += OnPersonsInLocalCacheLabelLinkClicked;
+                += this.OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick;
+            ReadmeToolStripMenuItem.Click += this.OnReadmeToolStripMenuItemClick;
+            AboutToolStripMenuItem.Click += this.OnAboutToolStripMenuItemClick;
+            BirthYearsInLocalCacheLabel.LinkClicked += this.OnBirthYearsInLocalCacheLabelLinkClicked;
+            PersonsInLocalCacheLabel.LinkClicked += this.OnPersonsInLocalCacheLabelLinkClicked;
         }
 
         private void OnMainFormClosing(Object sender, FormClosingEventArgs e)
@@ -988,25 +997,25 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     sw.WriteLine(Log.ToString());
                 }
             }
-            Program.Settings.MainForm.Left = Left;
-            Program.Settings.MainForm.Top = Top;
-            Program.Settings.MainForm.Width = Width;
-            Program.Settings.MainForm.Height = Height;
-            Program.Settings.MainForm.WindowState = WindowState;
-            Program.Settings.MainForm.RestoreBounds = RestoreBounds;
+            Program.Settings.MainForm.Left = this.Left;
+            Program.Settings.MainForm.Top = this.Top;
+            Program.Settings.MainForm.Width = this.Width;
+            Program.Settings.MainForm.Height = this.Height;
+            Program.Settings.MainForm.WindowState = this.WindowState;
+            Program.Settings.MainForm.RestoreBounds = this.RestoreBounds;
         }
 
         private void OnGetBirthYearsButtonClick(Object sender
             , EventArgs e)
         {
-            GetBirthYears(false);
+            this.GetBirthYears(false);
 
-            ProcessMessageQueue();
+            this.ProcessMessageQueue();
         }
 
         private void GetBirthYears(Boolean parseHeadshotsFollows)
         {
-            GetBirthYears(parseHeadshotsFollows, MovieCastDataGridView, MovieCrewDataGridView
+            this.GetBirthYears(parseHeadshotsFollows, MovieCastDataGridView, MovieCrewDataGridView
                 , BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
         }
 
@@ -1069,7 +1078,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             Log.Show(LogWebBrowser);
 
-            ProcessMessageQueue();
+            this.ProcessMessageQueue();
 
             if (Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox == false)
             {
@@ -1096,7 +1105,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             Log.Show(LogWebBrowser);
 
-            ProcessMessageQueue();
+            this.ProcessMessageQueue();
 
             if (Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox == false)
             {
@@ -1107,7 +1116,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void OnTVShowScanPageButtonClick(Object sender, EventArgs e)
         {
-            StartLongAction();
+            this.StartLongAction();
 
             try
             {
@@ -1131,10 +1140,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 TVShowTitleLink = match.Groups["TitleLink"].Value.ToString();
                 try
                 {
-                    ScanForSeasons();
+                    this.ScanForSeasons();
                     if (Program.Settings.DefaultValues.DisableParsingCompleteMessageBox == false)
                     {
-                        ProcessMessageQueue();
+                        this.ProcessMessageQueue();
                         MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK
                             , MessageBoxIcon.Information);
                     }
@@ -1162,9 +1171,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
             finally
             {
-                SetTVShowFormText();
+                this.SetTVShowFormText();
 
-                EndLongActionWithGrids();
+                this.EndLongActionWithGrids();
             }
         }
 
@@ -1172,11 +1181,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             if (String.IsNullOrEmpty(TVShowTitle) == false)
             {
-                Text = "Cast/Crew Edit 2 For TV Shows - " + Resources.Resources.Seasons + " - " + TVShowTitle;
+                this.Text = "Cast/Crew Edit 2 For TV Shows - " + Resources.Resources.Seasons + " - " + TVShowTitle;
             }
             else
             {
-                Text = "Cast/Crew Edit 2 For TV Shows";
+                this.Text = "Cast/Crew Edit 2 For TV Shows";
             }
         }
 
@@ -1192,9 +1201,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             {
                 List<EpisodeInfo> episodes;
 
-                StartLongAction();
+                this.StartLongAction();
 
-                SuspendLayout();
+                this.SuspendLayout();
                 episodes = new List<EpisodeInfo>();
                 try
                 {
@@ -1304,9 +1313,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 }
                 finally
                 {
-                    ResumeLayout();
+                    this.ResumeLayout();
 
-                    EndLongActionWithGrids();
+                    this.EndLongActionWithGrids();
                 }
 
                 if (episodes.Count == 0)
@@ -1320,7 +1329,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 {
                     if (Program.Settings.DefaultValues.DisableParsingCompleteMessageBox == false)
                     {
-                        ProcessMessageQueue();
+                        this.ProcessMessageQueue();
                         MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK
                             , MessageBoxIcon.Information);
                     }
@@ -1330,7 +1339,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                         episodesForm.ShowDialog(this);
                         if (SettingsHaveChanged)
                         {
-                            SetCheckBoxes();
+                            this.SetCheckBoxes();
                             SettingsHaveChanged = false;
                         }
                         Log.Show(LogWebBrowser);
@@ -1404,11 +1413,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             if (((TabControl)sender).SelectedTab == MovieTab)
             {
-                SetMovieFormText();
+                this.SetMovieFormText();
             }
             else if (((TabControl)sender).SelectedTab == TVShowTab)
             {
-                SetTVShowFormText();
+                this.SetTVShowFormText();
             }
         }
 
@@ -1420,7 +1429,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     , Program.Settings.DefaultValues);
                 if (settingsForm.ShowDialog(this) == DialogResult.OK)
                 {
-                    SetCheckBoxes();
+                    this.SetCheckBoxes();
                 }
                 settingsForm.GetValues(out Program.Settings.SettingsForm.Left, out Program.Settings.SettingsForm.Top);
             }
@@ -1429,7 +1438,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         private void OnReApplySettingsAndFiltersButtonClick(Object sender
             , EventArgs e)
         {
-            StartLongAction();
+            this.StartLongAction();
 
             MovieCastDataGridView.Rows.Clear();
 
@@ -1439,9 +1448,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             CrewList = new List<CrewInfo>();
 
-            CreateTitleRow();
+            this.CreateTitleRow();
 
-            DefaultValues defaultValues = CopyDefaultValues();
+            DefaultValues defaultValues = this.CopyDefaultValues();
 
             try
             {
@@ -1457,31 +1466,31 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     progressMax += kvp.Value.Count;
                 }
 
-                StartProgress(progressMax, Color.LightBlue);
+                this.StartProgress(progressMax, Color.LightBlue);
 
-                ProcessLines(CastList, CastMatches, CrewList, CrewMatches, SoundtrackMatches, defaultValues);
+                this.ProcessLines(CastList, CastMatches, CrewList, CrewMatches, SoundtrackMatches, defaultValues);
             }
             finally
             {
-                EndProgress();
+                this.EndProgress();
             }
 
-            UpdateUI();
+            this.UpdateUI();
 
-            EndLongActionWithGrids();
+            this.EndLongActionWithGrids();
 
             if ((Program.Settings.DefaultValues.DisableParsingCompleteMessageBox == false)
                 && (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing == false)
                 && (Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing == false))
             {
-                ProcessMessageQueue();
+                this.ProcessMessageQueue();
 
                 MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             if (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing)
             {
-                GetBirthYears(Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing);
+                this.GetBirthYears(Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing);
             }
             else
             {
@@ -1490,10 +1499,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             if (Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
             {
-                OnGetHeadshotsButtonClick(sender, e);
+                this.OnGetHeadshotsButtonClick(sender, e);
             }
 
-            ProcessMessageQueue();
+            this.ProcessMessageQueue();
 
             DataGridViewHelper.CopyCastToClipboard(MovieCastDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
             DataGridViewHelper.CopyCrewToClipboard(MovieCrewDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
@@ -1557,7 +1566,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     CastList[index + 1] = temp;
                 }
                 MovieCastDataGridView.Rows.Clear();
-                UpdateUI(CastList, null, MovieCastDataGridView, null, true, false, MovieTitleLink, MovieTitle);
+                this.UpdateUI(CastList, null, MovieCastDataGridView, null, true, false, MovieTitleLink, MovieTitle);
             }
             else
             {
@@ -1574,7 +1583,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             {
                 CastList.RemoveAt(index);
                 MovieCastDataGridView.Rows.Clear();
-                UpdateUI(CastList, null, MovieCastDataGridView, null, true, false, MovieTitleLink, MovieTitle);
+                this.UpdateUI(CastList, null, MovieCastDataGridView, null, true, false, MovieTitleLink, MovieTitle);
             }
             else
             {
@@ -1585,19 +1594,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         private void OnGetHeadshotsButtonClick(Object sender
             , EventArgs e)
         {
-            GetHeadshots(MovieCastDataGridView, MovieCrewDataGridView, GetHeadshotsButton);
+            this.GetHeadshots(MovieCastDataGridView, MovieCrewDataGridView, GetHeadshotsButton);
         }
 
         private void OnBrowseButtonClick(Object sender, EventArgs e)
         {
-            if (Program.ShowNewBrowser)
-            {
-                WebBrowserNew.Navigate(BrowserUrlComboBox.Text);
-            }
-            else
-            {
-                WebBrowserOld.Navigate(BrowserUrlComboBox.Text);
-            }
+            this.NavigateTo(BrowserUrlComboBox.Text);
         }
 
         private void OnBrowserSearchButtonClick(Object sender, EventArgs e)
@@ -1606,14 +1608,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             var url = BaseUrl + System.Web.HttpUtility.UrlEncode(BrowserSearchTextBox.Text);
 
-            NavigateTo(url);
+            this.NavigateTo(url);
         }
 
         private void NavigateTo(string url)
         {
             if (Program.ShowNewBrowser)
             {
-                WebBrowserNew.Navigate(url);
+                WebBrowserNew.Source = new Uri(url);
             }
             else
             {
@@ -1625,7 +1627,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                OnBrowseButtonClick(this, null);
+                this.OnBrowseButtonClick(this, null);
             }
         }
 
@@ -1633,7 +1635,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                OnBrowserSearchButtonClick(this, null);
+                this.OnBrowserSearchButtonClick(this, null);
             }
         }
 
@@ -1694,7 +1696,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void OnCheckForUpdateToolStripMenuItemClick(Object sender, EventArgs e)
         {
-            CheckForNewVersion(false);
+            this.CheckForNewVersion(false);
         }
 
         private void OnLogWebBrowserNavigating(Object sender, WebBrowserNavigatingEventArgs e)
@@ -1724,7 +1726,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             Log.Show(LogWebBrowser);
 
-            ProcessMessageQueue();
+            this.ProcessMessageQueue();
 
             if (Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox == false)
             {
@@ -1751,7 +1753,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             Log.Show(LogWebBrowser);
 
-            ProcessMessageQueue();
+            this.ProcessMessageQueue();
 
             if (Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox == false)
             {
@@ -1760,24 +1762,24 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
         }
 
-        private void OnWebBrowserNavigationCompleted(object sender, WebViewControlNavigationCompletedEventArgs e)
+        private void OnWebBrowserNavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
-            UpdateUri(e.Uri);
+            this.UpdateUri();
         }
 
-        private void UpdateUri(Uri uri)
+        private void UpdateUri()
         {
-            if (uri.AbsoluteUri != null)
+            if (WebBrowserNew.Source != null)
             {
-                BrowserUrlComboBox.Text = uri.AbsoluteUri.ToString();
+                BrowserUrlComboBox.Text = WebBrowserNew.Source.ToString();
                 MovieUrlTextBox.Text = BrowserUrlComboBox.Text;
                 TVShowUrlTextBox.Text = BrowserUrlComboBox.Text;
             }
         }
 
-        private void OnWebBrowserNavigationStarting(object sender, WebViewControlNavigationStartingEventArgs e)
+        private void OnWebBrowserNavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
-            UpdateUri(e.Uri);
+            this.UpdateUri();
         }
 
         private void OnWebBrowserNavigated(Object sender, WebBrowserNavigatedEventArgs e)
