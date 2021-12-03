@@ -131,8 +131,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                                 {
                                     if (lineMatch.Success)
                                     {
-                                        IMDbParser.ProcessCastLine(lineMatch.Value, castList
-                                            , castMatches, defaultValues);
+                                        IMDbParser.ProcessCastLine(lineMatch.Value, castMatches);
                                     }
                                 }
                             }
@@ -149,7 +148,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     while (sr.Peek() != -1)
                     {
                         string line = ReadLine(sr);
-                        if (CrewBlockStartRegex.Match(line).Success)
+                        if (CrewBlockStartRegex.Match(line).Success && !line.Contains("id=\"cast\""))
                         {
                             StringBuilder block;
 
@@ -160,8 +159,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                                 line = ReadLine(sr);
                                 block.Append(line.Trim());
                             }
-                            IMDbParser.ProcessCrewLine(block.ToString(), crewList, crewMatches
-                                , defaultValues);
+                            IMDbParser.ProcessCrewLine(block.ToString(), crewMatches);
                         }
                     }
                 }
@@ -179,17 +177,17 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             var line = sr.ReadLine();
 
-            var openTagCount = line.Count(c => c == '<');
+            var openTagCount = GetOpenTagCount(line);
 
-            var closeTagCount = line.Count(c => c == '>');
+            var closeTagCount = GetCloseTagCount(line);
 
             while (openTagCount > closeTagCount && sr.Peek() != -1)
             {
                 line += sr.ReadLine();
 
-                openTagCount = line.Count(c => c == '<');
+                openTagCount = GetOpenTagCount(line);
 
-                closeTagCount = line.Count(c => c == '>');
+                closeTagCount = GetCloseTagCount(line);
 
                 if (line.Contains("</script>"))
                 {
@@ -200,6 +198,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             return line;
         }
 
+        private static int GetOpenTagCount(string line) => line.Count(c => c == '<') - (line.Split(new[] { "< " }, StringSplitOptions.None).Length - 1);
+        private static int GetCloseTagCount(string line) => line.Count(c => c == '>');
 
         private void EditConfigFile(String fileName, String name, FileNameType fileNameType, Boolean createFile)
         {

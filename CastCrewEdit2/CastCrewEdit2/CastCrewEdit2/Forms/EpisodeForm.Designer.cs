@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EpisodeForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.NewCloseButton = new System.Windows.Forms.Button();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.CastTabPage = new System.Windows.Forms.TabPage();
@@ -129,14 +129,15 @@
             this.TabControl.Controls.Add(this.LogTabPage);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
+            this.TabControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnTabControlKeyDown);
             // 
             // CastTabPage
             // 
-            resources.ApplyResources(this.CastTabPage, "CastTabPage");
             this.CastTabPage.Controls.Add(this.IgnoreGroupBox);
             this.CastTabPage.Controls.Add(this.CastGenerateButton);
             this.CastTabPage.Controls.Add(this.CastSettingsGroupBox);
             this.CastTabPage.Controls.Add(this.CastDataGridView);
+            resources.ApplyResources(this.CastTabPage, "CastTabPage");
             this.CastTabPage.Name = "CastTabPage";
             this.CastTabPage.UseVisualStyleBackColor = true;
             // 
@@ -231,42 +232,42 @@
             // 
             // CastDataGridView
             // 
-            resources.ApplyResources(this.CastDataGridView, "CastDataGridView");
             this.CastDataGridView.AllowUserToAddRows = false;
             this.CastDataGridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CastDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.CastDataGridView.DefaultCellStyle = dataGridViewCellStyle8;
+            resources.ApplyResources(this.CastDataGridView, "CastDataGridView");
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CastDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.CastDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.CastDataGridView.Name = "CastDataGridView";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CastDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CastDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             // 
             // CrewTabPage
             // 
-            resources.ApplyResources(this.CrewTabPage, "CrewTabPage");
             this.CrewTabPage.Controls.Add(this.CrewIncludingGroupBox);
             this.CrewTabPage.Controls.Add(this.CrewSettingsGroupBox);
             this.CrewTabPage.Controls.Add(this.CrewGenerateButton);
             this.CrewTabPage.Controls.Add(this.CrewDataGridView);
+            resources.ApplyResources(this.CrewTabPage, "CrewTabPage");
             this.CrewTabPage.Name = "CrewTabPage";
             this.CrewTabPage.UseVisualStyleBackColor = true;
             // 
@@ -403,38 +404,38 @@
             // 
             // CrewDataGridView
             // 
-            resources.ApplyResources(this.CrewDataGridView, "CrewDataGridView");
             this.CrewDataGridView.AllowUserToAddRows = false;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CrewDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.CrewDataGridView.DefaultCellStyle = dataGridViewCellStyle11;
+            resources.ApplyResources(this.CrewDataGridView, "CrewDataGridView");
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CrewDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.CrewDataGridView.DefaultCellStyle = dataGridViewCellStyle5;
             this.CrewDataGridView.Name = "CrewDataGridView";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.CrewDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.CrewDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             // 
             // LogTabPage
             // 
-            resources.ApplyResources(this.LogTabPage, "LogTabPage");
             this.LogTabPage.Controls.Add(this.LogWebBrowser);
+            resources.ApplyResources(this.LogTabPage, "LogTabPage");
             this.LogTabPage.Name = "LogTabPage";
             this.LogTabPage.UseVisualStyleBackColor = true;
             // 
@@ -446,22 +447,21 @@
             // 
             // MenuStrip
             // 
-            resources.ApplyResources(this.MenuStrip, "MenuStrip");
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SettingsToolStripMenuItem,
             this.EditConfigFilesToolStripMenuItem,
             this.ExtendedToolStripMenuItem,
             this.HelpToolStripMenuItem});
+            resources.ApplyResources(this.MenuStrip, "MenuStrip");
             this.MenuStrip.Name = "MenuStrip";
             // 
             // SettingsToolStripMenuItem
             // 
-            resources.ApplyResources(this.SettingsToolStripMenuItem, "SettingsToolStripMenuItem");
             this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
+            resources.ApplyResources(this.SettingsToolStripMenuItem, "SettingsToolStripMenuItem");
             // 
             // EditConfigFilesToolStripMenuItem
             // 
-            resources.ApplyResources(this.EditConfigFilesToolStripMenuItem, "EditConfigFilesToolStripMenuItem");
             this.EditConfigFilesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FirstnamePrefixesToolStripMenuItem,
             this.LastnamePrefixesToolStripMenuItem,
@@ -472,84 +472,85 @@
             this.IgnoreIMDbCreditTypeInOtherToolStripMenuItem,
             this.ForcedFakeBirthYearsToolStripMenuItem});
             this.EditConfigFilesToolStripMenuItem.Name = "EditConfigFilesToolStripMenuItem";
+            resources.ApplyResources(this.EditConfigFilesToolStripMenuItem, "EditConfigFilesToolStripMenuItem");
             // 
             // FirstnamePrefixesToolStripMenuItem
             // 
-            resources.ApplyResources(this.FirstnamePrefixesToolStripMenuItem, "FirstnamePrefixesToolStripMenuItem");
             this.FirstnamePrefixesToolStripMenuItem.Name = "FirstnamePrefixesToolStripMenuItem";
+            resources.ApplyResources(this.FirstnamePrefixesToolStripMenuItem, "FirstnamePrefixesToolStripMenuItem");
             // 
             // LastnamePrefixesToolStripMenuItem
             // 
-            resources.ApplyResources(this.LastnamePrefixesToolStripMenuItem, "LastnamePrefixesToolStripMenuItem");
             this.LastnamePrefixesToolStripMenuItem.Name = "LastnamePrefixesToolStripMenuItem";
+            resources.ApplyResources(this.LastnamePrefixesToolStripMenuItem, "LastnamePrefixesToolStripMenuItem");
             // 
             // LastnameSuffixesToolStripMenuItem
             // 
-            resources.ApplyResources(this.LastnameSuffixesToolStripMenuItem, "LastnameSuffixesToolStripMenuItem");
             this.LastnameSuffixesToolStripMenuItem.Name = "LastnameSuffixesToolStripMenuItem";
+            resources.ApplyResources(this.LastnameSuffixesToolStripMenuItem, "LastnameSuffixesToolStripMenuItem");
             // 
             // KnownNamesToolStripMenuItem
             // 
-            resources.ApplyResources(this.KnownNamesToolStripMenuItem, "KnownNamesToolStripMenuItem");
             this.KnownNamesToolStripMenuItem.Name = "KnownNamesToolStripMenuItem";
+            resources.ApplyResources(this.KnownNamesToolStripMenuItem, "KnownNamesToolStripMenuItem");
             // 
             // IMDbToDVDProfilerTransformationDataToolStripMenuItem
             // 
-            resources.ApplyResources(this.IMDbToDVDProfilerTransformationDataToolStripMenuItem, "IMDbToDVDProfilerTransformationDataToolStripMenuItem");
             this.IMDbToDVDProfilerTransformationDataToolStripMenuItem.Name = "IMDbToDVDProfilerTransformationDataToolStripMenuItem";
+            resources.ApplyResources(this.IMDbToDVDProfilerTransformationDataToolStripMenuItem, "IMDbToDVDProfilerTransformationDataToolStripMenuItem");
             // 
             // IgnoreCustomInIMDbCreditTypeToolStripMenuItem
             // 
-            resources.ApplyResources(this.IgnoreCustomInIMDbCreditTypeToolStripMenuItem, "IgnoreCustomInIMDbCreditTypeToolStripMenuItem");
             this.IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Name = "IgnoreCustomInIMDbCreditTypeToolStripMenuItem";
+            resources.ApplyResources(this.IgnoreCustomInIMDbCreditTypeToolStripMenuItem, "IgnoreCustomInIMDbCreditTypeToolStripMenuItem");
             // 
             // IgnoreIMDbCreditTypeInOtherToolStripMenuItem
             // 
-            resources.ApplyResources(this.IgnoreIMDbCreditTypeInOtherToolStripMenuItem, "IgnoreIMDbCreditTypeInOtherToolStripMenuItem");
             this.IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Name = "IgnoreIMDbCreditTypeInOtherToolStripMenuItem";
+            resources.ApplyResources(this.IgnoreIMDbCreditTypeInOtherToolStripMenuItem, "IgnoreIMDbCreditTypeInOtherToolStripMenuItem");
             // 
             // ForcedFakeBirthYearsToolStripMenuItem
             // 
-            resources.ApplyResources(this.ForcedFakeBirthYearsToolStripMenuItem, "ForcedFakeBirthYearsToolStripMenuItem");
             this.ForcedFakeBirthYearsToolStripMenuItem.Name = "ForcedFakeBirthYearsToolStripMenuItem";
+            resources.ApplyResources(this.ForcedFakeBirthYearsToolStripMenuItem, "ForcedFakeBirthYearsToolStripMenuItem");
             // 
             // ExtendedToolStripMenuItem
             // 
-            resources.ApplyResources(this.ExtendedToolStripMenuItem, "ExtendedToolStripMenuItem");
             this.ExtendedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CopyExtendedCastToClipboardToolStripMenuItem,
             this.copyExtendedCrewToClipboardToolStripMenuItem});
             this.ExtendedToolStripMenuItem.Name = "ExtendedToolStripMenuItem";
+            resources.ApplyResources(this.ExtendedToolStripMenuItem, "ExtendedToolStripMenuItem");
             // 
             // CopyExtendedCastToClipboardToolStripMenuItem
             // 
-            resources.ApplyResources(this.CopyExtendedCastToClipboardToolStripMenuItem, "CopyExtendedCastToClipboardToolStripMenuItem");
             this.CopyExtendedCastToClipboardToolStripMenuItem.Name = "CopyExtendedCastToClipboardToolStripMenuItem";
+            resources.ApplyResources(this.CopyExtendedCastToClipboardToolStripMenuItem, "CopyExtendedCastToClipboardToolStripMenuItem");
             this.CopyExtendedCastToClipboardToolStripMenuItem.Click += new System.EventHandler(this.OnCopyExtendedCastToClipboardToolStripMenuItemClick);
             // 
             // copyExtendedCrewToClipboardToolStripMenuItem
             // 
-            resources.ApplyResources(this.copyExtendedCrewToClipboardToolStripMenuItem, "copyExtendedCrewToClipboardToolStripMenuItem");
             this.copyExtendedCrewToClipboardToolStripMenuItem.Name = "copyExtendedCrewToClipboardToolStripMenuItem";
+            resources.ApplyResources(this.copyExtendedCrewToClipboardToolStripMenuItem, "copyExtendedCrewToClipboardToolStripMenuItem");
             this.copyExtendedCrewToClipboardToolStripMenuItem.Click += new System.EventHandler(this.OnCcopyExtendedCrewToClipboardToolStripMenuItemClick);
             // 
             // HelpToolStripMenuItem
             // 
-            resources.ApplyResources(this.HelpToolStripMenuItem, "HelpToolStripMenuItem");
             this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ReadmeToolStripMenuItem,
             this.AboutToolStripMenuItem});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
+            resources.ApplyResources(this.HelpToolStripMenuItem, "HelpToolStripMenuItem");
             // 
             // ReadmeToolStripMenuItem
             // 
-            resources.ApplyResources(this.ReadmeToolStripMenuItem, "ReadmeToolStripMenuItem");
             this.ReadmeToolStripMenuItem.Name = "ReadmeToolStripMenuItem";
+            resources.ApplyResources(this.ReadmeToolStripMenuItem, "ReadmeToolStripMenuItem");
             // 
             // AboutToolStripMenuItem
             // 
-            resources.ApplyResources(this.AboutToolStripMenuItem, "AboutToolStripMenuItem");
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            resources.ApplyResources(this.AboutToolStripMenuItem, "AboutToolStripMenuItem");
             // 
             // PersonsInLocalCacheLabel
             // 
@@ -623,15 +624,16 @@
             this.Controls.Add(this.MenuStrip);
             this.Controls.Add(this.TabControl);
             this.Controls.Add(this.NewCloseButton);
+            this.KeyPreview = true;
             this.MinimizeBox = false;
             this.Name = "EpisodeForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnCastFormClosing);
             this.Load += new System.EventHandler(this.OnFormLoad);
             this.Shown += new System.EventHandler(this.OnFormShown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnEpisodeFormKeyDown);
             this.TabControl.ResumeLayout(false);
             this.CastTabPage.ResumeLayout(false);
             this.IgnoreGroupBox.ResumeLayout(false);
-            this.IgnoreGroupBox.PerformLayout();
             this.CastSettingsGroupBox.ResumeLayout(false);
             this.CastSettingsGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CastDataGridView)).EndInit();

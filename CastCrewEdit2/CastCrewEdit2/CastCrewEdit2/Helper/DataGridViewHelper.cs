@@ -23,7 +23,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         {
             public DataGridViewDisableButtonColumn()
             {
-                CellTemplate = new DataGridViewDisableButtonCell();
+                this.CellTemplate = new DataGridViewDisableButtonCell();
             }
         }
 
@@ -55,7 +55,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 DataGridViewDisableButtonCell cell;
 
                 cell = (DataGridViewDisableButtonCell)(base.Clone());
-                cell.Enabled = Enabled;
+                cell.Enabled = this.Enabled;
                 return (cell);
             }
 
@@ -84,12 +84,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                     // Draw the cell borders, if specified.
                     if ((paintParts & DataGridViewPaintParts.Border) == DataGridViewPaintParts.Border)
                     {
-                        PaintBorder(graphics, clipBounds, cellBounds, cellStyle, advancedBorderStyle);
+                        this.PaintBorder(graphics, clipBounds, cellBounds, cellStyle, advancedBorderStyle);
                     }
 
                     // Calculate the area in which to draw the button.
                     buttonArea = cellBounds;
-                    buttonAdjustment = BorderWidths(advancedBorderStyle);
+                    buttonAdjustment = this.BorderWidths(advancedBorderStyle);
                     buttonArea.X += buttonAdjustment.X;
                     buttonArea.Y += buttonAdjustment.Y;
                     buttonArea.Height -= buttonAdjustment.Height;
@@ -99,9 +99,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                     ButtonRenderer.DrawButton(graphics, buttonArea, PushButtonState.Disabled);
 
                     // Draw the disabled button text. 
-                    if (FormattedValue is String)
+                    if (this.FormattedValue is String)
                     {
-                        TextRenderer.DrawText(graphics, (String)(FormattedValue), DataGridView.Font
+                        TextRenderer.DrawText(graphics, (String)(this.FormattedValue), this.DataGridView.Font
                             , buttonArea, SystemColors.GrayText);
                     }
                 }
@@ -118,9 +118,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         private static Boolean DataFillMode;
 
-        private static Dictionary<PersonInfoWithoutBirthYear, Boolean> ConfirmedPossibleCastDuplicates;
+        private static readonly Dictionary<PersonInfoWithoutBirthYear, Boolean> ConfirmedPossibleCastDuplicates;
 
-        private static Dictionary<PersonInfoWithoutBirthYear, Boolean> ConfirmedPossibleCrewDuplicates;
+        private static readonly Dictionary<PersonInfoWithoutBirthYear, Boolean> ConfirmedPossibleCrewDuplicates;
 
         static DataGridViewHelper()
         {
@@ -623,6 +623,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
         }
 
+
+
         public static void CopyExtendedCastToClipboard(DataGridView dataGridView
             , String title
             , Log log
@@ -630,24 +632,22 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             , Action<MessageEntry> addMessage)
         {
             Func<DataGridViewRow, CastMember> createCastMember = (row) =>
-                    {
-                        ExtendedCastMember castMember = new ExtendedCastMember();
+            {
+                ExtendedCastMember castMember = new ExtendedCastMember();
 
-                        castMember.ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString();
+                castMember.ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString();
 
-                        return (castMember);
-                    }
-                ;
+                return (castMember);
+            };
 
             Func<DataGridViewRow, Divider> createCastDivider = (row) =>
-                    {
-                        ExtendedCastDivider castDivider = new ExtendedCastDivider();
+            {
+                ExtendedCastDivider castDivider = new ExtendedCastDivider();
 
-                        castDivider.ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString();
+                castDivider.ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString();
 
-                        return (castDivider);
-                    }
-                ;
+                return (castDivider);
+            };
 
             ExtendedCastInformation ci = new ExtendedCastInformation();
 

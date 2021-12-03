@@ -54,7 +54,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         private static readonly Regex _castRegex;
         private static readonly Regex _creditTypeRegex;
         private static readonly Regex _crewRegex;
-        private static readonly Regex _photoRegex            ;
+        private static readonly Regex _photoRegex;
         private static readonly Regex _photoUrlRegex;
         private static readonly Regex _soundtrackLiRegex;
         private static readonly Regex _soundtrackTitleRegex;
@@ -66,9 +66,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         private static List<string> _ignoreCustomInIMDbCreditType;
         private static List<string> _ignoreIMDbCreditTypeInOther;
 
-        private static Dictionary<string, string> UpdatedPersonLinks;
+        private static readonly Dictionary<string, string> UpdatedPersonLinks;
         private static bool IsInitialized;
-        private static Dictionary<string, string> WebSites;
+        private static readonly Dictionary<string, string> WebSites;
 
 
         static IMDbParser()
@@ -85,14 +85,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             UncreditedRegex = new Regex(@"\(?uncredited\)?", RegexOptions.Compiled);
             CreditedAsRegex = new Regex(@"\(as (?'CreditedAs'.+?)\)", RegexOptions.Compiled);
             _castRegex
-                = new Regex("<td class=\"primary_photo\">.*?<td><a href=\"/name/(?'PersonLink'[a-z0-9]+)/.*?>(?'PersonName'.+?)</a>          </td><td class=\"ellipsis\">(...)?</td><td class=\"character\">(<div>)?(?'Role'.*?)(</div>)?</td>"
+                = new Regex("<td class=\"primary_photo\">.*?<td><a href=\"/name/(?'PersonLink'[a-z0-9]+)/.*?>(?'PersonName'.+?)</a>          </td><td class=\"ellipsis\">(\\.\\.\\.)?</td><td class=\"character\">(<div>)?(?'Role'.*?)(</div>)?</td>"
                     , RegexOptions.Compiled);
 
             _creditTypeRegex = new Regex("<h4 (.*?)class=\"dataHeaderWithBorder\"(.*?)>(?'CreditType'.+?)(<span.+?)?(&nbsp;)?</h4>", RegexOptions.Compiled | RegexOptions.Multiline);
             //CrewRegex
             //    = new Regex("<td valign=\"top\"><a href=\"/name/(?'PersonLink'[a-z0-9]+)/\">(?'PersonName'.+?)</a></td>((<td( valign=\"top\")*>&nbsp;</td>)|(<td valign=\"top\" nowrap=\"1\"> .... </td>))<td valign=\"top\">(<a.+?>)*(?'Credit'.+?)</td>"
             //        , RegexOptions.Compiled);
-            _crewRegex = new Regex("<td (.*?)class=\"name\"(.*?)><a (.*?)href=\"/name/(?'PersonLink'[a-z0-9]+)/(.*?)>(?'PersonName'.+?)</a>.*?</td>((<td colspan=\"(2|3)\">)|(<td (.*?)class=\"credit\"(.*?)>))(?'Credit'.*?)</td>", RegexOptions.Compiled | RegexOptions.Multiline);
+            _crewRegex = new Regex("<td (.*?)class=\"name\"(.*?)><a (.*?)href=\"/name/(?'PersonLink'[a-z0-9]+)/(.*?)>(?'PersonName'.+?)</a>.*?</td>.*?(\\.\\.\\.)?.*?((<td colspan=\"(2|3)\">)|(<td (.*?)class=\"credit\"(.*?)>))(?'Credit'.*?)</td>", RegexOptions.Compiled | RegexOptions.Multiline);
             _photoRegex = new Regex("<td.+?id=\"img_primary\".*?>", RegexOptions.Compiled);
             _photoUrlRegex = new Regex("<img (.*?)src=\"(?'PhotoUrl'.+?)\"", RegexOptions.Compiled);
             TriviaStartRegex = new Regex("class=\"soda (even|odd) sodavote\".*?>", RegexOptions.Compiled);
@@ -467,7 +467,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
         }
 
-        public static void ProcessCastLine(string linePart, List<CastInfo> castList, List<Match> matches, DefaultValues defaultValues)
+        public static void ProcessCastLine(string linePart, List<Match> matches)
         {
             Debug.Assert(IsInitialized, "IMDbParser not initialized!");
 
@@ -518,7 +518,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
         }
 
-        public static void ProcessCrewLine(string blockMatch, List<CrewInfo> crewList, List<KeyValuePair<Match, List<Match>>> matches, DefaultValues defaultValues)
+        public static void ProcessCrewLine(string blockMatch, List<KeyValuePair<Match, List<Match>>> matches)
         {
             Debug.Assert(IsInitialized, "IMDbParser not initialized!");
 

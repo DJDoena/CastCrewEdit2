@@ -282,8 +282,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         private Dictionary<String, List<Match>> SoundtrackMatches;
         private List<CastInfo> CastList;
         private List<CrewInfo> CrewList;
-        private System.Windows.Forms.WebBrowser WebBrowserOld;
-        private Microsoft.Web.WebView2.WinForms.WebView2 WebBrowserNew;
+        private readonly System.Windows.Forms.WebBrowser WebBrowserOld;
+        private readonly Microsoft.Web.WebView2.WinForms.WebView2 WebBrowserNew;
 
         [Flags()]
         private enum EpisodeParts
@@ -1796,6 +1796,44 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             IOleObject obj = (IOleObject)(WebBrowserOld.ActiveXInstance);
             obj.SetClientSite(this);
+        }
+
+        private void OnMovieCastCrewTabControlKeyDown(object sender, KeyEventArgs e)
+        {
+            if (MovieCastCrewTabControl.Enabled && IsShortCutAction(e))
+            {
+                if (MovieCastCrewTabControl.SelectedIndex == 0)
+                {
+                    this.OnMovieCastGenerateButtonClick(this, EventArgs.Empty);
+
+                    this.TrySendToDvdProfiler(e);
+                }
+                else if (MovieCastCrewTabControl.SelectedIndex == 1)
+                {
+                    this.OnMovieCrewGenerateButtonClick(this, EventArgs.Empty);
+
+                    this.TrySendToDvdProfiler(e);
+                }
+            }
+        }
+
+        private void OnMovieTVShowTabControlKeyDown(object sender, KeyEventArgs e)
+        {
+            if (MovieTVShowTabControl.Enabled && IsShortCutAction(e))
+            {
+                if (MovieTVShowTabControl.SelectedIndex == 1 && !MovieUrlTextBox.Focused)
+                {
+                    this.OnMovieCastCrewTabControlKeyDown(this, e);
+                }
+            }
+        }
+
+        private void OnMainFormKeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.Enabled && IsShortCutAction(e))
+            {
+                OnMovieTVShowTabControlKeyDown(this, e);
+            }
         }
     }
 }

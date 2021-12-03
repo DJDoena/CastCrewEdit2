@@ -4,7 +4,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
@@ -58,21 +61,21 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             PersonInfo[] persons;
 
-            Cursor = Cursors.WaitCursor;
+            this.Cursor = Cursors.WaitCursor;
             persons = new PersonInfo[IMDbParser.PersonHash.Keys.Count];
             IMDbParser.PersonHash.Keys.CopyTo(persons, 0);
-            ShowCache(new List<PersonInfo>(persons), "Local Birth Year Cache");
+            this.ShowCache(new List<PersonInfo>(persons), "Local Birth Year Cache");
         }
 
         protected void OnPersonsInLocalCacheLabelLinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
         {
             PersonInfo[] persons;
 
-            Cursor = Cursors.WaitCursor;
+            this.Cursor = Cursors.WaitCursor;
             persons = new PersonInfo[Program.PersonCacheCount];
             Program.CastCache.Values.CopyTo(persons, 0);
             Program.CrewCache.Values.CopyTo(persons, Program.CastCache.Values.Count);
-            ShowCache(new List<PersonInfo>(persons), "Local Person Cache");
+            this.ShowCache(new List<PersonInfo>(persons), "Local Person Cache");
         }
 
         private void ShowCache(List<PersonInfo> persons
@@ -80,7 +83,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             persons.Sort(ComparePersonInfos);
 
-            Cursor = Cursors.Default;
+            this.Cursor = Cursors.Default;
 
             using (CacheForm form = new CacheForm(persons, cacheName))
             {
@@ -162,7 +165,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     (row.Cells[ColumnNames.MoveUp]);
                 if (cell.Enabled)
                 {
-                    MoveRow((CastInfo)(row.Tag), true);
+                    this.MoveRow((CastInfo)(row.Tag), true);
                 }
             }
             else if (((DataGridView)sender).Columns[e.ColumnIndex].Name == ColumnNames.MoveDown)
@@ -175,7 +178,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     (row.Cells[ColumnNames.MoveDown]);
                 if (cell.Enabled)
                 {
-                    MoveRow((CastInfo)(row.Tag), false);
+                    this.MoveRow((CastInfo)(row.Tag), false);
                 }
             }
             else if (((DataGridView)sender).Columns[e.ColumnIndex].Name == ColumnNames.RemoveRow)
@@ -188,7 +191,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     (row.Cells[ColumnNames.RemoveRow]);
                 if (cell.Enabled)
                 {
-                    RemoveRow((CastInfo)(row.Tag));
+                    this.RemoveRow((CastInfo)(row.Tag));
                 }
             }
         }
@@ -422,15 +425,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 progressMax += crewDataGridView.RowCount;
             }
 
-            StartProgress(progressMax, Color.LightGreen);
+            this.StartProgress(progressMax, Color.LightGreen);
 
             try
             {
-                GetHeadshots(1, castDataGridView, crewDataGridView, headshotButtonText);
+                this.GetHeadshots(1, castDataGridView, crewDataGridView, headshotButtonText);
             }
             finally
             {
-                EndProgress();
+                this.EndProgress();
             }
         }
 
@@ -441,17 +444,17 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             try
             {
-                RestartProgress();
+                this.RestartProgress();
 
                 if (Program.Settings.DefaultValues.GetCastHeadShots)
                 {
                     DataGridViewHelper.GetHeadshots(castDataGridView, Program.Settings.DefaultValues.UseFakeBirthYears, true
-                        , AddMessage, SetProgress);
+                        , AddMessage, this.SetProgress);
                 }
                 if (Program.Settings.DefaultValues.GetCrewHeadShots)
                 {
                     DataGridViewHelper.GetHeadshots(crewDataGridView, Program.Settings.DefaultValues.UseFakeBirthYears, false
-                        , AddMessage, SetProgress);
+                        , AddMessage, this.SetProgress);
                 }
                 if (Program.Settings.DefaultValues.AutoCopyHeadShots)
                 {
@@ -479,7 +482,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 }
                 if (Program.Settings.DefaultValues.DisableParsingCompleteMessageBoxForGetHeadshots == false)
                 {
-                    ProcessMessageQueue();
+                    this.ProcessMessageQueue();
                     MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK
                         , MessageBoxIcon.Information);
                 }
@@ -498,7 +501,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     else
                     {
                         Thread.Sleep(5000);
-                        GetHeadshots(counter, castDataGridView, crewDataGridView, headshotButtonText);
+                        this.GetHeadshots(counter, castDataGridView, crewDataGridView, headshotButtonText);
                     }
                 }
                 else
@@ -532,7 +535,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             , DataGridView crewDataGridView
             , Button getHeadshotButton)
         {
-            StartLongAction();
+            this.StartLongAction();
 
             try
             {
@@ -571,7 +574,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     Directory.CreateDirectory(Program.RootPath + @"\Images\CCViewer");
                 }
 
-                GetHeadshots(castDataGridView, crewDataGridView, getHeadshotButton.Text);
+                this.GetHeadshots(castDataGridView, crewDataGridView, getHeadshotButton.Text);
             }
             catch (AggregateException ex)
             {
@@ -587,7 +590,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             {
                 FirstRunGetHeadShots = false;
 
-                EndLongAction();
+                this.EndLongAction();
             }
         }
 
@@ -620,11 +623,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             , Button getBirthYearsButton
             , WebBrowser logWebBrowser)
         {
-            StartLongAction();
+            this.StartLongAction();
 
             try
             {
-                GetBirthYears(parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButton.Text, logWebBrowser);
+                this.GetBirthYears(parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButton.Text, logWebBrowser);
             }
             catch (AggregateException ex)
             {
@@ -642,8 +645,67 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
                 birthYearsInLocalCacheLabel.Text = IMDbParser.PersonHashCount;
 
-                EndLongAction();
+                this.EndLongAction();
             }
+        }
+
+        protected static bool IsShortCutAction(KeyEventArgs e) => (e.Modifiers == Keys.Control && e.KeyCode == Keys.C) || CtrlSWasPressed(e);
+
+        private static bool CtrlSWasPressed(KeyEventArgs e) => e.Modifiers == Keys.Control && e.KeyCode == Keys.S && ItsMe;
+
+        protected void TrySendToDvdProfiler(KeyEventArgs e)
+        {
+            if (!CtrlSWasPressed(e))
+            {
+                return;
+            }
+
+            try
+            {
+                var data = EncodeJson(Clipboard.GetText());
+
+                using (var content = new StringContent(data, Encoding.UTF8))
+                {
+                    content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+
+                    using (var httpRequest = new HttpRequestMessage()
+                    {
+                        Method = new HttpMethod("POST"),
+                        RequestUri = new Uri("http://localhost:10001/api/Receiver/Receive"),
+                        Content = content,
+                    })
+                    {
+                        using (var client = new HttpClient())
+                        {
+                            var response = client.SendAsync(httpRequest).GetAwaiter().GetResult();
+
+                            if (response.StatusCode != HttpStatusCode.OK)
+                            {
+                                var message = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                                throw new Exception($"Response Code: {response.StatusCode}, Message: {message}");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Failed to send", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private static string EncodeJson(string input)
+        {
+            var output = input.Replace("\r", "\\r");
+
+            output = output.Replace("\n", "\\n");
+
+            output = output.Replace("\t", "\\t");
+
+            output = output.Replace("\"", "\\\"");
+
+            return $"\"{output}\"";
         }
 
         private void GetBirthYears(Boolean parseHeadshotsFollows
@@ -656,15 +718,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             progressMax += crewDataGridView.RowCount;
 
-            StartProgress(progressMax, Color.LightCoral);
+            this.StartProgress(progressMax, Color.LightCoral);
 
             try
             {
-                GetBirthYears(1, parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButtonText, logWebBrowser);
+                this.GetBirthYears(1, parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButtonText, logWebBrowser);
             }
             finally
             {
-                EndProgress();
+                this.EndProgress();
             }
         }
 
@@ -677,13 +739,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             try
             {
-                RestartProgress();
+                this.RestartProgress();
 
                 DataGridViewHelper.GetBirthYears(castDataGridView, Program.CastCache, Program.Settings.DefaultValues, Log, true
-                    , AddMessage, SetProgress);
+                    , AddMessage, this.SetProgress);
 
                 DataGridViewHelper.GetBirthYears(crewDataGridView, Program.CrewCache, Program.Settings.DefaultValues, Log, false
-                    , AddMessage, SetProgress);
+                    , AddMessage, this.SetProgress);
 
                 if (Log.Length > 0)
                 {
@@ -693,7 +755,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 if ((Program.Settings.DefaultValues.DisableParsingCompleteMessageBoxForGetBirthYears == false)
                     && (parseHeadshotsFollows == false))
                 {
-                    ProcessMessageQueue();
+                    this.ProcessMessageQueue();
 
                     MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete
                         , MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -713,7 +775,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     else
                     {
                         Thread.Sleep(5000);
-                        GetBirthYears(counter, parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButtonText
+                        this.GetBirthYears(counter, parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButtonText
                             , logWebBrowser);
                     }
                 }
