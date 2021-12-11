@@ -1,23 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Web;
-using System.Windows.Forms;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Web;
+    using System.Windows.Forms;
+
     internal static class NameParser
     {
-        private static List<string> KnownFirstnamePrefixes;
-        private static List<string> KnownLastnamePrefixes;
-        private static List<string> KnownLastnameSuffixes;
-        private static Dictionary<string, Name> KnownNames;
+        private static List<string> _knownFirstnamePrefixes;
+
+        private static List<string> _knownLastnamePrefixes;
+
+        private static List<string> _knownLastnameSuffixes;
+
+        private static Dictionary<string, Name> _knownNames;
 
         public static void Initialize(IWin32Window windowHandle, string path)
         {
-            IMDbParser.InitList(path + @"KnownFirstnamePrefixes.txt", ref KnownFirstnamePrefixes, windowHandle, true);
-            IMDbParser.InitList(path + @"KnownLastnamePrefixes.txt", ref KnownLastnamePrefixes, windowHandle, true);
-            IMDbParser.InitList(path + @"KnownLastnameSuffixes.txt", ref KnownLastnameSuffixes, windowHandle, true);
+            IMDbParser.InitList(path + @"KnownFirstnamePrefixes.txt", ref _knownFirstnamePrefixes, windowHandle, true);
+            IMDbParser.InitList(path + @"KnownLastnamePrefixes.txt", ref _knownLastnamePrefixes, windowHandle, true);
+            IMDbParser.InitList(path + @"KnownLastnameSuffixes.txt", ref _knownLastnameSuffixes, windowHandle, true);
 
             List<string> temp = null;
 
@@ -30,25 +33,25 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         {
             switch (fileNameType)
             {
-                case (FileNameType.FirstnamePrefixes):
+                case FileNameType.FirstnamePrefixes:
                     {
-                        IMDbParser.InitList(fileName, ref KnownFirstnamePrefixes, windowHandle, true);
+                        IMDbParser.InitList(fileName, ref _knownFirstnamePrefixes, windowHandle, true);
 
                         break;
                     }
-                case (FileNameType.LastnamePrefixes):
+                case FileNameType.LastnamePrefixes:
                     {
-                        IMDbParser.InitList(fileName, ref KnownLastnamePrefixes, windowHandle, true);
+                        IMDbParser.InitList(fileName, ref _knownLastnamePrefixes, windowHandle, true);
 
                         break;
                     }
-                case (FileNameType.LastnameSuffixes):
+                case FileNameType.LastnameSuffixes:
                     {
-                        IMDbParser.InitList(fileName, ref KnownLastnameSuffixes, windowHandle, true);
+                        IMDbParser.InitList(fileName, ref _knownLastnameSuffixes, windowHandle, true);
 
                         break;
                     }
-                case (FileNameType.KnownNames):
+                case FileNameType.KnownNames:
                     {
                         List<string> knownNames = null;
 
@@ -61,8 +64,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
         }
 
-        internal static bool IsKnownName(string name)
-            => KnownNames.ContainsKey(name);
+        internal static bool IsKnownName(string name) => _knownNames.ContainsKey(name);
 
         internal static Name Parse(string fullName)
         {
@@ -81,9 +83,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 {
                     fullName = BreakInitialsApart(fullName);
                     //Now it might have happened that we split "M.D." into "M. D."
-                    fullName = FindAndRepairBrokenInitials(fullName, KnownLastnameSuffixes);
-                    fullName = FindAndRepairBrokenInitials(fullName, KnownLastnamePrefixes);
-                    fullName = FindAndRepairBrokenInitials(fullName, KnownFirstnamePrefixes);
+                    fullName = FindAndRepairBrokenInitials(fullName, _knownLastnameSuffixes);
+                    fullName = FindAndRepairBrokenInitials(fullName, _knownLastnamePrefixes);
+                    fullName = FindAndRepairBrokenInitials(fullName, _knownFirstnamePrefixes);
                 }
             }
 
@@ -106,7 +108,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
             FindStartOfNameParts(nameParts, out var beginOfMiddleName, out var beginOfLastName);
 
-            if (KnownFirstnamePrefixes.Contains(nameParts[0].ToLower()))
+            if (_knownFirstnamePrefixes.Contains(nameParts[0].ToLower()))
             {
                 FixStartOfNameParts(nameParts, ref beginOfMiddleName, ref beginOfLastName);
             }
@@ -134,7 +136,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         private static bool CheckForUnchangedName(string fullName, out Name finalName)
         {
-            if (KnownNames.TryGetValue(fullName, out finalName))
+            if (_knownNames.TryGetValue(fullName, out finalName))
             {
                 return true;
             }
@@ -200,9 +202,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
             var dotSplitter = new StringBuilder();
 
-            for (Int32 i = 0; i < nameParts.Length - 1; i++)
+            for (var partIndex = 0; partIndex < nameParts.Length - 1; partIndex++)
             {
-                dotSplitter.Append(nameParts[i].Trim() + ". ");
+                dotSplitter.Append(nameParts[partIndex].Trim() + ". ");
             }
 
             dotSplitter.Append(nameParts[nameParts.Length - 1].Trim());
@@ -218,7 +220,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             {
                 var indexOf = fullName.IndexOf(unsplittable, rootIndexOf);
 
-                if ((indexOf != -1) && (indexOf != fullName.Length - 1))
+                if (indexOf != -1 && indexOf != fullName.Length - 1)
                 {
                     var indexOf2 = fullName.IndexOf(unsplittable, indexOf + 1);
 
@@ -250,12 +252,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                     }
                 }
             }
+
             return fullName;
         }
 
         private static void ProcessKnownNames(List<string> knownNames)
         {
-            KnownNames = new Dictionary<string, Name>(knownNames.Count);
+            _knownNames = new Dictionary<string, Name>(knownNames.Count);
 
             foreach (var knownName in knownNames)
             {
@@ -263,7 +266,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                 if (split.Length == 4)
                 {
-                    if ((IsKnownName(split[0]) == false) && (string.IsNullOrEmpty(split[1]) == false))
+                    if (!IsKnownName(split[0]) && !string.IsNullOrEmpty(split[1]))
                     {
                         var name = new Name()
                         {
@@ -272,7 +275,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                             LastName = new StringBuilder(split[3]),
                         };
 
-                        KnownNames.Add(split[0], name);
+                        _knownNames.Add(split[0], name);
                     }
                 }
             }
@@ -281,9 +284,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         private static void FindStartOfNameParts(string[] nameParts, out int beginOfMiddleName, out int beginOfLastName)
         {
             beginOfMiddleName = -1;
+
             beginOfLastName = -1;
 
             var canBeSuffix = true;
+
             var canBePrefix = false;
 
             for (var namePartIndex = nameParts.Length - 1; namePartIndex >= 1; namePartIndex--)
@@ -294,9 +299,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 {
                     beginOfLastName = namePartIndex;
 
-                    if (KnownLastnameSuffixes.Contains(nameParts[namePartIndex].ToLower()) == false)
+                    if (!_knownLastnameSuffixes.Contains(nameParts[namePartIndex].ToLower()))
                     {
                         canBeSuffix = false;
+
                         canBePrefix = true;
                     }
 
@@ -305,7 +311,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                 if (canBePrefix)
                 {
-                    if (KnownLastnamePrefixes.Contains(nameParts[namePartIndex].ToLower()))
+                    if (_knownLastnamePrefixes.Contains(nameParts[namePartIndex].ToLower()))
                     {
                         beginOfLastName = namePartIndex;
 
@@ -313,7 +319,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                     }
                 }
 
-                if ((namePartIndex > 0) && (beginOfLastName > 1))
+                if (namePartIndex > 0 && beginOfLastName > 1)
                 {
                     beginOfMiddleName = 1;
                 }
@@ -334,7 +340,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                     beginOfLastName++;
                 }
 
-                if (KnownFirstnamePrefixes.Contains(nameParts[namePartIndex].ToLower()))
+                if (_knownFirstnamePrefixes.Contains(nameParts[namePartIndex].ToLower()))
                 {
                     continue;
                 }

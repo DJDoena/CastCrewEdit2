@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.Drawing;
+    using System.Text.RegularExpressions;
+    using System.Windows.Forms;
+    using Helper;
+    using Resources;
+
     internal partial class EpisodesForm : CastCrewEdit2BaseForm
     {
-        //private static readonly Regex NotSeriesCrew;
-        private List<EpisodeInfo> Episodes;
+        private readonly List<EpisodeInfo> _episodes;
 
         static EpisodesForm()
         {
@@ -25,26 +24,25 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         public EpisodesForm(List<EpisodeInfo> episodes)
         {
-            Episodes = episodes;
+            _episodes = episodes;
 
-            InitializeComponent();
+            this.InitializeComponent();
 
-            TheProgressBar = ProgressBar;
+            _progressBar = ProgressBar;
 
-            Icon = Properties.Resource.djdsoft;
+            this.Icon = Properties.Resource.djdsoft;
         }
 
-        private void OnEpisodeFormLoad(Object sender, EventArgs e)
+        private void OnEpisodeFormLoad(object sender, EventArgs e)
         {
-            ComponentResourceManager resources;
+            this.LayoutForm();
 
-            LayoutForm();
-            CreateDataGridViewColumns();
-            foreach (EpisodeInfo episode in Episodes)
+            this.CreateDataGridViewColumns();
+
+            foreach (var episode in _episodes)
             {
-                DataGridViewRow row;
+                var row = DataGridView.Rows[DataGridView.Rows.Add()];
 
-                row = DataGridView.Rows[DataGridView.Rows.Add()];
                 row.DefaultCellStyle.BackColor = Color.White;
                 row.Cells["Season Number"].Value = episode.SeasonNumber;
                 row.Cells["Episode Number"].Value = episode.EpisodeNumber;
@@ -52,187 +50,208 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 row.Cells["Link"].Value = episode.Link;
                 row.Tag = episode;
             }
-            RegisterEvents();
-            resources = new ComponentResourceManager(typeof(EpisodesForm));
-            if (String.IsNullOrEmpty(TVShowTitle) == false)
+
+            this.RegisterEvents();
+
+            var resources = new ComponentResourceManager(typeof(EpisodesForm));
+
+            if (!string.IsNullOrEmpty(_tvShowTitle))
             {
-                Text = resources.GetString("$Text") + " - " + TVShowTitle;
+                this.Text = resources.GetString("$Text") + " - " + _tvShowTitle;
             }
             else
             {
-                Text = resources.GetString("$Text");
+                this.Text = resources.GetString("$Text");
             }
         }
 
         private void RegisterEvents()
         {
-            SettingsToolStripMenuItem.Click += OnSettingsToolStripMenuItemClick;
-            FirstnamePrefixesToolStripMenuItem.Click += OnFirstnamePrefixesToolStripMenuItemClick;
-            LastnamePrefixesToolStripMenuItem.Click += OnLastnamePrefixesToolStripMenuItemClick;
-            LastnameSuffixesToolStripMenuItem.Click += OnLastnameSuffixesToolStripMenuItemClick;
-            KnownNamesToolStripMenuItem.Click += OnKnownNamesToolStripMenuItemClick;
-            IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Click += OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick;
-            IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Click += OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick;
-            ForcedFakeBirthYearsToolStripMenuItem.Click += OnForcedFakeBirthYearsToolStripMenuItemClick;
-            IMDbToDVDProfilerTransformationDataToolStripMenuItem.Click
-                += OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick;
-            ReadmeToolStripMenuItem.Click += OnReadmeToolStripMenuItemClick;
-            AboutToolStripMenuItem.Click += OnAboutToolStripMenuItemClick;
-            DataGridView.CellContentClick += OnDataGridViewCellContentClick;
+            SettingsToolStripMenuItem.Click += this.OnSettingsToolStripMenuItemClick;
+
+            FirstnamePrefixesToolStripMenuItem.Click += this.OnFirstnamePrefixesToolStripMenuItemClick;
+
+            LastnamePrefixesToolStripMenuItem.Click += this.OnLastnamePrefixesToolStripMenuItemClick;
+
+            LastnameSuffixesToolStripMenuItem.Click += this.OnLastnameSuffixesToolStripMenuItemClick;
+
+            KnownNamesToolStripMenuItem.Click += this.OnKnownNamesToolStripMenuItemClick;
+
+            IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Click += this.OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick;
+
+            IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Click += this.OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick;
+
+            ForcedFakeBirthYearsToolStripMenuItem.Click += this.OnForcedFakeBirthYearsToolStripMenuItemClick;
+
+            IMDbToDVDProfilerTransformationDataToolStripMenuItem.Click += this.OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick;
+
+            ReadmeToolStripMenuItem.Click += this.OnReadmeToolStripMenuItemClick;
+
+            AboutToolStripMenuItem.Click += this.OnAboutToolStripMenuItemClick;
+
+            DataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
         }
 
         private void CreateDataGridViewColumns()
         {
-            DataGridViewTextBoxColumn seasonNumberDataGridViewTextBoxColumn;
-            DataGridViewTextBoxColumn episodeNumberDataGridViewTextBoxColumn;
-            DataGridViewTextBoxColumn episodeDataGridViewTextBoxColumn;
-            DataGridViewLinkColumn episodeLinkColumn;
+            var seasonNumberDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = "Season Number",
+                HeaderText = DataGridViewTexts.SeasonNumber,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+            };
 
-            seasonNumberDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            seasonNumberDataGridViewTextBoxColumn.Name = "Season Number";
-            seasonNumberDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.SeasonNumber;
-            seasonNumberDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            seasonNumberDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            DataGridView.Columns.Add(seasonNumberDataGridViewTextBoxColumn);
+            var episodeNumberDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = "Episode Number",
+                HeaderText = DataGridViewTexts.EpisodeNumber,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+            };
 
-            episodeNumberDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            episodeNumberDataGridViewTextBoxColumn.Name = "Episode Number";
-            episodeNumberDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.EpisodeNumber;
-            episodeNumberDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            episodeNumberDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            DataGridView.Columns.Add(episodeNumberDataGridViewTextBoxColumn);
+            var episodeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = "Episode Name",
+                HeaderText = DataGridViewTexts.EpisodeName,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+            };
 
-            episodeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            episodeDataGridViewTextBoxColumn.Name = "Episode Name";
-            episodeDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.EpisodeName;
-            episodeDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            episodeDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            DataGridView.Columns.Add(episodeDataGridViewTextBoxColumn);
 
-            episodeLinkColumn = new DataGridViewLinkColumn();
-            episodeLinkColumn.Name = "Link";
-            episodeLinkColumn.HeaderText = DataGridViewTexts.Link;
-            episodeLinkColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            episodeLinkColumn.Resizable = DataGridViewTriState.True;
+            var episodeLinkColumn = new DataGridViewLinkColumn
+            {
+                Name = "Link",
+                HeaderText = DataGridViewTexts.Link,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+            };
 
-            DataGridView.Columns.Add(episodeLinkColumn);
+            DataGridView.Columns.AddRange(seasonNumberDataGridViewTextBoxColumn, episodeNumberDataGridViewTextBoxColumn, episodeDataGridViewTextBoxColumn, episodeLinkColumn);
         }
 
         private void LayoutForm()
         {
             if (Program.Settings.EpisodesForm.WindowState == FormWindowState.Normal)
             {
-                Left = Program.Settings.EpisodesForm.Left;
-                Top = Program.Settings.EpisodesForm.Top;
-                if (Program.Settings.EpisodesForm.Width > MinimumSize.Width)
+                this.Left = Program.Settings.EpisodesForm.Left;
+                this.Top = Program.Settings.EpisodesForm.Top;
+
+                if (Program.Settings.EpisodesForm.Width > this.MinimumSize.Width)
                 {
-                    Width = Program.Settings.EpisodesForm.Width;
+                    this.Width = Program.Settings.EpisodesForm.Width;
                 }
                 else
                 {
-                    Width = MinimumSize.Width;
+                    this.Width = this.MinimumSize.Width;
                 }
-                if (Program.Settings.EpisodesForm.Height > MinimumSize.Height)
+
+                if (Program.Settings.EpisodesForm.Height > this.MinimumSize.Height)
                 {
-                    Height = Program.Settings.EpisodesForm.Height;
+                    this.Height = Program.Settings.EpisodesForm.Height;
                 }
                 else
                 {
-                    Height = MinimumSize.Height;
+                    this.Height = this.MinimumSize.Height;
                 }
             }
             else
             {
-                Left = Program.Settings.EpisodesForm.RestoreBounds.X;
-                Top = Program.Settings.EpisodesForm.RestoreBounds.Y;
-                if (Program.Settings.EpisodesForm.RestoreBounds.Width > MinimumSize.Width)
+                this.Left = Program.Settings.EpisodesForm.RestoreBounds.X;
+                this.Top = Program.Settings.EpisodesForm.RestoreBounds.Y;
+
+                if (Program.Settings.EpisodesForm.RestoreBounds.Width > this.MinimumSize.Width)
                 {
-                    Width = Program.Settings.EpisodesForm.RestoreBounds.Width;
+                    this.Width = Program.Settings.EpisodesForm.RestoreBounds.Width;
                 }
                 else
                 {
-                    Width = MinimumSize.Width;
+                    this.Width = this.MinimumSize.Width;
                 }
-                if (Program.Settings.EpisodesForm.RestoreBounds.Height > MinimumSize.Height)
+
+                if (Program.Settings.EpisodesForm.RestoreBounds.Height > this.MinimumSize.Height)
                 {
-                    Height = Program.Settings.EpisodesForm.RestoreBounds.Height;
+                    this.Height = Program.Settings.EpisodesForm.RestoreBounds.Height;
                 }
                 else
                 {
-                    Height = MinimumSize.Height;
+                    this.Height = this.MinimumSize.Height;
                 }
             }
+
             if (Program.Settings.EpisodesForm.WindowState != FormWindowState.Minimized)
             {
-                WindowState = Program.Settings.EpisodesForm.WindowState;
+                this.WindowState = Program.Settings.EpisodesForm.WindowState;
             }
         }
 
-        private void OnDataGridViewCellContentClick(Object sender, DataGridViewCellEventArgs e)
+        private void OnDataGridViewCellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 3)
             {
-                Process.Start(IMDbParser.TitleUrl
-                    + DataGridView.Rows[e.RowIndex].Cells[ColumnNames.Link].Value.ToString());
+                Process.Start(IMDbParser.TitleUrl + DataGridView.Rows[e.RowIndex].Cells[ColumnNames.Link].Value.ToString());
             }
         }
 
-        private void OnEpisodeFormClosing(Object sender, FormClosingEventArgs e)
+        private void OnEpisodeFormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.Settings.EpisodesForm.Left = Left;
-            Program.Settings.EpisodesForm.Top = Top;
-            Program.Settings.EpisodesForm.Width = Width;
-            Program.Settings.EpisodesForm.Height = Height;
-            Program.Settings.EpisodesForm.WindowState = WindowState;
-            Program.Settings.EpisodesForm.RestoreBounds = RestoreBounds;
+            Program.Settings.EpisodesForm.Left = this.Left;
+            Program.Settings.EpisodesForm.Top = this.Top;
+            Program.Settings.EpisodesForm.Width = this.Width;
+            Program.Settings.EpisodesForm.Height = this.Height;
+            Program.Settings.EpisodesForm.WindowState = this.WindowState;
+            Program.Settings.EpisodesForm.RestoreBounds = this.RestoreBounds;
         }
 
-        private void OnScanEpisodesButtonClick(Object sender, EventArgs e)
+        private void OnScanEpisodesButtonClick(object sender, EventArgs e)
         {
-            if ((DataGridView.SelectedRows == null) || (DataGridView.SelectedRows.Count == 0))
+            if (DataGridView.SelectedRows == null || DataGridView.SelectedRows.Count == 0)
             {
-                MessageBox.Show(this, MessageBoxTexts.NoEpisodeSelected, MessageBoxTexts.NoEpisodeSelectedHeader, MessageBoxButtons.OK
-                    , MessageBoxIcon.Warning);
+                MessageBox.Show(this, MessageBoxTexts.NoEpisodeSelected, MessageBoxTexts.NoEpisodeSelectedHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                 return;
             }
             else
             {
                 try
                 {
-                    ScanRows(DataGridView.SelectedRows, ScanEpisodesButton.Text);
+                    this.ScanRows(DataGridView.SelectedRows);
                 }
                 catch (AggregateException ex)
                 {
                     MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
                     Program.WriteError(ex);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
                     Program.WriteError(ex);
                 }
             }
         }
 
-        private void ScanRows(IEnumerable rows
-            , String buttonText)
+        private void ScanRows(IEnumerable rows)
         {
-            StartLongAction();
+            this.StartLongAction();
 
-            SuspendLayout();
+            this.SuspendLayout();
 
-            List<EpisodeInfo> episodes = new List<EpisodeInfo>();
+            var episodes = new List<EpisodeInfo>();
 
             try
             {
                 foreach (DataGridViewRow row in rows)
                 {
-                    EpisodeInfo episode = (EpisodeInfo)(row.Tag);
+                    var episode = (EpisodeInfo)row.Tag;
+
                     episode.CastList = new List<CastInfo>();
                     episode.CrewList = new List<CrewInfo>();
                     episode.CastMatches = new List<Match>();
                     episode.CrewMatches = new List<KeyValuePair<Match, List<Match>>>();
-                    episode.SoundtrackMatches = new Dictionary<String, List<Match>>();
+                    episode.SoundtrackMatches = new Dictionary<string, List<Match>>();
+
                     episodes.Add(episode);
                 }
 
@@ -240,28 +259,28 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
                 try
                 {
-                    StartProgress(episodes.Count, Color.LightBlue);
+                    this.StartProgress(episodes.Count, Color.LightBlue);
 
-                    foreach (EpisodeInfo episode in episodes)
+                    foreach (var episode in episodes)
                     {
-                        ParseIMDb(episode);
+                        this.ParseIMDb(episode);
 
-                        SetProgress();
+                        this.SetProgress();
                     }
                 }
                 finally
                 {
-                    EndProgress();
+                    this.EndProgress();
                 }
             }
             finally
             {
                 Program.FlushPersonCache();
 
-                EndLongAction();
+                this.EndLongAction();
             }
 
-            using (EpisodeForm castForm = new EpisodeForm(episodes))
+            using (var castForm = new EpisodeForm(episodes))
             {
                 castForm.ShowDialog(this);
             }
@@ -269,102 +288,96 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void ParseIMDb(EpisodeInfo episode)
         {
-            DefaultValues defaultValues = CopyDefaultValues();
+            var defaultValues = this.CopyDefaultValues();
 
-            ParseCastAndCrew(defaultValues, episode.Link, true, true, true, true, ref episode.CastMatches, ref episode.CastList, ref episode.CrewMatches
-                , ref episode.CrewList, ref episode.SoundtrackMatches);
+            ParseCastAndCrew(episode.Link, true, true, true, true, ref episode.CastMatches, ref episode.CastList, ref episode.CrewMatches, ref episode.CrewList, ref episode.SoundtrackMatches);
 
-            SuppressProgress = true;
+            _suppressProgress = true;
 
             try
             {
-                ProcessLines(episode.CastList, episode.CastMatches, episode.CrewList, episode.CrewMatches, episode.SoundtrackMatches, defaultValues);
+                this.ProcessLines(episode.CastList, episode.CastMatches, episode.CrewList, episode.CrewMatches, episode.SoundtrackMatches, defaultValues);
             }
             finally
             {
-                SuppressProgress = false;
+                _suppressProgress = false;
             }
         }
 
-        private DefaultValues CopyDefaultValues()
+        private DefaultValues CopyDefaultValues() => new DefaultValues()
         {
-            DefaultValues defaultValues = new DefaultValues();
+            ParseFirstNameInitialsIntoFirstAndMiddleName = Program.Settings.DefaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName,
+            ParseRoleSlash = Program.Settings.DefaultValues.ParseRoleSlash,
+            ParseVoiceOf = Program.Settings.DefaultValues.ParseVoiceOf,
+            IgnoreUncredited = Program.Settings.DefaultValues.IgnoreUncredited,
+            IgnoreCreditOnly = Program.Settings.DefaultValues.IgnoreCreditOnly,
+            IgnoreScenesDeleted = Program.Settings.DefaultValues.IgnoreScenesDeleted,
+            IgnoreArchiveFootage = Program.Settings.DefaultValues.IgnoreArchiveFootage,
+            IgnoreLanguageVersion = Program.Settings.DefaultValues.IgnoreLanguageVersion,
+            IncludeCustomCredits = Program.Settings.DefaultValues.IncludeCustomCredits,
+            RetainCastCreditedAs = Program.Settings.DefaultValues.RetainCastCreditedAs,
+            RetainCrewCreditedAs = Program.Settings.DefaultValues.RetainCrewCreditedAs,
+            RetainOriginalCredit = Program.Settings.DefaultValues.RetainOriginalCredit,
+            IncludePrefixOnOtherCredits = Program.Settings.DefaultValues.IncludePrefixOnOtherCredits,
+            CapitalizeCustomRole = Program.Settings.DefaultValues.CapitalizeCustomRole,
+            CreditTypeDirection = Program.Settings.DefaultValues.CreditTypeDirection,
+            CreditTypeWriting = Program.Settings.DefaultValues.CreditTypeWriting,
+            CreditTypeProduction = Program.Settings.DefaultValues.CreditTypeProduction,
+            CreditTypeCinematography = Program.Settings.DefaultValues.CreditTypeCinematography,
+            CreditTypeFilmEditing = Program.Settings.DefaultValues.CreditTypeFilmEditing,
+            CreditTypeMusic = Program.Settings.DefaultValues.CreditTypeMusic,
+            CreditTypeSound = Program.Settings.DefaultValues.CreditTypeSound,
+            CreditTypeArt = Program.Settings.DefaultValues.CreditTypeArt,
+            CreditTypeOther = Program.Settings.DefaultValues.CreditTypeOther,
+            CreditTypeSoundtrack = Program.Settings.DefaultValues.CreditTypeSoundtrack,
+            CheckPersonLinkForRedirect = Program.Settings.DefaultValues.CheckPersonLinkForRedirect,
+        };
 
-            defaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName = Program.Settings.DefaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName;
-            defaultValues.ParseRoleSlash = Program.Settings.DefaultValues.ParseRoleSlash;
-            defaultValues.ParseVoiceOf = Program.Settings.DefaultValues.ParseVoiceOf;
-            defaultValues.IgnoreUncredited = Program.Settings.DefaultValues.IgnoreUncredited;
-            defaultValues.IgnoreCreditOnly = Program.Settings.DefaultValues.IgnoreCreditOnly;
-            defaultValues.IgnoreScenesDeleted = Program.Settings.DefaultValues.IgnoreScenesDeleted;
-            defaultValues.IgnoreArchiveFootage = Program.Settings.DefaultValues.IgnoreArchiveFootage;
-            defaultValues.IgnoreLanguageVersion = Program.Settings.DefaultValues.IgnoreLanguageVersion;
-            defaultValues.IncludeCustomCredits = Program.Settings.DefaultValues.IncludeCustomCredits;
-            defaultValues.RetainCastCreditedAs = Program.Settings.DefaultValues.RetainCastCreditedAs;
-            defaultValues.RetainCrewCreditedAs = Program.Settings.DefaultValues.RetainCrewCreditedAs;
-            defaultValues.RetainOriginalCredit = Program.Settings.DefaultValues.RetainOriginalCredit;
-            defaultValues.IncludePrefixOnOtherCredits = Program.Settings.DefaultValues.IncludePrefixOnOtherCredits;
-            defaultValues.CapitalizeCustomRole = Program.Settings.DefaultValues.CapitalizeCustomRole;
-            defaultValues.RetainCrewCreditedAs = Program.Settings.DefaultValues.RetainCrewCreditedAs;
-            defaultValues.CreditTypeDirection = Program.Settings.DefaultValues.CreditTypeDirection;
-            defaultValues.CreditTypeWriting = Program.Settings.DefaultValues.CreditTypeWriting;
-            defaultValues.CreditTypeProduction = Program.Settings.DefaultValues.CreditTypeProduction;
-            defaultValues.CreditTypeCinematography = Program.Settings.DefaultValues.CreditTypeCinematography;
-            defaultValues.CreditTypeFilmEditing = Program.Settings.DefaultValues.CreditTypeFilmEditing;
-            defaultValues.CreditTypeMusic = Program.Settings.DefaultValues.CreditTypeMusic;
-            defaultValues.CreditTypeSound = Program.Settings.DefaultValues.CreditTypeSound;
-            defaultValues.CreditTypeArt = Program.Settings.DefaultValues.CreditTypeArt;
-            defaultValues.CreditTypeOther = Program.Settings.DefaultValues.CreditTypeOther;
-            defaultValues.CreditTypeSoundtrack = Program.Settings.DefaultValues.CreditTypeSoundtrack;
-            defaultValues.CheckPersonLinkForRedirect = Program.Settings.DefaultValues.CheckPersonLinkForRedirect;
-
-            return (defaultValues);
-        }
-
-        private static Int32 CompareEpisodes(EpisodeInfo left, EpisodeInfo right)
+        private static int CompareEpisodes(EpisodeInfo left, EpisodeInfo right)
         {
-            Int32 compare;
+            var compare = left.SeasonNumber.PadLeft(3, '0').CompareTo(right.SeasonNumber.PadLeft(3, '0'));
 
-            compare = left.SeasonNumber.PadLeft(3, '0').CompareTo(right.SeasonNumber.PadLeft(3, '0'));
             if (compare == 0)
             {
                 compare = left.EpisodeNumber.PadLeft(5, '0').CompareTo(right.EpisodeNumber.PadLeft(5, '0'));
             }
-            return (compare);
+
+            return compare;
         }
 
-        private void OnCloseButtonClick(Object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void OnCloseButtonClick(object sender, EventArgs e) => this.Close();
 
-        private void OnSettingsToolStripMenuItemClick(Object sender, EventArgs e)
+        private void OnSettingsToolStripMenuItemClick(object sender, EventArgs e)
         {
-            using (SettingsForm settingsForm = new SettingsForm(true, true))
+            using (var settingsForm = new SettingsForm(true, true))
             {
-                settingsForm.SetValues(Program.Settings.SettingsForm.Left, Program.Settings.SettingsForm.Top
-                    , Program.Settings.DefaultValues);
+                settingsForm.SetValues(Program.Settings.SettingsForm.Left, Program.Settings.SettingsForm.Top, Program.Settings.DefaultValues);
+
                 if (settingsForm.ShowDialog(this) == DialogResult.OK)
                 {
-                    SettingsHaveChanged = true;
+                    _settingsHaveChanged = true;
                 }
+
                 settingsForm.GetValues(out Program.Settings.SettingsForm.Left, out Program.Settings.SettingsForm.Top);
             }
         }
 
-        private void OnScanAllEpisodesButtonClick(Object sender, EventArgs e)
+        private void OnScanAllEpisodesButtonClick(object sender, EventArgs e)
         {
             try
             {
-                ScanRows(DataGridView.Rows, ScanAllEpisodesButton.Text);
+                this.ScanRows(DataGridView.Rows);
             }
             catch (AggregateException ex)
             {
                 MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
                 Program.WriteError(ex);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
                 Program.WriteError(ex);
             }
         }

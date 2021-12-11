@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Xml.Serialization;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Windows.Forms;
+    using System.Xml.Serialization;
+    using DVDProfilerHelper;
+
     public class PersonInfos
     {
         public PersonInfo[] PersonInfoList;
 
-        public void Serialize(String fileName)
+        public void Serialize(string fileName)
         {
             if (PersonInfoList?.Length > 0)
             {
-                foreach (PersonInfo pi in PersonInfoList)
+                foreach (var pi in PersonInfoList)
                 {
-                    if (pi.LastModifiedSpecified == false)
+                    if (!pi.LastModifiedSpecified)
                     {
                         pi.LastModified = DateTime.UtcNow;
                         pi.LastModifiedSpecified = true;
@@ -31,9 +31,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             DVDProfilerSerializer<PersonInfos>.Serialize(fileName, this);
         }
 
-        public static PersonInfos Deserialize(String fileName)
+        public static PersonInfos Deserialize(string fileName)
         {
-            using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 PersonInfo.CreatorActive = true;
 
@@ -41,7 +41,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
                 PersonInfo.CreatorActive = false;
 
-                return (personInfos);
+                return personInfos;
             }
         }
     }
@@ -49,257 +49,246 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
     [Serializable]
     public class PersonInfo
     {
-        private String m_FirstName;
+        private string _firstName;
 
-        public String FirstName
+        private string _middleName;
+
+        private string _lastName;
+
+        private string _birthYear;
+
+        private bool _birthYearWasRetrieved;
+
+        private string _personLink;
+
+        private string _fakeBirthYear;
+
+        private FilmInfo[] _filmInfoList;
+
+        public string FirstName
         {
             [DebuggerStepThrough]
-            get
-            {
-                return (m_FirstName);
-            }
+            get => _firstName;
             set
             {
-                if (m_FirstName != value)
+                if (_firstName != value)
                 {
-                    SetTimestamp();
+                    this.SetTimestamp();
                 }
 
-                m_FirstName = value;
+                _firstName = value;
             }
         }
 
-        private String m_MiddleName;
 
-        public String MiddleName
+
+        public string MiddleName
         {
             [DebuggerStepThrough]
-            get
-            {
-                return (m_MiddleName);
-            }
+            get => _middleName;
             set
             {
-                if (m_MiddleName != value)
+                if (_middleName != value)
                 {
-                    SetTimestamp();
+                    this.SetTimestamp();
                 }
 
-                m_MiddleName = value;
+                _middleName = value;
             }
         }
 
-        private String m_LastName;
 
-        public String LastName
+
+        public string LastName
         {
             [DebuggerStepThrough]
-            get
-            {
-                return (m_LastName);
-            }
+            get => _lastName;
             set
             {
-                if (m_LastName != value)
+                if (_lastName != value)
                 {
-                    SetTimestamp();
+                    this.SetTimestamp();
                 }
 
-                m_LastName = value;
+                _lastName = value;
             }
         }
 
-        private String m_BirthYear;
 
-        public String BirthYear
+
+        public string BirthYear
         {
             [DebuggerStepThrough]
-            get
-            {
-                return (m_BirthYear);
-            }
+            get => _birthYear;
             set
             {
-                if (m_BirthYear != value)
+                if (_birthYear != value)
                 {
-                    SetTimestamp();
+                    this.SetTimestamp();
                 }
 
-                m_BirthYear = value;
+                _birthYear = value;
             }
         }
 
-        private Boolean m_BirthYearWasRetrieved = false;
 
-        public Boolean BirthYearWasRetrieved
+
+        public bool BirthYearWasRetrieved
         {
             [DebuggerStepThrough]
-            get
-            {
-                return (m_BirthYearWasRetrieved);
-            }
+            get => _birthYearWasRetrieved;
             set
             {
-                if (m_BirthYearWasRetrieved != value)
+                if (_birthYearWasRetrieved != value)
                 {
-                    SetTimestamp();
+                    this.SetTimestamp();
                 }
 
-                m_BirthYearWasRetrieved = value;
+                _birthYearWasRetrieved = value;
             }
         }
 
-        private String m_PersonLink = String.Empty;
-
-        public String PersonLink
+        public string PersonLink
         {
             [DebuggerStepThrough]
-            get
-            {
-                return (m_PersonLink);
-            }
+            get => _personLink;
             set
             {
-                if (m_PersonLink != value)
+                if (_personLink != value)
                 {
-                    SetTimestamp();
+                    this.SetTimestamp();
                 }
 
-                m_PersonLink = value;
+                _personLink = value;
             }
         }
 
-        private String m_FakeBirthYear;
-
-        public String FakeBirthYear
+        public string FakeBirthYear
         {
             [DebuggerStepThrough]
-            get
-            {
-                return (m_FakeBirthYear);
-            }
+            get => _fakeBirthYear;
             set
             {
-                if (m_FakeBirthYear != value)
+                if (_fakeBirthYear != value)
                 {
-                    SetTimestamp();
+                    this.SetTimestamp();
                 }
 
-                m_FakeBirthYear = value;
+                _fakeBirthYear = value;
             }
         }
-
-        private FilmInfo[] m_FilmInfoList = null;
 
         public FilmInfo[] FilmInfoList
         {
             [DebuggerStepThrough]
-            get
-            {
-                return (m_FilmInfoList);
-            }
+            get => _filmInfoList;
             set
             {
-                if (((m_FilmInfoList != null) && (value == null))
-                    || ((m_FilmInfoList == null) && (value != null)))
+                if ((_filmInfoList != null && value == null)
+                    || (_filmInfoList == null && value != null))
                 {
-                    SetTimestamp();
+                    this.SetTimestamp();
                 }
-                else if (m_FilmInfoList != null)
+                else if (_filmInfoList != null)
                 {
-                    if (m_FilmInfoList.Length != value.Length)
+                    if (_filmInfoList.Length != value.Length)
                     {
-                        SetTimestamp();
+                        this.SetTimestamp();
                     }
                     else
                     {
-                        for (Int32 i = 0; i < m_FilmInfoList.Length; i++)
+                        for (var i = 0; i < _filmInfoList.Length; i++)
                         {
-                            FilmInfo oldFI = m_FilmInfoList[i];
+                            var oldFI = _filmInfoList[i];
 
-                            FilmInfo newFi = value[i];
+                            var newFi = value[i];
 
-                            if ((oldFI.FilmLink != newFi.FilmLink) || (oldFI.Name != newFi.Name))
+                            if (oldFI.FilmLink != newFi.FilmLink || oldFI.Name != newFi.Name)
                             {
-                                SetTimestamp();
+                                this.SetTimestamp();
                             }
                         }
                     }
                 }
 
-                m_FilmInfoList = value;
+                _filmInfoList = value;
             }
         }
 
         public DateTime LastModified;
 
         [XmlIgnore]
-        public Boolean LastModifiedSpecified = false;
+        public bool LastModifiedSpecified = false;
 
         [XmlIgnore]
-        public String Type = String.Empty;
+        public string Type = string.Empty;
 
         [XmlIgnore]
-        public String OriginalCredit;
+        public string OriginalCredit;
 
-        public static Boolean CreatorActive { get; set; }
+        public static bool CreatorActive { get; set; }
 
         public PersonInfo()
-        { }
+        {
+            _birthYearWasRetrieved = false;
 
-        public PersonInfo(String type)
+            _personLink = string.Empty;
+
+            _filmInfoList = null;
+        }
+
+        public PersonInfo(string type) : this()
         {
             Type = type;
         }
 
-        public PersonInfo(DataGridViewRow row
-            , String type)
+        public PersonInfo(DataGridViewRow row, string type)
         {
-            Object value = row.Cells[ColumnNames.LastName].Value;
+            var value = row.Cells[ColumnNames.LastName].Value;
 
             if (value != null)
             {
-                LastName = value.ToString();
+                this.LastName = value.ToString();
             }
             else
             {
-                LastName = String.Empty;
+                this.LastName = string.Empty;
             }
 
             value = row.Cells[ColumnNames.MiddleName].Value;
 
             if (value != null)
             {
-                MiddleName = value.ToString();
+                this.MiddleName = value.ToString();
             }
             else
             {
-                MiddleName = String.Empty;
+                this.MiddleName = string.Empty;
             }
 
             value = row.Cells[ColumnNames.FirstName].Value;
 
             if (value != null)
             {
-                FirstName = value.ToString();
+                this.FirstName = value.ToString();
             }
             else
             {
-                FirstName = String.Empty;
+                this.FirstName = string.Empty;
             }
 
             value = row.Cells[ColumnNames.BirthYear].Value;
 
             if (value != null)
             {
-                BirthYear = value.ToString();
+                this.BirthYear = value.ToString();
             }
             else
             {
-                BirthYear = String.Empty;
+                this.BirthYear = string.Empty;
             }
 
-            PersonLink = row.Cells[ColumnNames.Link].Value.ToString();
+            this.PersonLink = row.Cells[ColumnNames.Link].Value.ToString();
 
             Type = type;
         }
@@ -307,112 +296,108 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
         public PersonInfo(PersonInfo personInfo)
         {
             CreatorActive = true;
-            LastName = personInfo.LastName;
-            MiddleName = personInfo.MiddleName;
-            FirstName = personInfo.FirstName;
-            BirthYear = personInfo.BirthYear;
-            BirthYearWasRetrieved = personInfo.BirthYearWasRetrieved;
-            PersonLink = personInfo.PersonLink;
+
+            this.LastName = personInfo.LastName;
+            this.MiddleName = personInfo.MiddleName;
+            this.FirstName = personInfo.FirstName;
+            this.BirthYear = personInfo.BirthYear;
+            this.BirthYearWasRetrieved = personInfo.BirthYearWasRetrieved;
+            this.PersonLink = personInfo.PersonLink;
+            this.FakeBirthYear = personInfo.FakeBirthYear;
+            this.FilmInfoList = personInfo.FilmInfoList;
+
             Type = personInfo.Type;
-            FakeBirthYear = personInfo.FakeBirthYear;
-            FilmInfoList = personInfo.FilmInfoList;
             LastModified = personInfo.LastModified;
             LastModifiedSpecified = personInfo.LastModifiedSpecified;
+
             CreatorActive = false;
         }
 
         private void SetTimestamp()
         {
-            if (CreatorActive == false)
+            if (!CreatorActive)
             {
                 LastModified = DateTime.UtcNow;
                 LastModifiedSpecified = true;
             }
         }
 
-        public override Int32 GetHashCode()
-            => (PersonLink.GetHashCode());
+        public override int GetHashCode() => this.PersonLink.GetHashCode();
 
-        public override Boolean Equals(Object obj)
+        public override bool Equals(object obj)
         {
-            PersonInfo other = obj as PersonInfo;
-
-            if (other == null)
+            if (!(obj is PersonInfo other))
             {
-                return (false);
+                return false;
             }
             else
             {
-                return (PersonLink == other.PersonLink);
+                return this.PersonLink == other.PersonLink;
             }
         }
 
-        public override String ToString()
-            => (FormatActorNameWithBirthYearWithMarkers(true));
+        public override string ToString() => this.FormatActorNameWithBirthYearWithMarkers(true);
 
-        private String FormatPersonNameWithMarkers(Boolean withFilmList)
+        private string FormatPersonNameWithMarkers(bool withFilmList)
         {
-            StringBuilder name = new StringBuilder();
+            var name = new StringBuilder();
 
-            if (String.IsNullOrEmpty(FirstName) == false)
+            if (!string.IsNullOrEmpty(this.FirstName))
             {
-                name.Append("<" + FirstName + ">");
+                name.Append("<" + this.FirstName + ">");
             }
 
-            if (String.IsNullOrEmpty(MiddleName) == false)
+            if (!string.IsNullOrEmpty(this.MiddleName))
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append("{" + MiddleName + "}");
+                name.Append("{" + this.MiddleName + "}");
             }
 
-            if (String.IsNullOrEmpty(LastName) == false)
+            if (!string.IsNullOrEmpty(this.LastName))
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append("[" + LastName + "]");
+                name.Append("[" + this.LastName + "]");
             }
 
             if (withFilmList)
             {
-                AppendFilmInfoList(name);
+                this.AppendFilmInfoList(name);
             }
 
-            return (name.ToString());
+            return name.ToString();
         }
 
-        private String PadNamePart(String namePart
-            , IEnumerable<PersonInfo> others
-            , Func<PersonInfo, String> getNamePart)
+        private string PadNamePart(string namePart, IEnumerable<PersonInfo> others, Func<PersonInfo, string> getNamePart)
         {
-            namePart = namePart ?? String.Empty;
+            namePart = namePart ?? string.Empty;
 
             others = others ?? Enumerable.Empty<PersonInfo>();
 
-            IEnumerable<String> nameParts = others.Select(getNamePart);
+            var nameParts = others.Select(getNamePart);
 
-            Int32 padding = GetMaxPadding(namePart, nameParts);
+            var padding = this.GetMaxPadding(namePart, nameParts);
 
-            for (Int32 i = namePart.Length; i < padding; i++)
+            for (var i = namePart.Length; i < padding; i++)
             {
                 namePart += "&nbsp;";
             }
 
-            return (namePart);
+            return namePart;
         }
 
-        private Int32 GetMaxPadding(String namePart
-            , IEnumerable<String> others)
+        private int GetMaxPadding(string namePart, IEnumerable<string> others)
         {
-            Int32 padding = namePart.Length;
+            int padding = namePart.Length;
 
-            foreach (String other in others)
+            foreach (var other in others)
             {
                 if (other?.Length > padding)
                 {
@@ -420,12 +405,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 }
             }
 
-            return (padding);
+            return padding;
         }
 
         private void AppendFilmInfoList(StringBuilder name)
         {
-            if (FilmInfoList?.Length > 0)
+            if (this.FilmInfoList?.Length > 0)
             {
                 if (name.Length != 0)
                 {
@@ -433,35 +418,33 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 }
 
                 name.Append("(");
-                name.Append(FilmInfoList[FilmInfoList.Length - 1].Name);
+                name.Append(this.FilmInfoList[this.FilmInfoList.Length - 1].Name);
                 name.Append(")");
             }
         }
 
-        public String FormatPersonNameWithMarkers()
-            => (FormatPersonNameWithMarkers(false));
+        public string FormatPersonNameWithMarkers() => this.FormatPersonNameWithMarkers(false);
 
-        private String FormatPersonNameWithMarkersAsHtml(Boolean withFilmList
-            , IEnumerable<PersonInfo> others)
+        private string FormatPersonNameWithMarkersAsHtml(bool withFilmList, IEnumerable<PersonInfo> others)
         {
-            StringBuilder name = new StringBuilder();
+            var name = new StringBuilder();
 
-            String namePart = PadNamePart(FirstName, others, (pi) => pi.FirstName);
+            var namePart = this.PadNamePart(this.FirstName, others, (pi) => pi.FirstName);
 
             name.Append("<span style=\"color:Blue;\">" + namePart + "</span>");
 
-            namePart = PadNamePart(MiddleName, others, (pi) => pi.MiddleName);
+            namePart = this.PadNamePart(this.MiddleName, others, (pi) => pi.MiddleName);
 
-            if ((String.IsNullOrEmpty(namePart) == false) && (name.Length != 0))
+            if (!string.IsNullOrEmpty(namePart) && name.Length != 0)
             {
                 name.Append(" ");
             }
 
             name.Append("<span style=\"color:White; background-color:Black\"><strong>" + namePart + "</strong></span>");
-            
-            namePart = PadNamePart(LastName, others, (pi) => pi.LastName);
 
-            if ((String.IsNullOrEmpty(namePart) == false) && (name.Length != 0))
+            namePart = this.PadNamePart(this.LastName, others, (pi) => pi.LastName);
+
+            if (!string.IsNullOrEmpty(namePart) && name.Length != 0)
             {
                 name.Append(" ");
             }
@@ -470,15 +453,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
             if (withFilmList)
             {
-                AppendFilmInfoListAsHtml(name);
+                this.AppendFilmInfoListAsHtml(name);
             }
 
-            return (name.ToString());
+            return name.ToString();
         }
 
         private void AppendFilmInfoListAsHtml(StringBuilder name)
         {
-            if (FilmInfoList?.Length > 0)
+            if (this.FilmInfoList?.Length > 0)
             {
                 if (name.Length != 0)
                 {
@@ -487,9 +470,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
                 name.Append("(");
 
-                for (Int32 i = FilmInfoList.Length - 1; i >= 0; i--)
+                for (var i = this.FilmInfoList.Length - 1; i >= 0; i--)
                 {
-                    FilmInfo fi = FilmInfoList[i];
+                    var fi = this.FilmInfoList[i];
 
                     name.Append("<a href=\"https://www.imdb.com/title/");
                     name.Append(fi.FilmLink);
@@ -507,132 +490,127 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             }
         }
 
-        public String FormatPersonNameWithMarkersAsHtml(IEnumerable<PersonInfo> others)
-            => (FormatPersonNameWithMarkersAsHtml(false, others));
+        public string FormatPersonNameWithMarkersAsHtml(IEnumerable<PersonInfo> others) => this.FormatPersonNameWithMarkersAsHtml(false, others);
 
-        public String FormatPersonNameWithoutMarkers()
+        public string FormatPersonNameWithoutMarkers()
         {
-            StringBuilder name = new StringBuilder();
+            var name = new StringBuilder();
 
-            if (String.IsNullOrEmpty(FirstName) == false)
+            if (!string.IsNullOrEmpty(this.FirstName))
             {
-                name.Append(FirstName);
+                name.Append(this.FirstName);
             }
 
-            if (String.IsNullOrEmpty(MiddleName) == false)
-            {
-                if (name.Length != 0)
-                {
-                    name.Append(" ");
-                }
-
-                name.Append(MiddleName);
-            }
-
-            if (String.IsNullOrEmpty(LastName) == false)
+            if (!string.IsNullOrEmpty(this.MiddleName))
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append(LastName);
+                name.Append(this.MiddleName);
             }
 
-            return (name.ToString());
+            if (!string.IsNullOrEmpty(this.LastName))
+            {
+                if (name.Length != 0)
+                {
+                    name.Append(" ");
+                }
+
+                name.Append(this.LastName);
+            }
+
+            return name.ToString();
         }
 
-        public String FormatActorNameWithBirthYearWithMarkers(Boolean useFakeBirthYear)
-            => (FormatActorNameWithBirthYearWithMarkers(useFakeBirthYear, false));
+        public string FormatActorNameWithBirthYearWithMarkers(bool useFakeBirthYear) => this.FormatActorNameWithBirthYearWithMarkers(useFakeBirthYear, false);
 
-        public String FormatActorNameWithBirthYearWithMarkers(Boolean useFakeBirthYear
-            , Boolean withFilmList)
+        public string FormatActorNameWithBirthYearWithMarkers(bool useFakeBirthYear, bool withFilmList)
         {
-            StringBuilder name = new StringBuilder(FormatPersonNameWithMarkers(false));
+            var name = new StringBuilder(this.FormatPersonNameWithMarkers(false));
 
-            if (String.IsNullOrEmpty(BirthYear) == false)
+            if (!string.IsNullOrEmpty(this.BirthYear))
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append("(" + BirthYear + ")");
+                name.Append("(" + this.BirthYear + ")");
             }
-            else if ((useFakeBirthYear) && (String.IsNullOrEmpty(FakeBirthYear) == false) && (FakeBirthYear != "0"))
+            else if (useFakeBirthYear && !string.IsNullOrEmpty(this.FakeBirthYear) && this.FakeBirthYear != "0")
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append("(" + FakeBirthYear + ")");
+                name.Append("(" + this.FakeBirthYear + ")");
             }
 
             if (withFilmList)
             {
-                AppendFilmInfoList(name);
+                this.AppendFilmInfoList(name);
             }
 
-            return (name.ToString());
+            return name.ToString();
         }
 
-        public String FormatActorNameWithBirthYearWithMarkersAsHtml(Boolean useFakeBirthYear
-            , IEnumerable<PersonInfo> others)
-            => (FormatActorNameWithBirthYearWithMarkersAsHtml(useFakeBirthYear, false, others));
+        public string FormatActorNameWithBirthYearWithMarkersAsHtml(bool useFakeBirthYear, IEnumerable<PersonInfo> others) => this.FormatActorNameWithBirthYearWithMarkersAsHtml(useFakeBirthYear, false, others);
 
-        public String FormatActorNameWithBirthYearWithMarkersAsHtml(Boolean useFakeBirthYear
-            , Boolean withFilmList
-            , IEnumerable<PersonInfo> others)
+        public string FormatActorNameWithBirthYearWithMarkersAsHtml(bool useFakeBirthYear, bool withFilmList, IEnumerable<PersonInfo> others)
         {
-            StringBuilder name = new StringBuilder(FormatPersonNameWithMarkersAsHtml(false, others));
+            var name = new StringBuilder(this.FormatPersonNameWithMarkersAsHtml(false, others));
 
-            if (String.IsNullOrEmpty(BirthYear) == false)
+            if (!string.IsNullOrEmpty(this.BirthYear))
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append("(" + BirthYear + ")");
+                name.Append("(" + this.BirthYear + ")");
             }
-            else if ((useFakeBirthYear) && (String.IsNullOrEmpty(FakeBirthYear) == false) && (FakeBirthYear != "0"))
+            else if (useFakeBirthYear && !string.IsNullOrEmpty(this.FakeBirthYear) && this.FakeBirthYear != "0")
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append("(" + FakeBirthYear + ")");
+                name.Append("(" + this.FakeBirthYear + ")");
             }
 
             if (withFilmList)
             {
-                AppendFilmInfoListAsHtml(name);
+                this.AppendFilmInfoListAsHtml(name);
             }
 
-            return (name.ToString());
+            return name.ToString();
         }
 
-        public void AddFilmInfo(String link, String name)
+        public void AddFilmInfo(string link, string name)
         {
-            List<FilmInfo> filmInfoList = (FilmInfoList == null) ? new List<FilmInfo>(1) : new List<FilmInfo>(FilmInfoList);
+            var filmInfoList = this.FilmInfoList == null
+                ? new List<FilmInfo>(1)
+                : new List<FilmInfo>(this.FilmInfoList);
 
-            Boolean contains = false;
+            var contains = false;
 
-            for (Int32 i = filmInfoList.Count - 1; i >= 0; i--)
+            for (var firstIndex = filmInfoList.Count - 1; firstIndex >= 0; firstIndex--)
             {
-                if (filmInfoList[i].FilmLink == link)
+                if (filmInfoList[firstIndex].FilmLink == link)
                 {
-                    FilmInfo temp = filmInfoList[i];
+                    var temp = filmInfoList[firstIndex];
 
                     temp.Name = name;
 
                     contains = true;
 
-                    for (Int32 j = i; j < filmInfoList.Count - 1; j++)
+                    for (var secondIndex = firstIndex; secondIndex < filmInfoList.Count - 1; secondIndex++)
                     {
-                        filmInfoList[j] = filmInfoList[j + 1];
+                        filmInfoList[secondIndex] = filmInfoList[secondIndex + 1];
                     }
 
                     filmInfoList[filmInfoList.Count - 1] = temp;
@@ -641,7 +619,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 }
             }
 
-            if (contains == false)
+            if (!contains)
             {
                 filmInfoList.Add(new FilmInfo(link, name));
             }
@@ -651,35 +629,32 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 filmInfoList.RemoveAt(0);
             }
 
-            FilmInfoList = filmInfoList.ToArray();
+            this.FilmInfoList = filmInfoList.ToArray();
         }
 
-        public static Int32 CompareForSorting(PersonInfo left
-            , PersonInfo right)
+        public static int CompareForSorting(PersonInfo left, PersonInfo right)
         {
-            String leftName = GetSortingName(left);
+            var leftName = GetSortingName(left);
 
-            String rightName = GetSortingName(right);
+            var rightName = GetSortingName(right);
 
-            return (leftName.CompareTo(rightName));
+            return leftName.CompareTo(rightName);
         }
 
-        private static String GetSortingName(PersonInfo person)
-            => (person.LastName + " " + person.FirstName + " " + person.MiddleName + " " + person.PersonLink);
+        private static string GetSortingName(PersonInfo person) => person.LastName + " " + person.FirstName + " " + person.MiddleName + " " + person.PersonLink;
     }
 
     [Serializable]
     public class FilmInfo
     {
-        public String FilmLink;
+        public string FilmLink;
 
-        public String Name;
+        public string Name;
 
         public FilmInfo()
         { }
 
-        public FilmInfo(String link
-            , String name)
+        public FilmInfo(string link, string name)
         {
             FilmLink = link;
             Name = name;
@@ -688,29 +663,27 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
     public class PersonInfoWithoutBirthYear : PersonInfo
     {
-        public PersonInfoWithoutBirthYear(DataGridViewRow row
-            , String type)
-            : base(row, type)
+        public PersonInfoWithoutBirthYear(DataGridViewRow row, string type) : base(row, type)
         { }
 
-        public PersonInfoWithoutBirthYear(PersonInfo personInfo)
-            : base(personInfo)
+        public PersonInfoWithoutBirthYear(PersonInfo personInfo) : base(personInfo)
         { }
 
-        public override Int32 GetHashCode()
-            => (FirstName.GetHashCode() / 3 + MiddleName.GetHashCode() / 3 + LastName.GetHashCode() / 3);
+        public override int GetHashCode() => this.FirstName.GetHashCode() ^ this.MiddleName.GetHashCode() ^ this.LastName.GetHashCode();
 
-        public override Boolean Equals(Object obj)
+        public override bool Equals(object obj)
         {
-            PersonInfoWithoutBirthYear other = obj as PersonInfoWithoutBirthYear;
-
-            if (other == null)
+            if (!(obj is PersonInfoWithoutBirthYear other))
             {
-                return (false);
+                return false;
             }
             else
             {
-                return ((LastName == other.LastName) && (MiddleName == other.MiddleName) && (FirstName == other.FirstName));
+                var result = this.LastName == other.LastName
+                    && this.MiddleName == other.MiddleName
+                    && this.FirstName == other.FirstName;
+
+                return result;
             }
         }
     }

@@ -7,121 +7,133 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
     internal partial class EditConfigFileForm : Form
     {
-        private String FileName;
-        private String FileContent;
+        private readonly string _fileName;
 
-        public EditConfigFileForm(String fileName, String name)
+        private readonly string _fileContent;
+
+        public EditConfigFileForm(string fileName, string name)
         {
-            FileName = fileName;
-            InitializeComponent();
-            Text = String.Format(EditWindowNames.EditConfigFile, name);
-            DialogResult = DialogResult.None;
-            using (StreamReader sr = new StreamReader(FileName))
+            _fileName = fileName;
+
+            this.InitializeComponent();
+
+            this.Text = string.Format(EditWindowNames.EditConfigFile, name);
+
+            this.DialogResult = DialogResult.None;
+
+            using (var sr = new StreamReader(_fileName))
             {
-                FileContent = sr.ReadToEnd().Trim();
+                _fileContent = sr.ReadToEnd().Trim();
             }
-            Icon = Properties.Resource.djdsoft;
+
+            this.Icon = Properties.Resource.djdsoft;
         }
 
-        private void OnEditConfigFileFormActivated(Object sender, EventArgs e)
-        {
-            EditTextBox.DeselectAll();
-        }
+        private void OnEditConfigFileFormActivated(object sender, EventArgs e) => EditTextBox.DeselectAll();
 
-        private void OnSaveButtonClick(Object sender, EventArgs e)
+        private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            SaveData();
-            Close();
+            this.SaveData();
+
+            this.Close();
         }
 
         private void SaveData()
         {
-            if (File.Exists(FileName + ".bak"))
+            if (File.Exists(_fileName + ".bak"))
             {
-                File.Delete(FileName + ".bak");
+                File.Delete(_fileName + ".bak");
             }
-            if (File.Exists(FileName))
+
+            if (File.Exists(_fileName))
             {
-                File.Move(FileName, FileName + ".bak");
+                File.Move(_fileName, _fileName + ".bak");
             }
-            using (StreamWriter sw = new StreamWriter(FileName))
+
+            using (var sw = new StreamWriter(_fileName))
             {
                 sw.Write(EditTextBox.Text.Trim());
             }
-            DialogResult = DialogResult.Yes;
+
+            this.DialogResult = DialogResult.Yes;
         }
 
-        private void OnEditConfigFileFormFormClosing(Object sender, FormClosingEventArgs e)
+        private void OnEditConfigFileFormFormClosing(object sender, FormClosingEventArgs e)
         {
-            if ((DialogResult != DialogResult.Yes) && (DialogResult != DialogResult.No))
+            if (this.DialogResult != DialogResult.Yes && this.DialogResult != DialogResult.No)
             {
-                if (FileContent != EditTextBox.Text)
+                if (_fileContent != EditTextBox.Text)
                 {
-                    DialogResult result;
+                    var result = MessageBox.Show(this, MessageBoxTexts.SaveData, MessageBoxTexts.SaveData, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-                    result = MessageBox.Show(this, MessageBoxTexts.SaveData, MessageBoxTexts.SaveData, MessageBoxButtons.YesNoCancel
-                        , MessageBoxIcon.Question);
                     if (result == DialogResult.Cancel)
                     {
                         e.Cancel = true;
+
                         return;
                     }
                     else if (result == DialogResult.Yes)
                     {
-                        SaveData();
+                        this.SaveData();
                     }
                     else
                     {
-                        DialogResult = DialogResult.No;
+                        this.DialogResult = DialogResult.No;
                     }
                 }
                 else
                 {
-                    DialogResult = DialogResult.No;
+                    this.DialogResult = DialogResult.No;
                 }
             }
-            Program.Settings.EditConfigFilesForm.Left = Left;
-            Program.Settings.EditConfigFilesForm.Top = Top;
-            Program.Settings.EditConfigFilesForm.Width = Width;
-            Program.Settings.EditConfigFilesForm.Height = Height;
-            Program.Settings.EditConfigFilesForm.WindowState = WindowState;
-            Program.Settings.EditConfigFilesForm.RestoreBounds = RestoreBounds;
+
+            Program.Settings.EditConfigFilesForm.Left = this.Left;
+            Program.Settings.EditConfigFilesForm.Top = this.Top;
+            Program.Settings.EditConfigFilesForm.Width = this.Width;
+            Program.Settings.EditConfigFilesForm.Height = this.Height;
+            Program.Settings.EditConfigFilesForm.WindowState = this.WindowState;
+            Program.Settings.EditConfigFilesForm.RestoreBounds = this.RestoreBounds;
         }
 
-        private void OnEditConfigFileFormLoad(Object sender, EventArgs e)
+        private void OnEditConfigFileFormLoad(object sender, EventArgs e)
         {
-            SuspendLayout();
+            this.SuspendLayout();
+
             if (Program.Settings.EditConfigFilesForm.WindowState == FormWindowState.Normal)
             {
-                Left = Program.Settings.EditConfigFilesForm.Left;
-                Top = Program.Settings.EditConfigFilesForm.Top;
-                Width = Program.Settings.EditConfigFilesForm.Width;
-                Height = Program.Settings.EditConfigFilesForm.Height;
+                this.Left = Program.Settings.EditConfigFilesForm.Left;
+                this.Top = Program.Settings.EditConfigFilesForm.Top;
+                this.Width = Program.Settings.EditConfigFilesForm.Width;
+                this.Height = Program.Settings.EditConfigFilesForm.Height;
             }
             else
             {
-                Left = Program.Settings.EditConfigFilesForm.RestoreBounds.X;
-                Top = Program.Settings.EditConfigFilesForm.RestoreBounds.Y;
-                Width = Program.Settings.EditConfigFilesForm.RestoreBounds.Width;
-                Height = Program.Settings.EditConfigFilesForm.RestoreBounds.Height;
+                this.Left = Program.Settings.EditConfigFilesForm.RestoreBounds.X;
+                this.Top = Program.Settings.EditConfigFilesForm.RestoreBounds.Y;
+                this.Width = Program.Settings.EditConfigFilesForm.RestoreBounds.Width;
+                this.Height = Program.Settings.EditConfigFilesForm.RestoreBounds.Height;
             }
+
             if (Program.Settings.EditConfigFilesForm.WindowState != FormWindowState.Minimized)
             {
-                WindowState = Program.Settings.EditConfigFilesForm.WindowState;
+                this.WindowState = Program.Settings.EditConfigFilesForm.WindowState;
             }
-            EditTextBox.Text = FileContent;
-            ResumeLayout();
+
+            EditTextBox.Text = _fileContent;
+
+            this.ResumeLayout();
         }
 
-        private void OnCloseWithoutSavingButtonClick(Object sender, EventArgs e)
+        private void OnCloseWithoutSavingButtonClick(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.No;
-            Close();
+            this.DialogResult = DialogResult.No;
+
+            this.Close();
         }
 
-        private void OnCloseButtonClick(Object sender, EventArgs e)
+        private void OnCloseButtonClick(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
     }
 }

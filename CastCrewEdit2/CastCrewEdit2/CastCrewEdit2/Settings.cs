@@ -1,8 +1,8 @@
-using System;
-
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 {
-    [Serializable()]
+    using System;
+
+    [Serializable]
     public class Settings
     {
         public SizableForm MainForm;
@@ -19,6 +19,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         public DefaultValues DefaultValues;
 
-        public String CurrentVersion;      
+        public string CurrentVersion;
     }
 }

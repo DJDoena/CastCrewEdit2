@@ -1,21 +1,1691 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
-using Microsoft.Web.WebView2.Core;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Drawing;
+    using System.IO;
+    using System.Reflection;
+    using System.Runtime.InteropServices;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Web;
+    using System.Windows.Forms;
+    using DVDProfilerHelper;
+    using Helper;
+    using Microsoft.Web.WebView2.Core;
+    using Resources;
+
+    [ComVisible(true)]
+    public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDocHostShowUI
+    {
+        private readonly bool _skipVersionCheck;
+
+        private static readonly Regex _seasonsBeginRegex;
+
+        private static readonly Regex _seasonsEndRegex;
+
+        private static readonly Regex _seasonRegex;
+
+        private static readonly Regex _episodeStartRegex;
+
+        private static readonly Regex _episodeLinkRegex;
+
+        private static readonly Regex _episodeNumberRegex;
+
+        private static readonly Regex _episodeNameRegex;
+
+        private static readonly Regex _episodeEndRegex;
+
+        private string _movieTitle;
+
+        private string _movieTitleLink;
+
+        private List<Match> _castMatches;
+
+        private List<KeyValuePair<Match, List<Match>>> _crewMatches;
+
+        private Dictionary<string, List<Match>> _soundtrackMatches;
+
+        private List<CastInfo> _castList;
+
+        private List<CrewInfo> _crewList;
+
+        private readonly System.Windows.Forms.WebBrowser WebBrowserOld;
+
+        private readonly Microsoft.Web.WebView2.WinForms.WebView2 WebBrowserNew;
+
+        static MainForm()
+        {
+            _seasonsBeginRegex = new Regex("<label for=\"bySeason\">Season:</label>", RegexOptions.Compiled);
+
+            _seasonsEndRegex = new Regex("</select>", RegexOptions.Compiled);
+
+            _seasonRegex = new Regex("<option( +)(selected=\"selected\")?( +)value=\"(?'SeasonNumber'[0-9]+)\"", RegexOptions.Compiled);
+
+            _episodeStartRegex = new Regex("<div class=\"list_item (even|odd)\">", RegexOptions.Compiled);
+
+            _episodeLinkRegex = new Regex("href=\"/title/(?'EpisodeLink'[a-z0-9]+)/", RegexOptions.Compiled);
+
+            _episodeNumberRegex = new Regex("itemprop=\"episodeNumber\" content=\"(?'EpisodeNumber'[0-9,]+)\"", RegexOptions.Compiled);
+
+            _episodeNameRegex = new Regex("itemprop=\"name\">(?'EpisodeName'.*?)</a>", RegexOptions.Compiled);
+
+            _episodeEndRegex = new Regex("<div class=\"clear\">&nbsp;</div>", RegexOptions.Compiled);
+        }
+
+        public MainForm(bool skipVersionCheck)
+        {
+            _movieTitle = string.Empty;
+
+            _skipVersionCheck = skipVersionCheck;
+
+            _castMatches = new List<Match>();
+
+            _crewMatches = new List<KeyValuePair<Match, List<Match>>>();
+
+            _soundtrackMatches = new Dictionary<string, List<Match>>();
+
+            this.InitializeComponent();
+
+            if (Program.ShowNewBrowser)
+            {
+                WebBrowserNew = this.InitWebBrowserNew();
+            }
+            else
+            {
+                WebBrowserOld = this.InitWebBrowserOld();
+            }
+
+            _progressBar = ProgressBar;
+
+            this.Icon = Properties.Resource.djdsoft;
+        }
+
+        private Microsoft.Web.WebView2.WinForms.WebView2 InitWebBrowserNew()
+        {
+            var webBrowser = new Microsoft.Web.WebView2.WinForms.WebView2();
+
+            ((System.ComponentModel.ISupportInitialize)(WebBrowserNew)).BeginInit();
+
+            webBrowser.Name = "WebBrowser";
+            webBrowser.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            webBrowser.Location = new Point(9, 64);
+            webBrowser.Size = new Size(845, 395);
+
+            ((System.ComponentModel.ISupportInitialize)(webBrowser)).EndInit();
+
+            webBrowser.NavigationCompleted += this.OnWebBrowserNavigationCompleted;
+            webBrowser.NavigationStarting += this.OnWebBrowserNavigationStarting;
+
+            BrowserTab.Controls.Add(webBrowser);
+
+            return webBrowser;
+        }
+
+        private System.Windows.Forms.WebBrowser InitWebBrowserOld()
+        {
+            var webBrowser = new System.Windows.Forms.WebBrowser()
+            {
+                AllowWebBrowserDrop = false,
+                Name = "WebBrowser",
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                Location = new Point(9, 64),
+                Size = new Size(845, 395),
+                ScriptErrorsSuppressed = true,
+            };
+
+            WebBrowserOld.Navigated += this.OnWebBrowserNavigated;
+            WebBrowserOld.Navigating += this.OnWebBrowserNavigating;
+
+            BrowserTab.Controls.Add(WebBrowserOld);
+
+            return webBrowser;
+        }
+
+        private void OnMovieScanPageButtonClick(object sender, EventArgs e)
+        {
+            var failed = false;
+
+            this.StartLongAction();
+
+            try
+            {
+                _movieTitle = string.Empty;
+
+                MovieCastDataGridView.Rows.Clear();
+
+                MovieCrewDataGridView.Rows.Clear();
+
+                if (MovieUrlTextBox.Text.Length == 0)
+                {
+                    MessageBox.Show(this, MessageBoxTexts.UrlIsEmpty, MessageBoxTexts.UrlIsEmptyHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                Match match = IMDbParser.TitleUrlRegex.Match(MovieUrlTextBox.Text);
+
+                if (!match.Success || !match.Groups["TitleLink"].Success)
+                {
+                    MessageBox.Show(this, MessageBoxTexts.UrlIsIncorrect, MessageBoxTexts.UrlIsIncorrectHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    return;
+                }
+                try
+                {
+                    _movieTitleLink = match.Groups["TitleLink"].Value.ToString();
+
+                    this.ParseIMDb(_movieTitleLink);
+
+                    if (!Program.Settings.DefaultValues.DisableParsingCompleteMessageBox
+                        && !Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing
+                        && !Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
+                    {
+                        this.ProcessMessageQueue();
+
+                        MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (AggregateException ex)
+                {
+                    failed = true;
+
+                    MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                    Program.WriteError(ex);
+                }
+                catch (Exception ex)
+                {
+                    failed = true;
+
+                    MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                    Program.WriteError(ex);
+                }
+            }
+            catch (AggregateException ex)
+            {
+                MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                Program.WriteError(ex);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                Program.WriteError(ex);
+            }
+            finally
+            {
+                if (!failed && !Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing)
+                {
+                    Program.FlushPersonCache();
+                }
+
+                PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
+
+                this.SetMovieFormText();
+
+                this.EndLongActionWithGrids();
+            }
+
+            if (!failed && Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing)
+            {
+                this.GetBirthYears(Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing);
+            }
+
+            if (!failed && Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
+            {
+                this.OnGetHeadshotsButtonClick(sender, e);
+            }
+
+            this.ProcessMessageQueue();
+
+            if (!failed)
+            {
+                DataGridViewHelper.CopyCastToClipboard(MovieCastDataGridView, _movieTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
+                DataGridViewHelper.CopyCrewToClipboard(MovieCrewDataGridView, _movieTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
+            }
+        }
+
+        private void EndLongActionWithGrids()
+        {
+            this.EndLongAction();
+
+            MovieCastDataGridView.Refresh();
+            MovieCrewDataGridView.Refresh();
+        }
+
+        private void SetMovieFormText()
+        {
+            if (!string.IsNullOrEmpty(_movieTitle))
+            {
+                this.Text = "Cast/Crew Edit 2 - " + _movieTitle;
+            }
+            else
+            {
+                this.Text = "Cast/Crew Edit 2";
+            }
+        }
+
+        private void ParseIMDb(string key)
+        {
+            var defaultValues = this.CopyDefaultValues();
+
+            _castList = new List<CastInfo>();
+            _crewList = new List<CrewInfo>();
+
+            this.ParseTitle(key);
+
+            ParseCastAndCrew(key, ParseCastCheckBox.Checked, ParseCrewCheckBox.Checked, ParseCrewCheckBox.Checked, false, ref _castMatches, ref _castList, ref _crewMatches, ref _crewList, ref _soundtrackMatches);
+
+            try
+            {
+                var progressMax = _castMatches.Count;
+
+                foreach (var kvp in _crewMatches)
+                {
+                    progressMax += kvp.Value.Count;
+                }
+
+                foreach (var kvp in _soundtrackMatches)
+                {
+                    progressMax += kvp.Value.Count;
+                }
+
+                this.StartProgress(progressMax, Color.LightBlue);
+
+                this.ProcessLines(_castList, _castMatches, _crewList, _crewMatches, _soundtrackMatches, defaultValues);
+            }
+            finally
+            {
+                this.EndProgress();
+            }
+
+            this.UpdateUI();
+
+            this.ParseTrivia();
+
+            this.ParseGoofs();
+        }
+
+        private void ParseTitle(string key)
+        {
+            var targetUrl = IMDbParser.TitleUrl + key + "/fullcredits";
+
+            var webSite = IMDbParser.GetWebSite(targetUrl);
+
+            #region Parse for Title
+
+            using (var sr = new StringReader(webSite))
+            {
+                while (sr.Peek() != -1)
+                {
+                    var line = sr.ReadLine();
+
+                    if (string.IsNullOrEmpty(_movieTitle))
+                    {
+                        var titleMatch = IMDbParser.TitleRegex.Match(line);
+
+                        if (titleMatch.Success)
+                        {
+                            _movieTitle = HttpUtility.HtmlDecode(titleMatch.Groups["Title"].Value);
+
+                            _movieTitle = _movieTitle.Replace(" - IMDb", string.Empty).Replace(" - Full Cast & Crew", string.Empty).Trim();
+
+                            this.CreateTitleRow();
+
+                            break;
+                        }
+                    }
+                }
+            }
+
+            #endregion
+        }
+
+        private void ParseTrivia()
+        {
+            TriviaTextBox.Text = string.Empty;
+
+            if (Program.Settings.DefaultValues.DownloadTrivia)
+            {
+                var triviaUrl = IMDbParser.TitleUrl + _movieTitleLink + "/trivia";
+
+                var webSite = IMDbParser.GetWebSite(triviaUrl);
+
+                using (var sr = new StringReader(webSite))
+                {
+                    var triviaFound = false;
+
+                    var trivia = new StringBuilder();
+
+                    while (sr.Peek() != -1)
+                    {
+                        var line = sr.ReadLine();
+
+                        if (!triviaFound)
+                        {
+                            var beginMatch = IMDbParser.TriviaStartRegex.Match(line);
+
+                            if (beginMatch.Success)
+                            {
+                                triviaFound = true;
+
+                                continue;
+                            }
+                        }
+
+                        if (triviaFound)
+                        {
+                            trivia.AppendLine(line);
+                        }
+                    }
+
+                    if (trivia.Length > 0)
+                    {
+                        this.ParseTrivia(trivia, triviaUrl);
+                    }
+                }
+            }
+        }
+
+        private void ParseTrivia(StringBuilder trivia, string triviaUrl)
+        {
+            var matches = IMDbParser.TriviaLiRegex.Matches(trivia.ToString());
+
+            trivia = new StringBuilder();
+
+            trivia.AppendLine("<div style=\"display:none\">");
+
+            if (matches.Count > 0)
+            {
+                foreach (Match match in matches)
+                {
+                    if (match.Groups["Trivia"].Success)
+                    {
+                        var value = match.Groups["Trivia"].Value.Trim();
+
+                        if (!string.IsNullOrEmpty(value))
+                        {
+                            value = value.Replace("href=\"#", "href=\"" + triviaUrl + "#");
+                            value = value.Replace("href=\"/", "href=\"" + IMDbParser.BaseUrl + "/");
+                            value = value.Replace("href=\"?", "href=\"" + IMDbParser.BaseUrl + "?");
+                            value = value.Replace(" />", ">");
+                            value = value.Replace("/>", ">");
+                            value = value.Trim();
+
+                            while (value.EndsWith("<br>"))
+                            {
+                                value = value.Substring(0, value.Length - 4).TrimEnd();
+                            }
+
+                            trivia.AppendLine("<trivia=" + value + " />");
+                            trivia.AppendLine();
+                        }
+                    }
+                }
+            }
+
+            trivia.AppendLine("</div>");
+
+            TriviaTextBox.Text = trivia.ToString();
+        }
+
+        private void ParseGoofs()
+        {
+            GoofsTextBox.Text = string.Empty;
+
+            if (Program.Settings.DefaultValues.DownloadGoofs)
+            {
+                var goofsUrl = IMDbParser.TitleUrl + _movieTitleLink + "/goofs";
+
+                var webSite = IMDbParser.GetWebSite(goofsUrl);
+
+                using (var sr = new StringReader(webSite))
+                {
+                    var goofsFound = false;
+
+                    var goofs = new StringBuilder();
+
+                    while (sr.Peek() != -1)
+                    {
+                        var line = sr.ReadLine();
+
+                        if (!goofsFound)
+                        {
+                            var beginMatch = IMDbParser.GoofsStartRegex.Match(line);
+
+                            if (beginMatch.Success)
+                            {
+                                goofsFound = true;
+
+                                continue;
+                            }
+                        }
+
+                        if (goofsFound)
+                        {
+                            goofs.AppendLine(line);
+                        }
+                    }
+
+                    if (goofs.Length > 0)
+                    {
+                        this.ParseGoofs(goofs, goofsUrl);
+                    }
+                }
+            }
+        }
+
+        private void ParseGoofs(StringBuilder goofs, string goofsUrl)
+        {
+            var matches = IMDbParser.GoofsLiRegex.Matches(goofs.ToString());
+
+            goofs = new StringBuilder();
+
+            goofs.AppendLine("<div style=\"display:none\">");
+
+            if (matches.Count > 0)
+            {
+                foreach (Match match in matches)
+                {
+                    if (match.Groups["Goof"].Success)
+                    {
+                        var value = match.Groups["Goof"].Value.Trim();
+
+                        var spoilerMatch = IMDbParser.GoofSpoilerRegex.Match(value);
+
+                        if (spoilerMatch.Success)
+                        {
+                            value = spoilerMatch.Groups["Goof"].Value;
+                        }
+
+                        if (!string.IsNullOrEmpty(value))
+                        {
+                            value = value.Replace("&nbsp;", " ");
+                            value = value.Replace("href=\"#", "href=\"" + goofsUrl + "#");
+                            value = value.Replace("href=\"/", "href=\"" + IMDbParser.BaseUrl + "/");
+                            value = value.Replace("href=\"?", "href=\"" + IMDbParser.BaseUrl + "?");
+                            value = value.Replace(" />", ">");
+                            value = value.Replace("/>", ">");
+                            value = value.Trim();
+
+                            while (value.EndsWith("<br>"))
+                            {
+                                value = value.Substring(0, value.Length - 4).TrimEnd();
+                            }
+
+                            goofs.AppendLine("<goof=" + value + " />");
+                            goofs.AppendLine();
+                        }
+                    }
+                }
+            }
+
+            goofs.AppendLine("</div>");
+
+            GoofsTextBox.Text = goofs.ToString();
+        }
+
+        private void CreateTitleRow()
+        {
+            if (ParseCastCheckBox.Checked)
+            {
+                var title = new CastInfo(-1)
+                {
+                    FirstName = FirstNames.Title,
+                    MiddleName = string.Empty,
+                    LastName = _movieTitle,
+                    BirthYear = string.Empty,
+                    Role = string.Empty,
+                    Voice = "False",
+                    Uncredited = "False",
+                    CreditedAs = string.Empty,
+                    PersonLink = _movieTitleLink,
+                };
+
+                _castList.Add(title);
+            }
+
+            if (ParseCrewCheckBox.Checked)
+            {
+                var title = new CrewInfo()
+                {
+                    FirstName = FirstNames.Title,
+                    MiddleName = string.Empty,
+                    LastName = _movieTitle,
+                    BirthYear = string.Empty,
+                    CreditType = null,
+                    CreditSubtype = null,
+                    CreditedAs = string.Empty,
+                    CustomRole = string.Empty,
+                    PersonLink = _movieTitleLink,
+                };
+
+                _crewList.Add(title);
+            }
+        }
+
+        private void UpdateUI()
+        {
+            this.UpdateUI(_castList, _crewList, MovieCastDataGridView, MovieCrewDataGridView, ParseCastCheckBox.Checked, ParseCrewCheckBox.Checked, _movieTitleLink, _movieTitle);
+
+            if (_log.Length > 0)
+            {
+                _log.Show(LogWebBrowser);
+            }
+        }
+
+        private void OnMainFormLoad(object sender, EventArgs e)
+        {
+            this.SuspendLayout();
+
+            this.LayoutForm();
+
+            this.CreateDataGridViewColumns();
+
+            this.SetCheckBoxes();
+
+            if (ItsMe)
+            {
+                MenuStrip.Items.Add(sessionDataToolStripMenuItem);
+            }
+
+            this.ResumeLayout();
+
+            BirthYearsInLocalCacheLabel.Text = IMDbParser.PersonHashCount;
+
+            PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
+
+            this.RegisterEvents();
+
+            if (Program.Settings.CurrentVersion != Assembly.GetExecutingAssembly().GetName().Version.ToString())
+            {
+                this.OpenReadme();
+
+                Program.Settings.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
+
+            this.CheckForNewVersion(true);
+
+            this.NavigateTo("https://www.imdb.com/find?s=tt&q=");
+
+            BrowserSearchTextBox.Focus();
+        }
+
+        private void CheckForNewVersion(bool silently)
+        {
+            if (silently)
+            {
+                if (!_skipVersionCheck)
+                {
+                    OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/3.9.0/versions.xml", this, "CastCrewEdit2", this.GetType().Assembly, silently);
+                }
+            }
+            else
+            {
+                OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/3.9.0/versions.xml", this, "CastCrewEdit2", this.GetType().Assembly, silently);
+            }
+        }
+
+        private void CreateDataGridViewColumns()
+        {
+            DataGridViewHelper.CreateCastColumns(MovieCastDataGridView);
+            DataGridViewHelper.CreateCrewColumns(MovieCrewDataGridView);
+
+            var seasonDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = "Season Number",
+                HeaderText = DataGridViewTexts.SeasonNumber,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+            };
+
+            TVShowSeasonsDataGridView.Columns.Add(seasonDataGridViewTextBoxColumn);
+        }
+
+        private void LayoutForm()
+        {
+            if (Program.Settings.MainForm.WindowState == FormWindowState.Normal)
+            {
+                this.Left = Program.Settings.MainForm.Left;
+
+                this.Top = Program.Settings.MainForm.Top;
+
+                if (Program.Settings.MainForm.Width > this.MinimumSize.Width)
+                {
+                    this.Width = Program.Settings.MainForm.Width;
+                }
+                else
+                {
+                    this.Width = this.MinimumSize.Width;
+                }
+
+                if (Program.Settings.MainForm.Height > this.MinimumSize.Height)
+                {
+                    this.Height = Program.Settings.MainForm.Height;
+                }
+                else
+                {
+                    this.Height = this.MinimumSize.Height;
+                }
+            }
+            else
+            {
+                this.Left = Program.Settings.MainForm.RestoreBounds.X;
+
+                this.Top = Program.Settings.MainForm.RestoreBounds.Y;
+
+                if (Program.Settings.MainForm.RestoreBounds.Width > this.MinimumSize.Width)
+                {
+                    this.Width = Program.Settings.MainForm.RestoreBounds.Width;
+                }
+                else
+                {
+                    this.Width = this.MinimumSize.Width;
+                }
+
+                if (Program.Settings.MainForm.RestoreBounds.Height > this.MinimumSize.Height)
+                {
+                    this.Height = Program.Settings.MainForm.RestoreBounds.Height;
+                }
+                else
+                {
+                    this.Height = this.MinimumSize.Height;
+                }
+            }
+
+            if (Program.Settings.MainForm.WindowState != FormWindowState.Minimized)
+            {
+                this.WindowState = Program.Settings.MainForm.WindowState;
+            }
+        }
+
+        private void RegisterEvents()
+        {
+            MovieCastDataGridView.CellValueChanged += this.OnMovieCastDataGridViewCellValueChanged;
+
+            MovieCrewDataGridView.CellValueChanged += this.OnMovieCrewDataGridViewCellValueChanged;
+
+            MovieCastDataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
+
+            MovieCrewDataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
+
+            SettingsToolStripMenuItem.Click += this.OnSettingsToolStripMenuItemClick;
+
+            FirstnamePrefixesToolStripMenuItem.Click += this.OnFirstnamePrefixesToolStripMenuItemClick;
+
+            LastnamePrefixesToolStripMenuItem.Click += this.OnLastnamePrefixesToolStripMenuItemClick;
+
+            LastnameSuffixesToolStripMenuItem.Click += this.OnLastnameSuffixesToolStripMenuItemClick;
+
+            KnownNamesToolStripMenuItem.Click += this.OnKnownNamesToolStripMenuItemClick;
+
+            IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Click += this.OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick;
+
+            IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Click += this.OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick;
+
+            ForcedFakeBirthYearsToolStripMenuItem.Click += this.OnForcedFakeBirthYearsToolStripMenuItemClick;
+
+            IMDbToDVDProfilerTransformationDataToolStripMenuItem.Click += this.OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick;
+
+            ReadmeToolStripMenuItem.Click += this.OnReadmeToolStripMenuItemClick;
+
+            AboutToolStripMenuItem.Click += this.OnAboutToolStripMenuItemClick;
+
+            BirthYearsInLocalCacheLabel.LinkClicked += this.OnBirthYearsInLocalCacheLabelLinkClicked;
+
+            PersonsInLocalCacheLabel.LinkClicked += this.OnPersonsInLocalCacheLabelLinkClicked;
+        }
+
+        private void OnMainFormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Program.Settings.DefaultValues.SaveLogFile && _log.Length > 0)
+            {
+                using (var sw = new StreamWriter(Program.LogFile, true, Encoding.UTF8))
+                {
+                    sw.WriteLine(_log.ToString());
+                }
+            }
+
+            Program.Settings.MainForm.Left = this.Left;
+            Program.Settings.MainForm.Top = this.Top;
+            Program.Settings.MainForm.Width = this.Width;
+            Program.Settings.MainForm.Height = this.Height;
+            Program.Settings.MainForm.WindowState = this.WindowState;
+            Program.Settings.MainForm.RestoreBounds = this.RestoreBounds;
+        }
+
+        private void OnGetBirthYearsButtonClick(object sender, EventArgs e)
+        {
+            this.GetBirthYears(false);
+
+            this.ProcessMessageQueue();
+        }
+
+        private void GetBirthYears(bool parseHeadshotsFollows) => this.GetBirthYears(parseHeadshotsFollows, MovieCastDataGridView, MovieCrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
+
+        private void SetCheckBoxes()
+        {
+            ParseCastCheckBox.Checked = Program.Settings.DefaultValues.ParseCast;
+
+            ParseCrewCheckBox.Checked = Program.Settings.DefaultValues.ParseCrew;
+
+            ParseRoleSlashCheckBox.Checked = Program.Settings.DefaultValues.ParseRoleSlash;
+
+            ParseVoiceOfCheckBox.Checked = Program.Settings.DefaultValues.ParseVoiceOf;
+
+            IgnoreUncreditedCheckBox.Checked = Program.Settings.DefaultValues.IgnoreUncredited;
+
+            IgnoreCreditOnlyCheckBox.Checked = Program.Settings.DefaultValues.IgnoreCreditOnly;
+
+            IgnoreScenesDeletedCheckBox.Checked = Program.Settings.DefaultValues.IgnoreScenesDeleted;
+
+            IgnoreArchiveFootageCheckBox.Checked = Program.Settings.DefaultValues.IgnoreArchiveFootage;
+
+            IgnoreLanguageVersionCheckBox.Checked = Program.Settings.DefaultValues.IgnoreLanguageVersion;
+
+            IgnoreUnconfirmedCheckBox.Checked = Program.Settings.DefaultValues.IgnoreUnconfirmed;
+
+            RetainCreditedAsOnCastCheckBox.Checked = Program.Settings.DefaultValues.RetainCastCreditedAs;
+
+            CustomCreditsCheckBox.Checked = Program.Settings.DefaultValues.IncludeCustomCredits;
+
+            RetainOriginalCreditCheckBox.Checked = Program.Settings.DefaultValues.RetainOriginalCredit;
+
+            IncludePrefixOnOtherCreditsCheckBox.Checked = Program.Settings.DefaultValues.IncludePrefixOnOtherCredits;
+
+            CapitalizeCustomRoleCheckBox.Checked = Program.Settings.DefaultValues.CapitalizeCustomRole;
+
+            RetainCreditedAsOnCrewCheckBox.Checked = Program.Settings.DefaultValues.RetainCrewCreditedAs;
+
+            CreditTypeDirectionCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeDirection;
+
+            CreditTypeWritingCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeWriting;
+
+            CreditTypeProductionCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeProduction;
+
+            CreditTypeCinematographyCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeCinematography;
+
+            CreditTypeFilmEditingCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeFilmEditing;
+
+            CreditTypeMusicCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeMusic;
+
+            CreditTypeSoundCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeSound;
+
+            CreditTypeArtCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeArt;
+
+            CreditTypeOtherCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeOther;
+
+            CreditTypeSoundtrackCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeSoundtrack;
+        }
+
+        private void OnMovieCrewDataGridViewCellValueChanged(object sender, DataGridViewCellEventArgs e) => DataGridViewHelper.OnCrewDataGridViewCellValueChanged(sender, e);
+
+        private void OnMovieCastDataGridViewCellValueChanged(object sender, DataGridViewCellEventArgs e) => DataGridViewHelper.OnCastDataGridViewCellValueChanged(sender, e);
+
+        private void OnMovieCastGenerateButtonClick(object sender, EventArgs e)
+        {
+            if (!HasAgreed)
+            {
+                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            HasAgreed = true;
+
+            DataGridViewHelper.CopyCastToClipboard(MovieCastDataGridView, _movieTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, false);
+
+            _log.Show(LogWebBrowser);
+
+            this.ProcessMessageQueue();
+
+            if (!Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox)
+            {
+                MessageBox.Show(this, MessageBoxTexts.CastDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void OnMovieCrewGenerateButtonClick(object sender, EventArgs e)
+        {
+            if (!HasAgreed)
+            {
+                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            HasAgreed = true;
+
+            DataGridViewHelper.CopyCrewToClipboard(MovieCrewDataGridView, _movieTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, false);
+
+            _log.Show(LogWebBrowser);
+
+            this.ProcessMessageQueue();
+
+            if (!Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox)
+            {
+                MessageBox.Show(this, MessageBoxTexts.CrewDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void OnTVShowScanPageButtonClick(object sender, EventArgs e)
+        {
+            this.StartLongAction();
+
+            try
+            {
+                _tvShowTitle = string.Empty;
+
+                TVShowSeasonsDataGridView.Rows.Clear();
+
+                if (TVShowUrlTextBox.Text.Length == 0)
+                {
+                    MessageBox.Show(this, MessageBoxTexts.UrlIsEmpty, MessageBoxTexts.UrlIsEmptyHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                var match = IMDbParser.TitleUrlRegex.Match(TVShowUrlTextBox.Text);
+
+                if (!match.Success || !match.Groups["TitleLink"].Success)
+                {
+                    MessageBox.Show(this, MessageBoxTexts.UrlIsIncorrect, MessageBoxTexts.UrlIsIncorrectHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                _tvShowTitleLink = match.Groups["TitleLink"].Value.ToString();
+
+                try
+                {
+                    this.ScanForSeasons();
+
+                    if (!Program.Settings.DefaultValues.DisableParsingCompleteMessageBox)
+                    {
+                        this.ProcessMessageQueue();
+
+                        MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (AggregateException ex)
+                {
+                    MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                    Program.WriteError(ex);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                    Program.WriteError(ex);
+                }
+            }
+            catch (AggregateException ex)
+            {
+                MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                Program.WriteError(ex);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                Program.WriteError(ex);
+            }
+            finally
+            {
+                this.SetTVShowFormText();
+
+                this.EndLongActionWithGrids();
+            }
+        }
+
+        private void SetTVShowFormText()
+        {
+            if (!string.IsNullOrEmpty(_tvShowTitle))
+            {
+                this.Text = "Cast/Crew Edit 2 For TV Shows - " + Resources.Seasons + " - " + _tvShowTitle;
+            }
+            else
+            {
+                this.Text = "Cast/Crew Edit 2 For TV Shows";
+            }
+        }
+
+        private void OnScanForEpisodesButtonClick(object sender, EventArgs e)
+        {
+            if (TVShowSeasonsDataGridView.SelectedRows == null || TVShowSeasonsDataGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show(this, MessageBoxTexts.NoSeasonSelected, MessageBoxTexts.NoSeasonSelectedHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
+            }
+            else
+            {
+                this.StartLongAction();
+
+                this.SuspendLayout();
+
+                var episodes = new List<EpisodeInfo>();
+
+                try
+                {
+                    var seasons = new List<int>(TVShowSeasonsDataGridView.SelectedRows.Count);
+
+                    for (var rowIndex = 0; rowIndex < TVShowSeasonsDataGridView.SelectedRows.Count; rowIndex++)
+                    {
+                        seasons.Add(int.Parse(TVShowSeasonsDataGridView.SelectedRows[rowIndex].Cells["Season Number"].Value.ToString()));
+                    }
+
+                    seasons.Sort();
+
+                    foreach (var season in seasons)
+                    {
+                        var targetUrl = IMDbParser.TitleUrl + _tvShowTitleLink + "/episodes?season=" + season;
+
+                        var webSite = IMDbParser.GetWebSite(targetUrl);
+
+                        using (var sr = new StringReader(webSite))
+                        {
+                            while (sr.Peek() != -1)
+                            {
+                                var line = sr.ReadLine();
+
+                                var episodeStartMatch = _episodeStartRegex.Match(line);
+
+                                if (episodeStartMatch.Success)
+                                {
+                                    var episodeLinkFound = false;
+
+                                    var episodeNumberFound = false;
+
+                                    var episodeNameFound = false;
+
+                                    var episodeInfo = new EpisodeInfo();
+
+                                    var parts = EpisodeParts.None;
+
+                                    while (!_episodeEndRegex.Match(line).Success)
+                                    {
+                                        line = sr.ReadLine();
+
+                                        if (!episodeLinkFound)
+                                        {
+                                            var match = _episodeLinkRegex.Match(line);
+
+                                            if (match.Success)
+                                            {
+                                                episodeInfo.Link = match.Groups["EpisodeLink"].Value.ToString();
+
+                                                parts |= EpisodeParts.Link;
+
+                                                episodeLinkFound = true;
+
+                                                continue;
+                                            }
+                                        }
+
+                                        if (!episodeNumberFound)
+                                        {
+                                            var match = _episodeNumberRegex.Match(line);
+
+                                            if (match.Success)
+                                            {
+                                                episodeInfo.EpisodeNumber = match.Groups["EpisodeNumber"].Value.ToString();
+
+                                                parts |= EpisodeParts.Number;
+
+                                                episodeNumberFound = true;
+
+                                                continue;
+                                            }
+                                        }
+
+                                        if (!episodeNameFound)
+                                        {
+                                            var match = _episodeNameRegex.Match(line);
+
+                                            if (match.Success)
+                                            {
+                                                episodeInfo.EpisodeName = HttpUtility.HtmlDecode(match.Groups["EpisodeName"].Value.ToString());
+
+                                                parts |= EpisodeParts.Name;
+
+                                                episodeNameFound = true;
+
+                                                continue;
+                                            }
+                                        }
+                                    }
+
+                                    episodeInfo.SeasonNumber = season.ToString();
+
+                                    if (parts == (EpisodeParts.Link | EpisodeParts.Name | EpisodeParts.Number))
+                                    {
+                                        episodes.Add(episodeInfo);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (AggregateException ex)
+                {
+                    MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                    Program.WriteError(ex);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                    Program.WriteError(ex);
+                }
+                finally
+                {
+                    this.ResumeLayout();
+
+                    this.EndLongActionWithGrids();
+                }
+
+                if (episodes.Count == 0)
+                {
+                    MessageBox.Show(this, MessageBoxTexts.NoEpisodesFound, MessageBoxTexts.NoEpisodesFoundHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    return;
+                }
+                else
+                {
+                    if (!Program.Settings.DefaultValues.DisableParsingCompleteMessageBox)
+                    {
+                        this.ProcessMessageQueue();
+
+                        MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    using (var episodesForm = new EpisodesForm(episodes))
+                    {
+                        _settingsHaveChanged = false;
+
+                        episodesForm.ShowDialog(this);
+
+                        if (_settingsHaveChanged)
+                        {
+                            this.SetCheckBoxes();
+
+                            _settingsHaveChanged = false;
+                        }
+
+                        _log.Show(LogWebBrowser);
+                    }
+                }
+
+                BirthYearsInLocalCacheLabel.Text = IMDbParser.PersonHashCount;
+
+                PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
+            }
+        }
+
+        private void ScanForSeasons()
+        {
+            var targetUrl = IMDbParser.TitleUrl + _tvShowTitleLink + "/episodes";
+
+            var webSite = IMDbParser.GetWebSite(targetUrl);
+
+            using (var sr = new StringReader(webSite))
+            {
+                while (sr.Peek() != -1)
+                {
+                    var line = sr.ReadLine();
+
+                    if (string.IsNullOrEmpty(_tvShowTitle))
+                    {
+                        var titleMatch = IMDbParser.TitleRegex.Match(line);
+
+                        if (titleMatch.Success)
+                        {
+                            _tvShowTitle = HttpUtility.HtmlDecode(titleMatch.Groups["Title"].Value);
+
+                            _tvShowTitle = _tvShowTitle.Replace(" - IMDb", string.Empty).Replace(" - Episodes", string.Empty).Trim();
+
+                            continue;
+                        }
+                    }
+
+                    var seasonsMatch = _seasonsBeginRegex.Match(line);
+
+                    if (seasonsMatch.Success)
+                    {
+                        while (sr.Peek() != -1)
+                        {
+                            line = sr.ReadLine();
+
+                            seasonsMatch = _seasonsEndRegex.Match(line);
+
+                            if (seasonsMatch.Success)
+                            {
+                                return;
+                            }
+
+                            var seasonMatch = _seasonRegex.Match(line);
+
+                            if (seasonMatch.Success)
+                            {
+                                if (seasonMatch.Success)
+                                {
+                                    var row = TVShowSeasonsDataGridView.Rows[TVShowSeasonsDataGridView.Rows.Add()];
+
+                                    row.DefaultCellStyle.BackColor = Color.White;
+
+                                    row.Cells["Season Number"].Value = seasonMatch.Groups["SeasonNumber"].Value.ToString();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void OnMovieTVShowTabControlSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var tabControl = (TabControl)sender;
+
+            if (tabControl.SelectedTab == MovieTab)
+            {
+                this.SetMovieFormText();
+            }
+            else if (tabControl.SelectedTab == TVShowTab)
+            {
+                this.SetTVShowFormText();
+            }
+        }
+
+        private void OnSettingsToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            using (var settingsForm = new SettingsForm(true, true))
+            {
+                settingsForm.SetValues(Program.Settings.SettingsForm.Left, Program.Settings.SettingsForm.Top, Program.Settings.DefaultValues);
+
+                if (settingsForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    this.SetCheckBoxes();
+                }
+
+                settingsForm.GetValues(out Program.Settings.SettingsForm.Left, out Program.Settings.SettingsForm.Top);
+            }
+        }
+
+        private void OnReApplySettingsAndFiltersButtonClick(object sender, EventArgs e)
+        {
+            this.StartLongAction();
+
+            MovieCastDataGridView.Rows.Clear();
+
+            MovieCrewDataGridView.Rows.Clear();
+
+            _castList = new List<CastInfo>();
+
+            _crewList = new List<CrewInfo>();
+
+            this.CreateTitleRow();
+
+            var defaultValues = this.CopyDefaultValues();
+
+            try
+            {
+                var progressMax = _castMatches.Count;
+
+                foreach (var kvp in _crewMatches)
+                {
+                    progressMax += kvp.Value.Count;
+                }
+
+                foreach (var kvp in _soundtrackMatches)
+                {
+                    progressMax += kvp.Value.Count;
+                }
+
+                this.StartProgress(progressMax, Color.LightBlue);
+
+                this.ProcessLines(_castList, _castMatches, _crewList, _crewMatches, _soundtrackMatches, defaultValues);
+            }
+            finally
+            {
+                this.EndProgress();
+            }
+
+            this.UpdateUI();
+
+            this.EndLongActionWithGrids();
+
+            if (!Program.Settings.DefaultValues.DisableParsingCompleteMessageBox
+                && !Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing
+                && !Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
+            {
+                this.ProcessMessageQueue();
+
+                MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            if (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing)
+            {
+                this.GetBirthYears(Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing);
+            }
+            else
+            {
+                Program.FlushPersonCache();
+            }
+
+            if (Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
+            {
+                this.OnGetHeadshotsButtonClick(sender, e);
+            }
+
+            this.ProcessMessageQueue();
+
+            DataGridViewHelper.CopyCastToClipboard(MovieCastDataGridView, _movieTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
+            DataGridViewHelper.CopyCrewToClipboard(MovieCrewDataGridView, _movieTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
+        }
+
+        private DefaultValues CopyDefaultValues() => new DefaultValues()
+        {
+            ParseFirstNameInitialsIntoFirstAndMiddleName = Program.Settings.DefaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName,
+            ParseRoleSlash = ParseRoleSlashCheckBox.Checked,
+            ParseVoiceOf = ParseVoiceOfCheckBox.Checked,
+            IgnoreUncredited = IgnoreUncreditedCheckBox.Checked,
+            IgnoreCreditOnly = IgnoreCreditOnlyCheckBox.Checked,
+            IgnoreScenesDeleted = IgnoreScenesDeletedCheckBox.Checked,
+            IgnoreArchiveFootage = IgnoreArchiveFootageCheckBox.Checked,
+            IgnoreLanguageVersion = IgnoreLanguageVersionCheckBox.Checked,
+            IgnoreUnconfirmed = IgnoreUnconfirmedCheckBox.Checked,
+            IncludeCustomCredits = CustomCreditsCheckBox.Checked,
+            RetainCastCreditedAs = RetainCreditedAsOnCastCheckBox.Checked,
+            RetainOriginalCredit = RetainOriginalCreditCheckBox.Checked,
+            IncludePrefixOnOtherCredits = IncludePrefixOnOtherCreditsCheckBox.Checked,
+            CapitalizeCustomRole = CapitalizeCustomRoleCheckBox.Checked,
+            RetainCrewCreditedAs = RetainCreditedAsOnCrewCheckBox.Checked,
+            CreditTypeDirection = CreditTypeDirectionCheckBox.Checked,
+            CreditTypeWriting = CreditTypeWritingCheckBox.Checked,
+            CreditTypeProduction = CreditTypeProductionCheckBox.Checked,
+            CreditTypeCinematography = CreditTypeCinematographyCheckBox.Checked,
+            CreditTypeFilmEditing = CreditTypeFilmEditingCheckBox.Checked,
+            CreditTypeMusic = CreditTypeMusicCheckBox.Checked,
+            CreditTypeSound = CreditTypeSoundCheckBox.Checked,
+            CreditTypeArt = CreditTypeArtCheckBox.Checked,
+            CreditTypeOther = CreditTypeOtherCheckBox.Checked,
+            CreditTypeSoundtrack = CreditTypeSoundtrackCheckBox.Checked,
+            CheckPersonLinkForRedirect = Program.Settings.DefaultValues.CheckPersonLinkForRedirect,
+        };
+
+        protected override void MoveRow(CastInfo castMember, bool up)
+        {
+            var index = FindIndexOfCastMember(_castList, castMember);
+
+            if (index != -1)
+            {
+                var temp = _castList[index];
+
+                if (up)
+                {
+                    _castList[index] = _castList[index - 1];
+                    _castList[index - 1] = temp;
+                }
+                else
+                {
+                    _castList[index] = _castList[index + 1];
+                    _castList[index + 1] = temp;
+                }
+
+                MovieCastDataGridView.Rows.Clear();
+
+                this.UpdateUI(_castList, null, MovieCastDataGridView, null, true, false, _movieTitleLink, _movieTitle);
+            }
+            else
+            {
+                Debug.Assert(false, "Invalid Index");
+            }
+        }
+
+        protected override void RemoveRow(CastInfo castMember)
+        {
+            var index = FindIndexOfCastMember(_castList, castMember);
+
+            if (index != -1)
+            {
+                _castList.RemoveAt(index);
+
+                MovieCastDataGridView.Rows.Clear();
+
+                this.UpdateUI(_castList, null, MovieCastDataGridView, null, true, false, _movieTitleLink, _movieTitle);
+            }
+            else
+            {
+                Debug.Assert(false, "Invalid Index");
+            }
+        }
+
+        private void OnGetHeadshotsButtonClick(object sender, EventArgs e) => this.GetHeadshots(MovieCastDataGridView, MovieCrewDataGridView, GetHeadshotsButton);
+
+        private void OnBrowseButtonClick(object sender, EventArgs e) => this.NavigateTo(BrowserUrlComboBox.Text);
+
+        private void OnBrowserSearchButtonClick(object sender, EventArgs e)
+        {
+            const string BaseUrl = "https://www.imdb.com/find?s=tt&q=";
+
+            var url = BaseUrl + System.Web.HttpUtility.UrlEncode(BrowserSearchTextBox.Text);
+
+            this.NavigateTo(url);
+        }
+
+        private void NavigateTo(string url)
+        {
+            if (Program.ShowNewBrowser)
+            {
+                WebBrowserNew.Source = new Uri(url);
+            }
+            else
+            {
+                WebBrowserOld.Navigate(url);
+            }
+        }
+
+        private void OnBrowserUrlComboBoxKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.OnBrowseButtonClick(this, null);
+            }
+        }
+
+        private void OnBrowserSearchTextBoxKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.OnBrowserSearchButtonClick(this, null);
+            }
+        }
+
+        private void OnCopyTriviaToClipboardButtonClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Clipboard.SetDataObject(TriviaTextBox.Text, true, 4, 250);
+            }
+            catch
+            { }
+        }
+
+        private void OnBackupToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            using (var sfd = new SaveFileDialog()
+            {
+                DefaultExt = "bin",
+                Filter = "Binary Files|*.bin",
+                OverwritePrompt = true,
+                RestoreDirectory = true,
+                FileName = "cce2.bin",
+                Title = "Select Session Data backup file",
+            })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    SessionData.Serialize(sfd.FileName);
+                }
+            }
+        }
+
+        private void OnRestoreToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            using (var ofd = new OpenFileDialog()
+            {
+                DefaultExt = "bin",
+                Filter = "Binary Files|*.bin",
+                Multiselect = false,
+                RestoreDirectory = true,
+                Title = "Select Session Data backup file",
+                FileName = "cce2.bin",
+                CheckFileExists = true,
+            })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    BirthYearsInLocalCacheLabel.Text = SessionData.Deserialize(ofd.FileName);
+                }
+            }
+        }
+
+        private void OnCopyGoofsToClipboardButtonClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Clipboard.SetDataObject(GoofsTextBox.Text, true, 4, 250);
+            }
+            catch
+            { }
+        }
+
+        private void OnCheckForUpdateToolStripMenuItemClick(object sender, EventArgs e) => this.CheckForNewVersion(false);
+
+        private void OnLogWebBrowserNavigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            if (e.Url.AbsoluteUri.StartsWith("https://www.imdb.com/"))
+            {
+                Process.Start(e.Url.AbsoluteUri);
+
+                e.Cancel = true;
+            }
+        }
+
+        private void OnCopyExtendedCastToClipboardToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            if (!HasAgreed)
+            {
+                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            HasAgreed = true;
+
+            DataGridViewHelper.CopyExtendedCastToClipboard(MovieCastDataGridView, _movieTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage);
+
+            _log.Show(LogWebBrowser);
+
+            this.ProcessMessageQueue();
+
+            if (!Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox)
+            {
+                MessageBox.Show(this, MessageBoxTexts.CastDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void OnCopyExtendedCrewToClipboardToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            if (!HasAgreed)
+            {
+                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            HasAgreed = true;
+
+            DataGridViewHelper.CopyExtendedCrewToClipboard(MovieCrewDataGridView, _movieTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage);
+
+            _log.Show(LogWebBrowser);
+
+            this.ProcessMessageQueue();
+
+            if (!Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox)
+            {
+                MessageBox.Show(this, MessageBoxTexts.CrewDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void OnWebBrowserNavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e) => this.UpdateUri();
+
+        private void UpdateUri()
+        {
+            if (WebBrowserNew.Source != null)
+            {
+                BrowserUrlComboBox.Text = WebBrowserNew.Source.ToString();
+
+                MovieUrlTextBox.Text = BrowserUrlComboBox.Text;
+
+                TVShowUrlTextBox.Text = BrowserUrlComboBox.Text;
+            }
+        }
+
+        private void OnWebBrowserNavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e) => this.UpdateUri();
+
+        private void OnWebBrowserNavigated(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            if (WebBrowserOld.Url != null)
+            {
+                BrowserUrlComboBox.Text = WebBrowserOld.Url.ToString();
+
+                MovieUrlTextBox.Text = BrowserUrlComboBox.Text;
+
+                TVShowUrlTextBox.Text = BrowserUrlComboBox.Text;
+            }
+        }
+
+        private void OnWebBrowserNavigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            var obj = (IOleObject)WebBrowserOld.ActiveXInstance;
+
+            obj.SetClientSite(this);
+        }
+
+        private void OnMovieCastCrewTabControlKeyDown(object sender, KeyEventArgs e)
+        {
+            if (MovieCastCrewTabControl.Enabled && IsShortCutAction(e))
+            {
+                if (CtrlSWasPressed(e)
+                      && (MovieCastCrewTabControl.SelectedIndex == 0 || MovieCastCrewTabControl.SelectedIndex == 1))
+                {
+                    this.OnMovieCastGenerateButtonClick(this, EventArgs.Empty);
+
+                    this.TrySendToDvdProfiler(e);
+
+                    this.OnMovieCrewGenerateButtonClick(this, EventArgs.Empty);
+
+                    this.TrySendToDvdProfiler(e);
+                }
+                else if (MovieCastCrewTabControl.SelectedIndex == 0)
+                {
+                    this.OnMovieCastGenerateButtonClick(this, EventArgs.Empty);
+                }
+                else if (MovieCastCrewTabControl.SelectedIndex == 1)
+                {
+                    this.OnMovieCrewGenerateButtonClick(this, EventArgs.Empty);
+                }
+            }
+        }
+
+        private void OnMovieTVShowTabControlKeyDown(object sender, KeyEventArgs e)
+        {
+            if (MovieTVShowTabControl.Enabled && IsShortCutAction(e))
+            {
+                if (MovieTVShowTabControl.SelectedIndex == 1 && !MovieUrlTextBox.Focused)
+                {
+                    this.OnMovieCastCrewTabControlKeyDown(this, e);
+                }
+            }
+        }
+
+        private void OnMainFormKeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.Enabled && IsShortCutAction(e))
+            {
+                this.OnMovieTVShowTabControlKeyDown(this, e);
+            }
+        }
+
+        [DispId(-5512)]
+        public virtual int IDispatch_Invoke_Handler()
+        {
+            System.Diagnostics.Debug.WriteLine("-5512");
+
+            return (int)(BrowserOptions.Images | BrowserOptions.DontRunActiveX | BrowserOptions.NoJava | BrowserOptions.NoScripts | BrowserOptions.NoActiveXDownload);
+        }
+
+        #region IOleClientSite Members
+
+        public int SaveObject() => 0;
+
+        public int GetMoniker(int dwAssign, int dwWhichMoniker, out object moniker)
+        {
+            moniker = this;
+
+            return 0;
+        }
+
+        public int GetContainer(out object container)
+        {
+            container = this;
+
+            return 0;
+        }
+
+        public int ShowObject() => 0;
+
+        public int OnShowWindow(int fShow) => 0;
+
+        public int RequestNewObjectLayout() => 0;
+
+        #endregion
+
+        #region IDocHostShowUI Members
+
+        //public void ShowMessage(int hwnd, ref int lpstrText, ref int lpstrCaption, uint dwType, ref int lpstrHelpFile, uint dwHelpContext, out int lpResult)
+        //{
+        //    lpResult = -1;
+        //}
+
+        #endregion
+
+        #region IDocHostShowUI Members
+
+        public uint ShowMessage(IntPtr hwnd, string lpstrText, string lpstrCaption, uint dwType, string lpstrHelpFile, uint dwHelpContext, out int lpResult)
+        {
+            if (!string.IsNullOrEmpty(lpstrText) && lpstrText.Contains("ActiveX"))
+            {
+                lpResult = 0;
+            }
+            else
+            {
+                MessageBox.Show(lpstrText, lpstrCaption);
+
+                lpResult = 0;
+            }
+
+            return 0;
+        }
+
+        #endregion
+
+        [Flags]
+        private enum EpisodeParts
+        {
+            None = 0,
+
+            Link = 1,
+
+            Name = 2,
+
+            Number = 4
+        }
+    }
+
     #region COM Interfaces
     public enum BrowserOptions : uint
     {
@@ -118,13 +1788,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
     {
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int ParseDisplayName([In, MarshalAs(UnmanagedType.Interface)] Object pbc, [In, MarshalAs(UnmanagedType.LPWStr)] String pszDisplayName, [Out, MarshalAs(UnmanagedType.LPArray)] int[] pchEaten, [Out, MarshalAs(UnmanagedType.LPArray)] Object[] ppmkOut);
+        int ParseDisplayName([In, MarshalAs(UnmanagedType.Interface)] object pbc, [In, MarshalAs(UnmanagedType.LPWStr)] string pszDisplayName, [Out, MarshalAs(UnmanagedType.LPArray)] int[] pchEaten, [Out, MarshalAs(UnmanagedType.LPArray)] object[] ppmkOut);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int EnumObjects([In, MarshalAs(UnmanagedType.U4)] uint grfFlags, [Out, MarshalAs(UnmanagedType.LPArray)] Object[] ppenum);
+        int EnumObjects([In, MarshalAs(UnmanagedType.U4)] uint grfFlags, [Out, MarshalAs(UnmanagedType.LPArray)] object[] ppenum);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int LockContainer([In, MarshalAs(UnmanagedType.Bool)] Boolean fLock);
+        int LockContainer([In, MarshalAs(UnmanagedType.Bool)] bool fLock);
     }
 
     [ComVisible(true), Guid("00000118-0000-0000-C000-000000000046"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -144,7 +1814,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         int RequestNewObjectLayout();
     }
 
-    [ComVisible(true), ComImport(), Guid("00000112-0000-0000-C000-000000000046"), InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+    [ComVisible(true), ComImport, Guid("00000112-0000-0000-C000-000000000046"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     internal interface IOleObject
     {
         [return: MarshalAs(UnmanagedType.I4)]
@@ -156,26 +1826,26 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         int GetClientSite([Out, MarshalAs(UnmanagedType.Interface)] out IOleClientSite site);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int SetHostNames([In, MarshalAs(UnmanagedType.LPWStr)] String szContainerApp, [In, MarshalAs(UnmanagedType.LPWStr)] String szContainerObj);
+        int SetHostNames([In, MarshalAs(UnmanagedType.LPWStr)] string szContainerApp, [In, MarshalAs(UnmanagedType.LPWStr)] string szContainerObj);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
         int Close([In, MarshalAs(UnmanagedType.U4)] uint dwSaveOption);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int SetMoniker([In, MarshalAs(UnmanagedType.U4)] uint dwWhichMoniker, [In, MarshalAs(UnmanagedType.Interface)] Object pmk);
+        int SetMoniker([In, MarshalAs(UnmanagedType.U4)] uint dwWhichMoniker, [In, MarshalAs(UnmanagedType.Interface)] object pmk);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int GetMoniker([In, MarshalAs(UnmanagedType.U4)] uint dwAssign, [In, MarshalAs(UnmanagedType.U4)] uint dwWhichMoniker, [Out, MarshalAs(UnmanagedType.Interface)] out Object moniker);
+        int GetMoniker([In, MarshalAs(UnmanagedType.U4)] uint dwAssign, [In, MarshalAs(UnmanagedType.U4)] uint dwWhichMoniker, [Out, MarshalAs(UnmanagedType.Interface)] out object moniker);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int InitFromData([In, MarshalAs(UnmanagedType.Interface)] Object pDataObject, [In, MarshalAs(UnmanagedType.Bool)] Boolean fCreation, [In, MarshalAs(UnmanagedType.U4)] uint dwReserved);
-        int GetClipboardData([In, MarshalAs(UnmanagedType.U4)] uint dwReserved, out Object data);
+        int InitFromData([In, MarshalAs(UnmanagedType.Interface)] object pDataObject, [In, MarshalAs(UnmanagedType.Bool)] bool fCreation, [In, MarshalAs(UnmanagedType.U4)] uint dwReserved);
+        int GetClipboardData([In, MarshalAs(UnmanagedType.U4)] uint dwReserved, out object data);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
         int DoVerb([In, MarshalAs(UnmanagedType.I4)] int iVerb, [In] IntPtr lpmsg, [In, MarshalAs(UnmanagedType.Interface)] IOleClientSite pActiveSite, [In, MarshalAs(UnmanagedType.I4)] int lindex, [In] IntPtr hwndParent, [In] RECT lprcPosRect);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int EnumVerbs(out Object e); // IEnumOLEVERB
+        int EnumVerbs(out object e); // IEnumOLEVERB
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
         int OleUpdate();
@@ -187,13 +1857,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         int GetUserClassID([In, Out] ref Guid pClsid);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int GetUserType([In, MarshalAs(UnmanagedType.U4)] uint dwFormOfType, [Out, MarshalAs(UnmanagedType.LPWStr)] out String userType);
+        int GetUserType([In, MarshalAs(UnmanagedType.U4)] uint dwFormOfType, [Out, MarshalAs(UnmanagedType.LPWStr)] out string userType);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int SetExtent([In, MarshalAs(UnmanagedType.U4)] uint dwDrawAspect, [In] Object pSizel); // tagSIZEL
+        int SetExtent([In, MarshalAs(UnmanagedType.U4)] uint dwDrawAspect, [In] object pSizel); // tagSIZEL
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int GetExtent([In, MarshalAs(UnmanagedType.U4)] uint dwDrawAspect, [Out] Object pSizel); // tagSIZEL
+        int GetExtent([In, MarshalAs(UnmanagedType.U4)] uint dwDrawAspect, [Out] object pSizel); // tagSIZEL
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
         int Advise([In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IAdviseSink pAdvSink, out int cookie);
@@ -202,13 +1872,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         int Unadvise([In, MarshalAs(UnmanagedType.U4)] int dwConnection);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int EnumAdvise(out Object e);
+        int EnumAdvise(out object e);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
         int GetMiscStatus([In, MarshalAs(UnmanagedType.U4)] uint dwAspect, out int misc);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        int SetColorScheme([In] Object pLogpal); // tagLOGPALETTE
+        int SetColorScheme([In] object pLogpal); // tagLOGPALETTE
     }
 
     [ComImport, Guid("B196B288-BAB4-101A-B69C-00AA00341D07"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -229,22 +1899,22 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
     {
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        Int32 GetClassID([Out] out Guid pClassID);
+        int GetClassID([Out] out Guid pClassID);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        Int32 GetCurMoniker([Out, MarshalAs(UnmanagedType.Interface)] out System.Runtime.InteropServices.ComTypes.IMoniker ppimkName);
+        int GetCurMoniker([Out, MarshalAs(UnmanagedType.Interface)] out System.Runtime.InteropServices.ComTypes.IMoniker ppimkName);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        Int32 IsDirty();
+        int IsDirty();
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        Int32 Load([In] int bFullyAvailable, [In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IMoniker pimkName, [In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IBindCtx pibc, [In] int grfMode);
+        int Load([In] int bFullyAvailable, [In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IMoniker pimkName, [In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IBindCtx pibc, [In] int grfMode);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        Int32 Save([In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IMoniker pimkName, [In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IBindCtx pibc, [In] bool fRemember);
+        int Save([In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IMoniker pimkName, [In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IBindCtx pibc, [In] bool fRemember);
         [return: MarshalAs(UnmanagedType.I4)]
         [PreserveSig]
-        Int32 SaveCompleted([In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IMoniker pimkName, [In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IBindCtx pibc);
+        int SaveCompleted([In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IMoniker pimkName, [In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IBindCtx pibc);
     }
 
     [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("9BFBBC02-EFF1-101A-84ED-00AA00341D07")]
@@ -261,1579 +1931,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         [PreserveSig]
         uint ShowMessage(IntPtr hwnd, [MarshalAs(UnmanagedType.LPWStr)] string lpstrText, [MarshalAs(UnmanagedType.LPWStr)] string lpstrCaption, uint dwType, [MarshalAs(UnmanagedType.LPWStr)] string lpstrHelpFile, uint dwHelpContext, out int lpResult);
     }
-    #endregion COM Interfaces
 
-    [ComVisible(true)]
-    public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDocHostShowUI
-    {
-        private String MovieTitle;
-        private readonly Boolean SkipVersionCheck;
-        private static readonly Regex SeasonsBeginRegex;
-        private static readonly Regex SeasonsEndRegex;
-        private static readonly Regex SeasonRegex;
-        private static readonly Regex EpisodeStartRegex;
-        private static readonly Regex EpisodeLinkRegex;
-        private static readonly Regex EpisodeNumberRegex;
-        private static readonly Regex EpisodeNameRegex;
-        private static readonly Regex EpisodeEndRegex;
-        private String MovieTitleLink;
-        private List<Match> CastMatches;
-        private List<KeyValuePair<Match, List<Match>>> CrewMatches;
-        private Dictionary<String, List<Match>> SoundtrackMatches;
-        private List<CastInfo> CastList;
-        private List<CrewInfo> CrewList;
-        private readonly System.Windows.Forms.WebBrowser WebBrowserOld;
-        private readonly Microsoft.Web.WebView2.WinForms.WebView2 WebBrowserNew;
-
-        [Flags()]
-        private enum EpisodeParts
-        {
-            None = 0,
-            Link = 1,
-            Name = 2,
-            Number = 4
-        }
-
-        static MainForm()
-        {
-            SeasonsBeginRegex = new Regex("<label for=\"bySeason\">Season:</label>", RegexOptions.Compiled);
-            SeasonsEndRegex = new Regex("</select>", RegexOptions.Compiled);
-            SeasonRegex = new Regex("<option( +)(selected=\"selected\")?( +)value=\"(?'SeasonNumber'[0-9]+)\"", RegexOptions.Compiled);
-            //SeasonRegex = new Regex("<option value=\"1\"", RegexOptions.Compiled);
-            EpisodeStartRegex = new Regex("<div class=\"list_item (even|odd)\">", RegexOptions.Compiled);
-            EpisodeLinkRegex = new Regex("href=\"/title/(?'EpisodeLink'[a-z0-9]+)/", RegexOptions.Compiled);
-            EpisodeNumberRegex = new Regex("itemprop=\"episodeNumber\" content=\"(?'EpisodeNumber'[0-9,]+)\"", RegexOptions.Compiled);
-            EpisodeNameRegex = new Regex("itemprop=\"name\">(?'EpisodeName'.*?)</a>", RegexOptions.Compiled);
-            EpisodeEndRegex = new Regex("<div class=\"clear\">&nbsp;</div>", RegexOptions.Compiled);
-        }
-
-        public MainForm(Boolean skipVersionCheck)
-        {
-            MovieTitle = String.Empty;
-
-            SkipVersionCheck = skipVersionCheck;
-
-            CastMatches = new List<Match>();
-
-            CrewMatches = new List<KeyValuePair<Match, List<Match>>>();
-
-            SoundtrackMatches = new Dictionary<String, List<Match>>();
-
-            this.InitializeComponent();
-
-            if (Program.ShowNewBrowser)
-            {
-                WebBrowserNew = new Microsoft.Web.WebView2.WinForms.WebView2();
-
-                ((System.ComponentModel.ISupportInitialize)(WebBrowserNew)).BeginInit();
-
-                WebBrowserNew.Name = "WebBrowser";
-                WebBrowserNew.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-                WebBrowserNew.Location = new Point(9, 64);
-                WebBrowserNew.Size = new Size(845, 395);
-
-                ((System.ComponentModel.ISupportInitialize)(WebBrowserNew)).EndInit();
-
-                WebBrowserNew.NavigationCompleted += this.OnWebBrowserNavigationCompleted;
-                WebBrowserNew.NavigationStarting += this.OnWebBrowserNavigationStarting;
-
-                BrowserTab.Controls.Add(WebBrowserNew);
-            }
-            else
-            {
-                WebBrowserOld = new System.Windows.Forms.WebBrowser
-                {
-                    AllowWebBrowserDrop = false,
-                    Name = "WebBrowser",
-                    Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
-                    Location = new Point(9, 64),
-                    Size = new Size(845, 395),
-                    ScriptErrorsSuppressed = true,
-                };
-
-                WebBrowserOld.Navigated += this.OnWebBrowserNavigated;
-                WebBrowserOld.Navigating += this.OnWebBrowserNavigating;
-
-                BrowserTab.Controls.Add(WebBrowserOld);
-            }
-
-            TheProgressBar = ProgressBar;
-
-            this.Icon = Properties.Resource.djdsoft;
-        }
-
-        [DispId(-5512)]
-        public virtual int IDispatch_Invoke_Handler()
-        {
-            System.Diagnostics.Debug.WriteLine("-5512");
-            return (int)(BrowserOptions.Images |
-            BrowserOptions.DontRunActiveX | BrowserOptions.NoJava |
-            BrowserOptions.NoScripts | BrowserOptions.NoActiveXDownload);
-        }
-
-        #region IOleClientSite Members
-
-        public int SaveObject()
-        {
-            return 0;
-        }
-
-        public int GetMoniker(int dwAssign, int dwWhichMoniker, out object moniker)
-        {
-            moniker = this;
-            return 0;
-        }
-
-        public int GetContainer(out object container)
-        {
-            container = this;
-            return 0;
-        }
-
-        public int ShowObject()
-        {
-            return 0;
-        }
-
-        public int OnShowWindow(int fShow)
-        {
-            return 0;
-        }
-
-        public int RequestNewObjectLayout()
-        {
-            return 0;
-        }
-
-        #endregion
-
-        #region IDocHostShowUI Members
-
-        //public void ShowMessage(int hwnd, ref int lpstrText, ref int lpstrCaption, uint dwType, ref int lpstrHelpFile, uint dwHelpContext, out int lpResult)
-        //{
-        //    lpResult = -1;
-        //}
-
-        #endregion
-
-        #region IDocHostShowUI Members
-
-        public uint ShowMessage(IntPtr hwnd, string lpstrText, string lpstrCaption, uint dwType, string lpstrHelpFile, uint dwHelpContext, out int lpResult)
-        {
-            if ((String.IsNullOrEmpty(lpstrText) == false) && (lpstrText.Contains("ActiveX")))
-            {
-                lpResult = 0;
-            }
-            else
-            {
-                MessageBox.Show(lpstrText, lpstrCaption);
-                lpResult = 0;
-            }
-            return (0);
-        }
-
-        #endregion
-
-        private void OnMovieScanPageButtonClick(Object sender, EventArgs e)
-        {
-            Boolean failed = false;
-
-            this.StartLongAction();
-
-            try
-            {
-                MovieTitle = String.Empty;
-
-                MovieCastDataGridView.Rows.Clear();
-
-                MovieCrewDataGridView.Rows.Clear();
-
-                if (MovieUrlTextBox.Text.Length == 0)
-                {
-                    MessageBox.Show(this, MessageBoxTexts.UrlIsEmpty, MessageBoxTexts.UrlIsEmptyHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    return;
-                }
-
-                Match match = IMDbParser.TitleUrlRegex.Match(MovieUrlTextBox.Text);
-
-                if ((match.Success == false) || (match.Groups["TitleLink"].Success == false))
-                {
-                    MessageBox.Show(this, MessageBoxTexts.UrlIsIncorrect, MessageBoxTexts.UrlIsIncorrectHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    return;
-                }
-                try
-                {
-                    //String url;
-
-                    MovieTitleLink = match.Groups["TitleLink"].Value.ToString();
-
-                    //url = IMDbParser.TitleUrl + MovieTitleLink + "/fullcredits";
-                    this.ParseIMDb(MovieTitleLink);
-
-                    if ((Program.Settings.DefaultValues.DisableParsingCompleteMessageBox == false)
-                        && (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing == false)
-                        && (Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing == false))
-                    {
-                        this.ProcessMessageQueue();
-
-                        MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                catch (AggregateException ex)
-                {
-                    failed = true;
-
-                    MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-
-                    Program.WriteError(ex);
-                }
-                catch (Exception ex)
-                {
-                    failed = true;
-
-                    MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-
-                    Program.WriteError(ex);
-                }
-            }
-            catch (AggregateException ex)
-            {
-                MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-
-                Program.WriteError(ex);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-
-                Program.WriteError(ex);
-            }
-            finally
-            {
-                if ((failed == false) && (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing == false))
-                {
-                    Program.FlushPersonCache();
-                }
-
-                PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
-
-                this.SetMovieFormText();
-
-                this.EndLongActionWithGrids();
-            }
-
-            if ((failed == false) && (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing))
-            {
-                this.GetBirthYears(Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing);
-            }
-
-            if ((failed == false) && (Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing))
-            {
-                this.OnGetHeadshotsButtonClick(sender, e);
-            }
-
-            this.ProcessMessageQueue();
-
-            if (failed == false)
-            {
-                DataGridViewHelper.CopyCastToClipboard(MovieCastDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
-                DataGridViewHelper.CopyCrewToClipboard(MovieCrewDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
-            }
-        }
-
-        private void EndLongActionWithGrids()
-        {
-            this.EndLongAction();
-
-            MovieCastDataGridView.Refresh();
-            MovieCrewDataGridView.Refresh();
-        }
-
-        private void SetMovieFormText()
-        {
-            if (String.IsNullOrEmpty(MovieTitle) == false)
-            {
-                this.Text = "Cast/Crew Edit 2 - " + MovieTitle;
-            }
-            else
-            {
-                this.Text = "Cast/Crew Edit 2";
-            }
-        }
-
-        private void ParseIMDb(String key)
-        {
-            DefaultValues defaultValues;
-
-            defaultValues = this.CopyDefaultValues();
-            CastList = new List<CastInfo>();
-            CrewList = new List<CrewInfo>();
-            this.ParseTitle(key);
-            ParseCastAndCrew(defaultValues, key, ParseCastCheckBox.Checked, ParseCrewCheckBox.Checked, ParseCrewCheckBox.Checked
-                , false, ref CastMatches, ref CastList, ref CrewMatches, ref CrewList, ref SoundtrackMatches);
-            try
-            {
-                Int32 progressMax = CastMatches.Count;
-
-                foreach (KeyValuePair<Match, List<Match>> kvp in CrewMatches)
-                {
-                    progressMax += kvp.Value.Count;
-                }
-
-                foreach (KeyValuePair<String, List<Match>> kvp in SoundtrackMatches)
-                {
-                    progressMax += kvp.Value.Count;
-                }
-
-                this.StartProgress(progressMax, Color.LightBlue);
-
-                this.ProcessLines(CastList, CastMatches, CrewList, CrewMatches, SoundtrackMatches, defaultValues);
-            }
-            finally
-            {
-                this.EndProgress();
-            }
-            this.UpdateUI();
-            this.ParseTrivia();
-            this.ParseGoofs();
-        }
-
-        private void ParseTitle(String key)
-        {
-            String targetUrl = IMDbParser.TitleUrl + key + "/fullcredits";
-
-            String webSite = IMDbParser.GetWebSite(targetUrl);
-
-            #region Parse for Title
-            using (StringReader sr = new StringReader(webSite))
-            {
-                while (sr.Peek() != -1)
-                {
-                    String line = sr.ReadLine();
-
-                    if (String.IsNullOrEmpty(MovieTitle))
-                    {
-                        Match titleMatch;
-
-                        titleMatch = IMDbParser.TitleRegex.Match(line);
-                        if (titleMatch.Success)
-                        {
-                            MovieTitle = HttpUtility.HtmlDecode(titleMatch.Groups["Title"].Value);
-
-                            MovieTitle = MovieTitle.Replace(" - IMDb", String.Empty).Replace(" - Full Cast & Crew", String.Empty).Trim();
-
-                            this.CreateTitleRow();
-
-                            break;
-                        }
-                    }
-                }
-            }
-            #endregion
-        }
-
-        private void ParseTrivia()
-        {
-            TriviaTextBox.Text = String.Empty;
-            if (Program.Settings.DefaultValues.DownloadTrivia)
-            {
-                String triviaUrl = IMDbParser.TitleUrl + MovieTitleLink + "/trivia";
-
-                String webSite = IMDbParser.GetWebSite(triviaUrl);
-
-                using (StringReader sr = new StringReader(webSite))
-                {
-                    StringBuilder trivia;
-                    Boolean triviaFound;
-
-                    triviaFound = false;
-                    trivia = new StringBuilder();
-                    while (sr.Peek() != -1)
-                    {
-                        String line;
-                        Match beginMatch;
-                        //Match endMatch;
-
-                        line = sr.ReadLine();
-                        if (triviaFound == false)
-                        {
-                            beginMatch = IMDbParser.TriviaStartRegex.Match(line);
-                            if (beginMatch.Success)
-                            {
-                                triviaFound = true;
-                                continue;
-                            }
-                        }
-                        if (triviaFound)
-                        {
-                            trivia.AppendLine(line);
-                        }
-                    }
-                    if (trivia.Length > 0)
-                    {
-                        this.ParseTrivia(trivia, triviaUrl);
-                    }
-                }
-            }
-        }
-
-        private void ParseTrivia(StringBuilder trivia, String triviaUrl)
-        {
-            MatchCollection matches;
-
-            matches = IMDbParser.TriviaLiRegex.Matches(trivia.ToString());
-            trivia = new StringBuilder();
-            trivia.AppendLine("<div style=\"display:none\">");
-            if (matches.Count > 0)
-            {
-                foreach (Match match in matches)
-                {
-                    if (match.Groups["Trivia"].Success)
-                    {
-                        String value;
-
-                        value = match.Groups["Trivia"].Value.Trim();
-                        if (String.IsNullOrEmpty(value) == false)
-                        {
-                            value = value.Replace("href=\"#", "href=\"" + triviaUrl + "#");
-                            value = value.Replace("href=\"/", "href=\"" + IMDbParser.BaseUrl + "/");
-                            value = value.Replace("href=\"?", "href=\"" + IMDbParser.BaseUrl + "?");
-                            value = value.Replace(" />", ">");
-                            value = value.Replace("/>", ">");
-                            value = value.Trim();
-                            while (value.EndsWith("<br>"))
-                            {
-                                value = value.Substring(0, value.Length - 4).TrimEnd();
-                            }
-                            trivia.AppendLine("<trivia=" + value + " />");
-                            trivia.AppendLine();
-                        }
-                    }
-                }
-            }
-            trivia.AppendLine("</div>");
-            TriviaTextBox.Text = trivia.ToString();
-        }
-
-        private void ParseGoofs()
-        {
-            GoofsTextBox.Text = String.Empty;
-            if (Program.Settings.DefaultValues.DownloadGoofs)
-            {
-                String goofsUrl = IMDbParser.TitleUrl + MovieTitleLink + "/goofs";
-
-                String webSite = IMDbParser.GetWebSite(goofsUrl);
-
-                using (StringReader sr = new StringReader(webSite))
-                {
-                    StringBuilder goofs;
-                    Boolean goofsFound;
-
-                    goofsFound = false;
-                    goofs = new StringBuilder();
-                    while (sr.Peek() != -1)
-                    {
-                        String line;
-                        Match beginMatch;
-                        //Match endMatch;
-
-                        line = sr.ReadLine();
-                        if (goofsFound == false)
-                        {
-                            beginMatch = IMDbParser.GoofsStartRegex.Match(line);
-                            if (beginMatch.Success)
-                            {
-                                goofsFound = true;
-                                continue;
-                            }
-                        }
-                        if (goofsFound)
-                        {
-                            goofs.AppendLine(line);
-                        }
-                    }
-                    if (goofs.Length > 0)
-                    {
-                        this.ParseGoofs(goofs, goofsUrl);
-                    }
-                }
-            }
-        }
-
-        private void ParseGoofs(StringBuilder goofs, String goofsUrl)
-        {
-            MatchCollection matches;
-
-            matches = IMDbParser.GoofsLiRegex.Matches(goofs.ToString());
-            goofs = new StringBuilder();
-            goofs.AppendLine("<div style=\"display:none\">");
-            if (matches.Count > 0)
-            {
-                foreach (Match match in matches)
-                {
-                    if (match.Groups["Goof"].Success)
-                    {
-                        String value;
-                        Match spoilerMatch;
-
-                        value = match.Groups["Goof"].Value.Trim();
-                        spoilerMatch = IMDbParser.GoofSpoilerRegex.Match(value);
-                        if (spoilerMatch.Success)
-                        {
-                            value = spoilerMatch.Groups["Goof"].Value;
-                        }
-                        if (String.IsNullOrEmpty(value) == false)
-                        {
-                            value = value.Replace("&nbsp;", " ");
-                            value = value.Replace("href=\"#", "href=\"" + goofsUrl + "#");
-                            value = value.Replace("href=\"/", "href=\"" + IMDbParser.BaseUrl + "/");
-                            value = value.Replace("href=\"?", "href=\"" + IMDbParser.BaseUrl + "?");
-                            value = value.Replace(" />", ">");
-                            value = value.Replace("/>", ">");
-                            value = value.Trim();
-                            while (value.EndsWith("<br>"))
-                            {
-                                value = value.Substring(0, value.Length - 4).TrimEnd();
-                            }
-                            goofs.AppendLine("<goof=" + value + " />");
-                            goofs.AppendLine();
-                        }
-                    }
-                }
-            }
-            goofs.AppendLine("</div>");
-            GoofsTextBox.Text = goofs.ToString();
-        }
-
-        private void CreateTitleRow()
-        {
-            if (ParseCastCheckBox.Checked)
-            {
-                CastInfo title;
-
-                title = new CastInfo(-1)
-                {
-                    FirstName = FirstNames.Title,
-                    MiddleName = String.Empty,
-                    LastName = MovieTitle,
-                    BirthYear = String.Empty,
-                    Role = String.Empty,
-                    Voice = "False",
-                    Uncredited = "False",
-                    CreditedAs = String.Empty,
-                    PersonLink = MovieTitleLink,
-                };
-
-                CastList.Add(title);
-            }
-            if (ParseCrewCheckBox.Checked)
-            {
-                CrewInfo title;
-
-                title = new CrewInfo()
-                {
-                    FirstName = FirstNames.Title,
-                    MiddleName = String.Empty,
-                    LastName = MovieTitle,
-                    BirthYear = String.Empty,
-                    CreditType = null,
-                    CreditSubtype = null,
-                    CreditedAs = String.Empty,
-                    CustomRole = String.Empty,
-                    PersonLink = MovieTitleLink,
-                };
-
-                CrewList.Add(title);
-            }
-        }
-
-        private void UpdateUI()
-        {
-            this.UpdateUI(CastList, CrewList, MovieCastDataGridView, MovieCrewDataGridView
-                , ParseCastCheckBox.Checked, ParseCrewCheckBox.Checked, MovieTitleLink, MovieTitle);
-            if (Log.Length > 0)
-            {
-                Log.Show(LogWebBrowser);
-            }
-        }
-
-        private void OnMainFormLoad(Object sender, EventArgs e)
-        {
-            this.SuspendLayout();
-            this.LayoutForm();
-            this.CreateDataGridViewColumns();
-            this.SetCheckBoxes();
-            if (ItsMe)
-            {
-                MenuStrip.Items.Add(sessionDataToolStripMenuItem);
-            }
-            this.ResumeLayout();
-            BirthYearsInLocalCacheLabel.Text = IMDbParser.PersonHashCount;
-            PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
-            this.RegisterEvents();
-            if (Program.Settings.CurrentVersion != Assembly.GetExecutingAssembly().GetName().Version.ToString())
-            {
-                this.OpenReadme();
-                Program.Settings.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            }
-            this.CheckForNewVersion(true);
-            this.NavigateTo("https://www.imdb.com/find?s=tt&q=");
-            BrowserSearchTextBox.Focus();
-        }
-
-        private void CheckForNewVersion(Boolean silently)
-        {
-            if (silently)
-            {
-                if (SkipVersionCheck == false)
-                {
-                    OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/3.9.0/versions.xml", this, "CastCrewEdit2"
-                        , this.GetType().Assembly, silently);
-                }
-            }
-            else
-            {
-                OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/3.9.0/versions.xml", this, "CastCrewEdit2"
-                        , this.GetType().Assembly, silently);
-            }
-        }
-
-        private void CreateDataGridViewColumns()
-        {
-            DataGridViewTextBoxColumn seasonDataGridViewTextBoxColumn;
-
-            DataGridViewHelper.CreateCastColumns(MovieCastDataGridView);
-            DataGridViewHelper.CreateCrewColumns(MovieCrewDataGridView);
-            seasonDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
-            {
-                Name = "Season Number",
-                HeaderText = DataGridViewTexts.SeasonNumber,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
-                Resizable = DataGridViewTriState.True,
-            };
-            TVShowSeasonsDataGridView.Columns.Add(seasonDataGridViewTextBoxColumn);
-        }
-
-        private void LayoutForm()
-        {
-            if (Program.Settings.MainForm.WindowState == FormWindowState.Normal)
-            {
-                this.Left = Program.Settings.MainForm.Left;
-                this.Top = Program.Settings.MainForm.Top;
-                if (Program.Settings.MainForm.Width > this.MinimumSize.Width)
-                {
-                    this.Width = Program.Settings.MainForm.Width;
-                }
-                else
-                {
-                    this.Width = this.MinimumSize.Width;
-                }
-                if (Program.Settings.MainForm.Height > this.MinimumSize.Height)
-                {
-                    this.Height = Program.Settings.MainForm.Height;
-                }
-                else
-                {
-                    this.Height = this.MinimumSize.Height;
-                }
-            }
-            else
-            {
-                this.Left = Program.Settings.MainForm.RestoreBounds.X;
-                this.Top = Program.Settings.MainForm.RestoreBounds.Y;
-                if (Program.Settings.MainForm.RestoreBounds.Width > this.MinimumSize.Width)
-                {
-                    this.Width = Program.Settings.MainForm.RestoreBounds.Width;
-                }
-                else
-                {
-                    this.Width = this.MinimumSize.Width;
-                }
-                if (Program.Settings.MainForm.RestoreBounds.Height > this.MinimumSize.Height)
-                {
-                    this.Height = Program.Settings.MainForm.RestoreBounds.Height;
-                }
-                else
-                {
-                    this.Height = this.MinimumSize.Height;
-                }
-            }
-            if (Program.Settings.MainForm.WindowState != FormWindowState.Minimized)
-            {
-                this.WindowState = Program.Settings.MainForm.WindowState;
-            }
-        }
-
-        private void RegisterEvents()
-        {
-            MovieCastDataGridView.CellValueChanged += this.OnMovieCastDataGridViewCellValueChanged;
-            MovieCrewDataGridView.CellValueChanged += this.OnMovieCrewDataGridViewCellValueChanged;
-            MovieCastDataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
-            MovieCrewDataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
-            SettingsToolStripMenuItem.Click += this.OnSettingsToolStripMenuItemClick;
-            FirstnamePrefixesToolStripMenuItem.Click += this.OnFirstnamePrefixesToolStripMenuItemClick;
-            LastnamePrefixesToolStripMenuItem.Click += this.OnLastnamePrefixesToolStripMenuItemClick;
-            LastnameSuffixesToolStripMenuItem.Click += this.OnLastnameSuffixesToolStripMenuItemClick;
-            KnownNamesToolStripMenuItem.Click += this.OnKnownNamesToolStripMenuItemClick;
-            IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Click += this.OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick;
-            IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Click += this.OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick;
-            ForcedFakeBirthYearsToolStripMenuItem.Click += this.OnForcedFakeBirthYearsToolStripMenuItemClick;
-            IMDbToDVDProfilerTransformationDataToolStripMenuItem.Click
-                += this.OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick;
-            ReadmeToolStripMenuItem.Click += this.OnReadmeToolStripMenuItemClick;
-            AboutToolStripMenuItem.Click += this.OnAboutToolStripMenuItemClick;
-            BirthYearsInLocalCacheLabel.LinkClicked += this.OnBirthYearsInLocalCacheLabelLinkClicked;
-            PersonsInLocalCacheLabel.LinkClicked += this.OnPersonsInLocalCacheLabelLinkClicked;
-        }
-
-        private void OnMainFormClosing(Object sender, FormClosingEventArgs e)
-        {
-            if ((Program.Settings.DefaultValues.SaveLogFile) && (Log.Length > 0))
-            {
-                using (StreamWriter sw = new StreamWriter(Program.LogFile, true, Encoding.UTF8))
-                {
-                    sw.WriteLine(Log.ToString());
-                }
-            }
-            Program.Settings.MainForm.Left = this.Left;
-            Program.Settings.MainForm.Top = this.Top;
-            Program.Settings.MainForm.Width = this.Width;
-            Program.Settings.MainForm.Height = this.Height;
-            Program.Settings.MainForm.WindowState = this.WindowState;
-            Program.Settings.MainForm.RestoreBounds = this.RestoreBounds;
-        }
-
-        private void OnGetBirthYearsButtonClick(Object sender
-            , EventArgs e)
-        {
-            this.GetBirthYears(false);
-
-            this.ProcessMessageQueue();
-        }
-
-        private void GetBirthYears(Boolean parseHeadshotsFollows)
-        {
-            this.GetBirthYears(parseHeadshotsFollows, MovieCastDataGridView, MovieCrewDataGridView
-                , BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
-        }
-
-        private void SetCheckBoxes()
-        {
-            ParseCastCheckBox.Checked = Program.Settings.DefaultValues.ParseCast;
-            ParseCrewCheckBox.Checked = Program.Settings.DefaultValues.ParseCrew;
-            ParseRoleSlashCheckBox.Checked = Program.Settings.DefaultValues.ParseRoleSlash;
-            ParseVoiceOfCheckBox.Checked = Program.Settings.DefaultValues.ParseVoiceOf;
-            IgnoreUncreditedCheckBox.Checked = Program.Settings.DefaultValues.IgnoreUncredited;
-            IgnoreCreditOnlyCheckBox.Checked = Program.Settings.DefaultValues.IgnoreCreditOnly;
-            IgnoreScenesDeletedCheckBox.Checked = Program.Settings.DefaultValues.IgnoreScenesDeleted;
-            IgnoreArchiveFootageCheckBox.Checked = Program.Settings.DefaultValues.IgnoreArchiveFootage;
-            IgnoreLanguageVersionCheckBox.Checked = Program.Settings.DefaultValues.IgnoreLanguageVersion;
-            IgnoreUnconfirmedCheckBox.Checked = Program.Settings.DefaultValues.IgnoreUnconfirmed;
-            RetainCreditedAsOnCastCheckBox.Checked = Program.Settings.DefaultValues.RetainCastCreditedAs;
-            CustomCreditsCheckBox.Checked = Program.Settings.DefaultValues.IncludeCustomCredits;
-            RetainOriginalCreditCheckBox.Checked = Program.Settings.DefaultValues.RetainOriginalCredit;
-            IncludePrefixOnOtherCreditsCheckBox.Checked
-                = Program.Settings.DefaultValues.IncludePrefixOnOtherCredits;
-            CapitalizeCustomRoleCheckBox.Checked = Program.Settings.DefaultValues.CapitalizeCustomRole;
-            RetainCreditedAsOnCrewCheckBox.Checked = Program.Settings.DefaultValues.RetainCrewCreditedAs;
-            CreditTypeDirectionCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeDirection;
-            CreditTypeWritingCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeWriting;
-            CreditTypeProductionCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeProduction;
-            CreditTypeCinematographyCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeCinematography;
-            CreditTypeFilmEditingCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeFilmEditing;
-            CreditTypeMusicCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeMusic;
-            CreditTypeSoundCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeSound;
-            CreditTypeArtCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeArt;
-            CreditTypeOtherCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeOther;
-            CreditTypeSoundtrackCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeSoundtrack;
-        }
-
-        private void OnMovieCrewDataGridViewCellValueChanged(Object sender, DataGridViewCellEventArgs e)
-        {
-            DataGridViewHelper.OnCrewDataGridViewCellValueChanged(sender, e);
-        }
-
-        private void OnMovieCastDataGridViewCellValueChanged(Object sender, DataGridViewCellEventArgs e)
-        {
-            DataGridViewHelper.OnCastDataGridViewCellValueChanged(sender, e);
-        }
-
-        private void OnMovieCastGenerateButtonClick(Object sender
-            , EventArgs e)
-        {
-            if (HasAgreed == false)
-            {
-                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader
-                    , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                {
-                    return;
-                }
-            }
-
-            HasAgreed = true;
-
-            DataGridViewHelper.CopyCastToClipboard(MovieCastDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, false);
-
-            Log.Show(LogWebBrowser);
-
-            this.ProcessMessageQueue();
-
-            if (Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox == false)
-            {
-                MessageBox.Show(this, MessageBoxTexts.CastDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader
-                    , MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void OnMovieCrewGenerateButtonClick(Object sender
-            , EventArgs e)
-        {
-            if (HasAgreed == false)
-            {
-                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader
-                    , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                {
-                    return;
-                }
-            }
-
-            HasAgreed = true;
-
-            DataGridViewHelper.CopyCrewToClipboard(MovieCrewDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, false);
-
-            Log.Show(LogWebBrowser);
-
-            this.ProcessMessageQueue();
-
-            if (Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox == false)
-            {
-                MessageBox.Show(this, MessageBoxTexts.CrewDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader
-                    , MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void OnTVShowScanPageButtonClick(Object sender, EventArgs e)
-        {
-            this.StartLongAction();
-
-            try
-            {
-                Match match;
-
-                TVShowTitle = String.Empty;
-                TVShowSeasonsDataGridView.Rows.Clear();
-                if (TVShowUrlTextBox.Text.Length == 0)
-                {
-                    MessageBox.Show(this, MessageBoxTexts.UrlIsEmpty, MessageBoxTexts.UrlIsEmptyHeader, MessageBoxButtons.OK
-                        , MessageBoxIcon.Warning);
-                    return;
-                }
-                match = IMDbParser.TitleUrlRegex.Match(TVShowUrlTextBox.Text);
-                if ((match.Success == false) || (match.Groups["TitleLink"].Success == false))
-                {
-                    MessageBox.Show(this, MessageBoxTexts.UrlIsIncorrect, MessageBoxTexts.UrlIsIncorrectHeader, MessageBoxButtons.OK
-                        , MessageBoxIcon.Warning);
-                    return;
-                }
-                TVShowTitleLink = match.Groups["TitleLink"].Value.ToString();
-                try
-                {
-                    this.ScanForSeasons();
-                    if (Program.Settings.DefaultValues.DisableParsingCompleteMessageBox == false)
-                    {
-                        this.ProcessMessageQueue();
-                        MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK
-                            , MessageBoxIcon.Information);
-                    }
-                }
-                catch (AggregateException ex)
-                {
-                    MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    Program.WriteError(ex);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    Program.WriteError(ex);
-                }
-            }
-            catch (AggregateException ex)
-            {
-                MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                Program.WriteError(ex);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                Program.WriteError(ex);
-            }
-            finally
-            {
-                this.SetTVShowFormText();
-
-                this.EndLongActionWithGrids();
-            }
-        }
-
-        private void SetTVShowFormText()
-        {
-            if (String.IsNullOrEmpty(TVShowTitle) == false)
-            {
-                this.Text = "Cast/Crew Edit 2 For TV Shows - " + Resources.Resources.Seasons + " - " + TVShowTitle;
-            }
-            else
-            {
-                this.Text = "Cast/Crew Edit 2 For TV Shows";
-            }
-        }
-
-        private void OnScanForEpisodesButtonClick(Object sender, EventArgs e)
-        {
-            if ((TVShowSeasonsDataGridView.SelectedRows == null) || (TVShowSeasonsDataGridView.SelectedRows.Count == 0))
-            {
-                MessageBox.Show(this, MessageBoxTexts.NoSeasonSelected, MessageBoxTexts.NoSeasonSelectedHeader, MessageBoxButtons.OK
-                    , MessageBoxIcon.Warning);
-                return;
-            }
-            else
-            {
-                List<EpisodeInfo> episodes;
-
-                this.StartLongAction();
-
-                this.SuspendLayout();
-                episodes = new List<EpisodeInfo>();
-                try
-                {
-                    List<Int32> seasons;
-
-                    seasons = new List<Int32>(TVShowSeasonsDataGridView.SelectedRows.Count);
-                    for (Int32 i = 0; i < TVShowSeasonsDataGridView.SelectedRows.Count; i++)
-                    {
-                        seasons.Add(Int32.Parse(TVShowSeasonsDataGridView.SelectedRows[i].Cells["Season Number"].Value.ToString()));
-                    }
-                    seasons.Sort();
-                    //seasons.Sort(new Comparison<String>(delegate(String left, String right)
-                    //    {
-                    //        Int32 intLeft;
-                    //        Int32 intRight;
-
-                    //        intLeft = Int32.Parse(left);
-                    //        intRight = Int32.Parse(right);
-                    //        return (intLeft.CompareTo(intRight));
-                    //    }));
-                    foreach (Int32 season in seasons)
-                    {
-                        String targetUrl = IMDbParser.TitleUrl + TVShowTitleLink + "/episodes?season=" + season;
-
-                        String webSite = IMDbParser.GetWebSite(targetUrl);
-
-                        using (StringReader sr = new StringReader(webSite))
-                        {
-                            while (sr.Peek() != -1)
-                            {
-                                Match episodeStartMatch;
-                                String line;
-
-                                line = sr.ReadLine();
-                                episodeStartMatch = EpisodeStartRegex.Match(line);
-                                if (episodeStartMatch.Success)
-                                {
-                                    EpisodeInfo episodeInfo;
-                                    EpisodeParts parts;
-                                    Boolean episodeLinkFound;
-                                    Boolean episodeNumberFound;
-                                    Boolean episodeNameFound;
-
-                                    episodeLinkFound = false;
-                                    episodeNumberFound = false;
-                                    episodeNameFound = false;
-                                    episodeInfo = new EpisodeInfo();
-                                    parts = EpisodeParts.None;
-                                    while (EpisodeEndRegex.Match(line).Success == false)
-                                    {
-                                        Match match;
-
-                                        line = sr.ReadLine();
-                                        if (episodeLinkFound == false)
-                                        {
-                                            match = EpisodeLinkRegex.Match(line);
-                                            if (match.Success)
-                                            {
-                                                episodeInfo.Link = match.Groups["EpisodeLink"].Value.ToString();
-                                                parts |= EpisodeParts.Link;
-                                                episodeLinkFound = true;
-                                                continue;
-                                            }
-                                        }
-                                        if (episodeNumberFound == false)
-                                        {
-                                            match = EpisodeNumberRegex.Match(line);
-                                            if (match.Success)
-                                            {
-                                                episodeInfo.EpisodeNumber = match.Groups["EpisodeNumber"].Value.ToString();
-                                                parts |= EpisodeParts.Number;
-                                                episodeNumberFound = true;
-                                                continue;
-                                            }
-                                        }
-                                        if (episodeNameFound == false)
-                                        {
-                                            match = EpisodeNameRegex.Match(line);
-                                            if (match.Success)
-                                            {
-                                                episodeInfo.EpisodeName = HttpUtility.HtmlDecode(match.Groups["EpisodeName"].Value.ToString());
-                                                parts |= EpisodeParts.Name;
-                                                episodeNameFound = true;
-                                                continue;
-                                            }
-                                        }
-                                    }
-                                    episodeInfo.SeasonNumber = season.ToString();
-                                    if (parts == (EpisodeParts.Link | EpisodeParts.Name | EpisodeParts.Number))
-                                    {
-                                        episodes.Add(episodeInfo);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                catch (AggregateException ex)
-                {
-                    MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    Program.WriteError(ex);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    Program.WriteError(ex);
-                }
-                finally
-                {
-                    this.ResumeLayout();
-
-                    this.EndLongActionWithGrids();
-                }
-
-                if (episodes.Count == 0)
-                {
-                    MessageBox.Show(this, MessageBoxTexts.NoEpisodesFound, MessageBoxTexts.NoEpisodesFoundHeader, MessageBoxButtons.OK
-                        , MessageBoxIcon.Warning);
-
-                    return;
-                }
-                else
-                {
-                    if (Program.Settings.DefaultValues.DisableParsingCompleteMessageBox == false)
-                    {
-                        this.ProcessMessageQueue();
-                        MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK
-                            , MessageBoxIcon.Information);
-                    }
-                    using (EpisodesForm episodesForm = new EpisodesForm(episodes))
-                    {
-                        SettingsHaveChanged = false;
-                        episodesForm.ShowDialog(this);
-                        if (SettingsHaveChanged)
-                        {
-                            this.SetCheckBoxes();
-                            SettingsHaveChanged = false;
-                        }
-                        Log.Show(LogWebBrowser);
-                    }
-                }
-                BirthYearsInLocalCacheLabel.Text = IMDbParser.PersonHashCount;
-                PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
-            }
-        }
-
-        private void ScanForSeasons()
-        {
-            String targetUrl = IMDbParser.TitleUrl + TVShowTitleLink + "/episodes";
-
-            String webSite = IMDbParser.GetWebSite(targetUrl);
-
-            using (StringReader sr = new StringReader(webSite))
-            {
-                while (sr.Peek() != -1)
-                {
-                    String line;
-                    Match seasonsMatch;
-
-                    line = sr.ReadLine();
-                    if (String.IsNullOrEmpty(TVShowTitle))
-                    {
-                        Match titleMatch;
-
-                        titleMatch = IMDbParser.TitleRegex.Match(line);
-                        if (titleMatch.Success)
-                        {
-                            TVShowTitle = HttpUtility.HtmlDecode(titleMatch.Groups["Title"].Value);
-
-                            TVShowTitle = TVShowTitle.Replace(" - IMDb", String.Empty).Replace(" - Episodes", String.Empty).Trim();
-
-                            continue;
-                        }
-                    }
-                    seasonsMatch = SeasonsBeginRegex.Match(line);
-                    if (seasonsMatch.Success)
-                    {
-                        while (sr.Peek() != -1)
-                        {
-                            Match seasonMatch;
-
-                            line = sr.ReadLine();
-                            seasonsMatch = SeasonsEndRegex.Match(line);
-                            if (seasonsMatch.Success)
-                            {
-                                return;
-                            }
-                            seasonMatch = SeasonRegex.Match(line);
-                            if (seasonMatch.Success)
-                            {
-                                if (seasonMatch.Success)
-                                {
-                                    DataGridViewRow row;
-
-                                    row = TVShowSeasonsDataGridView.Rows[TVShowSeasonsDataGridView.Rows.Add()];
-                                    row.DefaultCellStyle.BackColor = Color.White;
-                                    row.Cells["Season Number"].Value = seasonMatch.Groups["SeasonNumber"].Value.ToString();
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private void OnMovieTVShowTabControlSelectedIndexChanged(Object sender, EventArgs e)
-        {
-            if (((TabControl)sender).SelectedTab == MovieTab)
-            {
-                this.SetMovieFormText();
-            }
-            else if (((TabControl)sender).SelectedTab == TVShowTab)
-            {
-                this.SetTVShowFormText();
-            }
-        }
-
-        private void OnSettingsToolStripMenuItemClick(Object sender, EventArgs e)
-        {
-            using (SettingsForm settingsForm = new SettingsForm(true, true))
-            {
-                settingsForm.SetValues(Program.Settings.SettingsForm.Left, Program.Settings.SettingsForm.Top
-                    , Program.Settings.DefaultValues);
-                if (settingsForm.ShowDialog(this) == DialogResult.OK)
-                {
-                    this.SetCheckBoxes();
-                }
-                settingsForm.GetValues(out Program.Settings.SettingsForm.Left, out Program.Settings.SettingsForm.Top);
-            }
-        }
-
-        private void OnReApplySettingsAndFiltersButtonClick(Object sender
-            , EventArgs e)
-        {
-            this.StartLongAction();
-
-            MovieCastDataGridView.Rows.Clear();
-
-            MovieCrewDataGridView.Rows.Clear();
-
-            CastList = new List<CastInfo>();
-
-            CrewList = new List<CrewInfo>();
-
-            this.CreateTitleRow();
-
-            DefaultValues defaultValues = this.CopyDefaultValues();
-
-            try
-            {
-                Int32 progressMax = CastMatches.Count;
-
-                foreach (KeyValuePair<Match, List<Match>> kvp in CrewMatches)
-                {
-                    progressMax += kvp.Value.Count;
-                }
-
-                foreach (KeyValuePair<String, List<Match>> kvp in SoundtrackMatches)
-                {
-                    progressMax += kvp.Value.Count;
-                }
-
-                this.StartProgress(progressMax, Color.LightBlue);
-
-                this.ProcessLines(CastList, CastMatches, CrewList, CrewMatches, SoundtrackMatches, defaultValues);
-            }
-            finally
-            {
-                this.EndProgress();
-            }
-
-            this.UpdateUI();
-
-            this.EndLongActionWithGrids();
-
-            if ((Program.Settings.DefaultValues.DisableParsingCompleteMessageBox == false)
-                && (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing == false)
-                && (Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing == false))
-            {
-                this.ProcessMessageQueue();
-
-                MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            if (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing)
-            {
-                this.GetBirthYears(Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing);
-            }
-            else
-            {
-                Program.FlushPersonCache();
-            }
-
-            if (Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
-            {
-                this.OnGetHeadshotsButtonClick(sender, e);
-            }
-
-            this.ProcessMessageQueue();
-
-            DataGridViewHelper.CopyCastToClipboard(MovieCastDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
-            DataGridViewHelper.CopyCrewToClipboard(MovieCrewDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
-        }
-
-        private DefaultValues CopyDefaultValues()
-        {
-            DefaultValues defaultValues;
-
-            defaultValues = new DefaultValues()
-            {
-                ParseFirstNameInitialsIntoFirstAndMiddleName = Program.Settings.DefaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName,
-                ParseRoleSlash = ParseRoleSlashCheckBox.Checked,
-                ParseVoiceOf = ParseVoiceOfCheckBox.Checked,
-                IgnoreUncredited = IgnoreUncreditedCheckBox.Checked,
-                IgnoreCreditOnly = IgnoreCreditOnlyCheckBox.Checked,
-                IgnoreScenesDeleted = IgnoreScenesDeletedCheckBox.Checked,
-                IgnoreArchiveFootage = IgnoreArchiveFootageCheckBox.Checked,
-                IgnoreLanguageVersion = IgnoreLanguageVersionCheckBox.Checked,
-                IgnoreUnconfirmed = IgnoreUnconfirmedCheckBox.Checked,
-                IncludeCustomCredits = CustomCreditsCheckBox.Checked,
-                RetainCastCreditedAs = RetainCreditedAsOnCastCheckBox.Checked,
-                RetainOriginalCredit = RetainOriginalCreditCheckBox.Checked,
-                IncludePrefixOnOtherCredits = IncludePrefixOnOtherCreditsCheckBox.Checked,
-                CapitalizeCustomRole = CapitalizeCustomRoleCheckBox.Checked,
-                RetainCrewCreditedAs = RetainCreditedAsOnCrewCheckBox.Checked,
-                CreditTypeDirection = CreditTypeDirectionCheckBox.Checked,
-                CreditTypeWriting = CreditTypeWritingCheckBox.Checked,
-                CreditTypeProduction = CreditTypeProductionCheckBox.Checked,
-                CreditTypeCinematography = CreditTypeCinematographyCheckBox.Checked,
-                CreditTypeFilmEditing = CreditTypeFilmEditingCheckBox.Checked,
-                CreditTypeMusic = CreditTypeMusicCheckBox.Checked,
-                CreditTypeSound = CreditTypeSoundCheckBox.Checked,
-                CreditTypeArt = CreditTypeArtCheckBox.Checked,
-                CreditTypeOther = CreditTypeOtherCheckBox.Checked,
-                CreditTypeSoundtrack = CreditTypeSoundtrackCheckBox.Checked,
-                CheckPersonLinkForRedirect = Program.Settings.DefaultValues.CheckPersonLinkForRedirect,
-            };
-
-            return (defaultValues);
-        }
-
-        protected override void MoveRow(CastInfo castMember, Boolean up)
-        {
-            Int32 index;
-
-            index = FindIndexOfCastMember(CastList, castMember);
-            if (index != -1)
-            {
-                CastInfo temp;
-
-                temp = CastList[index];
-                if (up)
-                {
-                    CastList[index] = CastList[index - 1];
-                    CastList[index - 1] = temp;
-                }
-                else
-                {
-                    CastList[index] = CastList[index + 1];
-                    CastList[index + 1] = temp;
-                }
-                MovieCastDataGridView.Rows.Clear();
-                this.UpdateUI(CastList, null, MovieCastDataGridView, null, true, false, MovieTitleLink, MovieTitle);
-            }
-            else
-            {
-                Debug.Assert(false, "Invalid Index");
-            }
-        }
-
-        protected override void RemoveRow(CastInfo castMember)
-        {
-            Int32 index;
-
-            index = FindIndexOfCastMember(CastList, castMember);
-            if (index != -1)
-            {
-                CastList.RemoveAt(index);
-                MovieCastDataGridView.Rows.Clear();
-                this.UpdateUI(CastList, null, MovieCastDataGridView, null, true, false, MovieTitleLink, MovieTitle);
-            }
-            else
-            {
-                Debug.Assert(false, "Invalid Index");
-            }
-        }
-
-        private void OnGetHeadshotsButtonClick(Object sender
-            , EventArgs e)
-        {
-            this.GetHeadshots(MovieCastDataGridView, MovieCrewDataGridView, GetHeadshotsButton);
-        }
-
-        private void OnBrowseButtonClick(Object sender, EventArgs e)
-        {
-            this.NavigateTo(BrowserUrlComboBox.Text);
-        }
-
-        private void OnBrowserSearchButtonClick(Object sender, EventArgs e)
-        {
-            const string BaseUrl = "https://www.imdb.com/find?s=tt&q=";
-
-            var url = BaseUrl + System.Web.HttpUtility.UrlEncode(BrowserSearchTextBox.Text);
-
-            this.NavigateTo(url);
-        }
-
-        private void NavigateTo(string url)
-        {
-            if (Program.ShowNewBrowser)
-            {
-                WebBrowserNew.Source = new Uri(url);
-            }
-            else
-            {
-                WebBrowserOld.Navigate(url);
-            }
-        }
-
-        private void OnBrowserUrlComboBoxKeyUp(Object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                this.OnBrowseButtonClick(this, null);
-            }
-        }
-
-        private void OnBrowserSearchTextBoxKeyUp(Object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                this.OnBrowserSearchButtonClick(this, null);
-            }
-        }
-
-        private void OnCopyTriviaToClipboardButtonClick(Object sender, EventArgs e)
-        {
-            try
-            {
-                Clipboard.SetDataObject(TriviaTextBox.Text, true, 4, 250);
-            }
-            catch
-            { }
-        }
-
-        private void OnBackupToolStripMenuItemClick(Object sender, EventArgs e)
-        {
-            using (SaveFileDialog sfd = new SaveFileDialog())
-            {
-                sfd.DefaultExt = "bin";
-                sfd.Filter = "Binary Files|*.bin";
-                sfd.OverwritePrompt = true;
-                sfd.RestoreDirectory = true;
-                sfd.FileName = "cce2.bin";
-                sfd.Title = "Select Session Data backup file";
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    SessionData.Serialize(sfd.FileName);
-                }
-            }
-        }
-
-        private void OnRestoreToolStripMenuItemClick(Object sender, EventArgs e)
-        {
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.DefaultExt = "bin";
-                ofd.Filter = "Binary Files|*.bin";
-                ofd.Multiselect = false;
-                ofd.RestoreDirectory = true;
-                ofd.Title = "Select Session Data backup file";
-                ofd.FileName = "cce2.bin";
-                ofd.CheckFileExists = true;
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    BirthYearsInLocalCacheLabel.Text = SessionData.Deserialize(ofd.FileName);
-                }
-            }
-        }
-
-        private void OnCopyGoofsToClipboardButtonClick(Object sender, EventArgs e)
-        {
-            try
-            {
-                Clipboard.SetDataObject(GoofsTextBox.Text, true, 4, 250);
-            }
-            catch
-            { }
-        }
-
-        private void OnCheckForUpdateToolStripMenuItemClick(Object sender, EventArgs e)
-        {
-            this.CheckForNewVersion(false);
-        }
-
-        private void OnLogWebBrowserNavigating(Object sender, WebBrowserNavigatingEventArgs e)
-        {
-            if (e.Url.AbsoluteUri.StartsWith("https://www.imdb.com/"))
-            {
-                Process.Start(e.Url.AbsoluteUri);
-                e.Cancel = true;
-            }
-        }
-
-        private void OnCopyExtendedCastToClipboardToolStripMenuItemClick(Object sender
-            , EventArgs e)
-        {
-            if (HasAgreed == false)
-            {
-                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader
-                    , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                {
-                    return;
-                }
-            }
-
-            HasAgreed = true;
-
-            DataGridViewHelper.CopyExtendedCastToClipboard(MovieCastDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage);
-
-            Log.Show(LogWebBrowser);
-
-            this.ProcessMessageQueue();
-
-            if (Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox == false)
-            {
-                MessageBox.Show(this, MessageBoxTexts.CastDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader
-                    , MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void OnCopyExtendedCrewToClipboardToolStripMenuItemClick(Object sender
-            , EventArgs e)
-        {
-            if (HasAgreed == false)
-            {
-                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader
-                    , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                {
-                    return;
-                }
-            }
-
-            HasAgreed = true;
-
-            DataGridViewHelper.CopyExtendedCrewToClipboard(MovieCrewDataGridView, MovieTitle, Log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage);
-
-            Log.Show(LogWebBrowser);
-
-            this.ProcessMessageQueue();
-
-            if (Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox == false)
-            {
-                MessageBox.Show(this, MessageBoxTexts.CrewDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader
-                    , MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void OnWebBrowserNavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
-        {
-            this.UpdateUri();
-        }
-
-        private void UpdateUri()
-        {
-            if (WebBrowserNew.Source != null)
-            {
-                BrowserUrlComboBox.Text = WebBrowserNew.Source.ToString();
-                MovieUrlTextBox.Text = BrowserUrlComboBox.Text;
-                TVShowUrlTextBox.Text = BrowserUrlComboBox.Text;
-            }
-        }
-
-        private void OnWebBrowserNavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
-        {
-            this.UpdateUri();
-        }
-
-        private void OnWebBrowserNavigated(Object sender, WebBrowserNavigatedEventArgs e)
-        {
-            if (WebBrowserOld.Url != null)
-            {
-                BrowserUrlComboBox.Text = WebBrowserOld.Url.ToString();
-                MovieUrlTextBox.Text = BrowserUrlComboBox.Text;
-                TVShowUrlTextBox.Text = BrowserUrlComboBox.Text;
-            }
-        }
-
-        private void OnWebBrowserNavigating(Object sender, WebBrowserNavigatingEventArgs e)
-        {
-            IOleObject obj = (IOleObject)(WebBrowserOld.ActiveXInstance);
-            obj.SetClientSite(this);
-        }
-
-        private void OnMovieCastCrewTabControlKeyDown(object sender, KeyEventArgs e)
-        {
-            if (MovieCastCrewTabControl.Enabled && IsShortCutAction(e))
-            {
-                if (MovieCastCrewTabControl.SelectedIndex == 0)
-                {
-                    this.OnMovieCastGenerateButtonClick(this, EventArgs.Empty);
-
-                    this.TrySendToDvdProfiler(e);
-                }
-                else if (MovieCastCrewTabControl.SelectedIndex == 1)
-                {
-                    this.OnMovieCrewGenerateButtonClick(this, EventArgs.Empty);
-
-                    this.TrySendToDvdProfiler(e);
-                }
-            }
-        }
-
-        private void OnMovieTVShowTabControlKeyDown(object sender, KeyEventArgs e)
-        {
-            if (MovieTVShowTabControl.Enabled && IsShortCutAction(e))
-            {
-                if (MovieTVShowTabControl.SelectedIndex == 1 && !MovieUrlTextBox.Focused)
-                {
-                    this.OnMovieCastCrewTabControlKeyDown(this, e);
-                }
-            }
-        }
-
-        private void OnMainFormKeyDown(object sender, KeyEventArgs e)
-        {
-            if (this.Enabled && IsShortCutAction(e))
-            {
-                OnMovieTVShowTabControlKeyDown(this, e);
-            }
-        }
-    }
+    #endregion
 }

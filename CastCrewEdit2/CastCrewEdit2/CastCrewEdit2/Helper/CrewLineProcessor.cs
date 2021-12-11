@@ -1,32 +1,28 @@
-﻿using System;
-using System.Globalization;
-using System.Text.RegularExpressions;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
+    using System;
+    using System.Globalization;
+    using System.Text.RegularExpressions;
+
     internal static class CrewLineProcessor
     {
-        internal static CrewInfo Process(DefaultValues defaultValues
-            , Match creditTypeMatch
-            , Match crewMatch
-            , String credit
-            , String originalCredit)
+        internal static CrewInfo Process(DefaultValues defaultValues, Match creditTypeMatch, Match crewMatch, string credit, string originalCredit)
         {
-            CrewInfo crewMember = new CrewInfo();
+            var name = NameParser.Parse(crewMatch.Groups["PersonName"].Value.ToString());
 
-            Name name = NameParser.Parse(crewMatch.Groups["PersonName"].Value.ToString());
-
-            crewMember.FirstName = name.FirstName.ToString();
-            crewMember.MiddleName = name.MiddleName.ToString();
-            crewMember.LastName = name.LastName.ToString();
-
-            crewMember.OriginalCredit = originalCredit;
-
-            if (String.IsNullOrEmpty(credit) == false)
+            var crewMember = new CrewInfo()
             {
-                crewMember.CreditedAs = String.Empty;
+                FirstName = name.FirstName.ToString(),
+                MiddleName = name.MiddleName.ToString(),
+                LastName = name.LastName.ToString(),
+                OriginalCredit = originalCredit,
+            };
 
-                Match newMatch = IMDbParser.CreditedAsRegex.Match(credit);
+            if (!string.IsNullOrEmpty(credit))
+            {
+                crewMember.CreditedAs = string.Empty;
+
+                var newMatch = IMDbParser.CreditedAsRegex.Match(credit);
 
                 if (newMatch.Success)
                 {
@@ -35,7 +31,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                         crewMember.CreditedAs = newMatch.Groups["CreditedAs"].ToString();
                     }
 
-                    credit = credit.Replace("(as " + newMatch.Groups["CreditedAs"].ToString() + ")", String.Empty);
+                    credit = credit.Replace("(as " + newMatch.Groups["CreditedAs"].ToString() + ")", string.Empty);
                     credit = credit.Trim();
                 }
 
@@ -47,32 +43,32 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 credit = credit.Trim();
             }
 
-            Boolean typeMatch = false;
+            var typeMatch = false;
 
-            Boolean subtypeMatch = false;
+            var subtypeMatch = false;
 
             if (IMDbParser.TransformationData.CreditTypeList != null)
             {
-                Boolean useCredit = FormatCreditType(defaultValues, creditTypeMatch, crewMember, credit, out subtypeMatch, out typeMatch);
+                var useCredit = FormatCreditType(defaultValues, creditTypeMatch, crewMember, credit, out subtypeMatch, out typeMatch);
 
-                if (useCredit == false)
+                if (!useCredit)
                 {
-                    return (null);
+                    return null;
                 }
             }
 
             if (typeMatch)
             {
-                if (subtypeMatch == false)
+                if (!subtypeMatch)
                 {
-                    if (defaultValues.IncludeCustomCredits == false)
+                    if (!defaultValues.IncludeCustomCredits)
                     {
-                        return (null);
+                        return null;
                     }
 
                     if (IMDbParser.IgnoreCustomInIMDbCreditType.Contains(creditTypeMatch.Groups["CreditType"].Value.ToString()))
                     {
-                        return (null);
+                        return null;
                     }
 
                     crewMember.CreditSubtype = CreditTypesDataGridViewHelper.CreditSubtypes.Custom;
@@ -81,20 +77,20 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
             else
             {
-                if (defaultValues.CreditTypeOther == false)
+                if (!defaultValues.CreditTypeOther)
                 {
-                    return (null);
+                    return null;
                 }
 
                 if (IMDbParser.IgnoreIMDbCreditTypeInOther.Contains(creditTypeMatch.Groups["CreditType"].Value.ToString()))
                 {
-                    return (null);
+                    return null;
                 }
 
                 crewMember.CreditType = CreditTypesDataGridViewHelper.CreditTypes.Other;
                 crewMember.CreditSubtype = CreditTypesDataGridViewHelper.CreditSubtypes.Custom;
 
-                if (String.IsNullOrEmpty(credit))
+                if (string.IsNullOrEmpty(credit))
                 {
                     crewMember.CustomRole = creditTypeMatch.Groups["CreditType"].Value.ToString();
                 }
@@ -102,8 +98,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 {
                     if (defaultValues.IncludePrefixOnOtherCredits)
                     {
-                        crewMember.CustomRole = creditTypeMatch.Groups["CreditType"].Value.ToString() + ": "
-                            + FormatCredit(credit, defaultValues.CapitalizeCustomRole);
+                        crewMember.CustomRole = creditTypeMatch.Groups["CreditType"].Value.ToString() + ": " + FormatCredit(credit, defaultValues.CapitalizeCustomRole);
                     }
                     else
                     {
@@ -112,105 +107,96 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 }
             }
 
-            String personLink = crewMatch.Groups["PersonLink"].Value;
+            var personLink = crewMatch.Groups["PersonLink"].Value;
 
-            crewMember.PersonLink = defaultValues.CheckPersonLinkForRedirect ? IMDbParser.GetUpdatedPersonLink(personLink) : personLink;
+            crewMember.PersonLink = defaultValues.CheckPersonLinkForRedirect
+                ? IMDbParser.GetUpdatedPersonLink(personLink)
+                : personLink;
 
-            return (crewMember);
+            return crewMember;
         }
 
-        private static String FormatCredit(String credit, Boolean capitalizeCustomRole)
+        private static string FormatCredit(string credit, bool capitalizeCustomRole)
         {
-            if ((capitalizeCustomRole) && (String.IsNullOrEmpty(credit) == false))
+            if (capitalizeCustomRole && !string.IsNullOrEmpty(credit))
             {
                 credit = CultureInfo.GetCultureInfo("en-US").TextInfo.ToTitleCase(credit);
             }
 
-            return (credit);
+            return credit;
         }
 
-        private static Boolean FormatCreditType(DefaultValues defaultValues
-            , Match creditTypeMatch
-            , CrewInfo crewMember
-            , String originalCredit
-            , out Boolean subtypeMatch
-            , out Boolean typeMatch)
+        private static bool FormatCreditType(DefaultValues defaultValues, Match creditTypeMatch, CrewInfo crewMember, string originalCredit, out bool subtypeMatch, out bool typeMatch)
         {
-            Boolean useCredit = FormatCreditType(defaultValues, creditTypeMatch, crewMember, originalCredit, originalCredit, out subtypeMatch, out typeMatch);
+            var useCredit = FormatCreditType(defaultValues, creditTypeMatch, crewMember, originalCredit, originalCredit, out subtypeMatch, out typeMatch);
 
-            if ((subtypeMatch == false) && (originalCredit.Contains(":")))
+            if (!subtypeMatch && originalCredit.Contains(":"))
             {
-                String shortCredit = (originalCredit.Split(':'))[0].TrimEnd();
+                var shortCredit = originalCredit.Split(':')[0].TrimEnd();
 
                 useCredit = FormatCreditType(defaultValues, creditTypeMatch, crewMember, originalCredit, shortCredit, out subtypeMatch, out typeMatch);
             }
 
-            return (useCredit);
+            return useCredit;
         }
 
-        private static Boolean FormatCreditType(DefaultValues defaultValues
-            , Match creditTypeMatch
-            , CrewInfo crewMember
-            , String originalCredit
-            , String shortCredit
-            , out Boolean subtypeMatch
-            , out Boolean typeMatch)
+        private static bool FormatCreditType(DefaultValues defaultValues, Match creditTypeMatch, CrewInfo crewMember, string originalCredit, string shortCredit, out bool subtypeMatch, out bool typeMatch)
         {
-            Boolean useCredit = true;
+            var useCredit = true;
 
             typeMatch = false;
 
             subtypeMatch = false;
 
-            foreach (CreditType creditType in IMDbParser.TransformationData.CreditTypeList)
+            foreach (var creditType in IMDbParser.TransformationData.CreditTypeList)
             {
                 if (creditType.IMDbCreditType.Equals(creditTypeMatch.Groups["CreditType"].Value.ToString(), StringComparison.InvariantCultureIgnoreCase))
                 {
                     switch (creditType.DVDProfilerCreditType)
                     {
-                        case (CreditTypesDataGridViewHelper.CreditTypes.Direction):
+                        case CreditTypesDataGridViewHelper.CreditTypes.Direction:
                             {
                                 useCredit = defaultValues.CreditTypeDirection;
 
                                 break;
                             }
-                        case (CreditTypesDataGridViewHelper.CreditTypes.Writing):
+                        case CreditTypesDataGridViewHelper.CreditTypes.Writing:
                             {
                                 useCredit = defaultValues.CreditTypeWriting;
 
                                 break;
                             }
-                        case (CreditTypesDataGridViewHelper.CreditTypes.Production):
+                        case CreditTypesDataGridViewHelper.CreditTypes.Production:
                             {
                                 useCredit = defaultValues.CreditTypeProduction;
 
                                 break;
                             }
-                        case (CreditTypesDataGridViewHelper.CreditTypes.Cinematography):
+                        case CreditTypesDataGridViewHelper.CreditTypes.Cinematography:
                             {
                                 useCredit = defaultValues.CreditTypeCinematography;
 
                                 break;
                             }
-                        case (CreditTypesDataGridViewHelper.CreditTypes.FilmEditing):
+                        case CreditTypesDataGridViewHelper.CreditTypes.FilmEditing:
                             {
                                 useCredit = defaultValues.CreditTypeFilmEditing;
 
                                 break;
                             }
-                        case (CreditTypesDataGridViewHelper.CreditTypes.Music):
+                        case CreditTypesDataGridViewHelper.CreditTypes.Music:
                             {
                                 useCredit = defaultValues.CreditTypeMusic;
 
                                 break;
                             }
-                        case (CreditTypesDataGridViewHelper.CreditTypes.Sound):
+                        case CreditTypesDataGridViewHelper.CreditTypes.Sound:
                             {
                                 useCredit = defaultValues.CreditTypeSound;
 
                                 break;
                             }
-                        case (CreditTypesDataGridViewHelper.CreditTypes.Art):
+                        case CreditTypesDataGridViewHelper.CreditTypes.Art:
                             {
                                 useCredit = defaultValues.CreditTypeArt;
 
@@ -218,7 +204,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                             }
                     }
 
-                    if (useCredit == false)
+                    if (!useCredit)
                     {
                         break;
                     }
@@ -229,7 +215,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                     if (creditType.CreditSubtypeList != null)
                     {
-                        foreach (CreditSubtype creditSubtype in creditType.CreditSubtypeList)
+                        foreach (var creditSubtype in creditType.CreditSubtypeList)
                         {
                             if (creditSubtype.IMDbCreditSubtype != null)
                             {
@@ -241,8 +227,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                                     break;
                                 }
-                                else if ((creditSubtype.IMDbCreditSubtype.StartsWithSpecified) && (creditSubtype.IMDbCreditSubtype.StartsWith)
-                                    && (shortCredit.StartsWith(creditSubtype.IMDbCreditSubtype.Value + " ", StringComparison.InvariantCultureIgnoreCase)))
+                                else if (creditSubtype.IMDbCreditSubtype.StartsWithSpecified
+                                    && creditSubtype.IMDbCreditSubtype.StartsWith
+                                    && shortCredit.StartsWith(creditSubtype.IMDbCreditSubtype.Value + " ", StringComparison.InvariantCultureIgnoreCase))
                                 {
                                     SetCreditSubtype(defaultValues, crewMember, originalCredit, shortCredit, creditSubtype);
 
@@ -261,30 +248,26 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 }
             }
 
-            return (useCredit);
+            return useCredit;
         }
 
-        private static void SetCreditSubtype(DefaultValues defaultValues
-            , CrewInfo crewMember
-            , String originalCredit
-            , String shortCredit
-            , CreditSubtype creditSubtype)
+        private static void SetCreditSubtype(DefaultValues defaultValues, CrewInfo crewMember, string originalCredit, string shortCredit, CreditSubtype creditSubtype)
         {
             crewMember.CreditSubtype = creditSubtype.DVDProfilerCreditSubtype;
 
-            if ((defaultValues.RetainOriginalCredit)
-                && (creditSubtype.DVDProfilerCreditSubtype.Equals(shortCredit, StringComparison.InvariantCultureIgnoreCase) == false))
+            if (defaultValues.RetainOriginalCredit
+                && !creditSubtype.DVDProfilerCreditSubtype.Equals(shortCredit, StringComparison.InvariantCultureIgnoreCase))
             {
-                if (String.IsNullOrEmpty(originalCredit) == false)
+                if (!string.IsNullOrEmpty(originalCredit))
                 {
                     crewMember.CustomRole = FormatCredit(originalCredit, defaultValues.CapitalizeCustomRole);
                 }
-                else if ((String.IsNullOrEmpty(creditSubtype.DVDProfilerCustomRole) == false))
+                else if (!string.IsNullOrEmpty(creditSubtype.DVDProfilerCustomRole))
                 {
                     crewMember.CustomRole = creditSubtype.DVDProfilerCustomRole;
                 }
             }
-            else if ((String.IsNullOrEmpty(creditSubtype.DVDProfilerCustomRole) == false))
+            else if (!string.IsNullOrEmpty(creditSubtype.DVDProfilerCustomRole))
             {
                 crewMember.CustomRole = creditSubtype.DVDProfilerCustomRole;
             }

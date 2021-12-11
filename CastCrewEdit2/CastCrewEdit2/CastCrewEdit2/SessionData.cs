@@ -1,54 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 {
-    [Serializable()]
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Runtime.Serialization.Formatters.Binary;
+    using Forms;
+    using Helper;
+
+    [Serializable]
     public sealed class SessionData
     {
-        public Dictionary<PersonInfo, String> BirthYearCache;
+        public Dictionary<PersonInfo, string> BirthYearCache;
+
         public Dictionary<PersonInfo, FileInfo> HeadshotCache;
-        public Boolean FirstRunGetHeadShots;
 
-        public static void Serialize(String fileName)
+        public bool FirstRunGetHeadShots;
+
+        public static void Serialize(string fileName)
         {
-            using (FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
+            using (var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
             {
-                BinaryFormatter bf;
-                SessionData sd;
+                var sd = new SessionData()
+                {
+                    BirthYearCache = IMDbParser.BirthYearCache,
+                    HeadshotCache = IMDbParser.HeadshotCache,
+                    FirstRunGetHeadShots = CastCrewEdit2ParseBaseForm.FirstRunGetHeadShots,
+                };
 
-                sd = new SessionData();
-                sd.BirthYearCache = IMDbParser.BirthYearCache;
-                sd.HeadshotCache = IMDbParser.HeadshotCache;
-                sd.FirstRunGetHeadShots = CastCrewEdit2ParseBaseForm.FirstRunGetHeadShots;
-                bf = new BinaryFormatter();
+                var bf = new BinaryFormatter();
+
                 bf.Serialize(fs, sd);
             }
         }
 
-        public static String Deserialize(String fileName)
+        public static string Deserialize(string fileName)
         {
             try
             {
-                using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    BinaryFormatter bf;
-                    SessionData sd;
+                    var bf = new BinaryFormatter();
 
-                    bf = new BinaryFormatter();
-                    sd = (SessionData)(bf.Deserialize(fs));
+                    var sd = (SessionData)(bf.Deserialize(fs));
+
                     IMDbParser.BirthYearCache = sd.BirthYearCache;
+
                     IMDbParser.HeadshotCache = new Dictionary<PersonInfo, FileInfo>(sd.HeadshotCache.Count);
+
                     CastCrewEdit2ParseBaseForm.FirstRunGetHeadShots = sd.FirstRunGetHeadShots;
+
                     foreach (KeyValuePair<PersonInfo, FileInfo> kvp in sd.HeadshotCache)
                     {
                         if (kvp.Value != null)
                         {
                             kvp.Value.Refresh();
+
                             if (kvp.Value.Exists)
                             {
                                 IMDbParser.HeadshotCache.Add(kvp.Key, kvp.Value);
@@ -63,10 +69,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             }
             catch
             {
-                IMDbParser.BirthYearCache = new Dictionary<PersonInfo, String>(1000);
+                IMDbParser.BirthYearCache = new Dictionary<PersonInfo, string>(1000);
+
                 IMDbParser.HeadshotCache = new Dictionary<PersonInfo, FileInfo>(1000);
             }
-            return (IMDbParser.BirthYearCache.Count.ToString());
+
+            return IMDbParser.BirthYearCache.Count.ToString();
         }
     }
 }

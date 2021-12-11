@@ -1,23 +1,23 @@
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 {
-    [Serializable()]
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+
+    [Serializable]
     public class BaseForm
     {
-        public Int32 Top = 50;
+        public int Top = 50;
 
-        public Int32 Left = 50;
+        public int Left = 50;
     }
 
-    [Serializable()]
+    [Serializable]
     public class SizableForm : BaseForm
     {
-        public Int32 Height = 500;
+        public int Height = 500;
 
-        public Int32 Width = 900;
+        public int Width = 900;
 
         public FormWindowState WindowState = FormWindowState.Normal;
 

@@ -1,59 +1,59 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using System.Windows.Forms;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
+    using System;
+    using System.IO;
+    using System.Text;
+    using System.Windows.Forms;
+
     public sealed class Log
     {
-        private StringBuilder LogBuilder;
+        private readonly StringBuilder _logBuilder;
 
-        private readonly Object Lock;
+        private readonly object _lock;
 
-        public Int32 Length
+        public int Length
         {
             get
             {
-                lock (Lock)
+                lock (_lock)
                 {
-                    return (LogBuilder.Length);
+                    return _logBuilder.Length;
                 }
             }
         }
 
         public Log()
         {
-            LogBuilder = new StringBuilder();
+            _logBuilder = new StringBuilder();
 
-            Lock = new Object();
+            _lock = new object();
         }
 
-        public void AppendParagraph(String text)
+        public void AppendParagraph(string text)
         {
-            lock (Lock)
+            lock (_lock)
             {
-                LogBuilder.AppendLine("<p style=\"font-family:Courier New, Courier, monospace;\">");
-                LogBuilder.AppendLine(text.Replace(Environment.NewLine, "<br/>" + Environment.NewLine));
-                LogBuilder.AppendLine("</p>");
+                _logBuilder.AppendLine("<p style=\"font-family:Courier New, Courier, monospace;\">");
+                _logBuilder.AppendLine(text.Replace(Environment.NewLine, "<br/>" + Environment.NewLine));
+                _logBuilder.AppendLine("</p>");
             }
         }
 
-        public override String ToString()
+        public override string ToString()
         {
-            lock (Lock)
+            lock (_lock)
             {
-                return (LogBuilder.ToString());
+                return _logBuilder.ToString();
             }
         }
 
         public void Show(WebBrowser webBrowser)
         {
-            String file = Path.Combine(Path.GetTempPath(), "cce2log.html"); 
+            var file = Path.Combine(Path.GetTempPath(), "cce2log.html");
 
-            using (StreamWriter sw = new StreamWriter(file, false, Encoding.UTF8))
+            using (var sw = new StreamWriter(file, false, Encoding.UTF8))
             {
-                sw.Write(ToString());
+                sw.Write(this.ToString());
             }
 
             webBrowser.Navigate(file);

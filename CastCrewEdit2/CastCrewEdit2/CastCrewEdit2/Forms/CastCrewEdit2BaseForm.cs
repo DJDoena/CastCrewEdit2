@@ -1,65 +1,91 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
-using Microsoft.WindowsAPICodePack.Taskbar;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Drawing;
+    using System.IO;
+    using System.Linq;
+    using System.Runtime.InteropServices;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Threading;
+    using System.Windows.Forms;
+    using DVDProfilerHelper;
+    using Helper;
+    using Microsoft.WindowsAPICodePack.Taskbar;
+    using Resources;
+
     [ComVisible(true)]
     public class CastCrewEdit2BaseForm : Form
     {
-        protected static String TVShowTitle;
-        protected static String TVShowTitleLink;
-        protected static Boolean s_HasAgreed;
-        protected static Boolean SettingsHaveChanged;
-        protected static readonly Regex CastBlockStartRegex;
-        protected static readonly Regex BlockEndRegex;
-        protected static readonly Regex CastLineRegex;
-        protected static readonly Regex CrewBlockStartRegex;
+        protected static string _tvShowTitle;
+
+        protected static string _tvShowTitleLink;
+
+        protected static bool _hasAgreed;
+
+        protected static bool _settingsHaveChanged;
+
+        protected static readonly Regex _castBlockStartRegex;
+
+        protected static readonly Regex _blockEndRegex;
+
+        protected static readonly Regex _castLineRegex;
+
+        protected static readonly Regex _crewBlockStartRegex;
+
 #if UnitTest
-        public Int32 ProgressMax;
-        public Int32 ProgressInterval;
-        public ColorProgressBar TheProgressBar;
-        public Int32 ProgressValue;
+
+        public int _progressMax;
+
+        public int _progressInterval;
+
+        public ColorProgressBar _progressBar;
+
+        public int _progressValue;
+
 #else
-        private Int32 ProgressMax;
-        private Int32 ProgressInterval;
-        protected ColorProgressBar TheProgressBar;
-        private Int32 ProgressValue;
+
+        private int _progressMax;
+
+        private int _progressInterval;
+
+        protected ColorProgressBar _progressBar;
+
+        private int _progressValue;
+
 #endif
-        protected Boolean SuppressProgress;
-        private readonly Object ProgressLock;
-        private const Int32 OneHundred = 100;
+
+        protected bool _suppressProgress;
+
+        private readonly object _progressLock;
+
+        private const int OneHundred = 100;
 
         static CastCrewEdit2BaseForm()
         {
-            TVShowTitle = String.Empty;
-            s_HasAgreed = false;
-            CastBlockStartRegex = new Regex("<table (.*?)class=\"cast_list\"(.*?)>", RegexOptions.Compiled | RegexOptions.Multiline);
-            BlockEndRegex = new Regex("</table>", RegexOptions.Compiled);
-            CastLineRegex = new Regex("<tr (.*?)class=\"(odd|even)\"(.*?)>.*?</tr>", RegexOptions.Compiled | RegexOptions.Multiline);
-            CrewBlockStartRegex = new Regex("<h4 (.*?)class=\"dataHeaderWithBorder\"(.*?)>", RegexOptions.Compiled | RegexOptions.Multiline);
+            _tvShowTitle = string.Empty;
+
+            _hasAgreed = false;
+
+            _castBlockStartRegex = new Regex("<table (.*?)class=\"cast_list\"(.*?)>", RegexOptions.Compiled | RegexOptions.Multiline);
+
+            _blockEndRegex = new Regex("</table>", RegexOptions.Compiled);
+
+            _castLineRegex = new Regex("<tr (.*?)class=\"(odd|even)\"(.*?)>.*?</tr>", RegexOptions.Compiled | RegexOptions.Multiline);
+
+            _crewBlockStartRegex = new Regex("<h4 (.*?)class=\"dataHeaderWithBorder\"(.*?)>", RegexOptions.Compiled | RegexOptions.Multiline);
         }
 
         public CastCrewEdit2BaseForm()
         {
-            ProgressLock = new Object();
+            _progressLock = new object();
         }
 
-        protected void OnAboutToolStripMenuItemClick(Object sender, EventArgs e)
+        protected void OnAboutToolStripMenuItemClick(object sender, EventArgs e)
         {
-            using (AboutBox aboutBox = new AboutBox(GetType().Assembly))
+            using (var aboutBox = new AboutBox(this.GetType().Assembly))
             {
                 aboutBox.ShowDialog(this);
             }
@@ -67,12 +93,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         protected void OpenReadme()
         {
-            String helpFile;
+            var helpFile = Application.StartupPath + @"\ReadMe\CCE2_ReadMe.html";
 
-            helpFile = Application.StartupPath + @"\ReadMe\CCE2_ReadMe.html";
             if (File.Exists(helpFile))
             {
-                using (HelpForm helpForm = new HelpForm(helpFile))
+                using (var helpForm = new HelpForm(helpFile))
                 {
                     helpForm.Text = "Read Me";
                     helpForm.ShowDialog(this);
@@ -80,51 +105,49 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
         }
 
-        protected static void ParseCastAndCrew(DefaultValues defaultValues
-            , String key
-            , Boolean parseCast
-            , Boolean parseCrew
-            , Boolean parseSoundtrack
-            , Boolean initializeLists
-            , ref List<Match> castMatches
-            , ref List<CastInfo> castList
-            , ref List<KeyValuePair<Match, List<Match>>> crewMatches
-            , ref List<CrewInfo> crewList
-            , ref Dictionary<String, List<Match>> soundtrackMatches)
+        protected static void ParseCastAndCrew(string key, bool parseCast, bool parseCrew, bool parseSoundtrack, bool initializeLists, ref List<Match> castMatches, ref List<CastInfo> castList, ref List<KeyValuePair<Match, List<Match>>> crewMatches, ref List<CrewInfo> crewList, ref Dictionary<string, List<Match>> soundtrackMatches)
         {
-            String targetUrl = IMDbParser.TitleUrl + key + "/fullcredits";
+            var targetUrl = IMDbParser.TitleUrl + key + "/fullcredits";
 
-            String webSite = IMDbParser.GetWebSite(targetUrl);
+            var webSite = IMDbParser.GetWebSite(targetUrl);
 
             if (initializeLists)
             {
                 castList = new List<CastInfo>();
                 crewList = new List<CrewInfo>();
             }
+
             castMatches = new List<Match>();
+
             crewMatches = new List<KeyValuePair<Match, List<Match>>>();
-            soundtrackMatches = new Dictionary<String, List<Match>>();
+
+            soundtrackMatches = new Dictionary<string, List<Match>>();
+
             #region Parse for Cast
+
             if (parseCast)
             {
-                using (StringReader sr = new StringReader(webSite))
+                using (var sr = new StringReader(webSite))
                 {
                     while (sr.Peek() != -1)
                     {
-                        String line = ReadLine(sr);
-                        if (CastBlockStartRegex.Match(line).Success)
-                        {
-                            StringBuilder block;
-                            MatchCollection lineMatches;
+                        var line = ReadLine(sr);
 
-                            block = new StringBuilder();
+                        if (_castBlockStartRegex.Match(line).Success)
+                        {
+                            var block = new StringBuilder();
+
                             block.Append(line.Trim());
-                            while ((BlockEndRegex.Match(line).Success == false) && (sr.Peek() != -1))
+
+                            while (!_blockEndRegex.Match(line).Success && sr.Peek() != -1)
                             {
                                 line = ReadLine(sr);
+
                                 block.Append(line.Trim());
                             }
-                            lineMatches = CastLineRegex.Matches(block.ToString());
+
+                            var lineMatches = _castLineRegex.Matches(block.ToString());
+
                             if (lineMatches.Count > 0)
                             {
                                 foreach (Match lineMatch in lineMatches)
@@ -139,37 +162,46 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     }
                 }
             }
+
             #endregion
+
             #region Parse for Crew
+
             if (parseCrew)
             {
-                using (StringReader sr = new StringReader(webSite.ToString()))
+                using (var sr = new StringReader(webSite.ToString()))
                 {
                     while (sr.Peek() != -1)
                     {
-                        string line = ReadLine(sr);
-                        if (CrewBlockStartRegex.Match(line).Success && !line.Contains("id=\"cast\""))
-                        {
-                            StringBuilder block;
+                        var line = ReadLine(sr);
 
-                            block = new StringBuilder();
+                        if (_crewBlockStartRegex.Match(line).Success && !line.Contains("id=\"cast\""))
+                        {
+                            var block = new StringBuilder();
+
                             block.Append(line.Trim());
-                            while ((BlockEndRegex.Match(line).Success == false) && (sr.Peek() != -1))
+
+                            while (!_blockEndRegex.Match(line).Success && sr.Peek() != -1)
                             {
                                 line = ReadLine(sr);
                                 block.Append(line.Trim());
                             }
+
                             IMDbParser.ProcessCrewLine(block.ToString(), crewMatches);
                         }
                     }
                 }
             }
+
             #endregion
+
             #region Soundtrack
+
             if (parseSoundtrack)
             {
                 soundtrackMatches = ParseSoundtrack(key);
             }
+
             #endregion
         }
 
@@ -201,77 +233,80 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         private static int GetOpenTagCount(string line) => line.Count(c => c == '<') - (line.Split(new[] { "< " }, StringSplitOptions.None).Length - 1);
         private static int GetCloseTagCount(string line) => line.Count(c => c == '>');
 
-        private void EditConfigFile(String fileName, String name, FileNameType fileNameType, Boolean createFile)
+        private void EditConfigFile(string fileName, string name, FileNameType fileNameType, bool createFile)
         {
-            if ((createFile) && (File.Exists(fileName) == false))
+            if (createFile && !File.Exists(fileName))
             {
-                using (FileStream temp = File.Create(fileName))
+                using (var temp = File.Create(fileName))
                 {
                 }
             }
+
             if (File.Exists(fileName))
             {
                 switch (fileNameType)
                 {
-                    case (FileNameType.KnownNames):
+                    case FileNameType.KnownNames:
                         {
-                            using (EditKnownNamesConfigFileForm editForm = new EditKnownNamesConfigFileForm(fileName, name))
+                            using (var editForm = new EditKnownNamesConfigFileForm(fileName, name))
                             {
                                 if (editForm.ShowDialog(this) == DialogResult.Yes)
                                 {
                                     IMDbParser.InitList(fileName, fileNameType, this);
                                 }
                             }
+
                             break;
                         }
                     default:
                         {
-                            using (EditConfigFileForm editForm = new EditConfigFileForm(fileName, name))
+                            using (var editForm = new EditConfigFileForm(fileName, name))
                             {
                                 if (editForm.ShowDialog(this) == DialogResult.Yes)
                                 {
                                     IMDbParser.InitList(fileName, fileNameType, this);
                                 }
                             }
+
                             break;
                         }
                 }
             }
             else
             {
-                MessageBox.Show(this, String.Format(MessageBoxTexts.FileDoesNotExist, fileName), MessageBoxTexts.WarningHeader
-                    , MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, string.Format(MessageBoxTexts.FileDoesNotExist, fileName), MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        protected void OnReadmeToolStripMenuItemClick(Object sender, EventArgs e)
-        {
-            OpenReadme();
-        }
+        protected void OnReadmeToolStripMenuItemClick(object sender, EventArgs e) => this.OpenReadme();
 
-        protected void OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick(Object sender, EventArgs e)
+        protected void OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick(object sender, EventArgs e)
         {
-            string fileName;
+            var fileName = Application.StartupPath + "\\EditIMDbToDVDProfilerCrewRoleTransformation.exe";
 
-            fileName = Application.StartupPath + "\\EditIMDbToDVDProfilerCrewRoleTransformation.exe";
             if (File.Exists(fileName))
             {
-                Process process;
-                Int32 counter;
+                var process = new Process()
+                {
+                    StartInfo = new ProcessStartInfo(fileName)
+                };
 
-                process = new Process();
-                process.StartInfo = new ProcessStartInfo(fileName);
                 process.Start();
-                counter = 0;
-                while (process.HasExited == false)
+
+                var counter = 0;
+
+                while (!process.HasExited)
                 {
                     counter++;
+
                     if (counter % 8 == 0)
                     {
-                        Refresh();
+                        this.Refresh();
                     }
+
                     Thread.Sleep(250);
                 }
+
                 if (process.ExitCode == 1)
                 {
                     IMDbParser.InitIMDbToDVDProfilerCrewRoleTransformation(this);
@@ -279,101 +314,72 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
             else
             {
-                MessageBox.Show(this, String.Format(MessageBoxTexts.FileDoesNotExist, fileName), MessageBoxTexts.WarningHeader
-                    , MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, string.Format(MessageBoxTexts.FileDoesNotExist, fileName), MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        protected void OnKnownNamesToolStripMenuItemClick(Object sender, EventArgs e)
+        protected void OnKnownNamesToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\KnownNames.txt", EditWindowNames.KnownNames, FileNameType.KnownNames, false);
+
+        protected void OnLastnameSuffixesToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\KnownLastNameSuffixes.txt", EditWindowNames.KnownLastnameSuffixes, FileNameType.LastnameSuffixes, false);
+
+        protected void OnLastnamePrefixesToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\KnownLastnamePrefixes.txt", EditWindowNames.KnownLastnamePrefixes, FileNameType.LastnamePrefixes, false);
+
+        protected void OnFirstnamePrefixesToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\KnownFirstnamePrefixes.txt", EditWindowNames.KnownFirstnamePrefixes, FileNameType.FirstnamePrefixes, false);
+
+        protected void OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\IgnoreCustomInIMDbCategory.txt", EditWindowNames.IgnoreCustominIMDbCategory, FileNameType.IgnoreCustomInIMDbCreditType, true);
+
+        protected void OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\IgnoreIMDbCategoryInOther.txt", EditWindowNames.IgnoreIMDbCategoryinOther, FileNameType.IgnoreIMDbCreditTypeInOther, true);
+
+        protected void OnForcedFakeBirthYearsToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\ForcedFakeBirthYears.txt", EditWindowNames.IgnoreIMDbCategoryinOther, FileNameType.ForcedFakeBirthYears, true);
+
+        protected static Dictionary<string, List<Match>> ParseSoundtrack(string titleLink)
         {
-            EditConfigFile(Program.RootPath + @"\Data\KnownNames.txt", EditWindowNames.KnownNames
-                , FileNameType.KnownNames, false);
-        }
+            Dictionary<string, List<Match>> soundtrackEntries = null;
 
-        protected void OnLastnameSuffixesToolStripMenuItemClick(Object sender, EventArgs e)
-        {
-            EditConfigFile(Program.RootPath + @"\Data\KnownLastNameSuffixes.txt", EditWindowNames.KnownLastnameSuffixes
-                           , FileNameType.LastnameSuffixes, false);
-        }
+            var soundtrackUrl = IMDbParser.TitleUrl + titleLink + "/soundtrack";
 
-        protected void OnLastnamePrefixesToolStripMenuItemClick(Object sender, EventArgs e)
-        {
-            EditConfigFile(Program.RootPath + @"\Data\KnownLastnamePrefixes.txt", EditWindowNames.KnownLastnamePrefixes
-               , FileNameType.LastnamePrefixes, false);
-        }
+            var webSite = IMDbParser.GetWebSite(soundtrackUrl);
 
-        protected void OnFirstnamePrefixesToolStripMenuItemClick(Object sender, EventArgs e)
-        {
-            EditConfigFile(Program.RootPath + @"\Data\KnownFirstnamePrefixes.txt", EditWindowNames.KnownFirstnamePrefixes
-               , FileNameType.FirstnamePrefixes, false);
-        }
-
-        protected void OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick(Object sender, EventArgs e)
-        {
-            EditConfigFile(Program.RootPath + @"\Data\IgnoreCustomInIMDbCategory.txt", EditWindowNames.IgnoreCustominIMDbCategory
-               , FileNameType.IgnoreCustomInIMDbCreditType, true);
-        }
-
-        protected void OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick(Object sender, EventArgs e)
-        {
-            EditConfigFile(Program.RootPath + @"\Data\IgnoreIMDbCategoryInOther.txt", EditWindowNames.IgnoreIMDbCategoryinOther
-               , FileNameType.IgnoreIMDbCreditTypeInOther, true);
-        }
-
-        protected void OnForcedFakeBirthYearsToolStripMenuItemClick(Object sender, EventArgs e)
-        {
-            EditConfigFile(Program.RootPath + @"\Data\ForcedFakeBirthYears.txt", EditWindowNames.IgnoreIMDbCategoryinOther
-               , FileNameType.ForcedFakeBirthYears, true);
-        }
-
-        protected static Dictionary<String, List<Match>> ParseSoundtrack(String titleLink)
-        {
-            Dictionary<String, List<Match>> soundtrackEntries;
-
-            soundtrackEntries = null;
-
-            String soundtrackUrl = IMDbParser.TitleUrl + titleLink + "/soundtrack";
-
-            String webSite = IMDbParser.GetWebSite(soundtrackUrl);
-
-            using (StringReader sr = new StringReader(webSite))
+            using (var sr = new StringReader(webSite))
             {
-                StringBuilder soundtrack;
-                Boolean soundtrackFound;
+                var soundtrackFound = false;
 
-                soundtrackFound = false;
-                soundtrack = new StringBuilder();
+                var soundtrack = new StringBuilder();
+
                 while (sr.Peek() != -1)
                 {
-                    String line;
-                    Match beginMatch;
-                    //Match endMatch;
+                    var line = ReadLine(sr);
 
-                    line = ReadLine(sr);
-                    if (soundtrackFound == false)
+                    if (!soundtrackFound)
                     {
-                        beginMatch = IMDbParser.SoundtrackStartRegex.Match(line);
+                        var beginMatch = IMDbParser.SoundtrackStartRegex.Match(line);
+
                         if (beginMatch.Success)
                         {
                             soundtrackFound = true;
+
                             continue;
                         }
                     }
+
                     if (soundtrackFound)
                     {
                         soundtrack.AppendLine(line);
                     }
                 }
+
                 if (soundtrack.Length > 0)
                 {
                     soundtrackEntries = IMDbParser.ParseSoundtrack(soundtrack);
                 }
             }
+
             if (soundtrackEntries == null)
             {
-                soundtrackEntries = new Dictionary<String, List<Match>>(0);
+                soundtrackEntries = new Dictionary<string, List<Match>>(0);
             }
-            return (soundtrackEntries);
+
+            return soundtrackEntries;
         }
 
         #region Progress
@@ -381,39 +387,43 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         #region SetProgress
 
 #if UnitTest
+
         public void SetProgress()
+
 #else
+
         protected void SetProgress()
+
 #endif
         {
-            if (SuppressProgress == false)
+            if (!_suppressProgress )
             {
-                SetProgressSafe();
+                this.SetProgressSafe();
             }
         }
 
         private void SetProgressSafe()
         {
-            lock (ProgressLock)
+            lock (_progressLock)
             {
-                ProgressValue++;
+                _progressValue++;
 
-                if ((ProgressValue == ProgressMax) || ((ProgressValue % ProgressInterval) == 0))
+                if (_progressValue == _progressMax || (_progressValue % _progressInterval) == 0)
                 {
-                    SetProgressBarValue();
+                    this.SetProgressBarValue();
                 }
             }
         }
 
         private void SetProgressBarValue()
         {
-            if (InvokeRequired)
+            if (this.InvokeRequired)
             {
-                Invoke(new SetProgress(SetProgressBarValueSync));
+                this.Invoke(new SetProgress(this.SetProgressBarValueSync));
             }
             else
             {
-                SetProgressBarValueSync();
+                this.SetProgressBarValueSync();
             }
         }
 
@@ -421,10 +431,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         {
             if (TaskbarManager.IsPlatformSupported)
             {
-                TaskbarManager.Instance.SetProgressValue(ProgressValue, ProgressMax);
+                TaskbarManager.Instance.SetProgressValue(_progressValue, _progressMax);
             }
 
-            TheProgressBar.Value = ProgressValue;
+            _progressBar.Value = _progressValue;
 
             Application.DoEvents();
         }
@@ -439,116 +449,88 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 TaskbarManager.Instance.OwnerHandle = IntPtr.Zero;
             }
 
-            TheProgressBar.Value = 0;
-            TheProgressBar.Text = String.Empty;
-            TheProgressBar.BarColor = SystemColors.Control;
+            _progressBar.Value = 0;
+            _progressBar.Text = string.Empty;
+            _progressBar.BarColor = SystemColors.Control;
 
             Application.DoEvents();
         }
 
         #region StartProgress
 
-        protected void StartProgress(Int32 maxValue
-            , Color color)
+        protected void StartProgress(int maxValue, Color color)
         {
-            ProgressValue = 0;
+            _progressValue = 0;
 
-            ProgressMax = maxValue;
+            _progressMax = maxValue;
 
-            CalculateUpdateInterval();
+            this.CalculateUpdateInterval();
 
             if (TaskbarManager.IsPlatformSupported)
             {
-                TaskbarManager.Instance.OwnerHandle = Handle;
+                TaskbarManager.Instance.OwnerHandle = this.Handle;
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
-                TaskbarManager.Instance.SetProgressValue(ProgressValue, ProgressMax);
+                TaskbarManager.Instance.SetProgressValue(_progressValue, _progressMax);
             }
 
-            TheProgressBar.Minimum = ProgressValue;
-            TheProgressBar.Maximum = ProgressMax;
-            TheProgressBar.BarColor = color;
+            _progressBar.Minimum = _progressValue;
+            _progressBar.Maximum = _progressMax;
+            _progressBar.BarColor = color;
 
             Application.DoEvents();
         }
 
-        protected void RestartProgress()
-        {
-            StartProgress(ProgressMax, TheProgressBar.BarColor);
-        }
+        protected void RestartProgress() => this.StartProgress(_progressMax, _progressBar.BarColor);
 
         private void CalculateUpdateInterval()
         {
-            ProgressInterval = 1;
+            _progressInterval = 1;
 
-            if (ProgressMax > OneHundred)
+            if (_progressMax > OneHundred)
             {
-                ProgressInterval = ProgressMax / OneHundred;
+                _progressInterval = _progressMax / OneHundred;
 
-                if (IsNotDivisibleWithoutRemainder())
+                if (this.IsNotDivisibleWithoutRemainder())
                 {
                     //We don't want to finish after we've reached 100%
-                    ProgressInterval++;
+                    _progressInterval++;
                 }
             }
         }
 
-        private Boolean IsNotDivisibleWithoutRemainder()
-            => ((ProgressMax % OneHundred) != 0);
+        private bool IsNotDivisibleWithoutRemainder() => (_progressMax % OneHundred) != 0;
 
         #endregion
 
         #endregion
 
-        protected void ProcessLines(List<CastInfo> castList
-            , List<Match> castMatches
-            , List<CrewInfo> crewList
-            , List<KeyValuePair<Match, List<Match>>> crewMatches
-            , Dictionary<String, List<Match>> sountrackMatches
-            , DefaultValues defaultValues)
+        protected void ProcessLines(List<CastInfo> castList, List<Match> castMatches, List<CrewInfo> crewList, List<KeyValuePair<Match, List<Match>>> crewMatches, Dictionary<string, List<Match>> sountrackMatches, DefaultValues defaultValues)
         {
-            IMDbParser.ProcessCastLine(castList, castMatches, defaultValues, SetProgress);
+            IMDbParser.ProcessCastLine(castList, castMatches, defaultValues, this.SetProgress);
 
-            IMDbParser.ProcessCrewLine(crewList, crewMatches, defaultValues, SetProgress);
+            IMDbParser.ProcessCrewLine(crewList, crewMatches, defaultValues, this.SetProgress);
 
-            IMDbParser.ProcessSoundtrackLine(crewList, sountrackMatches, defaultValues, SetProgress);
-
-            //Task castTask = Task.Run(() => IMDbParser.ProcessCastLine(castList, castMatches, defaultValues, SetProgress));
-
-            //Task crewTask = Task.Run(() =>
-            //        {
-            //            IMDbParser.ProcessCrewLine(crewList, crewMatches, defaultValues, SetProgress);
-            //            IMDbParser.ProcessSoundtrackLine(crewList, sountrackMatches, defaultValues, SetProgress);
-            //        }
-            //    );
-
-            //while (castTask.IsCompleted == false)
-            //{
-            //    Application.DoEvents();
-            //}
-            //while (crewTask.IsCompleted == false)
-            //{
-            //    Application.DoEvents();
-            //}
+            IMDbParser.ProcessSoundtrackLine(crewList, sountrackMatches, defaultValues, this.SetProgress);
         }
 
         protected void StartLongAction()
         {
-            Enabled = false;
+            this.Enabled = false;
 
-            UseWaitCursor = true;
+            this.UseWaitCursor = true;
 
-            Cursor = Cursors.WaitCursor;
+            this.Cursor = Cursors.WaitCursor;
 
             Application.DoEvents();
         }
 
         protected void EndLongAction()
         {
-            UseWaitCursor = false;
+            this.UseWaitCursor = false;
 
-            Cursor = Cursors.Default;
+            this.Cursor = Cursors.Default;
 
-            Enabled = true;
+            this.Enabled = true;
 
             Application.DoEvents();
         }

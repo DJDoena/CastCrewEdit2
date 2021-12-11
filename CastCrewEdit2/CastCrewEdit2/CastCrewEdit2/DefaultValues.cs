@@ -1,117 +1,116 @@
-﻿using System;
-using System.Xml.Serialization;
-using Microsoft.Win32;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 {
+    using System.Xml.Serialization;
+    using Microsoft.Win32;
+
     public class DefaultValues
     {
-        public Boolean ParseFirstNameInitialsIntoFirstAndMiddleName = true;
+        public bool ParseFirstNameInitialsIntoFirstAndMiddleName = true;
 
-        public Boolean TakeBirthYearFromLocalCache = false;
+        public bool TakeBirthYearFromLocalCache = false;
 
-        public Boolean RetrieveBirthYearWhenLocalCacheEmpty = false;
+        public bool RetrieveBirthYearWhenLocalCacheEmpty = false;
 
-        public Boolean GetBirthYearsDirectlyAfterNameParsing = false;
+        public bool GetBirthYearsDirectlyAfterNameParsing = false;
 
-        public Boolean ParseCast = true;
+        public bool ParseCast = true;
 
-        public Boolean ParseRoleSlash = false;
+        public bool ParseRoleSlash = false;
 
-        public Boolean ParseVoiceOf = false;
+        public bool ParseVoiceOf = false;
 
-        public Boolean IgnoreUncredited = false;
+        public bool IgnoreUncredited = false;
 
-        public Boolean IgnoreCreditOnly = false;
+        public bool IgnoreCreditOnly = false;
 
-        public Boolean IgnoreScenesDeleted = false;
+        public bool IgnoreScenesDeleted = false;
 
-        public Boolean IgnoreArchiveFootage = false;
+        public bool IgnoreArchiveFootage = false;
 
-        public Boolean IgnoreLanguageVersion = false;
+        public bool IgnoreLanguageVersion = false;
 
-        public Boolean IgnoreUnconfirmed = false;
+        public bool IgnoreUnconfirmed = false;
 
-        public Boolean RetainCastCreditedAs = true;
+        public bool RetainCastCreditedAs = true;
 
-        public Boolean ParseCrew = true;
+        public bool ParseCrew = true;
 
-        public Boolean IncludeCustomCredits = true;
+        public bool IncludeCustomCredits = true;
 
-        public Boolean RetainOriginalCredit = true;
+        public bool RetainOriginalCredit = true;
 
-        public Boolean IncludePrefixOnOtherCredits = false;
+        public bool IncludePrefixOnOtherCredits = false;
 
-        public Boolean CapitalizeCustomRole = true;
+        public bool CapitalizeCustomRole = true;
 
-        public Boolean RetainCrewCreditedAs = true;
+        public bool RetainCrewCreditedAs = true;
 
-        public Boolean CreditTypeDirection = true;
+        public bool CreditTypeDirection = true;
 
-        public Boolean CreditTypeWriting = true;
+        public bool CreditTypeWriting = true;
 
-        public Boolean CreditTypeProduction = true;
+        public bool CreditTypeProduction = true;
 
-        public Boolean CreditTypeCinematography = true;
+        public bool CreditTypeCinematography = true;
 
-        public Boolean CreditTypeFilmEditing = true;
+        public bool CreditTypeFilmEditing = true;
 
-        public Boolean CreditTypeMusic = true;
+        public bool CreditTypeMusic = true;
 
-        public Boolean CreditTypeSound = true;
+        public bool CreditTypeSound = true;
 
-        public Boolean CreditTypeArt = true;
+        public bool CreditTypeArt = true;
 
-        public Boolean CreditTypeOther = false;
+        public bool CreditTypeOther = false;
 
-        public Boolean CreditTypeSoundtrack = false;
+        public bool CreditTypeSoundtrack = false;
 
-        public Boolean DisableParsingCompleteMessageBox = false;
+        public bool DisableParsingCompleteMessageBox = false;
 
-        public Boolean DisableParsingCompleteMessageBoxForGetBirthYears = false;
+        public bool DisableParsingCompleteMessageBoxForGetBirthYears = false;
 
-        public Boolean DisableCopyingSuccessfulMessageBox = false;
+        public bool DisableCopyingSuccessfulMessageBox = false;
 
-        public Boolean DisableParsingCompleteMessageBoxForGetHeadshots = false;
+        public bool DisableParsingCompleteMessageBoxForGetHeadshots = false;
 
-        public Boolean DisableDuplicatesMessageBox = false;
+        public bool DisableDuplicatesMessageBox = false;
 
-        public String EpisodeDividerFormat = "{season}.{episode}";
+        public string EpisodeDividerFormat = "{season}.{episode}";
 
-        public Boolean UseDoubleDigitsEpisodeNumber = true;
+        public bool UseDoubleDigitsEpisodeNumber = true;
 
-        public Boolean GetCastHeadShots = true;
+        public bool GetCastHeadShots = true;
 
-        public Boolean GetCrewHeadShots = false;
+        public bool GetCrewHeadShots = false;
 
-        public Boolean OverwriteExistingImages = true;
+        public bool OverwriteExistingImages = true;
 
-        public Boolean AutoCopyHeadShots = false;
+        public bool AutoCopyHeadShots = false;
 
-        public Boolean DownloadTrivia = false;
+        public bool DownloadTrivia = false;
 
-        public Boolean DownloadGoofs = false;
+        public bool DownloadGoofs = false;
 
-        public Boolean GetHeadShotsDirectlyAfterNameParsing = false;
+        public bool GetHeadShotsDirectlyAfterNameParsing = false;
 
-        public Boolean UseFakeBirthYears = false;
+        public bool UseFakeBirthYears = false;
 
-        public Boolean SaveLogFile = false;
+        public bool SaveLogFile = false;
 
-        public Boolean StoreHeadshotsPerSession = false;
+        public bool StoreHeadshotsPerSession = false;
 
-        public Boolean CheckPersonLinkForRedirect = true;
+        public bool CheckPersonLinkForRedirect = true;
 
         [XmlIgnore]
-        internal String CreditPhotosFolder
+        internal string CreditPhotosFolder
         {
             get
             {
-                RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"Software\Invelos Software\DVD Profiler", false);
+                var regKey = Registry.CurrentUser.OpenSubKey(@"Software\Invelos Software\DVD Profiler", false);
 
-                String path = (String)(regKey.GetValue("PathCreditPhotos", String.Empty));
+                var path = (string)regKey.GetValue("PathCreditPhotos", string.Empty);
 
-                return (path);
+                return path;
             }
         }
     }

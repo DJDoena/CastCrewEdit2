@@ -1,71 +1,81 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Web;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+    using System.Web;
+
     internal static class CastLineProcessor
     {
-        private static readonly Regex MultiLanguageVoiceRegex;
-        private static readonly Regex CreditOnlyRegex;
-        private static readonly Regex ScenesDeletedRegex;
-        private static readonly Regex ArchiveFootageRegex;
-        private static readonly Regex LanguageVersionRegex;
-        private static readonly Regex VoiceRegex;
-        private static readonly Regex UnconfirmedRegex;
+        private static readonly Regex _multiLanguageVoiceRegex;
+
+        private static readonly Regex _creditOnlyRegex;
+
+        private static readonly Regex _scenesDeletedRegex;
+
+        private static readonly Regex _archiveFootageRegex;
+
+        private static readonly Regex _languageVersionRegex;
+
+        private static readonly Regex _voiceRegex;
+
+        private static readonly Regex _unconfirmedRegex;
 
         static CastLineProcessor()
         {
-            VoiceRegex = new Regex(@"\(voice\)", RegexOptions.Compiled);
-            MultiLanguageVoiceRegex = new Regex(@"\(voice: ", RegexOptions.Compiled);
-            CreditOnlyRegex = new Regex(@"\(credit only\)", RegexOptions.Compiled);
-            ScenesDeletedRegex = new Regex(@"\(scenes{0,1} deleted\)", RegexOptions.Compiled);
-            ArchiveFootageRegex = new Regex(@"\(archive footage\)", RegexOptions.Compiled);
-            LanguageVersionRegex = new Regex(@"\([A-Za-z]+ version\)", RegexOptions.Compiled);
-            UnconfirmedRegex = new Regex(@"(unconfirmed)", RegexOptions.Compiled);
+            _voiceRegex = new Regex(@"\(voice\)", RegexOptions.Compiled);
+
+            _multiLanguageVoiceRegex = new Regex(@"\(voice: ", RegexOptions.Compiled);
+
+            _creditOnlyRegex = new Regex(@"\(credit only\)", RegexOptions.Compiled);
+
+            _scenesDeletedRegex = new Regex(@"\(scenes{0,1} deleted\)", RegexOptions.Compiled);
+
+            _archiveFootageRegex = new Regex(@"\(archive footage\)", RegexOptions.Compiled);
+
+            _languageVersionRegex = new Regex(@"\([A-Za-z]+ version\)", RegexOptions.Compiled);
+
+            _unconfirmedRegex = new Regex(@"(unconfirmed)", RegexOptions.Compiled);
         }
 
-        internal static List<CastInfo> Process(Match match
-            , DefaultValues defaultValues)
+        internal static List<CastInfo> Process(Match match, DefaultValues defaultValues)
         {
-            List<CastInfo> castList = new List<CastInfo>(2);
+            var castList = new List<CastInfo>(2);
 
-            CastInfo castMember = new CastInfo();
+            var name = NameParser.Parse(match.Groups["PersonName"].Value);
 
-            Name name = NameParser.Parse(match.Groups["PersonName"].Value);
-
-            castMember.FirstName = name.FirstName.ToString();
-            castMember.MiddleName = name.MiddleName.ToString();
-            castMember.LastName = name.LastName.ToString();
+            var castMember = new CastInfo
+            {
+                FirstName = name.FirstName.ToString(),
+                MiddleName = name.MiddleName.ToString(),
+                LastName = name.LastName.ToString(),
+            };
 
             if (match.Groups[ColumnNames.Role].Success)
             {
-                String role = String.Empty;
-
                 castMember.Voice = "False";
                 castMember.IsBracketVoice = false;
                 castMember.Uncredited = "False";
-                castMember.CreditedAs = String.Empty;
+                castMember.CreditedAs = string.Empty;
 
-                role = match.Groups[ColumnNames.Role].Value;
-                role = Regex.Replace(role, "<a .+?>", String.Empty, RegexOptions.Compiled);
-                role = role.Replace("</a>", String.Empty);
+                var role = match.Groups[ColumnNames.Role].Value;
+
+                role = Regex.Replace(role, "<a .+?>", string.Empty, RegexOptions.Compiled);
+                role = role.Replace("</a>", string.Empty);
                 role = HttpUtility.HtmlDecode(role);
 
                 castMember.OriginalCredit = role;
 
-                Match newMatch = VoiceRegex.Match(role);
+                var newMatch = _voiceRegex.Match(role);
 
                 if (newMatch.Success)
                 {
                     castMember.Voice = "True";
                     castMember.IsBracketVoice = true;
 
-                    role = role.Replace("(voice)", String.Empty);
+                    role = role.Replace("(voice)", string.Empty);
                 }
 
-                newMatch = MultiLanguageVoiceRegex.Match(role);
+                newMatch = _multiLanguageVoiceRegex.Match(role);
 
                 if (newMatch.Success)
                 {
@@ -81,67 +91,69 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 {
                     if (defaultValues.IgnoreUncredited)
                     {
-                        return (castList);
+                        return castList;
                     }
 
                     castMember.Uncredited = "True";
 
-                    role = role.Replace("(uncredited)", String.Empty);
+                    role = role.Replace("(uncredited)", string.Empty);
                 }
 
                 if (defaultValues.IgnoreCreditOnly)
                 {
-                    newMatch = CreditOnlyRegex.Match(role);
+                    newMatch = _creditOnlyRegex.Match(role);
 
                     if (newMatch.Success)
                     {
-                        return (castList);
+                        return castList;
                     }
                 }
 
                 if (defaultValues.IgnoreScenesDeleted)
                 {
-                    newMatch = ScenesDeletedRegex.Match(role);
+                    newMatch = _scenesDeletedRegex.Match(role);
 
                     if (newMatch.Success)
                     {
-                        return (castList);
+                        return castList;
                     }
                 }
 
                 if (defaultValues.IgnoreArchiveFootage)
                 {
-                    newMatch = ArchiveFootageRegex.Match(role);
+                    newMatch = _archiveFootageRegex.Match(role);
 
                     if (newMatch.Success)
                     {
-                        return (castList);
+                        return castList;
                     }
                 }
 
                 if (defaultValues.IgnoreLanguageVersion)
                 {
-                    newMatch = LanguageVersionRegex.Match(role);
+                    newMatch = _languageVersionRegex.Match(role);
 
                     if (newMatch.Success)
                     {
-                        return (castList);
+                        return castList;
                     }
                 }
 
                 if (defaultValues.IgnoreUnconfirmed)
                 {
-                    newMatch = UnconfirmedRegex.Match(role);
+                    newMatch = _unconfirmedRegex.Match(role);
 
                     if (newMatch.Success)
                     {
-                        return (castList);
+                        return castList;
                     }
                 }
 
-                String personLink = match.Groups["PersonLink"].Value;
+                var personLink = match.Groups["PersonLink"].Value;
 
-                castMember.PersonLink = defaultValues.CheckPersonLinkForRedirect ? IMDbParser.GetUpdatedPersonLink(personLink) : personLink;
+                castMember.PersonLink = defaultValues.CheckPersonLinkForRedirect
+                    ? IMDbParser.GetUpdatedPersonLink(personLink)
+                    : personLink;
 
                 castList.Add(castMember);
 
@@ -154,12 +166,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                         castMember.CreditedAs = newMatch.Groups["CreditedAs"].ToString();
                     }
 
-                    role = role.Replace("(as " + newMatch.Groups["CreditedAs"].ToString() + ")", String.Empty);
+                    role = role.Replace("(as " + newMatch.Groups["CreditedAs"].ToString() + ")", string.Empty);
                 }
 
                 if (defaultValues.ParseRoleSlash)
                 {
-                    String[] roles = role.Split('/');
+                    var roles = role.Split('/');
 
                     roles[0] = CheckForVoiceOf(roles[0], castMember, defaultValues);
 
@@ -167,18 +179,25 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                     if (roles.Length > 1)
                     {
-                        for (Int32 j = 1; j < roles.Length; j++)
+                        for (var roleIndex = 1; roleIndex < roles.Length; roleIndex++)
                         {
-                            CastInfo additionalCastMember = new CastInfo();
+                            var additionalCastMember = new CastInfo()
+                            {
+                                PersonLink = castMember.PersonLink,
+                                IsAdditionalRow = true,
+                                FirstName = castMember.FirstName,
+                                MiddleName = castMember.MiddleName,
+                                LastName = castMember.LastName,
+                                BirthYear = castMember.BirthYear,
+                                IsBracketVoice = castMember.IsBracketVoice,
+                                Uncredited = castMember.Uncredited,
+                                CreditedAs = castMember.CreditedAs,
+                                OriginalCredit = castMember.OriginalCredit,
+                            };
 
-                            castList.Add(additionalCastMember);
+                            roles[roleIndex] = CheckForVoiceOf(roles[roleIndex], additionalCastMember, defaultValues);
 
-                            additionalCastMember.PersonLink = castMember.PersonLink;
-                            additionalCastMember.IsAdditionalRow = true;
-                            additionalCastMember.FirstName = castMember.FirstName;
-                            additionalCastMember.MiddleName = castMember.MiddleName;
-                            additionalCastMember.LastName = castMember.LastName;
-                            additionalCastMember.BirthYear = castMember.BirthYear;
+                            additionalCastMember.Role = roles[roleIndex].Trim();
 
                             if (castMember.IsBracketVoice)
                             {
@@ -189,14 +208,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                                 additionalCastMember.Voice = "False";
                             }
 
-                            additionalCastMember.IsBracketVoice = castMember.IsBracketVoice;
-                            additionalCastMember.Uncredited = castMember.Uncredited;
-                            additionalCastMember.CreditedAs = castMember.CreditedAs;
-
-                            roles[j] = CheckForVoiceOf(roles[j], additionalCastMember, defaultValues);
-
-                            additionalCastMember.Role = roles[j].Trim();
-                            additionalCastMember.OriginalCredit = castMember.OriginalCredit;
+                            castList.Add(additionalCastMember);
                         }
                     }
                 }
@@ -206,15 +218,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                     castMember.Role = role.Trim();
 
-                    String[] roles = castMember.Role.Split('/');
+                    var roles = castMember.Role.Split('/');
 
                     if (roles.Length > 1)
                     {
-                        castMember.Role = String.Empty;
+                        castMember.Role = string.Empty;
 
-                        for (Int32 j = 0; j < roles.Length - 1; j++)
+                        for (var roleIndex = 0; roleIndex < roles.Length - 1; roleIndex++)
                         {
-                            castMember.Role += roles[j].Trim() + " / ";
+                            castMember.Role += roles[roleIndex].Trim() + " / ";
                         }
 
                         castMember.Role += roles[roles.Length - 1];
@@ -222,12 +234,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 }
             }
 
-            return (castList);
+            return castList;
         }
 
-        private static String CheckForVoiceOf(String role
-            , CastInfo castMember
-            , DefaultValues defaultValues)
+        private static string CheckForVoiceOf(string role, CastInfo castMember, DefaultValues defaultValues)
         {
             if (defaultValues.ParseVoiceOf)
             {
@@ -240,7 +250,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 }
             }
 
-            return (role);
+            return role;
         }
     }
 }

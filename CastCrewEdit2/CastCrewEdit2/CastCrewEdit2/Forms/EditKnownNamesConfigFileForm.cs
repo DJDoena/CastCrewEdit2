@@ -1,214 +1,243 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+    using System.Windows.Forms;
+    using Resources;
+
     internal partial class EditKnownNamesConfigFileForm : Form
     {
-        private String FileName;
-        private String FileContent;
+        private readonly string _fileName;
 
-        public EditKnownNamesConfigFileForm(String fileName, String name)
+        private readonly string _fileContent;
+
+        public EditKnownNamesConfigFileForm(string fileName, string name)
         {
-            FileName = fileName;
-            InitializeComponent();
-            Text = String.Format(EditWindowNames.EditConfigFile, name);
-            DialogResult = DialogResult.None;
-            using (StreamReader sr = new StreamReader(FileName))
+            _fileName = fileName;
+
+            this.InitializeComponent();
+
+            this.Text = string.Format(EditWindowNames.EditConfigFile, name);
+
+            this.DialogResult = DialogResult.None;
+
+            using (var sr = new StreamReader(_fileName))
             {
-                FileContent = sr.ReadToEnd().Trim();
+                _fileContent = sr.ReadToEnd().Trim();
             }
-            Icon = Properties.Resource.djdsoft;
+
+            this.Icon = Properties.Resource.djdsoft;
         }
 
-        private void OnSaveButtonClick(Object sender, EventArgs e)
+        private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            String newFileContent;
-
-            if (GetDataFromGrid(out newFileContent))
+            if (this.GetDataFromGrid(out var newFileContent))
             {
-                SaveData(newFileContent);
-                Close();
+                this.SaveData(newFileContent);
+
+                this.Close();
             }
         }
 
-        private void SaveData(String newFileContent)
+        private void SaveData(string newFileContent)
         {
-            if (File.Exists(FileName + ".bak"))
+            if (File.Exists(_fileName + ".bak"))
             {
-                File.Delete(FileName + ".bak");
+                File.Delete(_fileName + ".bak");
             }
-            if (File.Exists(FileName))
+
+            if (File.Exists(_fileName))
             {
-                File.Move(FileName, FileName + ".bak");
+                File.Move(_fileName, _fileName + ".bak");
             }
-            using (StreamWriter sw = new StreamWriter(FileName))
+
+            using (var sw = new StreamWriter(_fileName))
             {
                 sw.Write(newFileContent);
             }
-            DialogResult = DialogResult.Yes;
+
+            this.DialogResult = DialogResult.Yes;
         }
 
-        private void OnEditConfigFileFormFormClosing(Object sender, FormClosingEventArgs e)
+        private void OnEditConfigFileFormFormClosing(object sender, FormClosingEventArgs e)
         {
-            if ((DialogResult != DialogResult.Yes) && (DialogResult != DialogResult.No))
+            if (this.DialogResult != DialogResult.Yes && this.DialogResult != DialogResult.No)
             {
-                String newFileContent;
-
-                if (GetDataFromGrid(out newFileContent) == false)
+                if (!this.GetDataFromGrid(out var newFileContent))
                 {
                     e.Cancel = true;
+
                     return;
                 }
-                if (FileContent != newFileContent)
-                {
-                    DialogResult result;
 
-                    result = MessageBox.Show(this, MessageBoxTexts.SaveData, MessageBoxTexts.SaveData, MessageBoxButtons.YesNoCancel
-                         , MessageBoxIcon.Question);
+                if (_fileContent != newFileContent)
+                {
+                    var result = MessageBox.Show(this, MessageBoxTexts.SaveData, MessageBoxTexts.SaveData, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
                     if (result == DialogResult.Cancel)
                     {
                         e.Cancel = true;
+
                         return;
                     }
                     else if (result == DialogResult.Yes)
                     {
-                        SaveData(newFileContent);
+                        this.SaveData(newFileContent);
                     }
                     else
                     {
-                        DialogResult = DialogResult.No;
+                        this.DialogResult = DialogResult.No;
                     }
                 }
                 else
                 {
-                    DialogResult = DialogResult.No;
+                    this.DialogResult = DialogResult.No;
                 }
             }
-            Program.Settings.EditKnownNamesConfigFileForm.Left = Left;
-            Program.Settings.EditKnownNamesConfigFileForm.Top = Top;
-            Program.Settings.EditKnownNamesConfigFileForm.Width = Width;
-            Program.Settings.EditKnownNamesConfigFileForm.Height = Height;
-            Program.Settings.EditKnownNamesConfigFileForm.WindowState = WindowState;
-            Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds = RestoreBounds;
+
+            Program.Settings.EditKnownNamesConfigFileForm.Left = this.Left;
+            Program.Settings.EditKnownNamesConfigFileForm.Top = this.Top;
+            Program.Settings.EditKnownNamesConfigFileForm.Width = this.Width;
+            Program.Settings.EditKnownNamesConfigFileForm.Height = this.Height;
+            Program.Settings.EditKnownNamesConfigFileForm.WindowState = this.WindowState;
+            Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds = this.RestoreBounds;
         }
 
-        private Boolean GetDataFromGrid(out String newFileContent)
+        private bool GetDataFromGrid(out string newFileContent)
         {
-            StringBuilder sb;
-            Dictionary<String, Boolean> fullNames;
+            var result = new StringBuilder();
 
-            sb = new StringBuilder();
-            fullNames = new Dictionary<String, Boolean>(KnownNamesDataGridView.Rows.Count);
-            for (Int32 i = 0; i < KnownNamesDataGridView.Rows.Count - 1; i++)
+            var fullNames = new Dictionary<string, bool>(KnownNamesDataGridView.Rows.Count);
+
+            for (var rowIndex = 0; rowIndex < KnownNamesDataGridView.Rows.Count - 1; rowIndex++)
             {
-                DataGridViewRow row;
-                DataGridViewCell cell;
-                String value;
+                var row = KnownNamesDataGridView.Rows[rowIndex];
 
-                row = KnownNamesDataGridView.Rows[i];
-                cell = row.Cells["FullName"];
-                if ((cell.Value == null) || (String.IsNullOrEmpty(cell.Value.ToString())))
+                var cell = row.Cells["FullName"];
+
+                if (cell.Value == null || string.IsNullOrEmpty(cell.Value.ToString()))
                 {
                     MessageBox.Show(this, MessageBoxTexts.EmptyFullName, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     newFileContent = null;
-                    return (false);
+
+                    return false;
                 }
-                value = cell.Value.ToString();
+
+                var value = cell.Value.ToString();
+
                 if (fullNames.ContainsKey(value))
                 {
                     MessageBox.Show(this, MessageBoxTexts.DuplicateFullName, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     newFileContent = null;
-                    return (false);
+
+                    return false;
                 }
+
                 fullNames.Add(value, true);
-                sb.Append(value);
-                sb.Append(";");
+
+                result.Append(value);
+                result.Append(";");
+
                 cell = row.Cells["FirstName"];
-                if ((cell.Value == null) || (String.IsNullOrEmpty(cell.Value.ToString())))
+
+                if (cell.Value == null || string.IsNullOrEmpty(cell.Value.ToString()))
                 {
                     MessageBox.Show(this, MessageBoxTexts.EmptyFirstName, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     newFileContent = null;
-                    return (false);
+
+                    return false;
                 }
+
                 value = cell.Value.ToString();
-                sb.Append(value);
-                sb.Append(";");
+
+                result.Append(value);
+                result.Append(";");
+
                 cell = row.Cells["MiddleName"];
+
                 if (cell.Value != null)
                 {
                     value = cell.Value.ToString();
                 }
                 else
                 {
-                    value = String.Empty;
+                    value = string.Empty;
                 }
-                sb.Append(value);
-                sb.Append(";");
+
+                result.Append(value);
+                result.Append(";");
+
                 cell = row.Cells["LastName"];
+
                 if (cell.Value != null)
                 {
                     value = cell.Value.ToString();
                 }
                 else
                 {
-                    value = String.Empty;
+                    value = string.Empty;
                 }
-                sb.AppendLine(value);
+
+                result.AppendLine(value);
             }
-            newFileContent = sb.ToString().TrimEnd();
-            return (true);
+
+            newFileContent = result.ToString().TrimEnd();
+
+            return true;
         }
 
-        private void OnEditConfigFileFormLoad(Object sender, EventArgs e)
+        private void OnEditConfigFileFormLoad(object sender, EventArgs e)
         {
-            SuspendLayout();
+            this.SuspendLayout();
+
             if (Program.Settings.EditConfigFilesForm.WindowState == FormWindowState.Normal)
             {
-                Left = Program.Settings.EditKnownNamesConfigFileForm.Left;
-                Top = Program.Settings.EditKnownNamesConfigFileForm.Top;
-                Width = Program.Settings.EditKnownNamesConfigFileForm.Width;
-                Height = Program.Settings.EditKnownNamesConfigFileForm.Height;
+                this.Left = Program.Settings.EditKnownNamesConfigFileForm.Left;
+                this.Top = Program.Settings.EditKnownNamesConfigFileForm.Top;
+                this.Width = Program.Settings.EditKnownNamesConfigFileForm.Width;
+                this.Height = Program.Settings.EditKnownNamesConfigFileForm.Height;
             }
             else
             {
-                Left = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.X;
-                Top = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.Y;
-                Width = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.Width;
-                Height = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.Height;
+                this.Left = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.X;
+                this.Top = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.Y;
+                this.Width = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.Width;
+                this.Height = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.Height;
             }
+
             if (Program.Settings.EditConfigFilesForm.WindowState != FormWindowState.Minimized)
             {
-                WindowState = Program.Settings.EditConfigFilesForm.WindowState;
+                this.WindowState = Program.Settings.EditConfigFilesForm.WindowState;
             }
-            CreateDataGrid();
-            LoadData();
-            ResumeLayout();
+
+            this.CreateDataGrid();
+
+            this.LoadData();
+
+            this.ResumeLayout();
         }
 
         private void LoadData()
         {
-            using (StringReader sr = new StringReader(FileContent))
+            using (var sr = new StringReader(_fileContent))
             {
                 while (true)
                 {
-                    String line;
+                    var line = sr.ReadLine();
 
-                    line = sr.ReadLine();
                     if (line != null)
                     {
-                        String[] split;
+                        var split = line.Split(';');
 
-                        split = line.Split(';');
                         if (split.Length == 4)
                         {
-                            DataGridViewRow row;
+                            var row = KnownNamesDataGridView.Rows[KnownNamesDataGridView.Rows.Add()];
 
-                            row = KnownNamesDataGridView.Rows[KnownNamesDataGridView.Rows.Add()];
                             row.Cells["FullName"].Value = split[0];
                             row.Cells["FirstName"].Value = split[1];
                             row.Cells["MiddleName"].Value = split[2];
@@ -225,47 +254,52 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void CreateDataGrid()
         {
-            DataGridViewTextBoxColumn column;
+            var fullNameColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = "FullName",
+                HeaderText = DataGridViewTexts.FullName,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.Automatic,
+            };
 
-            column = new DataGridViewTextBoxColumn();
-            column.Name = "FullName";
-            column.HeaderText = DataGridViewTexts.FullName;
-            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            column.Resizable = DataGridViewTriState.True;
-            column.SortMode = DataGridViewColumnSortMode.Automatic;
-            KnownNamesDataGridView.Columns.Add(column);
-            column = new DataGridViewTextBoxColumn();
-            column.Name = "FirstName";
-            column.HeaderText = DataGridViewTexts.FirstName;
-            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            column.Resizable = DataGridViewTriState.True;
-            column.SortMode = DataGridViewColumnSortMode.Automatic;
-            KnownNamesDataGridView.Columns.Add(column);
-            column = new DataGridViewTextBoxColumn();
-            column.Name = "MiddleName";
-            column.HeaderText = DataGridViewTexts.MiddleName;
-            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            column.Resizable = DataGridViewTriState.True;
-            column.SortMode = DataGridViewColumnSortMode.Automatic;
-            KnownNamesDataGridView.Columns.Add(column);
-            column = new DataGridViewTextBoxColumn();
-            column.Name = "LastName";
-            column.HeaderText = DataGridViewTexts.LastName;
-            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            column.Resizable = DataGridViewTriState.True;
-            column.SortMode = DataGridViewColumnSortMode.Automatic;
-            KnownNamesDataGridView.Columns.Add(column);
+            var firstNameColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = "FirstName",
+                HeaderText = DataGridViewTexts.FirstName,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.Automatic,
+            };
+
+            var middleNameColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = "MiddleName",
+                HeaderText = DataGridViewTexts.MiddleName,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.Automatic,
+            };
+
+            var lastNameColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = "LastName",
+                HeaderText = DataGridViewTexts.LastName,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.Automatic,
+            };
+
+            KnownNamesDataGridView.Columns.AddRange(fullNameColumn, firstNameColumn, middleNameColumn, lastNameColumn);
         }
 
-        private void OnCloseWithoutSavingButtonClick(Object sender, EventArgs e)
+        private void OnCloseWithoutSavingButtonClick(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.No;
-            Close();
+            this.DialogResult = DialogResult.No;
+
+            this.Close();
         }
 
-        private void OnCloseButtonClick(Object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void OnCloseButtonClick(object sender, EventArgs e) => this.Close();
     }
 }

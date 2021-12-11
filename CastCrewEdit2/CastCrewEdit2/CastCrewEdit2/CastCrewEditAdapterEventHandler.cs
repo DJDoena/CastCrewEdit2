@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 {
+    using System;
+    using System.Windows.Forms;
+
     public sealed class CastCrewEditAdapterEventHandler : ICastCrewEditAdapterEventHandler
     {
         internal Form MainForm { get; set; }
@@ -15,15 +15,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         public void Close()
         {
-            MainForm?.Close();
+            this.MainForm?.Close();
         }
 
-        internal void RaiseCastCompleted(String xml)
+        internal void RaiseCastCompleted(string xml)
         {
             CastCompleted?.Invoke(this, new XmlEventArgs(xml));
         }
 
-        internal void RaiseCrewCompleted(String xml)
+        internal void RaiseCrewCompleted(string xml)
         {
             CrewCompleted?.Invoke(this, new XmlEventArgs(xml));
         }

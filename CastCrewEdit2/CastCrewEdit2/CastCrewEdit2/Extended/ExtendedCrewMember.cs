@@ -1,12 +1,11 @@
-﻿using System;
-using System.Xml.Serialization;
-using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
 {
+    using System.Xml.Serialization;
+    using DVDProfilerXML.Version400;
+
     public class ExtendedCrewMember : CrewMember
     {
         [XmlAttribute]
-        public String ImdbLink;
+        public string ImdbLink;
     }
 }

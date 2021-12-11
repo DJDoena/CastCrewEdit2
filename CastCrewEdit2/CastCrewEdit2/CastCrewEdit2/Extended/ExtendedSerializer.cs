@@ -1,49 +1,47 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Xml.Serialization;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
 {
+    using System;
+    using System.IO;
+    using System.Text;
+    using System.Xml;
+    using System.Xml.Serialization;
+
     internal sealed class ExtendedSerializer<T>
     {
-        private readonly XmlSerializer XmlSerializer;
+        private readonly XmlSerializer _serializer;
 
-        private readonly Encoding Encoding;
+        private readonly Encoding _encoding;
 
-        public ExtendedSerializer(Type[] additionalTypes
-            , Encoding encoding)
+        public ExtendedSerializer(Type[] additionalTypes, Encoding encoding)
         {
-            XmlSerializer = new XmlSerializer(typeof(T), additionalTypes);
+            _serializer = new XmlSerializer(typeof(T), additionalTypes);
 
-            Encoding = encoding;
+            _encoding = encoding;
         }
 
-        public String ToString(T instance)
+        public string ToString(T instance)
         {
-            using (MemoryStream ms = new MemoryStream())
+            using (var ms = new MemoryStream())
             {
-                Serialize(ms, instance);
+                this.Serialize(ms, instance);
 
-                String text = Encoding.GetString(ms.ToArray());
+                string text = _encoding.GetString(ms.ToArray());
 
-                return (text);
+                return text;
             }
         }
 
-        private void Serialize(Stream stream
-             , T instance)
+        private void Serialize(Stream stream, T instance)
         {
-            using (XmlTextWriter xtw = new NoTypeAttributeXmlWriter(stream, Encoding))
+            using (var xtw = new NoTypeAttributeXmlWriter(stream, _encoding))
             {
                 xtw.Formatting = Formatting.Indented;
 
-                XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+                var ns = new XmlSerializerNamespaces();
 
-                ns.Add(String.Empty, String.Empty);
+                ns.Add(string.Empty, string.Empty);
 
-                XmlSerializer.Serialize(xtw, instance, ns);
+                _serializer.Serialize(xtw, instance, ns);
             }
         }
     }

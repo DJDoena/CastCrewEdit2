@@ -1,21 +1,20 @@
-﻿using System;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
-    [Serializable()]
-    public class CrewInfo : PersonInfo
+    using System;
+    using Resources;
+
+    [Serializable]
+    public sealed class CrewInfo : PersonInfo
     {
-        public String CreditType;
+        public string CreditType;
 
-        public String CreditSubtype;
+        public string CreditSubtype;
 
-        public String CustomRole;
+        public string CustomRole;
 
-        public String CreditedAs;
+        public string CreditedAs;
 
-        public CrewInfo()
-            : base(DataGridViewTexts.Crew)
+        public CrewInfo() : base(DataGridViewTexts.Crew)
         {
         }
     }

@@ -1,202 +1,259 @@
-using System;
-using System.IO;
-using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
-
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
+    using System;
+    using System.IO;
+    using System.Windows.Forms;
+    using DVDProfilerHelper;
+    using Resources;
+
     internal partial class SettingsForm : Form
     {
-        private DefaultValues DefaultValues;
-        private Int32 FormLeft;
-        private Int32 FormTop;
-        private Boolean ShowCastOptions;
-        private Boolean ShowCrewOptions;
+        private DefaultValues _defaultValues;
 
-        public SettingsForm(Boolean castOptions, Boolean crewOptions)
+        private int _formLeft;
+
+        private int _formTop;
+
+        private readonly bool _showCastOptions;
+
+        private readonly bool _showCrewOptions;
+
+        public SettingsForm(bool castOptions, bool crewOptions)
         {
-            InitializeComponent();
-            ShowCastOptions = castOptions;
-            ShowCrewOptions = crewOptions;
-            Icon = Properties.Resource.djdsoft;
+            _showCastOptions = castOptions;
+
+            _showCrewOptions = crewOptions;
+
+            this.InitializeComponent();
+
+            this.Icon = Properties.Resource.djdsoft;
         }
 
-        public void SetValues(Int32 left, Int32 top, DefaultValues defaultValues)
+        public void SetValues(int left, int top, DefaultValues defaultValues)
         {
-            FormLeft = left;
-            FormTop = top;
-            DefaultValues = defaultValues;
+            _formLeft = left;
+
+            _formTop = top;
+
+            _defaultValues = defaultValues;
         }
 
-        public void GetValues(out Int32 left, out Int32 top)
+        public void GetValues(out int left, out int top)
         {
-            left = FormLeft;
-            top = FormTop;
+            left = _formLeft;
+
+            top = _formTop;
         }
 
         private void LoadDataSettings()
         {
-            ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox.Checked
-                = DefaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName;
-            TakeBirthYearFromLocalPersonCacheCheckBox.Checked = DefaultValues.TakeBirthYearFromLocalCache;
-            RetrieveBirthYearWhenLocalCacheEmptyCheckBox.Checked
-                = DefaultValues.RetrieveBirthYearWhenLocalCacheEmpty;
-            GetBirthYearsDirectlyAfterNameParsingCheckBox.Checked
-                = DefaultValues.GetBirthYearsDirectlyAfterNameParsing;
-            CheckLinksCheckBox.Checked = DefaultValues.CheckPersonLinkForRedirect;
-            ParseCastCheckBox.Checked = DefaultValues.ParseCast;
-            ParseRoleSlashCheckBox.Checked = DefaultValues.ParseRoleSlash;
-            ParseVoiceOfCheckBox.Checked = DefaultValues.ParseVoiceOf;
-            IgnoreUncreditedCheckBox.Checked = DefaultValues.IgnoreUncredited;
-            IgnoreCreditOnlyCheckBox.Checked = DefaultValues.IgnoreCreditOnly;
-            IgnoreScenesDeletedCheckBox.Checked = DefaultValues.IgnoreScenesDeleted;
-            IgnoreArchiveFootageCheckBox.Checked = DefaultValues.IgnoreArchiveFootage;
-            IgnoreLanguageVersionCheckBox.Checked = DefaultValues.IgnoreLanguageVersion;
-            IgnoreUnconfirmedCheckBox.Checked = DefaultValues.IgnoreUnconfirmed;
-            RetainCreditedAsOnCastCheckBox.Checked = DefaultValues.RetainCastCreditedAs;
-            ParseCrewCheckBox.Checked = DefaultValues.ParseCrew;
-            IncludingCustomCredits.Checked = DefaultValues.IncludeCustomCredits;
-            RetainOriginalCreditCheckbox.Checked = DefaultValues.RetainOriginalCredit;
-            IncludePrefixOnOtherCreditsCheckBox.Checked = DefaultValues.IncludePrefixOnOtherCredits;
-            CapitalizeCustomRoleCheckBox.Checked = DefaultValues.CapitalizeCustomRole;
-            RetainCreditedAsOnCrewCheckBox.Checked = DefaultValues.RetainCrewCreditedAs;
-            IncludingCreditTypeDirectionCheckBox.Checked = DefaultValues.CreditTypeDirection;
-            IncludingCreditTypeWritingCheckBox.Checked = DefaultValues.CreditTypeWriting;
-            IncludingCreditTypeProductionCheckBox.Checked = DefaultValues.CreditTypeProduction;
-            IncludingCreditTypeCinematographyCheckBox.Checked = DefaultValues.CreditTypeCinematography;
-            IncludingCreditTypeFilmEditingCheckBox.Checked = DefaultValues.CreditTypeFilmEditing;
-            IncludingCreditTypeMusicCheckBox.Checked = DefaultValues.CreditTypeMusic;
-            IncludingCreditTypeSoundCheckBox.Checked = DefaultValues.CreditTypeSound;
-            IncludingCreditTypeArtCheckBox.Checked = DefaultValues.CreditTypeArt;
-            IncludingCreditTypeOtherCheckBox.Checked = DefaultValues.CreditTypeOther;
-            IncludingCreditTypeSoundtrackCheckBox.Checked = DefaultValues.CreditTypeSoundtrack;
-            DisableParsingCompleteMessageBoxCheckBox.Checked = DefaultValues.DisableParsingCompleteMessageBox;
-            DisableParsingCompleteMessageBoxForGetBirthYearsCheckBox.Checked
-                = DefaultValues.DisableParsingCompleteMessageBoxForGetBirthYears;
-            DisableParsingCompleteMessageBoxForGetHeadshotsCheckBox.Checked
-                = DefaultValues.DisableParsingCompleteMessageBoxForGetHeadshots;
-            DisableCopyingSuccessfulMessageBoxCheckBox.Checked
-                = DefaultValues.DisableCopyingSuccessfulMessageBox;
-            DisableDuplicatesMessageBoxCheckBox.Checked
-                = DefaultValues.DisableDuplicatesMessageBox;
-            EpisodeFormatTextBox.Text = DefaultValues.EpisodeDividerFormat;
-            UseDoubleDigitsEpisodeNumberCheckBox.Checked = DefaultValues.UseDoubleDigitsEpisodeNumber;
+            ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox.Checked = _defaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName;
+
+            TakeBirthYearFromLocalPersonCacheCheckBox.Checked = _defaultValues.TakeBirthYearFromLocalCache;
+
+            RetrieveBirthYearWhenLocalCacheEmptyCheckBox.Checked = _defaultValues.RetrieveBirthYearWhenLocalCacheEmpty;
+
+            GetBirthYearsDirectlyAfterNameParsingCheckBox.Checked = _defaultValues.GetBirthYearsDirectlyAfterNameParsing;
+
+            CheckLinksCheckBox.Checked = _defaultValues.CheckPersonLinkForRedirect;
+
+            ParseCastCheckBox.Checked = _defaultValues.ParseCast;
+
+            ParseRoleSlashCheckBox.Checked = _defaultValues.ParseRoleSlash;
+
+            ParseVoiceOfCheckBox.Checked = _defaultValues.ParseVoiceOf;
+
+            IgnoreUncreditedCheckBox.Checked = _defaultValues.IgnoreUncredited;
+
+            IgnoreCreditOnlyCheckBox.Checked = _defaultValues.IgnoreCreditOnly;
+
+            IgnoreScenesDeletedCheckBox.Checked = _defaultValues.IgnoreScenesDeleted;
+
+            IgnoreArchiveFootageCheckBox.Checked = _defaultValues.IgnoreArchiveFootage;
+
+            IgnoreLanguageVersionCheckBox.Checked = _defaultValues.IgnoreLanguageVersion;
+
+            IgnoreUnconfirmedCheckBox.Checked = _defaultValues.IgnoreUnconfirmed;
+
+            RetainCreditedAsOnCastCheckBox.Checked = _defaultValues.RetainCastCreditedAs;
+
+            ParseCrewCheckBox.Checked = _defaultValues.ParseCrew;
+
+            IncludingCustomCredits.Checked = _defaultValues.IncludeCustomCredits;
+
+            RetainOriginalCreditCheckbox.Checked = _defaultValues.RetainOriginalCredit;
+
+            IncludePrefixOnOtherCreditsCheckBox.Checked = _defaultValues.IncludePrefixOnOtherCredits;
+
+            CapitalizeCustomRoleCheckBox.Checked = _defaultValues.CapitalizeCustomRole;
+
+            RetainCreditedAsOnCrewCheckBox.Checked = _defaultValues.RetainCrewCreditedAs;
+
+            IncludingCreditTypeDirectionCheckBox.Checked = _defaultValues.CreditTypeDirection;
+
+            IncludingCreditTypeWritingCheckBox.Checked = _defaultValues.CreditTypeWriting;
+
+            IncludingCreditTypeProductionCheckBox.Checked = _defaultValues.CreditTypeProduction;
+
+            IncludingCreditTypeCinematographyCheckBox.Checked = _defaultValues.CreditTypeCinematography;
+
+            IncludingCreditTypeFilmEditingCheckBox.Checked = _defaultValues.CreditTypeFilmEditing;
+
+            IncludingCreditTypeMusicCheckBox.Checked = _defaultValues.CreditTypeMusic;
+
+            IncludingCreditTypeSoundCheckBox.Checked = _defaultValues.CreditTypeSound;
+
+            IncludingCreditTypeArtCheckBox.Checked = _defaultValues.CreditTypeArt;
+
+            IncludingCreditTypeOtherCheckBox.Checked = _defaultValues.CreditTypeOther;
+
+            IncludingCreditTypeSoundtrackCheckBox.Checked = _defaultValues.CreditTypeSoundtrack;
+
+            DisableParsingCompleteMessageBoxCheckBox.Checked = _defaultValues.DisableParsingCompleteMessageBox;
+
+            DisableParsingCompleteMessageBoxForGetBirthYearsCheckBox.Checked = _defaultValues.DisableParsingCompleteMessageBoxForGetBirthYears;
+
+            DisableParsingCompleteMessageBoxForGetHeadshotsCheckBox.Checked = _defaultValues.DisableParsingCompleteMessageBoxForGetHeadshots;
+
+            DisableCopyingSuccessfulMessageBoxCheckBox.Checked = _defaultValues.DisableCopyingSuccessfulMessageBox;
+
+            DisableDuplicatesMessageBoxCheckBox.Checked = _defaultValues.DisableDuplicatesMessageBox;
+
+            EpisodeFormatTextBox.Text = _defaultValues.EpisodeDividerFormat;
+
+            UseDoubleDigitsEpisodeNumberCheckBox.Checked = _defaultValues.UseDoubleDigitsEpisodeNumber;
+
             DataPathTextBox.Text = Program.RootPath;
-            GetCastHeadshotCheckBox.Checked = DefaultValues.GetCastHeadShots;
-            GetCrewHeadshotCheckBox.Checked = DefaultValues.GetCrewHeadShots;
-            AutoCopyHeadShotsCheckBox.Checked = DefaultValues.AutoCopyHeadShots;
-            GetHeadshotsDirectlyAfterNameParsingCheckBox.Checked = DefaultValues.GetHeadShotsDirectlyAfterNameParsing;
-            OverwriteExistingHeadshotsCheckBox.Checked = DefaultValues.OverwriteExistingImages;
-            DownloadTriviaCheckBox.Checked = DefaultValues.DownloadTrivia;
-            DownloadGoofsCheckBox.Checked = DefaultValues.DownloadGoofs;
-            UseFakeBirthYearsCheckBox.Checked = DefaultValues.UseFakeBirthYears;
-            SaveLogFileCheckBox.Checked = DefaultValues.SaveLogFile;
-            StoreHeadshotsPerSessionCheckBox.Checked = DefaultValues.StoreHeadshotsPerSession;
-            OnEpisodeFormatChanged(null, null);
-            OnParseCastCheckBoxCheckedChanged(null, null);
-            OnParseCrewCheckBoxCheckedChanged(null, null);
-            OnTakeBirthYearFromLocalPersonCacheCheckBoxCheckedChanged(null, null);
+
+            GetCastHeadshotCheckBox.Checked = _defaultValues.GetCastHeadShots;
+
+            GetCrewHeadshotCheckBox.Checked = _defaultValues.GetCrewHeadShots;
+
+            AutoCopyHeadShotsCheckBox.Checked = _defaultValues.AutoCopyHeadShots;
+
+            GetHeadshotsDirectlyAfterNameParsingCheckBox.Checked = _defaultValues.GetHeadShotsDirectlyAfterNameParsing;
+
+            OverwriteExistingHeadshotsCheckBox.Checked = _defaultValues.OverwriteExistingImages;
+
+            DownloadTriviaCheckBox.Checked = _defaultValues.DownloadTrivia;
+
+            DownloadGoofsCheckBox.Checked = _defaultValues.DownloadGoofs;
+
+            UseFakeBirthYearsCheckBox.Checked = _defaultValues.UseFakeBirthYears;
+
+            SaveLogFileCheckBox.Checked = _defaultValues.SaveLogFile;
+
+            StoreHeadshotsPerSessionCheckBox.Checked = _defaultValues.StoreHeadshotsPerSession;
+
+            this.OnEpisodeFormatChanged(null, null);
+
+            this.OnParseCastCheckBoxCheckedChanged(null, null);
+
+            this.OnParseCrewCheckBoxCheckedChanged(null, null);
+
+            this.OnTakeBirthYearFromLocalPersonCacheCheckBoxCheckedChanged(null, null);
         }
 
-        private void OnCancelButtonClick(Object sender, EventArgs e)
+        private void OnCancelButtonClick(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
-            Close();
+            this.DialogResult = DialogResult.Cancel;
+
+            this.Close();
         }
 
-        private void OnAcceptButtonClick(Object sender, EventArgs e)
+        private void OnAcceptButtonClick(object sender, EventArgs e)
         {
-            SaveDataSettings();
-            DialogResult = DialogResult.OK;
-            Close();
+            this.SaveDataSettings();
+
+            this.DialogResult = DialogResult.OK;
+
+            this.Close();
         }
 
         private void SaveDataSettings()
         {
-            DefaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName
-                = ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox.Checked;
-            DefaultValues.TakeBirthYearFromLocalCache = TakeBirthYearFromLocalPersonCacheCheckBox.Checked;
-            DefaultValues.RetrieveBirthYearWhenLocalCacheEmpty
-                = RetrieveBirthYearWhenLocalCacheEmptyCheckBox.Checked;
-            DefaultValues.GetBirthYearsDirectlyAfterNameParsing
-                = GetBirthYearsDirectlyAfterNameParsingCheckBox.Checked;
-            DefaultValues.CheckPersonLinkForRedirect = CheckLinksCheckBox.Checked;
-            DefaultValues.ParseCast = ParseCastCheckBox.Checked;
-            DefaultValues.ParseRoleSlash = ParseRoleSlashCheckBox.Checked;
-            DefaultValues.ParseVoiceOf = ParseVoiceOfCheckBox.Checked;
-            DefaultValues.IgnoreUncredited = IgnoreUncreditedCheckBox.Checked;
-            DefaultValues.IgnoreCreditOnly = IgnoreCreditOnlyCheckBox.Checked;
-            DefaultValues.IgnoreScenesDeleted = IgnoreScenesDeletedCheckBox.Checked;
-            DefaultValues.IgnoreArchiveFootage = IgnoreArchiveFootageCheckBox.Checked;
-            DefaultValues.IgnoreLanguageVersion = IgnoreLanguageVersionCheckBox.Checked;
-            DefaultValues.IgnoreUnconfirmed = IgnoreUnconfirmedCheckBox.Checked;
-            DefaultValues.RetainCastCreditedAs = RetainCreditedAsOnCastCheckBox.Checked;
-            DefaultValues.ParseCrew = ParseCrewCheckBox.Checked;
-            DefaultValues.IncludeCustomCredits = IncludingCustomCredits.Checked;
-            DefaultValues.RetainOriginalCredit = RetainOriginalCreditCheckbox.Checked;
-            DefaultValues.IncludePrefixOnOtherCredits = IncludePrefixOnOtherCreditsCheckBox.Checked;
-            DefaultValues.CapitalizeCustomRole = CapitalizeCustomRoleCheckBox.Checked;
-            DefaultValues.RetainCrewCreditedAs = RetainCreditedAsOnCrewCheckBox.Checked;
-            DefaultValues.CreditTypeDirection = IncludingCreditTypeDirectionCheckBox.Checked;
-            DefaultValues.CreditTypeWriting = IncludingCreditTypeWritingCheckBox.Checked;
-            DefaultValues.CreditTypeProduction = IncludingCreditTypeProductionCheckBox.Checked;
-            DefaultValues.CreditTypeCinematography = IncludingCreditTypeCinematographyCheckBox.Checked;
-            DefaultValues.CreditTypeFilmEditing = IncludingCreditTypeFilmEditingCheckBox.Checked;
-            DefaultValues.CreditTypeMusic = IncludingCreditTypeMusicCheckBox.Checked;
-            DefaultValues.CreditTypeSound = IncludingCreditTypeSoundCheckBox.Checked;
-            DefaultValues.CreditTypeArt = IncludingCreditTypeArtCheckBox.Checked;
-            DefaultValues.CreditTypeOther = IncludingCreditTypeOtherCheckBox.Checked;
-            DefaultValues.CreditTypeSoundtrack = IncludingCreditTypeSoundtrackCheckBox.Checked;
-            DefaultValues.DisableParsingCompleteMessageBox = DisableParsingCompleteMessageBoxCheckBox.Checked;
-            DefaultValues.DisableParsingCompleteMessageBoxForGetBirthYears
-                = DisableParsingCompleteMessageBoxForGetBirthYearsCheckBox.Checked;
-            DefaultValues.DisableParsingCompleteMessageBoxForGetHeadshots
-                = DisableParsingCompleteMessageBoxForGetHeadshotsCheckBox.Checked;
-            DefaultValues.DisableCopyingSuccessfulMessageBox
-                = DisableCopyingSuccessfulMessageBoxCheckBox.Checked;
-            DefaultValues.DisableDuplicatesMessageBox
-                = DisableDuplicatesMessageBoxCheckBox.Checked;
-            DefaultValues.EpisodeDividerFormat = EpisodeFormatTextBox.Text;
-            DefaultValues.UseDoubleDigitsEpisodeNumber = UseDoubleDigitsEpisodeNumberCheckBox.Checked;
-            DefaultValues.GetCastHeadShots = GetCastHeadshotCheckBox.Checked;
-            DefaultValues.GetCrewHeadShots = GetCrewHeadshotCheckBox.Checked;
-            DefaultValues.AutoCopyHeadShots = AutoCopyHeadShotsCheckBox.Checked;
-            DefaultValues.GetHeadShotsDirectlyAfterNameParsing = GetHeadshotsDirectlyAfterNameParsingCheckBox.Checked;
-            DefaultValues.OverwriteExistingImages = OverwriteExistingHeadshotsCheckBox.Checked;
-            DefaultValues.DownloadTrivia = DownloadTriviaCheckBox.Checked;
-            DefaultValues.DownloadGoofs = DownloadGoofsCheckBox.Checked;
-            DefaultValues.UseFakeBirthYears = UseFakeBirthYearsCheckBox.Checked;
-            DefaultValues.SaveLogFile = SaveLogFileCheckBox.Checked;
-            DefaultValues.StoreHeadshotsPerSession = StoreHeadshotsPerSessionCheckBox.Checked;
+            _defaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName = ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox.Checked;
+            _defaultValues.TakeBirthYearFromLocalCache = TakeBirthYearFromLocalPersonCacheCheckBox.Checked;
+            _defaultValues.RetrieveBirthYearWhenLocalCacheEmpty = RetrieveBirthYearWhenLocalCacheEmptyCheckBox.Checked;
+            _defaultValues.GetBirthYearsDirectlyAfterNameParsing = GetBirthYearsDirectlyAfterNameParsingCheckBox.Checked;
+            _defaultValues.CheckPersonLinkForRedirect = CheckLinksCheckBox.Checked;
+            _defaultValues.ParseCast = ParseCastCheckBox.Checked;
+            _defaultValues.ParseRoleSlash = ParseRoleSlashCheckBox.Checked;
+            _defaultValues.ParseVoiceOf = ParseVoiceOfCheckBox.Checked;
+            _defaultValues.IgnoreUncredited = IgnoreUncreditedCheckBox.Checked;
+            _defaultValues.IgnoreCreditOnly = IgnoreCreditOnlyCheckBox.Checked;
+            _defaultValues.IgnoreScenesDeleted = IgnoreScenesDeletedCheckBox.Checked;
+            _defaultValues.IgnoreArchiveFootage = IgnoreArchiveFootageCheckBox.Checked;
+            _defaultValues.IgnoreLanguageVersion = IgnoreLanguageVersionCheckBox.Checked;
+            _defaultValues.IgnoreUnconfirmed = IgnoreUnconfirmedCheckBox.Checked;
+            _defaultValues.RetainCastCreditedAs = RetainCreditedAsOnCastCheckBox.Checked;
+            _defaultValues.ParseCrew = ParseCrewCheckBox.Checked;
+            _defaultValues.IncludeCustomCredits = IncludingCustomCredits.Checked;
+            _defaultValues.RetainOriginalCredit = RetainOriginalCreditCheckbox.Checked;
+            _defaultValues.IncludePrefixOnOtherCredits = IncludePrefixOnOtherCreditsCheckBox.Checked;
+            _defaultValues.CapitalizeCustomRole = CapitalizeCustomRoleCheckBox.Checked;
+            _defaultValues.RetainCrewCreditedAs = RetainCreditedAsOnCrewCheckBox.Checked;
+            _defaultValues.CreditTypeDirection = IncludingCreditTypeDirectionCheckBox.Checked;
+            _defaultValues.CreditTypeWriting = IncludingCreditTypeWritingCheckBox.Checked;
+            _defaultValues.CreditTypeProduction = IncludingCreditTypeProductionCheckBox.Checked;
+            _defaultValues.CreditTypeCinematography = IncludingCreditTypeCinematographyCheckBox.Checked;
+            _defaultValues.CreditTypeFilmEditing = IncludingCreditTypeFilmEditingCheckBox.Checked;
+            _defaultValues.CreditTypeMusic = IncludingCreditTypeMusicCheckBox.Checked;
+            _defaultValues.CreditTypeSound = IncludingCreditTypeSoundCheckBox.Checked;
+            _defaultValues.CreditTypeArt = IncludingCreditTypeArtCheckBox.Checked;
+            _defaultValues.CreditTypeOther = IncludingCreditTypeOtherCheckBox.Checked;
+            _defaultValues.CreditTypeSoundtrack = IncludingCreditTypeSoundtrackCheckBox.Checked;
+            _defaultValues.DisableParsingCompleteMessageBox = DisableParsingCompleteMessageBoxCheckBox.Checked;
+            _defaultValues.DisableParsingCompleteMessageBoxForGetBirthYears = DisableParsingCompleteMessageBoxForGetBirthYearsCheckBox.Checked;
+            _defaultValues.DisableParsingCompleteMessageBoxForGetHeadshots = DisableParsingCompleteMessageBoxForGetHeadshotsCheckBox.Checked;
+            _defaultValues.DisableCopyingSuccessfulMessageBox = DisableCopyingSuccessfulMessageBoxCheckBox.Checked;
+            _defaultValues.DisableDuplicatesMessageBox = DisableDuplicatesMessageBoxCheckBox.Checked;
+            _defaultValues.EpisodeDividerFormat = EpisodeFormatTextBox.Text;
+            _defaultValues.UseDoubleDigitsEpisodeNumber = UseDoubleDigitsEpisodeNumberCheckBox.Checked;
+            _defaultValues.GetCastHeadShots = GetCastHeadshotCheckBox.Checked;
+            _defaultValues.GetCrewHeadShots = GetCrewHeadshotCheckBox.Checked;
+            _defaultValues.AutoCopyHeadShots = AutoCopyHeadShotsCheckBox.Checked;
+            _defaultValues.GetHeadShotsDirectlyAfterNameParsing = GetHeadshotsDirectlyAfterNameParsingCheckBox.Checked;
+            _defaultValues.OverwriteExistingImages = OverwriteExistingHeadshotsCheckBox.Checked;
+            _defaultValues.DownloadTrivia = DownloadTriviaCheckBox.Checked;
+            _defaultValues.DownloadGoofs = DownloadGoofsCheckBox.Checked;
+            _defaultValues.UseFakeBirthYears = UseFakeBirthYearsCheckBox.Checked;
+            _defaultValues.SaveLogFile = SaveLogFileCheckBox.Checked;
+            _defaultValues.StoreHeadshotsPerSession = StoreHeadshotsPerSessionCheckBox.Checked;
         }
 
-        private void OnSettingsFormLoad(Object sender, EventArgs e)
+        private void OnSettingsFormLoad(object sender, EventArgs e)
         {
-            Left = FormLeft;
-            Top = FormTop;
-            LoadDataSettings();
-            if (ShowCastOptions == false)
+            this.Left = _formLeft;
+
+            this.Top = _formTop;
+
+            this.LoadDataSettings();
+
+            if (!_showCastOptions)
             {
                 SettingsTabControl.Controls.Remove(CastParsingTab);
             }
-            if (ShowCrewOptions == false)
+
+            if (!_showCrewOptions)
             {
                 SettingsTabControl.Controls.Remove(CrewParsingTab);
             }
-            if ((ShowCastOptions == false) || (ShowCrewOptions == false))
+
+            if (!_showCastOptions || !_showCrewOptions)
             {
                 SettingsTabControl.Controls.Remove(ParsingTab);
             }
         }
 
-        private void OnSettingsFormClosing(Object sender, FormClosingEventArgs e)
+        private void OnSettingsFormClosing(object sender, FormClosingEventArgs e)
         {
-            FormLeft = Left;
-            FormTop = Top;
+            _formLeft = this.Left;
+
+            _formTop = this.Top;
         }
 
-        private void OnTakeBirthYearFromLocalPersonCacheCheckBoxCheckedChanged(Object sender, EventArgs e)
+        private void OnTakeBirthYearFromLocalPersonCacheCheckBoxCheckedChanged(object sender, EventArgs e)
         {
             if (TakeBirthYearFromLocalPersonCacheCheckBox.Checked)
             {
@@ -209,10 +266,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
         }
 
-        private void OnEpisodeFormatChanged(Object sender, EventArgs e)
+        private void OnEpisodeFormatChanged(object sender, EventArgs e)
         {
             EpisodeSeperatorSampleLabel.Text = EpisodeFormatTextBox.Text;
             EpisodeSeperatorSampleLabel.Text = EpisodeSeperatorSampleLabel.Text.Replace("{season}", "1");
+
             if (UseDoubleDigitsEpisodeNumberCheckBox.Checked)
             {
                 EpisodeSeperatorSampleLabel.Text = EpisodeSeperatorSampleLabel.Text.Replace("{episode}", "01");
@@ -221,68 +279,71 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             {
                 EpisodeSeperatorSampleLabel.Text = EpisodeSeperatorSampleLabel.Text.Replace("{episode}", "1");
             }
+
             EpisodeSeperatorSampleLabel.Text += " Pilot";
             EpisodeSeperatorSampleLabel.Text = EpisodeSeperatorSampleLabel.Text.Trim();
         }
 
-        private void OnSelectDataPathButtonClick(Object sender, EventArgs e)
+        private void OnSelectDataPathButtonClick(object sender, EventArgs e)
         {
-            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            using (var fbd = new FolderBrowserDialog()
             {
-                fbd.ShowNewFolderButton = true;
-                fbd.SelectedPath = Program.RootPath;
-                fbd.Description = Resources.Resources.SelectDataPath;
+                ShowNewFolderButton = true,
+                SelectedPath = Program.RootPath,
+                Description = Resources.SelectDataPath,
+            })
+            {
                 if (fbd.ShowDialog() == DialogResult.OK)
                 {
-                    String target;
+                    var target = fbd.SelectedPath;
 
-                    target = fbd.SelectedPath;
                     if (target != Program.RootPath)
                     {
-                        if (MessageBox.Show(MessageBoxTexts.FilesWillNowBeMoved, MessageBoxTexts.ContinueHeader
-                            , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show(MessageBoxTexts.FilesWillNowBeMoved, MessageBoxTexts.ContinueHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             try
                             {
-                                String[] files;
-
-                                if (Directory.Exists(target + @"\Data") == false)
+                                if (!Directory.Exists(target + @"\Data") )
                                 {
                                     Directory.CreateDirectory(target + @"\Data");
                                 }
-                                if (Directory.Exists(target + @"\Images") == false)
+
+                                if (!Directory.Exists(target + @"\Images") )
                                 {
                                     Directory.CreateDirectory(target + @"\Images");
                                 }
-                                if (Directory.Exists(target + @"\Images\CastCrewEdit2") == false)
+
+                                if (!Directory.Exists(target + @"\Images\CastCrewEdit2"))
                                 {
                                     Directory.CreateDirectory(target + @"\Images\CastCrewEdit2");
                                 }
-                                if (Directory.Exists(target + @"\Images\CCViewer") == false)
+
+                                if (!Directory.Exists(target + @"\Images\CCViewer") )
                                 {
                                     Directory.CreateDirectory(target + @"\Images\CCViewer");
                                 }
-                                if (Directory.Exists(target + @"\Images\DVD Profiler") == false)
+
+                                if (!Directory.Exists(target + @"\Images\DVD Profiler") )
                                 {
                                     Directory.CreateDirectory(target + @"\Images\DVD Profiler");
                                 }
-                                files = Directory.GetFiles(Program.RootPath + @"\Data", "*.*"
-                                    , SearchOption.AllDirectories);
-                                foreach (String file in files)
-                                {
-                                    String newFile;
 
-                                    newFile = file.Replace(Program.RootPath + @"\Data", target + @"\Data");
+                                var files = Directory.GetFiles(Program.RootPath + @"\Data", "*.*", SearchOption.AllDirectories);
+
+                                foreach (var file in files)
+                                {
+                                    var newFile = file.Replace(Program.RootPath + @"\Data", target + @"\Data");
+
                                     File.Copy(file, newFile, true);
                                     File.Delete(file);
                                 }
-                                files = Directory.GetFiles(Program.RootPath + @"\Images", "*.*"
-                                    , SearchOption.AllDirectories);
-                                foreach (String file in files)
-                                {
-                                    String newFile;
 
-                                    newFile = file.Replace(Program.RootPath + @"\Images", target + @"\Images");
+                                files = Directory.GetFiles(Program.RootPath + @"\Images", "*.*", SearchOption.AllDirectories);
+
+                                foreach (var file in files)
+                                {
+                                    var newFile = file.Replace(Program.RootPath + @"\Images", target + @"\Images");
+
                                     File.Copy(file, newFile, true);
                                     //File.Delete(file);
                                 }
@@ -290,13 +351,19 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                             catch (Exception ex)
                             {
                                 MessageBox.Show(ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
                                 Program.WriteError(ex);
+
                                 return;
                             }
+
                             Directory.Delete(Program.RootPath + @"\Data", true);
                             Directory.Delete(Program.RootPath + @"\Images", true);
+
                             RegistryAccess.DataRootPath = target;
-                            Program.InitPaths();
+
+                            Program.GetRootPath();
+
                             DataPathTextBox.Text = target;
                         }
                     }
@@ -304,38 +371,59 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
         }
 
-        private void OnParseCastCheckBoxCheckedChanged(Object sender, EventArgs e)
+        private void OnParseCastCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            Boolean enabled = ParseCastCheckBox.Checked;
+            var enabled = ParseCastCheckBox.Checked;
 
             ParseVoiceOfCheckBox.Enabled = enabled;
+
             ParseRoleSlashCheckBox.Enabled = enabled;
+
             RetainCreditedAsOnCastCheckBox.Enabled = enabled;
+
             IgnoreUncreditedCheckBox.Enabled = enabled;
+
             IgnoreScenesDeletedCheckBox.Enabled = enabled;
+
             IgnoreArchiveFootageCheckBox.Enabled = enabled;
+
             IgnoreCreditOnlyCheckBox.Enabled = enabled;
+
             IgnoreLanguageVersionCheckBox.Enabled = enabled;
+
             IgnoreUnconfirmedCheckBox.Enabled = enabled;
         }
 
-        private void OnParseCrewCheckBoxCheckedChanged(Object sender, EventArgs e)
+        private void OnParseCrewCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            Boolean enabled = ParseCrewCheckBox.Checked;
+            var enabled = ParseCrewCheckBox.Checked;
 
             RetainOriginalCreditCheckbox.Enabled = enabled;
+
             RetainCreditedAsOnCrewCheckBox.Enabled = enabled;
+
             CapitalizeCustomRoleCheckBox.Enabled = enabled;
+
             IncludePrefixOnOtherCreditsCheckBox.Enabled = enabled;
+
             IncludingCustomCredits.Enabled = enabled;
+
             IncludingCreditTypeOtherCheckBox.Enabled = enabled;
+
             IncludingCreditTypeDirectionCheckBox.Enabled = enabled;
+
             IncludingCreditTypeWritingCheckBox.Enabled = enabled;
+
             IncludingCreditTypeProductionCheckBox.Enabled = enabled;
+
             IncludingCreditTypeCinematographyCheckBox.Enabled = enabled;
+
             IncludingCreditTypeFilmEditingCheckBox.Enabled = enabled;
+
             IncludingCreditTypeMusicCheckBox.Enabled = enabled;
+
             IncludingCreditTypeSoundCheckBox.Enabled = enabled;
+
             IncludingCreditTypeArtCheckBox.Enabled = enabled;
         }
     }

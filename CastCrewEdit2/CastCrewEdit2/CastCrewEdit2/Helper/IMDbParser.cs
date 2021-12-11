@@ -1,119 +1,178 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Web;
-using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Windows.Forms;
+    using DVDProfilerHelper;
+    using Resources;
+
     public delegate void SetProgress();
 
     internal static class IMDbParser
     {
         public const int MaxTasks = 4;
+
         public const string BaseUrl = @"https://www.imdb.com";
+
         public const string PersonUrl = BaseUrl + @"/name/";
+
         public const string TitleUrl = BaseUrl + @"/title/";
 
         public static Regex TitleUrlRegex { get; }
+
         public static Regex TitleRegex { get; }
+
         public static Regex TriviaStartRegex { get; }
+
         public static Regex TriviaLiRegex { get; }
+
         public static Regex GoofsStartRegex { get; }
+
         public static Regex GoofsLiRegex { get; }
+
         public static Regex GoofSpoilerRegex { get; }
 
 #if UnitTest
+
         public static Encoding Encoding { get; }
+
 #else
+
         private static Encoding Encoding { get; }
+
 #endif
+
 #if UnitTest
+
         public static Dictionary<string, WebResponse> WebResponses { get; }
+
 #endif
 
         internal static Regex UncreditedRegex { get; }
+
         internal static Regex CreditedAsRegex { get; }
+
         internal static Regex SoundtrackStartRegex { get; }
+
         internal static Dictionary<PersonInfo, string> BirthYearCache { get; set; }
+
         internal static Dictionary<PersonInfo, FileInfo> HeadshotCache { get; set; }
+
         internal static Dictionary<string, ushort> ForcedFakeBirthYears { get; private set; }
+
         internal static List<string> IgnoreCustomInIMDbCreditType => _ignoreCustomInIMDbCreditType;
+
         internal static List<string> IgnoreIMDbCreditTypeInOther => _ignoreIMDbCreditTypeInOther;
+
         internal static IMDbToDVDProfilerCrewRoleTransformation TransformationData { get; private set; }
 
         private static readonly Regex _castRegex;
+
         private static readonly Regex _creditTypeRegex;
+
         private static readonly Regex _crewRegex;
+
         private static readonly Regex _photoRegex;
+
         private static readonly Regex _photoUrlRegex;
+
         private static readonly Regex _soundtrackLiRegex;
+
         private static readonly Regex _soundtrackTitleRegex;
+
         private static readonly Regex _soundtrackPersonRegex;
+
         private static readonly Regex _personUrlRegex;
+
         private static readonly object _updatedPersonLock;
+
         private static readonly object _getBirthYearLock;
+
         private static readonly object _getWebsiteLock;
+
         private static List<string> _ignoreCustomInIMDbCreditType;
+
         private static List<string> _ignoreIMDbCreditTypeInOther;
 
         private static readonly Dictionary<string, string> UpdatedPersonLinks;
-        private static bool IsInitialized;
-        private static readonly Dictionary<string, string> WebSites;
 
+        private static bool IsInitialized;
+
+        private static readonly Dictionary<string, string> WebSites;
 
         static IMDbParser()
         {
             const string DomainPrefix = "https?://((akas.)*|(www.)*|(us.)*|(german.)*)imdb.(com|de)/";
 
             _updatedPersonLock = new object();
+
             _getBirthYearLock = new object();
+
             _getWebsiteLock = new object();
 
             Encoding = Encoding.GetEncoding("UTF-8");
+
             TitleUrlRegex = new Regex(DomainPrefix + "title/(?'TitleLink'tt[0-9]+)/.*$", RegexOptions.Compiled);
+
             TitleRegex = new Regex(@"<title>(?'Title'.+?)</title>", RegexOptions.Compiled);
+
             UncreditedRegex = new Regex(@"\(?uncredited\)?", RegexOptions.Compiled);
+
             CreditedAsRegex = new Regex(@"\(as (?'CreditedAs'.+?)\)", RegexOptions.Compiled);
-            _castRegex
-                = new Regex("<td class=\"primary_photo\">.*?<td><a href=\"/name/(?'PersonLink'[a-z0-9]+)/.*?>(?'PersonName'.+?)</a>          </td><td class=\"ellipsis\">(\\.\\.\\.)?</td><td class=\"character\">(<div>)?(?'Role'.*?)(</div>)?</td>"
-                    , RegexOptions.Compiled);
+
+            _castRegex = new Regex("<td class=\"primary_photo\">.*?<td><a href=\"/name/(?'PersonLink'[a-z0-9]+)/.*?>(?'PersonName'.+?)</a>          </td><td class=\"ellipsis\">(\\.\\.\\.)?</td><td class=\"character\">(<div>)?(?'Role'.*?)(</div>)?</td>", RegexOptions.Compiled);
 
             _creditTypeRegex = new Regex("<h4 (.*?)class=\"dataHeaderWithBorder\"(.*?)>(?'CreditType'.+?)(<span.+?)?(&nbsp;)?</h4>", RegexOptions.Compiled | RegexOptions.Multiline);
-            //CrewRegex
-            //    = new Regex("<td valign=\"top\"><a href=\"/name/(?'PersonLink'[a-z0-9]+)/\">(?'PersonName'.+?)</a></td>((<td( valign=\"top\")*>&nbsp;</td>)|(<td valign=\"top\" nowrap=\"1\"> .... </td>))<td valign=\"top\">(<a.+?>)*(?'Credit'.+?)</td>"
-            //        , RegexOptions.Compiled);
+
             _crewRegex = new Regex("<td (.*?)class=\"name\"(.*?)><a (.*?)href=\"/name/(?'PersonLink'[a-z0-9]+)/(.*?)>(?'PersonName'.+?)</a>.*?</td>.*?(\\.\\.\\.)?.*?((<td colspan=\"(2|3)\">)|(<td (.*?)class=\"credit\"(.*?)>))(?'Credit'.*?)</td>", RegexOptions.Compiled | RegexOptions.Multiline);
+
             _photoRegex = new Regex("<td.+?id=\"img_primary\".*?>", RegexOptions.Compiled);
+
             _photoUrlRegex = new Regex("<img (.*?)src=\"(?'PhotoUrl'.+?)\"", RegexOptions.Compiled);
+
             TriviaStartRegex = new Regex("class=\"soda (even|odd) sodavote\".*?>", RegexOptions.Compiled);
+
             TriviaLiRegex = new Regex("<div class=\"sodatext\">(?'Trivia'.+?)</div>", RegexOptions.Singleline | RegexOptions.Compiled);
+
             GoofsStartRegex = new Regex("<h4 class=\"li_group\">", RegexOptions.Compiled);
+
             GoofsLiRegex = new Regex("<div class=\"sodatext\">(?'Goof'.+?)</div>", RegexOptions.Singleline);
+
             GoofSpoilerRegex = new Regex("<h4 class=\"inline\">.+?</h4>(?'Goof'.*)", RegexOptions.Singleline | RegexOptions.Compiled);
+
             SoundtrackStartRegex = new Regex("<div id=\"soundtracks_content\"", RegexOptions.Compiled);
+
             _soundtrackLiRegex = new Regex("<div id=\"(?'Soundtrack'.+?)</div>", RegexOptions.Singleline | RegexOptions.Compiled);
+
             _soundtrackTitleRegex = new Regex("\"(?'Title'.+?)\"", RegexOptions.Compiled);
+
             _soundtrackPersonRegex = new Regex("<a href=\"/name/(?'PersonLink'[a-z0-9]+)(.+?)\">(?'PersonName'.+?)</a>", RegexOptions.Compiled);
+
             BirthYearCache = new Dictionary<PersonInfo, string>(1000);
+
             HeadshotCache = new Dictionary<PersonInfo, FileInfo>(1000);
+
             _personUrlRegex = new Regex(DomainPrefix + "name/(?'PersonLink'nm[0-9]+)/.*$", RegexOptions.Compiled);
+
             UpdatedPersonLinks = new Dictionary<string, string>();
+
             IsInitialized = false;
+
             WebSites = new Dictionary<string, string>();
 
-
 #if UnitTest
+
             WebResponses = new Dictionary<string, WebResponse>();
+
 #endif
 
         }
@@ -122,11 +181,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         {
 
 #if UnitTest
-            return (WebResponses[targetUrl]);
+
+            return WebResponses[targetUrl];
+
 #else
+
             var wr = OnlineAccess.CreateSystemSettingsWebRequest(targetUrl, CultureInfo.GetCultureInfo("en-US"));
 
             return wr;
+
 #endif
 
         }
@@ -137,7 +200,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             {
                 if (WebSites.TryGetValue(targetUrl, out var webSite))
                 {
-                    return (webSite);
+                    return webSite;
                 }
 
                 using (var webResponse = GetWebResponse(targetUrl))
@@ -157,11 +220,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
         }
 
-        public static string PersonHashCount
-            => (BirthYearCache.Count.ToString());
+        public static string PersonHashCount => BirthYearCache.Count.ToString();
 
-        public static Dictionary<PersonInfo, string> PersonHash
-            => (BirthYearCache);
+        public static Dictionary<PersonInfo, string> PersonHash => BirthYearCache;
 
         public static void Initialize(IWin32Window windowHandle)
         {
@@ -193,7 +254,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                 if (split.Length == 2)
                 {
-                    if ((NameParser.IsKnownName(split[0]) == false) && (string.IsNullOrEmpty(split[1]) == false))
+                    if (!NameParser.IsKnownName(split[0]) && !string.IsNullOrEmpty(split[1]))
                     {
                         if (ushort.TryParse(split[1], out ushort birthYear))
                         {
@@ -241,28 +302,28 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         {
             switch (fileNameType)
             {
-                case (FileNameType.FirstnamePrefixes):
-                case (FileNameType.LastnamePrefixes):
-                case (FileNameType.LastnameSuffixes):
-                case (FileNameType.KnownNames):
+                case FileNameType.FirstnamePrefixes:
+                case FileNameType.LastnamePrefixes:
+                case FileNameType.LastnameSuffixes:
+                case FileNameType.KnownNames:
                     {
                         NameParser.InitList(fileName, fileNameType, windowHandle);
 
                         break;
                     }
-                case (FileNameType.IgnoreCustomInIMDbCreditType):
+                case FileNameType.IgnoreCustomInIMDbCreditType:
                     {
                         InitList(fileName, ref _ignoreCustomInIMDbCreditType, windowHandle, false);
 
                         break;
                     }
-                case (FileNameType.IgnoreIMDbCreditTypeInOther):
+                case FileNameType.IgnoreIMDbCreditTypeInOther:
                     {
                         InitList(fileName, ref _ignoreIMDbCreditTypeInOther, windowHandle, false);
 
                         break;
                     }
-                case (FileNameType.ForcedFakeBirthYears):
+                case FileNameType.ForcedFakeBirthYears:
                     {
                         List<string> forcedFakeBirthYears = null;
 
@@ -277,7 +338,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         internal static void InitList(string fileName, ref List<string> list, IWin32Window windowHandle, bool toLower)
         {
-            if (InitList(fileName, ref list, toLower) == false)
+            if (!InitList(fileName, ref list, toLower))
             {
                 MessageBox.Show(windowHandle, string.Format(MessageBoxTexts.FileDoesNotExist, fileName), MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -294,11 +355,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
             using (var sr = new StreamReader(fileName))
             {
-                while (sr.EndOfStream == false)
+                while (!sr.EndOfStream)
                 {
                     var line = sr.ReadLine();
 
-                    if (string.IsNullOrEmpty(line) == false)
+                    if (!string.IsNullOrEmpty(line))
                     {
                         if (toLower)
                         {
@@ -323,12 +384,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
 
             var jpg = new FileInfo(Program.RootPath + @"\Images\CastCrewEdit2\" + person.PersonLink + ".jpg");
+
             var gif = new FileInfo(Program.RootPath + @"\Images\CastCrewEdit2\" + person.PersonLink + ".gif");
+
             var png = new FileInfo(Program.RootPath + @"\Images\CastCrewEdit2\" + person.PersonLink + ".png");
 
             var targetUrl = PersonUrl + person.PersonLink;
 
-            string webSite = null;
+            string webSite;
             try
             {
                 webSite = GetWebSite(targetUrl);
@@ -355,7 +418,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                     {
                         line = string.Empty;
 
-                        while (line.Contains("</td>") == false)
+                        while (!line.Contains("</td>"))
                         {
                             line += sr.ReadLine();
                         }
@@ -369,7 +432,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                     }
                 }
 
-                return CheckExistingFile(person, jpg, gif, png);
+                var headshot = CheckExistingFile(person, jpg, gif, png);
+
+                return headshot;
             }
         }
 
@@ -523,6 +588,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             Debug.Assert(IsInitialized, "IMDbParser not initialized!");
 
             var creditTypeMatch = _creditTypeRegex.Match(blockMatch);
+
             var matchList = new List<Match>();
 
             var matchColl = _crewRegex.Matches(blockMatch);
@@ -682,7 +748,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         {
             var matches = _soundtrackLiRegex.Matches(soundtrack.ToString());
 
-            soundtrack = new StringBuilder();
+            //soundtrack = new StringBuilder();
 
             var liMatches = new Dictionary<string, List<Match>>(matches.Count);
 
@@ -726,11 +792,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                     if (personMatches.Count > 0)
                     {
-                        if (liMatches.TryGetValue(key, out List<Match> list) == false)
+                        if (!liMatches.TryGetValue(key, out var list))
                         {
                             list = new List<Match>(personMatches.Count);
+
                             liMatches.Add(key, list);
                         }
+
                         foreach (Match personMatch in personMatches)
                         {
                             list.Add(personMatch);

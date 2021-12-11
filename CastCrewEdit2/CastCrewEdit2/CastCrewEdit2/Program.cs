@@ -1,68 +1,83 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Text;
-using System.Threading;
-using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
-using Microsoft.Win32;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Globalization;
+    using System.IO;
+    using System.Text;
+    using System.Threading;
+    using System.Windows.Forms;
+    using DVDProfilerHelper;
+    using Forms;
+    using Helper;
+    using Microsoft.Win32;
+    using Resources;
+
     public static class Program
     {
+        public static readonly CastCrewEditAdapterEventHandler AdapterEventHandler;
+
         internal static Settings Settings;
 
-        private static String SettingsFile;
-
-        internal static Dictionary<String, PersonInfo> CastCache;
+        internal static Dictionary<string, PersonInfo> CastCache;
 
         internal static Dictionary<PersonInfoWithoutBirthYear, List<PersonInfo>> PossibleCastDuplicateCache;
 
-        private static String CastCacheFile;
-
-        internal static Dictionary<String, PersonInfo> CrewCache;
+        internal static Dictionary<string, PersonInfo> CrewCache;
 
         internal static Dictionary<PersonInfoWithoutBirthYear, List<PersonInfo>> PossibleCrewDuplicateCache;
 
-        private static String CrewCacheFile;
+        internal static string RootPath;
 
-        private static readonly String ErrorFile;
+        internal static string LogFile;
 
-        private static String DataPath;
+        private static readonly string _errorFile;
 
-        private static WindowHandle WindowHandle;
+        private static readonly WindowHandle _windowHandle;
 
-        internal static String RootPath;
+        private static readonly bool _isAtLeastWindows10Update1803;
 
-        internal static String LogFile;
+        private static readonly bool _runsAsElevated;
 
-        private static Boolean DebugMode;
+        private static readonly string _settingsFile;
 
-        public static readonly CastCrewEditAdapterEventHandler AdapterEventHandler;
+        private static readonly string _castCacheFile;
 
-        private static readonly bool IsAtLeastWindows10Update1803;
+        private static readonly string _crewCacheFile;
 
-        private static readonly bool RunsAsElevated;
+        private static readonly string _dataPath;
 
-        internal static bool ShowNewBrowser => IsAtLeastWindows10Update1803 && !RunsAsElevated;
+        private static bool _debugMode;
+
+        internal static bool ShowNewBrowser => _isAtLeastWindows10Update1803 && !_runsAsElevated;
 
         static Program()
         {
-            IsAtLeastWindows10Update1803 = GetIsAtLeastWindows10Update1803();
+            _isAtLeastWindows10Update1803 = GetIsAtLeastWindows10Update1803();
 
-            RunsAsElevated = false;
+            _runsAsElevated = false;
 
             RegistryAccess.Init("Doena Soft.", "CastCrewEdit2");
-            WindowHandle = new WindowHandle();
-            InitPaths();
-            ErrorFile = Environment.GetEnvironmentVariable("TEMP") + @"\CastCrewEdit2Crash.xml";
-            DebugMode = false;
+
+            _windowHandle = new WindowHandle();
+
+            RootPath = GetRootPath();
+
+            _dataPath = Path.Combine(RootPath, "Data");
+
+            _settingsFile = Path.Combine(_dataPath, "CastCrewEdit2Settings.xml");
+
+            _castCacheFile = Path.Combine(_dataPath, "Cast.xml");
+
+            _crewCacheFile = Path.Combine(_dataPath, "Crew.xml");
+
+            LogFile = Path.Combine(_dataPath, "Log.html");
+
+            _errorFile = Path.Combine(Path.GetTempPath(), "CastCrewEdit2Crash.xml");
+
+            _debugMode = false;
+
             AdapterEventHandler = new CastCrewEditAdapterEventHandler();
         }
 
@@ -91,66 +106,54 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             return isAtLeastWindows10Update1803;
         }
 
-        internal static void InitPaths()
+        internal static string GetRootPath()
         {
-            RootPath = RegistryAccess.DataRootPath;
+            var rootPath = RegistryAccess.DataRootPath;
 
-            if (String.IsNullOrEmpty(RootPath))
+            if (string.IsNullOrEmpty(rootPath))
             {
-                RootPath = Application.StartupPath;
+                rootPath = Application.StartupPath;
             }
 
-            InitDataPaths();
+            return rootPath;
         }
 
-        private static void InitDataPaths()
-        {
-            DataPath = RootPath + @"\Data\";
-            SettingsFile = DataPath + "CastCrewEdit2Settings.xml";
-            CastCacheFile = DataPath + "Cast.xml";
-            CrewCacheFile = DataPath + "Crew.xml";
-            LogFile = DataPath + "Log.html";
-        }
+        internal static int PersonCacheCount => CastCache.Values.Count + CrewCache.Values.Count;
 
-        internal static Int32 PersonCacheCount
-            => (CastCache.Values.Count + CrewCache.Values.Count);
-
-        internal static String PersonCacheCountString
-            => (PersonCacheCount.ToString("#,##0"));
+        internal static string PersonCacheCountString => PersonCacheCount.ToString("#,##0");
 
         [STAThread]
-        public static void Main(String[] args)
+        public static void Main(string[] args)
         {
-            Boolean embedded = false;
+            var embedded = false;
 
-            Process[] processes = Process.GetProcessesByName("CastCrewEdit2");
+            var processes = Process.GetProcessesByName("CastCrewEdit2");
 
             if (processes.Length > 1)
             {
-                if (MessageBox.Show(WindowHandle, MessageBoxTexts.AnotherInstanceRunning
-                    , MessageBoxTexts.ContinueHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No)
+                if (MessageBox.Show(_windowHandle, MessageBoxTexts.AnotherInstanceRunning, MessageBoxTexts.ContinueHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No)
                 {
                     return;
                 }
             }
 
-            if ((args != null) && (args.Length > 0))
+            if (args != null && args.Length > 0)
             {
-                for (Int32 i = 0; i < args.Length; i++)
+                for (var argIndex = 0; argIndex < args.Length; argIndex++)
                 {
-                    if (args[i] == "/lang=de")
+                    if (args[argIndex] == "/lang=de")
                     {
                         Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de");
                     }
-                    else if (args[i] == "/lang=en")
+                    else if (args[argIndex] == "/lang=en")
                     {
                         Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en");
                     }
-                    else if (args[i] == "/debug")
+                    else if (args[argIndex] == "/debug")
                     {
-                        DebugMode = true;
+                        _debugMode = true;
                     }
-                    else if (args[i] == "embedded")
+                    else if (args[argIndex] == "embedded")
                     {
                         embedded = true;
                     }
@@ -160,96 +163,101 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             }
             try
             {
-                if (Directory.Exists(DataPath) == false)
+                if (!Directory.Exists(_dataPath))
                 {
-                    Directory.CreateDirectory(DataPath);
+                    Directory.CreateDirectory(_dataPath);
                 }
-                if (File.Exists(DataPath + "Persons.xml"))
+                if (File.Exists(_dataPath + "Persons.xml"))
                 {
-                    MessageBox.Show(WindowHandle, MessageBoxTexts.UpdatePersonsXml
-                        , MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(_windowHandle, MessageBoxTexts.UpdatePersonsXml, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     return;
                 }
-                if (File.Exists(SettingsFile))
+                if (File.Exists(_settingsFile))
                 {
                     try
                     {
-                        Settings = DVDProfilerSerializer<Settings>.Deserialize(SettingsFile);
+                        Settings = DVDProfilerSerializer<Settings>.Deserialize(_settingsFile);
                     }
                     catch
                     {
-                        MessageBox.Show(WindowHandle, String.Format(MessageBoxTexts.FileCantBeRead, SettingsFile)
-                            , MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(_windowHandle, string.Format(MessageBoxTexts.FileCantBeRead, _settingsFile), MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+
                 CreateSettings();
-                CreateCache(CastCacheFile, ref CastCache, ref PossibleCastDuplicateCache, DataGridViewTexts.Cast);
-                CreateCache(CrewCacheFile, ref CrewCache, ref PossibleCrewDuplicateCache, DataGridViewTexts.Crew);
-                IMDbParser.Initialize(WindowHandle);
-#if UnitTest == false
+
+                CreateCache(_castCacheFile, ref CastCache, ref PossibleCastDuplicateCache, DataGridViewTexts.Cast);
+
+                CreateCache(_crewCacheFile, ref CrewCache, ref PossibleCrewDuplicateCache, DataGridViewTexts.Crew);
+
+                IMDbParser.Initialize(_windowHandle);
+
+#if !UnitTest
 
                 Application.EnableVisualStyles();
 
-                if (embedded == false)
+                if (!embedded)
                 {
                     Application.SetCompatibleTextRenderingDefault(false);
                 }
 
                 try
                 {
-                    RunMainWindo(args, embedded);
+                    RunMainWindow(args, embedded);
                 }
                 finally
                 {
                     try
                     {
-                        DVDProfilerSerializer<Settings>.Serialize(SettingsFile, Settings);
+                        DVDProfilerSerializer<Settings>.Serialize(_settingsFile, Settings);
                     }
                     catch
                     {
-                        MessageBox.Show(WindowHandle, String.Format(MessageBoxTexts.FileCantBeWritten, SettingsFile)
-                            , MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(_windowHandle, string.Format(MessageBoxTexts.FileCantBeWritten, _settingsFile), MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+
                     FlushPersonCache();
                 }
+
 #endif
+
             }
             catch (Exception ex)
             {
                 try
                 {
-                    ExceptionXml exceptionXml;
+                    MessageBox.Show(_windowHandle, string.Format(MessageBoxTexts.CriticalError, ex.Message, _errorFile), MessageBoxTexts.CriticalErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
-                    MessageBox.Show(WindowHandle, String.Format(MessageBoxTexts.CriticalError, ex.Message, ErrorFile)
-                        , MessageBoxTexts.CriticalErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    if (File.Exists(ErrorFile))
+                    if (File.Exists(_errorFile))
                     {
-                        File.Delete(ErrorFile);
+                        File.Delete(_errorFile);
                     }
-                    exceptionXml = new ExceptionXml(ex);
-                    DVDProfilerSerializer<ExceptionXml>.Serialize(ErrorFile, exceptionXml);
+
+                    var exceptionXml = new ExceptionXml(ex);
+
+                    DVDProfilerSerializer<ExceptionXml>.Serialize(_errorFile, exceptionXml);
+
                     WriteError(ex);
                 }
                 catch
                 {
-                    MessageBox.Show(WindowHandle, String.Format(MessageBoxTexts.FileCantBeWritten, ErrorFile), MessageBoxTexts.ErrorHeader
-                        , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(_windowHandle, string.Format(MessageBoxTexts.FileCantBeWritten, _errorFile), MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
             AdapterEventHandler.RaiseProgramClosed();
         }
 
-        private static void RunMainWindo(String[] args
-            , Boolean embedded)
+        private static void RunMainWindow(string[] args, bool embedded)
         {
-            Boolean skipversioncheck = false;
+            var skipversioncheck = false;
 
             if (args?.Length > 0)
             {
-                for (Int32 i = 0; i < args.Length; i++)
+                for (var argIndex = 0; argIndex < args.Length; argIndex++)
                 {
-                    if (args[i] == "/skipversioncheck")
+                    if (args[argIndex] == "/skipversioncheck")
                     {
                         skipversioncheck = true;
 
@@ -258,29 +266,29 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 }
             }
 
-            MainForm mainForm = new MainForm(skipversioncheck);
-
-            AdapterEventHandler.MainForm = mainForm;
-
-            if (embedded == false)
+            using (var mainForm = new MainForm(skipversioncheck))
             {
-                Application.Run(mainForm);
-            }
-            else
-            {
-                mainForm.ShowDialog();
-            }
+                AdapterEventHandler.MainForm = mainForm;
 
-            AdapterEventHandler.MainForm = null;
+                if (!embedded)
+                {
+                    Application.Run(mainForm);
+                }
+                else
+                {
+                    mainForm.ShowDialog();
+                }
+
+                AdapterEventHandler.MainForm = null;
+            }
         }
 
-        private static void CreateCache(String cacheFile, ref Dictionary<String, PersonInfo> cache
-            , ref Dictionary<PersonInfoWithoutBirthYear, List<PersonInfo>> possibleDuplicateCache, String type)
+        private static void CreateCache(string cacheFile, ref Dictionary<string, PersonInfo> cache, ref Dictionary<PersonInfoWithoutBirthYear, List<PersonInfo>> possibleDuplicateCache, string type)
         {
-            PersonInfos personInfoList;
+            PersonInfos personInfoList = null;
 
-            personInfoList = null;
             CreateBackup(cacheFile);
+
             if (File.Exists(cacheFile))
             {
                 try
@@ -289,35 +297,41 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 }
                 catch
                 {
-                    MessageBox.Show(WindowHandle, String.Format(MessageBoxTexts.FileCantBeRead, cacheFile)
-                        , MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(_windowHandle, string.Format(MessageBoxTexts.FileCantBeRead, cacheFile), MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            if ((personInfoList != null) && (personInfoList.PersonInfoList != null)
-                && (personInfoList.PersonInfoList.Length > 0))
-            {
-                cache = new Dictionary<String, PersonInfo>(personInfoList.PersonInfoList.Length + 1000);
-                possibleDuplicateCache = new Dictionary<PersonInfoWithoutBirthYear, List<PersonInfo>>(personInfoList.PersonInfoList.Length + 1000);
-                foreach (PersonInfo personInfo in personInfoList.PersonInfoList)
-                {
-                    PersonInfoWithoutBirthYear piwby;
 
+            if (personInfoList != null
+                && personInfoList.PersonInfoList != null
+                && personInfoList.PersonInfoList.Length > 0)
+            {
+
+                cache = new Dictionary<string, PersonInfo>(personInfoList.PersonInfoList.Length + 1000);
+
+                possibleDuplicateCache = new Dictionary<PersonInfoWithoutBirthYear, List<PersonInfo>>(personInfoList.PersonInfoList.Length + 1000);
+
+                foreach (var personInfo in personInfoList.PersonInfoList)
+                {
                     personInfo.Type = type;
-                    piwby = new PersonInfoWithoutBirthYear(personInfo);
+
+                    var piwby = new PersonInfoWithoutBirthYear(personInfo);
+
                     cache.Add(personInfo.PersonLink, personInfo);
+
                     //For existing files
                     //TODO: Remove next next major release.
-                    if ((personInfo.BirthYearWasRetrieved == false)
-                        && (String.IsNullOrEmpty(personInfo.BirthYear) == false))
+                    if (!personInfo.BirthYearWasRetrieved && !string.IsNullOrEmpty(personInfo.BirthYear))
                     {
                         personInfo.BirthYearWasRetrieved = true;
                     }
-                    if (possibleDuplicateCache.ContainsKey(piwby) == false)
-                    {
-                        List<PersonInfo> list;
 
-                        list = new List<PersonInfo>(1);
-                        list.Add(personInfo);
+                    if (!possibleDuplicateCache.ContainsKey(piwby))
+                    {
+                        var list = new List<PersonInfo>(1)
+                        {
+                            personInfo,
+                        };
+
                         possibleDuplicateCache.Add(piwby, list);
                     }
                     else
@@ -328,36 +342,37 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             }
             else
             {
-                cache = new Dictionary<String, PersonInfo>(1000);
+                cache = new Dictionary<string, PersonInfo>(1000);
+
                 possibleDuplicateCache = new Dictionary<PersonInfoWithoutBirthYear, List<PersonInfo>>(1000);
             }
         }
 
-        private static void CreateBackup(String cacheFile)
+        private static void CreateBackup(string cacheFile)
         {
-            String fileBaseName;
+            var fileBaseName = cacheFile.Substring(0, cacheFile.LastIndexOf("."));
 
-            fileBaseName = cacheFile.Substring(0, cacheFile.LastIndexOf("."));
             try
             {
-                String fileName;
+                var fileName = fileBaseName + ".5.xml";
 
-                fileName = fileBaseName + ".5.xml";
                 if (File.Exists(fileName))
                 {
                     File.Delete(fileName);
                 }
-                for (Int32 i = 4; i > 0; i--)
-                {
-                    String fileName2;
 
-                    fileName2 = fileBaseName + "." + i.ToString() + ".xml";
+                for (var backupNumber = 4; backupNumber > 0; backupNumber--)
+                {
+                    var fileName2 = fileBaseName + "." + backupNumber.ToString() + ".xml";
+
                     if (File.Exists(fileName2))
                     {
                         File.Move(fileName2, fileName);
                     }
+
                     fileName = fileName2;
                 }
+
                 if (File.Exists(cacheFile))
                 {
                     File.Copy(cacheFile, fileName);
@@ -369,48 +384,28 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         internal static void FlushPersonCache()
         {
-            FlushPersonCache(CastCache, CastCacheFile);
-            FlushPersonCache(CrewCache, CrewCacheFile);
+            FlushPersonCache(CastCache, _castCacheFile);
+            FlushPersonCache(CrewCache, _crewCacheFile);
         }
 
-        private static void FlushPersonCache(Dictionary<String, PersonInfo> cache, String cacheFile)
+        private static void FlushPersonCache(Dictionary<string, PersonInfo> cache, string cacheFile)
         {
             try
             {
-                PersonInfos personInfoList;
-                List<PersonInfo> list;
+                var personInfoList = new PersonInfos();
 
-                personInfoList = new PersonInfos();
-                list = new List<PersonInfo>(cache.Values);
+                var list = new List<PersonInfo>(cache.Values);
+
                 list.Sort(new Comparison<PersonInfo>(PersonInfo.CompareForSorting));
+
                 personInfoList.PersonInfoList = list.ToArray();
                 personInfoList.Serialize(cacheFile);
             }
             catch
             {
-                MessageBox.Show(WindowHandle, String.Format(MessageBoxTexts.FileCantBeWritten, cacheFile)
-                    , MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(_windowHandle, string.Format(MessageBoxTexts.FileCantBeWritten, cacheFile), MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        //private static void MoveFilesFromOldVersion()
-        //{
-        //    String settingsFile;
-        //    String personCacheFile;
-
-        //    settingsFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-        //       + "\\Doena Soft\\CastCrewEdit2\\settings.xml";
-        //    personCacheFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-        //        + "\\Doena Soft\\CastCrewEdit2\\persons.xml";
-        //    if((File.Exists(settingsFile)) && (File.Exists(SettingsFile) == false))
-        //    {
-        //        File.Move(settingsFile, SettingsFile);
-        //    }
-        //    if((File.Exists(personCacheFile)) && (File.Exists(PersonCacheFile) == false))
-        //    {
-        //        File.Move(personCacheFile, PersonCacheFile);
-        //    }
-        //}
 
         private static void CreateSettings()
         {
@@ -418,30 +413,37 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             {
                 Settings = new Settings();
             }
+
             if (Settings.MainForm == null)
             {
                 Settings.MainForm = new SizableForm();
             }
+
             if (Settings.EpisodesForm == null)
             {
                 Settings.EpisodesForm = new SizableForm();
             }
+
             if (Settings.EpisodeForm == null)
             {
                 Settings.EpisodeForm = new SizableForm();
             }
+
             if (Settings.SettingsForm == null)
             {
                 Settings.SettingsForm = new BaseForm();
             }
+
             if (Settings.EditConfigFilesForm == null)
             {
                 Settings.EditConfigFilesForm = new SizableForm();
             }
+
             if (Settings.EditKnownNamesConfigFileForm == null)
             {
                 Settings.EditKnownNamesConfigFileForm = new SizableForm();
             }
+
             if (Settings.DefaultValues == null)
             {
                 Settings.DefaultValues = new DefaultValues();
@@ -450,15 +452,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         internal static void WriteError(Exception ex)
         {
-            if (DebugMode)
+            if (_debugMode)
             {
-                ExceptionXml xml;
-                DateTime now;
-                StringBuilder filename;
+                var xml = new ExceptionXml(ex);
 
-                xml = new ExceptionXml(ex);
-                now = DateTime.Now;
-                filename = new StringBuilder();
+                var now = DateTime.Now;
+
+                var filename = new StringBuilder();
+
                 filename.Append(now.Year);
                 filename.Append("-");
                 filename.Append(now.Month);
@@ -471,10 +472,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 filename.Append("-");
                 filename.Append(now.Second);
                 filename.Append(".xml");
-                if (Directory.Exists("errors") == false)
+
+                if (!Directory.Exists("errors"))
                 {
                     Directory.CreateDirectory("errors");
                 }
+
                 DVDProfilerSerializer<ExceptionXml>.Serialize(@"errors\" + filename.ToString(), xml);
             }
         }

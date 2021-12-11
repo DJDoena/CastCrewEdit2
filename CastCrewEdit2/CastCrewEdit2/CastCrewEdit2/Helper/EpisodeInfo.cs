@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
-    internal class EpisodeInfo
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+
+    internal sealed class EpisodeInfo
     {
-        private static Int32 s_Indentifier;
+        private static int _indentifier;
 
-        public Int32 Identifier;
+        public int Identifier;
 
-        internal String Link;
+        internal string Link;
 
-        internal String SeasonNumber;
+        internal string SeasonNumber;
 
-        internal String EpisodeNumber;
+        internal string EpisodeNumber;
 
-        internal String EpisodeName;
+        internal string EpisodeName;
 
         internal List<CastInfo> CastList;
 
@@ -26,16 +25,16 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         internal List<KeyValuePair<Match, List<Match>>> CrewMatches;
 
-        internal Dictionary<String, List<Match>> SoundtrackMatches;
+        internal Dictionary<string, List<Match>> SoundtrackMatches;
 
         static EpisodeInfo()
         {
-            s_Indentifier = Int32.MinValue;
+            _indentifier = int.MinValue;
         }
 
         public EpisodeInfo()
         {
-            Identifier = s_Indentifier++;
+            Identifier = _indentifier++;
         }
     }
 }

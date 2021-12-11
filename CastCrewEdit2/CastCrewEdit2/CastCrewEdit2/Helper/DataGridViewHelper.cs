@@ -1,169 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-using DoenaSoft.DVDProfiler.DVDProfilerXML;
-using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using System.Runtime.InteropServices;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using System.Windows.Forms.VisualStyles;
+    using DVDProfilerXML;
+    using DVDProfilerXML.Version400;
+    using Extended;
+    using Resources;
+
     internal static class DataGridViewHelper
     {
-        #region Nested Classes
+        private static bool _dataFillMode;
 
+        private static readonly Dictionary<PersonInfoWithoutBirthYear, bool> _confirmedPossibleCastDuplicates;
 
-        private class DataGridViewDisableButtonColumn : DataGridViewButtonColumn
-        {
-            public DataGridViewDisableButtonColumn()
-            {
-                this.CellTemplate = new DataGridViewDisableButtonCell();
-            }
-        }
-
-        internal class DataGridViewDisableButtonCell : DataGridViewButtonCell
-        {
-            private Boolean EnabledValue;
-
-            public Boolean Enabled
-            {
-                get
-                {
-                    return (EnabledValue);
-                }
-                set
-                {
-                    EnabledValue = value;
-                }
-            }
-
-            // By default, enable the button cell.
-            public DataGridViewDisableButtonCell()
-            {
-                EnabledValue = true;
-            }
-
-            // Override the Clone method so that the Enabled property is copied.
-            public override Object Clone()
-            {
-                DataGridViewDisableButtonCell cell;
-
-                cell = (DataGridViewDisableButtonCell)(base.Clone());
-                cell.Enabled = this.Enabled;
-                return (cell);
-            }
-
-            protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds, Int32 rowIndex
-                , DataGridViewElementStates elementState, Object value, Object formattedValue, String errorText
-                , DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle
-                , DataGridViewPaintParts paintParts)
-            {
-                // The button cell is disabled, so paint the border,  
-                // background, and disabled button for the cell.
-                if (EnabledValue == false)
-                {
-                    Rectangle buttonArea;
-                    Rectangle buttonAdjustment;
-
-                    // Draw the cell background, if specified.
-                    if ((paintParts & DataGridViewPaintParts.Background) == DataGridViewPaintParts.Background)
-                    {
-                        SolidBrush cellBackground;
-
-                        cellBackground = new SolidBrush(cellStyle.BackColor);
-                        graphics.FillRectangle(cellBackground, cellBounds);
-                        cellBackground.Dispose();
-                    }
-
-                    // Draw the cell borders, if specified.
-                    if ((paintParts & DataGridViewPaintParts.Border) == DataGridViewPaintParts.Border)
-                    {
-                        this.PaintBorder(graphics, clipBounds, cellBounds, cellStyle, advancedBorderStyle);
-                    }
-
-                    // Calculate the area in which to draw the button.
-                    buttonArea = cellBounds;
-                    buttonAdjustment = this.BorderWidths(advancedBorderStyle);
-                    buttonArea.X += buttonAdjustment.X;
-                    buttonArea.Y += buttonAdjustment.Y;
-                    buttonArea.Height -= buttonAdjustment.Height;
-                    buttonArea.Width -= buttonAdjustment.Width;
-
-                    // Draw the disabled button.                
-                    ButtonRenderer.DrawButton(graphics, buttonArea, PushButtonState.Disabled);
-
-                    // Draw the disabled button text. 
-                    if (this.FormattedValue is String)
-                    {
-                        TextRenderer.DrawText(graphics, (String)(this.FormattedValue), this.DataGridView.Font
-                            , buttonArea, SystemColors.GrayText);
-                    }
-                }
-                else
-                {
-                    // The button cell is enabled, so let the base class 
-                    // handle the painting.
-                    base.Paint(graphics, clipBounds, cellBounds, rowIndex, elementState, value, formattedValue
-                        , errorText, cellStyle, advancedBorderStyle, paintParts);
-                }
-            }
-        }
-        #endregion
-
-        private static Boolean DataFillMode;
-
-        private static readonly Dictionary<PersonInfoWithoutBirthYear, Boolean> ConfirmedPossibleCastDuplicates;
-
-        private static readonly Dictionary<PersonInfoWithoutBirthYear, Boolean> ConfirmedPossibleCrewDuplicates;
+        private static readonly Dictionary<PersonInfoWithoutBirthYear, bool> _confirmedPossibleCrewDuplicates;
 
         static DataGridViewHelper()
         {
-            DataFillMode = false;
-            ConfirmedPossibleCastDuplicates = new Dictionary<PersonInfoWithoutBirthYear, Boolean>();
-            ConfirmedPossibleCrewDuplicates = new Dictionary<PersonInfoWithoutBirthYear, Boolean>();
+            _dataFillMode = false;
+
+            _confirmedPossibleCastDuplicates = new Dictionary<PersonInfoWithoutBirthYear, bool>();
+
+            _confirmedPossibleCrewDuplicates = new Dictionary<PersonInfoWithoutBirthYear, bool>();
         }
 
         #region GetBirthYears
 
-        public static void GetBirthYears(DataGridView dataGridView
-            , Dictionary<String, PersonInfo> persons
-            , DefaultValues defaultValues
-            , Log log
-            , Boolean isCast
-            , Action<MessageEntry> addMessage
-            , SetProgress setProgress)
+        public static void GetBirthYears(DataGridView dataGridView, Dictionary<string, PersonInfo> persons, DefaultValues defaultValues, Log log, bool isCast, Action<MessageEntry> addMessage, SetProgress setProgress)
         {
-            DataFillMode = true;
+            _dataFillMode = true;
 
-            Dictionary<String, List<DataGridViewRow>> groupedBirthYears = BirthYearGetter.GetGroupedBirthYears(dataGridView);
+            var groupedBirthYears = BirthYearGetter.GetGroupedBirthYears(dataGridView);
 
-            Int32 maxCount = groupedBirthYears.Count;
+            var maxCount = groupedBirthYears.Count;
 
-            List<String> keys = groupedBirthYears.Keys.ToList();
+            var keys = groupedBirthYears.Keys.ToList();
 
-            for (Int32 keyIndex = 0; keyIndex < maxCount;)
+            for (var keyIndex = 0; keyIndex < maxCount;)
             {
-                Int32 progress = 0;
+                var progress = 0;
 
                 try
                 {
-                    progress = TryGetBirthYearsInTasks(dataGridView, groupedBirthYears, keys, persons, defaultValues, log
-                        , isCast, addMessage, maxCount, ref keyIndex);
+                    progress = TryGetBirthYearsInTasks(dataGridView, groupedBirthYears, keys, persons, defaultValues, log, isCast, addMessage, maxCount, ref keyIndex);
                 }
                 catch (AggregateException aggrEx)
                 {
                     Exception ex = aggrEx.InnerExceptions.First();
 
-                    throw (ex);
+                    throw ex;
                 }
 
-                for (Int32 i = 0; i < progress; i++)
+                for (var current = 0; current < progress; current++)
                 {
                     setProgress();
                 }
@@ -171,13 +66,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
             AdaptDuplicateBirthYearRows(groupedBirthYears, setProgress);
 
-            DataFillMode = false;
+            _dataFillMode = false;
         }
 
-        private static void AdaptDuplicateBirthYearRows(Dictionary<String, List<DataGridViewRow>> groupedBirthYears
-            , SetProgress setProgress)
+        private static void AdaptDuplicateBirthYearRows(Dictionary<string, List<DataGridViewRow>> groupedBirthYears, SetProgress setProgress)
         {
-            foreach (List<DataGridViewRow> rowList in groupedBirthYears.Values)
+            foreach (var rowList in groupedBirthYears.Values)
             {
                 if (rowList.Count > 1)
                 {
@@ -186,14 +80,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
         }
 
-        private static void AdaptDuplicateBirthYearRows(List<DataGridViewRow> rowList
-            , SetProgress setProgress)
+        private static void AdaptDuplicateBirthYearRows(List<DataGridViewRow> rowList, SetProgress setProgress)
         {
-            DataGridViewRow firstRow = rowList[0];
+            var firstRow = rowList[0];
 
-            for (Int32 rowIndex = 1; rowIndex < rowList.Count; rowIndex++)
+            for (var rowIndex = 1; rowIndex < rowList.Count; rowIndex++)
             {
-                DataGridViewRow row = rowList[rowIndex];
+                var row = rowList[rowIndex];
 
                 AdaptDuplicateBirthYearRow(firstRow, row);
 
@@ -201,14 +94,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
         }
 
-        private static void AdaptDuplicateBirthYearRow(DataGridViewRow firstRow
-            , DataGridViewRow row)
+        private static void AdaptDuplicateBirthYearRow(DataGridViewRow firstRow, DataGridViewRow row)
         {
-            PersonInfo firstPerson = (PersonInfo)(firstRow.Tag);
+            var firstPerson = (PersonInfo)firstRow.Tag;
 
-            if (String.IsNullOrEmpty(firstPerson.PersonLink) == false)
+            if (!string.IsNullOrEmpty(firstPerson.PersonLink))
             {
-                PersonInfo person = (PersonInfo)(row.Tag);
+                var person = (PersonInfo)row.Tag;
 
                 person.BirthYear = firstPerson.BirthYear;
                 person.FakeBirthYear = firstPerson.FakeBirthYear;
@@ -216,73 +108,62 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                 row.Cells[ColumnNames.BirthYear].Value = firstRow.Cells[ColumnNames.BirthYear].Value;
 
-                CastInfo ci = person as CastInfo;
+                var ci = person as CastInfo;
 
-                if ((ci == null) || (ci.IsAdditionalRow == false))
+                if (ci == null || !ci.IsAdditionalRow)
                 {
                     row.Cells[ColumnNames.BirthYear].Style.BackColor = firstRow.Cells[ColumnNames.BirthYear].Style.BackColor;
                 }
             }
         }
 
-        private static Int32 TryGetBirthYearsInTasks(DataGridView dataGridView
-            , Dictionary<String, List<DataGridViewRow>> groupedBirthYears
-            , List<String> keys
-            , Dictionary<String, PersonInfo> persons
-            , DefaultValues defaultValues
-            , Log log
-            , Boolean isCast
-            , Action<MessageEntry> addMessage
-            , Int32 maxCount
-            , ref Int32 keyIndex)
+        private static int TryGetBirthYearsInTasks(DataGridView dataGridView, Dictionary<string, List<DataGridViewRow>> groupedBirthYears, List<string> keys, Dictionary<string, PersonInfo> persons, DefaultValues defaultValues, Log log, bool isCast, Action<MessageEntry> addMessage, int maxCount, ref int keyIndex)
         {
-            Int32 maxTasks = ((keyIndex + IMDbParser.MaxTasks - 1) < maxCount) ? IMDbParser.MaxTasks : (maxCount - keyIndex);
+            var maxTasks = (keyIndex + IMDbParser.MaxTasks - 1) < maxCount
+                ? IMDbParser.MaxTasks
+                : maxCount - keyIndex;
 
-            List<Task<List<IAsyncResult>>> tasks = new List<Task<List<IAsyncResult>>>(maxTasks);
+            var tasks = new List<Task<List<IAsyncResult>>>(maxTasks);
 
-            for (Int32 taskIndex = 0; taskIndex < maxTasks; taskIndex++, keyIndex++)
+            for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, keyIndex++)
             {
-                String key = keys[keyIndex];
+                var key = keys[keyIndex];
 
-                DataGridViewRow row = groupedBirthYears[key].First();
+                var row = groupedBirthYears[key].First();
 
-                Task<List<IAsyncResult>> task = Task.Run(() => BirthYearGetter.GetBirthYear(persons, defaultValues, log, isCast, addMessage, row));
+                var task = Task.Run(() => BirthYearGetter.GetBirthYear(persons, defaultValues, log, isCast, addMessage, row));
 
                 tasks.Add(task);
             }
 
             Task.WaitAll(tasks.ToArray());
 
-            foreach (Task<List<IAsyncResult>> task in tasks)
+            foreach (var task in tasks)
             {
-                foreach (IAsyncResult invokeResult in task.Result)
+                foreach (var invokeResult in task.Result)
                 {
                     dataGridView.EndInvoke(invokeResult);
                 }
             }
 
-            return (maxTasks);
+            return maxTasks;
         }
 
         #endregion
 
         #region GetHeadshots
 
-        public static void GetHeadshots(DataGridView dataGridView
-            , Boolean useFakeBirthYears
-            , Boolean isCast
-            , Action<MessageEntry> addMessage
-            , SetProgress setProgress)
+        public static void GetHeadshots(DataGridView dataGridView, bool useFakeBirthYears, bool isCast, Action<MessageEntry> addMessage, SetProgress setProgress)
         {
-            DataFillMode = true;
+            _dataFillMode = true;
 
-            Int32 maxCount = dataGridView.Rows.Count;
+            var maxCount = dataGridView.Rows.Count;
 
-            HashSet<String> processedItems = new HashSet<String>();
+            var processedItems = new HashSet<string>();
 
-            for (Int32 rowIndex = 0; rowIndex < maxCount;)
+            for (var rowIndex = 0; rowIndex < maxCount;)
             {
-                Int32 progress = 0;
+                var progress = 0;
 
                 try
                 {
@@ -292,39 +173,35 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 {
                     Exception ex = aggrEx.InnerExceptions.First();
 
-                    throw (ex);
+                    throw ex;
                 }
 
-                for (Int32 i = 0; i < progress; i++)
+                for (var current = 0; current < progress; current++)
                 {
                     setProgress();
                 }
             }
 
-            DataFillMode = false;
+            _dataFillMode = false;
         }
 
-        private static Int32 TryGetHeadshotsInTask(DataGridView dataGridView
-            , Boolean useFakeBirthYears
-            , Boolean isCast
-            , Action<MessageEntry> addMessage
-            , Int32 maxCount
-            , HashSet<String> processedItems
-            , ref Int32 rowIndex)
+        private static int TryGetHeadshotsInTask(DataGridView dataGridView, bool useFakeBirthYears, bool isCast, Action<MessageEntry> addMessage, int maxCount, HashSet<string> processedItems, ref int rowIndex)
         {
-            Int32 maxTasks = ((rowIndex + IMDbParser.MaxTasks - 1) < maxCount) ? IMDbParser.MaxTasks : (maxCount - rowIndex);
+            var maxTasks = (rowIndex + IMDbParser.MaxTasks - 1) < maxCount
+                ? IMDbParser.MaxTasks
+                : maxCount - rowIndex;
 
-            List<Task> tasks = new List<Task>(maxTasks);
+            var tasks = new List<Task>(maxTasks);
 
-            for (Int32 taskIndex = 0; taskIndex < maxTasks; taskIndex++, rowIndex++)
+            for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, rowIndex++)
             {
-                DataGridViewRow row = dataGridView.Rows[rowIndex];
+                var row = dataGridView.Rows[rowIndex];
 
-                PersonInfo person = (PersonInfo)(row.Tag);
+                var person = (PersonInfo)row.Tag;
 
                 if (processedItems.Add(person.PersonLink))
                 {
-                    Task task = Task.Run(() => HeadshotGetter.Get(useFakeBirthYears, isCast, addMessage, person));
+                    var task = Task.Run(() => HeadshotGetter.Get(useFakeBirthYears, isCast, addMessage, person));
 
                     tasks.Add(task);
                 }
@@ -332,34 +209,26 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
             Task.WaitAll(tasks.ToArray());
 
-            return (maxTasks);
+            return maxTasks;
         }
 
         #endregion
 
-        private static void ShowBirthYearMessageBox(Log log
-            , PersonInfo person
-            , Boolean isCast
-            , Action<MessageEntry> addMessage)
+        private static void ShowBirthYearMessageBox(Log log, PersonInfo person, bool isCast, Action<MessageEntry> addMessage)
         {
-            String text;
-            String logText;
-
+            string text;
+            string logText;
             if (isCast)
             {
-                text = String.Format(MessageBoxTexts.BirthYearCastHasChanged, person.FormatPersonNameWithoutMarkers()
-                    , person.FormatActorNameWithBirthYearWithMarkers(true), person.FormatActorNameWithBirthYearWithMarkers(false), person.PersonLink);
+                text = string.Format(MessageBoxTexts.BirthYearCastHasChanged, person.FormatPersonNameWithoutMarkers(), person.FormatActorNameWithBirthYearWithMarkers(true), person.FormatActorNameWithBirthYearWithMarkers(false), person.PersonLink);
 
-                logText = String.Format(MessageBoxTexts.BirthYearCastHasChanged, person.FormatPersonNameWithoutMarkers()
-                    , person.FormatActorNameWithBirthYearWithMarkersAsHtml(true, null), person.FormatActorNameWithBirthYearWithMarkersAsHtml(false, null), CreatePersonLinkHtml(person));
+                logText = string.Format(MessageBoxTexts.BirthYearCastHasChanged, person.FormatPersonNameWithoutMarkers(), person.FormatActorNameWithBirthYearWithMarkersAsHtml(true, null), person.FormatActorNameWithBirthYearWithMarkersAsHtml(false, null), CreatePersonLinkHtml(person));
             }
             else
             {
-                text = String.Format(MessageBoxTexts.BirthYearCrewHasChanged, person.FormatPersonNameWithoutMarkers()
-                    , person.FormatActorNameWithBirthYearWithMarkers(true), person.FormatActorNameWithBirthYearWithMarkers(false), person.PersonLink);
+                text = string.Format(MessageBoxTexts.BirthYearCrewHasChanged, person.FormatPersonNameWithoutMarkers(), person.FormatActorNameWithBirthYearWithMarkers(true), person.FormatActorNameWithBirthYearWithMarkers(false), person.PersonLink);
 
-                logText = String.Format(MessageBoxTexts.BirthYearCrewHasChanged, person.FormatPersonNameWithoutMarkers()
-                    , person.FormatActorNameWithBirthYearWithMarkersAsHtml(true, null), person.FormatActorNameWithBirthYearWithMarkersAsHtml(false, null), CreatePersonLinkHtml(person));
+                logText = string.Format(MessageBoxTexts.BirthYearCrewHasChanged, person.FormatPersonNameWithoutMarkers(), person.FormatActorNameWithBirthYearWithMarkersAsHtml(true, null), person.FormatActorNameWithBirthYearWithMarkersAsHtml(false, null), CreatePersonLinkHtml(person));
             }
 
             log.AppendParagraph(logText);
@@ -369,184 +238,184 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         public static void CreateCastColumns(DataGridView dataGridView)
         {
-            DataGridViewTextBoxColumn firstnameDataGridViewTextBoxColumn;
-            DataGridViewTextBoxColumn middlenameDataGridViewTextBoxColumn;
-            DataGridViewTextBoxColumn lastnameDataGridViewTextBoxColumn;
-            DataGridViewTextBoxColumn birthyearDataGridViewTextBoxColumn;
-            DataGridViewTextBoxColumn roleDataGridViewTextBoxColumn;
-            DataGridViewCheckBoxColumn voiceDataGridViewTextBoxColumn;
-            DataGridViewCheckBoxColumn uncreditedDataGridViewTextBoxColumn;
-            DataGridViewTextBoxColumn creditedasDataGridViewTextBoxColumn;
-            DataGridViewLinkColumn linkDataGridViewLinkColumn;
-            DataGridViewDisableButtonColumn moveUpColumn;
-            DataGridViewDisableButtonColumn moveDownColumn;
-            DataGridViewDisableButtonColumn removeRowColumn;
+            var firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.FirstName,
+                HeaderText = DataGridViewTexts.FirstName,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                ReadOnly = true,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            firstnameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            firstnameDataGridViewTextBoxColumn.Name = ColumnNames.FirstName;
-            firstnameDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.FirstName;
-            firstnameDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            firstnameDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            firstnameDataGridViewTextBoxColumn.ReadOnly = true;
-            firstnameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(firstnameDataGridViewTextBoxColumn);
+            var middleNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.MiddleName,
+                HeaderText = DataGridViewTexts.MiddleName,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                ReadOnly = true,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            middlenameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            middlenameDataGridViewTextBoxColumn.Name = ColumnNames.MiddleName;
-            middlenameDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.MiddleName;
-            middlenameDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            middlenameDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            middlenameDataGridViewTextBoxColumn.ReadOnly = true;
-            middlenameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(middlenameDataGridViewTextBoxColumn);
+            var lastNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.LastName,
+                HeaderText = DataGridViewTexts.LastName,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                ReadOnly = true,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            lastnameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            lastnameDataGridViewTextBoxColumn.Name = ColumnNames.LastName;
-            lastnameDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.LastName;
-            lastnameDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            lastnameDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            lastnameDataGridViewTextBoxColumn.ReadOnly = true;
-            lastnameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(lastnameDataGridViewTextBoxColumn);
+            var birthYearDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.BirthYear,
+                HeaderText = DataGridViewTexts.BirthYear,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                ReadOnly = true,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            birthyearDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            birthyearDataGridViewTextBoxColumn.Name = ColumnNames.BirthYear;
-            birthyearDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.BirthYear;
-            birthyearDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            birthyearDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            birthyearDataGridViewTextBoxColumn.ReadOnly = true;
-            birthyearDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(birthyearDataGridViewTextBoxColumn);
+            var roleDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.Role,
+                HeaderText = DataGridViewTexts.Role,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            roleDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            roleDataGridViewTextBoxColumn.Name = ColumnNames.Role;
-            roleDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.Role;
-            roleDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            roleDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            roleDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(roleDataGridViewTextBoxColumn);
+            var voiceDataGridViewTextBoxColumn = new DataGridViewCheckBoxColumn()
+            {
+                Name = ColumnNames.Voice,
+                HeaderText = DataGridViewTexts.Voice,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            voiceDataGridViewTextBoxColumn = new DataGridViewCheckBoxColumn();
-            voiceDataGridViewTextBoxColumn.Name = ColumnNames.Voice;
-            voiceDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.Voice;
-            voiceDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            voiceDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            voiceDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(voiceDataGridViewTextBoxColumn);
+            var uncreditedDataGridViewTextBoxColumn = new DataGridViewCheckBoxColumn()
+            {
+                Name = ColumnNames.Uncredited,
+                HeaderText = DataGridViewTexts.Uncredited,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            uncreditedDataGridViewTextBoxColumn = new DataGridViewCheckBoxColumn();
-            uncreditedDataGridViewTextBoxColumn.Name = ColumnNames.Uncredited;
-            uncreditedDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.Uncredited;
-            uncreditedDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            uncreditedDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            uncreditedDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(uncreditedDataGridViewTextBoxColumn);
+            var creditedAsDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.CreditedAs,
+                HeaderText = DataGridViewTexts.CreditedAs,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            creditedasDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            creditedasDataGridViewTextBoxColumn.Name = ColumnNames.CreditedAs;
-            creditedasDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.CreditedAs;
-            creditedasDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            creditedasDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            creditedasDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(creditedasDataGridViewTextBoxColumn);
+            var linkDataGridViewLinkColumn = new DataGridViewLinkColumn()
+            {
+                Name = ColumnNames.Link,
+                HeaderText = DataGridViewTexts.Link,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            linkDataGridViewLinkColumn = new DataGridViewLinkColumn();
-            linkDataGridViewLinkColumn.Name = ColumnNames.Link;
-            linkDataGridViewLinkColumn.HeaderText = DataGridViewTexts.Link;
-            linkDataGridViewLinkColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            linkDataGridViewLinkColumn.Resizable = DataGridViewTriState.True;
-            linkDataGridViewLinkColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(linkDataGridViewLinkColumn);
+            var moveUpColumn = new DataGridViewDisableButtonColumn()
+            {
+                Name = ColumnNames.MoveUp,
+                HeaderText = DataGridViewTexts.MoveUp,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                Text = ColumnNames.MoveUp,
+                UseColumnTextForButtonValue = true,
+            };
 
-            moveUpColumn = new DataGridViewDisableButtonColumn();
-            moveUpColumn.Name = ColumnNames.MoveUp;
-            moveUpColumn.HeaderText = DataGridViewTexts.MoveUp;
-            moveUpColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            moveUpColumn.Resizable = DataGridViewTriState.True;
-            moveUpColumn.Text = ColumnNames.MoveUp;
-            moveUpColumn.UseColumnTextForButtonValue = true;
-            dataGridView.Columns.Add(moveUpColumn);
+            var moveDownColumn = new DataGridViewDisableButtonColumn()
+            {
+                Name = ColumnNames.MoveDown,
+                HeaderText = DataGridViewTexts.MoveDown,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                Text = ColumnNames.MoveDown,
+                UseColumnTextForButtonValue = true,
+            };
 
-            moveDownColumn = new DataGridViewDisableButtonColumn();
-            moveDownColumn.Name = ColumnNames.MoveDown;
-            moveDownColumn.HeaderText = DataGridViewTexts.MoveDown;
-            moveDownColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            moveDownColumn.Resizable = DataGridViewTriState.True;
-            moveDownColumn.Text = ColumnNames.MoveDown;
-            moveDownColumn.UseColumnTextForButtonValue = true;
-            dataGridView.Columns.Add(moveDownColumn);
+            var removeRowColumn = new DataGridViewDisableButtonColumn()
+            {
+                Name = ColumnNames.RemoveRow,
+                HeaderText = DataGridViewTexts.RemoveRow,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                Text = ColumnNames.RemoveRow,
+                UseColumnTextForButtonValue = true,
+            };
 
-            removeRowColumn = new DataGridViewDisableButtonColumn();
-            removeRowColumn.Name = ColumnNames.RemoveRow;
-            removeRowColumn.HeaderText = DataGridViewTexts.RemoveRow;
-            removeRowColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            removeRowColumn.Resizable = DataGridViewTriState.True;
-            removeRowColumn.Text = ColumnNames.RemoveRow;
-            removeRowColumn.UseColumnTextForButtonValue = true;
-            dataGridView.Columns.Add(removeRowColumn);
+            var originalCreditDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.OriginalCredit,
+                HeaderText = DataGridViewTexts.OriginalCredit,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            DataGridViewTextBoxColumn originalCreditDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            originalCreditDataGridViewTextBoxColumn.Name = ColumnNames.OriginalCredit;
-            originalCreditDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.OriginalCredit;
-            originalCreditDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            originalCreditDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            originalCreditDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(originalCreditDataGridViewTextBoxColumn);
+            dataGridView.Columns.AddRange(firstNameDataGridViewTextBoxColumn, middleNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn, birthYearDataGridViewTextBoxColumn, roleDataGridViewTextBoxColumn, voiceDataGridViewTextBoxColumn, uncreditedDataGridViewTextBoxColumn, creditedAsDataGridViewTextBoxColumn, linkDataGridViewLinkColumn, moveUpColumn, moveDownColumn, removeRowColumn, originalCreditDataGridViewTextBoxColumn);
         }
 
         public static void CreateCrewColumns(DataGridView dataGridView)
         {
-            DataGridViewTextBoxColumn firstnameDataGridViewTextBoxColumn;
-            DataGridViewTextBoxColumn middlenameDataGridViewTextBoxColumn;
-            DataGridViewTextBoxColumn lastnameDataGridViewTextBoxColumn;
-            DataGridViewTextBoxColumn birthyearDataGridViewTextBoxColumn;
-            DataGridViewComboBoxColumn creditTypeDataGridViewComboBoxBoxColumn;
-            DataGridViewComboBoxColumn creditSubtypeDataGridViewComboBoxColumn;
-            DataGridViewTextBoxColumn customRoleDataGridViewTextBoxColumn;
-            DataGridViewTextBoxColumn creditedasDataGridViewTextBoxColumn;
-            DataGridViewLinkColumn linkDataGridViewLinkColumn;
+            var firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.FirstName,
+                HeaderText = DataGridViewTexts.FirstName,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                ReadOnly = true,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            firstnameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            firstnameDataGridViewTextBoxColumn.Name = ColumnNames.FirstName;
-            firstnameDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.FirstName;
-            firstnameDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            firstnameDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            firstnameDataGridViewTextBoxColumn.ReadOnly = true;
-            firstnameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(firstnameDataGridViewTextBoxColumn);
+            var middleNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.MiddleName,
+                HeaderText = DataGridViewTexts.MiddleName,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                ReadOnly = true,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            middlenameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            middlenameDataGridViewTextBoxColumn.Name = ColumnNames.MiddleName;
-            middlenameDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.MiddleName;
-            middlenameDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            middlenameDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            middlenameDataGridViewTextBoxColumn.ReadOnly = true;
-            middlenameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(middlenameDataGridViewTextBoxColumn);
+            var lastNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.LastName,
+                HeaderText = DataGridViewTexts.LastName,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                ReadOnly = true,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            lastnameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            lastnameDataGridViewTextBoxColumn.Name = ColumnNames.LastName;
-            lastnameDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.LastName;
-            lastnameDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            lastnameDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            lastnameDataGridViewTextBoxColumn.ReadOnly = true;
-            lastnameDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(lastnameDataGridViewTextBoxColumn);
+            var birthyearDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.BirthYear,
+                HeaderText = DataGridViewTexts.BirthYear,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                ReadOnly = true,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            birthyearDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            birthyearDataGridViewTextBoxColumn.Name = ColumnNames.BirthYear;
-            birthyearDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.BirthYear;
-            birthyearDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            birthyearDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            birthyearDataGridViewTextBoxColumn.ReadOnly = true;
-            birthyearDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(birthyearDataGridViewTextBoxColumn);
+            var creditTypeDataGridViewComboBoxBoxColumn = new DataGridViewComboBoxColumn()
+            {
+                Name = ColumnNames.CreditType,
+                HeaderText = DataGridViewTexts.CreditType,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            creditTypeDataGridViewComboBoxBoxColumn = new DataGridViewComboBoxColumn();
-            creditTypeDataGridViewComboBoxBoxColumn.Name = ColumnNames.CreditType;
-            creditTypeDataGridViewComboBoxBoxColumn.HeaderText = DataGridViewTexts.CreditType;
-            creditTypeDataGridViewComboBoxBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            creditTypeDataGridViewComboBoxBoxColumn.Resizable = DataGridViewTriState.True;
             creditTypeDataGridViewComboBoxBoxColumn.Items.Add(CreditTypesDataGridViewHelper.CreditTypes.Direction);
             creditTypeDataGridViewComboBoxBoxColumn.Items.Add(CreditTypesDataGridViewHelper.CreditTypes.Writing);
             creditTypeDataGridViewComboBoxBoxColumn.Items.Add(CreditTypesDataGridViewHelper.CreditTypes.Production);
@@ -556,64 +425,64 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             creditTypeDataGridViewComboBoxBoxColumn.Items.Add(CreditTypesDataGridViewHelper.CreditTypes.Sound);
             creditTypeDataGridViewComboBoxBoxColumn.Items.Add(CreditTypesDataGridViewHelper.CreditTypes.Art);
             creditTypeDataGridViewComboBoxBoxColumn.Items.Add(CreditTypesDataGridViewHelper.CreditTypes.Other);
-            creditTypeDataGridViewComboBoxBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(creditTypeDataGridViewComboBoxBoxColumn);
 
-            creditSubtypeDataGridViewComboBoxColumn = new DataGridViewComboBoxColumn();
-            creditSubtypeDataGridViewComboBoxColumn.Name = ColumnNames.CreditSubtype;
-            creditSubtypeDataGridViewComboBoxColumn.HeaderText = DataGridViewTexts.CreditSubtype;
-            creditSubtypeDataGridViewComboBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            creditSubtypeDataGridViewComboBoxColumn.Resizable = DataGridViewTriState.True;
-            creditSubtypeDataGridViewComboBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(creditSubtypeDataGridViewComboBoxColumn);
+            var creditSubtypeDataGridViewComboBoxColumn = new DataGridViewComboBoxColumn()
+            {
+                Name = ColumnNames.CreditSubtype,
+                HeaderText = DataGridViewTexts.CreditSubtype,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            customRoleDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            customRoleDataGridViewTextBoxColumn.Name = ColumnNames.CustomRole;
-            customRoleDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.CustomRole;
-            customRoleDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            customRoleDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            customRoleDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(customRoleDataGridViewTextBoxColumn);
+            var customRoleDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.CustomRole,
+                HeaderText = DataGridViewTexts.CustomRole,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            creditedasDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            creditedasDataGridViewTextBoxColumn.Name = ColumnNames.CreditedAs;
-            creditedasDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.CreditedAs;
-            creditedasDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            creditedasDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            creditedasDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(creditedasDataGridViewTextBoxColumn);
+            var creditedasDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.CreditedAs,
+                HeaderText = DataGridViewTexts.CreditedAs,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            linkDataGridViewLinkColumn = new DataGridViewLinkColumn();
-            linkDataGridViewLinkColumn.Name = ColumnNames.Link;
-            linkDataGridViewLinkColumn.HeaderText = DataGridViewTexts.Link;
-            linkDataGridViewLinkColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            linkDataGridViewLinkColumn.Resizable = DataGridViewTriState.True;
-            linkDataGridViewLinkColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(linkDataGridViewLinkColumn);
+            var linkDataGridViewLinkColumn = new DataGridViewLinkColumn()
+            {
+                Name = ColumnNames.Link,
+                HeaderText = DataGridViewTexts.Link,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
 
-            DataGridViewTextBoxColumn originalCreditDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            originalCreditDataGridViewTextBoxColumn.Name = ColumnNames.OriginalCredit;
-            originalCreditDataGridViewTextBoxColumn.HeaderText = DataGridViewTexts.OriginalCredit;
-            originalCreditDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            originalCreditDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
-            originalCreditDataGridViewTextBoxColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            dataGridView.Columns.Add(originalCreditDataGridViewTextBoxColumn);
+            var originalCreditDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn()
+            {
+                Name = ColumnNames.OriginalCredit,
+                HeaderText = DataGridViewTexts.OriginalCredit,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+            };
+
+            dataGridView.Columns.AddRange(firstNameDataGridViewTextBoxColumn, middleNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn, birthyearDataGridViewTextBoxColumn, creditTypeDataGridViewComboBoxBoxColumn, creditSubtypeDataGridViewComboBoxColumn, customRoleDataGridViewTextBoxColumn, creditedasDataGridViewTextBoxColumn, linkDataGridViewLinkColumn, originalCreditDataGridViewTextBoxColumn);
         }
 
-        public static void CopyCastToClipboard(DataGridView dataGridView
-            , String title
-            , Log log
-            , Boolean useFakeBirthYears
-            , Action<MessageEntry> addMessage
-            , Boolean embedded)
+        public static void CopyCastToClipboard(DataGridView dataGridView, string title, Log log, bool useFakeBirthYears, Action<MessageEntry> addMessage, bool embedded)
         {
-            CastInformation ci = new CastInformation();
+            var ci = new CastInformation();
 
             CreateCastMember(dataGridView, title, log, useFakeBirthYears, addMessage, embedded, ci, (row) => new CastMember(), (row) => new Divider());
 
             try
             {
-                String xml = Utilities.CopyCastInformationToClipboard(ci, embedded);
+                var xml = Utilities.CopyCastInformationToClipboard(ci, embedded);
 
                 Program.AdapterEventHandler.RaiseCastCompleted(xml);
             }
@@ -625,31 +494,19 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
 
 
-        public static void CopyExtendedCastToClipboard(DataGridView dataGridView
-            , String title
-            , Log log
-            , Boolean useFakeBirthYears
-            , Action<MessageEntry> addMessage)
+        public static void CopyExtendedCastToClipboard(DataGridView dataGridView, string title, Log log, bool useFakeBirthYears, Action<MessageEntry> addMessage)
         {
-            Func<DataGridViewRow, CastMember> createCastMember = (row) =>
+            Func<DataGridViewRow, CastMember> createCastMember = (row) => new ExtendedCastMember()
             {
-                ExtendedCastMember castMember = new ExtendedCastMember();
-
-                castMember.ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString();
-
-                return (castMember);
+                ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString(),
             };
 
-            Func<DataGridViewRow, Divider> createCastDivider = (row) =>
+            Func<DataGridViewRow, Divider> createCastDivider = (row) => new ExtendedCastDivider()
             {
-                ExtendedCastDivider castDivider = new ExtendedCastDivider();
-
-                castDivider.ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString();
-
-                return (castDivider);
+                ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString(),
             };
 
-            ExtendedCastInformation ci = new ExtendedCastInformation();
+            var ci = new ExtendedCastInformation();
 
             if (dataGridView.Rows.Count > 0)
             {
@@ -670,32 +527,24 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         public static void CopyExtendedCastInformationToClipboard(ExtendedCastInformation castInformation)
         {
-            Type[] addTypes = new[] { typeof(ExtendedCastMember), typeof(ExtendedCastDivider) };
+            var addTypes = new[] { typeof(ExtendedCastMember), typeof(ExtendedCastDivider) };
 
-            ExtendedSerializer<ExtendedCastInformation> serializer = new ExtendedSerializer<ExtendedCastInformation>(addTypes, CastInformation.DefaultEncoding);
+            var serializer = new ExtendedSerializer<ExtendedCastInformation>(addTypes, CastInformation.DefaultEncoding);
 
-            String xml = serializer.ToString(castInformation);
+            var xml = serializer.ToString(castInformation);
 
             Clipboard.SetDataObject(xml, true, 4, 250);
         }
 
-        private static void CreateCastMember(DataGridView dataGridView
-            , String title
-            , Log log
-            , Boolean useFakeBirthYears
-            , Action<MessageEntry> addMessage
-            , Boolean embedded
-            , CastInformation ci
-            , Func<DataGridViewRow, CastMember> createCastMember
-            , Func<DataGridViewRow, Divider> createCastDivider)
+        private static void CreateCastMember(DataGridView dataGridView, string title, Log log, bool useFakeBirthYears, Action<MessageEntry> addMessage, bool embedded, CastInformation ci, Func<DataGridViewRow, CastMember> createCastMember, Func<DataGridViewRow, Divider> createCastDivider)
         {
-            Int32 offset = 0;
+            var offset = 0;
 
             if (dataGridView.Rows.Count > 0)
             {
-                Object value = dataGridView.Rows[0].Cells[ColumnNames.FirstName].Value;
+                var value = dataGridView.Rows[0].Cells[ColumnNames.FirstName].Value;
 
-                if ((value != null) && (value.ToString() == FirstNames.Title))
+                if (value != null && value.ToString() == FirstNames.Title)
                 {
                     value = dataGridView.Rows[0].Cells[ColumnNames.LastName].Value;
 
@@ -718,29 +567,29 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 }
             }
 
-            ci.CastList = new Object[dataGridView.Rows.Count + offset];
+            ci.CastList = new object[dataGridView.Rows.Count + offset];
 
             offset = 0;
 
-            for (Int32 i = 0; i < dataGridView.Rows.Count; i++)
+            for (var rowIndex = 0; rowIndex < dataGridView.Rows.Count; rowIndex++)
             {
-                DataGridViewRow row = dataGridView.Rows[i];
+                var row = dataGridView.Rows[rowIndex];
 
-                Object value = row.Cells[ColumnNames.FirstName].Value;
+                var value = row.Cells[ColumnNames.FirstName].Value;
 
-                if ((value != null) && (value.ToString() == FirstNames.Title))
+                if (value != null && value.ToString() == FirstNames.Title)
                 {
                     offset = -1;
                 }
-                else if ((value != null) && (value.ToString() == FirstNames.Divider))
+                else if (value != null && value.ToString() == FirstNames.Divider)
                 {
-                    row = dataGridView.Rows[i];
+                    row = dataGridView.Rows[rowIndex];
 
-                    Divider divider = createCastDivider(row);
+                    var divider = createCastDivider(row);
 
-                    ci.CastList[i + offset] = divider;
+                    ci.CastList[rowIndex + offset] = divider;
 
-                    String name = String.Empty;
+                    var name = string.Empty;
 
                     value = row.Cells[ColumnNames.MiddleName].Value;
 
@@ -761,16 +610,16 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 }
                 else
                 {
-                    CastMember castMember = createCastMember(row);
+                    var castMember = createCastMember(row);
 
-                    ci.CastList[i + offset] = castMember;
+                    ci.CastList[rowIndex + offset] = castMember;
 
                     if (value != null)
                     {
                         castMember.FirstName = value.ToString();
                     }
 
-                    row = dataGridView.Rows[i];
+                    row = dataGridView.Rows[rowIndex];
 
                     value = row.Cells[ColumnNames.MiddleName].Value;
 
@@ -790,8 +639,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                     if (value != null)
                     {
-                        Int32 intValue;
-                        if (Int32.TryParse(value.ToString(), out intValue))
+                        if (int.TryParse(value.ToString(), out var intValue))
                         {
                             castMember.BirthYear = intValue;
                         }
@@ -808,14 +656,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                     if (value != null)
                     {
-                        castMember.Voice = Boolean.Parse(value.ToString());
+                        castMember.Voice = bool.Parse(value.ToString());
                     }
 
                     value = row.Cells[ColumnNames.Uncredited].Value;
 
                     if (value != null)
                     {
-                        castMember.Uncredited = Boolean.Parse(value.ToString());
+                        castMember.Uncredited = bool.Parse(value.ToString());
                     }
 
                     value = row.Cells[ColumnNames.CreditedAs].Value;
@@ -825,180 +673,167 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                         castMember.CreditedAs = value.ToString();
                     }
 
-                    if (embedded == false)
+                    if (!embedded)
                     {
-                        CheckForPossibleDuplicates(log, row, ConfirmedPossibleCastDuplicates
-                            , Program.PossibleCastDuplicateCache, DataGridViewTexts.Cast, useFakeBirthYears, castMember
-                            , Program.CastCache, true, addMessage);
+                        CheckForPossibleDuplicates(log, row, _confirmedPossibleCastDuplicates, Program.PossibleCastDuplicateCache, DataGridViewTexts.Cast, useFakeBirthYears, castMember, Program.CastCache, true, addMessage);
                     }
                 }
             }
         }
 
-        private static void CheckForPossibleDuplicates(Log log
-            , DataGridViewRow row
-            , Dictionary<PersonInfoWithoutBirthYear, Boolean> confirmedPossibleDuplicates
-            , Dictionary<PersonInfoWithoutBirthYear, List<PersonInfo>> possibleDuplicatesCache
-            , String type
-            , Boolean useFakeBirthYears
-            , IPerson clipboardPerson
-            , Dictionary<String, PersonInfo> personCache
-            , Boolean isCast
-            , Action<MessageEntry> addMessage)
+        private static void CheckForPossibleDuplicates(Log log, DataGridViewRow row, Dictionary<PersonInfoWithoutBirthYear, bool> confirmedPossibleDuplicates, Dictionary<PersonInfoWithoutBirthYear, List<PersonInfo>> possibleDuplicatesCache, string type, bool useFakeBirthYears, IPerson clipboardPerson, Dictionary<string, PersonInfo> personCache, bool isCast, Action<MessageEntry> addMessage)
         {
-            PersonInfoWithoutBirthYear piwby;
-            List<PersonInfo> list;
-            PersonInfo rowPerson;
+            var piwby = new PersonInfoWithoutBirthYear(row, type);
 
-            piwby = new PersonInfoWithoutBirthYear(row, type);
-            rowPerson = new PersonInfo(row, type);
-            if (confirmedPossibleDuplicates.ContainsKey(piwby) == false)
+            var rowPerson = new PersonInfo(row, type);
+
+            if (!confirmedPossibleDuplicates.ContainsKey(piwby))
             {
-                List<PersonInfo> newFakeBirthYears;
+                var list = possibleDuplicatesCache[piwby];
 
-                list = possibleDuplicatesCache[piwby];
-                newFakeBirthYears = new List<PersonInfo>(list.Count);
+                var newFakeBirthYears = new List<PersonInfo>(list.Count);
+
                 if (list.Count > 1)
                 {
-                    Dictionary<String, List<PersonInfo>> birthYears;
-                    Boolean hasBlankEntries;
+                    var birthYears = new Dictionary<string, List<PersonInfo>>(list.Count);
 
-                    birthYears = new Dictionary<String, List<PersonInfo>>(list.Count);
-                    hasBlankEntries = false;
-                    foreach (PersonInfo item in list)
+                    var hasBlankEntries = false;
+
+                    foreach (var item in list)
                     {
-                        PersonInfo cachePerson;
+                        var cachePerson = personCache[item.PersonLink];
 
-                        cachePerson = personCache[item.PersonLink];
-                        if (String.IsNullOrEmpty(cachePerson.BirthYear) == false)
+                        if (!string.IsNullOrEmpty(cachePerson.BirthYear))
                         {
                             item.BirthYear = cachePerson.BirthYear;
+
                             ConsolidateBirthYears(birthYears, item, item.BirthYear);
+
                             if (rowPerson.PersonLink == item.PersonLink)
                             {
-                                clipboardPerson.BirthYear = Int32.Parse(item.BirthYear);
+                                clipboardPerson.BirthYear = int.Parse(item.BirthYear);
                             }
                         }
                         else
                         {
                             if (useFakeBirthYears)
                             {
-                                String fakeBirthYear;
+                                var fakeBirthYear = CreateFakeBirthYear(clipboardPerson, newFakeBirthYears, item, cachePerson, rowPerson, isCast, addMessage);
 
-                                fakeBirthYear = CreateFakeBirthYear(clipboardPerson, newFakeBirthYears, item, cachePerson, rowPerson, isCast, addMessage);
                                 ConsolidateBirthYears(birthYears, item, fakeBirthYear);
                             }
                             else
                             {
                                 hasBlankEntries = true;
-                                ConsolidateBirthYears(birthYears, item, String.Empty);
-                                if ((String.IsNullOrEmpty(item.FakeBirthYear) == false) && (rowPerson.PersonLink == item.PersonLink))
+
+                                ConsolidateBirthYears(birthYears, item, string.Empty);
+
+                                if (!string.IsNullOrEmpty(item.FakeBirthYear) && rowPerson.PersonLink == item.PersonLink)
                                 {
                                     ShowBirthYearMessageBox(log, item, isCast, addMessage);
                                 }
                             }
                         }
                     }
+
                     if (newFakeBirthYears.Count > 1)
                     {
                         ShowMultipleNamesMessageBox(log, newFakeBirthYears, MessageBoxTexts.NewFakeBirthYears, addMessage, false);
                     }
-                    foreach (KeyValuePair<String, List<PersonInfo>> kvp in birthYears)
+
+                    foreach (var kvp in birthYears)
                     {
                         if (kvp.Value.Count > 1)
                         {
-                            ShowDuplicatesMessageBox(log, confirmedPossibleDuplicates, piwby, kvp.Value, MessageBoxTexts.PossibleSameYearDuplicates, addMessage
-                                , Program.Settings.DefaultValues.DisableDuplicatesMessageBox);
+                            ShowDuplicatesMessageBox(log, confirmedPossibleDuplicates, piwby, kvp.Value, MessageBoxTexts.PossibleSameYearDuplicates, addMessage, Program.Settings.DefaultValues.DisableDuplicatesMessageBox);
                         }
                     }
-                    if ((hasBlankEntries) && (birthYears.Count > 1))
+
+                    if (hasBlankEntries && birthYears.Count > 1)
                     {
                         ShowDuplicatesMessageBox(log, confirmedPossibleDuplicates, piwby, list, MessageBoxTexts.PossibleDuplicates, addMessage, false);
                     }
                 }
                 else if (useFakeBirthYears)
                 {
-                    PersonInfo cachePerson;
+                    var cachePerson = personCache[list[0].PersonLink];
 
-                    cachePerson = personCache[list[0].PersonLink];
                     CreateFakeBirthYear(clipboardPerson, newFakeBirthYears, list[0], cachePerson, rowPerson, isCast, addMessage);
                 }
-                else if (String.IsNullOrEmpty(list[0].FakeBirthYear) == false)
+                else if (!string.IsNullOrEmpty(list[0].FakeBirthYear))
                 {
                     ShowBirthYearMessageBox(log, list[0], isCast, addMessage);
                 }
             }
         }
 
-        private static String CreateFakeBirthYear(IPerson clipboardPerson
-            , List<PersonInfo> newFakeBirthYears
-            , PersonInfo item, PersonInfo cachePerson
-            , PersonInfo rowPerson
-            , Boolean isCast
-            , Action<MessageEntry> addMessage)
+        private static string CreateFakeBirthYear(IPerson clipboardPerson, List<PersonInfo> newFakeBirthYears, PersonInfo item, PersonInfo cachePerson, PersonInfo rowPerson, bool isCast, Action<MessageEntry> addMessage)
         {
-            String fakeBirthYear;
+            var fakeBirthYear = string.Empty;
 
-            fakeBirthYear = String.Empty;
-            if (String.IsNullOrEmpty(cachePerson.BirthYear) == false) //If we already have a BY, why not use it
+            if (!string.IsNullOrEmpty(cachePerson.BirthYear)) //If we already have a BY, why not use it
             {
                 fakeBirthYear = cachePerson.BirthYear;
             }
-            else if (String.IsNullOrEmpty(cachePerson.FakeBirthYear))
+            else if (string.IsNullOrEmpty(cachePerson.FakeBirthYear))
             {
                 fakeBirthYear = CreateFakeBirthYearAsString(cachePerson, isCast, addMessage);
+
                 item.FakeBirthYear = fakeBirthYear;
+
                 cachePerson.FakeBirthYear = item.FakeBirthYear;
+
                 newFakeBirthYears.Add(item);
             }
             else
             {
                 fakeBirthYear = cachePerson.FakeBirthYear;
             }
+
             if (rowPerson.PersonLink == cachePerson.PersonLink)
             {
-                if (String.IsNullOrEmpty(fakeBirthYear) == false)
+                if (!string.IsNullOrEmpty(fakeBirthYear))
                 {
-                    clipboardPerson.BirthYear = Int32.Parse(fakeBirthYear);
+                    clipboardPerson.BirthYear = int.Parse(fakeBirthYear);
                 }
             }
-            return (fakeBirthYear);
+
+            return fakeBirthYear;
         }
 
-        private static Int32 CreateFakeBirthYearAsInt(PersonInfo item)
+        private static int CreateFakeBirthYearAsInt(PersonInfo item)
         {
-            Int32 fakeBirthYear;
-            String fakeBirthYearString;
+            var fakeBirthYearString = item.PersonLink.Substring(item.PersonLink.Length - 5);
 
-            fakeBirthYearString = item.PersonLink.Substring(item.PersonLink.Length - 5);
-            fakeBirthYear = Int32.Parse(fakeBirthYearString);
-            if (fakeBirthYear > UInt16.MaxValue)
+            var fakeBirthYear = int.Parse(fakeBirthYearString);
+
+            if (fakeBirthYear > ushort.MaxValue)
             {
                 fakeBirthYearString = item.PersonLink.Substring(item.PersonLink.Length - 4);
-                fakeBirthYear = Int32.Parse(fakeBirthYearString);
+
+                fakeBirthYear = int.Parse(fakeBirthYearString);
             }
-            return (fakeBirthYear);
+
+            return fakeBirthYear;
         }
 
-        internal static String CreateFakeBirthYearAsString(PersonInfo item
-            , Boolean isCast
-            , Action<MessageEntry> addMessage)
+        internal static string CreateFakeBirthYearAsString(PersonInfo item, bool isCast, Action<MessageEntry> addMessage)
         {
-            Int32 fakeBirthYearAsInt = CreateFakeBirthYearAsInt(item);
+            var fakeBirthYearAsInt = CreateFakeBirthYearAsInt(item);
 
-            String fakeBirthYearAsString;
+            string fakeBirthYearAsString;
             if (fakeBirthYearAsInt == 0)
             {
-                fakeBirthYearAsString = String.Empty;
+                fakeBirthYearAsString = string.Empty;
 
-                String text;
+                string text;
                 if (isCast)
                 {
-                    text = String.Format(MessageBoxTexts.FakeBirthYearZeroCast, item.PersonLink, item.FormatActorNameWithBirthYearWithMarkers(true));
+                    text = string.Format(MessageBoxTexts.FakeBirthYearZeroCast, item.PersonLink, item.FormatActorNameWithBirthYearWithMarkers(true));
                 }
                 else
                 {
-                    text = String.Format(MessageBoxTexts.FakeBirthYearZeroCrew, item.PersonLink, item.FormatActorNameWithBirthYearWithMarkers(true));
+                    text = string.Format(MessageBoxTexts.FakeBirthYearZeroCrew, item.PersonLink, item.FormatActorNameWithBirthYearWithMarkers(true));
                 }
 
                 addMessage(new MessageEntry(text, MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning));
@@ -1008,141 +843,110 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 fakeBirthYearAsString = fakeBirthYearAsInt.ToString();
             }
 
-            return (fakeBirthYearAsString);
+            return fakeBirthYearAsString;
         }
 
-        private static void ShowDuplicatesMessageBox(Log log
-            , Dictionary<PersonInfoWithoutBirthYear, Boolean> confirmedPossibleDuplicates
-            , PersonInfoWithoutBirthYear piwby
-            , List<PersonInfo> list
-            , String messageId
-            , Action<MessageEntry> addMessage
-            , Boolean ignoreMesssageBox)
+        private static void ShowDuplicatesMessageBox(Log log, Dictionary<PersonInfoWithoutBirthYear, bool> confirmedPossibleDuplicates, PersonInfoWithoutBirthYear piwby, List<PersonInfo> list, string messageId, Action<MessageEntry> addMessage, bool ignoreMesssageBox)
         {
             ShowMultipleNamesMessageBox(log, list, messageId, addMessage, ignoreMesssageBox);
 
-            if (confirmedPossibleDuplicates.ContainsKey(piwby) == false)
+            if (!confirmedPossibleDuplicates.ContainsKey(piwby))
             {
                 confirmedPossibleDuplicates.Add(piwby, true);
             }
         }
 
-        private static void ShowMultipleNamesMessageBox(Log log
-            , List<PersonInfo> list
-            , String messageId
-            , Action<MessageEntry> addMessage
-            , Boolean ignoreMesssageBox)
+        private static void ShowMultipleNamesMessageBox(Log log, List<PersonInfo> list, string messageId, Action<MessageEntry> addMessage, bool ignoreMesssageBox)
         {
-            String text;
-            String logText;
-            StringBuilder nameList;
-            StringBuilder nameListLog;
-            Boolean useFakeBirthNames;
+            var nameList = new StringBuilder();
 
-            nameList = new StringBuilder();
-            nameListLog = new StringBuilder();
-            useFakeBirthNames = Program.Settings.DefaultValues.UseFakeBirthYears;
-            foreach (PersonInfo item in list)
+            var nameListLog = new StringBuilder();
+
+            var useFakeBirthNames = Program.Settings.DefaultValues.UseFakeBirthYears;
+
+            foreach (var item in list)
             {
                 nameList.Append(item.PersonLink);
                 nameList.Append(": ");
                 nameList.AppendLine(item.FormatActorNameWithBirthYearWithMarkers(useFakeBirthNames, true));
+
                 nameListLog.Append(CreatePersonLinkHtml(item));
                 nameListLog.Append(": ");
                 nameListLog.AppendLine(item.FormatActorNameWithBirthYearWithMarkersAsHtml(useFakeBirthNames, true, list));
             }
-            text = String.Format(messageId, nameList.ToString());
-            logText = String.Format(messageId, nameListLog.ToString());
+
+            var messageText = string.Format(messageId, nameList.ToString());
+
+            var logText = string.Format(messageId, nameListLog.ToString());
+
             log.AppendParagraph(logText);
 
-            if (ignoreMesssageBox == false)
+            if (!ignoreMesssageBox)
             {
-                addMessage(new MessageEntry(text, MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning));
+                addMessage(new MessageEntry(messageText, MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning));
             }
         }
 
-        internal static String CreatePersonLinkHtml(PersonInfo person)
+        internal static string CreatePersonLinkHtml(PersonInfo person)
         {
-            StringBuilder sb;
+            var sb = new StringBuilder("<a href=\"https://www.imdb.com/name/");
 
-            sb = new StringBuilder("<a href=\"https://www.imdb.com/name/");
             sb.Append(person.PersonLink);
             sb.Append("/\">");
             sb.Append(person.PersonLink);
             sb.Append("</a>");
 
-            return (sb.ToString());
+            return sb.ToString();
         }
 
-        private static void ConsolidateBirthYears(Dictionary<String, List<PersonInfo>> birthYears, PersonInfo item, String birthYear)
+        private static void ConsolidateBirthYears(Dictionary<string, List<PersonInfo>> birthYears, PersonInfo item, string birthYear)
         {
-            List<PersonInfo> sameYearList;
-
-            if (birthYears.TryGetValue(birthYear, out sameYearList))
+            if (birthYears.TryGetValue(birthYear, out var sameYearList))
             {
                 sameYearList.Add(item);
             }
             else
             {
-                sameYearList = new List<PersonInfo>(4);
-                sameYearList.Add(item);
+                sameYearList = new List<PersonInfo>(4)
+                {
+                    item,
+                };
+
                 birthYears.Add(birthYear, sameYearList);
             }
         }
 
-        public static void CopyCrewToClipboard(DataGridView dataGridView
-            , String title
-            , Log log
-            , Boolean useFakeBirthYears
-            , Action<MessageEntry> addMessage
-            , Boolean embedded)
+        public static void CopyCrewToClipboard(DataGridView dataGridView, string title, Log log, bool useFakeBirthYears, Action<MessageEntry> addMessage, bool embedded)
         {
-            Func<DataGridViewRow, CrewMember> createCrewMember = (row) => new CrewMember();
-
-            CrewInformation ci = new CrewInformation();
+            var ci = new CrewInformation();
 
             CreateCrewMember(dataGridView, title, log, useFakeBirthYears, addMessage, embedded, ci, (row) => new CrewMember(), (row) => new CrewDivider());
 
             try
             {
-                String xml = Utilities.CopyCrewInformationToClipboard(ci, embedded);
+                var xml = Utilities.CopyCrewInformationToClipboard(ci, embedded);
 
                 Program.AdapterEventHandler.RaiseCrewCompleted(xml);
             }
             catch (ExternalException)
             {
-                MessageBox.Show(MessageBoxTexts.CopyToClipboardFailed, MessageBoxTexts.ErrorHeader
-                    , MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(MessageBoxTexts.CopyToClipboardFailed, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
-        public static void CopyExtendedCrewToClipboard(DataGridView dataGridView
-            , String title
-            , Log log
-            , Boolean useFakeBirthYears
-            , Action<MessageEntry> addMessage)
+        public static void CopyExtendedCrewToClipboard(DataGridView dataGridView, string title, Log log, bool useFakeBirthYears, Action<MessageEntry> addMessage)
         {
-            Func<DataGridViewRow, CrewMember> createCrewMember = (row) =>
-                    {
-                        ExtendedCrewMember crewMember = new ExtendedCrewMember();
+            Func<DataGridViewRow, CrewMember> createCrewMember = (row) => new ExtendedCrewMember()
+            {
+                ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString(),
+            };
 
-                        crewMember.ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString();
+            Func<DataGridViewRow, CrewDivider> createCrewDivider = (row) => new ExtendedCrewDivider()
+            {
+                ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString(),
+            };
 
-                        return (crewMember);
-                    }
-                ;
-
-            Func<DataGridViewRow, CrewDivider> createCrewDivider = (row) =>
-                    {
-                        ExtendedCrewDivider crewDivider = new ExtendedCrewDivider();
-
-                        crewDivider.ImdbLink = row.Cells[ColumnNames.Link].Value?.ToString();
-
-                        return (crewDivider);
-                    }
-               ;
-
-            ExtendedCrewInformation ci = new ExtendedCrewInformation();
+            var ci = new ExtendedCrewInformation();
 
             if (dataGridView.Rows.Count > 0)
             {
@@ -1157,8 +961,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
             catch (ExternalException)
             {
-                MessageBox.Show(MessageBoxTexts.CopyToClipboardFailed, MessageBoxTexts.ErrorHeader
-                    , MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(MessageBoxTexts.CopyToClipboardFailed, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -1166,32 +969,24 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         {
             crewInformation = ExtendedCrewSorter.GetSortedCrew(crewInformation);
 
-            Type[] addTypes = new[] { typeof(ExtendedCrewMember), typeof(ExtendedCrewDivider) };
+            var addTypes = new[] { typeof(ExtendedCrewMember), typeof(ExtendedCrewDivider) };
 
-            ExtendedSerializer<ExtendedCrewInformation> serializer = new ExtendedSerializer<ExtendedCrewInformation>(addTypes, CrewInformation.DefaultEncoding);
+            var serializer = new ExtendedSerializer<ExtendedCrewInformation>(addTypes, CrewInformation.DefaultEncoding);
 
-            String xml = serializer.ToString(crewInformation);
+            var xml = serializer.ToString(crewInformation);
 
             Clipboard.SetDataObject(xml, true, 4, 250);
         }
 
-        private static void CreateCrewMember(DataGridView dataGridView
-            , String title
-            , Log log
-            , Boolean useFakeBirthYears
-            , Action<MessageEntry> addMessage
-            , Boolean embedded
-            , CrewInformation ci
-            , Func<DataGridViewRow, CrewMember> createCrewMember
-            , Func<DataGridViewRow, CrewDivider> createEpisodeDivider)
+        private static void CreateCrewMember(DataGridView dataGridView, string title, Log log, bool useFakeBirthYears, Action<MessageEntry> addMessage, bool embedded, CrewInformation ci, Func<DataGridViewRow, CrewMember> createCrewMember, Func<DataGridViewRow, CrewDivider> createEpisodeDivider)
         {
-            Int32 offset = 0;
+            var offset = 0;
 
             if (dataGridView.Rows.Count > 0)
             {
-                Object value = dataGridView.Rows[0].Cells[ColumnNames.FirstName].Value;
+                var value = dataGridView.Rows[0].Cells[ColumnNames.FirstName].Value;
 
-                if ((value != null) && (value.ToString() == FirstNames.Title))
+                if (value != null && value.ToString() == FirstNames.Title)
                 {
                     value = dataGridView.Rows[0].Cells[ColumnNames.LastName].Value;
 
@@ -1214,28 +1009,28 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 }
             }
 
-            ci.CrewList = new Object[dataGridView.Rows.Count + offset];
+            ci.CrewList = new object[dataGridView.Rows.Count + offset];
 
             offset = 0;
 
-            for (Int32 i = 0; i < dataGridView.Rows.Count; i++)
+            for (var rowIndex = 0; rowIndex < dataGridView.Rows.Count; rowIndex++)
             {
-                DataGridViewRow row = dataGridView.Rows[i];
+                var row = dataGridView.Rows[rowIndex];
 
-                Object value = row.Cells[ColumnNames.FirstName].Value;
+                var value = row.Cells[ColumnNames.FirstName].Value;
 
-                if ((value != null) && (value.ToString() == FirstNames.Title))
+                if (value != null && value.ToString() == FirstNames.Title)
                 {
                     offset = -1;
                 }
 
-                else if ((value != null) && (value.ToString() == FirstNames.Divider))
+                else if (value != null && value.ToString() == FirstNames.Divider)
                 {
-                    CrewDivider divider = createEpisodeDivider(row);
+                    var divider = createEpisodeDivider(row);
 
-                    ci.CrewList[i + offset] = divider;
+                    ci.CrewList[rowIndex + offset] = divider;
 
-                    String name = String.Empty;
+                    var name = string.Empty;
 
                     value = row.Cells[ColumnNames.MiddleName].Value;
 
@@ -1256,9 +1051,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 }
                 else
                 {
-                    CrewMember crewMember = createCrewMember(row);
+                    var crewMember = createCrewMember(row);
 
-                    ci.CrewList[i + offset] = crewMember;
+                    ci.CrewList[rowIndex + offset] = crewMember;
 
                     if (value != null)
                     {
@@ -1283,8 +1078,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                     if (value != null)
                     {
-                        Int32 intValue;
-                        if (Int32.TryParse(value.ToString(), out intValue))
+                        if (int.TryParse(value.ToString(), out var intValue))
                         {
                             crewMember.BirthYear = intValue;
                         }
@@ -1310,7 +1104,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                     {
                         crewMember.CustomRole = value.ToString();
 
-                        if (String.IsNullOrEmpty(crewMember.CustomRole) == false)
+                        if (!string.IsNullOrEmpty(crewMember.CustomRole))
                         {
                             crewMember.CustomRoleSpecified = true;
                         }
@@ -1323,67 +1117,69 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                         crewMember.CreditedAs = value.ToString();
                     }
 
-                    if (embedded == false)
+                    if (!embedded)
                     {
-                        CheckForPossibleDuplicates(log, row, ConfirmedPossibleCrewDuplicates
-                            , Program.PossibleCrewDuplicateCache, DataGridViewTexts.Crew, useFakeBirthYears, crewMember
-                            , Program.CrewCache, false, addMessage);
+                        CheckForPossibleDuplicates(log, row, _confirmedPossibleCrewDuplicates, Program.PossibleCrewDuplicateCache, DataGridViewTexts.Crew, useFakeBirthYears, crewMember, Program.CrewCache, false, addMessage);
                     }
                 }
             }
         }
 
-        public static void FillCastRows(DataGridView dataGridView, List<CastInfo> castList, Boolean isFirstDivider
-            , Boolean isLastDivider)
+        public static void FillCastRows(DataGridView dataGridView, List<CastInfo> castList, bool isFirstDivider, bool isLastDivider)
         {
-            Int32 offset;
-            List<DataGridViewRow> rows;
+            _dataFillMode = true;
 
-            DataFillMode = true;
-            offset = 0;
-            rows = new List<DataGridViewRow>(castList.Count + castList.Count / 10);
-            for (Int32 i = 0; i < castList.Count; i++)
+            var offset = 0;
+
+            var rows = new List<DataGridViewRow>(castList.Count + castList.Count / 10);
+
+            for (var castIndex = 0; castIndex < castList.Count; castIndex++)
             {
-                CastInfo castMember;
-                DataGridViewRow row;
+                var castMember = castList[castIndex];
 
-                castMember = castList[i];
-                row = new DataGridViewRow();
-                for (Int32 j = 0; j < dataGridView.Columns.Count; j++)
+                var row = new DataGridViewRow();
+
+                for (var columnIndex = 0; columnIndex < dataGridView.Columns.Count; columnIndex++)
                 {
-                    DataGridViewCell cell;
-                    DataGridViewColumn column;
+                    var column = dataGridView.Columns[columnIndex];
 
-                    column = dataGridView.Columns[j];
-                    cell = (DataGridViewCell)(column.CellTemplate.Clone());
+                    var cell = (DataGridViewCell)column.CellTemplate.Clone();
+
                     row.Cells.Add(cell);
                 }
+
                 rows.Add(row);
+
                 if (castMember.FirstName == FirstNames.Title)
                 {
                     row.DefaultCellStyle.BackColor = Color.LightCyan;
                     row.ReadOnly = true;
                     row.Cells[dataGridView.Columns[ColumnNames.LastName].Index].ReadOnly = false;
+
                     ((DataGridViewDisableButtonCell)(row.Cells[dataGridView.Columns[ColumnNames.MoveUp].Index])).Enabled = false;
                     ((DataGridViewDisableButtonCell)(row.Cells[dataGridView.Columns[ColumnNames.MoveDown].Index])).Enabled = false;
                     ((DataGridViewDisableButtonCell)(row.Cells[dataGridView.Columns[ColumnNames.RemoveRow].Index])).Enabled = false;
+
                     offset++;
                 }
                 else if (castMember.FirstName == FirstNames.Divider)
                 {
                     row.DefaultCellStyle.BackColor = Color.LightBlue;
                     row.ReadOnly = true;
+
                     row.Cells[dataGridView.Columns[ColumnNames.MiddleName].Index].ReadOnly = false;
                     row.Cells[dataGridView.Columns[ColumnNames.LastName].Index].ReadOnly = false;
+
                     if (isFirstDivider)
                     {
-                        ((DataGridViewDisableButtonCell)(row.Cells[dataGridView.Columns[ColumnNames.MoveUp].Index])).Enabled = false;
+                        ((DataGridViewDisableButtonCell)row.Cells[dataGridView.Columns[ColumnNames.MoveUp].Index]).Enabled = false;
                     }
                     if (isLastDivider)
                     {
-                        ((DataGridViewDisableButtonCell)(row.Cells[dataGridView.Columns[ColumnNames.MoveDown].Index])).Enabled = false;
+                        ((DataGridViewDisableButtonCell)row.Cells[dataGridView.Columns[ColumnNames.MoveDown].Index]).Enabled = false;
                     }
-                    ((DataGridViewDisableButtonCell)(row.Cells[dataGridView.Columns[ColumnNames.RemoveRow].Index])).Enabled = false;
+
+                    ((DataGridViewDisableButtonCell)row.Cells[dataGridView.Columns[ColumnNames.RemoveRow].Index]).Enabled = false;
                 }
                 else
                 {
@@ -1394,17 +1190,20 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                     else
                     {
                         row.DefaultCellStyle.BackColor = Color.White;
-                        if (castMember.BirthYearWasRetrieved == false)
+
+                        if (!castMember.BirthYearWasRetrieved)
                         {
                             row.Cells[dataGridView.Columns[ColumnNames.BirthYear].Index].Style.BackColor = Color.LightGray;
                         }
                     }
+
                     row.Cells[dataGridView.Columns[ColumnNames.LastName].Index].ReadOnly = true;
                     row.Cells[dataGridView.Columns[ColumnNames.MiddleName].Index].ReadOnly = true;
-                    ((DataGridViewDisableButtonCell)(row.Cells[dataGridView.Columns[ColumnNames.MoveUp].Index])).Enabled = (i != offset);
-                    ((DataGridViewDisableButtonCell)(row.Cells[dataGridView.Columns[ColumnNames.MoveDown].Index])).Enabled
-                        = (i != castList.Count - 1);
+
+                    ((DataGridViewDisableButtonCell)row.Cells[dataGridView.Columns[ColumnNames.MoveUp].Index]).Enabled = (castIndex != offset);
+                    ((DataGridViewDisableButtonCell)row.Cells[dataGridView.Columns[ColumnNames.MoveDown].Index]).Enabled = (castIndex != castList.Count - 1);
                 }
+
                 row.Cells[dataGridView.Columns[ColumnNames.FirstName].Index].Value = castMember.FirstName;
                 row.Cells[dataGridView.Columns[ColumnNames.MiddleName].Index].Value = castMember.MiddleName;
                 row.Cells[dataGridView.Columns[ColumnNames.LastName].Index].Value = castMember.LastName;
@@ -1415,89 +1214,98 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 row.Cells[dataGridView.Columns[ColumnNames.CreditedAs].Index].Value = castMember.CreditedAs;
                 row.Cells[dataGridView.Columns[ColumnNames.Link].Index].Value = castMember.PersonLink;
                 row.Cells[dataGridView.Columns[ColumnNames.OriginalCredit].Index].Value = castMember.OriginalCredit;
+
                 row.Tag = castMember;
             }
             dataGridView.Rows.AddRange(rows.ToArray());
-            DataFillMode = false;
+
+            _dataFillMode = false;
+
             dataGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
         public static void FillCrewRows(DataGridView dataGridView, List<CrewInfo> crewList)
         {
-            List<DataGridViewRow> rows;
+            var rows = new List<DataGridViewRow>(crewList.Count + crewList.Count / 10);
 
-            rows = new List<DataGridViewRow>(crewList.Count + crewList.Count / 10);
-            foreach (CrewInfo crewMember in crewList)
+            foreach (var crewMember in crewList)
             {
-                DataGridViewRow row;
+                var row = new DataGridViewRow();
 
-                row = new DataGridViewRow();
-                for (Int32 j = 0; j < dataGridView.Columns.Count; j++)
+                for (var columnIndex = 0; columnIndex < dataGridView.Columns.Count; columnIndex++)
                 {
-                    DataGridViewCell cell;
-                    DataGridViewColumn column;
+                    var column = dataGridView.Columns[columnIndex];
 
-                    column = dataGridView.Columns[j];
-                    cell = (DataGridViewCell)(column.CellTemplate.Clone());
+                    var cell = (DataGridViewCell)column.CellTemplate.Clone();
+
                     row.Cells.Add(cell);
                 }
+
                 rows.Add(row);
+
                 if (crewMember.FirstName == FirstNames.Title)
                 {
                     row.DefaultCellStyle.BackColor = Color.LightCyan;
                     row.ReadOnly = true;
+
                     row.Cells[dataGridView.Columns[ColumnNames.LastName].Index].ReadOnly = false;
                 }
                 else if (crewMember.FirstName == FirstNames.Divider)
                 {
                     row.DefaultCellStyle.BackColor = Color.LightBlue;
                     row.ReadOnly = true;
+
                     row.Cells[dataGridView.Columns[ColumnNames.MiddleName].Index].ReadOnly = false;
                     row.Cells[dataGridView.Columns[ColumnNames.LastName].Index].ReadOnly = false;
                 }
                 else
                 {
                     row.DefaultCellStyle.BackColor = Color.White;
+
                     row.Cells[dataGridView.Columns[ColumnNames.LastName].Index].ReadOnly = true;
                     row.Cells[dataGridView.Columns[ColumnNames.MiddleName].Index].ReadOnly = true;
                     row.Cells[dataGridView.Columns[ColumnNames.BirthYear].Index].Style.BackColor = Color.LightGray;
                 }
+
                 row.Cells[dataGridView.Columns[ColumnNames.FirstName].Index].Value = crewMember.FirstName;
                 row.Cells[dataGridView.Columns[ColumnNames.MiddleName].Index].Value = crewMember.MiddleName;
                 row.Cells[dataGridView.Columns[ColumnNames.LastName].Index].Value = crewMember.LastName;
                 row.Cells[dataGridView.Columns[ColumnNames.CreditType].Index].Value = crewMember.CreditType;
+
                 FillCreditSubtypeCell(dataGridView, row);
+
                 row.Cells[dataGridView.Columns[ColumnNames.CreditSubtype].Index].Value = crewMember.CreditSubtype;
                 row.Cells[dataGridView.Columns[ColumnNames.CustomRole].Index].Value = crewMember.CustomRole;
                 row.Cells[dataGridView.Columns[ColumnNames.CreditedAs].Index].Value = crewMember.CreditedAs;
                 row.Cells[dataGridView.Columns[ColumnNames.Link].Index].Value = crewMember.PersonLink;
                 row.Cells[dataGridView.Columns[ColumnNames.OriginalCredit].Index].Value = crewMember.OriginalCredit;
+
                 row.Tag = crewMember;
             }
+
             dataGridView.Rows.AddRange(rows.ToArray());
             dataGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
-        public static void OnCastDataGridViewCellValueChanged(Object sender, DataGridViewCellEventArgs e)
+        public static void OnCastDataGridViewCellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (DataFillMode == false)
+            if (!_dataFillMode)
             {
-                CastInfo castMember;
-                DataGridViewRow row;
+                var row = ((DataGridView)sender).Rows[e.RowIndex];
 
-                row = ((DataGridView)sender).Rows[e.RowIndex];
-                castMember = (CastInfo)(row.Tag);
+                var castMember = (CastInfo)row.Tag;
+
                 if (e.ColumnIndex == 1)//middle name for episode number
                 {
-                    castMember.MiddleName = (String)(row.Cells[ColumnNames.MiddleName].Value);
+                    castMember.MiddleName = (string)(row.Cells[ColumnNames.MiddleName].Value);
                 }
                 else if (e.ColumnIndex == 2)//last name for title
                 {
-                    castMember.LastName = (String)(row.Cells[ColumnNames.LastName].Value);
+                    castMember.LastName = (string)(row.Cells[ColumnNames.LastName].Value);
                 }
                 else if (e.ColumnIndex == 4)//role
                 {
-                    castMember.Role = (String)(row.Cells[ColumnNames.Role].Value);
+                    castMember.Role = (string)(row.Cells[ColumnNames.Role].Value);
                 }
                 else if (e.ColumnIndex == 5)//voice
                 {
@@ -1509,22 +1317,21 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 }
                 else if (e.ColumnIndex == 7)//credited as
                 {
-                    castMember.CreditedAs = (String)(row.Cells[ColumnNames.CreditedAs].Value);
+                    castMember.CreditedAs = (string)(row.Cells[ColumnNames.CreditedAs].Value);
                 }
             }
         }
 
-        public static void OnCrewDataGridViewCellValueChanged(Object sender, DataGridViewCellEventArgs e)
+        public static void OnCrewDataGridViewCellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (DataFillMode == false)
+            if (!_dataFillMode)
             {
                 if (e.ColumnIndex == 4)
                 {
-                    DataGridView dataGridView;
-                    DataGridViewRow row;
+                    var dataGridView = (DataGridView)sender;
 
-                    dataGridView = (DataGridView)sender;
-                    row = dataGridView.Rows[e.RowIndex];
+                    var row = dataGridView.Rows[e.RowIndex];
+
                     FillCreditSubtypeCell(dataGridView, row);
                 }
             }
@@ -1532,17 +1339,100 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         private static void FillCreditSubtypeCell(DataGridView dataGridView, DataGridViewRow row)
         {
-            DataGridViewComboBoxCell creditTypeCell;
-            DataGridViewComboBoxCell creditSubtypeCell;
+            var creditTypeCell = (DataGridViewComboBoxCell)(row.Cells[dataGridView.Columns[ColumnNames.CreditType].Index]);
 
-            creditTypeCell = (DataGridViewComboBoxCell)(row.Cells[dataGridView.Columns[ColumnNames.CreditType].Index]);
             if (creditTypeCell.Value != null)
             {
-                creditSubtypeCell = (DataGridViewComboBoxCell)(row.Cells[dataGridView.Columns[ColumnNames.CreditSubtype].Index]);
+                var creditSubtypeCell = (DataGridViewComboBoxCell)(row.Cells[dataGridView.Columns[ColumnNames.CreditSubtype].Index]);
+
                 creditSubtypeCell.Value = null;
+
                 CreditTypesDataGridViewHelper.FillCreditSubtypes(creditTypeCell.Value.ToString(), creditSubtypeCell.Items);
+
                 creditSubtypeCell.Value = CreditTypesDataGridViewHelper.CreditSubtypes.Custom;
             }
         }
+
+        #region Nested Classes
+
+        private class DataGridViewDisableButtonColumn : DataGridViewButtonColumn
+        {
+            public DataGridViewDisableButtonColumn()
+            {
+                this.CellTemplate = new DataGridViewDisableButtonCell();
+            }
+        }
+
+        internal class DataGridViewDisableButtonCell : DataGridViewButtonCell
+        {
+            public bool Enabled { get; set; }
+
+            // By default, enable the button cell.
+            public DataGridViewDisableButtonCell()
+            {
+                this.Enabled = true;
+            }
+
+            // Override the Clone method so that the Enabled property is copied.
+            public override object Clone()
+            {
+                var cell = (DataGridViewDisableButtonCell)(base.Clone());
+
+                cell.Enabled = this.Enabled;
+
+                return cell;
+            }
+
+            protected override void Paint(Graphics graphics, Rectangle clipBounds, Rectangle cellBounds, int rowIndex, DataGridViewElementStates elementState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
+            {
+                // The button cell is disabled, so paint the border,  
+                // background, and disabled button for the cell.
+                if (!this.Enabled)
+                {
+                    // Draw the cell background, if specified.
+                    if ((paintParts & DataGridViewPaintParts.Background) == DataGridViewPaintParts.Background)
+                    {
+                        var cellBackground = new SolidBrush(cellStyle.BackColor);
+
+                        graphics.FillRectangle(cellBackground, cellBounds);
+
+                        cellBackground.Dispose();
+                    }
+
+                    // Draw the cell borders, if specified.
+                    if ((paintParts & DataGridViewPaintParts.Border) == DataGridViewPaintParts.Border)
+                    {
+                        this.PaintBorder(graphics, clipBounds, cellBounds, cellStyle, advancedBorderStyle);
+                    }
+
+                    // Calculate the area in which to draw the button.
+                    var buttonArea = cellBounds;
+
+                    var buttonAdjustment = this.BorderWidths(advancedBorderStyle);
+
+                    buttonArea.X += buttonAdjustment.X;
+                    buttonArea.Y += buttonAdjustment.Y;
+                    buttonArea.Height -= buttonAdjustment.Height;
+                    buttonArea.Width -= buttonAdjustment.Width;
+
+                    // Draw the disabled button.
+                    ButtonRenderer.DrawButton(graphics, buttonArea, PushButtonState.Disabled);
+
+                    // Draw the disabled button text. 
+                    if (this.FormattedValue is string)
+                    {
+                        TextRenderer.DrawText(graphics, (string)(this.FormattedValue), this.DataGridView.Font, buttonArea, SystemColors.GrayText);
+                    }
+                }
+                else
+                {
+                    // The button cell is enabled, so let the base class 
+                    // handle the painting.
+                    base.Paint(graphics, clipBounds, cellBounds, rowIndex, elementState, value, formattedValue, errorText, cellStyle, advancedBorderStyle, paintParts);
+                }
+            }
+        }
+
+        #endregion
     }
 }

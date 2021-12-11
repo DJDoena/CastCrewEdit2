@@ -1,31 +1,29 @@
-﻿using System;
-using System.IO;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
+    using System;
+    using System.IO;
+    using DVDProfilerHelper;
+
     internal static class HeadshotGetter
     {
-        private static readonly Object DVDPLock;
+        private static readonly object _profilerLock;
 
-        private static readonly Object CCVLock;
+        private static readonly object _ccViewerLock;
 
         static HeadshotGetter()
         {
-            DVDPLock = new Object();
-            CCVLock = new Object();
+            _profilerLock = new object();
+
+            _ccViewerLock = new object();
         }
 
-        internal static void Get(bool useFakeBirthYears
-            , bool isCast
-            , Action<MessageEntry> addMessage
-            , PersonInfo person)
+        internal static void Get(bool useFakeBirthYears, bool isCast, Action<MessageEntry> addMessage, PersonInfo person)
         {
-            if ((person.FirstName != FirstNames.Title) && (person.FirstName != FirstNames.Divider))
+            if (person.FirstName != FirstNames.Title && person.FirstName != FirstNames.Divider)
             {
                 var target = ProfilePhotoHelper.FileNameFromCreditName(person.FirstName, person.MiddleName, person.LastName, 0);
 
-                if (string.IsNullOrEmpty(person.BirthYear) == false)
+                if (!string.IsNullOrEmpty(person.BirthYear))
                 {
                     var birthYear = int.Parse(person.BirthYear);
 
@@ -35,7 +33,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 {
                     var fakeBirthYear = DataGridViewHelper.CreateFakeBirthYearAsString(person, isCast, addMessage);
 
-                    if (string.IsNullOrEmpty(fakeBirthYear) == false)
+                    if (!string.IsNullOrEmpty(fakeBirthYear))
                     {
                         var birthYear = int.Parse(fakeBirthYear);
 
@@ -43,7 +41,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                     }
                 }
 
-                FileInfo source = CanGetPhoto(person.PersonLink, out source) ? IMDbParser.GetHeadshot(person) : source;
+                FileInfo source = CanGetPhoto(person.PersonLink, out source)
+                    ? IMDbParser.GetHeadshot(person)
+                    : source;
 
                 if (source == null)
                 {
@@ -52,7 +52,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                 try
                 {
-                    lock (DVDPLock)
+                    lock (_profilerLock)
                     {
                         source.CopyTo(Program.RootPath + @"\Images\DVD Profiler\" + target + source.Extension, true);
                     }
@@ -62,7 +62,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                 target = person.FirstName;
 
-                if (String.IsNullOrEmpty(person.MiddleName) == false)
+                if (!string.IsNullOrEmpty(person.MiddleName))
                 {
                     target += " " + person.MiddleName;
                 }
@@ -73,7 +73,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                 try
                 {
-                    lock (CCVLock)
+                    lock (_ccViewerLock)
                     {
                         source.CopyTo(Program.RootPath + @"\Images\CCViewer\" + target + source.Extension, true);
                     }
@@ -83,47 +83,45 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
         }
 
-        private static Boolean CanGetPhoto(String personLink
-            , out FileInfo existingFile)
+        private static bool CanGetPhoto(string personLink, out FileInfo existingFile)
         {
             if (Program.Settings.DefaultValues.OverwriteExistingImages)
             {
                 existingFile = null;
 
-                return (true);
+                return true;
             }
 
-            FileInfo jpg = new FileInfo(Program.RootPath + @"\Images\CastCrewEdit2\" + personLink + ".jpg");
+            var jpg = new FileInfo(Program.RootPath + @"\Images\CastCrewEdit2\" + personLink + ".jpg");
 
             if (jpg.Exists)
             {
                 existingFile = jpg;
 
-                return (false);
+                return false;
             }
 
-            FileInfo gif = new FileInfo(Program.RootPath + @"\Images\CastCrewEdit2\" + personLink + ".gif");
+            var gif = new FileInfo(Program.RootPath + @"\Images\CastCrewEdit2\" + personLink + ".gif");
 
             if (gif.Exists)
             {
                 existingFile = gif;
 
-                return (false);
+                return false;
             }
 
-
-            FileInfo png = new FileInfo(Program.RootPath + @"\Images\CastCrewEdit2\" + personLink + ".png");
+            var png = new FileInfo(Program.RootPath + @"\Images\CastCrewEdit2\" + personLink + ".png");
 
             if (png.Exists)
             {
                 existingFile = png;
 
-                return (false);
+                return false;
             }
 
             existingFile = null;
 
-            return (true);
+            return true;
         }
     }
 }

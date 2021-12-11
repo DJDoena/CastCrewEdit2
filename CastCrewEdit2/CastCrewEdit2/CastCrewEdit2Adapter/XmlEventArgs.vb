@@ -6,14 +6,14 @@
 Public Class XmlEventArgs
     Inherits EventArgs
 
-    Private m_Xml As String
+    Private ReadOnly _xml As String
 
     ''' <summary>
     ''' Returns the cast or crew information.
     ''' </summary>
     Public ReadOnly Property Xml As String
         Get
-            Return m_Xml
+            Return _xml
         End Get
     End Property
 
@@ -22,6 +22,6 @@ Public Class XmlEventArgs
     ''' </summary>
     ''' <param name="xml">the cast or crew information</param>
     Public Sub New(xml As String)
-        m_Xml = xml
+        _xml = xml
     End Sub
 End Class

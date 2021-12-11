@@ -1,40 +1,38 @@
-﻿using System;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
-    [Serializable()]
-    public class CastInfo : PersonInfo
+    using System;
+    using Resources;
+
+    [Serializable]
+    public sealed class CastInfo : PersonInfo
     {
-        private static Int32 s_Identifier;
+        private static int _identifier;
 
-        public Int32 Identifier;
+        public int Identifier;
 
-        public String Role;
+        public string Role;
 
-        public String Voice;
+        public string Voice;
 
-        public Boolean IsBracketVoice;
+        public bool IsBracketVoice;
 
-        public String Uncredited;
+        public string Uncredited;
 
-        public String CreditedAs;
+        public string CreditedAs;
 
-        public Boolean IsAdditionalRow = false;
+        public bool IsAdditionalRow = false;
 
         static CastInfo()
         {
-            s_Identifier = 0;
+            _identifier = 0;
         }
 
-        public CastInfo()
-            : base(DataGridViewTexts.Cast)
+        public CastInfo() : base(DataGridViewTexts.Cast)
         {
-            Identifier = ++s_Identifier;
+            Identifier = ++_identifier;
         }
 
-        public CastInfo(Int32 identifier)
-            : base(DataGridViewTexts.Cast)
+        public CastInfo(int identifier) : base(DataGridViewTexts.Cast)
         {
             Identifier = identifier;
         }

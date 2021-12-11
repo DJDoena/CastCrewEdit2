@@ -1,194 +1,188 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Drawing;
+    using System.IO;
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Runtime.InteropServices;
+    using System.Text;
+    using System.Threading;
+    using System.Windows.Forms;
+    using Helper;
+    using Resources;
+
     [ComVisible(true)]
     public class CastCrewEdit2ParseBaseForm : CastCrewEdit2BaseForm
     {
-        protected static readonly Log Log;
+        protected static readonly Log _log;
 
-        private static readonly List<MessageEntry> MessageQueue;
+        private static readonly List<MessageEntry> _messageQueue;
 
-        internal static Boolean FirstRunGetHeadShots;
+        private readonly static object _messageQueueLock;
 
-        private readonly static Object MessageQueueLock;
+        internal static bool FirstRunGetHeadShots { get; set; }
 
         static CastCrewEdit2ParseBaseForm()
         {
-            MessageQueueLock = new Object();
-            Log = new Log();
-            MessageQueue = new List<MessageEntry>();
+            _messageQueueLock = new object();
+
+            _log = new Log();
+
+            _messageQueue = new List<MessageEntry>();
+
             FirstRunGetHeadShots = true;
         }
 
-        protected static Boolean ItsMe
-            => (Environment.UserName == "djdoe");
+        protected static bool ItsMe => Environment.UserName == "djdoe";
 
-        protected static Boolean HasAgreed
+        protected static bool HasAgreed
         {
-            get
-            {
-                return (ItsMe ? true : s_HasAgreed);
-            }
-            set
-            {
-                s_HasAgreed = value;
-            }
+            get => ItsMe || _hasAgreed;
+            set => _hasAgreed = value;
         }
 
         protected static void AddMessage(MessageEntry entry)
         {
-            lock (MessageQueueLock)
+            lock (_messageQueueLock)
             {
-                MessageQueue.Add(entry);
+                _messageQueue.Add(entry);
             }
         }
 
-        protected void OnBirthYearsInLocalCacheLabelLinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
+        protected void OnBirthYearsInLocalCacheLabelLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            PersonInfo[] persons;
-
             this.Cursor = Cursors.WaitCursor;
-            persons = new PersonInfo[IMDbParser.PersonHash.Keys.Count];
+
+            var persons = new PersonInfo[IMDbParser.PersonHash.Keys.Count];
+
             IMDbParser.PersonHash.Keys.CopyTo(persons, 0);
+
             this.ShowCache(new List<PersonInfo>(persons), "Local Birth Year Cache");
         }
 
-        protected void OnPersonsInLocalCacheLabelLinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
+        protected void OnPersonsInLocalCacheLabelLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            PersonInfo[] persons;
-
             this.Cursor = Cursors.WaitCursor;
-            persons = new PersonInfo[Program.PersonCacheCount];
+
+            var persons = new PersonInfo[Program.PersonCacheCount];
+
             Program.CastCache.Values.CopyTo(persons, 0);
             Program.CrewCache.Values.CopyTo(persons, Program.CastCache.Values.Count);
+
             this.ShowCache(new List<PersonInfo>(persons), "Local Person Cache");
         }
 
-        private void ShowCache(List<PersonInfo> persons
-            , String cacheName)
+        private void ShowCache(List<PersonInfo> persons, string cacheName)
         {
             persons.Sort(ComparePersonInfos);
 
             this.Cursor = Cursors.Default;
 
-            using (CacheForm form = new CacheForm(persons, cacheName))
+            using (var form = new CacheForm(persons, cacheName))
             {
                 form.ShowDialog(this);
             }
         }
 
-        private static Int32 ComparePersonInfos(PersonInfo left
-            , PersonInfo right)
+        private static int ComparePersonInfos(PersonInfo left, PersonInfo right)
         {
-            Int32 compare = left.LastName.CompareTo(right.LastName);
+            var compare = left.LastName.CompareTo(right.LastName);
 
             if (compare != 0)
             {
-                return (compare);
+                return compare;
             }
 
             compare = left.FirstName.CompareTo(right.FirstName);
 
             if (compare != 0)
             {
-                return (compare);
+                return compare;
             }
 
             compare = left.MiddleName.CompareTo(right.MiddleName);
 
             if (compare != 0)
             {
-                return (compare);
+                return compare;
             }
 
-            if ((left.BirthYearWasRetrieved) && (String.IsNullOrEmpty(left.BirthYear) == false))
+            if (left.BirthYearWasRetrieved && !string.IsNullOrEmpty(left.BirthYear))
             {
                 compare = left.BirthYear.CompareTo(right.BirthYear);
             }
             else
             {
-                compare = String.Empty.CompareTo(right.BirthYear);
+                compare = string.Empty.CompareTo(right.BirthYear);
             }
 
-            if (String.IsNullOrEmpty(left.FakeBirthYear) == false)
+            if (compare != 0)
+            {
+                return compare;
+            }
+
+            if (!string.IsNullOrEmpty(left.FakeBirthYear))
             {
                 compare = left.FakeBirthYear.CompareTo(right.FakeBirthYear);
             }
             else
             {
-                compare = String.Empty.CompareTo(right.FakeBirthYear);
+                compare = string.Empty.CompareTo(right.FakeBirthYear);
             }
 
-            return (compare);
+            return compare;
         }
 
-        protected void OnDataGridViewCellContentClick(Object sender, DataGridViewCellEventArgs e)
+        protected void OnDataGridViewCellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            var grid = (DataGridView)sender;
+
             if (e.ColumnIndex == 8)
             {
-                DataGridViewRow row;
+                var row = grid.Rows[e.RowIndex];
 
-                row = ((DataGridView)sender).Rows[e.RowIndex];
-                if ((row.Cells[ColumnNames.FirstName].Value.ToString() == FirstNames.Title)
-                    || (row.Cells[ColumnNames.FirstName].Value.ToString() == FirstNames.Divider))
+                if (row.Cells[ColumnNames.FirstName].Value.ToString() == FirstNames.Title
+                    || row.Cells[ColumnNames.FirstName].Value.ToString() == FirstNames.Divider)
                 {
-                    Process.Start(IMDbParser.TitleUrl
-                        + row.Cells[ColumnNames.Link].Value.ToString());
+                    Process.Start(IMDbParser.TitleUrl + row.Cells[ColumnNames.Link].Value.ToString());
                 }
                 else
                 {
-                    Process.Start(IMDbParser.PersonUrl
-                        + row.Cells[ColumnNames.Link].Value.ToString());
+                    Process.Start(IMDbParser.PersonUrl + row.Cells[ColumnNames.Link].Value.ToString());
                 }
             }
-            else if (((DataGridView)sender).Columns[e.ColumnIndex].Name == ColumnNames.MoveUp)
+            else if (grid.Columns[e.ColumnIndex].Name == ColumnNames.MoveUp)
             {
-                DataGridViewHelper.DataGridViewDisableButtonCell cell;
-                DataGridViewRow row;
+                var row = grid.Rows[e.RowIndex];
 
-                row = ((DataGridView)sender).Rows[e.RowIndex];
-                cell = (DataGridViewHelper.DataGridViewDisableButtonCell)
-                    (row.Cells[ColumnNames.MoveUp]);
+                var cell = (DataGridViewHelper.DataGridViewDisableButtonCell)row.Cells[ColumnNames.MoveUp];
+
                 if (cell.Enabled)
                 {
-                    this.MoveRow((CastInfo)(row.Tag), true);
+                    this.MoveRow((CastInfo)row.Tag, true);
                 }
             }
-            else if (((DataGridView)sender).Columns[e.ColumnIndex].Name == ColumnNames.MoveDown)
+            else if (grid.Columns[e.ColumnIndex].Name == ColumnNames.MoveDown)
             {
-                DataGridViewHelper.DataGridViewDisableButtonCell cell;
-                DataGridViewRow row;
+                var row = grid.Rows[e.RowIndex];
 
-                row = ((DataGridView)sender).Rows[e.RowIndex];
-                cell = (DataGridViewHelper.DataGridViewDisableButtonCell)
-                    (row.Cells[ColumnNames.MoveDown]);
+                var cell = (DataGridViewHelper.DataGridViewDisableButtonCell)row.Cells[ColumnNames.MoveDown];
+
                 if (cell.Enabled)
                 {
-                    this.MoveRow((CastInfo)(row.Tag), false);
+                    this.MoveRow((CastInfo)row.Tag, false);
                 }
             }
-            else if (((DataGridView)sender).Columns[e.ColumnIndex].Name == ColumnNames.RemoveRow)
+            else if (grid.Columns[e.ColumnIndex].Name == ColumnNames.RemoveRow)
             {
-                DataGridViewHelper.DataGridViewDisableButtonCell cell;
-                DataGridViewRow row;
+                var row = grid.Rows[e.RowIndex];
 
-                row = ((DataGridView)sender).Rows[e.RowIndex];
-                cell = (DataGridViewHelper.DataGridViewDisableButtonCell)
-                    (row.Cells[ColumnNames.RemoveRow]);
+                var cell = (DataGridViewHelper.DataGridViewDisableButtonCell)row.Cells[ColumnNames.RemoveRow];
+
                 if (cell.Enabled)
                 {
                     this.RemoveRow((CastInfo)(row.Tag));
@@ -196,7 +190,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
         }
 
-        protected virtual void MoveRow(CastInfo castMember, Boolean up)
+        protected virtual void MoveRow(CastInfo castMember, bool up)
         {
             //abstract method but class can't be actract ore else the Form Designer will fail
         }
@@ -206,65 +200,66 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             //abstract method but class can't be actract ore else the Form Designer will fail
         }
 
-        protected static Int32 FindIndexOfCastMember(List<CastInfo> castList, CastInfo castMember)
+        protected static int FindIndexOfCastMember(List<CastInfo> castList, CastInfo castMember)
         {
-            Int32 indexOf;
+            var indexOf = -1;
 
-            indexOf = -1;
-            for (Int32 i = 0; i < castList.Count; i++)
+            for (var i = 0; i < castList.Count; i++)
             {
                 if (castList[i].Identifier == castMember.Identifier)
                 {
                     indexOf = i;
+
                     break;
                 }
             }
-            return (indexOf);
+
+            return indexOf;
         }
 
-        protected void UpdateUI(List<CastInfo> castList
-            , List<CrewInfo> crewList
-            , DataGridView movieCastDataGridView
-            , DataGridView movieCrewDataGridView
-            , Boolean parseCast
-            , Boolean parseCrew
-            , String filmLink
-            , String filmName)
+        protected void UpdateUI(List<CastInfo> castList, List<CrewInfo> crewList, DataGridView movieCastDataGridView, DataGridView movieCrewDataGridView, bool parseCast, bool parseCrew, string filmLink, string filmName)
         {
             #region Update Cast UI
+
             if (parseCast)
             {
                 DataGridViewHelper.FillCastRows(movieCastDataGridView, castList, false, false);
-                foreach (CastInfo castMember in castList)
+
+                foreach (var castMember in castList)
                 {
                     if (castMember.FirstName == FirstNames.Title)
                     {
                         continue;
                     }
+
                     if (Program.CastCache.ContainsKey(castMember.PersonLink))
                     {
-                        PersonInfo other;
+                        var other = Program.CastCache[castMember.PersonLink];
 
-                        other = Program.CastCache[castMember.PersonLink];
                         other.AddFilmInfo(filmLink, filmName);
-                        castMember.FilmInfoList = other.FilmInfoList;
-                        if ((castMember.FirstName != other.FirstName) || (castMember.MiddleName != other.MiddleName)
-                            || (castMember.LastName != other.LastName))
-                        {
-                            String messageText;
-                            String logText;
-                            PersonInfoWithoutBirthYear piwby;
 
-                            piwby = new PersonInfoWithoutBirthYear(other);
-                            messageText = String.Format(MessageBoxTexts.CommonCastNameHasChanged
+                        castMember.FilmInfoList = other.FilmInfoList;
+
+                        if (castMember.FirstName != other.FirstName
+                            || castMember.MiddleName != other.MiddleName
+                            || castMember.LastName != other.LastName)
+                        {
+                            var piwby = new PersonInfoWithoutBirthYear(other);
+
+                            var messageText = string.Format(MessageBoxTexts.CommonCastNameHasChanged
                                 , other.FormatPersonNameWithoutMarkers(), other.FormatPersonNameWithMarkers()
                                 , castMember.FormatPersonNameWithMarkers(), castMember.PersonLink);
-                            logText = String.Format(MessageBoxTexts.CommonCastNameHasChanged
+
+                            var logText = string.Format(MessageBoxTexts.CommonCastNameHasChanged
                                 , other.FormatPersonNameWithoutMarkers(), other.FormatPersonNameWithMarkersAsHtml(new[] { castMember })
                                 , castMember.FormatPersonNameWithMarkersAsHtml(new[] { other }), DataGridViewHelper.CreatePersonLinkHtml(castMember));
-                            Log.AppendParagraph(logText);
+
+                            _log.AppendParagraph(logText);
+
                             AddMessage(new MessageEntry(messageText, MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning));
+
                             ReorganizePossibleDuplicatesCache(castMember, piwby);
+
                             other.FirstName = castMember.FirstName;
                             other.MiddleName = castMember.MiddleName;
                             other.LastName = castMember.LastName;
@@ -273,46 +268,57 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     else
                     {
                         castMember.AddFilmInfo(filmLink, filmName);
+
                         Program.CastCache.Add(castMember.PersonLink, new PersonInfo(castMember));
                     }
+
                     AddPossibleDuplicate(castMember);
                 }
             }
+
             #endregion
+
             #region Update Crew UI
+
             if (parseCrew)
             {
                 DataGridViewHelper.FillCrewRows(movieCrewDataGridView, crewList);
-                foreach (CrewInfo crewMember in crewList)
+
+                foreach (var crewMember in crewList)
                 {
                     if (crewMember.FirstName == FirstNames.Title)
                     {
                         continue;
                     }
+
                     if (Program.CrewCache.ContainsKey(crewMember.PersonLink))
                     {
-                        PersonInfo other;
+                        var other = Program.CrewCache[crewMember.PersonLink];
 
-                        other = Program.CrewCache[crewMember.PersonLink];
                         other.AddFilmInfo(filmLink, filmName);
-                        crewMember.FilmInfoList = other.FilmInfoList;
-                        if ((crewMember.FirstName != other.FirstName) || (crewMember.MiddleName != other.MiddleName)
-                            || (crewMember.LastName != other.LastName))
-                        {
-                            String text;
-                            String logText;
-                            PersonInfoWithoutBirthYear piwby;
 
-                            piwby = new PersonInfoWithoutBirthYear(other);
-                            text = String.Format(MessageBoxTexts.CommonCrewNameHasChanged
+                        crewMember.FilmInfoList = other.FilmInfoList;
+
+                        if (crewMember.FirstName != other.FirstName
+                            || crewMember.MiddleName != other.MiddleName
+                            || crewMember.LastName != other.LastName)
+                        {
+                            var piwby = new PersonInfoWithoutBirthYear(other);
+
+                            var messageText = string.Format(MessageBoxTexts.CommonCrewNameHasChanged
                                 , other.FormatPersonNameWithoutMarkers(), other.FormatPersonNameWithMarkers()
                                 , crewMember.FormatPersonNameWithMarkers(), crewMember.PersonLink);
-                            logText = String.Format(MessageBoxTexts.CommonCrewNameHasChanged
+
+                            var logText = string.Format(MessageBoxTexts.CommonCrewNameHasChanged
                                 , other.FormatPersonNameWithoutMarkers(), other.FormatPersonNameWithMarkersAsHtml(new[] { crewMember })
                                 , crewMember.FormatPersonNameWithMarkersAsHtml(new[] { other }), DataGridViewHelper.CreatePersonLinkHtml(crewMember));
-                            Log.AppendParagraph(logText);
-                            AddMessage(new MessageEntry(text, MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning));
+
+                            _log.AppendParagraph(logText);
+
+                            AddMessage(new MessageEntry(messageText, MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning));
+
                             ReorganizePossibleDuplicatesCache(crewMember, piwby);
+
                             other.FirstName = crewMember.FirstName;
                             other.MiddleName = crewMember.MiddleName;
                             other.LastName = crewMember.LastName;
@@ -321,60 +327,61 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     else
                     {
                         crewMember.AddFilmInfo(filmLink, filmName);
+
                         Program.CrewCache.Add(crewMember.PersonLink, new PersonInfo(crewMember));
                     }
+
                     AddPossibleDuplicate(crewMember);
                 }
             }
+
             #endregion
         }
 
         private static void AddPossibleDuplicate(CastInfo personInfo)
         {
-            PersonInfoWithoutBirthYear piwby;
+            var piwby = new PersonInfoWithoutBirthYear(personInfo);
 
-            piwby = new PersonInfoWithoutBirthYear(personInfo);
             if (Program.PossibleCastDuplicateCache.ContainsKey(piwby))
             {
-                List<PersonInfo> list;
+                var list = Program.PossibleCastDuplicateCache[piwby];
 
-                list = Program.PossibleCastDuplicateCache[piwby];
-                if (list.Contains(personInfo) == false)
+                if (!list.Contains(personInfo))
                 {
                     list.Add(personInfo);
                 }
             }
             else
             {
-                List<PersonInfo> list;
+                var list = new List<PersonInfo>(1)
+                {
+                    personInfo,
+                };
 
-                list = new List<PersonInfo>(1);
-                list.Add(personInfo);
                 Program.PossibleCastDuplicateCache.Add(piwby, list);
             }
         }
 
         private static void AddPossibleDuplicate(CrewInfo personInfo)
         {
-            PersonInfoWithoutBirthYear piwby;
+            var piwby = new PersonInfoWithoutBirthYear(personInfo);
 
-            piwby = new PersonInfoWithoutBirthYear(personInfo);
             if (Program.PossibleCrewDuplicateCache.ContainsKey(piwby))
             {
-                List<PersonInfo> list;
+                var list = Program.PossibleCrewDuplicateCache[piwby];
 
-                list = Program.PossibleCrewDuplicateCache[piwby];
-                if (list.Contains(personInfo) == false)
+                if (!list.Contains(personInfo))
                 {
                     list.Add(personInfo);
                 }
             }
             else
             {
-                List<PersonInfo> list;
+                var list = new List<PersonInfo>(1)
+                {
+                    personInfo,
+                };
 
-                list = new List<PersonInfo>(1);
-                list.Add(personInfo);
                 Program.PossibleCrewDuplicateCache.Add(piwby, list);
             }
         }
@@ -387,9 +394,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
             else
             {
-                List<PersonInfo> list;
+                var list = Program.PossibleCastDuplicateCache[piwby];
 
-                list = Program.PossibleCastDuplicateCache[piwby];
                 list.Remove(personInfo);
             }
         }
@@ -402,18 +408,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
             else
             {
-                List<PersonInfo> list;
+                var list = Program.PossibleCrewDuplicateCache[piwby];
 
-                list = Program.PossibleCrewDuplicateCache[piwby];
                 list.Remove(personInfo);
             }
         }
 
-        private void GetHeadshots(DataGridView castDataGridView
-            , DataGridView crewDataGridView
-            , String headshotButtonText)
+        private void GetHeadshots(DataGridView castDataGridView, DataGridView crewDataGridView, string headshotButtonText)
         {
-            Int32 progressMax = 0;
+            var progressMax = 0;
 
             if (Program.Settings.DefaultValues.GetCastHeadShots)
             {
@@ -437,10 +440,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
         }
 
-        private void GetHeadshots(Int32 counter
-            , DataGridView castDataGridView
-            , DataGridView crewDataGridView
-            , String headshotButtonText)
+        private void GetHeadshots(int counter, DataGridView castDataGridView, DataGridView crewDataGridView, string headshotButtonText)
         {
             try
             {
@@ -448,14 +448,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
                 if (Program.Settings.DefaultValues.GetCastHeadShots)
                 {
-                    DataGridViewHelper.GetHeadshots(castDataGridView, Program.Settings.DefaultValues.UseFakeBirthYears, true
-                        , AddMessage, this.SetProgress);
+                    DataGridViewHelper.GetHeadshots(castDataGridView, Program.Settings.DefaultValues.UseFakeBirthYears, true, AddMessage, this.SetProgress);
                 }
+
                 if (Program.Settings.DefaultValues.GetCrewHeadShots)
                 {
-                    DataGridViewHelper.GetHeadshots(crewDataGridView, Program.Settings.DefaultValues.UseFakeBirthYears, false
-                        , AddMessage, this.SetProgress);
+                    DataGridViewHelper.GetHeadshots(crewDataGridView, Program.Settings.DefaultValues.UseFakeBirthYears, false, AddMessage, this.SetProgress);
                 }
+
                 if (Program.Settings.DefaultValues.AutoCopyHeadShots)
                 {
                     if (Directory.Exists(Program.Settings.DefaultValues.CreditPhotosFolder))
@@ -476,31 +476,33 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                     }
                     else
                     {
-                        MessageBox.Show(this, MessageBoxTexts.HeadShotsTargetDirectoryInvalid, MessageBoxTexts.HeadShotsTargetDirectoryInvalidHeader
-                            , MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(this, MessageBoxTexts.HeadShotsTargetDirectoryInvalid, MessageBoxTexts.HeadShotsTargetDirectoryInvalidHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                if (Program.Settings.DefaultValues.DisableParsingCompleteMessageBoxForGetHeadshots == false)
+
+                if (!Program.Settings.DefaultValues.DisableParsingCompleteMessageBoxForGetHeadshots)
                 {
                     this.ProcessMessageQueue();
-                    MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK
-                        , MessageBoxIcon.Information);
+
+                    MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (WebException webEx)
             {
-                if ((webEx.Message.Contains("502")) || (webEx.Message.Contains("503")))
+                if (webEx.Message.Contains("502") || webEx.Message.Contains("503"))
                 {
                     counter++;
+
                     if (counter >= 5)
                     {
-                        MessageBox.Show(this, String.Format(MessageBoxTexts.Error503, headshotButtonText)
-                            , MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(this, string.Format(MessageBoxTexts.Error503, headshotButtonText), MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                         Program.WriteError(webEx);
                     }
                     else
                     {
                         Thread.Sleep(5000);
+
                         this.GetHeadshots(counter, castDataGridView, crewDataGridView, headshotButtonText);
                     }
                 }
@@ -513,43 +515,42 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         protected void ProcessMessageQueue()
         {
-            lock (MessageQueueLock)
+            lock (_messageQueueLock)
             {
-                Dictionary<MessageEntry, Boolean> dict = new Dictionary<MessageEntry, Boolean>(MessageQueue.Count);
+                var dict = new Dictionary<MessageEntry, bool>(_messageQueue.Count);
 
-                foreach (MessageEntry entry in MessageQueue)
+                foreach (var entry in _messageQueue)
                 {
                     dict[entry] = true;
                 }
 
-                foreach (MessageEntry entry in dict.Keys)
+                foreach (var entry in dict.Keys)
                 {
                     MessageBox.Show(this, entry.Message, entry.Header, entry.Buttons, entry.Icon);
                 }
 
-                MessageQueue.Clear();
+                _messageQueue.Clear();
             }
         }
 
-        protected void GetHeadshots(DataGridView castDataGridView
-            , DataGridView crewDataGridView
-            , Button getHeadshotButton)
+        protected void GetHeadshots(DataGridView castDataGridView, DataGridView crewDataGridView, Button getHeadshotButton)
         {
             this.StartLongAction();
 
             try
             {
-                if (Directory.Exists(Program.RootPath + @"\Images\CastCrewEdit2") == false)
+                if (!Directory.Exists(Program.RootPath + @"\Images\CastCrewEdit2"))
                 {
                     Directory.CreateDirectory(Program.RootPath + @"\Images\CastCrewEdit2");
                 }
+
                 if (Directory.Exists(Program.RootPath + @"\Images\DVD Profiler"))
                 {
                     if (FirstRunGetHeadShots)
                     {
                         RemoveDVDProfilerHeadShots();
                     }
-                    else if (Program.Settings.DefaultValues.StoreHeadshotsPerSession == false)
+                    else if (!Program.Settings.DefaultValues.StoreHeadshotsPerSession)
                     {
                         RemoveDVDProfilerHeadShots();
                     }
@@ -558,13 +559,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 {
                     Directory.CreateDirectory(Program.RootPath + @"\Images\DVD Profiler");
                 }
+
                 if (Directory.Exists(Program.RootPath + @"\Images\CCViewer"))
                 {
                     if (FirstRunGetHeadShots)
                     {
                         RemoveCCViewerHeadshots();
                     }
-                    else if (Program.Settings.DefaultValues.StoreHeadshotsPerSession == false)
+                    else if (!Program.Settings.DefaultValues.StoreHeadshotsPerSession)
                     {
                         RemoveCCViewerHeadshots();
                     }
@@ -579,11 +581,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             catch (AggregateException ex)
             {
                 MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
                 Program.WriteError(ex);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
                 Program.WriteError(ex);
             }
             finally
@@ -596,10 +600,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private static void RemoveCCViewerHeadshots()
         {
-            String[] files;
+            var files = Directory.GetFiles(Program.RootPath + @"\Images\CCViewer");
 
-            files = Directory.GetFiles(Program.RootPath + @"\Images\CCViewer");
-            foreach (String file in files)
+            foreach (var file in files)
             {
                 File.Delete(file);
             }
@@ -607,21 +610,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private static void RemoveDVDProfilerHeadShots()
         {
-            String[] files;
+            var files = Directory.GetFiles(Program.RootPath + @"\Images\DVD Profiler");
 
-            files = Directory.GetFiles(Program.RootPath + @"\Images\DVD Profiler");
-            foreach (String file in files)
+            foreach (var file in files)
             {
                 File.Delete(file);
             }
         }
 
-        protected void GetBirthYears(Boolean parseHeadshotsFollows
-            , DataGridView castDataGridView
-            , DataGridView crewDataGridView
-            , LinkLabel birthYearsInLocalCacheLabel
-            , Button getBirthYearsButton
-            , WebBrowser logWebBrowser)
+        protected void GetBirthYears(bool parseHeadshotsFollows, DataGridView castDataGridView, DataGridView crewDataGridView, LinkLabel birthYearsInLocalCacheLabel, Button getBirthYearsButton, WebBrowser logWebBrowser)
         {
             this.StartLongAction();
 
@@ -632,11 +629,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             catch (AggregateException ex)
             {
                 MessageBox.Show(this, ex.InnerException?.Message ?? ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
                 Program.WriteError(ex);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
                 Program.WriteError(ex);
             }
             finally
@@ -651,7 +650,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         protected static bool IsShortCutAction(KeyEventArgs e) => (e.Modifiers == Keys.Control && e.KeyCode == Keys.C) || CtrlSWasPressed(e);
 
-        private static bool CtrlSWasPressed(KeyEventArgs e) => e.Modifiers == Keys.Control && e.KeyCode == Keys.S && ItsMe;
+        protected static bool CtrlSWasPressed(KeyEventArgs e) => e.Modifiers == Keys.Control && e.KeyCode == Keys.S && ItsMe;
 
         protected void TrySendToDvdProfiler(KeyEventArgs e)
         {
@@ -662,9 +661,16 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             try
             {
-                var data = EncodeJson(Clipboard.GetText());
+                var plain = Clipboard.GetText();
 
-                using (var content = new StringContent(data, Encoding.UTF8))
+                if (string.IsNullOrWhiteSpace(plain))
+                {
+                    return;
+                }
+
+                var json = EncodeJson(plain);
+
+                using (var content = new StringContent(json, Encoding.UTF8))
                 {
                     content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
 
@@ -708,13 +714,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             return $"\"{output}\"";
         }
 
-        private void GetBirthYears(Boolean parseHeadshotsFollows
-            , DataGridView castDataGridView
-            , DataGridView crewDataGridView
-            , String getBirthYearsButtonText
-            , WebBrowser logWebBrowser)
+        private void GetBirthYears(bool parseHeadshotsFollows, DataGridView castDataGridView, DataGridView crewDataGridView, string getBirthYearsButtonText, WebBrowser logWebBrowser)
         {
-            Int32 progressMax = castDataGridView.RowCount;
+            var progressMax = castDataGridView.RowCount;
 
             progressMax += crewDataGridView.RowCount;
 
@@ -730,53 +732,45 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
         }
 
-        private void GetBirthYears(Int32 counter
-            , Boolean parseHeadshotsFollows
-            , DataGridView castDataGridView
-            , DataGridView crewDataGridView
-            , String getBirthYearsButtonText
-            , WebBrowser logWebBrowser)
+        private void GetBirthYears(int counter, bool parseHeadshotsFollows, DataGridView castDataGridView, DataGridView crewDataGridView, string getBirthYearsButtonText, WebBrowser logWebBrowser)
         {
             try
             {
                 this.RestartProgress();
 
-                DataGridViewHelper.GetBirthYears(castDataGridView, Program.CastCache, Program.Settings.DefaultValues, Log, true
-                    , AddMessage, this.SetProgress);
+                DataGridViewHelper.GetBirthYears(castDataGridView, Program.CastCache, Program.Settings.DefaultValues, _log, true, AddMessage, this.SetProgress);
 
-                DataGridViewHelper.GetBirthYears(crewDataGridView, Program.CrewCache, Program.Settings.DefaultValues, Log, false
-                    , AddMessage, this.SetProgress);
+                DataGridViewHelper.GetBirthYears(crewDataGridView, Program.CrewCache, Program.Settings.DefaultValues, _log, false, AddMessage, this.SetProgress);
 
-                if (Log.Length > 0)
+                if (_log.Length > 0)
                 {
-                    Log.Show(logWebBrowser);
+                    _log.Show(logWebBrowser);
                 }
 
-                if ((Program.Settings.DefaultValues.DisableParsingCompleteMessageBoxForGetBirthYears == false)
-                    && (parseHeadshotsFollows == false))
+                if (!Program.Settings.DefaultValues.DisableParsingCompleteMessageBoxForGetBirthYears && !parseHeadshotsFollows)
                 {
                     this.ProcessMessageQueue();
 
-                    MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete
-                        , MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (WebException webEx)
             {
-                if ((webEx.Message.Contains("502")) || (webEx.Message.Contains("503")))
+                if (webEx.Message.Contains("502") || webEx.Message.Contains("503"))
                 {
                     counter++;
+
                     if (counter >= 5)
                     {
-                        MessageBox.Show(this, String.Format(MessageBoxTexts.Error503, getBirthYearsButtonText)
-                            , MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(this, string.Format(MessageBoxTexts.Error503, getBirthYearsButtonText), MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                         Program.WriteError(webEx);
                     }
                     else
                     {
                         Thread.Sleep(5000);
-                        this.GetBirthYears(counter, parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButtonText
-                            , logWebBrowser);
+
+                        this.GetBirthYears(counter, parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButtonText, logWebBrowser);
                     }
                 }
                 else

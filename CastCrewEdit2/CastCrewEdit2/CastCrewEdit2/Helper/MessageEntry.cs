@@ -1,47 +1,47 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
+    using System.Windows.Forms;
+
     public sealed class MessageEntry
     {
-        public readonly String Message;
+        public readonly string Message;
 
-        public readonly String Header;
+        public readonly string Header;
 
         public readonly MessageBoxButtons Buttons;
 
         public readonly MessageBoxIcon Icon;
 
-        private readonly Int32 HashCode;
+        private readonly int _hashCode;
 
-        public MessageEntry(String message
-            , String header
-            , MessageBoxButtons buttons
-            , MessageBoxIcon icon)
+        public MessageEntry(string message, string header, MessageBoxButtons buttons, MessageBoxIcon icon)
         {
             Message = message;
+
             Header = header;
+
             Buttons = buttons;
+
             Icon = icon;
-            HashCode = Message.GetHashCode() + Header.GetHashCode() + Buttons.GetHashCode() + Icon.GetHashCode();
+
+            _hashCode = Message.GetHashCode() ^ Header.GetHashCode() ^ Buttons.GetHashCode() ^ Icon.GetHashCode();
         }
 
-        public override Int32 GetHashCode()
-        {
-            return (HashCode);
-        }
+        public override int GetHashCode() => _hashCode;
 
-        public override Boolean Equals(Object obj)
+        public override bool Equals(object obj)
         {
-            MessageEntry other;
-
-            other = obj as MessageEntry;
-            if (other == null)
+            if (!(obj is MessageEntry other))
             {
-                return (false);
+                return false;
             }
-            return ((Message == other.Message) && (Header == other.Header) && (Buttons == other.Buttons) && (Icon == other.Icon));
+
+            var result = Message == other.Message
+                && Header == other.Header
+                && Buttons == other.Buttons
+                && Icon == other.Icon;
+
+            return result;
         }
     }
 }

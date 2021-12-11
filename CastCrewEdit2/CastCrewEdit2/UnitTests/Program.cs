@@ -511,16 +511,16 @@ namespace UnitTests
                 methodInfo.Invoke(mainForm, parameters);
                 crewMatches = (List<KeyValuePair<Match, List<Match>>>)(parameters[8]);
                 crewList = (List<CrewInfo>)(parameters[9]);
-                mainForm.ProgressMax = 0;
-                mainForm.ProgressInterval = Int32.MaxValue;
+                mainForm._progressMax = 0;
+                mainForm._progressInterval = Int32.MaxValue;
                 foreach (KeyValuePair<Match, List<Match>> kvp in crewMatches)
                 {
-                    mainForm.ProgressMax += kvp.Value.Count;
+                    mainForm._progressMax += kvp.Value.Count;
                 }
-                mainForm.TheProgressBar = new ColorProgressBar();
-                mainForm.TheProgressBar.Minimum = 0;
-                mainForm.TheProgressBar.Maximum = mainForm.ProgressMax;
-                mainForm.ProgressValue = 0;
+                mainForm._progressBar = new ColorProgressBar();
+                mainForm._progressBar.Minimum = 0;
+                mainForm._progressBar.Maximum = mainForm._progressMax;
+                mainForm._progressValue = 0;
                 crewList = new List<CrewInfo>(crewMatches.Count);
                 IMDbParser.ProcessCrewLine(crewList, crewMatches, defaultValues, mainForm.SetProgress);
                 crewInformation = new CrewInformation();
@@ -530,7 +530,7 @@ namespace UnitTests
                 existing = new FileInfo(@"Existing\" + key + ".crew.xml");
                 current = new FileInfo(@"Current\" + key + ".crew.xml");
 
-                progressBarMaxValue = mainForm.ProgressMax;
+                progressBarMaxValue = mainForm._progressMax;
             }
         }
 
@@ -588,12 +588,12 @@ namespace UnitTests
                 methodInfo.Invoke(mainForm, parameters);
                 castMatches = (List<Match>)(parameters[6]);
                 castList = (List<CastInfo>)(parameters[7]);
-                mainForm.ProgressMax = castMatches.Count;
-                mainForm.ProgressInterval = Int32.MaxValue;
-                mainForm.TheProgressBar = new ColorProgressBar();
-                mainForm.TheProgressBar.Minimum = 0;
-                mainForm.TheProgressBar.Maximum = mainForm.ProgressMax;
-                mainForm.ProgressValue = 0;
+                mainForm._progressMax = castMatches.Count;
+                mainForm._progressInterval = Int32.MaxValue;
+                mainForm._progressBar = new ColorProgressBar();
+                mainForm._progressBar.Minimum = 0;
+                mainForm._progressBar.Maximum = mainForm._progressMax;
+                mainForm._progressValue = 0;
                 castList = new List<CastInfo>(castMatches.Count);
                 IMDbParser.ProcessCastLine(castList, castMatches, defaultValues, mainForm.SetProgress);
                 castInformation = new CastInformation();
@@ -603,7 +603,7 @@ namespace UnitTests
                 existing = new FileInfo(@"Existing\" + key + ".cast.xml");
                 current = new FileInfo(@"Current\" + key + ".cast.xml");
 
-                progressBarMaxValue = mainForm.ProgressMax;
+                progressBarMaxValue = mainForm._progressMax;
             }
         }
 
@@ -625,20 +625,20 @@ namespace UnitTests
 
             using (MainForm mainForm = new MainForm(true))
             {
-                mainForm.ProgressMax = 0;
-                mainForm.ProgressInterval = Int32.MaxValue;
+                mainForm._progressMax = 0;
+                mainForm._progressInterval = Int32.MaxValue;
                 foreach (KeyValuePair<String, List<Match>> kvp in matches)
                 {
-                    mainForm.ProgressMax += kvp.Value.Count;
+                    mainForm._progressMax += kvp.Value.Count;
                 }
                 defaultValues = new DefaultValues();
                 defaultValues.CreditTypeSoundtrack = true;
                 defaultValues.CheckPersonLinkForRedirect = false;
-                mainForm.TheProgressBar = new ColorProgressBar();
-                mainForm.TheProgressBar.Minimum = 0;
-                mainForm.TheProgressBar.Maximum = mainForm.ProgressMax;
-                mainForm.ProgressValue = 0;
-                crewList = new List<CrewInfo>(mainForm.ProgressMax);
+                mainForm._progressBar = new ColorProgressBar();
+                mainForm._progressBar.Minimum = 0;
+                mainForm._progressBar.Maximum = mainForm._progressMax;
+                mainForm._progressValue = 0;
+                crewList = new List<CrewInfo>(mainForm._progressMax);
                 IMDbParser.ProcessSoundtrackLine(crewList, matches, defaultValues, mainForm.SetProgress);
                 crewInformation = new CrewInformation();
                 crewInformation.Title = key;
@@ -647,7 +647,7 @@ namespace UnitTests
                 existing = new FileInfo(@"Existing\" + key + ".soundtrack.xml");
                 current = new FileInfo(@"Current\" + key + ".soundtrack.xml");
 
-                progressBarMaxValue = mainForm.ProgressMax;
+                progressBarMaxValue = mainForm._progressMax;
             }
         }
 

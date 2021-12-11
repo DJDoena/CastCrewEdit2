@@ -1,92 +1,86 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using DVDProfilerXML.Version400;
+
     public static class ExtendedCrewSorter
     {
         private class CrewComparer : IComparable<CrewComparer>
         {
-            private Int32 EpisodeId { get; set; }
+            private int EpisodeId { get; set; }
 
-            private Int32 OriginalOrderId { get; set; }
+            private int OriginalOrderId { get; set; }
 
             private ExtendedCrewMember CrewMember { get; set; }
 
             private ExtendedCrewDivider CrewDivider { get; set; }
 
-            internal Object CrewEntry
-                => ((CrewMember != null) ? (Object)CrewMember : CrewDivider);
+            internal object CrewEntry => this.CrewMember != null
+                ? (object)this.CrewMember
+                : this.CrewDivider;
 
-            private CrewComparer(Int32 episodeId
-                , Int32 originalOrderId)
+            private CrewComparer(int episodeId, int originalOrderId)
             {
-                EpisodeId = episodeId;
-                OriginalOrderId = originalOrderId;
+                this.EpisodeId = episodeId;
+
+                this.OriginalOrderId = originalOrderId;
             }
 
-            internal CrewComparer(Int32 episodeId
-                , Int32 originalOrderId
-                , ExtendedCrewMember crewMember)
-                : this(episodeId, originalOrderId)
+            internal CrewComparer(int episodeId, int originalOrderId, ExtendedCrewMember crewMember) : this(episodeId, originalOrderId)
             {
-                CrewMember = crewMember;
+                this.CrewMember = crewMember;
             }
 
-            internal CrewComparer(Int32 episodeId
-                , Int32 originalOrderId
-                , ExtendedCrewDivider crewDivider)
-                : this(episodeId, originalOrderId)
+            internal CrewComparer(int episodeId, int originalOrderId, ExtendedCrewDivider crewDivider) : this(episodeId, originalOrderId)
             {
-                CrewDivider = crewDivider;
+                this.CrewDivider = crewDivider;
             }
 
-            public Int32 CompareTo(CrewComparer other)
+            public int CompareTo(CrewComparer other)
             {
                 if (other == null)
                 {
-                    return (1);
+                    return 1;
                 }
 
-                Int32 compare = EpisodeId.CompareTo(other.EpisodeId);
+                var compare = this.EpisodeId.CompareTo(other.EpisodeId);
 
                 if (compare != 0)
                 {
-                    return (compare);
+                    return compare;
                 }
 
-                compare = GetCompareValue(CrewEntry, other.CrewEntry);
+                compare = GetCompareValue(this.CrewEntry, other.CrewEntry);
 
                 if (compare != 0)
                 {
-                    return (compare);
+                    return compare;
                 }
 
-                return (OriginalOrderId.CompareTo(other.OriginalOrderId));
+                return this.OriginalOrderId.CompareTo(other.OriginalOrderId);
             }
 
-            private static Int32 GetCompareValue(Object left
-                , Object right)
+            private static int GetCompareValue(object left, object right)
             {
-                Int32 compareLeft = GetCompareValue(left);
+                var compareLeft = GetCompareValue(left);
 
-                Int32 compareRight = GetCompareValue(right);
+                var compareRight = GetCompareValue(right);
 
-                return (compareLeft.CompareTo(compareRight));
+                return compareLeft.CompareTo(compareRight);
             }
 
-            private static Int32 GetCompareValue(Object crewEntry)
+            private static int GetCompareValue(object crewEntry)
             {
-                ExtendedCrewDivider crewDivider = crewEntry as ExtendedCrewDivider;
+                var crewDivider = crewEntry as ExtendedCrewDivider;
 
-                Int32 compare;
+                int compare;
                 if (crewDivider != null)
                 {
                     switch (crewDivider.Type)
                     {
-                        case (DividerType.Episode):
+                        case DividerType.Episode:
                             {
                                 compare = -1;
 
@@ -102,7 +96,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
                 }
                 else
                 {
-                    ExtendedCrewMember crewMember = crewEntry as ExtendedCrewMember;
+                    var crewMember = crewEntry as ExtendedCrewMember;
 
                     if (crewMember != null)
                     {
@@ -110,60 +104,60 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
                     }
                     else
                     {
-                        Debug.Fail(String.Format("Unknown Object type {0}", crewEntry));
+                        Debug.Fail(string.Format("Unknown object type {0}", crewEntry));
 
                         compare = -2;
                     }
                 }
 
-                return (compare);
+                return compare;
             }
 
-            private static Int32 GetCompareValue(String creditType)
+            private static int GetCompareValue(string creditType)
             {
                 switch (creditType)
                 {
-                    case ("Direction"):
+                    case "Direction":
                         {
-                            return (1);
+                            return 1;
                         }
-                    case ("Writing"):
+                    case "Writing":
                         {
-                            return (2);
+                            return 2;
                         }
-                    case ("Production"):
+                    case "Production":
                         {
-                            return (3);
+                            return 3;
                         }
-                    case ("Cinematography"):
+                    case "Cinematography":
                         {
-                            return (4);
+                            return 4;
                         }
-                    case ("Film Editing"):
+                    case "Film Editing":
                         {
-                            return (5);
+                            return 5;
                         }
-                    case ("Music"):
+                    case "Music":
                         {
-                            return (6);
+                            return 6;
                         }
-                    case ("Sound"):
+                    case "Sound":
                         {
-                            return (7);
+                            return 7;
                         }
-                    case ("Art"):
+                    case "Art":
                         {
-                            return (8);
+                            return 8;
                         }
-                    case ("Other"):
+                    case "Other":
                         {
-                            return (9);
+                            return 9;
                         }
                     default:
                         {
-                            Debug.Fail(String.Format("Unknown Credit Type '{0}'", creditType));
+                            Debug.Fail(string.Format("Unknown Credit Type '{0}'", creditType));
 
-                            return (0);
+                            return 0;
                         }
                 }
             }
@@ -171,26 +165,26 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
 
         public static ExtendedCrewInformation GetSortedCrew(ExtendedCrewInformation unsortedCrew)
         {
-            if ((unsortedCrew?.CrewList?.Length > 0) == false)
+            if (!(unsortedCrew?.CrewList?.Length > 0))
             {
-                return (unsortedCrew);
+                return unsortedCrew;
             }
 
-            ExtendedCrewInformation sortedCrew = new ExtendedCrewInformation();
-
-            sortedCrew.ImdbLink = unsortedCrew.ImdbLink;
-
-            sortedCrew.Title = unsortedCrew.Title;
-
-            List<CrewComparer> sortedList = new List<CrewComparer>(unsortedCrew.CrewList.Length);
-
-            Int32 currentEpisodeId = 0;
-
-            Int32 originalOrderId = 0;
-
-            foreach (Object crewEntry in unsortedCrew.CrewList)
+            var sortedCrew = new ExtendedCrewInformation()
             {
-                ExtendedCrewDivider divider = crewEntry as ExtendedCrewDivider;
+                ImdbLink = unsortedCrew.ImdbLink,
+                Title = unsortedCrew.Title,
+            };
+
+            var sortedList = new List<CrewComparer>(unsortedCrew.CrewList.Length);
+
+            var currentEpisodeId = 0;
+
+            var originalOrderId = 0;
+
+            foreach (var crewEntry in unsortedCrew.CrewList)
+            {
+                var divider = crewEntry as ExtendedCrewDivider;
 
                 if (divider != null)
                 {
@@ -213,7 +207,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
 
             sortedCrew.CrewList = (sortedList.ConvertAll(sortedEntry => sortedEntry.CrewEntry)).ToArray();
 
-            return (sortedCrew);
+            return sortedCrew;
         }
     }
 }

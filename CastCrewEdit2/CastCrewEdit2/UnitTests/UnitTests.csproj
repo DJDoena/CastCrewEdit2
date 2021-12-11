@@ -56,16 +56,16 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CastCrewEdit2Library\CastCrewEdit2Library.csproj">
+      <Project>{287660c9-fd98-457d-a652-702f754d4033}</Project>
+      <Name>CastCrewEdit2Library</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CastCrewEdit2\CastCrewEdit2.csproj">
       <Project>{ff2b79d8-3e3d-47f2-b3b6-0cf9f6902372}</Project>
       <Name>CastCrewEdit2</Name>
     </ProjectReference>
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />
-    <ProjectReference Include="..\..\CastCrewEdit2Library\CastCrewEdit2Library.csproj">
-      <Project>{287660C9-FD98-457D-A652-702F754D4033}</Project>
-      <Name>CastCrewEdit2Library</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\DVDProfilerXML\DVDProfilerHelper\DVDProfilerHelper\DVDProfilerHelper.csproj">
       <Project>{461DACCA-8EBF-4C03-AD1A-C438E4EB3B36}</Project>
       <Name>DVDProfilerHelper</Name>

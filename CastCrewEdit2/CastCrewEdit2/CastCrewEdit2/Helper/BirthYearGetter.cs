@@ -1,21 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
+    using System.Text.RegularExpressions;
+    using System.Windows.Forms;
+    using Resources;
+
     internal static class BirthYearGetter
     {
         private static readonly Regex _birthYearRegex;
+
         private static readonly Regex _dateOfBirthRegex;
 
         static BirthYearGetter()
         {
             _birthYearRegex = new Regex("<a.+?href=\"/search/name\\?birth_year=(?'BirthYear'[0-9]+)", RegexOptions.Compiled);
+
             _dateOfBirthRegex = new Regex("<h4 class=\"inline\">Born:</h4>", RegexOptions.Compiled);
         }
 
@@ -101,11 +103,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         {
             string previousBirthYear = null;
 
-            if (string.IsNullOrEmpty(other.BirthYear) == false)
+            if (!string.IsNullOrEmpty(other.BirthYear))
             {
                 previousBirthYear = other.BirthYear;
             }
-            else if (string.IsNullOrEmpty(other.FakeBirthYear) == false)
+            else if (!string.IsNullOrEmpty(other.FakeBirthYear))
             {
                 previousBirthYear = other.FakeBirthYear;
             }
@@ -118,14 +120,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             person.FakeBirthYear = other.FakeBirthYear;
             person.BirthYearWasRetrieved = other.BirthYearWasRetrieved;
 
-            if ((string.IsNullOrEmpty(previousBirthYear) == false) && (previousBirthYear != other.FakeBirthYear))
+            if (!string.IsNullOrEmpty(previousBirthYear) && previousBirthYear != other.FakeBirthYear)
             {
                 ShowBirthYearMessageBox(log, person, previousBirthYear, castMember, addMessage);
             }
 
             ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Value = other.FakeBirthYear);
 
-            if ((castMember == null) || (castMember.IsAdditionalRow == false))
+            if (castMember == null || !castMember.IsAdditionalRow)
             {
                 ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Style.BackColor = Color.White);
             }
@@ -156,7 +158,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
                     ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Value = other.BirthYear);
 
-                    if (string.IsNullOrEmpty(other.FakeBirthYear) == false)
+                    if (!string.IsNullOrEmpty(other.FakeBirthYear))
                     {
                         ShowBirthYearMessageBox(log, other, person.FakeBirthYear, castMember, addMessage);
 
@@ -170,7 +172,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 invokeResults.AddRange(GetBirthYear(row, person, other, log, castMember, addMessage));
             }
 
-            if ((castMember == null) || (castMember.IsAdditionalRow == false))
+            if (castMember == null || !castMember.IsAdditionalRow)
             {
                 ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Style.BackColor = Color.White);
             }
@@ -182,19 +184,19 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
             invokeResults.AddRange(GetBirthYear(row, person, other, log, castMember, addMessage));
 
-            if ((castMember == null) || (castMember.IsAdditionalRow == false))
+            if (castMember == null || !castMember.IsAdditionalRow)
             {
                 ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Style.BackColor = Color.White);
             }
 
-            if ((string.IsNullOrEmpty(person.BirthYear) == false) && (string.IsNullOrEmpty(previousBirthYear) == false))
+            if (!string.IsNullOrEmpty(person.BirthYear) && !string.IsNullOrEmpty(previousBirthYear))
             {
                 if (person.BirthYear != previousBirthYear)
                 {
                     ShowBirthYearMessageBox(log, person, previousBirthYear, castMember, addMessage);
                 }
             }
-            else if ((string.IsNullOrEmpty(person.BirthYear)) && (string.IsNullOrEmpty(previousBirthYear) == false))
+            else if (string.IsNullOrEmpty(person.BirthYear) && !string.IsNullOrEmpty(previousBirthYear))
             {
                 ShowBirthYearMessageBox(log, person, previousBirthYear, castMember, addMessage);
             }
@@ -212,7 +214,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
             other.BirthYearWasRetrieved = true;
 
-            if ((string.IsNullOrEmpty(other.BirthYear) == false) && (string.IsNullOrEmpty(other.FakeBirthYear) == false))
+            if (!string.IsNullOrEmpty(other.BirthYear) && !string.IsNullOrEmpty(other.FakeBirthYear))
             {
                 ShowBirthYearMessageBox(log, other, person.FakeBirthYear, castMember, addMessage);
 
@@ -237,7 +239,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
         }
 
-        private static void ShowBirthYearMessageBox(Log log, PersonInfo person, String previousBirthYear, CastInfo castMember, Action<MessageEntry> addMessage)
+        private static void ShowBirthYearMessageBox(Log log, PersonInfo person, string previousBirthYear, CastInfo castMember, Action<MessageEntry> addMessage)
         {
             var old = new PersonInfo(person)
             {
@@ -269,7 +271,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             {
                 var person = (PersonInfo)(row.Tag);
 
-                if (dict.TryGetValue(person.PersonLink, out List<DataGridViewRow> list) == false)
+                if (!dict.TryGetValue(person.PersonLink, out List<DataGridViewRow> list))
                 {
                     list = new List<DataGridViewRow>(1);
 

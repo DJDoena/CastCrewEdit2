@@ -1,77 +1,93 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Windows.Forms;
+    using Helper;
+    using Resources;
+
     internal partial class CacheForm : Form
     {
-        private List<PersonInfo> Persons;
+        private readonly List<PersonInfo> _persons;
 
-        public CacheForm(List<PersonInfo> persons, String cacheName)
+        public CacheForm(List<PersonInfo> persons, string cacheName)
         {
-            Persons = persons;
-            InitializeComponent();
-            Text = cacheName;
-            Icon = Properties.Resource.djdsoft;
+            _persons = persons;
+
+            this.InitializeComponent();
+
+            this.Text = cacheName;
+            this.Icon = Properties.Resource.djdsoft;
         }
 
-        private void OnFormLoad(Object sender, EventArgs e)
+        private void OnFormLoad(object sender, EventArgs e)
         {
-            DataGridViewLinkColumn LinkColumn;
-            DataGridViewTextBoxColumn LastNameColumn;
-            DataGridViewTextBoxColumn BirthYearColumn;
-            DataGridViewTextBoxColumn FakeBirthYearColumn;
-            DataGridViewTextBoxColumn FirstNameColumn;
-            DataGridViewTextBoxColumn MiddleNameColumn;
-            DataGridViewTextBoxColumn PersonTypeColumn;
+            this.UseWaitCursor = true;
+            this.Cursor = Cursors.WaitCursor;
 
-            UseWaitCursor = true;
-            Cursor = Cursors.WaitCursor;
-            LastNameColumn = new DataGridViewTextBoxColumn();
-            FirstNameColumn = new DataGridViewTextBoxColumn();
-            MiddleNameColumn = new DataGridViewTextBoxColumn();
-            BirthYearColumn = new DataGridViewTextBoxColumn();
-            FakeBirthYearColumn = new DataGridViewTextBoxColumn();
-            LinkColumn = new DataGridViewLinkColumn();
-            PersonTypeColumn = new DataGridViewTextBoxColumn();
-            LastNameColumn.HeaderText = "Last Name";
-            LastNameColumn.Name = "LastName";
-            LastNameColumn.ReadOnly = true;
-            FirstNameColumn.HeaderText = "First Name";
-            FirstNameColumn.Name = "FirstName";
-            FirstNameColumn.ReadOnly = true;
-            MiddleNameColumn.HeaderText = "Middle Name";
-            MiddleNameColumn.Name = "MiddleName";
-            MiddleNameColumn.ReadOnly = true;
-            BirthYearColumn.HeaderText = "Birth Year";
-            BirthYearColumn.Name = "BirthYear";
-            BirthYearColumn.ReadOnly = true;
-            FakeBirthYearColumn.HeaderText = "Fake Birth Year";
-            FakeBirthYearColumn.Name = "FakeBirthYear";
-            FakeBirthYearColumn.ReadOnly = true;
-            LinkColumn.HeaderText = "Link";
-            LinkColumn.Name = "Link";
-            LinkColumn.ReadOnly = true;
-            LinkColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            LinkColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            PersonTypeColumn.HeaderText = "Type";
-            PersonTypeColumn.Name = "Type";
-            PersonTypeColumn.ReadOnly = true;
-            DataGridView.Columns.AddRange(new DataGridViewColumn[] {FirstNameColumn, MiddleNameColumn
-                , LastNameColumn, BirthYearColumn, FakeBirthYearColumn, LinkColumn, PersonTypeColumn });
-            foreach (PersonInfo person in Persons)
+            var lastNameColumn = new DataGridViewTextBoxColumn()
             {
-                DataGridViewRow row;
+                HeaderText = "Last Name",
+                Name = "LastName",
+                ReadOnly = true,
+            };
 
-                row = DataGridView.Rows[DataGridView.Rows.Add()];
+            var firstNameColumn = new DataGridViewTextBoxColumn()
+            {
+                HeaderText = "First Name",
+                Name = "FirstName",
+                ReadOnly = true,
+            };
+
+            var middleNameColumn = new DataGridViewTextBoxColumn()
+            {
+                HeaderText = "Middle Name",
+                Name = "MiddleName",
+                ReadOnly = true,
+            };
+
+            var birthYearColumn = new DataGridViewTextBoxColumn()
+            {
+                HeaderText = "Birth Year",
+                Name = "BirthYear",
+                ReadOnly = true,
+            };
+
+            var fakeBirthYearColumn = new DataGridViewTextBoxColumn()
+            {
+                HeaderText = "Fake Birth Year",
+                Name = "FakeBirthYear",
+                ReadOnly = true,
+            };
+
+            var linkColumn = new DataGridViewLinkColumn()
+            {
+                HeaderText = "Link",
+                Name = "Link",
+                ReadOnly = true,
+                Resizable = DataGridViewTriState.True,
+                SortMode = DataGridViewColumnSortMode.Automatic,
+            };
+
+            var personTypeColumn = new DataGridViewTextBoxColumn()
+            {
+                HeaderText = "Type",
+                Name = "Type",
+                ReadOnly = true,
+            };
+
+            DataGridView.Columns.AddRange(firstNameColumn, middleNameColumn, lastNameColumn, birthYearColumn, fakeBirthYearColumn, linkColumn, personTypeColumn);
+
+            foreach (var person in _persons)
+            {
+                var row = DataGridView.Rows[DataGridView.Rows.Add()];
+
                 row.Cells["Link"].Value = person.PersonLink;
                 row.Cells["LastName"].Value = person.LastName;
                 row.Cells["MiddleName"].Value = person.MiddleName;
                 row.Cells["FirstName"].Value = person.FirstName;
+
                 if (person.BirthYearWasRetrieved)
                 {
                     row.Cells["BirthYear"].Value = person.BirthYear;
@@ -80,15 +96,18 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                 {
                     row.Cells["BirthYear"].Value = DataGridViewTexts.NotRetrievedYet;
                 }
+
                 row.Cells["FakeBirthYear"].Value = person.FakeBirthYear;
                 row.Cells["Type"].Value = person.Type;
             }
-            DataGridView.CellContentClick += OnDataGridViewCellContentClick;
-            Cursor = Cursors.Default;
-            UseWaitCursor = false;
+
+            DataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
+
+            this.Cursor = Cursors.Default;
+            this.UseWaitCursor = false;
         }
 
-        void OnDataGridViewCellContentClick(Object sender, DataGridViewCellEventArgs e)
+        private void OnDataGridViewCellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 5)
             {
@@ -96,9 +115,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             }
         }
 
-        private void OnCloseButtonClick(Object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void OnCloseButtonClick(object sender, EventArgs e) => this.Close();
     }
 }

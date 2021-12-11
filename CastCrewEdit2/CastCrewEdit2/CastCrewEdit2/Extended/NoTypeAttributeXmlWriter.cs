@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using System.Xml;
 
@@ -7,19 +6,16 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
 {
     internal sealed class NoTypeAttributeXmlWriter : XmlTextWriter
     {
-        private Boolean SkipAttribute { get; set; }
+        private bool SkipAttribute { get; set; }
 
-        public NoTypeAttributeXmlWriter(Stream w, Encoding encoding)
-            : base(w, encoding)
+        public NoTypeAttributeXmlWriter(Stream w, Encoding encoding) : base(w, encoding)
         { }
 
-        public override void WriteStartAttribute(String prefix
-            , String localName
-            , String ns)
+        public override void WriteStartAttribute(string prefix, string localName, string ns)
         {
             if ((ns == "http://www.w3.org/2001/XMLSchema-instance") && (localName == "type"))
             {
-                SkipAttribute = true;
+                this.SkipAttribute = true;
             }
             else
             {
@@ -27,9 +23,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
             }
         }
 
-        public override void WriteString(String text)
+        public override void WriteString(string text)
         {
-            if (SkipAttribute == false)
+            if (!this.SkipAttribute)
             {
                 base.WriteString(text);
             }
@@ -37,12 +33,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
 
         public override void WriteEndAttribute()
         {
-            if (SkipAttribute == false)
+            if (!this.SkipAttribute)
             {
                 base.WriteEndAttribute();
             }
 
-            SkipAttribute = false;
+            this.SkipAttribute = false;
         }
     }
 }
