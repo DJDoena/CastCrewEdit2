@@ -29,6 +29,8 @@
         {
             public const string Custom = "Custom";
 
+            public const string Music_Composer = "Composer";
+
             public const string Music_SongWriter = "Song Writer";
         }
 
@@ -77,7 +79,7 @@
                     }
                 case CreditTypes.Music:
                     {
-                        items.Add("Composer");
+                        items.Add(CreditSubtypes.Music_Composer);
                         items.Add(CreditSubtypes.Music_SongWriter);
                         items.Add("Theme By");
 

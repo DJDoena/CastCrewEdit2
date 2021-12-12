@@ -815,6 +815,10 @@
                                 {
                                     list.Add(new SoundtrackMatch(CreditTypesDataGridViewHelper.CreditSubtypes.Music_SongWriter, personMatch));
                                 }
+                                else if (StartsWith(line, "Music by") || StartsWith(line, "Composed by"))
+                                {
+                                    list.Add(new SoundtrackMatch(CreditTypesDataGridViewHelper.CreditSubtypes.Music_Composer, personMatch));
+                                }
                                 else if (StartsWith(line, "Performed by"))
                                 {
                                     list.Add(new SoundtrackMatch(SoundtrackMatch.Performer, personMatch));

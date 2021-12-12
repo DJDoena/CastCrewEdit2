@@ -64,6 +64,12 @@
 
                 job = null;
             }
+            else if (job == CreditTypesDataGridViewHelper.CreditSubtypes.Music_Composer)
+            {
+                creditSubType = CreditTypesDataGridViewHelper.CreditSubtypes.Music_Composer;
+
+                job = null;
+            }
 
             var crewMember = new CrewInfo()
             {
