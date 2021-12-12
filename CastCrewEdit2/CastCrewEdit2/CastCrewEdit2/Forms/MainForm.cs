@@ -138,8 +138,8 @@
                 ScriptErrorsSuppressed = true,
             };
 
-            WebBrowserOld.Navigated += this.OnWebBrowserNavigated;
-            WebBrowserOld.Navigating += this.OnWebBrowserNavigating;
+            webBrowser.Navigated += this.OnWebBrowserNavigated;
+            webBrowser.Navigating += this.OnWebBrowserNavigating;
 
             return webBrowser;
         }
