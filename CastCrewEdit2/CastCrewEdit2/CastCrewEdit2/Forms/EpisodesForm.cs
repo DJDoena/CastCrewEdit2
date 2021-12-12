@@ -8,6 +8,7 @@
     using System.Drawing;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
+    using Extended;
     using Helper;
     using Resources;
 
@@ -250,7 +251,7 @@
                     episode.CrewList = new List<CrewInfo>();
                     episode.CastMatches = new List<Match>();
                     episode.CrewMatches = new List<KeyValuePair<Match, List<Match>>>();
-                    episode.SoundtrackMatches = new Dictionary<string, List<Match>>();
+                    episode.SoundtrackMatches = new Dictionary<string, List<SoundtrackMatch>>();
 
                     episodes.Add(episode);
                 }

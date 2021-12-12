@@ -76,7 +76,11 @@
 
             var castMember = isCast ? (CastInfo)person : null;
 
-            if (person.FirstName == FirstNames.Title || person.FirstName == FirstNames.Divider || !string.IsNullOrEmpty(person.BirthYear))
+            if (person.FirstName == FirstNames.Title 
+                || person.FirstName == FirstNames.Divider
+                || person.FirstName == FirstNames.GroupDividerStart
+                || person.FirstName == FirstNames.GroupDividerEnd
+                || !string.IsNullOrEmpty(person.BirthYear))
             {
                 return invokeResults;
             }

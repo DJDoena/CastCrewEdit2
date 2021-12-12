@@ -11,6 +11,8 @@
         {
             private int EpisodeId { get; set; }
 
+            private int GroupId { get; set; }
+
             private int OriginalOrderId { get; set; }
 
             private ExtendedCrewMember CrewMember { get; set; }
@@ -21,19 +23,21 @@
                 ? (object)this.CrewMember
                 : this.CrewDivider;
 
-            private CrewComparer(int episodeId, int originalOrderId)
+            private CrewComparer(int episodeId, int groupId, int originalOrderId)
             {
                 this.EpisodeId = episodeId;
+
+                this.GroupId = groupId;
 
                 this.OriginalOrderId = originalOrderId;
             }
 
-            internal CrewComparer(int episodeId, int originalOrderId, ExtendedCrewMember crewMember) : this(episodeId, originalOrderId)
+            internal CrewComparer(int episodeId, int groupId, int originalOrderId, ExtendedCrewMember crewMember) : this(episodeId, groupId, originalOrderId)
             {
                 this.CrewMember = crewMember;
             }
 
-            internal CrewComparer(int episodeId, int originalOrderId, ExtendedCrewDivider crewDivider) : this(episodeId, originalOrderId)
+            internal CrewComparer(int episodeId, int groupId, int originalOrderId, ExtendedCrewDivider crewDivider) : this(episodeId, groupId, originalOrderId)
             {
                 this.CrewDivider = crewDivider;
             }
@@ -51,8 +55,14 @@
                 {
                     return compare;
                 }
-
                 compare = GetCompareValue(this.CrewEntry, other.CrewEntry);
+
+                if (compare != 0)
+                {
+                    return compare;
+                }
+
+                compare = this.GroupId.CompareTo(other.GroupId);
 
                 if (compare != 0)
                 {
@@ -73,10 +83,8 @@
 
             private static int GetCompareValue(object crewEntry)
             {
-                var crewDivider = crewEntry as ExtendedCrewDivider;
-
                 int compare;
-                if (crewDivider != null)
+                if (crewEntry is ExtendedCrewDivider crewDivider)
                 {
                     switch (crewDivider.Type)
                     {
@@ -96,9 +104,7 @@
                 }
                 else
                 {
-                    var crewMember = crewEntry as ExtendedCrewMember;
-
-                    if (crewMember != null)
+                    if (crewEntry is ExtendedCrewMember crewMember)
                     {
                         compare = GetCompareValue(crewMember.CreditType);
                     }
@@ -180,24 +186,33 @@
 
             var currentEpisodeId = 0;
 
+            var currentGroupId = 0;
+
             var originalOrderId = 0;
 
             foreach (var crewEntry in unsortedCrew.CrewList)
             {
-                var divider = crewEntry as ExtendedCrewDivider;
-
-                if (divider != null)
+                if (crewEntry is ExtendedCrewDivider divider)
                 {
                     if (divider.Type == DividerType.Episode)
                     {
                         currentEpisodeId++;
                     }
+                    else if (divider.Type == DividerType.Group)
+                    {
+                        currentGroupId++;
+                    }
 
-                    sortedList.Add(new CrewComparer(currentEpisodeId, originalOrderId, divider));
+                    sortedList.Add(new CrewComparer(currentEpisodeId, currentGroupId, originalOrderId, divider));
+
+                    if (divider.Type == DividerType.EndDiv)
+                    {
+                        currentGroupId++;
+                    }
                 }
                 else
                 {
-                    sortedList.Add(new CrewComparer(currentEpisodeId, originalOrderId, crewEntry as ExtendedCrewMember));
+                    sortedList.Add(new CrewComparer(currentEpisodeId, currentGroupId, originalOrderId, crewEntry as ExtendedCrewMember));
                 }
 
                 originalOrderId++;
@@ -205,7 +220,7 @@
 
             sortedList.Sort();
 
-            sortedCrew.CrewList = (sortedList.ConvertAll(sortedEntry => sortedEntry.CrewEntry)).ToArray();
+            sortedCrew.CrewList = sortedList.ConvertAll(sortedEntry => sortedEntry.CrewEntry).ToArray();
 
             return sortedCrew;
         }

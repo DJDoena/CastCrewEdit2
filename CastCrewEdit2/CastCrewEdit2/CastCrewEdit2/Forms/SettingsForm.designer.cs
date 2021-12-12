@@ -57,6 +57,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.ParseVoiceOfCheckBox = new System.Windows.Forms.CheckBox();
             this.ParseRoleSlashCheckBox = new System.Windows.Forms.CheckBox();
             this.CrewParsingTab = new System.Windows.Forms.TabPage();
+            this.GroupSoundtrackCreditsCheckBox = new System.Windows.Forms.CheckBox();
             this.IncludingCreditTypeSoundtrackCheckBox = new System.Windows.Forms.CheckBox();
             this.IncludePrefixOnOtherCreditsCheckBox = new System.Windows.Forms.CheckBox();
             this.RetainCreditedAsOnCrewCheckBox = new System.Windows.Forms.CheckBox();
@@ -321,6 +322,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // CrewParsingTab
             // 
             resources.ApplyResources(this.CrewParsingTab, "CrewParsingTab");
+            this.CrewParsingTab.Controls.Add(this.GroupSoundtrackCreditsCheckBox);
             this.CrewParsingTab.Controls.Add(this.IncludingCreditTypeSoundtrackCheckBox);
             this.CrewParsingTab.Controls.Add(this.IncludePrefixOnOtherCreditsCheckBox);
             this.CrewParsingTab.Controls.Add(this.RetainCreditedAsOnCrewCheckBox);
@@ -339,6 +341,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.CrewParsingTab.Controls.Add(this.IncludingCustomCredits);
             this.CrewParsingTab.Name = "CrewParsingTab";
             this.CrewParsingTab.UseVisualStyleBackColor = true;
+            // 
+            // GroupSoundtrackCreditsCheckBox
+            // 
+            resources.ApplyResources(this.GroupSoundtrackCreditsCheckBox, "GroupSoundtrackCreditsCheckBox");
+            this.GroupSoundtrackCreditsCheckBox.Name = "GroupSoundtrackCreditsCheckBox";
+            this.GroupSoundtrackCreditsCheckBox.UseVisualStyleBackColor = true;
             // 
             // IncludingCreditTypeSoundtrackCheckBox
             // 
@@ -759,5 +767,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         private System.Windows.Forms.CheckBox DisableDuplicatesMessageBoxCheckBox;
         private System.Windows.Forms.CheckBox OverwriteExistingHeadshotsCheckBox;
         private System.Windows.Forms.CheckBox SendToCastCrewCopyPasteCheckBox;
+        private System.Windows.Forms.CheckBox GroupSoundtrackCreditsCheckBox;
     }
 }

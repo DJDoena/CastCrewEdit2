@@ -13,6 +13,7 @@
     using System.Web;
     using System.Windows.Forms;
     using DVDProfilerHelper;
+    using Extended;
     using Resources;
 
     public delegate void SetProgress();
@@ -99,15 +100,15 @@
 
         private static readonly object _getWebsiteLock;
 
+        private static readonly Dictionary<string, string> _updatedPersonLinks;
+
+        private static readonly Dictionary<string, string> _webSites;
+
         private static List<string> _ignoreCustomInIMDbCreditType;
 
         private static List<string> _ignoreIMDbCreditTypeInOther;
 
-        private static readonly Dictionary<string, string> UpdatedPersonLinks;
-
-        private static bool IsInitialized;
-
-        private static readonly Dictionary<string, string> WebSites;
+        private static bool _isInitialized;
 
         static IMDbParser()
         {
@@ -163,11 +164,11 @@
 
             _personUrlRegex = new Regex(DomainPrefix + "name/(?'PersonLink'nm[0-9]+)/.*$", RegexOptions.Compiled);
 
-            UpdatedPersonLinks = new Dictionary<string, string>();
+            _updatedPersonLinks = new Dictionary<string, string>();
 
-            IsInitialized = false;
+            _isInitialized = false;
 
-            WebSites = new Dictionary<string, string>();
+            _webSites = new Dictionary<string, string>();
 
 #if UnitTest
 
@@ -198,7 +199,7 @@
         {
             lock (_getWebsiteLock)
             {
-                if (WebSites.TryGetValue(targetUrl, out var webSite))
+                if (_webSites.TryGetValue(targetUrl, out var webSite))
                 {
                     return webSite;
                 }
@@ -211,7 +212,7 @@
                         {
                             webSite = sr.ReadToEnd();
 
-                            WebSites.Add(targetUrl, webSite);
+                            _webSites.Add(targetUrl, webSite);
 
                             return webSite;
                         }
@@ -241,7 +242,7 @@
 
             InitIMDbToDVDProfilerCrewRoleTransformation(windowHandle);
 
-            IsInitialized = true;
+            _isInitialized = true;
         }
 
         private static void ProcessForcedFakeBirthYears(List<string> forcedFakeBirthYears)
@@ -534,7 +535,7 @@
 
         public static void ProcessCastLine(string linePart, List<Match> matches)
         {
-            Debug.Assert(IsInitialized, "IMDbParser not initialized!");
+            Debug.Assert(_isInitialized, "IMDbParser not initialized!");
 
             var matchColl = _castRegex.Matches(linePart);
 
@@ -553,7 +554,9 @@
 
             for (var castIndex = 0; castIndex < maxCount;)
             {
-                var maxTasks = ((castIndex + MaxTasks - 1) < maxCount) ? MaxTasks : (maxCount - castIndex);
+                var maxTasks = ((castIndex + MaxTasks - 1) < maxCount)
+                    ? MaxTasks
+                    : (maxCount - castIndex);
 
                 var tasks = new List<Task<List<CastInfo>>>(maxTasks);
 
@@ -585,7 +588,7 @@
 
         public static void ProcessCrewLine(string blockMatch, List<KeyValuePair<Match, List<Match>>> matches)
         {
-            Debug.Assert(IsInitialized, "IMDbParser not initialized!");
+            Debug.Assert(_isInitialized, "IMDbParser not initialized!");
 
             var creditTypeMatch = _creditTypeRegex.Match(blockMatch);
 
@@ -610,9 +613,11 @@
 
             for (var creditTypeIndex = 0; creditTypeIndex < maxCount;)
             {
-                var maxTasks = ((creditTypeIndex + MaxTasks - 1) < maxCount) ? MaxTasks : (maxCount - creditTypeIndex);
+                var maxTasks = ((creditTypeIndex + MaxTasks - 1) < maxCount)
+                    ? MaxTasks
+                    : (maxCount - creditTypeIndex);
 
-                var tasks = new List<Task<Tuple<IEnumerable<CrewInfo>, int>>>();
+                var tasks = new List<Task<CrewResult>>();
 
                 for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, creditTypeIndex++)
                 {
@@ -627,9 +632,9 @@
 
                 foreach (var task in tasks)
                 {
-                    crewList.AddRange(task.Result.Item1);
+                    crewList.AddRange(task.Result.CrewMembers);
 
-                    for (var i = 0; i < task.Result.Item2; i++)
+                    for (var matchIndex = 0; matchIndex < task.Result.MatchCount; matchIndex++)
                     {
                         setProgress();
                     }
@@ -637,7 +642,7 @@
             }
         }
 
-        private static Tuple<IEnumerable<CrewInfo>, int> ProcessCrewLine(Match creditTypeMatch, List<Match> crewMatches, DefaultValues defaultValues)
+        private static CrewResult ProcessCrewLine(Match creditTypeMatch, List<Match> crewMatches, DefaultValues defaultValues)
         {
             var result = new List<CrewInfo>();
 
@@ -700,42 +705,43 @@
                 }
             }
 
-            return new Tuple<IEnumerable<CrewInfo>, int>(result, crewMatches.Count);
+            return new CrewResult(result, crewMatches.Count);
         }
 
-        public static void ProcessSoundtrackLine(List<CrewInfo> crewList, Dictionary<string, List<Match>> soundtrackMatches, DefaultValues defaultValues, SetProgress setProgress)
+        public static void ProcessSoundtrackLine(List<CrewInfo> crewList, Dictionary<string, List<SoundtrackMatch>> soundtrackMatches, DefaultValues defaultValues, SetProgress setProgress)
         {
             if (defaultValues.CreditTypeSoundtrack)
             {
-                foreach (var kvp in soundtrackMatches)
+                var maxCount = soundtrackMatches.Count;
+
+                var songs = soundtrackMatches.Keys.ToList();
+
+                for (var songIndex = 0; songIndex < songs.Count;)
                 {
-                    var crewMatches = kvp.Value.ToList();
+                    var maxTasks = ((songIndex + MaxTasks - 1) < maxCount)
+                        ? MaxTasks
+                        : (maxCount - songIndex);
 
-                    var maxCount = crewMatches.Count;
+                    var tasks = new List<Task<CrewResult>>(maxTasks);
 
-                    for (var crewIndex = 0; crewIndex < crewMatches.Count;)
+                    for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, songIndex++)
                     {
-                        var maxTasks = ((crewIndex + MaxTasks - 1) < maxCount) ? MaxTasks : (maxCount - crewIndex);
+                        var song = songs[songIndex];
 
-                        var tasks = new List<Task<CrewInfo>>(maxTasks);
+                        var songMatches = soundtrackMatches[song];
 
-                        for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, crewIndex++)
-                        {
-                            var crewMatch = crewMatches[crewIndex];
+                        var task = Task.Run(() => SountrackLineProcessor.Process(song, songMatches, defaultValues));
 
-                            var task = Task.Run(() => SountrackLineProcessor.Process(kvp.Key, crewMatch, defaultValues.CheckPersonLinkForRedirect));
+                        tasks.Add(task);
+                    }
 
-                            tasks.Add(task);
-                        }
+                    Task.WaitAll(tasks.ToArray());
 
-                        Task.WaitAll(tasks.ToArray());
+                    foreach (var task in tasks)
+                    {
+                        crewList.AddRange(task.Result.CrewMembers);
 
-                        foreach (var task in tasks)
-                        {
-                            crewList.Add(task.Result);
-                        }
-
-                        for (int taskIndex = 0; taskIndex < maxTasks; taskIndex++)
+                        for (var matchIndex = 0; matchIndex < task.Result.MatchCount; matchIndex++)
                         {
                             setProgress();
                         }
@@ -744,13 +750,13 @@
             }
         }
 
-        public static Dictionary<string, List<Match>> ParseSoundtrack(StringBuilder soundtrack)
+        public static Dictionary<string, List<SoundtrackMatch>> ParseSoundtrack(StringBuilder soundtrack)
         {
             var matches = _soundtrackLiRegex.Matches(soundtrack.ToString());
 
             //soundtrack = new StringBuilder();
 
-            var liMatches = new Dictionary<string, List<Match>>(matches.Count);
+            var liMatches = new Dictionary<string, List<SoundtrackMatch>>(matches.Count);
 
             if (matches.Count > 0)
             {
@@ -788,20 +794,37 @@
                         key = key.Trim();
                     }
 
-                    var personMatches = _soundtrackPersonRegex.Matches(match.Groups["Soundtrack"].Value);
+                    var lines = match.Groups["Soundtrack"].Value.Split(new[] { "<br>", "<br />", "<br/>" }, StringSplitOptions.RemoveEmptyEntries);
 
-                    if (personMatches.Count > 0)
+                    foreach (var line in lines)
                     {
-                        if (!liMatches.TryGetValue(key, out var list))
-                        {
-                            list = new List<Match>(personMatches.Count);
+                        var personMatches = _soundtrackPersonRegex.Matches(line);
 
-                            liMatches.Add(key, list);
-                        }
-
-                        foreach (Match personMatch in personMatches)
+                        if (personMatches.Count > 0)
                         {
-                            list.Add(personMatch);
+                            if (!liMatches.TryGetValue(key, out var list))
+                            {
+                                list = new List<SoundtrackMatch>(personMatches.Count);
+
+                                liMatches.Add(key, list);
+                            }
+
+                            foreach (Match personMatch in personMatches)
+                            {
+                                if (StartsWith(line, "Written by"))
+                                {
+                                    list.Add(new SoundtrackMatch(CreditTypesDataGridViewHelper.CreditSubtypes.Music_SongWriter, personMatch));
+                                }
+                                else if (StartsWith(line, "Performed by"))
+                                {
+                                    list.Add(new SoundtrackMatch(SoundtrackMatch.Performer, personMatch));
+                                }
+                                else
+                                {
+                                    list.Add(new SoundtrackMatch(null, personMatch));
+                                }
+
+                            }
                         }
                     }
                 }
@@ -810,11 +833,13 @@
             return liMatches;
         }
 
+        private static bool StartsWith(string line, string search) => line.TrimStart().StartsWith(search, StringComparison.OrdinalIgnoreCase);
+
         internal static string GetUpdatedPersonLink(string personLink)
         {
             lock (_updatedPersonLock)
             {
-                if (UpdatedPersonLinks.TryGetValue(personLink, out var newPersonLink))
+                if (_updatedPersonLinks.TryGetValue(personLink, out var newPersonLink))
                 {
                     return newPersonLink;
                 }
@@ -832,7 +857,7 @@
 
                     lock (_updatedPersonLock)
                     {
-                        UpdatedPersonLinks[personLink] = newPersonLink;
+                        _updatedPersonLinks[personLink] = newPersonLink;
                     }
 
                     return newPersonLink;

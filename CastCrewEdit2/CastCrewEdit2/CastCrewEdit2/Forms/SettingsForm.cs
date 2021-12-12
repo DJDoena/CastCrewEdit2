@@ -147,6 +147,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             SendToCastCrewCopyPasteCheckBox.Checked = _defaultValues.SendToCastCrewCopyPaste;
 
+            GroupSoundtrackCreditsCheckBox.Checked = _defaultValues.GroupSoundtrackCredits;
+
             this.OnEpisodeFormatChanged(null, null);
 
             this.OnParseCastCheckBoxCheckedChanged(null, null);
@@ -223,6 +225,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             _defaultValues.SaveLogFile = SaveLogFileCheckBox.Checked;
             _defaultValues.StoreHeadshotsPerSession = StoreHeadshotsPerSessionCheckBox.Checked;
             _defaultValues.SendToCastCrewCopyPaste = SendToCastCrewCopyPasteCheckBox.Checked;
+            _defaultValues.GroupSoundtrackCredits = GroupSoundtrackCreditsCheckBox.Checked;
         }
 
         private void OnSettingsFormLoad(object sender, EventArgs e)
@@ -306,12 +309,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                         {
                             try
                             {
-                                if (!Directory.Exists(target + @"\Data") )
+                                if (!Directory.Exists(target + @"\Data"))
                                 {
                                     Directory.CreateDirectory(target + @"\Data");
                                 }
 
-                                if (!Directory.Exists(target + @"\Images") )
+                                if (!Directory.Exists(target + @"\Images"))
                                 {
                                     Directory.CreateDirectory(target + @"\Images");
                                 }
@@ -321,12 +324,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
                                     Directory.CreateDirectory(target + @"\Images\CastCrewEdit2");
                                 }
 
-                                if (!Directory.Exists(target + @"\Images\CCViewer") )
+                                if (!Directory.Exists(target + @"\Images\CCViewer"))
                                 {
                                     Directory.CreateDirectory(target + @"\Images\CCViewer");
                                 }
 
-                                if (!Directory.Exists(target + @"\Images\DVD Profiler") )
+                                if (!Directory.Exists(target + @"\Images\DVD Profiler"))
                                 {
                                     Directory.CreateDirectory(target + @"\Images\DVD Profiler");
                                 }

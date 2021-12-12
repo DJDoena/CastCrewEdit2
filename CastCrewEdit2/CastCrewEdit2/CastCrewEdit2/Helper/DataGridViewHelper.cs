@@ -984,7 +984,7 @@
             Clipboard.SetDataObject(xml, true, 4, 250);
         }
 
-        private static void CreateCrewMember(DataGridView dataGridView, string title, Log log, bool useFakeBirthYears, Action<MessageEntry> addMessage, bool embedded, CrewInformation ci, Func<DataGridViewRow, CrewMember> createCrewMember, Func<DataGridViewRow, CrewDivider> createEpisodeDivider)
+        private static void CreateCrewMember(DataGridView dataGridView, string title, Log log, bool useFakeBirthYears, Action<MessageEntry> addMessage, bool embedded, CrewInformation ci, Func<DataGridViewRow, CrewMember> createCrewMember, Func<DataGridViewRow, CrewDivider> createCrewDivider)
         {
             var offset = 0;
 
@@ -1029,10 +1029,9 @@
                 {
                     offset = -1;
                 }
-
                 else if (value != null && value.ToString() == FirstNames.Divider)
                 {
-                    var divider = createEpisodeDivider(row);
+                    var divider = createCrewDivider(row);
 
                     ci.CrewList[rowIndex + offset] = divider;
 
@@ -1054,6 +1053,47 @@
 
                     divider.Caption = name.Trim();
                     divider.Type = DividerType.Episode;
+                }
+                else if (value != null && value.ToString() == FirstNames.GroupDividerStart)
+                {
+                    var divider = createCrewDivider(row);
+
+                    ci.CrewList[rowIndex + offset] = divider;
+
+                    var name = string.Empty;
+
+                    value = row.Cells[ColumnNames.MiddleName].Value;
+
+                    if (value != null)
+                    {
+                        name = value.ToString().Trim() + " ";
+                    }
+
+                    divider.Caption = name.Trim();
+
+                    value = row.Cells[ColumnNames.CreditType].Value;
+
+                    if (value != null)
+                    {
+                        divider.CreditType = value.ToString();
+                    }
+
+                    divider.Type = DividerType.Group;
+                }
+                else if (value != null && value.ToString() == FirstNames.GroupDividerEnd)
+                {
+                    var divider = createCrewDivider(row);
+
+                    ci.CrewList[rowIndex + offset] = divider;
+
+                    value = row.Cells[ColumnNames.CreditType].Value;
+
+                    if (value != null)
+                    {
+                        divider.CreditType = value.ToString();
+                    }
+
+                    divider.Type = DividerType.EndDiv;
                 }
                 else
                 {
@@ -1263,6 +1303,18 @@
 
                     row.Cells[dataGridView.Columns[ColumnNames.MiddleName].Index].ReadOnly = false;
                     row.Cells[dataGridView.Columns[ColumnNames.LastName].Index].ReadOnly = false;
+                }
+                else if (crewMember.FirstName == FirstNames.GroupDividerStart)
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightSteelBlue;
+                    row.ReadOnly = true;
+
+                    row.Cells[dataGridView.Columns[ColumnNames.MiddleName].Index].ReadOnly = false;
+                }
+                else if (crewMember.FirstName == FirstNames.GroupDividerEnd)
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightSteelBlue;
+                    row.ReadOnly = true;
                 }
                 else
                 {

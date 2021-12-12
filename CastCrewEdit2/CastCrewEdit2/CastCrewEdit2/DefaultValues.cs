@@ -103,6 +103,8 @@
 
         public bool SendToCastCrewCopyPaste = false;
 
+        public bool GroupSoundtrackCredits = false;
+
         [XmlIgnore]
         internal string CreditPhotosFolder
         {
@@ -171,6 +173,7 @@
                 UseDoubleDigitsEpisodeNumber = original.UseDoubleDigitsEpisodeNumber,
                 UseFakeBirthYears = original.UseFakeBirthYears,
                 IgnoreUnconfirmed = original.IgnoreUnconfirmed,
+                GroupSoundtrackCredits = original.GroupSoundtrackCredits,
             };
 
             return clone;

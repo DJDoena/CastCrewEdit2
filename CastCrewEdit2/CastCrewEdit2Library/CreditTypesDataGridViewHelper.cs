@@ -28,6 +28,8 @@
         public static class CreditSubtypes
         {
             public const string Custom = "Custom";
+
+            public const string Music_SongWriter = "Song Writer";
         }
 
         public static void FillCreditSubtypes(string creditType, DataGridViewComboBoxCell.ObjectCollection items)
@@ -76,7 +78,7 @@
                 case CreditTypes.Music:
                     {
                         items.Add("Composer");
-                        items.Add("Song Writer");
+                        items.Add(CreditSubtypes.Music_SongWriter);
                         items.Add("Theme By");
 
                         break;

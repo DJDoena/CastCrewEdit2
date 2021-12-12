@@ -266,11 +266,17 @@
   <data name="CrewParsingTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>674, 272</value>
   </data>
+  <data name="GroupSoundtrackCreditsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 17</value>
+  </data>
+  <data name="GroupSoundtrackCreditsCheckBox.Text" xml:space="preserve">
+    <value>Gruppiere "Soundtrack" Credits nach Lied</value>
+  </data>
   <data name="IncludingCreditTypeSoundtrackCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 17</value>
+    <value>187, 17</value>
   </data>
   <data name="IncludingCreditTypeSoundtrackCheckBox.Text" xml:space="preserve">
-    <value>schließe "Soundtrack" Credits ein</value>
+    <value>Schließe "Soundtrack" Credits ein</value>
   </data>
   <data name="IncludePrefixOnOtherCreditsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 30</value>
@@ -292,52 +298,52 @@ bei "Other/Custom"-Rollen ein</value>
     <value>Schreibe "Individuelle Rolle" groß</value>
   </data>
   <data name="IncludingCreditTypeArtCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 17</value>
+    <value>145, 17</value>
   </data>
   <data name="IncludingCreditTypeArtCheckBox.Text" xml:space="preserve">
-    <value>schließe "Art" Credits ein</value>
+    <value>Schließe "Art" Credits ein</value>
   </data>
   <data name="IncludingCreditTypeSoundCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 17</value>
-  </data>
-  <data name="IncludingCreditTypeSoundCheckBox.Text" xml:space="preserve">
-    <value>schließe "Sound" Credits ein</value>
-  </data>
-  <data name="IncludingCreditTypeMusicCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 17</value>
-  </data>
-  <data name="IncludingCreditTypeMusicCheckBox.Text" xml:space="preserve">
-    <value>schließe "Music" Credits ein</value>
-  </data>
-  <data name="IncludingCreditTypeFilmEditingCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 17</value>
-  </data>
-  <data name="IncludingCreditTypeFilmEditingCheckBox.Text" xml:space="preserve">
-    <value>schließe "Film Editing" Credits ein</value>
-  </data>
-  <data name="IncludingCreditTypeCinematographyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 17</value>
-  </data>
-  <data name="IncludingCreditTypeCinematographyCheckBox.Text" xml:space="preserve">
-    <value>schließe "Cinematography" Credits ein</value>
-  </data>
-  <data name="IncludingCreditTypeProductionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 17</value>
-  </data>
-  <data name="IncludingCreditTypeProductionCheckBox.Text" xml:space="preserve">
-    <value>schließe "Production" Credits ein</value>
-  </data>
-  <data name="IncludingCreditTypeWritingCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 17</value>
   </data>
+  <data name="IncludingCreditTypeSoundCheckBox.Text" xml:space="preserve">
+    <value>Schließe "Sound" Credits ein</value>
+  </data>
+  <data name="IncludingCreditTypeMusicCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 17</value>
+  </data>
+  <data name="IncludingCreditTypeMusicCheckBox.Text" xml:space="preserve">
+    <value>Schließe "Music" Credits ein</value>
+  </data>
+  <data name="IncludingCreditTypeFilmEditingCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 17</value>
+  </data>
+  <data name="IncludingCreditTypeFilmEditingCheckBox.Text" xml:space="preserve">
+    <value>Schließe "Film Editing" Credits ein</value>
+  </data>
+  <data name="IncludingCreditTypeCinematographyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 17</value>
+  </data>
+  <data name="IncludingCreditTypeCinematographyCheckBox.Text" xml:space="preserve">
+    <value>Schließe "Cinematography" Credits ein</value>
+  </data>
+  <data name="IncludingCreditTypeProductionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 17</value>
+  </data>
+  <data name="IncludingCreditTypeProductionCheckBox.Text" xml:space="preserve">
+    <value>Schließe "Production" Credits ein</value>
+  </data>
+  <data name="IncludingCreditTypeWritingCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 17</value>
+  </data>
   <data name="IncludingCreditTypeWritingCheckBox.Text" xml:space="preserve">
-    <value>schließe "Writing" Credits ein</value>
+    <value>Schließe "Writing" Credits ein</value>
   </data>
   <data name="IncludingCreditTypeDirectionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 17</value>
+    <value>174, 17</value>
   </data>
   <data name="IncludingCreditTypeDirectionCheckBox.Text" xml:space="preserve">
-    <value>schließe "Direction" Credits ein</value>
+    <value>Schließe "Direction" Credits ein</value>
   </data>
   <data name="RetainOriginalCreditCheckbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>155, 17</value>
@@ -346,16 +352,16 @@ bei "Other/Custom"-Rollen ein</value>
     <value>Behalte "Individuelle Rolle"</value>
   </data>
   <data name="IncludingCreditTypeOtherCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 17</value>
+    <value>158, 17</value>
   </data>
   <data name="IncludingCreditTypeOtherCheckBox.Text" xml:space="preserve">
-    <value>schließe "Other" Credits ein</value>
+    <value>Schließe "Other" Credits ein</value>
   </data>
   <data name="IncludingCustomCredits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 17</value>
+    <value>167, 17</value>
   </data>
   <data name="IncludingCustomCredits.Text" xml:space="preserve">
-    <value>schließe "Custom" Credits ein</value>
+    <value>Schließe "Custom" Credits ein</value>
   </data>
   <data name="SeasonsParsingTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>674, 272</value>

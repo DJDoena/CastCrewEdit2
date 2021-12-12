@@ -12,6 +12,7 @@
     using System.Web;
     using System.Windows.Forms;
     using DVDProfilerHelper;
+    using Extended;
     using Helper;
     using Microsoft.Web.WebView2.Core;
     using Resources;
@@ -45,7 +46,7 @@
 
         private List<KeyValuePair<Match, List<Match>>> _crewMatches;
 
-        private Dictionary<string, List<Match>> _soundtrackMatches;
+        private Dictionary<string, List<SoundtrackMatch>> _soundtrackMatches;
 
         private List<CastInfo> _castList;
 
@@ -84,7 +85,7 @@
 
             _crewMatches = new List<KeyValuePair<Match, List<Match>>>();
 
-            _soundtrackMatches = new Dictionary<string, List<Match>>();
+            _soundtrackMatches = new Dictionary<string, List<SoundtrackMatch>>();
 
             this.InitializeComponent();
 
@@ -1531,13 +1532,17 @@
         {
             if (MovieCastCrewTabControl.Enabled)
             {
-                if (MovieTVShowTabControl.SelectedIndex == 1 && MovieUrlTextBox.Focused)
+                if (MovieTVShowTabControl.SelectedIndex != 1)
+                {
+                    return;
+                }
+                else if (MovieTVShowTabControl.SelectedIndex == 1 && MovieUrlTextBox.Focused)
                 {
                     return;
                 }
                 else if (CtrlSWasPressed(e))
                 {
-                    if (Program.DefaultValues.SendToCastCrewCopyPaste 
+                    if (Program.DefaultValues.SendToCastCrewCopyPaste
                         && (MovieCastCrewTabControl.SelectedIndex == 0 || MovieCastCrewTabControl.SelectedIndex == 1))
                     {
                         if (ParseCastCheckBox.Checked)

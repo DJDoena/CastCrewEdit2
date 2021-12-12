@@ -111,6 +111,7 @@
     <Compile Include="Extended\ExtendedSerializer.cs" />
     <Compile Include="Extended\ExtendedCrewSorter.cs" />
     <Compile Include="Extended\NoTypeAttributeXmlWriter.cs" />
+    <Compile Include="Extended\SoundtrackMatch.cs" />
     <Compile Include="Forms\CastCrewEdit2BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -438,6 +439,13 @@
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>

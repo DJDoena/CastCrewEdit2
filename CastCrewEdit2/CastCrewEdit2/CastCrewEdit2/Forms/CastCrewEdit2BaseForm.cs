@@ -12,6 +12,7 @@
     using System.Threading;
     using System.Windows.Forms;
     using DVDProfilerHelper;
+    using Extended;
     using Helper;
     using Microsoft.WindowsAPICodePack.Taskbar;
     using Resources;
@@ -105,7 +106,7 @@
             }
         }
 
-        protected static void ParseCastAndCrew(string key, bool parseCast, bool parseCrew, bool parseSoundtrack, bool initializeLists, ref List<Match> castMatches, ref List<CastInfo> castList, ref List<KeyValuePair<Match, List<Match>>> crewMatches, ref List<CrewInfo> crewList, ref Dictionary<string, List<Match>> soundtrackMatches)
+        protected static void ParseCastAndCrew(string key, bool parseCast, bool parseCrew, bool parseSoundtrack, bool initializeLists, ref List<Match> castMatches, ref List<CastInfo> castList, ref List<KeyValuePair<Match, List<Match>>> crewMatches, ref List<CrewInfo> crewList, ref Dictionary<string, List<SoundtrackMatch>> soundtrackMatches)
         {
             var targetUrl = IMDbParser.TitleUrl + key + "/fullcredits";
 
@@ -121,7 +122,7 @@
 
             crewMatches = new List<KeyValuePair<Match, List<Match>>>();
 
-            soundtrackMatches = new Dictionary<string, List<Match>>();
+            soundtrackMatches = new Dictionary<string, List<SoundtrackMatch>>();
 
             #region Parse for Cast
 
@@ -332,9 +333,9 @@
 
         protected void OnForcedFakeBirthYearsToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\ForcedFakeBirthYears.txt", EditWindowNames.IgnoreIMDbCategoryinOther, FileNameType.ForcedFakeBirthYears, true);
 
-        protected static Dictionary<string, List<Match>> ParseSoundtrack(string titleLink)
+        protected static Dictionary<string, List<SoundtrackMatch>> ParseSoundtrack(string titleLink)
         {
-            Dictionary<string, List<Match>> soundtrackEntries = null;
+            Dictionary<string, List<SoundtrackMatch>> soundtrackEntries = null;
 
             var soundtrackUrl = IMDbParser.TitleUrl + titleLink + "/soundtrack";
 
@@ -376,7 +377,7 @@
 
             if (soundtrackEntries == null)
             {
-                soundtrackEntries = new Dictionary<string, List<Match>>(0);
+                soundtrackEntries = new Dictionary<string, List<SoundtrackMatch>>(0);
             }
 
             return soundtrackEntries;
@@ -504,7 +505,7 @@
 
         #endregion
 
-        protected void ProcessLines(List<CastInfo> castList, List<Match> castMatches, List<CrewInfo> crewList, List<KeyValuePair<Match, List<Match>>> crewMatches, Dictionary<string, List<Match>> sountrackMatches, DefaultValues defaultValues)
+        protected void ProcessLines(List<CastInfo> castList, List<Match> castMatches, List<CrewInfo> crewList, List<KeyValuePair<Match, List<Match>>> crewMatches, Dictionary<string, List<SoundtrackMatch>> sountrackMatches, DefaultValues defaultValues)
         {
             IMDbParser.ProcessCastLine(castList, castMatches, defaultValues, this.SetProgress);
 

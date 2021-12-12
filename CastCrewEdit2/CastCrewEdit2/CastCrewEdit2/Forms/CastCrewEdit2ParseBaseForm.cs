@@ -335,7 +335,10 @@
 
                 foreach (var crewMember in crewList)
                 {
-                    if (crewMember.FirstName == FirstNames.Title)
+                    if (crewMember.FirstName == FirstNames.Title
+                        || crewMember.FirstName == FirstNames.Divider
+                        || crewMember.FirstName == FirstNames.GroupDividerStart
+                        || crewMember.FirstName == FirstNames.GroupDividerEnd)
                     {
                         continue;
                     }

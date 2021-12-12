@@ -19,7 +19,10 @@
 
         internal static void Get(bool useFakeBirthYears, bool isCast, Action<MessageEntry> addMessage, PersonInfo person)
         {
-            if (person.FirstName != FirstNames.Title && person.FirstName != FirstNames.Divider)
+            if (person.FirstName != FirstNames.Title 
+                && person.FirstName != FirstNames.Divider
+                && person.FirstName != FirstNames.GroupDividerStart
+                && person.FirstName != FirstNames.GroupDividerEnd)
             {
                 var target = ProfilePhotoHelper.FileNameFromCreditName(person.FirstName, person.MiddleName, person.LastName, 0);
 

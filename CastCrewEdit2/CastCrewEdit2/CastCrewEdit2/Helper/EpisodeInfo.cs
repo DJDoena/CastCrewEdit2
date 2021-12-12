@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
+    using Extended;
 
     internal sealed class EpisodeInfo
     {
@@ -25,7 +26,7 @@
 
         internal List<KeyValuePair<Match, List<Match>>> CrewMatches;
 
-        internal Dictionary<string, List<Match>> SoundtrackMatches;
+        internal Dictionary<string, List<SoundtrackMatch>> SoundtrackMatches;
 
         static EpisodeInfo()
         {
