@@ -8,6 +8,8 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Resources;
 
     internal static class CastCrewCopyPasteSender
@@ -34,34 +36,16 @@
                 return;
             }
 
-            var json = EncodeJson(xml);
+            var json = JsonConvert.SerializeObject(xml);
 
             await TrySend(json);
-        }
-
-        private static string EncodeJson(string xml)
-        {
-            var json = xml.Replace("\r", "\\r");
-
-            json = json.Replace("\n", "\\n");
-
-            json = json.Replace("\t", "\\t");
-
-            json = json.Replace("\"", "\\\"");
-
-            return $"\"{json}\"";
         }
 
         private static async Task TrySend(string json)
         {
             try
             {
-                using (var content = new StringContent(json, Encoding.GetEncoding("utf-8")))
-                {
-                    content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
-
-                    await Send(content);
-                }
+                await ExecuteSend(json);
             }
             catch (Exception ex)
             {
@@ -81,25 +65,48 @@
             }
         }
 
-        private static async Task Send(StringContent content)
+        private static async Task ExecuteSend(string json)
         {
-            using (var request = new HttpRequestMessage()
+            using (var content = new StringContent(json, Encoding.UTF8))
             {
-                Method = new HttpMethod("POST"),
-                RequestUri = new Uri("http://localhost:10001/api/Receiver/Receive"),
-                Content = content,
-            })
-            {
-                var response = await HttpClient.SendAsync(request);
+                content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
 
-                if (response.StatusCode != HttpStatusCode.OK)
+                using (var request = new HttpRequestMessage()
                 {
-                    var message = await response.Content.ReadAsStringAsync();
-
-                    message = message?.Trim().Trim('{', '}').Trim();
-
-                    throw new Exception($"Response Code: {response.StatusCode}, {message}");
+                    Method = new HttpMethod("POST"),
+                    RequestUri = new Uri("http://localhost:10001/api/Receiver/Receive"),
+                    Content = content,
+                })
+                {
+                    using (var response = await HttpClient.SendAsync(request))
+                    {
+                        await CheckResponse(response);
+                    }
                 }
+            }
+        }
+
+        private static async Task CheckResponse(HttpResponseMessage response)
+        {
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                var message = await response.Content.ReadAsStringAsync();
+
+                try
+                {
+                    var jo = JObject.Parse(message);
+
+                    var innerMessage = jo.GetValue("Message").ToString();
+
+                    if (!string.IsNullOrEmpty(innerMessage))
+                    {
+                        message = innerMessage;
+                    }
+                }
+                catch
+                { }
+
+                throw new Exception($"Response Code: {response.StatusCode}, {message}");
             }
         }
     }
