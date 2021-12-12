@@ -3,7 +3,7 @@
     using System.Xml.Serialization;
     using Microsoft.Win32;
 
-    public class DefaultValues
+    public sealed class DefaultValues
     {
         public bool ParseFirstNameInitialsIntoFirstAndMiddleName = true;
 
@@ -101,6 +101,8 @@
 
         public bool CheckPersonLinkForRedirect = true;
 
+        public bool SendToCastCrewCopyPaste = false;
+
         [XmlIgnore]
         internal string CreditPhotosFolder
         {
@@ -112,6 +114,66 @@
 
                 return path;
             }
+        }
+
+        public static DefaultValues GetFromProgramSettings()
+        {
+            var original = Program.DefaultValues;
+
+            var clone = new DefaultValues()
+            {
+                ParseRoleSlash = original.ParseRoleSlash,
+                ParseVoiceOf = original.ParseVoiceOf,
+                IgnoreUncredited = original.IgnoreUncredited,
+                IgnoreCreditOnly = original.IgnoreCreditOnly,
+                IgnoreScenesDeleted = original.IgnoreScenesDeleted,
+                IgnoreArchiveFootage = original.IgnoreArchiveFootage,
+                IgnoreLanguageVersion = original.IgnoreLanguageVersion,
+                IncludeCustomCredits = original.IncludeCustomCredits,
+                RetainCastCreditedAs = original.RetainCastCreditedAs,
+                RetainCrewCreditedAs = original.RetainCrewCreditedAs,
+                RetainOriginalCredit = original.RetainOriginalCredit,
+                IncludePrefixOnOtherCredits = original.IncludePrefixOnOtherCredits,
+                CapitalizeCustomRole = original.CapitalizeCustomRole,
+                CreditTypeDirection = original.CreditTypeDirection,
+                CreditTypeWriting = original.CreditTypeWriting,
+                CreditTypeProduction = original.CreditTypeProduction,
+                CreditTypeCinematography = original.CreditTypeCinematography,
+                CreditTypeFilmEditing = original.CreditTypeFilmEditing,
+                CreditTypeMusic = original.CreditTypeMusic,
+                CreditTypeSound = original.CreditTypeSound,
+                CreditTypeArt = original.CreditTypeArt,
+                CreditTypeOther = original.CreditTypeOther,
+                CreditTypeSoundtrack = original.CreditTypeSoundtrack,
+                ParseFirstNameInitialsIntoFirstAndMiddleName = original.ParseFirstNameInitialsIntoFirstAndMiddleName,
+                CheckPersonLinkForRedirect = original.CheckPersonLinkForRedirect,
+                AutoCopyHeadShots = original.AutoCopyHeadShots,
+                DisableCopyingSuccessfulMessageBox = original.DisableCopyingSuccessfulMessageBox,
+                DisableDuplicatesMessageBox = original.DisableDuplicatesMessageBox,
+                DisableParsingCompleteMessageBox = original.DisableParsingCompleteMessageBox,
+                DisableParsingCompleteMessageBoxForGetBirthYears = original.DisableParsingCompleteMessageBoxForGetBirthYears,
+                DisableParsingCompleteMessageBoxForGetHeadshots = original.DisableParsingCompleteMessageBoxForGetHeadshots,
+                DownloadGoofs = original.DownloadGoofs,
+                DownloadTrivia = original.DownloadTrivia,
+                EpisodeDividerFormat = original.EpisodeDividerFormat,
+                GetBirthYearsDirectlyAfterNameParsing = original.GetBirthYearsDirectlyAfterNameParsing,
+                GetCastHeadShots = original.GetCastHeadShots,
+                GetCrewHeadShots = original.GetCrewHeadShots,
+                GetHeadShotsDirectlyAfterNameParsing = original.GetHeadShotsDirectlyAfterNameParsing,
+                OverwriteExistingImages = original.OverwriteExistingImages,
+                ParseCast = original.ParseCast,
+                ParseCrew = original.ParseCrew,
+                RetrieveBirthYearWhenLocalCacheEmpty = original.RetrieveBirthYearWhenLocalCacheEmpty,
+                SaveLogFile = original.SaveLogFile,
+                SendToCastCrewCopyPaste = original.SendToCastCrewCopyPaste,
+                StoreHeadshotsPerSession = original.StoreHeadshotsPerSession,
+                TakeBirthYearFromLocalCache = original.TakeBirthYearFromLocalCache,
+                UseDoubleDigitsEpisodeNumber = original.UseDoubleDigitsEpisodeNumber,
+                UseFakeBirthYears = original.UseFakeBirthYears,
+                IgnoreUnconfirmed = original.IgnoreUnconfirmed,
+            };
+
+            return clone;
         }
     }
 }

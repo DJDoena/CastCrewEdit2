@@ -121,6 +121,7 @@
       <DependentUpon>EditKnownNamesConfigFileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\BirthYearGetter.cs" />
+    <Compile Include="Helper\CastCrewCopyPasteSender.cs" />
     <Compile Include="Helper\CastLineProcessor.cs" />
     <Compile Include="Extended\ExtendedCrewMember.cs" />
     <Compile Include="Extended\ExtendedCastMember.cs" />
@@ -275,6 +276,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SettingsForm.de.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\MessageBoxTexts.de.resx">
       <DependentUpon>MessageBoxTexts.resx</DependentUpon>

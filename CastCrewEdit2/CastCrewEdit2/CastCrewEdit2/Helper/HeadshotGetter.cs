@@ -85,7 +85,7 @@
 
         private static bool CanGetPhoto(string personLink, out FileInfo existingFile)
         {
-            if (Program.Settings.DefaultValues.OverwriteExistingImages)
+            if (Program.DefaultValues.OverwriteExistingImages)
             {
                 existingFile = null;
 

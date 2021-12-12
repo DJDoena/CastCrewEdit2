@@ -145,6 +145,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             StoreHeadshotsPerSessionCheckBox.Checked = _defaultValues.StoreHeadshotsPerSession;
 
+            SendToCastCrewCopyPasteCheckBox.Checked = _defaultValues.SendToCastCrewCopyPaste;
+
             this.OnEpisodeFormatChanged(null, null);
 
             this.OnParseCastCheckBoxCheckedChanged(null, null);
@@ -220,6 +222,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             _defaultValues.UseFakeBirthYears = UseFakeBirthYearsCheckBox.Checked;
             _defaultValues.SaveLogFile = SaveLogFileCheckBox.Checked;
             _defaultValues.StoreHeadshotsPerSession = StoreHeadshotsPerSessionCheckBox.Checked;
+            _defaultValues.SendToCastCrewCopyPaste = SendToCastCrewCopyPasteCheckBox.Checked;
         }
 
         private void OnSettingsFormLoad(object sender, EventArgs e)

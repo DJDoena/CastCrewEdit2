@@ -100,7 +100,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.TriviaTab = new System.Windows.Forms.TabPage();
             this.DownloadGoofsCheckBox = new System.Windows.Forms.CheckBox();
             this.DownloadTriviaCheckBox = new System.Windows.Forms.CheckBox();
-            this.LogTab = new System.Windows.Forms.TabPage();
+            this.OtherTab = new System.Windows.Forms.TabPage();
+            this.SendToCastCrewCopyPasteCheckBox = new System.Windows.Forms.CheckBox();
             this.SaveLogFileCheckBox = new System.Windows.Forms.CheckBox();
             this.SettingsTabControl.SuspendLayout();
             this.ParsingTab.SuspendLayout();
@@ -117,7 +118,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.RootPathTab.SuspendLayout();
             this.HeadshotsTab.SuspendLayout();
             this.TriviaTab.SuspendLayout();
-            this.LogTab.SuspendLayout();
+            this.OtherTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // AbortButton
@@ -143,7 +144,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.SettingsTabControl.Controls.Add(this.RootPathTab);
             this.SettingsTabControl.Controls.Add(this.HeadshotsTab);
             this.SettingsTabControl.Controls.Add(this.TriviaTab);
-            this.SettingsTabControl.Controls.Add(this.LogTab);
+            this.SettingsTabControl.Controls.Add(this.OtherTab);
             this.SettingsTabControl.Name = "SettingsTabControl";
             this.SettingsTabControl.SelectedIndex = 0;
             // 
@@ -616,12 +617,19 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.DownloadTriviaCheckBox.Name = "DownloadTriviaCheckBox";
             this.DownloadTriviaCheckBox.UseVisualStyleBackColor = true;
             // 
-            // LogTab
+            // OtherTab
             // 
-            resources.ApplyResources(this.LogTab, "LogTab");
-            this.LogTab.Controls.Add(this.SaveLogFileCheckBox);
-            this.LogTab.Name = "LogTab";
-            this.LogTab.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.OtherTab, "OtherTab");
+            this.OtherTab.Controls.Add(this.SendToCastCrewCopyPasteCheckBox);
+            this.OtherTab.Controls.Add(this.SaveLogFileCheckBox);
+            this.OtherTab.Name = "OtherTab";
+            this.OtherTab.UseVisualStyleBackColor = true;
+            // 
+            // SendToCastCrewCopyPasteCheckBox
+            // 
+            resources.ApplyResources(this.SendToCastCrewCopyPasteCheckBox, "SendToCastCrewCopyPasteCheckBox");
+            this.SendToCastCrewCopyPasteCheckBox.Name = "SendToCastCrewCopyPasteCheckBox";
+            this.SendToCastCrewCopyPasteCheckBox.UseVisualStyleBackColor = true;
             // 
             // SaveLogFileCheckBox
             // 
@@ -670,7 +678,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.HeadshotsTab.PerformLayout();
             this.TriviaTab.ResumeLayout(false);
             this.TriviaTab.PerformLayout();
-            this.LogTab.ResumeLayout(false);
+            this.OtherTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -707,7 +715,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         private System.Windows.Forms.Label EpisodeSeperatorSampleLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox EpisodeFormatTextBox;
-        private System.Windows.Forms.TabPage LogTab;
+        private System.Windows.Forms.TabPage OtherTab;
         private System.Windows.Forms.CheckBox SaveLogFileCheckBox;
         private System.Windows.Forms.TabPage CastParsingTab;
         private System.Windows.Forms.CheckBox ParseCastCheckBox;
@@ -750,5 +758,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         private System.Windows.Forms.CheckBox CheckLinksCheckBox;
         private System.Windows.Forms.CheckBox DisableDuplicatesMessageBoxCheckBox;
         private System.Windows.Forms.CheckBox OverwriteExistingHeadshotsCheckBox;
+        private System.Windows.Forms.CheckBox SendToCastCrewCopyPasteCheckBox;
     }
 }

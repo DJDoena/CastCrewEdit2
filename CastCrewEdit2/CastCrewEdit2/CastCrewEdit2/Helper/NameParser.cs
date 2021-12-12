@@ -77,7 +77,7 @@
 
             finalName = new Name();
 
-            if (Program.Settings.DefaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName)
+            if (Program.DefaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName)
             {
                 if (fullName.Contains("."))
                 {

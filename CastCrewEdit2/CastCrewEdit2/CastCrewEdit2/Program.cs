@@ -52,6 +52,8 @@
 
         internal static bool ShowNewBrowser => _isAtLeastWindows10Update1803 && !_runsAsElevated;
 
+        internal static DefaultValues DefaultValues => Settings.DefaultValues;
+
         static Program()
         {
             _isAtLeastWindows10Update1803 = GetIsAtLeastWindows10Update1803();

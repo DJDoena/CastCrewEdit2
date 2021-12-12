@@ -288,7 +288,7 @@
 
         private void ParseIMDb(EpisodeInfo episode)
         {
-            var defaultValues = this.CopyDefaultValues();
+            var defaultValues = this.GetDefaultValues();
 
             ParseCastAndCrew(episode.Link, true, true, true, true, ref episode.CastMatches, ref episode.CastList, ref episode.CrewMatches, ref episode.CrewList, ref episode.SoundtrackMatches);
 
@@ -304,34 +304,7 @@
             }
         }
 
-        private DefaultValues CopyDefaultValues() => new DefaultValues()
-        {
-            ParseFirstNameInitialsIntoFirstAndMiddleName = Program.Settings.DefaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName,
-            ParseRoleSlash = Program.Settings.DefaultValues.ParseRoleSlash,
-            ParseVoiceOf = Program.Settings.DefaultValues.ParseVoiceOf,
-            IgnoreUncredited = Program.Settings.DefaultValues.IgnoreUncredited,
-            IgnoreCreditOnly = Program.Settings.DefaultValues.IgnoreCreditOnly,
-            IgnoreScenesDeleted = Program.Settings.DefaultValues.IgnoreScenesDeleted,
-            IgnoreArchiveFootage = Program.Settings.DefaultValues.IgnoreArchiveFootage,
-            IgnoreLanguageVersion = Program.Settings.DefaultValues.IgnoreLanguageVersion,
-            IncludeCustomCredits = Program.Settings.DefaultValues.IncludeCustomCredits,
-            RetainCastCreditedAs = Program.Settings.DefaultValues.RetainCastCreditedAs,
-            RetainCrewCreditedAs = Program.Settings.DefaultValues.RetainCrewCreditedAs,
-            RetainOriginalCredit = Program.Settings.DefaultValues.RetainOriginalCredit,
-            IncludePrefixOnOtherCredits = Program.Settings.DefaultValues.IncludePrefixOnOtherCredits,
-            CapitalizeCustomRole = Program.Settings.DefaultValues.CapitalizeCustomRole,
-            CreditTypeDirection = Program.Settings.DefaultValues.CreditTypeDirection,
-            CreditTypeWriting = Program.Settings.DefaultValues.CreditTypeWriting,
-            CreditTypeProduction = Program.Settings.DefaultValues.CreditTypeProduction,
-            CreditTypeCinematography = Program.Settings.DefaultValues.CreditTypeCinematography,
-            CreditTypeFilmEditing = Program.Settings.DefaultValues.CreditTypeFilmEditing,
-            CreditTypeMusic = Program.Settings.DefaultValues.CreditTypeMusic,
-            CreditTypeSound = Program.Settings.DefaultValues.CreditTypeSound,
-            CreditTypeArt = Program.Settings.DefaultValues.CreditTypeArt,
-            CreditTypeOther = Program.Settings.DefaultValues.CreditTypeOther,
-            CreditTypeSoundtrack = Program.Settings.DefaultValues.CreditTypeSoundtrack,
-            CheckPersonLinkForRedirect = Program.Settings.DefaultValues.CheckPersonLinkForRedirect,
-        };
+        private DefaultValues GetDefaultValues() => DefaultValues.GetFromProgramSettings();
 
         private static int CompareEpisodes(EpisodeInfo left, EpisodeInfo right)
         {
@@ -351,7 +324,7 @@
         {
             using (var settingsForm = new SettingsForm(true, true))
             {
-                settingsForm.SetValues(Program.Settings.SettingsForm.Left, Program.Settings.SettingsForm.Top, Program.Settings.DefaultValues);
+                settingsForm.SetValues(Program.Settings.SettingsForm.Left, Program.Settings.SettingsForm.Top, Program.DefaultValues);
 
                 if (settingsForm.ShowDialog(this) == DialogResult.OK)
                 {

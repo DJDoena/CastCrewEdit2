@@ -192,7 +192,6 @@
             this.MovieTVShowTabControl.Name = "MovieTVShowTabControl";
             this.MovieTVShowTabControl.SelectedIndex = 0;
             this.MovieTVShowTabControl.SelectedIndexChanged += new System.EventHandler(this.OnMovieTVShowTabControlSelectedIndexChanged);
-            this.MovieTVShowTabControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnMovieTVShowTabControlKeyDown);
             // 
             // BrowserTab
             // 
@@ -312,7 +311,6 @@
             this.MovieCastCrewTabControl.Controls.Add(this.GoofsTab);
             this.MovieCastCrewTabControl.Name = "MovieCastCrewTabControl";
             this.MovieCastCrewTabControl.SelectedIndex = 0;
-            this.MovieCastCrewTabControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnMovieCastCrewTabControlKeyDown);
             // 
             // CastTab
             // 

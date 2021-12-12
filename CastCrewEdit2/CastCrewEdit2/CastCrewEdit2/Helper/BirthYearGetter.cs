@@ -139,7 +139,7 @@
             {
                 if (string.IsNullOrEmpty(other.BirthYear))
                 {
-                    if ((Program.Settings.DefaultValues.RetrieveBirthYearWhenLocalCacheEmpty))
+                    if ((Program.DefaultValues.RetrieveBirthYearWhenLocalCacheEmpty))
                     {
                         invokeResults.AddRange(GetBirthYear(row, person, other, log, castMember, addMessage));
                     }
@@ -246,7 +246,7 @@
                 BirthYear = previousBirthYear,
             };
 
-            var useFakeBirthYears = Program.Settings.DefaultValues.UseFakeBirthYears;
+            var useFakeBirthYears = Program.DefaultValues.UseFakeBirthYears;
 
             var text = castMember != null
                 ? string.Format(MessageBoxTexts.BirthYearCastHasChanged, old.FormatPersonNameWithoutMarkers(), old.FormatActorNameWithBirthYearWithMarkers(useFakeBirthYears), person.FormatActorNameWithBirthYearWithMarkers(useFakeBirthYears), old.PersonLink)

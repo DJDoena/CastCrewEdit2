@@ -93,7 +93,7 @@
 
         protected void OpenReadme()
         {
-            var helpFile = Application.StartupPath + @"\ReadMe\CCE2_ReadMe.html";
+            var helpFile = Path.Combine(Application.StartupPath, "ReadMe", "CCE2_ReadMe.html");
 
             if (File.Exists(helpFile))
             {
@@ -396,7 +396,7 @@
 
 #endif
         {
-            if (!_suppressProgress )
+            if (!_suppressProgress)
             {
                 this.SetProgressSafe();
             }

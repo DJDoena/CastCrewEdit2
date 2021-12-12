@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AnotherInstanceRunning" xml:space="preserve">
     <value>There's already an instance running. If you start another one, you could invalidate your cache. Continue?</value>
@@ -131,6 +131,12 @@ Check your DVD Profiler for consistency.</value>
 Old: {1}
 New: {2}
 Check your DVD Profiler for consistency.</value>
+  </data>
+  <data name="CastCrewCopyPasteUnreachable" xml:space="preserve">
+    <value>DVD Profiler plugin 'Cast/Crew Copy&amp;Paste' appears to be unreachable. Make sure DVD Profiler is running and the plugin is activated.</value>
+  </data>
+  <data name="CastCrewCopyPasteUnreachableHeader" xml:space="preserve">
+    <value>Transmission failure</value>
   </data>
   <data name="CastDataCopySuccessful" xml:space="preserve">
     <value>Data successfully copied to Clipboard. You can now open the Cast Edit Screen in DVD Profiler and paste the data into it.</value>

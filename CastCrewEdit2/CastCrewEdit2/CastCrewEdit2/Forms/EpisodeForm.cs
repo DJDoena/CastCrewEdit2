@@ -148,57 +148,57 @@
 
         private void SetCheckBoxes()
         {
-            ParseCastCheckBox.Checked = Program.Settings.DefaultValues.ParseCast;
+            ParseCastCheckBox.Checked = Program.DefaultValues.ParseCast;
 
-            ParseCrewCheckBox.Checked = Program.Settings.DefaultValues.ParseCrew;
+            ParseCrewCheckBox.Checked = Program.DefaultValues.ParseCrew;
 
-            ParseRoleSlashCheckBox.Checked = Program.Settings.DefaultValues.ParseRoleSlash;
+            ParseRoleSlashCheckBox.Checked = Program.DefaultValues.ParseRoleSlash;
 
-            ParseVoiceOfCheckBox.Checked = Program.Settings.DefaultValues.ParseVoiceOf;
+            ParseVoiceOfCheckBox.Checked = Program.DefaultValues.ParseVoiceOf;
 
-            IgnoreUncreditedCheckBox.Checked = Program.Settings.DefaultValues.IgnoreUncredited;
+            IgnoreUncreditedCheckBox.Checked = Program.DefaultValues.IgnoreUncredited;
 
-            IgnoreCreditOnlyCheckBox.Checked = Program.Settings.DefaultValues.IgnoreCreditOnly;
+            IgnoreCreditOnlyCheckBox.Checked = Program.DefaultValues.IgnoreCreditOnly;
 
-            IgnoreScenesDeletedCheckBox.Checked = Program.Settings.DefaultValues.IgnoreScenesDeleted;
+            IgnoreScenesDeletedCheckBox.Checked = Program.DefaultValues.IgnoreScenesDeleted;
 
-            IgnoreArchiveFootageCheckBox.Checked = Program.Settings.DefaultValues.IgnoreArchiveFootage;
+            IgnoreArchiveFootageCheckBox.Checked = Program.DefaultValues.IgnoreArchiveFootage;
 
-            IgnoreLanguageVersionCheckBox.Checked = Program.Settings.DefaultValues.IgnoreLanguageVersion;
+            IgnoreLanguageVersionCheckBox.Checked = Program.DefaultValues.IgnoreLanguageVersion;
 
-            IgnoreUnconfirmedCheckBox.Checked = Program.Settings.DefaultValues.IgnoreUnconfirmed;
+            IgnoreUnconfirmedCheckBox.Checked = Program.DefaultValues.IgnoreUnconfirmed;
 
-            RetainCreditedAsOnCastCheckBox.Checked = Program.Settings.DefaultValues.RetainCastCreditedAs;
+            RetainCreditedAsOnCastCheckBox.Checked = Program.DefaultValues.RetainCastCreditedAs;
 
-            CustomCreditsCheckBox.Checked = Program.Settings.DefaultValues.IncludeCustomCredits;
+            CustomCreditsCheckBox.Checked = Program.DefaultValues.IncludeCustomCredits;
 
-            RetainOriginalCreditCheckBox.Checked = Program.Settings.DefaultValues.RetainOriginalCredit;
+            RetainOriginalCreditCheckBox.Checked = Program.DefaultValues.RetainOriginalCredit;
 
-            IncludePrefixOnOtherCreditsCheckBox.Checked = Program.Settings.DefaultValues.IncludePrefixOnOtherCredits;
+            IncludePrefixOnOtherCreditsCheckBox.Checked = Program.DefaultValues.IncludePrefixOnOtherCredits;
 
-            CapitalizeCustomRoleCheckBox.Checked = Program.Settings.DefaultValues.CapitalizeCustomRole;
+            CapitalizeCustomRoleCheckBox.Checked = Program.DefaultValues.CapitalizeCustomRole;
 
-            RetainCreditedAsOnCrewCheckBox.Checked = Program.Settings.DefaultValues.RetainCrewCreditedAs;
+            RetainCreditedAsOnCrewCheckBox.Checked = Program.DefaultValues.RetainCrewCreditedAs;
 
-            CreditTypeDirectionCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeDirection;
+            CreditTypeDirectionCheckBox.Checked = Program.DefaultValues.CreditTypeDirection;
 
-            CreditTypeWritingCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeWriting;
+            CreditTypeWritingCheckBox.Checked = Program.DefaultValues.CreditTypeWriting;
 
-            CreditTypeProductionCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeProduction;
+            CreditTypeProductionCheckBox.Checked = Program.DefaultValues.CreditTypeProduction;
 
-            CreditTypeCinematographyCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeCinematography;
+            CreditTypeCinematographyCheckBox.Checked = Program.DefaultValues.CreditTypeCinematography;
 
-            CreditTypeFilmEditingCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeFilmEditing;
+            CreditTypeFilmEditingCheckBox.Checked = Program.DefaultValues.CreditTypeFilmEditing;
 
-            CreditTypeMusicCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeMusic;
+            CreditTypeMusicCheckBox.Checked = Program.DefaultValues.CreditTypeMusic;
 
-            CreditTypeSoundCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeSound;
+            CreditTypeSoundCheckBox.Checked = Program.DefaultValues.CreditTypeSound;
 
-            CreditTypeArtCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeArt;
+            CreditTypeArtCheckBox.Checked = Program.DefaultValues.CreditTypeArt;
 
-            CreditTypeOtherCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeOther;
+            CreditTypeOtherCheckBox.Checked = Program.DefaultValues.CreditTypeOther;
 
-            CreditTypeSoundtrackCheckBox.Checked = Program.Settings.DefaultValues.CreditTypeSoundtrack;
+            CreditTypeSoundtrackCheckBox.Checked = Program.DefaultValues.CreditTypeSoundtrack;
         }
 
         private void FillRows()
@@ -258,11 +258,11 @@
 
         private static void GetEpisodeTitle(EpisodeInfo episode, PersonInfo divider)
         {
-            var text = Program.Settings.DefaultValues.EpisodeDividerFormat;
+            var text = Program.DefaultValues.EpisodeDividerFormat;
 
             text = text.Replace("{season}", episode.SeasonNumber);
 
-            if (Program.Settings.DefaultValues.UseDoubleDigitsEpisodeNumber)
+            if (Program.DefaultValues.UseDoubleDigitsEpisodeNumber)
             {
                 text = text.Replace("{episode}", episode.EpisodeNumber.PadLeft(2, '0'));
             }
@@ -360,27 +360,13 @@
             Program.Settings.EpisodeForm.RestoreBounds = this.RestoreBounds;
         }
 
-        private void OnCastGenerateButtonClick(object sender, EventArgs e)
-        {
-            if (!HasAgreed)
-            {
-                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                {
-                    return;
-                }
-            }
+        private void OnCastGenerateButtonClick(object sender, EventArgs e) => this.GenerateCastXml(true);
 
-            DataGridViewHelper.CopyCastToClipboard(CastDataGridView, _tvShowTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, false);
+        private string GenerateCastXml(bool showMessageBox) => this.GenerateCastXml(CastDataGridView, _tvShowTitle, showMessageBox, LogWebBrowser);
 
-            _log.Show(LogWebBrowser);
+        private void OnCrewGenerateButtonClick(object sender, EventArgs e) => this.GenerateCrewXml(true);
 
-            this.ProcessMessageQueue();
-
-            if (!Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox)
-            {
-                MessageBox.Show(this, MessageBoxTexts.CastDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
+        private string GenerateCrewXml(bool showMessageBox) => this.GenerateCrewXml(CrewDataGridView, _tvShowTitle, showMessageBox, LogWebBrowser);
 
         private void OnCloseButtonClick(object sender, EventArgs e) => this.Close();
 
@@ -408,29 +394,29 @@
 
             this.EndLongActionWithGrids();
 
-            if (!Program.Settings.DefaultValues.DisableParsingCompleteMessageBox
-                && !Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing
-                && !Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
+            if (!Program.DefaultValues.DisableParsingCompleteMessageBox
+                && !Program.DefaultValues.GetBirthYearsDirectlyAfterNameParsing
+                && !Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
             {
                 this.ProcessMessageQueue();
 
                 MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            if (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing)
+            if (Program.DefaultValues.GetBirthYearsDirectlyAfterNameParsing)
             {
-                this.GetBirthYears(Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing, CastDataGridView, CrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
+                this.GetBirthYears(Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing, CastDataGridView, CrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
             }
 
-            if (Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
+            if (Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
             {
                 this.OnGetHeadshotsButtonClick(sender, e);
             }
 
             this.ProcessMessageQueue();
 
-            DataGridViewHelper.CopyCastToClipboard(CastDataGridView, _tvShowTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
-            DataGridViewHelper.CopyCrewToClipboard(CrewDataGridView, _tvShowTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
+            DataGridViewHelper.CopyCastToClipboard(CastDataGridView, _tvShowTitle, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage, true);
+            DataGridViewHelper.CopyCrewToClipboard(CrewDataGridView, _tvShowTitle, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage, true);
         }
 
         private void EndLongActionWithGrids()
@@ -446,35 +432,11 @@
 
         private void OnCrewDataGridViewCellValueChanged(object sender, DataGridViewCellEventArgs e) => DataGridViewHelper.OnCrewDataGridViewCellValueChanged(sender, e);
 
-        private void OnCrewGenerateButtonClick(object sender, EventArgs e)
-        {
-            if (!HasAgreed)
-            {
-                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                {
-                    return;
-                }
-            }
-
-            HasAgreed = true;
-
-            DataGridViewHelper.CopyCrewToClipboard(CrewDataGridView, _tvShowTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, false);
-
-            _log.Show(LogWebBrowser);
-
-            this.ProcessMessageQueue();
-
-            if (!Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox)
-            {
-                MessageBox.Show(this, MessageBoxTexts.CrewDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
         private void OnSettingsToolStripMenuItemClick(object sender, EventArgs e)
         {
             using (var settingsForm = new SettingsForm(true, true))
             {
-                settingsForm.SetValues(Program.Settings.SettingsForm.Left, Program.Settings.SettingsForm.Top, Program.Settings.DefaultValues);
+                settingsForm.SetValues(Program.Settings.SettingsForm.Left, Program.Settings.SettingsForm.Top, Program.DefaultValues);
 
                 if (settingsForm.ShowDialog(this) == DialogResult.OK)
                 {
@@ -491,7 +453,7 @@
         {
             this.StartLongAction();
 
-            var defaultValues = this.CopyDefaultValues();
+            var defaultValues = this.GetDefaultValues();
 
             var progressMax = 0;
 
@@ -529,63 +491,66 @@
 
             this.EndLongActionWithGrids();
 
-            if (!Program.Settings.DefaultValues.DisableParsingCompleteMessageBox
-                && !Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing
-                && !Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
+            if (!Program.DefaultValues.DisableParsingCompleteMessageBox
+                && !Program.DefaultValues.GetBirthYearsDirectlyAfterNameParsing
+                && !Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
             {
                 this.ProcessMessageQueue();
 
                 MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            if (Program.Settings.DefaultValues.GetBirthYearsDirectlyAfterNameParsing)
+            if (Program.DefaultValues.GetBirthYearsDirectlyAfterNameParsing)
             {
-                this.GetBirthYears(Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing, CastDataGridView, CrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
+                this.GetBirthYears(Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing, CastDataGridView, CrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
             }
             else
             {
                 Program.FlushPersonCache();
             }
 
-            if (Program.Settings.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
+            if (Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
             {
                 this.GetHeadshots(CastDataGridView, CrewDataGridView, GetHeadshotsButton);
             }
 
             this.ProcessMessageQueue();
 
-            DataGridViewHelper.CopyCastToClipboard(CastDataGridView, _tvShowTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
-            DataGridViewHelper.CopyCrewToClipboard(CrewDataGridView, _tvShowTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage, true);
+            DataGridViewHelper.CopyCastToClipboard(CastDataGridView, _tvShowTitle, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage, true);
+            DataGridViewHelper.CopyCrewToClipboard(CrewDataGridView, _tvShowTitle, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage, true);
         }
 
-        private DefaultValues CopyDefaultValues() => new DefaultValues()
+        private DefaultValues GetDefaultValues()
         {
-            ParseRoleSlash = ParseRoleSlashCheckBox.Checked,
-            ParseVoiceOf = ParseVoiceOfCheckBox.Checked,
-            IgnoreUncredited = IgnoreUncreditedCheckBox.Checked,
-            IgnoreCreditOnly = IgnoreCreditOnlyCheckBox.Checked,
-            IgnoreScenesDeleted = IgnoreScenesDeletedCheckBox.Checked,
-            IgnoreArchiveFootage = IgnoreArchiveFootageCheckBox.Checked,
-            IgnoreLanguageVersion = IgnoreLanguageVersionCheckBox.Checked,
-            IgnoreUnconfirmed = IgnoreUnconfirmedCheckBox.Checked,
-            RetainCastCreditedAs = RetainCreditedAsOnCastCheckBox.Checked,
-            IncludeCustomCredits = CustomCreditsCheckBox.Checked,
-            RetainOriginalCredit = RetainOriginalCreditCheckBox.Checked,
-            IncludePrefixOnOtherCredits = IncludePrefixOnOtherCreditsCheckBox.Checked,
-            CapitalizeCustomRole = CapitalizeCustomRoleCheckBox.Checked,
-            RetainCrewCreditedAs = RetainCreditedAsOnCrewCheckBox.Checked,
-            CreditTypeDirection = CreditTypeDirectionCheckBox.Checked,
-            CreditTypeWriting = CreditTypeWritingCheckBox.Checked,
-            CreditTypeProduction = CreditTypeProductionCheckBox.Checked,
-            CreditTypeCinematography = CreditTypeCinematographyCheckBox.Checked,
-            CreditTypeFilmEditing = CreditTypeFilmEditingCheckBox.Checked,
-            CreditTypeMusic = CreditTypeMusicCheckBox.Checked,
-            CreditTypeSound = CreditTypeSoundCheckBox.Checked,
-            CreditTypeArt = CreditTypeArtCheckBox.Checked,
-            CreditTypeOther = CreditTypeOtherCheckBox.Checked,
-            CreditTypeSoundtrack = CreditTypeSoundtrackCheckBox.Checked,
-            CheckPersonLinkForRedirect = Program.Settings.DefaultValues.CheckPersonLinkForRedirect,
-        };
+            var defaultValues = DefaultValues.GetFromProgramSettings();
+
+            defaultValues.ParseRoleSlash = ParseRoleSlashCheckBox.Checked;
+            defaultValues.ParseVoiceOf = ParseVoiceOfCheckBox.Checked;
+            defaultValues.IgnoreUncredited = IgnoreUncreditedCheckBox.Checked;
+            defaultValues.IgnoreCreditOnly = IgnoreCreditOnlyCheckBox.Checked;
+            defaultValues.IgnoreScenesDeleted = IgnoreScenesDeletedCheckBox.Checked;
+            defaultValues.IgnoreArchiveFootage = IgnoreArchiveFootageCheckBox.Checked;
+            defaultValues.IgnoreLanguageVersion = IgnoreLanguageVersionCheckBox.Checked;
+            defaultValues.IgnoreUnconfirmed = IgnoreUnconfirmedCheckBox.Checked;
+            defaultValues.RetainCastCreditedAs = RetainCreditedAsOnCastCheckBox.Checked;
+            defaultValues.IncludeCustomCredits = CustomCreditsCheckBox.Checked;
+            defaultValues.RetainOriginalCredit = RetainOriginalCreditCheckBox.Checked;
+            defaultValues.IncludePrefixOnOtherCredits = IncludePrefixOnOtherCreditsCheckBox.Checked;
+            defaultValues.CapitalizeCustomRole = CapitalizeCustomRoleCheckBox.Checked;
+            defaultValues.RetainCrewCreditedAs = RetainCreditedAsOnCrewCheckBox.Checked;
+            defaultValues.CreditTypeDirection = CreditTypeDirectionCheckBox.Checked;
+            defaultValues.CreditTypeWriting = CreditTypeWritingCheckBox.Checked;
+            defaultValues.CreditTypeProduction = CreditTypeProductionCheckBox.Checked;
+            defaultValues.CreditTypeCinematography = CreditTypeCinematographyCheckBox.Checked;
+            defaultValues.CreditTypeFilmEditing = CreditTypeFilmEditingCheckBox.Checked;
+            defaultValues.CreditTypeMusic = CreditTypeMusicCheckBox.Checked;
+            defaultValues.CreditTypeSound = CreditTypeSoundCheckBox.Checked;
+            defaultValues.CreditTypeArt = CreditTypeArtCheckBox.Checked;
+            defaultValues.CreditTypeOther = CreditTypeOtherCheckBox.Checked;
+            defaultValues.CreditTypeSoundtrack = CreditTypeSoundtrackCheckBox.Checked;
+
+            return defaultValues;
+        }
 
         protected override void RemoveRow(CastInfo castMember)
         {
@@ -723,13 +688,13 @@
                 }
             }
 
-            DataGridViewHelper.CopyExtendedCastToClipboard(CastDataGridView, _tvShowTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage);
+            DataGridViewHelper.CopyExtendedCastToClipboard(CastDataGridView, _tvShowTitle, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage);
 
             _log.Show(LogWebBrowser);
 
             this.ProcessMessageQueue();
 
-            if (!Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox)
+            if (!Program.DefaultValues.DisableCopyingSuccessfulMessageBox)
             {
                 MessageBox.Show(this, MessageBoxTexts.CastDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -747,49 +712,53 @@
 
             HasAgreed = true;
 
-            DataGridViewHelper.CopyExtendedCrewToClipboard(CrewDataGridView, _tvShowTitle, _log, Program.Settings.DefaultValues.UseFakeBirthYears, AddMessage);
+            DataGridViewHelper.CopyExtendedCrewToClipboard(CrewDataGridView, _tvShowTitle, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage);
 
             _log.Show(LogWebBrowser);
 
             this.ProcessMessageQueue();
 
-            if (!Program.Settings.DefaultValues.DisableCopyingSuccessfulMessageBox)
+            if (!Program.DefaultValues.DisableCopyingSuccessfulMessageBox)
             {
                 MessageBox.Show(this, MessageBoxTexts.CrewDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-        private void OnTabControlKeyDown(object sender, KeyEventArgs e)
+        private async void OnEpisodeFormKeyDown(object sender, KeyEventArgs e)
         {
-            if (TabControl.Enabled && IsShortCutAction(e))
+            if (TabControl.Enabled)
             {
-                if (CtrlSWasPressed(e)
-                    && (TabControl.SelectedIndex == 0 || TabControl.SelectedIndex == 1))
+                if (CtrlSWasPressed(e))
                 {
-                    this.OnCastGenerateButtonClick(this, EventArgs.Empty);
+                    if (Program.DefaultValues.SendToCastCrewCopyPaste
+                        && (TabControl.SelectedIndex == 0 || TabControl.SelectedIndex == 1))
+                    {
+                        if (ParseCastCheckBox.Checked)
+                        {
+                            var xml = this.GenerateCastXml(false);
 
-                    this.TrySendToDvdProfiler(e);
+                            await CastCrewCopyPasteSender.Send(xml);
+                        }
 
-                    this.OnCrewGenerateButtonClick(this, EventArgs.Empty);
+                        if (ParseCrewCheckBox.Checked)
+                        {
+                            var xml = this.GenerateCrewXml(false);
 
-                    this.TrySendToDvdProfiler(e);
+                            await CastCrewCopyPasteSender.Send(xml);
+                        }
+                    }
                 }
-                else if (TabControl.SelectedIndex == 0)
+                else if (CtrlCWasPressed(e))
                 {
-                    this.OnCastGenerateButtonClick(this, EventArgs.Empty);
+                    if (TabControl.SelectedIndex == 0)
+                    {
+                        this.OnCastGenerateButtonClick(this, EventArgs.Empty);
+                    }
+                    else if (TabControl.SelectedIndex == 1)
+                    {
+                        this.OnCrewGenerateButtonClick(this, EventArgs.Empty);
+                    }
                 }
-                else if (TabControl.SelectedIndex == 1)
-                {
-                    this.OnCrewGenerateButtonClick(this, EventArgs.Empty);
-                }
-            }
-        }
-
-        private void OnEpisodeFormKeyDown(object sender, KeyEventArgs e)
-        {
-            if (this.Enabled && IsShortCutAction(e))
-            {
-                this.OnTabControlKeyDown(sender, e);
             }
         }
     }

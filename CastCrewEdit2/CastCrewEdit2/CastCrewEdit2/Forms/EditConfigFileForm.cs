@@ -1,10 +1,10 @@
-﻿using System;
-using System.IO;
-using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 {
+    using System;
+    using System.IO;
+    using System.Windows.Forms;
+    using Resources;
+
     internal partial class EditConfigFileForm : Form
     {
         private readonly string _fileName;

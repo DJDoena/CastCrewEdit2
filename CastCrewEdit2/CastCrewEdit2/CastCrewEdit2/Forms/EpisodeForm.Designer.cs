@@ -129,7 +129,6 @@
             this.TabControl.Controls.Add(this.LogTabPage);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnTabControlKeyDown);
             // 
             // CastTabPage
             // 

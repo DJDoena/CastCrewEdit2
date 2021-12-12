@@ -132,6 +132,12 @@ Alt: {1}
 Neu: {2}
 Überprüfe deinen DVD Profiler auf Konsistenz.</value>
   </data>
+  <data name="CastCrewCopyPasteUnreachable" xml:space="preserve">
+    <value>DVD Profiler Plugin 'Cast/Crew Copy&amp;Paste' scheint nicht erreichbar zu sein. Stelle sicher, dass DVD Profiler läuft und dass das Plugin aktiviert ist. </value>
+  </data>
+  <data name="CastCrewCopyPasteUnreachableHeader" xml:space="preserve">
+    <value>Fehler bei der Übertragung</value>
+  </data>
   <data name="CastDataCopySuccessful" xml:space="preserve">
     <value>Daten erfolgreich in die Zwischenablage kopiert. Du kannst sie jetzt im Darsteller-Bearbeitungsfenster einfügen.</value>
   </data>

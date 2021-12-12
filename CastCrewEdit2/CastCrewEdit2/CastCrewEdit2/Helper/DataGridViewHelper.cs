@@ -474,7 +474,7 @@
             dataGridView.Columns.AddRange(firstNameDataGridViewTextBoxColumn, middleNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn, birthyearDataGridViewTextBoxColumn, creditTypeDataGridViewComboBoxBoxColumn, creditSubtypeDataGridViewComboBoxColumn, customRoleDataGridViewTextBoxColumn, creditedasDataGridViewTextBoxColumn, linkDataGridViewLinkColumn, originalCreditDataGridViewTextBoxColumn);
         }
 
-        public static void CopyCastToClipboard(DataGridView dataGridView, string title, Log log, bool useFakeBirthYears, Action<MessageEntry> addMessage, bool embedded)
+        public static string CopyCastToClipboard(DataGridView dataGridView, string title, Log log, bool useFakeBirthYears, Action<MessageEntry> addMessage, bool embedded)
         {
             var ci = new CastInformation();
 
@@ -485,14 +485,16 @@
                 var xml = Utilities.CopyCastInformationToClipboard(ci, embedded);
 
                 Program.AdapterEventHandler.RaiseCastCompleted(xml);
+
+                return xml;
             }
             catch (ExternalException)
             {
                 MessageBox.Show(MessageBoxTexts.CopyToClipboardFailed, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                return null;
             }
         }
-
-
 
         public static void CopyExtendedCastToClipboard(DataGridView dataGridView, string title, Log log, bool useFakeBirthYears, Action<MessageEntry> addMessage)
         {
@@ -745,7 +747,7 @@
                     {
                         if (kvp.Value.Count > 1)
                         {
-                            ShowDuplicatesMessageBox(log, confirmedPossibleDuplicates, piwby, kvp.Value, MessageBoxTexts.PossibleSameYearDuplicates, addMessage, Program.Settings.DefaultValues.DisableDuplicatesMessageBox);
+                            ShowDuplicatesMessageBox(log, confirmedPossibleDuplicates, piwby, kvp.Value, MessageBoxTexts.PossibleSameYearDuplicates, addMessage, Program.DefaultValues.DisableDuplicatesMessageBox);
                         }
                     }
 
@@ -862,7 +864,7 @@
 
             var nameListLog = new StringBuilder();
 
-            var useFakeBirthNames = Program.Settings.DefaultValues.UseFakeBirthYears;
+            var useFakeBirthNames = Program.DefaultValues.UseFakeBirthYears;
 
             foreach (var item in list)
             {
@@ -916,7 +918,7 @@
             }
         }
 
-        public static void CopyCrewToClipboard(DataGridView dataGridView, string title, Log log, bool useFakeBirthYears, Action<MessageEntry> addMessage, bool embedded)
+        public static string CopyCrewToClipboard(DataGridView dataGridView, string title, Log log, bool useFakeBirthYears, Action<MessageEntry> addMessage, bool embedded)
         {
             var ci = new CrewInformation();
 
@@ -927,10 +929,14 @@
                 var xml = Utilities.CopyCrewInformationToClipboard(ci, embedded);
 
                 Program.AdapterEventHandler.RaiseCrewCompleted(xml);
+
+                return xml;
             }
             catch (ExternalException)
             {
                 MessageBox.Show(MessageBoxTexts.CopyToClipboardFailed, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                return null;
             }
         }
 

@@ -6,10 +6,7 @@
     using System.Drawing;
     using System.IO;
     using System.Net;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
     using System.Runtime.InteropServices;
-    using System.Text;
     using System.Threading;
     using System.Windows.Forms;
     using Helper;
@@ -74,6 +71,58 @@
             Program.CrewCache.Values.CopyTo(persons, Program.CastCache.Values.Count);
 
             this.ShowCache(new List<PersonInfo>(persons), "Local Person Cache");
+        }
+
+        protected string GenerateCastXml(DataGridView castDataGridView, string title, bool showMessageBox, WebBrowser logWebBrowser)
+        {
+            if (!HasAgreed)
+            {
+                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return null;
+                }
+            }
+
+            HasAgreed = true;
+
+            var xml = DataGridViewHelper.CopyCastToClipboard(castDataGridView, title, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage, false);
+
+            _log.Show(logWebBrowser);
+
+            this.ProcessMessageQueue();
+
+            if (showMessageBox && !Program.DefaultValues.DisableCopyingSuccessfulMessageBox)
+            {
+                MessageBox.Show(this, MessageBoxTexts.CastDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            return xml;
+        }
+
+        protected string GenerateCrewXml(DataGridView crewDataGridView, string title, bool showMessageBox, WebBrowser logWebBrowser)
+        {
+            if (!HasAgreed)
+            {
+                if (MessageBox.Show(this, MessageBoxTexts.DontContributeIMDbData, MessageBoxTexts.DontContributeIMDbDataHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    return null;
+                }
+            }
+
+            HasAgreed = true;
+
+            var xml = DataGridViewHelper.CopyCrewToClipboard(crewDataGridView, title, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage, false);
+
+            _log.Show(logWebBrowser);
+
+            this.ProcessMessageQueue();
+
+            if (showMessageBox && !Program.DefaultValues.DisableCopyingSuccessfulMessageBox)
+            {
+                MessageBox.Show(this, MessageBoxTexts.CrewDataCopySuccessful, MessageBoxTexts.DataCopySuccessfulHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            return xml;
         }
 
         private void ShowCache(List<PersonInfo> persons, string cacheName)
@@ -418,12 +467,12 @@
         {
             var progressMax = 0;
 
-            if (Program.Settings.DefaultValues.GetCastHeadShots)
+            if (Program.DefaultValues.GetCastHeadShots)
             {
                 progressMax += castDataGridView.RowCount;
             }
 
-            if (Program.Settings.DefaultValues.GetCrewHeadShots)
+            if (Program.DefaultValues.GetCrewHeadShots)
             {
                 progressMax += crewDataGridView.RowCount;
             }
@@ -446,19 +495,19 @@
             {
                 this.RestartProgress();
 
-                if (Program.Settings.DefaultValues.GetCastHeadShots)
+                if (Program.DefaultValues.GetCastHeadShots)
                 {
-                    DataGridViewHelper.GetHeadshots(castDataGridView, Program.Settings.DefaultValues.UseFakeBirthYears, true, AddMessage, this.SetProgress);
+                    DataGridViewHelper.GetHeadshots(castDataGridView, Program.DefaultValues.UseFakeBirthYears, true, AddMessage, this.SetProgress);
                 }
 
-                if (Program.Settings.DefaultValues.GetCrewHeadShots)
+                if (Program.DefaultValues.GetCrewHeadShots)
                 {
-                    DataGridViewHelper.GetHeadshots(crewDataGridView, Program.Settings.DefaultValues.UseFakeBirthYears, false, AddMessage, this.SetProgress);
+                    DataGridViewHelper.GetHeadshots(crewDataGridView, Program.DefaultValues.UseFakeBirthYears, false, AddMessage, this.SetProgress);
                 }
 
-                if (Program.Settings.DefaultValues.AutoCopyHeadShots)
+                if (Program.DefaultValues.AutoCopyHeadShots)
                 {
-                    if (Directory.Exists(Program.Settings.DefaultValues.CreditPhotosFolder))
+                    if (Directory.Exists(Program.DefaultValues.CreditPhotosFolder))
                     {
                         var files = Directory.GetFiles(Program.RootPath + @"\Images\DVD Profiler", "*.*");
 
@@ -466,9 +515,9 @@
                         {
                             var sourceFileInfo = new FileInfo(file);
 
-                            var targetFileInfo = new FileInfo(Path.Combine(Program.Settings.DefaultValues.CreditPhotosFolder, sourceFileInfo.Name));
+                            var targetFileInfo = new FileInfo(Path.Combine(Program.DefaultValues.CreditPhotosFolder, sourceFileInfo.Name));
 
-                            if (!targetFileInfo.Exists || Program.Settings.DefaultValues.OverwriteExistingImages)
+                            if (!targetFileInfo.Exists || Program.DefaultValues.OverwriteExistingImages)
                             {
                                 sourceFileInfo.CopyTo(targetFileInfo.FullName, true);
                             }
@@ -480,7 +529,7 @@
                     }
                 }
 
-                if (!Program.Settings.DefaultValues.DisableParsingCompleteMessageBoxForGetHeadshots)
+                if (!Program.DefaultValues.DisableParsingCompleteMessageBoxForGetHeadshots)
                 {
                     this.ProcessMessageQueue();
 
@@ -550,7 +599,7 @@
                     {
                         RemoveDVDProfilerHeadShots();
                     }
-                    else if (!Program.Settings.DefaultValues.StoreHeadshotsPerSession)
+                    else if (!Program.DefaultValues.StoreHeadshotsPerSession)
                     {
                         RemoveDVDProfilerHeadShots();
                     }
@@ -566,7 +615,7 @@
                     {
                         RemoveCCViewerHeadshots();
                     }
-                    else if (!Program.Settings.DefaultValues.StoreHeadshotsPerSession)
+                    else if (!Program.DefaultValues.StoreHeadshotsPerSession)
                     {
                         RemoveCCViewerHeadshots();
                     }
@@ -648,71 +697,9 @@
             }
         }
 
-        protected static bool IsShortCutAction(KeyEventArgs e) => (e.Modifiers == Keys.Control && e.KeyCode == Keys.C) || CtrlSWasPressed(e);
+        protected static bool CtrlCWasPressed(KeyEventArgs e) => e.Modifiers == Keys.Control && e.KeyCode == Keys.C;
 
-        protected static bool CtrlSWasPressed(KeyEventArgs e) => e.Modifiers == Keys.Control && e.KeyCode == Keys.S && ItsMe;
-
-        protected void TrySendToDvdProfiler(KeyEventArgs e)
-        {
-            if (!CtrlSWasPressed(e))
-            {
-                return;
-            }
-
-            try
-            {
-                var plain = Clipboard.GetText();
-
-                if (string.IsNullOrWhiteSpace(plain))
-                {
-                    return;
-                }
-
-                var json = EncodeJson(plain);
-
-                using (var content = new StringContent(json, Encoding.UTF8))
-                {
-                    content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
-
-                    using (var httpRequest = new HttpRequestMessage()
-                    {
-                        Method = new HttpMethod("POST"),
-                        RequestUri = new Uri("http://localhost:10001/api/Receiver/Receive"),
-                        Content = content,
-                    })
-                    {
-                        using (var client = new HttpClient())
-                        {
-                            var response = client.SendAsync(httpRequest).GetAwaiter().GetResult();
-
-                            if (response.StatusCode != HttpStatusCode.OK)
-                            {
-                                var message = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-
-                                throw new Exception($"Response Code: {response.StatusCode}, Message: {message}");
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Failed to send", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private static string EncodeJson(string input)
-        {
-            var output = input.Replace("\r", "\\r");
-
-            output = output.Replace("\n", "\\n");
-
-            output = output.Replace("\t", "\\t");
-
-            output = output.Replace("\"", "\\\"");
-
-            return $"\"{output}\"";
-        }
+        protected static bool CtrlSWasPressed(KeyEventArgs e) => e.Modifiers == Keys.Control && e.KeyCode == Keys.S;
 
         private void GetBirthYears(bool parseHeadshotsFollows, DataGridView castDataGridView, DataGridView crewDataGridView, string getBirthYearsButtonText, WebBrowser logWebBrowser)
         {
@@ -738,16 +725,16 @@
             {
                 this.RestartProgress();
 
-                DataGridViewHelper.GetBirthYears(castDataGridView, Program.CastCache, Program.Settings.DefaultValues, _log, true, AddMessage, this.SetProgress);
+                DataGridViewHelper.GetBirthYears(castDataGridView, Program.CastCache, Program.DefaultValues, _log, true, AddMessage, this.SetProgress);
 
-                DataGridViewHelper.GetBirthYears(crewDataGridView, Program.CrewCache, Program.Settings.DefaultValues, _log, false, AddMessage, this.SetProgress);
+                DataGridViewHelper.GetBirthYears(crewDataGridView, Program.CrewCache, Program.DefaultValues, _log, false, AddMessage, this.SetProgress);
 
                 if (_log.Length > 0)
                 {
                     _log.Show(logWebBrowser);
                 }
 
-                if (!Program.Settings.DefaultValues.DisableParsingCompleteMessageBoxForGetBirthYears && !parseHeadshotsFollows)
+                if (!Program.DefaultValues.DisableParsingCompleteMessageBoxForGetBirthYears && !parseHeadshotsFollows)
                 {
                     this.ProcessMessageQueue();
 
