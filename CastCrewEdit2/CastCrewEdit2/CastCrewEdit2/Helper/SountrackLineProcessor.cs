@@ -11,7 +11,9 @@
 
             if (songMatches.Count > 0)
             {
-                if (defaultValues.GroupSoundtrackCredits && !string.IsNullOrWhiteSpace(song))
+                var needsDivider = defaultValues.GroupSoundtrackCredits && !string.IsNullOrWhiteSpace(song);
+
+                if (needsDivider)
                 {
                     crewList.Add(new CrewInfo()
                     {
@@ -30,7 +32,7 @@
                     crewList.Add(crewMember);
                 }
 
-                if (defaultValues.GroupSoundtrackCredits && !string.IsNullOrWhiteSpace(song))
+                if (needsDivider)
                 {
                     crewList.Add(new CrewInfo()
                     {
@@ -56,19 +58,16 @@
 
             var personLink = crewMatch.Groups["PersonLink"].Value;
 
-            var creditSubType = CreditTypesDataGridViewHelper.CreditSubtypes.Custom;
-
-            if (job == CreditTypesDataGridViewHelper.CreditSubtypes.Music_SongWriter)
+            string creditSubType;
+            if (soundtrackMatch.IsSubtypeMatch)
             {
-                creditSubType = CreditTypesDataGridViewHelper.CreditSubtypes.Music_SongWriter;
+                creditSubType = job;
 
                 job = null;
             }
-            else if (job == CreditTypesDataGridViewHelper.CreditSubtypes.Music_Composer)
+            else
             {
-                creditSubType = CreditTypesDataGridViewHelper.CreditSubtypes.Music_Composer;
-
-                job = null;
+                creditSubType = CreditTypesDataGridViewHelper.CreditSubtypes.Custom;
             }
 
             var crewMember = new CrewInfo()
@@ -83,7 +82,7 @@
 
             if (!defaultValues.GroupSoundtrackCredits || string.IsNullOrWhiteSpace(song))
             {
-                if (!string.IsNullOrEmpty(song))
+                if (!string.IsNullOrWhiteSpace(song))
                 {
                     crewMember.CustomRole = "\"" + song + "\"";
                 }

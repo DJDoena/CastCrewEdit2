@@ -3,15 +3,15 @@
     using System;
     using System.Text.RegularExpressions;
 
-    public sealed class SoundtrackMatch : Tuple<string, Match>
+    public sealed class SoundtrackMatch : Tuple<string, bool, Match>
     {
-        public const string Performer = "Performed by";
-
         public string Job => this.Item1;
 
-        public Match CrewMatch => this.Item2;
+        public bool IsSubtypeMatch => this.Item2;
 
-        public SoundtrackMatch(string job, Match match) : base(job, match)
+        public Match CrewMatch => this.Item3;
+
+        public SoundtrackMatch(string job, bool isSubTypeMatch, Match match) : base(job, isSubTypeMatch, match)
         {
         }
     }

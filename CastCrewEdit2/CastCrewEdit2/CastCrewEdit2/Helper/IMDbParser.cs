@@ -811,23 +811,18 @@
 
                             foreach (Match personMatch in personMatches)
                             {
-                                if (StartsWith(line, "Written by"))
+                                if (TryGetSoundtrackSubtypeMatch(line, out var subType))
                                 {
-                                    list.Add(new SoundtrackMatch(CreditTypesDataGridViewHelper.CreditSubtypes.Music_SongWriter, personMatch));
+                                    list.Add(new SoundtrackMatch(subType, true, personMatch));
                                 }
-                                else if (StartsWith(line, "Music by") || StartsWith(line, "Composed by"))
+                                else if (TryGetCustomSoundtrackJob(line, out var job))
                                 {
-                                    list.Add(new SoundtrackMatch(CreditTypesDataGridViewHelper.CreditSubtypes.Music_Composer, personMatch));
-                                }
-                                else if (StartsWith(line, "Performed by"))
-                                {
-                                    list.Add(new SoundtrackMatch(SoundtrackMatch.Performer, personMatch));
+                                    list.Add(new SoundtrackMatch(job, false, personMatch));
                                 }
                                 else
                                 {
-                                    list.Add(new SoundtrackMatch(null, personMatch));
+                                    list.Add(new SoundtrackMatch(null, false, personMatch));
                                 }
-
                             }
                         }
                     }
@@ -837,7 +832,49 @@
             return liMatches;
         }
 
-        private static bool StartsWith(string line, string search) => line.TrimStart().StartsWith(search, StringComparison.OrdinalIgnoreCase);
+        private static bool TryGetSoundtrackSubtypeMatch(string line, out string subType)
+        {
+            var musicSubTypes = TransformationData.CreditTypeList
+                .Where(ct => ct.DVDProfilerCreditType == CreditTypesDataGridViewHelper.CreditTypes.Music)
+                .SelectMany(ct => ct.CreditSubtypeList)
+                .Where(cst => !string.IsNullOrEmpty(cst.IMDbCreditSubtype.Value));
+
+            foreach (var musicSubtype in musicSubTypes)
+            {
+                if (StartsWith(line, musicSubtype.IMDbCreditSubtype.Value))
+                {
+                    subType = musicSubtype.DVDProfilerCreditSubtype;
+
+                    return true;
+                }
+            }
+
+            subType = null;
+
+            return false;
+        }
+
+        private static bool TryGetCustomSoundtrackJob(string line, out string job)
+        {
+            line = line.TrimStart();
+
+            var indexOf = line.IndexOf(" by ", StringComparison.InvariantCultureIgnoreCase);
+
+            if (indexOf != -1)
+            {
+                job = line.Substring(0, indexOf + 3);
+
+                return true;
+            }
+            else
+            {
+                job = null;
+
+                return false;
+            }
+        }
+
+        private static bool StartsWith(string line, string search) => line.TrimStart().StartsWith(search, StringComparison.InvariantCultureIgnoreCase);
 
         internal static string GetUpdatedPersonLink(string personLink)
         {

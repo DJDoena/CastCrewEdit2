@@ -431,6 +431,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             IncludingCreditTypeSoundCheckBox.Enabled = enabled;
 
             IncludingCreditTypeArtCheckBox.Enabled = enabled;
+
+            IncludingCreditTypeSoundtrackCheckBox.Enabled = enabled;
+
+            GroupSoundtrackCreditsCheckBox.Enabled = enabled;
         }
     }
 }

@@ -1231,6 +1231,11 @@
           <DVDProfilerCreditSubtype>Song Writer</DVDProfilerCreditSubtype>
           <DVDProfilerCustomRole />
         </CreditSubtype>
+        <CreditSubtype>
+          <IMDbCreditSubtype>written by</IMDbCreditSubtype>
+          <DVDProfilerCreditSubtype>Song Writer</DVDProfilerCreditSubtype>
+          <DVDProfilerCustomRole />
+        </CreditSubtype>
       </CreditSubtypeList>
     </CreditType>
   </CreditTypeList>
