@@ -9,6 +9,7 @@
     using System.Runtime.InteropServices;
     using System.Text;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using System.Web;
     using System.Windows.Forms;
     using DVDProfilerHelper;
@@ -91,7 +92,7 @@
 
             if (Program.ShowNewBrowser)
             {
-                WebBrowserNew = this.InitWebBrowserNew();
+                WebBrowserNew = this.InitWebBrowserNew().GetAwaiter().GetResult();
 
                 BrowserTab.Controls.Add(WebBrowserNew);
             }
@@ -107,18 +108,18 @@
             this.Icon = Properties.Resource.djdsoft;
         }
 
-        private Microsoft.Web.WebView2.WinForms.WebView2 InitWebBrowserNew()
+        private async Task<Microsoft.Web.WebView2.WinForms.WebView2> InitWebBrowserNew()
         {
             var webBrowser = new Microsoft.Web.WebView2.WinForms.WebView2();
 
-            ((System.ComponentModel.ISupportInitialize)(webBrowser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)webBrowser).BeginInit();
 
             webBrowser.Name = "WebBrowser";
             webBrowser.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             webBrowser.Location = new Point(9, 64);
             webBrowser.Size = new Size(845, 395);
 
-            ((System.ComponentModel.ISupportInitialize)(webBrowser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)webBrowser).EndInit();
 
             webBrowser.NavigationCompleted += this.OnWebBrowserNavigationCompleted;
             webBrowser.NavigationStarting += this.OnWebBrowserNavigationStarting;
@@ -579,7 +580,7 @@
             }
         }
 
-        private void OnMainFormLoad(object sender, EventArgs e)
+        private async void OnMainFormLoad(object sender, EventArgs e)
         {
             this.SuspendLayout();
 
@@ -611,9 +612,21 @@
 
             this.CheckForNewVersion(true);
 
-            this.NavigateTo("https://www.imdb.com/find?s=tt&q=");
+            await this.InitialNavigate();
 
             BrowserSearchTextBox.Focus();
+        }
+
+        private async Task InitialNavigate()
+        {
+            if (Program.ShowNewBrowser)
+            {
+                var environment = await CoreWebView2Environment.CreateAsync(null, Path.Combine(Path.GetTempPath(), "CCE2browser"));
+
+                await WebBrowserNew.EnsureCoreWebView2Async(environment);
+            }
+
+            this.NavigateTo("https://www.imdb.com/find?s=tt&q=");
         }
 
         private void CheckForNewVersion(bool silently)
