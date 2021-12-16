@@ -50,7 +50,9 @@
 
         private static bool _debugMode;
 
-        internal static bool ShowNewBrowser => _isAtLeastWindows10Update1803 && !_runsAsElevated;
+        private static bool _forceOldBrowser;
+
+        internal static bool ShowNewBrowser => _isAtLeastWindows10Update1803 && !_runsAsElevated && !_forceOldBrowser;
 
         internal static DefaultValues DefaultValues => Settings.DefaultValues;
 
@@ -79,6 +81,8 @@
             _errorFile = Path.Combine(Path.GetTempPath(), "CastCrewEdit2Crash.xml");
 
             _debugMode = false;
+
+            _forceOldBrowser= false;
 
             AdapterEventHandler = new CastCrewEditAdapterEventHandler();
         }
@@ -158,6 +162,10 @@
                     else if (args[argIndex] == "embedded")
                     {
                         embedded = true;
+                    }
+                    else if (args[argIndex] == "/forceoldbrowser")
+                    {
+                        _forceOldBrowser = true;
                     }
                 }
 
