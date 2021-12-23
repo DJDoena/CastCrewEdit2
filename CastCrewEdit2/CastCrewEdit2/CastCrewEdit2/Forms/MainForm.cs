@@ -15,7 +15,7 @@
     using DVDProfilerHelper;
     using Extended;
     using Helper;
-    using Microsoft.Web.WebView2.Core;
+    using Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT;
     using Resources;
 
     [ComVisible(true)]
@@ -55,7 +55,7 @@
 
         private readonly System.Windows.Forms.WebBrowser WebBrowserOld;
 
-        private readonly Microsoft.Web.WebView2.WinForms.WebView2 WebBrowserNew;
+        private readonly Microsoft.Toolkit.Forms.UI.Controls.WebView WebBrowserNew;
 
         static MainForm()
         {
@@ -108,9 +108,9 @@
             this.Icon = Properties.Resource.djdsoft;
         }
 
-        private async Task<Microsoft.Web.WebView2.WinForms.WebView2> InitWebBrowserNew()
+        private async Task<Microsoft.Toolkit.Forms.UI.Controls.WebView> InitWebBrowserNew()
         {
-            var webBrowser = new Microsoft.Web.WebView2.WinForms.WebView2();
+            var webBrowser = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
 
             ((System.ComponentModel.ISupportInitialize)webBrowser).BeginInit();
 
@@ -612,21 +612,9 @@
 
             this.CheckForNewVersion(true);
 
-            await this.InitialNavigate();
+            this.NavigateTo("https://www.imdb.com/find?s=tt&q=");
 
             BrowserSearchTextBox.Focus();
-        }
-
-        private async Task InitialNavigate()
-        {
-            if (Program.ShowNewBrowser)
-            {
-                var environment = await CoreWebView2Environment.CreateAsync(null, Path.Combine(Path.GetTempPath(), "CCE2browser"));
-
-                await WebBrowserNew.EnsureCoreWebView2Async(environment);
-            }
-
-            this.NavigateTo("https://www.imdb.com/find?s=tt&q=");
         }
 
         private void CheckForNewVersion(bool silently)
@@ -1506,7 +1494,9 @@
             }
         }
 
-        private void OnWebBrowserNavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e) => this.UpdateUri();
+        private void OnWebBrowserNavigationStarting(object sender, WebViewControlNavigationStartingEventArgs e) => this.UpdateUri();
+
+        private void OnWebBrowserNavigationCompleted(object sender, WebViewControlNavigationCompletedEventArgs e) => this.UpdateUri();
 
         private void UpdateUri()
         {
@@ -1519,8 +1509,6 @@
                 TVShowUrlTextBox.Text = BrowserUrlComboBox.Text;
             }
         }
-
-        private void OnWebBrowserNavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e) => this.UpdateUri();
 
         private void OnWebBrowserNavigated(object sender, WebBrowserNavigatedEventArgs e)
         {
