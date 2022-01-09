@@ -92,7 +92,7 @@
 
             if (Program.ShowNewBrowser)
             {
-                WebBrowserNew = this.InitWebBrowserNew().GetAwaiter().GetResult();
+                WebBrowserNew = this.InitWebBrowserNew();
 
                 BrowserTab.Controls.Add(WebBrowserNew);
             }
@@ -108,7 +108,7 @@
             this.Icon = Properties.Resource.djdsoft;
         }
 
-        private async Task<Microsoft.Toolkit.Forms.UI.Controls.WebView> InitWebBrowserNew()
+        private Microsoft.Toolkit.Forms.UI.Controls.WebView InitWebBrowserNew()
         {
             var webBrowser = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
 
@@ -580,7 +580,7 @@
             }
         }
 
-        private async void OnMainFormLoad(object sender, EventArgs e)
+        private void OnMainFormLoad(object sender, EventArgs e)
         {
             this.SuspendLayout();
 
