@@ -860,12 +860,8 @@
             this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.MovieTVShowTabControl);
             this.Controls.Add(this.MenuStrip);
-            this.KeyPreview = true;
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "MainForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMainFormClosing);
-            this.Load += new System.EventHandler(this.OnMainFormLoad);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnMainFormKeyDown);
             this.MovieTVShowTabControl.ResumeLayout(false);
             this.BrowserTab.ResumeLayout(false);
             this.BrowserTab.PerformLayout();

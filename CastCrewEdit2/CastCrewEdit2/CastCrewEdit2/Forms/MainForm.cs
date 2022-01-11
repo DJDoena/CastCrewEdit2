@@ -15,13 +15,16 @@
     using DVDProfilerHelper;
     using Extended;
     using Helper;
-    using Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT;
     using Resources;
 
     [ComVisible(true)]
     public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDocHostShowUI
     {
+#pragma warning disable CS0618 // Type or member is obsolete
+
         private readonly bool _skipVersionCheck;
+
+        private readonly BrowserControlSelection _selectedBrowserControl;
 
         private static readonly Regex _seasonsBeginRegex;
 
@@ -53,9 +56,7 @@
 
         private List<CrewInfo> _crewList;
 
-        private readonly System.Windows.Forms.WebBrowser WebBrowserOld;
-
-        private readonly Microsoft.Toolkit.Forms.UI.Controls.WebView WebBrowserNew;
+        private readonly Control WebBrowser;
 
         static MainForm()
         {
@@ -76,11 +77,13 @@
             _episodeEndRegex = new Regex("<div class=\"clear\">&nbsp;</div>", RegexOptions.Compiled);
         }
 
-        public MainForm(bool skipVersionCheck)
+        public MainForm(bool skipVersionCheck, BrowserControlSelection selectedBrowserControl)
         {
             _movieTitle = string.Empty;
 
             _skipVersionCheck = skipVersionCheck;
+
+            _selectedBrowserControl = selectedBrowserControl;
 
             _castMatches = new List<Match>();
 
@@ -90,57 +93,111 @@
 
             this.InitializeComponent();
 
-            if (Program.ShowNewBrowser)
-            {
-                WebBrowserNew = this.InitWebBrowserNew();
-
-                BrowserTab.Controls.Add(WebBrowserNew);
-            }
-            else
-            {
-                WebBrowserOld = this.InitWebBrowserOld();
-
-                BrowserTab.Controls.Add(WebBrowserOld);
-            }
+            WebBrowser = this.InitWebBrowser();
 
             _progressBar = ProgressBar;
 
             this.Icon = Properties.Resource.djdsoft;
+
+            Shown += this.OnMainFormShown;
         }
 
-        private Microsoft.Toolkit.Forms.UI.Controls.WebView InitWebBrowserNew()
+        private Control InitWebBrowser()
         {
-            var webBrowser = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
+            Control webBrowser;
+            switch (_selectedBrowserControl)
+            {
+                case BrowserControlSelection.FormsDefault:
+                    {
+                        webBrowser = this.InitWebBrowserFormsDefault();
 
-            ((System.ComponentModel.ISupportInitialize)webBrowser).BeginInit();
+                        break;
+                    }
+                case BrowserControlSelection.WebViewCompatible:
+                    {
+                        webBrowser = this.InitWebBrowserWebViewCompatible();
 
-            webBrowser.Name = "WebBrowser";
-            webBrowser.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            webBrowser.Location = new Point(9, 64);
-            webBrowser.Size = new Size(845, 395);
+                        break;
+                    }
+                case BrowserControlSelection.WebView:
+                    {
+                        webBrowser = this.InitWebBrowserWebView();
 
-            ((System.ComponentModel.ISupportInitialize)webBrowser).EndInit();
+                        break;
+                    }
+                case BrowserControlSelection.WebView2:
+                    {
+                        webBrowser = this.InitWebBrowserWebView2();
 
-            webBrowser.NavigationCompleted += this.OnWebBrowserNavigationCompleted;
-            webBrowser.NavigationStarting += this.OnWebBrowserNavigationStarting;
+                        break;
+                    }
+                default:
+                    {
+                        webBrowser = null;
+
+                        break;
+                    }
+            }
+
+            if (webBrowser != null)
+            {
+                var supportInitialize = webBrowser as System.ComponentModel.ISupportInitialize;
+
+                supportInitialize?.BeginInit();
+
+                webBrowser.Name = "WebBrowser";
+                webBrowser.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+                webBrowser.Location = new Point(9, 64);
+                webBrowser.Size = new Size(BrowserTab.Size.Width - 15, BrowserTab.Size.Height - 40);
+
+                supportInitialize?.EndInit();
+
+                BrowserTab.Controls.Add(webBrowser);
+            }
 
             return webBrowser;
         }
 
-        private System.Windows.Forms.WebBrowser InitWebBrowserOld()
+        private Control InitWebBrowserFormsDefault()
         {
             var webBrowser = new System.Windows.Forms.WebBrowser()
             {
                 AllowWebBrowserDrop = false,
-                Name = "WebBrowser",
-                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
-                Location = new Point(9, 64),
-                Size = new Size(845, 395),
                 ScriptErrorsSuppressed = true,
             };
 
-            webBrowser.Navigated += this.OnWebBrowserNavigated;
             webBrowser.Navigating += this.OnWebBrowserNavigating;
+            webBrowser.Navigated += this.OnWebBrowserNavigated;
+
+            return webBrowser;
+        }
+
+        private Control InitWebBrowserWebViewCompatible()
+        {
+            var webBrowser = new Microsoft.Toolkit.Forms.UI.Controls.WebViewCompatible();
+
+            webBrowser.NavigationStarting += this.OnWebViewNavigationStarting;
+            webBrowser.NavigationCompleted += this.OnWebViewNavigationCompleted;
+
+            return webBrowser;
+        }
+
+        private Control InitWebBrowserWebView()
+        {
+            var webBrowser = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
+
+            webBrowser.NavigationStarting += this.OnWebViewNavigationStarting;
+            webBrowser.NavigationCompleted += this.OnWebViewNavigationCompleted;
+
+            return webBrowser;
+        }
+
+        private Control InitWebBrowserWebView2()
+        {
+            var webBrowser = new Microsoft.Web.WebView2.WinForms.WebView2();
+
+            webBrowser.NavigationStarting += this.OnWebView2NavigationStarting;
+            webBrowser.NavigationCompleted += this.OnWebView2NavigationCompleted;
 
             return webBrowser;
         }
@@ -580,7 +637,7 @@
             }
         }
 
-        private void OnMainFormLoad(object sender, EventArgs e)
+        private async void OnMainFormShown(object sender, EventArgs e)
         {
             this.SuspendLayout();
 
@@ -612,9 +669,21 @@
 
             this.CheckForNewVersion(true);
 
-            this.NavigateTo("https://www.imdb.com/find?s=tt&q=");
+            await this.InitialNavigate();
 
             BrowserSearchTextBox.Focus();
+        }
+
+        private async Task InitialNavigate()
+        {
+            if (_selectedBrowserControl == BrowserControlSelection.WebView2)
+            {
+                var environment = await Microsoft.Web.WebView2.Core.CoreWebView2Environment.CreateAsync(null, Path.Combine(Path.GetTempPath(), "CCE2browser"));
+
+                await ((Microsoft.Web.WebView2.WinForms.WebView2)WebBrowser).EnsureCoreWebView2Async(environment);
+            }
+
+            this.NavigateTo("https://www.imdb.com/find?s=tt&q=");
         }
 
         private void CheckForNewVersion(bool silently)
@@ -740,6 +809,12 @@
             BirthYearsInLocalCacheLabel.LinkClicked += this.OnBirthYearsInLocalCacheLabelLinkClicked;
 
             PersonsInLocalCacheLabel.LinkClicked += this.OnPersonsInLocalCacheLabelLinkClicked;
+
+            FormClosing += this.OnMainFormClosing;
+
+            this.KeyPreview = true;
+
+            KeyDown += this.OnMainFormKeyDown;
         }
 
         private void OnMainFormClosing(object sender, FormClosingEventArgs e)
@@ -1349,13 +1424,32 @@
 
         private void NavigateTo(string url)
         {
-            if (Program.ShowNewBrowser)
+            switch (_selectedBrowserControl)
             {
-                WebBrowserNew.Source = new Uri(url);
-            }
-            else
-            {
-                WebBrowserOld.Navigate(url);
+                case BrowserControlSelection.FormsDefault:
+                    {
+                        ((System.Windows.Forms.WebBrowser)WebBrowser).Navigate(url);
+
+                        break;
+                    }
+                case BrowserControlSelection.WebViewCompatible:
+                    {
+                        ((Microsoft.Toolkit.Forms.UI.Controls.WebViewCompatible)WebBrowser).Navigate(url);
+
+                        break;
+                    }
+                case BrowserControlSelection.WebView:
+                    {
+                        ((Microsoft.Toolkit.Forms.UI.Controls.WebView)WebBrowser).Navigate(url);
+
+                        break;
+                    }
+                case BrowserControlSelection.WebView2:
+                    {
+                        ((Microsoft.Web.WebView2.WinForms.WebView2)WebBrowser).Source = new Uri(url);
+
+                        break;
+                    }
             }
         }
 
@@ -1494,39 +1588,35 @@
             }
         }
 
-        private void OnWebBrowserNavigationStarting(object sender, WebViewControlNavigationStartingEventArgs e) => this.UpdateUri();
-
-        private void OnWebBrowserNavigationCompleted(object sender, WebViewControlNavigationCompletedEventArgs e) => this.UpdateUri();
-
-        private void UpdateUri()
-        {
-            if (WebBrowserNew.Source != null)
-            {
-                BrowserUrlComboBox.Text = WebBrowserNew.Source.ToString();
-
-                MovieUrlTextBox.Text = BrowserUrlComboBox.Text;
-
-                TVShowUrlTextBox.Text = BrowserUrlComboBox.Text;
-            }
-        }
-
-        private void OnWebBrowserNavigated(object sender, WebBrowserNavigatedEventArgs e)
-        {
-            if (WebBrowserOld.Url != null)
-            {
-                BrowserUrlComboBox.Text = WebBrowserOld.Url.ToString();
-
-                MovieUrlTextBox.Text = BrowserUrlComboBox.Text;
-
-                TVShowUrlTextBox.Text = BrowserUrlComboBox.Text;
-            }
-        }
-
         private void OnWebBrowserNavigating(object sender, WebBrowserNavigatingEventArgs e)
         {
-            var obj = (IOleObject)WebBrowserOld.ActiveXInstance;
+            var obj = (IOleObject)((System.Windows.Forms.WebBrowser)WebBrowser).ActiveXInstance;
 
             obj.SetClientSite(this);
+        }
+
+        private void OnWebBrowserNavigated(object sender, WebBrowserNavigatedEventArgs e) => this.UpdateUri(e.Url);
+
+        private void OnWebViewNavigationStarting(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationStartingEventArgs e) => this.UpdateUri(e.Uri);
+
+        private void OnWebViewNavigationCompleted(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e) => this.UpdateUri(e.Uri);
+
+        private void OnWebView2NavigationStarting(object sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs e) => this.UpdateUriFromWebView2();
+
+        private void OnWebView2NavigationCompleted(object sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs e) => this.UpdateUriFromWebView2();
+
+        private void UpdateUriFromWebView2() => this.UpdateUri(((Microsoft.Web.WebView2.WinForms.WebView2)WebBrowser).Source);
+
+        private void UpdateUri(Uri uri)
+        {
+            if (uri?.AbsoluteUri != null)
+            {
+                BrowserUrlComboBox.Text = uri.AbsoluteUri;
+
+                MovieUrlTextBox.Text = BrowserUrlComboBox.Text;
+
+                TVShowUrlTextBox.Text = BrowserUrlComboBox.Text;
+            }
         }
 
         private async void OnMainFormKeyDown(object sender, KeyEventArgs e)
@@ -1574,6 +1664,8 @@
                 }
             }
         }
+
+#pragma warning restore CS0618 // Type or member is obsolete
 
         [DispId(-5512)]
         public virtual int IDispatch_Invoke_Handler()

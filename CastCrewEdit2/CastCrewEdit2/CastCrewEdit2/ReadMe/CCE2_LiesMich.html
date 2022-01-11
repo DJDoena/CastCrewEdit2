@@ -42,7 +42,7 @@ p, li { font-family:Verdana,Arial,sans-serif; font-size: 11pt; }
 <ol>
     <li><a href="#skipversioncheck">/skipversioncheck</a></li>
     <li><a href="#lang">/lang</a></li>
-    <li><a href="#forceoldbrowser">/forceoldbrowser</a></li>
+    <li><a href="#browser">/browser</a></li>
 </ol>
 </li>
 <li><a href="#RowColours">Zeilenfarben</a></li>
@@ -301,10 +301,16 @@ Das programm enthält englische und deutsche Oberflächentexte. Wenn Windows auf
 wird das Programm deutsch sein. Ist es englisch oder eine andere Sprache, wird es englisch sein.
 Wenn man dieses Verhalten übersteuern möchte, muss man den Parameter /lang=de oder /lang=en angeben.
 </p>
-<h3><a name="forceoldbrowser">/forceoldbrowser</a></h3>
+<h3><a name="browser">/browser</a></h3>
 
 <p>
-Wenn man das Programm mit dem Parameter /skipversioncheck startet, wird das Programm die alte Internet Explorer Webbrowser Komponente benutzen.
+    Wenn man CastCrewEdit2.exe mit diesem /browser Schalter startet, wird es ein anderes Browser-Control verwenden, mit dem man den Titel findet, nach dem man sucht.
+    <ul>
+        <li><pre>/browser=ie6</pre>benutzt den alten Internet Explorer 6 Browser, IMDb wird furchtbar aussehen, aber es wird immer noch benutzbar sein für CCE2s Bedürfnisse</li>
+        <li><pre>/browser=webview</pre>neuer Standard Browser, basierend auf Microsoft Edge</li>
+        <li><pre>/browser=webviewcompatible</pre>neuer Standard Browser mit Rückwärtskompatibilität</li>
+        <li><pre>/browser=webview2</pre>Experimentelle neue Version, basierend auf Chromium</li>
+    </ul>
 </p>
 <p><a href="#TOC">Inhaltsverzeichnis</a></p>
 
@@ -431,6 +437,20 @@ Warnung: Wenn man dort aber die Namen oder Geburtsjahre ändert, kann eine Konsi
 <p><a href="#TOC">Inhaltsverzeichnis</a></p>
 
 <h2><a name="VersionHints">Versionshinweise</a></h2>
+
+<h3>Version 2.1.9.7</h3>
+
+<ul>
+    <li>
+        Versuch, dem Anwender eine breite Auswahl an Browser-Plugins anzubieten, so dass eines davon benutzbar ist.
+        <ul>
+            <li><pre>/browser=ie6</pre>benutzt den alten Internet Explorer 6 Browser, IMDb wird furchtbar aussehen, aber es wird immer noch benutzbar sein für CCE2s Bedürfnisse</li>
+            <li><pre>/browser=webview</pre>neuer Standard Browser, basierend auf Microsoft Edge</li>
+            <li><pre>/browser=webviewcompatible</pre>neuer Standard Browser mit Rückwärtskompatibilität</li>
+            <li><pre>/browser=webview2</pre>Experimentelle neue Version, basierend auf Chromium</li>
+        </ul>
+    </li>
+</ul>
 
 <h3>Version 2.1.9.6</h3>
 

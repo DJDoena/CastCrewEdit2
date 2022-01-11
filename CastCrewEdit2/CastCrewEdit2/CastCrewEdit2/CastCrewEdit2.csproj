@@ -122,6 +122,7 @@
       <DependentUpon>EditKnownNamesConfigFileForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\BirthYearGetter.cs" />
+    <Compile Include="Helper\BrowserControlSelection.cs" />
     <Compile Include="Helper\CastCrewCopyPasteSender.cs" />
     <Compile Include="Helper\CastLineProcessor.cs" />
     <Compile Include="Extended\ExtendedCrewMember.cs" />
@@ -433,6 +434,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Toolkit.Forms.UI.Controls.WebView">
       <Version>6.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Web.WebView2">
+      <Version>1.0.1072.54</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>

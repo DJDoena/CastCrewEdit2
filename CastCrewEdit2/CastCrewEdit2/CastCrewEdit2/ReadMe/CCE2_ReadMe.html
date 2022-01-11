@@ -42,7 +42,7 @@ p, li { font-family:Verdana,Arial,sans-serif; font-size: 11pt; }
 <ol>
 <li><a href="#skipversioncheck">/skipversioncheck</a></li>
 <li><a href="#lang">/lang</a></li>
-<li><a href="#forceoldbrowser">/forceoldbrowser</a></li>
+<li><a href="#browser">/browser</a></li>
 </ol>
 </li>
 <li><a href="#RowColours">Row Colours</a></li>
@@ -294,10 +294,16 @@ The program has english and german UI texts. If your Windows is set to a german 
 german. If it's in english or any other language, it will present itself in english.
 If you wish to override that behaviour, add the startup parameter /lang=de or /lang=en.
 </p>
-<h3><a name="forceoldbrowser">/forceoldbrowser</a></h3>
+<h3><a name="browser">/browser</a></h3>
 
 <p>
-if you start the program with the parameter /forceoldbrowser, the program will use the old Internet Explorer webbrowser component.
+    If you start CastCrewEdit2.exe with this /browser switch, it will use a different browser control for you to find the title you're looking for.
+    <ul>
+        <li><pre>/browser=ie6</pre>uses the old Internet Explorer 6 browser, IMDb will look crappy but still usable for CCE2's needs</li>
+        <li><pre>/browser=webview</pre>new default browser, based on Microsoft Edge</li>
+        <li><pre>/browser=webviewcompatible</pre>new default browser with backwards compatibility</li>
+        <li><pre>/browser=webview2</pre>experimental new version, based on Chromium</li>
+    </ul>
 </p>
 <p><a href="#TOC">Table of Contents</a></p>
 
@@ -418,6 +424,20 @@ Warning: If you change the names or birth years there, the consitency of the dat
 <p><a href="#TOC">Table of Contents</a></p>
 
 <h2><a name="VersionHints">Version Hints</a></h2>
+
+<h3>Version 2.1.9.7</h3>
+
+<ul>
+    <li>
+    Tried to give you a wide variety of browser plugins, so hopefully one will work for you
+        <ul>
+            <li><pre>/browser=ie6</pre>uses the old Internet Explorer 6 browser, IMDb will look crappy but still usable for CCE2's needs</li>
+            <li><pre>/browser=webview</pre>new default browser, based on Microsoft Edge</li>
+            <li><pre>/browser=webviewcompatible</pre>new default browser with backwards compatibility</li>
+            <li><pre>/browser=webview2</pre>experimental new version, based on Chromium</li>
+        </ul>
+    </li>
+</ul>
 
 <h3>Version 2.1.9.6</h3>
 

@@ -50,9 +50,7 @@
 
         private static bool _debugMode;
 
-        private static bool _forceOldBrowser;
-
-        internal static bool ShowNewBrowser => _isAtLeastWindows10Update1803 && !_runsAsElevated && !_forceOldBrowser;
+        private static BrowserControlSelection _selectedBrowserControl;
 
         internal static DefaultValues DefaultValues => Settings.DefaultValues;
 
@@ -82,7 +80,7 @@
 
             _debugMode = false;
 
-            _forceOldBrowser= false;
+            _selectedBrowserControl = BrowserControlSelection.Undefined;
 
             AdapterEventHandler = new CastCrewEditAdapterEventHandler();
         }
@@ -147,25 +145,39 @@
             {
                 for (var argIndex = 0; argIndex < args.Length; argIndex++)
                 {
-                    if (args[argIndex] == "/lang=de")
+                    var arg = args[argIndex].ToLowerInvariant();
+
+                    if (arg == "/lang=de")
                     {
                         Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de");
                     }
-                    else if (args[argIndex] == "/lang=en")
+                    else if (arg == "/lang=en")
                     {
                         Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en");
                     }
-                    else if (args[argIndex] == "/debug")
+                    else if (arg == "/debug")
                     {
                         _debugMode = true;
                     }
-                    else if (args[argIndex] == "embedded")
+                    else if (arg == "embedded")
                     {
                         embedded = true;
                     }
-                    else if (args[argIndex] == "/forceoldbrowser")
+                    else if (arg == "/forceoldbrowser" || arg == "/browser=ie6")
                     {
-                        _forceOldBrowser = true;
+                        _selectedBrowserControl = BrowserControlSelection.FormsDefault;
+                    }
+                    else if (arg == "/browser=webviewcompatible")
+                    {
+                        _selectedBrowserControl = BrowserControlSelection.WebViewCompatible;
+                    }
+                    else if (arg == "/browser=webview")
+                    {
+                        _selectedBrowserControl = BrowserControlSelection.WebView;
+                    }
+                    else if (arg == "/browser=webview2")
+                    {
+                        _selectedBrowserControl = BrowserControlSelection.WebView2;
                     }
                 }
 
@@ -267,7 +279,9 @@
             {
                 for (var argIndex = 0; argIndex < args.Length; argIndex++)
                 {
-                    if (args[argIndex] == "/skipversioncheck")
+                    var arg = args[argIndex].ToLowerInvariant();
+
+                    if (arg == "/skipversioncheck")
                     {
                         skipversioncheck = true;
 
@@ -276,7 +290,19 @@
                 }
             }
 
-            using (var mainForm = new MainForm(skipversioncheck))
+            if (_selectedBrowserControl == BrowserControlSelection.Undefined)
+            {
+                if (_isAtLeastWindows10Update1803 && !_runsAsElevated)
+                {
+                    _selectedBrowserControl = BrowserControlSelection.WebView;
+                }
+                else
+                {
+                    _selectedBrowserControl = BrowserControlSelection.FormsDefault;
+                }
+            }
+
+            using (var mainForm = new MainForm(skipversioncheck, _selectedBrowserControl))
             {
                 AdapterEventHandler.MainForm = mainForm;
 
