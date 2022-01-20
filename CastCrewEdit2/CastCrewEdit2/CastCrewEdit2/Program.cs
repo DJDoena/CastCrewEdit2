@@ -28,9 +28,15 @@
 
         internal static Dictionary<PersonInfoWithoutBirthYear, List<PersonInfo>> PossibleCrewDuplicateCache;
 
-        internal static string RootPath;
+        internal static string RootPath
+        {
+            get => _rootPath;
+            set => _rootPath = value;
+        }
 
-        internal static string LogFile;
+        internal static string LogFile { get; set; }
+
+        private static string _rootPath;
 
         private static readonly string _errorFile;
 
@@ -40,13 +46,13 @@
 
         private static readonly bool _runsAsElevated;
 
-        private static readonly string _settingsFile;
+        private static string _settingsFile;
 
-        private static readonly string _castCacheFile;
+        private static string _castCacheFile;
 
-        private static readonly string _crewCacheFile;
+        private static string _crewCacheFile;
 
-        private static readonly string _dataPath;
+        private static string _dataPath;
 
         private static bool _debugMode;
 
@@ -66,6 +72,22 @@
 
             RootPath = GetRootPath();
 
+            InitDataPaths();
+
+            _errorFile = Path.Combine(Path.GetTempPath(), "CastCrewEdit2Crash.xml");
+
+            _debugMode = false;
+
+            _selectedBrowserControl = BrowserControlSelection.Undefined;
+
+            AdapterEventHandler = new CastCrewEditAdapterEventHandler();
+        }
+
+        /// <remarks>
+        /// This method is neccessary for external callers that want ot use the Adapter library
+        /// </remarks>
+        private static void InitDataPaths()
+        {
             _dataPath = Path.Combine(RootPath, "Data");
 
             _settingsFile = Path.Combine(_dataPath, "CastCrewEdit2Settings.xml");
@@ -75,14 +97,6 @@
             _crewCacheFile = Path.Combine(_dataPath, "Crew.xml");
 
             LogFile = Path.Combine(_dataPath, "Log.html");
-
-            _errorFile = Path.Combine(Path.GetTempPath(), "CastCrewEdit2Crash.xml");
-
-            _debugMode = false;
-
-            _selectedBrowserControl = BrowserControlSelection.Undefined;
-
-            AdapterEventHandler = new CastCrewEditAdapterEventHandler();
         }
 
         private static bool GetIsAtLeastWindows10Update1803()

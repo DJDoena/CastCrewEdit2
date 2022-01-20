@@ -13,10 +13,13 @@ Public Class MainForm
         If File.Exists(path) Then
             CastCrewEditExe.Text = path
         End If
+
+        LanguageComboBox.SelectedIndex = 0
+        BrowserComboBox.SelectedIndex = 1
     End Sub
 
     Private Sub HandleFormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        If (Not CastCrewEditManager Is Nothing) Then
+        If (CastCrewEditManager IsNot Nothing) Then
             RemoveHandler CastCrewEditManager.CastCompleted, AddressOf HandleCastCompleted
             RemoveHandler CastCrewEditManager.CrewCompleted, AddressOf HandleCrewCompleted
 
@@ -30,7 +33,7 @@ Public Class MainForm
     End Sub
 
     Private Sub HandleStartCastCrewButtonClick(sender As Object, e As EventArgs) Handles StartCastCrewButton.Click
-        If (CastCrewEditManager Is Nothing) Then
+        If (CastCrewEditManager Is Nothing AndAlso CastCrewEditExe.Text <> String.Empty) Then
             Dim exe As New FileInfo(CastCrewEditExe.Text)
 
             If exe.Exists Then
@@ -52,7 +55,7 @@ Public Class MainForm
         End If
 
         Try
-            CastCrewEditManager.Run()
+            CastCrewEditManager.Run(LanguageComboBox.Text, BrowserComboBox.Text)
         Catch ex As Exception
             MessageBox.Show(ex.Message, String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -61,7 +64,7 @@ Public Class MainForm
     Private Sub HandleCrewCompleted(sender As Object, e As XmlEventArgs)
         MessageBox.Show(e.Xml)
 
-        If (Not CastCrewEditManager Is Nothing) Then
+        If (CastCrewEditManager IsNot Nothing) Then
             CastCrewEditManager.Kill()
         End If
     End Sub

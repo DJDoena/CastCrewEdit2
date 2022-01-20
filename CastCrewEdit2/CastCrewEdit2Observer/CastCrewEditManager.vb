@@ -16,19 +16,19 @@ Public Class CastCrewEditManager
     ''' <summary>
     ''' CCE2 v2.1.0.0 and higher will support the CastCrewEdit2Adapter.dll.
     ''' </summary>
-    Private ReadOnly MinimumVersion As New Version(2, 1, 0, 0)
+    Private ReadOnly _minimumVersion As New Version(2, 1, 9, 8)
 
     ''' <summary>
     ''' CCE2 interface.
     ''' </summary>
-    Private AdapterEventHandler As ICastCrewEditAdapterEventHandler
+    Private _adapterEventHandler As ICastCrewEditAdapterEventHandler
 
     ''' <summary>
     ''' CCE2 entry method.
     ''' </summary>
-    Private ProgramMainMethodInfo As MethodInfo
+    Private ReadOnly _programMainMethodInfo As MethodInfo
 
-    Private IsDisposed As Boolean
+    Private _isDisposed As Boolean
 
 #Region "Public"
 
@@ -47,8 +47,6 @@ Public Class CastCrewEditManager
     ''' </summary>
     ''' <param name="exe">path to CastCrewEdit2.exe</param>
     Public Sub New(exe As FileInfo)
-        Const Flags As BindingFlags = BindingFlags.Public Or BindingFlags.Static
-
         CheckInterfaceAssembly(exe)
 
         Dim assembly As Assembly = GetAssembly(exe)
@@ -59,43 +57,43 @@ Public Class CastCrewEditManager
 
         RegisterEvents(programType)
 
-        ProgramMainMethodInfo = programType.GetMethod("Main", Flags)
+        _programMainMethodInfo = programType.GetMethod("Main", BindingFlags.Public Or BindingFlags.Static)
 
-        If ProgramMainMethodInfo Is Nothing Then
-            Throw New NullReferenceException(NameOf(ProgramMainMethodInfo))
+        If _programMainMethodInfo Is Nothing Then
+            Throw New NullReferenceException(NameOf(_programMainMethodInfo))
         End If
 
-        IsDisposed = False
+        _isDisposed = False
     End Sub
 
     ''' <summary>
     ''' Starts CCE2 in embedded mode.
     ''' </summary>
-    Public Sub Run()
-        ProgramMainMethodInfo.Invoke(Nothing, New Object() {New String() {"embedded"}})
+    Public Sub Run(ByVal language As String, ByVal browser As String)
+        _programMainMethodInfo.Invoke(Nothing, New Object() {New String() {"embedded", language, browser}})
     End Sub
 
     ''' <summary>
     ''' Ends CCE2.
     ''' </summary>
     Public Sub Kill()
-        AdapterEventHandler.Close()
+        _adapterEventHandler.Close()
     End Sub
 
     ''' <summary>
     ''' <see cref="IDisposable.Dispose()"/>
     ''' </summary>
     Public Sub Dispose() Implements IDisposable.Dispose
-        If (Not IsDisposed) Then
-            If (Not AdapterEventHandler Is Nothing) Then
+        If (Not _isDisposed) Then
+            If (Not _adapterEventHandler Is Nothing) Then
 
-                RemoveHandler AdapterEventHandler.CastCompleted, AddressOf HandleCastCompleted
-                RemoveHandler AdapterEventHandler.CrewCompleted, AddressOf HandleCrewCompleted
+                RemoveHandler _adapterEventHandler.CastCompleted, AddressOf HandleCastCompleted
+                RemoveHandler _adapterEventHandler.CrewCompleted, AddressOf HandleCrewCompleted
 
-                AdapterEventHandler = Nothing
+                _adapterEventHandler = Nothing
             End If
 
-            IsDisposed = True
+            _isDisposed = True
         End If
     End Sub
 
@@ -127,8 +125,8 @@ Public Class CastCrewEditManager
 
         Dim assemblyVersion As Version = assembly.GetName().Version
 
-        If (assemblyVersion < MinimumVersion) Then
-            Throw New ApplicationException($"Cast/Crew Edit 2 must be at least version {MinimumVersion}. Your version is only {assemblyVersion}")
+        If (assemblyVersion < _minimumVersion) Then
+            Throw New ApplicationException($"Cast/Crew Edit 2 must be at least version {_minimumVersion}. Your version is only {assemblyVersion}")
         End If
 
         Return assembly
@@ -153,13 +151,11 @@ Public Class CastCrewEditManager
     ''' <param name="programType">the type for the CCE2 program class</param>
     ''' <param name="directory">the folder of the CastCrewEdit2.exe</param>
     Private Shared Sub InitializeProgram(programType As Type, directory As String)
-        Const Flags As BindingFlags = BindingFlags.NonPublic Or BindingFlags.Static
-
-        Dim rootPathFieldInfo As FieldInfo = programType.GetField("RootPath", Flags)
+        Dim rootPathFieldInfo As FieldInfo = programType.GetField("_rootPath", BindingFlags.NonPublic Or BindingFlags.Static)
 
         rootPathFieldInfo.SetValue(Nothing, directory)
 
-        Dim initDataPathsMethodInfo As MethodInfo = programType.GetMethod("InitDataPaths", Flags)
+        Dim initDataPathsMethodInfo As MethodInfo = programType.GetMethod("InitDataPaths", BindingFlags.NonPublic Or BindingFlags.Static)
 
         initDataPathsMethodInfo.Invoke(Nothing, Nothing)
     End Sub
@@ -169,10 +165,10 @@ Public Class CastCrewEditManager
     ''' </summary>
     ''' <param name="programType">the type for the CCE2 program class</param>
     Private Sub RegisterEvents(programType As Type)
-        AdapterEventHandler = GetAdapterHandler(programType)
+        _adapterEventHandler = GetAdapterHandler(programType)
 
-        AddHandler AdapterEventHandler.CastCompleted, AddressOf HandleCastCompleted
-        AddHandler AdapterEventHandler.CrewCompleted, AddressOf HandleCrewCompleted
+        AddHandler _adapterEventHandler.CastCompleted, AddressOf HandleCastCompleted
+        AddHandler _adapterEventHandler.CrewCompleted, AddressOf HandleCrewCompleted
     End Sub
 
     ''' <summary>
