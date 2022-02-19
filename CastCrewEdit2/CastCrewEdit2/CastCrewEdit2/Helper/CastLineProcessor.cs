@@ -41,7 +41,7 @@
         {
             var castList = new List<CastInfo>(2);
 
-            var name = NameParser.Parse(match.Groups["PersonName"].Value);
+            var name = NameParser.Parse(match.Groups["PersonName"].Value, defaultValues.StandardizeJuniorSenior);
 
             var castMember = new CastInfo
             {
@@ -167,6 +167,13 @@
                     }
 
                     role = role.Replace("(as " + newMatch.Groups["CreditedAs"].ToString() + ")", string.Empty);
+                }
+                else
+                {
+                    if (name.OriginalName != name.PlainName && defaultValues.RetainCastCreditedAs)
+                    {
+                        castMember.CreditedAs = name.OriginalName;
+                    }
                 }
 
                 if (defaultValues.ParseRoleSlash)

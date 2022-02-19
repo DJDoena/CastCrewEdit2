@@ -151,6 +151,12 @@
   <data name="NameParsingTab.Text" xml:space="preserve">
     <value>Namen</value>
   </data>
+  <data name="StandardizeJuniorSeniorCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>315, 17</value>
+  </data>
+  <data name="StandardizeJuniorSeniorCheckBox.Text" xml:space="preserve">
+    <value>Standardisierung von Junior / Senior Suffixen in ", jr." / ", sr."</value>
+  </data>
   <data name="ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>572, 17</value>
   </data>

@@ -37,6 +37,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.PeopleParsingTab = new System.Windows.Forms.TabPage();
             this.ParsingPeopleTabControl = new System.Windows.Forms.TabControl();
             this.NameParsingTab = new System.Windows.Forms.TabPage();
+            this.StandardizeJuniorSeniorCheckBox = new System.Windows.Forms.CheckBox();
             this.ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox = new System.Windows.Forms.CheckBox();
             this.BirthYearsParsingTab = new System.Windows.Forms.TabPage();
             this.UseFakeBirthYearsCheckBox = new System.Windows.Forms.CheckBox();
@@ -185,9 +186,16 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // NameParsingTab
             // 
             resources.ApplyResources(this.NameParsingTab, "NameParsingTab");
+            this.NameParsingTab.Controls.Add(this.StandardizeJuniorSeniorCheckBox);
             this.NameParsingTab.Controls.Add(this.ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox);
             this.NameParsingTab.Name = "NameParsingTab";
             this.NameParsingTab.UseVisualStyleBackColor = true;
+            // 
+            // StandardizeJuniorSeniorCheckBox
+            // 
+            resources.ApplyResources(this.StandardizeJuniorSeniorCheckBox, "StandardizeJuniorSeniorCheckBox");
+            this.StandardizeJuniorSeniorCheckBox.Name = "StandardizeJuniorSeniorCheckBox";
+            this.StandardizeJuniorSeniorCheckBox.UseVisualStyleBackColor = true;
             // 
             // ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox
             // 
@@ -768,5 +776,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         private System.Windows.Forms.CheckBox OverwriteExistingHeadshotsCheckBox;
         private System.Windows.Forms.CheckBox SendToCastCrewCopyPasteCheckBox;
         private System.Windows.Forms.CheckBox GroupSoundtrackCreditsCheckBox;
+        private System.Windows.Forms.CheckBox StandardizeJuniorSeniorCheckBox;
     }
 }

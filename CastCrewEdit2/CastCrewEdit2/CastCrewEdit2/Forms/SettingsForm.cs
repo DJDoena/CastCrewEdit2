@@ -149,6 +149,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             GroupSoundtrackCreditsCheckBox.Checked = _defaultValues.GroupSoundtrackCredits;
 
+            StandardizeJuniorSeniorCheckBox.Checked = _defaultValues.StandardizeJuniorSenior;
+
             this.OnEpisodeFormatChanged(null, null);
 
             this.OnParseCastCheckBoxCheckedChanged(null, null);
@@ -226,6 +228,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             _defaultValues.StoreHeadshotsPerSession = StoreHeadshotsPerSessionCheckBox.Checked;
             _defaultValues.SendToCastCrewCopyPaste = SendToCastCrewCopyPasteCheckBox.Checked;
             _defaultValues.GroupSoundtrackCredits = GroupSoundtrackCreditsCheckBox.Checked;
+            _defaultValues.StandardizeJuniorSenior = StandardizeJuniorSeniorCheckBox.Checked;
         }
 
         private void OnSettingsFormLoad(object sender, EventArgs e)

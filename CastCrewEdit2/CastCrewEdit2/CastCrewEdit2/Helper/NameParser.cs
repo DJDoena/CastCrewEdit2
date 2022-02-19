@@ -8,6 +8,8 @@
 
     internal static class NameParser
     {
+        private const int MaxNamePartLength = 35;
+
         private static List<string> _knownFirstnamePrefixes;
 
         private static List<string> _knownLastnamePrefixes;
@@ -66,16 +68,21 @@
 
         internal static bool IsKnownName(string name) => _knownNames.ContainsKey(name);
 
-        internal static Name Parse(string fullName)
+        internal static Name Parse(string fullName, bool standardizeJuniorSenior)
         {
             fullName = HttpUtility.HtmlDecode(fullName).Trim();
 
             if (CheckForUnchangedName(fullName, out var finalName))
             {
+                finalName.OriginalName = fullName;
+
                 return finalName;
             }
 
-            finalName = new Name();
+            finalName = new Name()
+            {
+                OriginalName = fullName,
+            };
 
             if (Program.DefaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName)
             {
@@ -129,7 +136,7 @@
                 BuildFirstName(nameParts, beginOfLastName, finalName);
             }
 
-            BuildLastName(nameParts, beginOfLastName, finalName);
+            BuildLastName(nameParts, beginOfLastName, finalName, standardizeJuniorSenior);
 
             return finalName;
         }
@@ -144,21 +151,15 @@
             var lowered = fullName.ToLower();
 
             if (lowered.StartsWith("the ") || ((fullName[0] >= '0') && (fullName[0] <= '9')))
-            {//For bands/performers, e.g. "The Who", "50 Cent"
-
-                finalName = new Name()
-                {
-                    FirstName = new StringBuilder(fullName),
-                };
+            {
+                //For bands/performers, e.g. "The Who", "50 Cent"
+                finalName = GetStageName(fullName);
 
                 return true;
             }
             else if (lowered.Contains(" the ") || lowered.Contains(" and ") || lowered.Contains(" & "))
             {
-                finalName = new Name()
-                {
-                    FirstName = new StringBuilder(fullName),
-                };
+                finalName = GetStageName(fullName);
 
                 return true;
             }
@@ -166,6 +167,136 @@
             finalName = null;
 
             return false;
+        }
+
+        private static Name GetStageName(string fullName)
+        {
+            Name result;
+            if (fullName.Length <= MaxNamePartLength)
+            {
+                result = new Name()
+                {
+                    FirstName = new StringBuilder(fullName),
+                };
+            }
+            else if (fullName.Length <= (MaxNamePartLength * 2))
+            {
+                result = SplitStageNameIntoFirstAndLast(fullName);
+            }
+            else if (fullName.Length <= (MaxNamePartLength * 3))
+            {
+                result = SplitStageNameIntoFirstMiddleAndLast(fullName);
+            }
+            else
+            {
+                return GetStageName(fullName.Substring(0, MaxNamePartLength * 3));
+            }
+
+            return result;
+        }
+
+        private static Name SplitStageNameIntoFirstAndLast(string fullName)
+        {
+            var parts = fullName.Split(' ');
+
+            var firstName = new StringBuilder(parts[0]);
+
+            int currentIndex;
+            for (currentIndex = 1; currentIndex < parts.Length; currentIndex++)
+            {
+                if ((firstName.Length + parts[currentIndex].Length + 1) <= MaxNamePartLength)
+                {
+                    firstName.Append(" " + parts[currentIndex]);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            var lastName = new StringBuilder();
+
+            if (currentIndex < parts.Length)
+            {
+                lastName.Append(parts[currentIndex]);
+
+                for (currentIndex = currentIndex + 1; currentIndex < parts.Length; currentIndex++)
+                {
+                    lastName.Append(" " + parts[currentIndex]);
+                }
+            }
+
+            Name result;
+            if (lastName.Length < MaxNamePartLength)
+            {
+                result = new Name()
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                };
+            }
+            else
+            {
+                result = SplitStageNameIntoFirstMiddleAndLast(fullName);
+            }
+
+            return result;
+        }
+
+        private static Name SplitStageNameIntoFirstMiddleAndLast(string fullName)
+        {
+            var parts = fullName.Split(' ');
+
+            var firstName = new StringBuilder(parts[0]);
+
+            int currentIndex;
+            for (currentIndex = 1; currentIndex < parts.Length; currentIndex++)
+            {
+                if ((firstName.Length + parts[currentIndex].Length + 1) <= MaxNamePartLength)
+                {
+                    firstName.Append(" " + parts[currentIndex]);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            var middleName = new StringBuilder();
+
+            if (currentIndex < parts.Length)
+            {
+                middleName.Append(parts[currentIndex]);
+
+                for (currentIndex = currentIndex + 1; currentIndex < parts.Length; currentIndex++)
+                {
+                    middleName.Append(" " + parts[currentIndex]);
+                }
+            }
+
+            var lastName = new StringBuilder();
+
+            if (currentIndex < parts.Length)
+            {
+                lastName.Append(parts[currentIndex]);
+
+                for (currentIndex = currentIndex + 1; currentIndex < parts.Length; currentIndex++)
+                {
+                    lastName.Append(" " + parts[currentIndex]);
+                }
+            }
+
+            if (lastName.Length > MaxNamePartLength)
+            {
+                lastName = new StringBuilder(lastName.ToString().Substring(0, MaxNamePartLength));
+            }
+
+            return new Name()
+            {
+                FirstName = firstName,
+                MiddleName = middleName,
+                LastName = lastName,
+            };
         }
 
         private static string FindAndRepairBrokenInitials(string fullName, List<string> list)
@@ -371,14 +502,69 @@
             finalName.MiddleName = new StringBuilder(finalName.MiddleName.ToString().Trim());
         }
 
-        private static void BuildLastName(string[] nameParts, int beginOfLastName, Name finalName)
+        private static void BuildLastName(string[] nameParts, int beginOfLastName, Name finalName, bool standardizeJuniorSenior)
         {
             for (var namePartIndex = beginOfLastName; namePartIndex < nameParts.Length; namePartIndex++)
             {
                 finalName.LastName.Append(" " + nameParts[namePartIndex]);
             }
 
-            finalName.LastName = new StringBuilder(finalName.LastName.ToString().Trim());
+            if (standardizeJuniorSenior)
+            {
+                finalName.LastName = new StringBuilder(StandardizeJuniorSenior(finalName.LastName.ToString().Trim()));
+            }
+        }
+
+        private static string StandardizeJuniorSenior(string lastName)
+        {
+            if (!TryReplaceSuffix(ref lastName, ", jr.", new[] { "jr", "jr.", "jnr", "jnr.", "junior" }))
+            {
+                TryReplaceSuffix(ref lastName, ", sr.", new[] { "sr", "sr.", "snr", "snr.", "senior" });
+            }
+
+            return lastName;
+        }
+
+        private static bool TryReplaceSuffix(ref string lastName, string replacement, string[] suffixes)
+        {
+            var hasReplaced = false;
+
+            foreach (var suffix in suffixes)
+            {
+                hasReplaced = TryReplaceLastNameSuffix(ref lastName, suffix);
+
+                if (hasReplaced)
+                {
+                    break;
+                }
+            }
+
+            if (hasReplaced)
+            {
+                lastName += replacement;
+            }
+
+            return hasReplaced;
+        }
+
+        private static bool TryReplaceLastNameSuffix(ref string lastName, string suffix)
+        {
+            if (lastName.EndsWith($", {suffix}", StringComparison.OrdinalIgnoreCase))
+            {
+                lastName = lastName.Substring(0, lastName.Length - (suffix.Length + 2));
+
+                return true;
+            }
+            else if (lastName.EndsWith($" {suffix}", StringComparison.OrdinalIgnoreCase))
+            {
+                lastName = lastName.Substring(0, lastName.Length - (suffix.Length + 1));
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

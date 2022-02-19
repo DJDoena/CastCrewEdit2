@@ -10,6 +10,43 @@
 
         public StringBuilder LastName { get; set; }
 
+        public string OriginalName { get; set; }
+
+        public string PlainName
+        {
+            get
+            {
+                var name = new StringBuilder();
+
+                if (this.FirstName.Length != 0)
+                {
+                    name.Append(this.FirstName.ToString());
+                }
+
+                if (this.MiddleName.Length != 0)
+                {
+                    if (name.Length != 0)
+                    {
+                        name.Append(" ");
+                    }
+
+                    name.Append(this.MiddleName.ToString());
+                }
+
+                if (this.LastName.Length != 0)
+                {
+                    if (name.Length != 0)
+                    {
+                        name.Append(" ");
+                    }
+
+                    name.Append(this.LastName.ToString());
+                }
+
+                return name.ToString();
+            }
+        }
+
         public Name()
         {
             this.FirstName = new StringBuilder();

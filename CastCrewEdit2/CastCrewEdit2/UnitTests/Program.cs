@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
@@ -17,7 +18,7 @@ namespace UnitTests
 {
     public static class Tester
     {
-        private static WindowHandle s_WindowHandle = new WindowHandle();
+        private static readonly WindowHandle s_WindowHandle = new WindowHandle();
 
         private const String Winnetou = "tt0057687";
         private const String EmmaWatson = "nm0914612";
@@ -57,6 +58,7 @@ namespace UnitTests
             Test(MovieCrewHotShots);
             Test(MovieCastABiggerSplash);
             Test(EpisodeCrewRoots);
+            Test(StageNameSplit);
         }
 
         private static void TestFixtureSetup()
@@ -76,7 +78,7 @@ namespace UnitTests
             CreateMockWebResponse(IMDbParser.TitleUrl, LoveIsTheDrug, "fullcredits");
             CreateMockWebResponse(IMDbParser.TitleUrl, FridayNightLights, "episodes?season=1");
             CreateMockWebResponse(IMDbParser.TitleUrl, ABiggerSplash, "fullcredits");
-            CreateMockWebResponse(IMDbParser.TitleUrl, Roots, "fullcredits"); 
+            CreateMockWebResponse(IMDbParser.TitleUrl, Roots, "fullcredits");
             CreateMockWebResponse(IMDbParser.TitleUrl, Roots, "soundtrack");
         }
 
@@ -104,8 +106,8 @@ namespace UnitTests
             FileInfo current;
 
             MovieCast(HotShots, out castMatches, out castList, out progressBarMaxValue, out existing, out current);
-            Assert.AreEqual(71, castMatches.Count, "castMatches.Count");
-            Assert.AreEqual(75, castList.Count, "castList.Count");
+            Assert.AreEqual(73, castMatches.Count, "castMatches.Count");
+            Assert.AreEqual(78, castList.Count, "castList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
@@ -119,8 +121,8 @@ namespace UnitTests
 
             MovieCrew(HotShots, out crewMatches, out crewList, out progressBarMaxValue, out existing, out current);
             Assert.AreEqual(27, crewMatches.Count, "castMatches.Count");
-            Assert.AreEqual(200, progressBarMaxValue, "progressBarMaxValue");
-            Assert.AreEqual(190, crewList.Count, "castList.Count");
+            Assert.AreEqual(204, progressBarMaxValue, "progressBarMaxValue");
+            Assert.AreEqual(194, crewList.Count, "castList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
@@ -133,7 +135,7 @@ namespace UnitTests
             episodeInfo.SeasonNumber = "1";
             episodeInfo.EpisodeNumber = "1";
             EpisodeCrew(episodeInfo);
-            Assert.AreEqual(20, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
+            Assert.AreEqual(19, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
             Assert.AreEqual(30, episodeInfo.CrewList.Count, "episodeInfo.CrewList.Count");
         }
 
@@ -170,7 +172,7 @@ namespace UnitTests
             FileInfo current;
 
             MovieCrew(LoveIsTheDrug, out crewMatches, out crewList, out progressBarMaxValue, out existing, out current);
-            Assert.AreEqual(25, crewMatches.Count, "crewMatches.Count");
+            Assert.AreEqual(24, crewMatches.Count, "crewMatches.Count");
             Assert.AreEqual(105, progressBarMaxValue, "progressBarMaxValue");
             Assert.AreEqual(109, crewList.Count, "crewList.Count");
             Assert.AreEqual("Steven", crewList[51].FirstName, "crewList[51].FirstName");
@@ -197,7 +199,7 @@ namespace UnitTests
             FileInfo current;
 
             MovieCrew(Winnetou, out crewMatches, out crewList, out progressBarMaxValue, out existing, out current);
-            Assert.AreEqual(15, crewMatches.Count, "crewMatches.Count");
+            Assert.AreEqual(14, crewMatches.Count, "crewMatches.Count");
             Assert.AreEqual(21, progressBarMaxValue, "progressBarMaxValue");
             Assert.AreEqual(19, crewList.Count, "crewList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
@@ -226,7 +228,7 @@ namespace UnitTests
 
         private static void SoundtrackThisIsSpinalTap()
         {
-            Dictionary<String, List<Match>> matches;
+            Dictionary<string, List<SoundtrackMatch>> matches;
             List<CrewInfo> crewList;
             Int32 progressBarMaxValue;
             FileInfo existing;
@@ -248,8 +250,17 @@ namespace UnitTests
             episodeInfo.SeasonNumber = "1";
             episodeInfo.EpisodeNumber = "1";
             EpisodeCrew(episodeInfo);
-            Assert.AreEqual(29, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
-            Assert.AreEqual(278, episodeInfo.CrewList.Count, "episodeInfo.CrewList.Count");
+            Assert.AreEqual(28, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
+            Assert.AreEqual(293, episodeInfo.CrewList.Count, "episodeInfo.CrewList.Count");
+        }
+
+        private static void StageNameSplit()
+        {
+            var fullName = "Bud Spencer & Terence Hill & Oliver Onions & DJ Doena";
+
+            var name = NameParser.Parse(fullName, true).ToString();
+
+            Assert.AreEqual("<Bud Spencer & Terence Hill & Oliver> [Onions & DJ Doena]", name, "name");
         }
 
         private static void PersonWithBirthYearEmmaWatson()
@@ -309,7 +320,7 @@ namespace UnitTests
         private static void Goofs(String key)
         {
             Program.Settings.DefaultValues.DownloadGoofs = true;
-            using (MainForm mainForm = new MainForm(true))
+            using (MainForm mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
             {
                 Type mainFormType;
                 FieldInfo fieldInfo;
@@ -317,7 +328,7 @@ namespace UnitTests
                 TextBox goofsTextBox;
 
                 mainFormType = mainForm.GetType();
-                fieldInfo = mainFormType.GetField("MovieTitleLink", BindingFlags.Instance | BindingFlags.NonPublic);
+                fieldInfo = mainFormType.GetField("_movieTitleLink", BindingFlags.Instance | BindingFlags.NonPublic);
                 Assert.IsNotNull(fieldInfo, "fieldInfo");
                 fieldInfo.SetValue(mainForm, key);
                 methodInfo = mainFormType.GetMethod("ParseGoofs", BindingFlags.Instance | BindingFlags.NonPublic, null, Type.EmptyTypes, null);
@@ -343,7 +354,7 @@ namespace UnitTests
         private static void Trivia(String key)
         {
             Program.Settings.DefaultValues.DownloadTrivia = true;
-            using (MainForm mainForm = new MainForm(true))
+            using (MainForm mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
             {
                 Type mainFormType;
                 FieldInfo fieldInfo;
@@ -351,7 +362,7 @@ namespace UnitTests
                 TextBox triviaTextBox;
 
                 mainFormType = mainForm.GetType();
-                fieldInfo = mainFormType.GetField("MovieTitleLink", BindingFlags.Instance | BindingFlags.NonPublic);
+                fieldInfo = mainFormType.GetField("_movieTitleLink", BindingFlags.Instance | BindingFlags.NonPublic);
                 Assert.IsNotNull(fieldInfo, "fieldInfo");
                 fieldInfo.SetValue(mainForm, key);
                 methodInfo = mainFormType.GetMethod("ParseTrivia", BindingFlags.Instance | BindingFlags.NonPublic, null, Type.EmptyTypes, null);
@@ -478,7 +489,7 @@ namespace UnitTests
             defaultValues.RetainOriginalCredit = true;
             defaultValues.CheckPersonLinkForRedirect = false;
 
-            using (MainForm mainForm = new MainForm(true))
+            using (MainForm mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
             {
                 Type mainFormType;
                 MethodInfo methodInfo;
@@ -496,21 +507,21 @@ namespace UnitTests
                 Assert.IsNotNull(methodInfo, "methodInfo");
                 crewMatches = new List<KeyValuePair<Match, List<Match>>>();
                 crewList = new List<CrewInfo>();
-                parameters = new Object[11];
-                parameters[0] = defaultValues;
-                parameters[1] = key;
-                parameters[2] = false;
-                parameters[3] = true;
+                parameters = new Object[10];
+                //parameters[0] = defaultValues;
+                parameters[0] = key;
+                parameters[1] = false;
+                parameters[2] = true;
+                parameters[3] = false;
                 parameters[4] = false;
-                parameters[5] = false;
+                parameters[5] = null;
                 parameters[6] = null;
-                parameters[7] = null;
-                parameters[8] = crewMatches;
-                parameters[9] = crewList;
-                parameters[10] = null;
+                parameters[7] = crewMatches;
+                parameters[8] = crewList;
+                parameters[9] = null;
                 methodInfo.Invoke(mainForm, parameters);
-                crewMatches = (List<KeyValuePair<Match, List<Match>>>)(parameters[8]);
-                crewList = (List<CrewInfo>)(parameters[9]);
+                crewMatches = (List<KeyValuePair<Match, List<Match>>>)(parameters[7]);
+                crewList = (List<CrewInfo>)(parameters[8]);
                 mainForm._progressMax = 0;
                 mainForm._progressInterval = Int32.MaxValue;
                 foreach (KeyValuePair<Match, List<Match>> kvp in crewMatches)
@@ -555,7 +566,7 @@ namespace UnitTests
             defaultValues.ParseVoiceOf = true;
             defaultValues.RetainCastCreditedAs = true;
             defaultValues.CheckPersonLinkForRedirect = false;
-            using (MainForm mainForm = new MainForm(true))
+            using (MainForm mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
             {
                 Type mainFormType;
                 MethodInfo methodInfo;
@@ -573,21 +584,21 @@ namespace UnitTests
                 Assert.IsNotNull(methodInfo, "methodInfo");
                 castMatches = new List<Match>();
                 castList = new List<CastInfo>();
-                parameters = new Object[11];
-                parameters[0] = defaultValues;
-                parameters[1] = key;
-                parameters[2] = true;
+                parameters = new Object[10];
+                //parameters[0] = defaultValues;
+                parameters[0] = key;
+                parameters[1] = true;
+                parameters[2] = false;
                 parameters[3] = false;
                 parameters[4] = false;
-                parameters[5] = false;
-                parameters[6] = castMatches;
-                parameters[7] = castList;
+                parameters[5] = castMatches;
+                parameters[6] = castList;
+                parameters[7] = null;
                 parameters[8] = null;
                 parameters[9] = null;
-                parameters[10] = null;
                 methodInfo.Invoke(mainForm, parameters);
-                castMatches = (List<Match>)(parameters[6]);
-                castList = (List<CastInfo>)(parameters[7]);
+                castMatches = (List<Match>)(parameters[5]);
+                castList = (List<CastInfo>)(parameters[6]);
                 mainForm._progressMax = castMatches.Count;
                 mainForm._progressInterval = Int32.MaxValue;
                 mainForm._progressBar = new ColorProgressBar();
@@ -608,7 +619,7 @@ namespace UnitTests
         }
 
         private static void Soundtrack(String key
-            , out Dictionary<String, List<Match>> matches
+            , out Dictionary<string, List<SoundtrackMatch>> matches
             , out List<CrewInfo> crewList
             , out Int32 progressBarMaxValue
             , out FileInfo existing, out FileInfo current)
@@ -620,14 +631,14 @@ namespace UnitTests
             methodInfo = typeof(CastCrewEdit2BaseForm).GetMethod("ParseSoundtrack"
                 , BindingFlags.NonPublic | BindingFlags.Static);
             Assert.IsNotNull(methodInfo, "methodInfo");
-            matches = (Dictionary<String, List<Match>>)(methodInfo.Invoke(null, new Object[] { key }));
+            matches = (Dictionary<string, List<SoundtrackMatch>>)(methodInfo.Invoke(null, new Object[] { key }));
             Assert.IsNotNull(matches, "matches");
 
-            using (MainForm mainForm = new MainForm(true))
+            using (MainForm mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
             {
                 mainForm._progressMax = 0;
                 mainForm._progressInterval = Int32.MaxValue;
-                foreach (KeyValuePair<String, List<Match>> kvp in matches)
+                foreach (var kvp in matches)
                 {
                     mainForm._progressMax += kvp.Value.Count;
                 }

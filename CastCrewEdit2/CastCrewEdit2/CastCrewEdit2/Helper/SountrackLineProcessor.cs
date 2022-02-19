@@ -54,7 +54,7 @@
 
             var crewMatch = soundtrackMatch.CrewMatch;
 
-            var name = NameParser.Parse(crewMatch.Groups["PersonName"].Value.ToString());
+            var name = NameParser.Parse(crewMatch.Groups["PersonName"].Value, defaultValues.StandardizeJuniorSenior);
 
             var personLink = crewMatch.Groups["PersonLink"].Value;
 
@@ -102,6 +102,11 @@
                 {
                     crewMember.CustomRole = job;
                 }
+            }
+
+            if (name.OriginalName != name.PlainName && defaultValues.RetainCastCreditedAs)
+            {
+                crewMember.CreditedAs = name.OriginalName;
             }
 
             return crewMember;

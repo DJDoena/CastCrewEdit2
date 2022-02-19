@@ -121,10 +121,6 @@
   <data name="UseFakeBirthYearsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>261, 17</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="SaveLogFileCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="LinksTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -138,14 +134,15 @@
   <data name="AbortButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="StoreHeadshotsPerSessionCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
   <data name="&gt;&gt;DownloadGoofsCheckBox.Parent" xml:space="preserve">
     <value>TriviaTab</value>
   </data>
-  <data name="TriviaTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>634, 310</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="RootPathTab.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="LinksTab.Text" xml:space="preserve">
+    <value>Links</value>
   </data>
   <data name="&gt;&gt;DisableDuplicatesMessageBoxCheckBox.Name" xml:space="preserve">
     <value>DisableDuplicatesMessageBoxCheckBox</value>
@@ -177,8 +174,8 @@
   <data name="EpisodeFormatTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>92, 31</value>
   </data>
-  <data name="&gt;&gt;RetainCreditedAsOnCastCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="SaveLogFileCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="TakeBirthYearFromLocalPersonCacheCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>546, 30</value>
@@ -201,11 +198,20 @@
   <data name="GetBirthYearsDirectlyAfterNameParsingCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>223, 17</value>
   </data>
+  <data name="&gt;&gt;ParseVoiceOfCheckBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;StoreHeadshotsPerSessionCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="TriviaTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
+  </data>
+  <data name="&gt;&gt;AutoCopyHeadShotsCheckBox.Name" xml:space="preserve">
+    <value>AutoCopyHeadShotsCheckBox</value>
   </data>
   <data name="GetCrewHeadshotCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -222,11 +228,8 @@
   <data name="GetCrewHeadshotCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 17</value>
   </data>
-  <data name="LinksTab.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="OtherTab.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
+  <data name="StandardizeJuniorSeniorCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="IgnoreUncreditedCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -240,8 +243,8 @@
   <data name="RetainCreditedAsOnCrewCheckBox.Text" xml:space="preserve">
     <value>Retain "Credited As"</value>
   </data>
-  <data name="&gt;&gt;ParsingTab.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;DownloadTriviaCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="RetainOriginalCreditCheckbox.Text" xml:space="preserve">
     <value>Retain "Custom Role"</value>
@@ -251,9 +254,6 @@
   </data>
   <data name="OKButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>498, 354</value>
-  </data>
-  <data name="ParseVoiceOfCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="&gt;&gt;ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox.Parent" xml:space="preserve">
     <value>NameParsingTab</value>
@@ -342,6 +342,9 @@
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 17</value>
   </data>
+  <data name="StandardizeJuniorSeniorCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="&gt;&gt;DisableParsingCompleteMessageBoxForGetBirthYearsCheckBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
@@ -384,9 +387,6 @@
   <data name="BirthYearsParsingTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="&gt;&gt;BirthYearsParsingTab.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="SeasonsParsingTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
@@ -396,17 +396,14 @@
   <data name="&gt;&gt;GroupSoundtrackCreditsCheckBox.Name" xml:space="preserve">
     <value>GroupSoundtrackCreditsCheckBox</value>
   </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 34</value>
-  </data>
   <data name="IgnoreCreditOnlyCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;IncludingCreditTypeDirectionCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="SelectDataPathButton.Text" xml:space="preserve">
-    <value>...</value>
+  <data name="&gt;&gt;IncludingCustomCredits.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="IgnoreArchiveFootageCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -444,8 +441,11 @@
   <data name="&gt;&gt;EpisodeSeperatorSampleLabel.Name" xml:space="preserve">
     <value>EpisodeSeperatorSampleLabel</value>
   </data>
-  <data name="ParseVoiceOfCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="ParsingPeopleTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;IncludePrefixOnOtherCreditsCheckBox.Parent" xml:space="preserve">
+    <value>CrewParsingTab</value>
   </data>
   <data name="&gt;&gt;UseDoubleDigitsEpisodeNumberCheckBox.Name" xml:space="preserve">
     <value>UseDoubleDigitsEpisodeNumberCheckBox</value>
@@ -462,11 +462,14 @@
   <data name="&gt;&gt;GroupSoundtrackCreditsCheckBox.Parent" xml:space="preserve">
     <value>CrewParsingTab</value>
   </data>
+  <data name="EpisodeFormatTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
   <data name="CrewParsingTab.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="IgnoreLanguageVersionCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;TriviaTab.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;IgnoreUncreditedCheckBox.Name" xml:space="preserve">
     <value>IgnoreUncreditedCheckBox</value>
@@ -474,8 +477,8 @@
   <data name="CheckLinksCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;IncludingCreditTypeOtherCheckBox.Name" xml:space="preserve">
-    <value>IncludingCreditTypeOtherCheckBox</value>
+  <data name="EpisodeSeperatorSampleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 13</value>
   </data>
   <data name="&gt;&gt;NameParsingTab.Name" xml:space="preserve">
     <value>NameParsingTab</value>
@@ -492,9 +495,6 @@
   <data name="IncludePrefixOnOtherCreditsCheckBox.Text" xml:space="preserve">
     <value>Include Category Prefix 
 on "Other/Custom" Credits</value>
-  </data>
-  <data name="ParseCastCheckBox.Text" xml:space="preserve">
-    <value>Parse Cast</value>
   </data>
   <data name="RetainOriginalCreditCheckbox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -523,8 +523,14 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>SettingsForm</value>
   </data>
+  <data name="&gt;&gt;ParsingTab.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="ParseVoiceOfCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 29</value>
+  </data>
+  <data name="StandardizeJuniorSeniorCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="IncludingCreditTypeWritingCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -535,8 +541,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;ParseCrewCheckBox.Parent" xml:space="preserve">
     <value>CrewParsingTab</value>
   </data>
-  <data name="&gt;&gt;ParseVoiceOfCheckBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="TakeBirthYearFromLocalPersonCacheCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="IncludingCreditTypeArtCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -550,8 +556,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;IncludingCreditTypeArtCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="IgnoreScenesDeletedCheckBox.Text" xml:space="preserve">
-    <value>Ignore "(scenes deleted)"</value>
+  <data name="IncludingCreditTypeSoundCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
   </data>
   <data name="&gt;&gt;SettingsTabControl.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -583,6 +589,9 @@ on "Other/Custom" Credits</value>
   <data name="OverwriteExistingHeadshotsCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="CapitalizeCustomRoleCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="&gt;&gt;EpisodeFormatTextBox.Name" xml:space="preserve">
     <value>EpisodeFormatTextBox</value>
   </data>
@@ -598,6 +607,9 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;TriviaTab.Parent" xml:space="preserve">
     <value>SettingsTabControl</value>
   </data>
+  <data name="RetainCreditedAsOnCastCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
   <data name="IgnoreArchiveFootageCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 17</value>
   </data>
@@ -610,8 +622,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;NameParsingTab.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="IncludePrefixOnOtherCreditsCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="&gt;&gt;RetainCreditedAsOnCastCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;DownloadGoofsCheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -619,11 +631,14 @@ on "Other/Custom" Credits</value>
   <data name="HeadshotsTab.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="RetrieveBirthYearWhenLocalCacheEmptyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>366, 17</value>
+  <data name="SelectDataPathButton.Text" xml:space="preserve">
+    <value>...</value>
   </data>
   <data name="&gt;&gt;ParseCrewCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IncludingCreditTypeSoundCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 17</value>
   </data>
   <data name="&gt;&gt;ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -676,8 +691,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;AutoCopyHeadShotsCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;OverwriteExistingHeadshotsCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="StandardizeJuniorSeniorCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 29</value>
   </data>
   <data name="&gt;&gt;DataPathTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -709,26 +724,20 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;MessageBoxTabPage.Name" xml:space="preserve">
     <value>MessageBoxTabPage</value>
   </data>
-  <data name="&gt;&gt;AutoCopyHeadShotsCheckBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="UseFakeBirthYearsCheckBox.Text" xml:space="preserve">
-    <value>Use Fake Birth Years if real ones are not available</value>
-  </data>
   <data name="&gt;&gt;ParseCastCheckBox.Parent" xml:space="preserve">
     <value>CastParsingTab</value>
   </data>
   <data name="BirthYearsParsingTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>594, 234</value>
   </data>
-  <data name="&gt;&gt;IncludingCreditTypeSoundtrackCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="&gt;&gt;MessageBoxTabPage.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="StandardizeJuniorSeniorCheckBox.Text" xml:space="preserve">
+    <value>Standardize Junior / Senior suffixes into ", jr." / ", sr."</value>
   </data>
   <data name="SelectDataPathButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>31, 23</value>
@@ -748,11 +757,17 @@ on "Other/Custom" Credits</value>
   <data name="AutoCopyHeadShotsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 17</value>
   </data>
+  <data name="&gt;&gt;StandardizeJuniorSeniorCheckBox.Parent" xml:space="preserve">
+    <value>NameParsingTab</value>
+  </data>
   <data name="ParseVoiceOfCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="&gt;&gt;OtherTab.Name" xml:space="preserve">
     <value>OtherTab</value>
+  </data>
+  <data name="&gt;&gt;OverwriteExistingHeadshotsCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="CheckLinksCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
@@ -781,8 +796,8 @@ on "Other/Custom" Credits</value>
   <data name="ParsingPeopleTabControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="StoreHeadshotsPerSessionCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="SettingsTabControl.Size" type="System.Drawing.Size, System.Drawing">
     <value>642, 336</value>
@@ -820,6 +835,12 @@ on "Other/Custom" Credits</value>
   <data name="ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>537, 17</value>
   </data>
+  <data name="&gt;&gt;StandardizeJuniorSeniorCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ParsingTab.Name" xml:space="preserve">
+    <value>ParsingTab</value>
+  </data>
   <data name="IgnoreScenesDeletedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>324, 29</value>
   </data>
@@ -847,9 +868,6 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;IncludingCreditTypeProductionCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ParseRoleSlashCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="DisableParsingCompleteMessageBoxForGetHeadshotsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>322, 17</value>
   </data>
@@ -874,20 +892,20 @@ on "Other/Custom" Credits</value>
   <data name="GetHeadshotsDirectlyAfterNameParsingCheckBox.Text" xml:space="preserve">
     <value>Get Headshots directly after name parsing</value>
   </data>
+  <data name="IncludingCreditTypeWritingCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="IncludingCreditTypeProductionCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
   <data name="&gt;&gt;SendToCastCrewCopyPasteCheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="IgnoreArchiveFootageCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="StoreHeadshotsPerSessionCheckBox.Text" xml:space="preserve">
-    <value>Store Headshots per Session in Images\DVD Profiler and Images\CCViewer folder</value>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 34</value>
   </data>
   <data name="AutoCopyHeadShotsCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -921,6 +939,9 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="DisableDuplicatesMessageBoxCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;OverwriteExistingHeadshotsCheckBox.Name" xml:space="preserve">
+    <value>OverwriteExistingHeadshotsCheckBox</value>
   </data>
   <data name="&gt;&gt;ParsingTabControl.Name" xml:space="preserve">
     <value>ParsingTabControl</value>
@@ -958,6 +979,9 @@ on "Other/Custom" Credits</value>
   <data name="ParseCrewCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="ParseVoiceOfCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="&gt;&gt;ParsingTabControl.Parent" xml:space="preserve">
     <value>ParsingTab</value>
   </data>
@@ -979,8 +1003,11 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;IgnoreArchiveFootageCheckBox.Name" xml:space="preserve">
     <value>IgnoreArchiveFootageCheckBox</value>
   </data>
-  <data name="TakeBirthYearFromLocalPersonCacheCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;IncludingCreditTypeSoundtrackCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IncludingCreditTypeCinematographyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 17</value>
   </data>
   <data name="RetrieveBirthYearWhenLocalCacheEmptyCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1000,8 +1027,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;IgnoreUncreditedCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="DisableParsingCompleteMessageBoxForGetHeadshotsCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="RetrieveBirthYearWhenLocalCacheEmptyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>366, 17</value>
   </data>
   <data name="RetainOriginalCreditCheckbox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1029,9 +1056,6 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="RetrieveBirthYearWhenLocalCacheEmptyCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
-  </data>
-  <data name="EpisodeSeperatorSampleLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Placeholders: {season}, {episode}</value>
@@ -1066,9 +1090,6 @@ on "Other/Custom" Credits</value>
   <data name="NameParsingTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="&gt;&gt;LinksTab.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;IgnoreLanguageVersionCheckBox.Parent" xml:space="preserve">
     <value>CastParsingTab</value>
   </data>
@@ -1090,8 +1111,8 @@ on "Other/Custom" Credits</value>
   <data name="AutoCopyHeadShotsCheckBox.Text" xml:space="preserve">
     <value>Automatically copy Headshots into DVD Profiler folder</value>
   </data>
-  <data name="&gt;&gt;IncludingCustomCredits.ZOrder" xml:space="preserve">
-    <value>16</value>
+  <data name="OtherTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
   </data>
   <data name="&gt;&gt;RetrieveBirthYearWhenLocalCacheEmptyCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -1123,6 +1144,9 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;DisableDuplicatesMessageBoxCheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="&gt;&gt;IncludingCustomCredits.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
   <data name="&gt;&gt;TakeBirthYearFromLocalPersonCacheCheckBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
@@ -1134,9 +1158,6 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="&gt;&gt;MessageBoxTabPage.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="&gt;&gt;PeopleParsingTab.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -1162,14 +1183,17 @@ on "Other/Custom" Credits</value>
   <data name="DisableParsingCompleteMessageBoxForGetHeadshotsCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;RetainCreditedAsOnCrewCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="TriviaTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>634, 310</value>
   </data>
   <data name="IgnoreUnconfirmedCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;OverwriteExistingHeadshotsCheckBox.Name" xml:space="preserve">
-    <value>OverwriteExistingHeadshotsCheckBox</value>
+  <data name="&gt;&gt;StandardizeJuniorSeniorCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="IncludingCreditTypeSoundCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="ParseRoleSlashCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1207,8 +1231,8 @@ on "Other/Custom" Credits</value>
   <data name="BirthYearsParsingTab.Text" xml:space="preserve">
     <value>Birth Years</value>
   </data>
-  <data name="&gt;&gt;TakeBirthYearFromLocalPersonCacheCheckBox.Name" xml:space="preserve">
-    <value>TakeBirthYearFromLocalPersonCacheCheckBox</value>
+  <data name="IgnoreLanguageVersionCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="DisableParsingCompleteMessageBoxForGetHeadshotsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 75</value>
@@ -1228,9 +1252,6 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;DisableCopyingSuccessfulMessageBoxCheckBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="EpisodeSeperatorSampleLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
   <data name="CheckLinksCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 17</value>
   </data>
@@ -1244,7 +1265,7 @@ on "Other/Custom" Credits</value>
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;SendToCastCrewCopyPasteCheckBox.Name" xml:space="preserve">
     <value>SendToCastCrewCopyPasteCheckBox</value>
@@ -1255,8 +1276,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;SettingsTabControl.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;IncludingCreditTypeDirectionCheckBox.Name" xml:space="preserve">
-    <value>IncludingCreditTypeDirectionCheckBox</value>
+  <data name="DisableParsingCompleteMessageBoxForGetHeadshotsCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;IgnoreCreditOnlyCheckBox.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -1330,8 +1351,14 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;ParseVoiceOfCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="IncludePrefixOnOtherCreditsCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
   <data name="IgnoreUncreditedCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="&gt;&gt;StandardizeJuniorSeniorCheckBox.Name" xml:space="preserve">
+    <value>StandardizeJuniorSeniorCheckBox</value>
   </data>
   <data name="ParseRoleSlashCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 17</value>
@@ -1372,9 +1399,6 @@ on "Other/Custom" Credits</value>
   <data name="MessageBoxTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="&gt;&gt;RootPathTab.Name" xml:space="preserve">
-    <value>RootPathTab</value>
-  </data>
   <data name="IncludingCreditTypeCinematographyCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>324, 121</value>
   </data>
@@ -1408,8 +1432,8 @@ on "Other/Custom" Credits</value>
   <data name="GroupSoundtrackCreditsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 17</value>
   </data>
-  <data name="RetainCreditedAsOnCastCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="ParseCastCheckBox.Text" xml:space="preserve">
+    <value>Parse Cast</value>
   </data>
   <data name="IncludingCreditTypeOtherCheckBox.Text" xml:space="preserve">
     <value>Including "Other" Credits</value>
@@ -1417,11 +1441,14 @@ on "Other/Custom" Credits</value>
   <data name="OverwriteExistingHeadshotsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 17</value>
   </data>
-  <data name="IncludingCreditTypeCinematographyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 17</value>
+  <data name="StandardizeJuniorSeniorCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 17</value>
   </data>
   <data name="AutoCopyHeadShotsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 52</value>
+  </data>
+  <data name="&gt;&gt;IncludingCreditTypeSoundCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="IncludePrefixOnOtherCreditsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 98</value>
@@ -1458,9 +1485,6 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="&gt;&gt;DownloadTriviaCheckBox.Parent" xml:space="preserve">
     <value>TriviaTab</value>
-  </data>
-  <data name="&gt;&gt;IncludePrefixOnOtherCreditsCheckBox.Parent" xml:space="preserve">
-    <value>CrewParsingTab</value>
   </data>
   <data name="DownloadTriviaCheckBox.Text" xml:space="preserve">
     <value>Download Trivia</value>
@@ -1543,8 +1567,8 @@ on "Other/Custom" Credits</value>
   <data name="ParseRoleSlashCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 52</value>
   </data>
-  <data name="OtherTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>634, 310</value>
+  <data name="LinksTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
   </data>
   <data name="ParseVoiceOfCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 17</value>
@@ -1579,6 +1603,9 @@ on "Other/Custom" Credits</value>
   <data name="OtherTab.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
+  <data name="IgnoreArchiveFootageCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
   <data name="&gt;&gt;DisableParsingCompleteMessageBoxCheckBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
@@ -1594,14 +1621,14 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;OKButton.Name" xml:space="preserve">
     <value>OKButton</value>
   </data>
-  <data name="LinksTab.Text" xml:space="preserve">
-    <value>Links</value>
+  <data name="EpisodeSeperatorSampleLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="IncludingCreditTypeSoundCheckBox.Text" xml:space="preserve">
     <value>Including "Sound" Credits</value>
   </data>
-  <data name="RetainCreditedAsOnCrewCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 17</value>
+  <data name="&gt;&gt;AutoCopyHeadShotsCheckBox.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;SeasonsParsingTab.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1636,14 +1663,20 @@ on "Other/Custom" Credits</value>
   <data name="IgnoreCreditOnlyCheckBox.Text" xml:space="preserve">
     <value>Ignore "(credit only)"</value>
   </data>
-  <data name="&gt;&gt;ParsingTab.Name" xml:space="preserve">
-    <value>ParsingTab</value>
+  <data name="RetainCreditedAsOnCrewCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 17</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="DisableParsingCompleteMessageBoxForGetBirthYearsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>322, 17</value>
+  </data>
   <data name="SeasonsParsingTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
+  </data>
+  <data name="&gt;&gt;IncludingCreditTypeSoundtrackCheckBox.Parent" xml:space="preserve">
+    <value>CrewParsingTab</value>
   </data>
   <data name="&gt;&gt;CapitalizeCustomRoleCheckBox.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -1651,8 +1684,8 @@ on "Other/Custom" Credits</value>
   <data name="TriviaTab.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="CastParsingTab.Text" xml:space="preserve">
-    <value>Cast</value>
+  <data name="&gt;&gt;HeadshotsTab.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SettingsTabControl.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
@@ -1663,8 +1696,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;ParsingTabControl.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;AbortButton.Name" xml:space="preserve">
-    <value>AbortButton</value>
+  <data name="ParseVoiceOfCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;IncludingCreditTypeProductionCheckBox.Parent" xml:space="preserve">
     <value>CrewParsingTab</value>
@@ -1690,8 +1723,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;DisableParsingCompleteMessageBoxForGetHeadshotsCheckBox.Parent" xml:space="preserve">
     <value>MessageBoxTabPage</value>
   </data>
-  <data name="&gt;&gt;EpisodeSeperatorSampleLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="IgnoreUncreditedCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1699,8 +1732,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;GetCastHeadshotCheckBox.Parent" xml:space="preserve">
     <value>HeadshotsTab</value>
   </data>
-  <data name="ParsingPeopleTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="&gt;&gt;SelectDataPathButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="IncludingCreditTypeArtCheckBox.Text" xml:space="preserve">
     <value>Including "Art" Credits</value>
@@ -1726,10 +1759,10 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;NameParsingTab.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="IncludingCreditTypeSoundCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="IncludingCreditTypeSoundCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>324, 190</value>
   </data>
-  <data name="&gt;&gt;DownloadTriviaCheckBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;TakeBirthYearFromLocalPersonCacheCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="DownloadGoofsCheckBox.TabIndex" type="System.Int32, mscorlib">
@@ -1751,9 +1784,6 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;IncludingCustomCredits.Parent" xml:space="preserve">
     <value>CrewParsingTab</value>
   </data>
-  <data name="&gt;&gt;TakeBirthYearFromLocalPersonCacheCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;ParseRoleSlashCheckBox.Name" xml:space="preserve">
     <value>ParseRoleSlashCheckBox</value>
   </data>
@@ -1765,9 +1795,6 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="&gt;&gt;IgnoreLanguageVersionCheckBox.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="OtherTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
   </data>
   <data name="&gt;&gt;IncludePrefixOnOtherCreditsCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1786,6 +1813,9 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="&gt;&gt;RetainOriginalCreditCheckbox.Parent" xml:space="preserve">
     <value>CrewParsingTab</value>
+  </data>
+  <data name="&gt;&gt;RetainCreditedAsOnCrewCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;IncludingCreditTypeSoundCheckBox.Parent" xml:space="preserve">
     <value>CrewParsingTab</value>
@@ -1856,8 +1886,8 @@ on "Other/Custom" Credits</value>
   <data name="IncludingCreditTypeWritingCheckBox.Text" xml:space="preserve">
     <value>Including "Writing" Credits</value>
   </data>
-  <data name="IgnoreUncreditedCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="IgnoreUnconfirmedCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
   </data>
   <data name="&gt;&gt;UseFakeBirthYearsCheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -1867,9 +1897,6 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="&gt;&gt;IgnoreScenesDeletedCheckBox.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="&gt;&gt;SelectDataPathButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="PeopleParsingTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -1889,12 +1916,6 @@ on "Other/Custom" Credits</value>
   <data name="IncludingCreditTypeDirectionCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="&gt;&gt;TriviaTab.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="IgnoreUnconfirmedCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
   <data name="ParseCrewCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -1910,6 +1931,9 @@ on "Other/Custom" Credits</value>
   <data name="StoreHeadshotsPerSessionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 98</value>
   </data>
+  <data name="StoreHeadshotsPerSessionCheckBox.Text" xml:space="preserve">
+    <value>Store Headshots per Session in Images\DVD Profiler and Images\CCViewer folder</value>
+  </data>
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -1921,9 +1945,6 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="&gt;&gt;SettingsTabControl.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;HeadshotsTab.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;CapitalizeCustomRoleCheckBox.Name" xml:space="preserve">
     <value>CapitalizeCustomRoleCheckBox</value>
@@ -1957,6 +1978,9 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="&gt;&gt;RetrieveBirthYearWhenLocalCacheEmptyCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;IncludingCreditTypeOtherCheckBox.Name" xml:space="preserve">
+    <value>IncludingCreditTypeOtherCheckBox</value>
   </data>
   <data name="EpisodeSeperatorSampleLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 54</value>
@@ -2027,14 +2051,14 @@ on "Other/Custom" Credits</value>
   <data name="DownloadTriviaCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;IncludingCreditTypeFilmEditingCheckBox.Name" xml:space="preserve">
-    <value>IncludingCreditTypeFilmEditingCheckBox</value>
+  <data name="&gt;&gt;EpisodeSeperatorSampleLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="IncludingCreditTypeSoundCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="IncludingCreditTypeSoundCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 17</value>
+  <data name="&gt;&gt;LinksTab.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;NameParsingTab.Parent" xml:space="preserve">
     <value>ParsingPeopleTabControl</value>
@@ -2048,8 +2072,8 @@ on "Other/Custom" Credits</value>
   <data name="IncludingCreditTypeOtherCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>324, 29</value>
   </data>
-  <data name="IgnoreUncreditedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>324, 6</value>
+  <data name="&gt;&gt;AbortButton.Name" xml:space="preserve">
+    <value>AbortButton</value>
   </data>
   <data name="&gt;&gt;DisableDuplicatesMessageBoxCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2084,8 +2108,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;CastParsingTab.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;StoreHeadshotsPerSessionCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;RootPathTab.Name" xml:space="preserve">
+    <value>RootPathTab</value>
   </data>
   <data name="DownloadTriviaCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
@@ -2095,6 +2119,9 @@ on "Other/Custom" Credits</value>
   </data>
   <data name="ParsingTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
+  </data>
+  <data name="CastParsingTab.Text" xml:space="preserve">
+    <value>Cast</value>
   </data>
   <data name="&gt;&gt;IncludingCreditTypeProductionCheckBox.ZOrder" xml:space="preserve">
     <value>11</value>
@@ -2108,14 +2135,17 @@ on "Other/Custom" Credits</value>
   <data name="RootPathTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
+  <data name="&gt;&gt;TakeBirthYearFromLocalPersonCacheCheckBox.Name" xml:space="preserve">
+    <value>TakeBirthYearFromLocalPersonCacheCheckBox</value>
+  </data>
   <data name="&gt;&gt;DisableCopyingSuccessfulMessageBoxCheckBox.Parent" xml:space="preserve">
     <value>MessageBoxTabPage</value>
   </data>
   <data name="OKButton.Text" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="&gt;&gt;IncludingCreditTypeSoundtrackCheckBox.Parent" xml:space="preserve">
-    <value>CrewParsingTab</value>
+  <data name="UseFakeBirthYearsCheckBox.Text" xml:space="preserve">
+    <value>Use Fake Birth Years if real ones are not available</value>
   </data>
   <data name="&gt;&gt;RootPathTab.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -2123,23 +2153,20 @@ on "Other/Custom" Credits</value>
   <data name="RetainOriginalCreditCheckbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 17</value>
   </data>
-  <data name="EpisodeFormatTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 20</value>
+  <data name="&gt;&gt;IncludingCreditTypeDirectionCheckBox.Name" xml:space="preserve">
+    <value>IncludingCreditTypeDirectionCheckBox</value>
   </data>
   <data name="BirthYearsParsingTab.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="IncludingCreditTypeSoundCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;EpisodeSeperatorSampleLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SaveLogFileCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
-  </data>
-  <data name="&gt;&gt;IncludingCustomCredits.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="RootPathTab.Text" xml:space="preserve">
     <value>Data Path</value>
@@ -2153,32 +2180,35 @@ on "Other/Custom" Credits</value>
   <data name="ParsingTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="IncludingCreditTypeSoundCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>324, 190</value>
+  <data name="OtherTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
   </data>
   <data name="&gt;&gt;SelectDataPathButton.Name" xml:space="preserve">
     <value>SelectDataPathButton</value>
   </data>
+  <data name="EpisodeFormatTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 20</value>
+  </data>
   <data name="&gt;&gt;SeasonsParsingTab.Name" xml:space="preserve">
     <value>SeasonsParsingTab</value>
   </data>
-  <data name="IncludingCreditTypeWritingCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="ParseRoleSlashCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;RetainOriginalCreditCheckbox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="RootPathTab.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="&gt;&gt;BirthYearsParsingTab.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="UseDoubleDigitsEpisodeNumberCheckBox.Text" xml:space="preserve">
     <value>Use 2 digits for episode number</value>
   </data>
-  <data name="DisableParsingCompleteMessageBoxForGetBirthYearsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 17</value>
+  <data name="IgnoreUncreditedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>324, 6</value>
   </data>
-  <data name="EpisodeFormatTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="IgnoreScenesDeletedCheckBox.Text" xml:space="preserve">
+    <value>Ignore "(scenes deleted)"</value>
   </data>
   <data name="IncludingCustomCredits.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -2192,8 +2222,8 @@ on "Other/Custom" Credits</value>
   <data name="OtherTab.Text" xml:space="preserve">
     <value>Other</value>
   </data>
-  <data name="&gt;&gt;IncludingCreditTypeSoundCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
   </data>
   <data name="&gt;&gt;CheckLinksCheckBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2201,8 +2231,8 @@ on "Other/Custom" Credits</value>
   <data name="UseFakeBirthYearsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 88</value>
   </data>
-  <data name="CapitalizeCustomRoleCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;IncludingCreditTypeFilmEditingCheckBox.Name" xml:space="preserve">
+    <value>IncludingCreditTypeFilmEditingCheckBox</value>
   </data>
   <data name="OKButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -2216,8 +2246,8 @@ on "Other/Custom" Credits</value>
   <data name="&gt;&gt;CastParsingTab.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;AutoCopyHeadShotsCheckBox.Name" xml:space="preserve">
-    <value>AutoCopyHeadShotsCheckBox</value>
+  <data name="OtherTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>634, 310</value>
   </data>
   <data name="HeadshotsTab.Text" xml:space="preserve">
     <value>Headshots</value>

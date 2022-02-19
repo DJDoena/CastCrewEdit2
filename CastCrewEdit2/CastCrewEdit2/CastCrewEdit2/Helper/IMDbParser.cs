@@ -64,9 +64,11 @@
 
         internal static Regex SoundtrackStartRegex { get; }
 
-        internal static Dictionary<PersonInfo, string> BirthYearCache { get; set; }
+        internal static Dictionary<PersonInfo, string> BirthYearCache => SessionData.BirthYearCache;
 
-        internal static Dictionary<PersonInfo, FileInfo> HeadshotCache { get; set; }
+        internal static Dictionary<PersonInfo, FileInfo> HeadshotCache => SessionData.HeadshotCache;
+
+        private static Dictionary<string, string> WebSites => SessionData.WebSites;
 
         internal static Dictionary<string, ushort> ForcedFakeBirthYears { get; private set; }
 
@@ -75,6 +77,8 @@
         internal static List<string> IgnoreIMDbCreditTypeInOther => _ignoreIMDbCreditTypeInOther;
 
         internal static IMDbToDVDProfilerCrewRoleTransformation TransformationData { get; private set; }
+
+        internal static SessionData SessionData { get; set; }
 
         private static readonly Regex _castRegex;
 
@@ -101,8 +105,6 @@
         private static readonly object _getWebsiteLock;
 
         private static readonly Dictionary<string, string> _updatedPersonLinks;
-
-        private static readonly Dictionary<string, string> _webSites;
 
         private static List<string> _ignoreCustomInIMDbCreditType;
 
@@ -158,17 +160,13 @@
 
             _soundtrackPersonRegex = new Regex("<a href=\"/name/(?'PersonLink'[a-z0-9]+)(.+?)\">(?'PersonName'.+?)</a>", RegexOptions.Compiled);
 
-            BirthYearCache = new Dictionary<PersonInfo, string>(1000);
-
-            HeadshotCache = new Dictionary<PersonInfo, FileInfo>(1000);
+            SessionData = new SessionData();
 
             _personUrlRegex = new Regex(DomainPrefix + "name/(?'PersonLink'nm[0-9]+)/.*$", RegexOptions.Compiled);
 
             _updatedPersonLinks = new Dictionary<string, string>();
 
             _isInitialized = false;
-
-            _webSites = new Dictionary<string, string>();
 
 #if UnitTest
 
@@ -199,7 +197,7 @@
         {
             lock (_getWebsiteLock)
             {
-                if (_webSites.TryGetValue(targetUrl, out var webSite))
+                if (WebSites.TryGetValue(targetUrl, out var webSite))
                 {
                     return webSite;
                 }
@@ -212,7 +210,7 @@
                         {
                             webSite = sr.ReadToEnd();
 
-                            _webSites.Add(targetUrl, webSite);
+                            WebSites.Add(targetUrl, webSite);
 
                             return webSite;
                         }

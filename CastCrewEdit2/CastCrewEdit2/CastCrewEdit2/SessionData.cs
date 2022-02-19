@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Runtime.Serialization.Formatters.Binary;
-    using Forms;
     using Helper;
 
     [Serializable]
@@ -14,18 +13,24 @@
 
         public Dictionary<PersonInfo, FileInfo> HeadshotCache;
 
+        public Dictionary<string, string> WebSites;
+
         public bool FirstRunGetHeadShots;
+
+        public SessionData()
+        {
+            BirthYearCache = new Dictionary<PersonInfo, string>(1000);
+
+            HeadshotCache = new Dictionary<PersonInfo, FileInfo>(1000);
+
+            WebSites = new Dictionary<string, string>();
+        }
 
         public static void Serialize(string fileName)
         {
             using (var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
             {
-                var sd = new SessionData()
-                {
-                    BirthYearCache = IMDbParser.BirthYearCache,
-                    HeadshotCache = IMDbParser.HeadshotCache,
-                    FirstRunGetHeadShots = CastCrewEdit2ParseBaseForm.FirstRunGetHeadShots,
-                };
+                var sd = IMDbParser.SessionData;
 
                 var bf = new BinaryFormatter();
 
@@ -43,13 +48,24 @@
 
                     var sd = (SessionData)(bf.Deserialize(fs));
 
-                    IMDbParser.BirthYearCache = sd.BirthYearCache;
+                    if (sd.BirthYearCache == null)
+                    {
+                        sd.BirthYearCache = new Dictionary<PersonInfo, string>(1000);
+                    }
 
-                    IMDbParser.HeadshotCache = new Dictionary<PersonInfo, FileInfo>(sd.HeadshotCache.Count);
+                    if (sd.HeadshotCache == null)
+                    {
+                        sd.HeadshotCache = new Dictionary<PersonInfo, FileInfo>(1000);
+                    }
 
-                    CastCrewEdit2ParseBaseForm.FirstRunGetHeadShots = sd.FirstRunGetHeadShots;
+                    if (sd.WebSites == null)
+                    {
+                        sd.WebSites = new Dictionary<string, string>();
+                    }
 
-                    foreach (KeyValuePair<PersonInfo, FileInfo> kvp in sd.HeadshotCache)
+                    var headshotCache = IMDbParser.HeadshotCache;
+
+                    foreach (var kvp in sd.HeadshotCache)
                     {
                         if (kvp.Value != null)
                         {
@@ -57,21 +73,23 @@
 
                             if (kvp.Value.Exists)
                             {
-                                IMDbParser.HeadshotCache.Add(kvp.Key, kvp.Value);
+                                headshotCache.Add(kvp.Key, kvp.Value);
                             }
                         }
                         else
                         {
-                            IMDbParser.HeadshotCache.Add(kvp.Key, kvp.Value);
+                            headshotCache.Add(kvp.Key, kvp.Value);
                         }
                     }
+
+                    sd.HeadshotCache = headshotCache;
+
+                    IMDbParser.SessionData = sd;
                 }
             }
             catch
             {
-                IMDbParser.BirthYearCache = new Dictionary<PersonInfo, string>(1000);
-
-                IMDbParser.HeadshotCache = new Dictionary<PersonInfo, FileInfo>(1000);
+                IMDbParser.SessionData = new SessionData();
             }
 
             return IMDbParser.BirthYearCache.Count.ToString();

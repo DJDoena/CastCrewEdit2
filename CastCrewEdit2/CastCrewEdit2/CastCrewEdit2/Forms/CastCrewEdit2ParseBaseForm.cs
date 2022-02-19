@@ -21,7 +21,11 @@
 
         private readonly static object _messageQueueLock;
 
-        internal static bool FirstRunGetHeadShots { get; set; }
+        internal static bool FirstRunGetHeadShots
+        {
+            get => IMDbParser.SessionData.FirstRunGetHeadShots;
+            set => IMDbParser.SessionData.FirstRunGetHeadShots = value;
+        }
 
         static CastCrewEdit2ParseBaseForm()
         {
@@ -579,6 +583,11 @@
                 foreach (var entry in dict.Keys)
                 {
                     MessageBox.Show(this, entry.Message, entry.Header, entry.Buttons, entry.Icon);
+                }
+
+                if (_messageQueue.Count > 0)
+                {
+                    _log.AppendParagraph("<hr/>");
                 }
 
                 _messageQueue.Clear();

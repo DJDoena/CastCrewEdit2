@@ -105,6 +105,8 @@
 
         public bool GroupSoundtrackCredits = false;
 
+        public bool StandardizeJuniorSenior = false;
+
         [XmlIgnore]
         internal string CreditPhotosFolder
         {

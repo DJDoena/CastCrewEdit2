@@ -8,7 +8,7 @@
     {
         internal static CrewInfo Process(DefaultValues defaultValues, Match creditTypeMatch, Match crewMatch, string credit, string originalCredit)
         {
-            var name = NameParser.Parse(crewMatch.Groups["PersonName"].Value.ToString());
+            var name = NameParser.Parse(crewMatch.Groups["PersonName"].Value, defaultValues.StandardizeJuniorSenior);
 
             var crewMember = new CrewInfo()
             {
@@ -33,6 +33,13 @@
 
                     credit = credit.Replace("(as " + newMatch.Groups["CreditedAs"].ToString() + ")", string.Empty);
                     credit = credit.Trim();
+                }
+                else
+                {
+                    if (name.OriginalName != name.PlainName && defaultValues.RetainCastCreditedAs)
+                    {
+                        crewMember.CreditedAs = name.OriginalName;
+                    }
                 }
 
                 if ((credit.StartsWith("(")) && (credit.EndsWith(")")))
