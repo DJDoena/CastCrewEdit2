@@ -513,6 +513,8 @@
             {
                 finalName.LastName = new StringBuilder(StandardizeJuniorSenior(finalName.LastName.ToString().Trim()));
             }
+
+            finalName.LastName = new StringBuilder(finalName.LastName.ToString().Trim());
         }
 
         private static string StandardizeJuniorSenior(string lastName)
@@ -525,7 +527,7 @@
             return lastName;
         }
 
-        private static bool TryReplaceSuffix(ref string lastName, string replacement, string[] suffixes)
+        private static bool TryReplaceSuffix(ref string lastName, string replacement, IEnumerable<string> suffixes)
         {
             var hasReplaced = false;
 
