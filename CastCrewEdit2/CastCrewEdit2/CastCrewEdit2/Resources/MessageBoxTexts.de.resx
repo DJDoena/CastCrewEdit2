@@ -165,7 +165,7 @@ Neu: {2}
   <data name="CriticalError" xml:space="preserve">
     <value>{0}
 
-Ein Log-File wurde unter "{1}" erstellt. Bitte sende es an karsten@yajirobi.de.</value>
+Ein Log-File wurde unter "{1}" erstellt. Bitte sende es an profiler_plugins@doena-soft.de.de.</value>
   </data>
   <data name="CriticalErrorHeader" xml:space="preserve">
     <value>Kritischer Fehler!</value>
