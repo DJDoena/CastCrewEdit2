@@ -54,6 +54,7 @@
                         items.Add("Original Characters By");
                         items.Add("Created By");
                         items.Add("Story By");
+                        items.Add("Developed By");
 
                         break;
                     }
