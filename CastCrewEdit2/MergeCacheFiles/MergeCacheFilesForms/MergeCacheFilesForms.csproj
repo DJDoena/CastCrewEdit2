@@ -84,10 +84,6 @@
     <Content Include="DJDSOFT.ICO" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\AbstractionLayer\AbstractionLayer\AbstractionLayer.csproj">
-      <Project>{491b235a-1d56-4732-b491-338a3dd2246d}</Project>
-      <Name>AbstractionLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MergeCacheFilesLib\MergeCacheFilesLib.csproj">
       <Project>{798b664f-55b8-4270-88df-9c416cfce277}</Project>
       <Name>MergeCacheFilesLib</Name>
@@ -103,6 +99,11 @@
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DoenaSoft.AbstractionLayer">
+      <Version>2.0.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

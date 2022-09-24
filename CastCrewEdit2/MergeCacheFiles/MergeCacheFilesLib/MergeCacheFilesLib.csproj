@@ -78,14 +78,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\AbstractionLayer\AbstractionLayer\AbstractionLayer.csproj">
-      <Project>{491b235a-1d56-4732-b491-338a3dd2246d}</Project>
-      <Name>AbstractionLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\CastCrewEdit2Library\CastCrewEdit2Library.csproj">
       <Project>{287660C9-FD98-457D-A652-702F754D4033}</Project>
       <Name>CastCrewEdit2Library</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DoenaSoft.AbstractionLayer">
+      <Version>2.0.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

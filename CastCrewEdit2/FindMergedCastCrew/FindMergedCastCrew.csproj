@@ -143,29 +143,9 @@
     <None Include="FindMergedCastCrew.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AbstractionLayer\AbstractionLayer\AbstractionLayer.csproj">
-      <Project>{491b235a-1d56-4732-b491-338a3dd2246d}</Project>
-      <Name>AbstractionLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Microsoft.WindowsAPICodePack\Core\Core.csproj">
-      <Project>{2e1fb0df-f9bb-4909-9f32-2d9d022a8e57}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Microsoft.WindowsAPICodePack\Shell\Shell.csproj">
-      <Project>{aa0c00cb-8699-4f37-bfae-40ca87acc06d}</Project>
-      <Name>Shell</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CastCrewEdit2Library\CastCrewEdit2Library.csproj">
       <Project>{287660c9-fd98-457d-a652-702f754d4033}</Project>
       <Name>CastCrewEdit2Library</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DVDProfilerXML\DVDProfilerHelper\DVDProfilerHelper\DVDProfilerHelper.csproj">
-      <Project>{461dacca-8ebf-4c03-ad1a-c438e4eb3b36}</Project>
-      <Name>DVDProfilerHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ToolBox\ToolBox\ToolBox.csproj">
-      <Project>{4782E10E-B5CC-4C2D-9D7F-D132CB5A50A0}</Project>
-      <Name>ToolBox</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +155,20 @@
     <None Include="Cast.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DoenaSoft.AbstractionLayer">
+      <Version>2.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="DoenaSoft.DVDProfilerHelper">
+      <Version>2.2.9</Version>
+    </PackageReference>
+    <PackageReference Include="DoenaSoft.ToolBox">
+      <Version>1.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="DoenaSoft.WindowsAPICodePack">
+      <Version>1.1.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
