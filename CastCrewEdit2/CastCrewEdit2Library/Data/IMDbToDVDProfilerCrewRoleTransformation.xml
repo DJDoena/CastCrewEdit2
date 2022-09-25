@@ -141,6 +141,11 @@
 					<DVDProfilerCreditSubtype>Developed By</DVDProfilerCreditSubtype>
 					<DVDProfilerCustomRole />
 				</CreditSubtype>
+				<CreditSubtype>
+					<IMDbCreditSubtype StartsWith="true">based on the characters</IMDbCreditSubtype>
+					<DVDProfilerCreditSubtype>Original Characters By</DVDProfilerCreditSubtype>
+					<DVDProfilerCustomRole />
+				</CreditSubtype>
 			</CreditSubtypeList>
 		</CreditType>
 		<CreditType>
