@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2</RootNamespace>
     <AssemblyName>CastCrewEdit2</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>Resources\djdsoft.ico</ApplicationIcon>
     <FileUpgradeFlags>
@@ -295,6 +295,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Resources\doener.jpg" />
     <None Include="ReadMe\CCE2_ReadMe.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
