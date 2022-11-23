@@ -551,7 +551,7 @@
             }
             catch (WebException webEx)
             {
-                if (webEx.Message.Contains("502") || webEx.Message.Contains("503"))
+                if (webEx.Message.Contains("405") || webEx.Message.Contains("502") || webEx.Message.Contains("503"))
                 {
                     counter++;
 
@@ -761,7 +761,7 @@
             }
             catch (WebException webEx)
             {
-                if (webEx.Message.Contains("502") || webEx.Message.Contains("503"))
+                if (webEx.Message.Contains("405") || webEx.Message.Contains("502") || webEx.Message.Contains("503"))
                 {
                     counter++;
 

@@ -9,6 +9,7 @@
     using System.Net;
     using System.Text;
     using System.Text.RegularExpressions;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Web;
     using System.Windows.Forms;
@@ -199,7 +200,7 @@
 
                 if (_lastRequestTimestamp.AddSeconds(1) >= DateTime.Now)
                 {
-                    Task.Delay(100).Wait();
+                    Thread.Sleep(250);
                 }
 
                 while (true)
@@ -212,21 +213,28 @@
 
                         return wr;
                     }
-                    catch
+                    catch (WebException webEx)
                     {
-                        retryCount++;
-
-                        if (retryCount == 10)
+                        if (webEx.Message.Contains("405") || webEx.Message.Contains("502") || webEx.Message.Contains("503"))
                         {
-                            throw;
+                            retryCount++;
+
+                            if (retryCount == 10)
+                            {
+                                throw;
+                            }
+                            else
+                            {
+                                var factor = retryCount < 5
+                                    ? 1000
+                                    : 2000;
+
+                                Thread.Sleep(retryCount * factor);
+                            }
                         }
                         else
                         {
-                            var factor = retryCount < 5
-                                ? 1000
-                                : 2000;
-
-                            Task.Delay(retryCount * factor).Wait();
+                            throw;
                         }
                     }
                 }
