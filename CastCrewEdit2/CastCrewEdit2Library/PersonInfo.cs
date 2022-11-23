@@ -226,6 +226,8 @@
         [XmlIgnore]
         public string OriginalCredit;
 
+        public DateTime LastLinkCheck;
+
         public static bool CreatorActive { get; set; }
 
         public PersonInfo()
@@ -309,6 +311,7 @@
             Type = personInfo.Type;
             LastModified = personInfo.LastModified;
             LastModifiedSpecified = personInfo.LastModifiedSpecified;
+            LastLinkCheck = personInfo.LastLinkCheck;
 
             CreatorActive = false;
         }

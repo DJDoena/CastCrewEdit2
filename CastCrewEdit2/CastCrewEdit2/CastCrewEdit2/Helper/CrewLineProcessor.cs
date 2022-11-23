@@ -116,9 +116,7 @@
 
             var personLink = crewMatch.Groups["PersonLink"].Value;
 
-            crewMember.PersonLink = defaultValues.CheckPersonLinkForRedirect
-                ? IMDbParser.GetUpdatedPersonLink(personLink)
-                : personLink;
+            IMDbParser.CheckPersonLinkForRedirect(defaultValues, Program.CrewCache, crewMember, personLink);
 
             return crewMember;
         }

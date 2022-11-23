@@ -158,16 +158,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DoenaSoft.AbstractionLayer">
-      <Version>2.0.4</Version>
+      <Version>2.0.6</Version>
     </PackageReference>
     <PackageReference Include="DoenaSoft.DVDProfilerHelper">
-      <Version>2.2.9</Version>
+      <Version>2.2.12</Version>
     </PackageReference>
     <PackageReference Include="DoenaSoft.ToolBox">
-      <Version>1.0.7</Version>
+      <Version>1.0.8</Version>
     </PackageReference>
     <PackageReference Include="DoenaSoft.WindowsAPICodePack">
-      <Version>1.1.1</Version>
+      <Version>1.1.2</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

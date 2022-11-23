@@ -322,7 +322,10 @@
                     {
                         castMember.AddFilmInfo(filmLink, filmName);
 
-                        Program.CastCache.Add(castMember.PersonLink, new PersonInfo(castMember));
+                        Program.CastCache.Add(castMember.PersonLink, new PersonInfo(castMember)
+                        {
+                            LastLinkCheck = DateTime.UtcNow,
+                        });
                     }
 
                     AddPossibleDuplicate(castMember);
@@ -384,7 +387,10 @@
                     {
                         crewMember.AddFilmInfo(filmLink, filmName);
 
-                        Program.CrewCache.Add(crewMember.PersonLink, new PersonInfo(crewMember));
+                        Program.CrewCache.Add(crewMember.PersonLink, new PersonInfo(crewMember)
+                        {
+                            LastLinkCheck = DateTime.UtcNow,
+                        });
                     }
 
                     AddPossibleDuplicate(crewMember);

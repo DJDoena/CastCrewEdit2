@@ -151,9 +151,7 @@
 
                 var personLink = match.Groups["PersonLink"].Value;
 
-                castMember.PersonLink = defaultValues.CheckPersonLinkForRedirect
-                    ? IMDbParser.GetUpdatedPersonLink(personLink)
-                    : personLink;
+                IMDbParser.CheckPersonLinkForRedirect(defaultValues, Program.CastCache, castMember, personLink);
 
                 castList.Add(castMember);
 

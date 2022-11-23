@@ -104,6 +104,8 @@
 
         private static readonly object _getWebsiteLock;
 
+        private static readonly object _getImdbLock;
+
         private static readonly Dictionary<string, string> _updatedPersonLinks;
 
         private static List<string> _ignoreCustomInIMDbCreditType;
@@ -111,6 +113,8 @@
         private static List<string> _ignoreIMDbCreditTypeInOther;
 
         private static bool _isInitialized;
+
+        private static DateTime _lastRequestTimestamp;
 
         static IMDbParser()
         {
@@ -168,6 +172,10 @@
 
             _isInitialized = false;
 
+            _lastRequestTimestamp = DateTime.MinValue;
+
+            _getImdbLock = new object();
+
 #if UnitTest
 
             WebResponses = new Dictionary<string, WebResponse>();
@@ -185,9 +193,44 @@
 
 #else
 
-            var wr = OnlineAccess.CreateSystemSettingsWebRequest(targetUrl, CultureInfo.GetCultureInfo("en-US"));
+            lock (_getImdbLock)
+            {
+                var retryCount = 0;
 
-            return wr;
+                if (_lastRequestTimestamp.AddSeconds(1) >= DateTime.Now)
+                {
+                    Task.Delay(100).Wait();
+                }
+
+                while (true)
+                {
+                    try
+                    {
+                        var wr = OnlineAccess.CreateSystemSettingsWebRequest(targetUrl, CultureInfo.GetCultureInfo("en-US"));
+
+                        _lastRequestTimestamp = DateTime.Now;
+
+                        return wr;
+                    }
+                    catch
+                    {
+                        retryCount++;
+
+                        if (retryCount == 10)
+                        {
+                            throw;
+                        }
+                        else
+                        {
+                            var factor = retryCount < 5
+                                ? 1000
+                                : 2000;
+
+                            Task.Delay(retryCount * factor).Wait();
+                        }
+                    }
+                }
+            }
 
 #endif
 
@@ -202,6 +245,20 @@
                     return webSite;
                 }
 
+                var cacheFile = GetCacheFileName(targetUrl);
+
+                if (cacheFile.Exists && cacheFile.LastWriteTimeUtc > DateTime.UtcNow.AddDays(-7)) //one week
+                {
+                    using (var sr = new StreamReader(cacheFile.FullName, Encoding))
+                    {
+                        webSite = sr.ReadToEnd();
+
+                        WebSites.Add(targetUrl, webSite);
+
+                        return webSite;
+                    }
+                }
+
                 using (var webResponse = GetWebResponse(targetUrl))
                 {
                     using (var stream = webResponse.GetResponseStream())
@@ -212,11 +269,30 @@
 
                             WebSites.Add(targetUrl, webSite);
 
+                            using (var sw = new StreamWriter(cacheFile.FullName, false, Encoding))
+                            {
+                                sw.Write(webSite);
+                            }
+
                             return webSite;
                         }
                     }
                 }
             }
+        }
+
+        private static FileInfo GetCacheFileName(string targetUrl)
+        {
+            var cacheFileName = targetUrl;
+
+            foreach (var c in Path.GetInvalidFileNameChars())
+            {
+                cacheFileName = cacheFileName.Replace(c, '_');
+            }
+
+            cacheFileName = Path.Combine(Path.GetTempPath(), $"{cacheFileName}.cce2");
+
+            return new FileInfo(cacheFileName);
         }
 
         public static string PersonHashCount => BirthYearCache.Count.ToString();
@@ -473,11 +549,46 @@
 
         private static void DownloadFile(FileInfo imageFileInfo, string remoteFile)
         {
-            using (var webClient = OnlineAccess.CreateSystemSettingsWebClient())
+            lock (_getImdbLock)
             {
-                webClient.DownloadFile(remoteFile, imageFileInfo.FullName);
+                var retryCount = 0;
 
-                imageFileInfo.Refresh();
+                if (_lastRequestTimestamp.AddSeconds(1) >= DateTime.Now)
+                {
+                    Task.Delay(100).Wait();
+                }
+
+                while (true)
+                {
+                    try
+                    {
+                        using (var webClient = OnlineAccess.CreateSystemSettingsWebClient())
+                        {
+                            webClient.DownloadFile(remoteFile, imageFileInfo.FullName);
+
+                            imageFileInfo.Refresh();
+
+                            return;
+                        }
+                    }
+                    catch
+                    {
+                        retryCount++;
+
+                        if (retryCount == 10)
+                        {
+                            throw;
+                        }
+                        else
+                        {
+                            var factor = retryCount < 5
+                                ? 1000
+                                : 2000;
+
+                            Task.Delay(retryCount * factor).Wait();
+                        }
+                    }
+                }
             }
         }
 
@@ -905,5 +1016,34 @@
                 return personLink;
             }
         }
+
+        internal static void CheckPersonLinkForRedirect(DefaultValues defaultValues, Dictionary<string, PersonInfo> personCache, PersonInfo castOrCrew, string personLink)
+        {
+            castOrCrew.PersonLink = personLink;
+
+            if (defaultValues.CheckPersonLinkForRedirect)
+            {
+                var now = DateTime.UtcNow;
+
+                if (personCache.TryGetValue(personLink, out var person))
+                {
+                    if (person.LastLinkCheck < now.AddDays(-28)) //4 weeks
+                    {
+                        castOrCrew.PersonLink = GetUpdatedPersonLink(personLink);
+                        castOrCrew.LastLinkCheck = now;
+
+                        person.LastLinkCheck = now;
+                    }
+                }
+                else
+                {
+                    castOrCrew.PersonLink = GetUpdatedPersonLink(personLink);
+                    castOrCrew.LastLinkCheck = now;
+
+                    person.LastLinkCheck = now;
+                }
+            }
+        }
+
     }
 }
