@@ -36,6 +36,8 @@
 
         internal static string LogFile { get; set; }
 
+        internal static bool DebugMode { get; set; }
+
         private static string _rootPath;
 
         private static readonly string _errorFile;
@@ -53,8 +55,6 @@
         private static string _crewCacheFile;
 
         private static string _dataPath;
-
-        private static bool _debugMode;
 
         private static BrowserControlSelection _selectedBrowserControl;
 
@@ -76,7 +76,7 @@
 
             _errorFile = Path.Combine(Path.GetTempPath(), "CastCrewEdit2Crash.xml");
 
-            _debugMode = false;
+            DebugMode = false;
 
             _selectedBrowserControl = BrowserControlSelection.Undefined;
 
@@ -171,7 +171,7 @@
                     }
                     else if (arg == "/debug")
                     {
-                        _debugMode = true;
+                        DebugMode = true;
                     }
                     else if (arg == "embedded")
                     {
@@ -274,7 +274,7 @@
 
                     DVDProfilerSerializer<ExceptionXml>.Serialize(_errorFile, exceptionXml);
 
-                    WriteError(ex);
+                    WriteError(ex, true);
                 }
                 catch
                 {
@@ -500,9 +500,9 @@
             }
         }
 
-        internal static void WriteError(Exception ex)
+        internal static void WriteError(Exception ex, bool forceWrite = false)
         {
-            if (_debugMode)
+            if (DebugMode)
             {
                 var xml = new ExceptionXml(ex);
 

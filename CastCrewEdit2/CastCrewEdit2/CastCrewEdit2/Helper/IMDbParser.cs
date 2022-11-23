@@ -1039,8 +1039,6 @@
                 {
                     castOrCrew.PersonLink = GetUpdatedPersonLink(personLink);
                     castOrCrew.LastLinkCheck = now;
-
-                    person.LastLinkCheck = now;
                 }
             }
         }
