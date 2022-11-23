@@ -502,7 +502,7 @@
 
         internal static void WriteError(Exception ex, bool forceWrite = false)
         {
-            if (DebugMode)
+            if (forceWrite || DebugMode)
             {
                 var xml = new ExceptionXml(ex);
 
