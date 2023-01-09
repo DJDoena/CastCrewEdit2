@@ -117,7 +117,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         }
 
         private static Boolean PageNotFound(Exception exception)
-            => ((IsWebException(exception)) && (exception.Message.Contains("404")));
+            => ((IsWebException(exception)) && (exception.Message.Contains("404") || exception.Message.Contains("308")));
 
         #endregion
 

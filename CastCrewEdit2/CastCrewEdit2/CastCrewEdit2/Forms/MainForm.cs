@@ -371,7 +371,7 @@
 
         private void ParseTitle(string key)
         {
-            var targetUrl = IMDbParser.TitleUrl + key + "/fullcredits";
+            var targetUrl = $"{IMDbParser.TitleUrl}{key}/fullcredits";
 
             var webSite = IMDbParser.GetWebSite(targetUrl);
 
@@ -410,7 +410,7 @@
 
             if (Program.DefaultValues.DownloadTrivia)
             {
-                var triviaUrl = IMDbParser.TitleUrl + _movieTitleLink + "/trivia";
+                var triviaUrl = $"{IMDbParser.TitleUrl}{_movieTitleLink}/trivia";
 
                 var webSite = IMDbParser.GetWebSite(triviaUrl);
 
@@ -498,7 +498,7 @@
 
             if (Program.DefaultValues.DownloadGoofs)
             {
-                var goofsUrl = IMDbParser.TitleUrl + _movieTitleLink + "/goofs";
+                var goofsUrl = $"{IMDbParser.TitleUrl}{_movieTitleLink}/goofs";
 
                 var webSite = IMDbParser.GetWebSite(goofsUrl);
 
@@ -1024,7 +1024,7 @@
 
                     foreach (var season in seasons)
                     {
-                        var targetUrl = IMDbParser.TitleUrl + _tvShowTitleLink + "/episodes?season=" + season;
+                        var targetUrl = $"{IMDbParser.TitleUrl}{_tvShowTitleLink}/episodes?season={season}";
 
                         var webSite = IMDbParser.GetWebSite(targetUrl);
 
@@ -1171,7 +1171,7 @@
 
         private void ScanForSeasons()
         {
-            var targetUrl = IMDbParser.TitleUrl + _tvShowTitleLink + "/episodes";
+            var targetUrl = $"{IMDbParser.TitleUrl}{_tvShowTitleLink}/episodes";
 
             var webSite = IMDbParser.GetWebSite(targetUrl);
 

@@ -25,7 +25,7 @@
 
         internal static string Get(string personId)
         {
-            var webSite = IMDbParser.GetWebSite(IMDbParser.PersonUrl + personId);
+            var webSite = IMDbParser.GetWebSite($"{IMDbParser.PersonUrl}{personId}/");
 
             using (var sr = new StringReader(webSite))
             {

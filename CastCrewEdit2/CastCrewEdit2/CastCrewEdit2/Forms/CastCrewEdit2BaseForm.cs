@@ -108,7 +108,7 @@
 
         protected static void ParseCastAndCrew(string key, bool parseCast, bool parseCrew, bool parseSoundtrack, bool initializeLists, ref List<Match> castMatches, ref List<CastInfo> castList, ref List<KeyValuePair<Match, List<Match>>> crewMatches, ref List<CrewInfo> crewList, ref Dictionary<string, List<SoundtrackMatch>> soundtrackMatches)
         {
-            var targetUrl = IMDbParser.TitleUrl + key + "/fullcredits";
+            var targetUrl = $"{IMDbParser.TitleUrl}{key}/fullcredits";
 
             var webSite = IMDbParser.GetWebSite(targetUrl);
 
@@ -337,7 +337,7 @@
         {
             Dictionary<string, List<SoundtrackMatch>> soundtrackEntries = null;
 
-            var soundtrackUrl = IMDbParser.TitleUrl + titleLink + "/soundtrack";
+            var soundtrackUrl = $"{IMDbParser.TitleUrl}{titleLink}/soundtrack";
 
             var webSite = IMDbParser.GetWebSite(soundtrackUrl);
 

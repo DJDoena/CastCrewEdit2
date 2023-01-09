@@ -215,7 +215,7 @@
                     }
                     catch (WebException webEx)
                     {
-                        if (!webEx.Message.Contains("404"))
+                        if (!PageNotFound(webEx))
                         {
                             retryCount++;
 
@@ -472,7 +472,7 @@
 
             var png = new FileInfo(Program.RootPath + @"\Images\CastCrewEdit2\" + person.PersonLink + ".png");
 
-            var targetUrl = PersonUrl + person.PersonLink;
+            var targetUrl = $"{PersonUrl}{person.PersonLink}/";
 
             string webSite;
             try
@@ -481,7 +481,7 @@
             }
             catch (WebException webEx)
             {
-                if (webEx.Message.Contains("404"))
+                if (PageNotFound(webEx))
                 {
                     return CheckExistingFile(person, jpg, gif, png);
                 }
@@ -542,7 +542,7 @@
             }
             catch (WebException webEx)
             {
-                if (webEx.Message.Contains("404"))
+                if (PageNotFound(webEx))
                 {
                     return CheckExistingFile(person, jpg, gif, png);
                 }
@@ -553,6 +553,12 @@
             }
 
             return CheckExistingFile(person, jpg, gif, png);
+        }
+
+        public static bool PageNotFound(WebException webEx)
+        {
+            return webEx.Message.Contains("404"); //not found
+                                                  //|| webEx.Message.Contains("308"); //permanent redirect
         }
 
         private static void DownloadFile(FileInfo imageFileInfo, string remoteFile)

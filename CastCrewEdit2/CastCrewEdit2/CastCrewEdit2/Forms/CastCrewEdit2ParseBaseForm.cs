@@ -551,7 +551,7 @@
             }
             catch (WebException webEx)
             {
-                if (!webEx.Message.Contains("404"))
+                if (!IMDbParser.PageNotFound(webEx))
                 {
                     counter++;
 
@@ -761,7 +761,7 @@
             }
             catch (WebException webEx)
             {
-                if (!webEx.Message.Contains("404"))
+                if (!IMDbParser.PageNotFound(webEx))
                 {
                     counter++;
 
