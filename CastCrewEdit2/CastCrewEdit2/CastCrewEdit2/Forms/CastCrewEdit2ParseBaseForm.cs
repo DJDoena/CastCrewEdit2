@@ -276,6 +276,26 @@
 
             if (parseCast)
             {
+                if (Program.Settings.DefaultValues.NeverUpdatePersonName)
+                {
+                    foreach (var castMember in castList)
+                    {
+                        if (castMember.FirstName == FirstNames.Title)
+                        {
+                            continue;
+                        }
+
+                        if (Program.CastCache.ContainsKey(castMember.PersonLink))
+                        {
+                            var other = Program.CastCache[castMember.PersonLink];
+
+                            castMember.FirstName = other.FirstName;
+                            castMember.MiddleName = other.MiddleName;
+                            castMember.LastName = other.LastName;
+                        }
+                    }
+                }
+
                 DataGridViewHelper.FillCastRows(movieCastDataGridView, castList, false, false);
 
                 foreach (var castMember in castList)
@@ -338,6 +358,29 @@
 
             if (parseCrew)
             {
+                if (Program.Settings.DefaultValues.NeverUpdatePersonName)
+                {
+                    foreach (var crewMember in crewList)
+                    {
+                        if (crewMember.FirstName == FirstNames.Title
+                            || crewMember.FirstName == FirstNames.Divider
+                            || crewMember.FirstName == FirstNames.GroupDividerStart
+                            || crewMember.FirstName == FirstNames.GroupDividerEnd)
+                        {
+                            continue;
+                        }
+
+                        if (Program.CrewCache.ContainsKey(crewMember.PersonLink))
+                        {
+                            var other = Program.CrewCache[crewMember.PersonLink];
+
+                            crewMember.FirstName = other.FirstName;
+                            crewMember.MiddleName = other.MiddleName;
+                            crewMember.LastName = other.LastName;
+                        }
+                    }
+                }
+
                 DataGridViewHelper.FillCrewRows(movieCrewDataGridView, crewList);
 
                 foreach (var crewMember in crewList)

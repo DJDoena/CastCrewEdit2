@@ -442,6 +442,18 @@ Warnung: Wenn man dort aber die Namen oder Geburtsjahre ändert, kann eine Konsi
 
 <h2><a name="VersionHints">Versionshinweise</a></h2>
 
+<h3>Version 2.1.11.0</h3>
+
+<ul>
+    <li>Option, das Ändern von Namen zu unterdrücken, wenn die IMDb-Id bereits verwendet wurde. Zu finden im Einstellungsdialog unter Parsing -&gt; Personen -&gt; Namen -&gt; Niemals Namen updaten nach erstem Hinzufügen</li>
+    <li>
+        Option, das Hinzufügen von Custom-Soundtracks zu unterdrücken. Zu finden im Einstellungsdialog unter Parsing -&gt; Crew -&gt; "Custom-Rollen" für "Soundtrack" einschließen<br />
+        Hintergrund: Soundtracks sind ein separates Listing in der IMDb-Datenbank, unbhängig von sonstiger Crew. Hier z.B. für <a href="https://www.imdb.com/title/tt0092890/soundtrack" target="_blank">Dirty Dancing</a>.<br />
+        Als die Soundtrack-Credits erstmalig hinzugefügt wurden, geschah dies ohne Beachtung ob "Custom Credits" generell gewünscht waren, oder nicht.<br />
+        Um die Rückwärts-Kompatibilität zu gewährleisten, gibt es deshalb jetzt eine separate Einstellung dafür, die standardmäßig an ist, aber nur greift, wenn Soundtracks sowieso gewünscht sind.
+    </li>
+</ul>
+
 <h3>Version 2.1.10.9</h3>
 
 <ul>

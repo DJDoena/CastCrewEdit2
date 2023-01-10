@@ -151,6 +151,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             StandardizeJuniorSeniorCheckBox.Checked = _defaultValues.StandardizeJuniorSenior;
 
+            NeverUpdatePersonNameCheckBox.Checked = _defaultValues.NeverUpdatePersonName;
+
+            IncludeCustomSoundtackCreditsCheckBox.Checked = _defaultValues.IncludeCustomSoundtackCredits;
+
             DebugModeCheckBox.Checked = Program.DebugMode;
 
             this.OnEpisodeFormatChanged(null, null);
@@ -231,7 +235,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             _defaultValues.SendToCastCrewCopyPaste = SendToCastCrewCopyPasteCheckBox.Checked;
             _defaultValues.GroupSoundtrackCredits = GroupSoundtrackCreditsCheckBox.Checked;
             _defaultValues.StandardizeJuniorSenior = StandardizeJuniorSeniorCheckBox.Checked;
-            
+            _defaultValues.NeverUpdatePersonName = NeverUpdatePersonNameCheckBox.Checked;
+            _defaultValues.IncludeCustomSoundtackCredits = IncludeCustomSoundtackCreditsCheckBox.Checked;
+
             Program.DebugMode = DebugModeCheckBox.Checked;
         }
 

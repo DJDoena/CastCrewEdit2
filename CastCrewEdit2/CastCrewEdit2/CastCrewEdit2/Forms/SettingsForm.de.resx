@@ -127,29 +127,11 @@
   <data name="OKButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>558, 354</value>
   </data>
-  <data name="SettingsTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>702, 336</value>
+  <data name="NeverUpdatePersonNameCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 17</value>
   </data>
-  <data name="ParsingTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>694, 310</value>
-  </data>
-  <data name="ParsingTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>682, 298</value>
-  </data>
-  <data name="PeopleParsingTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>674, 272</value>
-  </data>
-  <data name="PeopleParsingTab.Text" xml:space="preserve">
-    <value>Personen</value>
-  </data>
-  <data name="ParsingPeopleTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>662, 260</value>
-  </data>
-  <data name="NameParsingTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>654, 234</value>
-  </data>
-  <data name="NameParsingTab.Text" xml:space="preserve">
-    <value>Namen</value>
+  <data name="NeverUpdatePersonNameCheckBox.Text" xml:space="preserve">
+    <value>Niemals Namen updaten nach erstem Hinzufügen</value>
   </data>
   <data name="StandardizeJuniorSeniorCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>315, 17</value>
@@ -163,11 +145,11 @@
   <data name="ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox.Text" xml:space="preserve">
     <value>Parse Vornamen-Initialen in den Vornamen und den Mittelnamen  (z.B. "&lt;J.K.&gt; [Simmons]" --&gt; "&lt;J.&gt; {K.} [Simmons]")</value>
   </data>
-  <data name="BirthYearsParsingTab.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="NameParsingTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>654, 234</value>
   </data>
-  <data name="BirthYearsParsingTab.Text" xml:space="preserve">
-    <value>Geburtsjahre</value>
+  <data name="NameParsingTab.Text" xml:space="preserve">
+    <value>Namen</value>
   </data>
   <data name="UseFakeBirthYearsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 17</value>
@@ -194,8 +176,11 @@
     <value>Nimm das Geburtsjahr vom lokalen Personen-Cache, wenn es bereits geholt wurde (auch wenn es leer ist)
 (Warnung: Wenn gesetzt, wird keine Abfrage an die IMDb durchgeführt und keine Überprüfung, ob sich das Geburtsjahr geändert hat.)</value>
   </data>
-  <data name="LinksTab.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="BirthYearsParsingTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>654, 234</value>
+  </data>
+  <data name="BirthYearsParsingTab.Text" xml:space="preserve">
+    <value>Geburtsjahre</value>
   </data>
   <data name="CheckLinksCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>310, 17</value>
@@ -203,11 +188,17 @@
   <data name="CheckLinksCheckBox.Text" xml:space="preserve">
     <value>Überprüfe ID-Link von Personen auf Weiterleitung (langsam)</value>
   </data>
-  <data name="CastParsingTab.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="LinksTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>654, 234</value>
+  </data>
+  <data name="ParsingPeopleTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>662, 260</value>
+  </data>
+  <data name="PeopleParsingTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>674, 272</value>
   </data>
-  <data name="CastParsingTab.Text" xml:space="preserve">
-    <value>Darsteller</value>
+  <data name="PeopleParsingTab.Text" xml:space="preserve">
+    <value>Personen</value>
   </data>
   <data name="ParseCastCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 17</value>
@@ -269,8 +260,17 @@
   <data name="ParseRoleSlashCheckBox.Text" xml:space="preserve">
     <value>Parse Rollen mit "/" in mehrere Zeilen</value>
   </data>
-  <data name="CrewParsingTab.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="CastParsingTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>674, 272</value>
+  </data>
+  <data name="CastParsingTab.Text" xml:space="preserve">
+    <value>Darsteller</value>
+  </data>
+  <data name="IncludeCustomSoundtackCreditsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 17</value>
+  </data>
+  <data name="IncludeCustomSoundtackCreditsCheckBox.Text" xml:space="preserve">
+    <value>"Custom-Rollen" für "Soundtrack" einschließen</value>
   </data>
   <data name="GroupSoundtrackCreditsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 17</value>
@@ -369,7 +369,7 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="IncludingCustomCredits.Text" xml:space="preserve">
     <value>Schließe "Custom" Credits ein</value>
   </data>
-  <data name="SeasonsParsingTab.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="CrewParsingTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>674, 272</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -421,11 +421,14 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="EpisodeFormatTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>325, 20</value>
   </data>
-  <data name="MessageBoxTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>694, 310</value>
+  <data name="SeasonsParsingTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>674, 272</value>
   </data>
-  <data name="MessageBoxTabPage.Text" xml:space="preserve">
-    <value>Message-Boxen</value>
+  <data name="ParsingTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>682, 298</value>
+  </data>
+  <data name="ParsingTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>694, 310</value>
   </data>
   <data name="DisableDuplicatesMessageBoxCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>300, 17</value>
@@ -457,11 +460,11 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="DisableParsingCompleteMessageBoxCheckBox.Text" xml:space="preserve">
     <value>Deaktiviere "Parsing abgeschlossen" Message-Box</value>
   </data>
-  <data name="RootPathTab.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="MessageBoxTabPage.Size" type="System.Drawing.Size, System.Drawing">
     <value>694, 310</value>
   </data>
-  <data name="RootPathTab.Text" xml:space="preserve">
-    <value>Datenpfad</value>
+  <data name="MessageBoxTabPage.Text" xml:space="preserve">
+    <value>Message-Boxen</value>
   </data>
   <data name="DataPathTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>72, 21</value>
@@ -484,15 +487,11 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="label3.Text" xml:space="preserve">
     <value>Durch die Änderung dieses Pfades werden die Ablageorte für die Daten- und Einstellungsdateien und Bilder geändert.</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="HeadshotsTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="HeadshotsTab.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="RootPathTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>694, 310</value>
   </data>
-  <data name="HeadshotsTab.Text" xml:space="preserve">
-    <value>Photos</value>
+  <data name="RootPathTab.Text" xml:space="preserve">
+    <value>Datenpfad</value>
   </data>
   <data name="OverwriteExistingHeadshotsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 17</value>
@@ -506,6 +505,7 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="GetHeadshotsDirectlyAfterNameParsingCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="GetHeadshotsDirectlyAfterNameParsingCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -533,11 +533,14 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="GetCastHeadshotCheckBox.Text" xml:space="preserve">
     <value>Downloade Darsteller-Photos</value>
   </data>
-  <data name="TriviaTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="HeadshotsTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="TriviaTab.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="HeadshotsTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>694, 310</value>
+  </data>
+  <data name="HeadshotsTab.Text" xml:space="preserve">
+    <value>Photos</value>
   </data>
   <data name="DownloadGoofsCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -563,11 +566,11 @@ bei "Other/Custom"-Rollen ein</value>
   <data name="DownloadTriviaCheckBox.Text" xml:space="preserve">
     <value>Downloade Trivia</value>
   </data>
-  <data name="OtherTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>694, 310</value>
+  <data name="TriviaTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
   </data>
-  <data name="OtherTab.Text" xml:space="preserve">
-    <value>Andere</value>
+  <data name="TriviaTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>694, 310</value>
   </data>
   <data name="SendToCastCrewCopyPasteCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>365, 24</value>
@@ -583,6 +586,15 @@ bei "Other/Custom"-Rollen ein</value>
   </data>
   <data name="SaveLogFileCheckBox.Text" xml:space="preserve">
     <value>Speichere Log in Datei</value>
+  </data>
+  <data name="OtherTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>694, 310</value>
+  </data>
+  <data name="OtherTab.Text" xml:space="preserve">
+    <value>Andere</value>
+  </data>
+  <data name="SettingsTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>702, 336</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>726, 389</value>

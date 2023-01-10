@@ -29,7 +29,10 @@
                 {
                     var crewMember = Process(song, songMatches[songMatchIndex], defaultValues);
 
-                    crewList.Add(crewMember);
+                    if (crewMember != null)
+                    {
+                        crewList.Add(crewMember);
+                    }
                 }
 
                 if (needsDivider)
@@ -67,6 +70,11 @@
             }
             else
             {
+                if (!defaultValues.IncludeCustomSoundtackCredits)
+                {
+                    return null;
+                }
+
                 creditSubType = CreditTypesDataGridViewHelper.CreditSubtypes.Custom;
             }
 

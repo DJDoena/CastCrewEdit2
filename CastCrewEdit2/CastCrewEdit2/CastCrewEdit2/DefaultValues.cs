@@ -107,6 +107,10 @@
 
         public bool StandardizeJuniorSenior = false;
 
+        public bool NeverUpdatePersonName = false;
+
+        public bool IncludeCustomSoundtackCredits = true;
+
         [XmlIgnore]
         internal string CreditPhotosFolder
         {
