@@ -10,15 +10,19 @@
 
     internal static class BirthYearGetter
     {
+        private static readonly Regex _jsonBirthYearRegex;
+
         private static readonly Regex _birthYearRegex;
 
-        private static readonly Regex _dateOfBirthRegex;
+        private static readonly Regex _bornRegex;
 
         static BirthYearGetter()
         {
-            _birthYearRegex = new Regex("<a.+?href=\"/search/name\\?birth_year=(?'BirthYear'[0-9]+)", RegexOptions.Compiled);
+            _jsonBirthYearRegex = new Regex("\"birthDate\":\"(?'BirthYear'[0-9]{4})", RegexOptions.Compiled);
 
-            _dateOfBirthRegex = new Regex("<h4 class=\"inline\">Born:</h4>", RegexOptions.Compiled);
+            _birthYearRegex = new Regex("<span class=\".+?\">.+? (?'BirthYear'[0-9]{4})</span>", RegexOptions.Compiled);
+
+            _bornRegex = new Regex("<span class=\".+?\">Born</span>", RegexOptions.Compiled);
         }
 
         #region From IMDbParser
@@ -33,9 +37,15 @@
                 {
                     var line = sr.ReadLine();
 
-                    if (_dateOfBirthRegex.Match(line).Success)
+                    var match = _jsonBirthYearRegex.Match(line);
+
+                    if (match.Success)
                     {
-                        var birthYear = GetBirthYear(sr);
+                        return match.Groups["BirthYear"].Value;
+                    }
+                    else if (_bornRegex.Match(line).Success)
+                    {
+                        var birthYear = GetBirthYear(line, sr);
 
                         return birthYear;
                     }
@@ -45,13 +55,20 @@
             return string.Empty;
         }
 
-        private static string GetBirthYear(StringReader sr)
+        private static string GetBirthYear(string line, StringReader sr)
         {
+            var match = _birthYearRegex.Match(line);
+
+            if (match.Success)
+            {
+                return match.Groups["BirthYear"].Value;
+            }
+
             while (sr.Peek() != -1)
             {
-                var line = sr.ReadLine();
+                line = sr.ReadLine();
 
-                var match = _birthYearRegex.Match(line);
+                match = _birthYearRegex.Match(line);
 
                 if (match.Success)
                 {
@@ -76,7 +93,7 @@
 
             var castMember = isCast ? (CastInfo)person : null;
 
-            if (person.FirstName == FirstNames.Title 
+            if (person.FirstName == FirstNames.Title
                 || person.FirstName == FirstNames.Divider
                 || person.FirstName == FirstNames.GroupDividerStart
                 || person.FirstName == FirstNames.GroupDividerEnd

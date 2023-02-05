@@ -337,7 +337,7 @@
         {
             Dictionary<string, List<SoundtrackMatch>> soundtrackEntries = null;
 
-            var soundtrackUrl = $"{IMDbParser.TitleUrl}{titleLink}/soundtrack";
+            var soundtrackUrl = $"{IMDbParser.TitleUrl}{titleLink}/soundtrack/";
 
             var webSite = IMDbParser.GetWebSite(soundtrackUrl);
 

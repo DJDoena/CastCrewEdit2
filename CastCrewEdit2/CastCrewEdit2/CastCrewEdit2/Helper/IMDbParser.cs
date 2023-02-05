@@ -207,7 +207,9 @@
                 {
                     try
                     {
-                        var wr = OnlineAccess.CreateSystemSettingsWebRequest(targetUrl, CultureInfo.GetCultureInfo("en-US"));
+                        //var wr = OnlineAccess.CreateSystemSettingsWebRequest(targetUrl, CultureInfo.GetCultureInfo("en-US"));
+
+                        var wr = CreateSystemSettingsWebRequest(targetUrl, CultureInfo.GetCultureInfo("en-US"));
 
                         _lastRequestTimestamp = DateTime.Now;
 
@@ -242,6 +244,48 @@
 
 #endif
 
+        }
+
+        private static WebResponse CreateSystemSettingsWebRequest(string targetUrl, CultureInfo ci = null)
+        {
+            var webRequest = WebRequest.Create(targetUrl);
+
+            if (ci != null)
+            {
+                var value = ci.TwoLetterISOLanguageName.ToLower();
+
+                webRequest.Headers["Accept-Language"] = value;
+            }
+
+            webRequest.Proxy = WebRequest.GetSystemWebProxy();
+            webRequest.Proxy.Credentials = CredentialCache.DefaultNetworkCredentials;
+
+            try
+            {
+                var webResponse = webRequest.GetResponse();
+
+                return webResponse;
+            }
+            catch (WebException webEx)
+            {
+                if (webEx.Message?.Contains("308") == true)
+                {
+                    var redirectTo = webEx.Response?.Headers["Location"];
+
+                    if (!string.IsNullOrEmpty(redirectTo))
+                    {
+                        var targetUri = new Uri(targetUrl);
+
+                        var newTargetUrl = $"{targetUri.Scheme}://{targetUri.Host}{redirectTo}";
+
+                        var webResponse = CreateSystemSettingsWebRequest(newTargetUrl, ci);
+
+                        return webResponse;
+                    }
+                }
+
+                throw;
+            }
         }
 
         public static string GetWebSite(string targetUrl)
@@ -876,8 +920,6 @@
         public static Dictionary<string, List<SoundtrackMatch>> ParseSoundtrack(StringBuilder soundtrack)
         {
             var matches = _soundtrackLiRegex.Matches(soundtrack.ToString());
-
-            //soundtrack = new StringBuilder();
 
             var liMatches = new Dictionary<string, List<SoundtrackMatch>>(matches.Count);
 
