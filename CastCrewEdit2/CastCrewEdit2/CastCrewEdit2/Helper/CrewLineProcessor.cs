@@ -2,6 +2,7 @@
 {
     using System;
     using System.Globalization;
+    using System.Linq;
     using System.Text.RegularExpressions;
 
     internal static class CrewLineProcessor
@@ -42,10 +43,12 @@
                     }
                 }
 
-                if ((credit.StartsWith("(")) && (credit.EndsWith(")")))
-                {
-                    credit = credit.Trim('(', ')');
-                }
+                var creditParts = credit
+                    .Split(new[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Where(cp => !cp.StartsWith("segment"))
+                    .Where(cp => !string.IsNullOrWhiteSpace(cp));
+
+                credit = string.Join(", ", creditParts);
 
                 credit = credit.Trim();
             }

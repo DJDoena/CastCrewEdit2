@@ -21,7 +21,11 @@
 
     internal static class IMDbParser
     {
+#if DEBUG
+        public const int MaxTasks = 1;
+#else
         public const int MaxTasks = 4;
+#endif
 
         public const string BaseUrl = @"https://www.imdb.com";
 
