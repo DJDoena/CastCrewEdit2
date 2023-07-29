@@ -14,7 +14,7 @@
 
         private static readonly Regex _birthYearRegex;
 
-        private static readonly Regex _bornRegex;
+        //private static readonly Regex _bornRegex;
 
         static BirthYearGetter()
         {
@@ -22,7 +22,7 @@
 
             _birthYearRegex = new Regex("<span class=\".+?\">.+? (?'BirthYear'[0-9]{4})</span>", RegexOptions.Compiled);
 
-            _bornRegex = new Regex("<span class=\".+?\">Born</span>", RegexOptions.Compiled);
+            //_bornRegex = new Regex("<span class=\".+?\">Born</span>", RegexOptions.Compiled);
         }
 
         #region From IMDbParser
@@ -37,17 +37,27 @@
                 {
                     var line = sr.ReadLine();
 
-                    var match = _jsonBirthYearRegex.Match(line);
-
-                    if (match.Success)
+                    if (line.IndexOf($"\"Person\",\"url\":\"https://www.imdb.com/name/{personId}", StringComparison.InvariantCultureIgnoreCase) != -1)
                     {
-                        return match.Groups["BirthYear"].Value;
+                        var match = _jsonBirthYearRegex.Match(line);
+
+                        if (match.Success)
+                        {
+                            return match.Groups["BirthYear"].Value;
+                        }
                     }
-                    else if (_bornRegex.Match(line).Success)
+                    else
                     {
-                        var birthYear = GetBirthYear(line, sr);
+                        var indexOfBorn = line.IndexOf(">Born</span>", StringComparison.InvariantCultureIgnoreCase);
 
-                        return birthYear;
+                        if (indexOfBorn != -1)
+                        {
+                            line = line.Substring(indexOfBorn);
+
+                            var birthYear = GetBirthYear(line, sr);
+
+                            return birthYear;
+                        }
                     }
                 }
             }
@@ -57,6 +67,10 @@
 
         private static string GetBirthYear(string line, StringReader sr)
         {
+            var rows = 1;
+
+            const int MaxNextRows = 5;
+
             var match = _birthYearRegex.Match(line);
 
             if (match.Success)
@@ -64,7 +78,7 @@
                 return match.Groups["BirthYear"].Value;
             }
 
-            while (sr.Peek() != -1)
+            while (sr.Peek() != -1 && rows < MaxNextRows)
             {
                 line = sr.ReadLine();
 
@@ -74,6 +88,8 @@
                 {
                     return match.Groups["BirthYear"].Value;
                 }
+
+                rows++;
             }
 
             return string.Empty;

@@ -224,7 +224,7 @@
             this.MinimizeBox = false;
             this.Name = "EpisodesForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnEpisodeFormClosing);
-            this.Load += new System.EventHandler(this.OnEpisodeFormLoad);
+            this.Load += new System.EventHandler(this.OnEpisodesFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();

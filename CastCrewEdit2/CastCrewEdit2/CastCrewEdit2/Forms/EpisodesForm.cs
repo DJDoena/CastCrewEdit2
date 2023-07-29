@@ -34,7 +34,7 @@
             this.Icon = Properties.Resource.djdsoft;
         }
 
-        private void OnEpisodeFormLoad(object sender, EventArgs e)
+        private void OnEpisodesFormLoad(object sender, EventArgs e)
         {
             this.LayoutForm();
 

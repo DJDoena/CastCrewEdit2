@@ -32,15 +32,17 @@
 
         private static readonly Regex _seasonRegex;
 
-        private static readonly Regex _episodeStartRegex;
+        //private static readonly Regex _episodeStartRegex;
 
-        private static readonly Regex _episodeLinkRegex;
+        //private static readonly Regex _episodeLinkRegex;
 
-        private static readonly Regex _episodeNumberRegex;
+        //private static readonly Regex _episodeNumberRegex;
 
-        private static readonly Regex _episodeNameRegex;
+        //private static readonly Regex _episodeNameRegex;
 
-        private static readonly Regex _episodeEndRegex;
+        //private static readonly Regex _episodeEndRegex;
+
+        private static readonly Regex _episodeRegex;
 
         private string _movieTitle;
 
@@ -66,15 +68,17 @@
 
             _seasonRegex = new Regex("<option( +)(selected=\"selected\")?( +)value=\"(?'SeasonNumber'[0-9]+)\"", RegexOptions.Compiled);
 
-            _episodeStartRegex = new Regex("<div class=\"list_item (even|odd)\">", RegexOptions.Compiled);
+            //_episodeStartRegex = new Regex("<div class=\"list_item (even|odd)\">", RegexOptions.Compiled);
 
-            _episodeLinkRegex = new Regex("href=\"/title/(?'EpisodeLink'[a-z0-9]+)/", RegexOptions.Compiled);
+            //_episodeLinkRegex = new Regex("href=\"/title/(?'EpisodeLink'[a-z0-9]+)/", RegexOptions.Compiled);
 
-            _episodeNumberRegex = new Regex("itemprop=\"episodeNumber\" content=\"(?'EpisodeNumber'[0-9,]+)\"", RegexOptions.Compiled);
+            //_episodeNumberRegex = new Regex("itemprop=\"episodeNumber\" content=\"(?'EpisodeNumber'[0-9,]+)\"", RegexOptions.Compiled);
 
-            _episodeNameRegex = new Regex("itemprop=\"name\">(?'EpisodeName'.*?)</a>", RegexOptions.Compiled);
+            //_episodeNameRegex = new Regex("itemprop=\"name\">(?'EpisodeName'.*?)</a>", RegexOptions.Compiled);
 
-            _episodeEndRegex = new Regex("<div class=\"clear\">&nbsp;</div>", RegexOptions.Compiled);
+            //_episodeEndRegex = new Regex("<div class=\"clear\">&nbsp;</div>", RegexOptions.Compiled);
+
+            _episodeRegex = new Regex("\"id\":\"(?'EpisodeLink'[a-z0-9]+)\",\"type\":\"tvEpisode\",\"season\":\"(?'SeasonNumber'[0-9,]+)\",\"episode\":\"(?'EpisodeNumber'[0-9,]+)\",\"titleText\":\"(?'EpisodeName'.*?)\"", RegexOptions.Compiled);
         }
 
         public MainForm(bool skipVersionCheck, BrowserControlSelection selectedBrowserControl)
@@ -1034,78 +1038,33 @@
                             {
                                 var line = sr.ReadLine();
 
-                                var episodeStartMatch = _episodeStartRegex.Match(line);
+                                //var episodeStartMatch = _episodeStartRegex.Match(line);
 
-                                if (episodeStartMatch.Success)
+                                if (line.IndexOf("\"episodes\":", StringComparison.InvariantCultureIgnoreCase) != -1)
                                 {
-                                    var episodeLinkFound = false;
-
-                                    var episodeNumberFound = false;
-
-                                    var episodeNameFound = false;
-
-                                    var episodeInfo = new EpisodeInfo();
-
-                                    var parts = EpisodeParts.None;
-
-                                    while (!_episodeEndRegex.Match(line).Success)
+                                    while (!line.Contains("</script>"))
                                     {
-                                        line = sr.ReadLine();
-
-                                        if (!episodeLinkFound)
-                                        {
-                                            var match = _episodeLinkRegex.Match(line);
-
-                                            if (match.Success)
-                                            {
-                                                episodeInfo.Link = match.Groups["EpisodeLink"].Value.ToString();
-
-                                                parts |= EpisodeParts.Link;
-
-                                                episodeLinkFound = true;
-
-                                                continue;
-                                            }
-                                        }
-
-                                        if (!episodeNumberFound)
-                                        {
-                                            var match = _episodeNumberRegex.Match(line);
-
-                                            if (match.Success)
-                                            {
-                                                episodeInfo.EpisodeNumber = match.Groups["EpisodeNumber"].Value.ToString();
-
-                                                parts |= EpisodeParts.Number;
-
-                                                episodeNumberFound = true;
-
-                                                continue;
-                                            }
-                                        }
-
-                                        if (!episodeNameFound)
-                                        {
-                                            var match = _episodeNameRegex.Match(line);
-
-                                            if (match.Success)
-                                            {
-                                                episodeInfo.EpisodeName = HttpUtility.HtmlDecode(match.Groups["EpisodeName"].Value.ToString());
-
-                                                parts |= EpisodeParts.Name;
-
-                                                episodeNameFound = true;
-
-                                                continue;
-                                            }
-                                        }
+                                        line += sr.ReadLine();
                                     }
 
-                                    episodeInfo.SeasonNumber = season.ToString();
+                                    var matches = _episodeRegex.Matches(line);
 
-                                    if (parts == (EpisodeParts.Link | EpisodeParts.Name | EpisodeParts.Number))
+                                    if (matches.Count > 0)
                                     {
-                                        episodes.Add(episodeInfo);
+                                        foreach (Match match in matches)
+                                        {
+                                            var episodeInfo = new EpisodeInfo()
+                                            {
+                                                Link = match.Groups["EpisodeLink"].Value.ToString(),
+                                                SeasonNumber = match.Groups["SeasonNumber"].Value.ToString(),
+                                                EpisodeNumber = match.Groups["EpisodeNumber"].Value.ToString(),
+                                                EpisodeName = HttpUtility.HtmlDecode(match.Groups["EpisodeName"].Value.ToString()),
+                                            };
+
+                                            episodes.Add(episodeInfo);
+                                        }
+
+                                        break;
                                     }
                                 }
                             }

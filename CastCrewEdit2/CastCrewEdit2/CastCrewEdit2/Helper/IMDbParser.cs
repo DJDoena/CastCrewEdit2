@@ -545,7 +545,7 @@
                 {
                     var line = sr.ReadLine();
 
-                    if (line.IndexOf($"\"url\":\"https://www.imdb.com/name/{person.PersonLink}", StringComparison.CurrentCultureIgnoreCase) != -1)
+                    if (line.IndexOf($"\"Person\",\"url\":\"https://www.imdb.com/name/{person.PersonLink}", StringComparison.InvariantCultureIgnoreCase) != -1)
                     {
                         //line = string.Empty;
 
