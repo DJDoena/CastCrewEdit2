@@ -91,7 +91,7 @@
 
         private static readonly Regex _crewRegex;
 
-        private static readonly Regex _photoRegex;
+        //private static readonly Regex _photoRegex;
 
         private static readonly Regex _photoUrlRegex;
 
@@ -147,9 +147,9 @@
 
             _crewRegex = new Regex("<td (.*?)class=\"name\"(.*?)><a (.*?)href=\"/name/(?'PersonLink'[a-z0-9]+)/(.*?)>(?'PersonName'.+?)</a>.*?</td>.*?(\\.\\.\\.)?.*?((<td colspan=\"(2|3)\">)|(<td (.*?)class=\"credit\"(.*?)>))(?'Credit'.*?)</td>", RegexOptions.Compiled | RegexOptions.Multiline);
 
-            _photoRegex = new Regex("<td.+?id=\"img_primary\".*?>", RegexOptions.Compiled);
+            //_photoRegex = new Regex("<td.+?id=\"img_primary\".*?>", RegexOptions.Compiled);
 
-            _photoUrlRegex = new Regex("<img (.*?)src=\"(?'PhotoUrl'.+?)\"", RegexOptions.Compiled);
+            _photoUrlRegex = new Regex("\"image\":\"(?'PhotoUrl'.+?)\"", RegexOptions.Compiled);
 
             TriviaStartRegex = new Regex("class=\"soda (even|odd) sodavote\".*?>", RegexOptions.Compiled);
 
@@ -545,11 +545,11 @@
                 {
                     var line = sr.ReadLine();
 
-                    if (_photoRegex.Match(line).Success)
+                    if (line.IndexOf($"\"url\":\"https://www.imdb.com/name/{person.PersonLink}", StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        line = string.Empty;
+                        //line = string.Empty;
 
-                        while (!line.Contains("</td>"))
+                        while (!line.Contains("</script>"))
                         {
                             line += sr.ReadLine();
                         }
