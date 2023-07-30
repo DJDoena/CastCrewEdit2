@@ -545,13 +545,22 @@
                 {
                     var line = sr.ReadLine();
 
-                    if (line.IndexOf($"\"Person\",\"url\":\"https://www.imdb.com/name/{person.PersonLink}", StringComparison.InvariantCultureIgnoreCase) != -1)
+                    var indexOfPerson = line.IndexOf($"\"Person\",\"url\":\"https://www.imdb.com/name/{person.PersonLink}", StringComparison.InvariantCultureIgnoreCase);
+
+                    if (indexOfPerson != -1)
                     {
-                        //line = string.Empty;
+                        line = line.Substring(indexOfPerson);
 
                         while (!line.Contains("</script>"))
                         {
                             line += sr.ReadLine();
+                        }
+
+                        var indexOfScript = line.IndexOf("</script>", StringComparison.InvariantCultureIgnoreCase);
+
+                        if (indexOfScript != -1)
+                        {
+                            line = line.Substring(0, indexOfScript);
                         }
 
                         var match = _photoUrlRegex.Match(line);

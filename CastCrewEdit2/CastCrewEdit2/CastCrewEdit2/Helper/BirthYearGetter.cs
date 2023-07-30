@@ -37,8 +37,24 @@
                 {
                     var line = sr.ReadLine();
 
-                    if (line.IndexOf($"\"Person\",\"url\":\"https://www.imdb.com/name/{personId}", StringComparison.InvariantCultureIgnoreCase) != -1)
+                    var indexOfPerson = line.IndexOf($"\"Person\",\"url\":\"https://www.imdb.com/name/{personId}", StringComparison.InvariantCultureIgnoreCase);
+
+                    if (indexOfPerson != -1)
                     {
+                        line = line.Substring(indexOfPerson);
+
+                        while (!line.Contains("</script>"))
+                        {
+                            line += sr.ReadLine();
+                        }
+
+                        var indexOfScript = line.IndexOf("</script>", StringComparison.InvariantCultureIgnoreCase);
+
+                        if (indexOfScript != -1)
+                        {
+                            line = line.Substring(0, indexOfScript);
+                        }
+
                         var match = _jsonBirthYearRegex.Match(line);
 
                         if (match.Success)

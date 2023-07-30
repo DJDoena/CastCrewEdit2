@@ -58,11 +58,11 @@
 
             if (!string.IsNullOrEmpty(_tvShowTitle))
             {
-                this.Text = resources.GetString("$Text") + " - " + _tvShowTitle;
+                this.Text = resources.GetString("$this.Text") + " - " + _tvShowTitle;
             }
             else
             {
-                this.Text = resources.GetString("$Text");
+                this.Text = resources.GetString("$this.Text");
             }
         }
 

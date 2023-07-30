@@ -30,19 +30,21 @@
 
         private static readonly Regex _seasonsEndRegex;
 
-        private static readonly Regex _seasonRegex;
+        private static readonly Regex _seasonRegexOldStyle;
 
-        //private static readonly Regex _episodeStartRegex;
+        private static readonly Regex _seasonRegexNewStyle;
 
-        //private static readonly Regex _episodeLinkRegex;
+        private static readonly Regex _episodeStartRegexOldStyle;
 
-        //private static readonly Regex _episodeNumberRegex;
+        private static readonly Regex _episodeLinkRegexOldStyle;
 
-        //private static readonly Regex _episodeNameRegex;
+        private static readonly Regex _episodeNumberRegexOldStyle;
 
-        //private static readonly Regex _episodeEndRegex;
+        private static readonly Regex _episodeNameRegexOldStyle;
 
-        private static readonly Regex _episodeRegex;
+        private static readonly Regex _episodeEndRegexOldStyle;
+
+        private static readonly Regex _episodeRegexNewStyle;
 
         private string _movieTitle;
 
@@ -66,19 +68,21 @@
 
             _seasonsEndRegex = new Regex("</select>", RegexOptions.Compiled);
 
-            _seasonRegex = new Regex("<option( +)(selected=\"selected\")?( +)value=\"(?'SeasonNumber'[0-9]+)\"", RegexOptions.Compiled);
+            _seasonRegexOldStyle = new Regex("<option( +)(selected=\"selected\")?( +)value=\"(?'SeasonNumber'[0-9]+)\"", RegexOptions.Compiled);
 
-            //_episodeStartRegex = new Regex("<div class=\"list_item (even|odd)\">", RegexOptions.Compiled);
+            _episodeStartRegexOldStyle = new Regex("<div class=\"list_item (even|odd)\">", RegexOptions.Compiled);
 
-            //_episodeLinkRegex = new Regex("href=\"/title/(?'EpisodeLink'[a-z0-9]+)/", RegexOptions.Compiled);
+            _episodeLinkRegexOldStyle = new Regex("href=\"/title/(?'EpisodeLink'[a-z0-9]+)/", RegexOptions.Compiled);
 
-            //_episodeNumberRegex = new Regex("itemprop=\"episodeNumber\" content=\"(?'EpisodeNumber'[0-9,]+)\"", RegexOptions.Compiled);
+            _episodeNumberRegexOldStyle = new Regex("itemprop=\"episodeNumber\" content=\"(?'EpisodeNumber'[0-9,]+)\"", RegexOptions.Compiled);
 
-            //_episodeNameRegex = new Regex("itemprop=\"name\">(?'EpisodeName'.*?)</a>", RegexOptions.Compiled);
+            _episodeNameRegexOldStyle = new Regex("itemprop=\"name\">(?'EpisodeName'.*?)</a>", RegexOptions.Compiled);
 
-            //_episodeEndRegex = new Regex("<div class=\"clear\">&nbsp;</div>", RegexOptions.Compiled);
+            _episodeEndRegexOldStyle = new Regex("<div class=\"clear\">&nbsp;</div>", RegexOptions.Compiled);
 
-            _episodeRegex = new Regex("\"id\":\"(?'EpisodeLink'[a-z0-9]+)\",\"type\":\"tvEpisode\",\"season\":\"(?'SeasonNumber'[0-9,]+)\",\"episode\":\"(?'EpisodeNumber'[0-9,]+)\",\"titleText\":\"(?'EpisodeName'.*?)\"", RegexOptions.Compiled);
+            _seasonRegexNewStyle = new Regex("\"id\":\"(.*?)\",\"value\":\"(?'SeasonNumber'[0-9,]+)\"", RegexOptions.Compiled);
+
+            _episodeRegexNewStyle = new Regex("\"id\":\"(?'EpisodeLink'[a-z0-9]+)\",\"type\":\"tvEpisode\",\"season\":\"(?'SeasonNumber'[0-9,]+)\",\"episode\":\"(?'EpisodeNumber'[0-9,]+)\",\"titleText\":\"(?'EpisodeName'.*?)\"", RegexOptions.Compiled);
         }
 
         public MainForm(bool skipVersionCheck, BrowserControlSelection selectedBrowserControl)
@@ -1032,43 +1036,14 @@
 
                         var webSite = IMDbParser.GetWebSite(targetUrl);
 
-                        using (var sr = new StringReader(webSite))
+                        var seasonEpisodes = ScanForEpisodesNewStyle(webSite);
+
+                        if (seasonEpisodes.Count == 0)
                         {
-                            while (sr.Peek() != -1)
-                            {
-                                var line = sr.ReadLine();
-
-                                //var episodeStartMatch = _episodeStartRegex.Match(line);
-
-                                if (line.IndexOf("\"episodes\":", StringComparison.InvariantCultureIgnoreCase) != -1)
-                                {
-                                    while (!line.Contains("</script>"))
-                                    {
-                                        line += sr.ReadLine();
-                                    }
-
-                                    var matches = _episodeRegex.Matches(line);
-
-                                    if (matches.Count > 0)
-                                    {
-                                        foreach (Match match in matches)
-                                        {
-                                            var episodeInfo = new EpisodeInfo()
-                                            {
-                                                Link = match.Groups["EpisodeLink"].Value.ToString(),
-                                                SeasonNumber = match.Groups["SeasonNumber"].Value.ToString(),
-                                                EpisodeNumber = match.Groups["EpisodeNumber"].Value.ToString(),
-                                                EpisodeName = HttpUtility.HtmlDecode(match.Groups["EpisodeName"].Value.ToString()),
-                                            };
-
-                                            episodes.Add(episodeInfo);
-                                        }
-
-                                        break;
-                                    }
-                                }
-                            }
+                            seasonEpisodes = ScanForEpisodesOldStyle(webSite, season.ToString());
                         }
+
+                        episodes.AddRange(seasonEpisodes);
                     }
                 }
                 catch (AggregateException ex)
@@ -1128,11 +1103,255 @@
             }
         }
 
+        private static List<EpisodeInfo> ScanForEpisodesNewStyle(string webSite)
+        {
+            var episodes = new List<EpisodeInfo>();
+
+            using (var sr = new StringReader(webSite))
+            {
+                while (sr.Peek() != -1)
+                {
+                    var line = sr.ReadLine();
+
+                    //var episodeStartMatch = _episodeStartRegex.Match(line);
+
+                    var indexOfEpisodes = line.IndexOf("\"episodes\":", StringComparison.InvariantCultureIgnoreCase);
+
+                    if (indexOfEpisodes != -1)
+                    {
+                        line = line.Substring(indexOfEpisodes);
+
+                        while (!line.Contains("</script>"))
+                        {
+                            line += sr.ReadLine();
+                        }
+
+                        var indexOfScript = line.IndexOf("</script>", StringComparison.InvariantCultureIgnoreCase);
+
+                        if (indexOfScript != -1)
+                        {
+                            line = line.Substring(0, indexOfScript);
+                        }
+
+                        var indexOfTotal = line.IndexOf("\"total\":", StringComparison.InvariantCultureIgnoreCase);
+
+                        if (indexOfTotal != -1)
+                        {
+                            line = line.Substring(0, indexOfTotal);
+                        }
+
+                        var matches = _episodeRegexNewStyle.Matches(line);
+
+                        if (matches.Count > 0)
+                        {
+                            foreach (Match match in matches)
+                            {
+                                var episodeInfo = new EpisodeInfo()
+                                {
+                                    Link = match.Groups["EpisodeLink"].Value.ToString(),
+                                    SeasonNumber = match.Groups["SeasonNumber"].Value.ToString(),
+                                    EpisodeNumber = match.Groups["EpisodeNumber"].Value.ToString(),
+                                    EpisodeName = HttpUtility.HtmlDecode(match.Groups["EpisodeName"].Value.ToString()),
+                                };
+
+                                episodes.Add(episodeInfo);
+                            }
+
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return episodes;
+        }
+
+        private static List<EpisodeInfo> ScanForEpisodesOldStyle(string webSite, string season)
+        {
+            var episodes = new List<EpisodeInfo>();
+
+            using (var sr = new StringReader(webSite))
+            {
+                while (sr.Peek() != -1)
+                {
+                    var line = sr.ReadLine();
+
+                    var episodeStartMatch = _episodeStartRegexOldStyle.Match(line);
+
+                    if (episodeStartMatch.Success)
+                    {
+                        var episodeLinkFound = false;
+
+                        var episodeNumberFound = false;
+
+                        var episodeNameFound = false;
+
+                        var episodeInfo = new EpisodeInfo();
+
+                        var parts = EpisodeParts.None;
+
+                        while (!_episodeEndRegexOldStyle.Match(line).Success)
+                        {
+                            line = sr.ReadLine();
+
+                            if (!episodeLinkFound)
+                            {
+                                var match = _episodeLinkRegexOldStyle.Match(line);
+
+                                if (match.Success)
+                                {
+                                    episodeInfo.Link = match.Groups["EpisodeLink"].Value.ToString();
+
+                                    parts |= EpisodeParts.Link;
+
+                                    episodeLinkFound = true;
+
+                                    continue;
+                                }
+                            }
+
+                            if (!episodeNumberFound)
+                            {
+                                var match = _episodeNumberRegexOldStyle.Match(line);
+
+                                if (match.Success)
+                                {
+                                    episodeInfo.EpisodeNumber = match.Groups["EpisodeNumber"].Value.ToString();
+
+                                    parts |= EpisodeParts.Number;
+
+                                    episodeNumberFound = true;
+
+                                    continue;
+                                }
+                            }
+
+                            if (!episodeNameFound)
+                            {
+                                var match = _episodeNameRegexOldStyle.Match(line);
+
+                                if (match.Success)
+                                {
+                                    episodeInfo.EpisodeName = HttpUtility.HtmlDecode(match.Groups["EpisodeName"].Value.ToString());
+
+                                    parts |= EpisodeParts.Name;
+
+                                    episodeNameFound = true;
+
+                                    continue;
+                                }
+                            }
+                        }
+
+                        episodeInfo.SeasonNumber = season;
+
+                        if (parts == (EpisodeParts.Link | EpisodeParts.Name | EpisodeParts.Number))
+                        {
+                            episodes.Add(episodeInfo);
+                        }
+                    }
+                }
+            }
+
+            return episodes;
+        }
+
         private void ScanForSeasons()
         {
             var targetUrl = $"{IMDbParser.TitleUrl}{_tvShowTitleLink}/episodes";
 
             var webSite = IMDbParser.GetWebSite(targetUrl);
+
+            if (!this.ScanForSeasonsNewStyle(webSite))
+            {
+                this.ScanForSeasonsOldStyle(webSite);
+            }
+        }
+
+        private bool ScanForSeasonsNewStyle(string webSite)
+        {
+            using (var sr = new StringReader(webSite))
+            {
+                while (sr.Peek() != -1)
+                {
+                    var line = sr.ReadLine();
+
+                    if (string.IsNullOrEmpty(_tvShowTitle))
+                    {
+                        var titleMatch = IMDbParser.TitleRegex.Match(line);
+
+                        if (titleMatch.Success)
+                        {
+                            _tvShowTitle = HttpUtility.HtmlDecode(titleMatch.Groups["Title"].Value);
+
+                            _tvShowTitle = _tvShowTitle.Replace(" - IMDb", string.Empty).Replace(" - Episodes", string.Empty).Trim();
+
+                            if (_tvShowTitle.EndsWith(" list"))
+                            {
+                                _tvShowTitle = _tvShowTitle.Substring(0, _tvShowTitle.Length - 5);
+                            }
+
+                            continue;
+                        }
+                    }
+
+                    var indexOfSeasons = line.IndexOf("\"seasons\":", StringComparison.InvariantCultureIgnoreCase);
+
+                    if (indexOfSeasons != -1)
+                    {
+                        line = line.Substring(indexOfSeasons);
+
+                        while (!line.Contains("</script>"))
+                        {
+                            line += sr.ReadLine();
+                        }
+
+                        var indexOfScript = line.IndexOf("</script>", StringComparison.InvariantCultureIgnoreCase);
+
+                        if (indexOfScript != -1)
+                        {
+                            line = line.Substring(0, indexOfScript);
+                        }
+
+                        var indexOfYears = line.IndexOf("\"years\":", StringComparison.InvariantCultureIgnoreCase);
+
+                        if (indexOfYears != -1)
+                        {
+                            line = line.Substring(0, indexOfYears);
+                        }
+
+                        var matches = _seasonRegexNewStyle.Matches(line);
+
+                        if (matches.Count > 0)
+                        {
+                            var seasons = new HashSet<string>();
+
+                            foreach (Match match in matches)
+                            {
+                                seasons.Add(match.Groups["SeasonNumber"].Value.ToString());
+                            }
+
+                            foreach (var season in seasons)
+                            {
+                                var row = TVShowSeasonsDataGridView.Rows[TVShowSeasonsDataGridView.Rows.Add()];
+
+                                row.DefaultCellStyle.BackColor = Color.White;
+
+                                row.Cells["Season Number"].Value = season;
+                            }
+
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private bool ScanForSeasonsOldStyle(string webSite)
+        {
+            var hasSeasons = false;
 
             using (var sr = new StringReader(webSite))
             {
@@ -1166,10 +1385,10 @@
 
                             if (seasonsMatch.Success)
                             {
-                                return;
+                                return hasSeasons;
                             }
 
-                            var seasonMatch = _seasonRegex.Match(line);
+                            var seasonMatch = _seasonRegexOldStyle.Match(line);
 
                             if (seasonMatch.Success)
                             {
@@ -1180,12 +1399,16 @@
                                     row.DefaultCellStyle.BackColor = Color.White;
 
                                     row.Cells["Season Number"].Value = seasonMatch.Groups["SeasonNumber"].Value.ToString();
+
+                                    hasSeasons = true;
                                 }
                             }
                         }
                     }
                 }
             }
+
+            return hasSeasons;
         }
 
         private void OnMovieTVShowTabControlSelectedIndexChanged(object sender, EventArgs e)
