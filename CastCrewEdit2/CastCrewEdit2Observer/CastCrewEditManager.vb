@@ -1,6 +1,4 @@
-﻿Imports System
-Imports System.IO
-Imports System.Linq
+﻿Imports System.IO
 Imports System.Reflection
 Imports DoenaSoft.DVDProfiler.CastCrewEdit2
 
@@ -84,8 +82,8 @@ Public Class CastCrewEditManager
     ''' <see cref="IDisposable.Dispose()"/>
     ''' </summary>
     Public Sub Dispose() Implements IDisposable.Dispose
-        If (Not _isDisposed) Then
-            If (Not _adapterEventHandler Is Nothing) Then
+        If Not _isDisposed Then
+            If _adapterEventHandler IsNot Nothing Then
 
                 RemoveHandler _adapterEventHandler.CastCompleted, AddressOf HandleCastCompleted
                 RemoveHandler _adapterEventHandler.CrewCompleted, AddressOf HandleCrewCompleted
@@ -110,7 +108,7 @@ Public Class CastCrewEditManager
 
         Dim file As String = Path.Combine(exe.DirectoryName, DllName)
 
-        If (Not IO.File.Exists(file)) Then
+        If Not IO.File.Exists(file) Then
             Throw New ApplicationException($"Cast/Crew Edit 2 is missing {DllName} and cannot be used. Please download the newest version of Cast/Crew Edit 2.")
         End If
     End Sub
@@ -125,7 +123,7 @@ Public Class CastCrewEditManager
 
         Dim assemblyVersion As Version = assembly.GetName().Version
 
-        If (assemblyVersion < _minimumVersion) Then
+        If assemblyVersion < _minimumVersion Then
             Throw New ApplicationException($"Cast/Crew Edit 2 must be at least version {_minimumVersion}. Your version is only {assemblyVersion}")
         End If
 

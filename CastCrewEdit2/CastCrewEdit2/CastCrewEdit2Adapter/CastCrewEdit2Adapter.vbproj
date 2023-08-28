@@ -3,7 +3,6 @@
 	<PropertyGroup>
 		<TargetFrameworks>net472</TargetFrameworks>
 		<UseWindowsForms>true</UseWindowsForms>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<Platforms>x86;x64</Platforms>
 		<WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
 		<OutputType>Library</OutputType>
@@ -12,6 +11,13 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>CastCrewEdit2Adapter.snk</AssemblyOriginatorKeyFile>
+		<Title>CastCrewEdit2Adapter</Title>
+		<Company>Doena Soft.</Company>
+		<Product>Cast/Crew Edit 2</Product>
+		<Copyright>Copyright © Doena Soft. 2009 - 2023</Copyright>
+		<Authors>DJ Doena</Authors>
+		<Version>1.0.1</Version>
+		<FileVersion>1.0.1</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

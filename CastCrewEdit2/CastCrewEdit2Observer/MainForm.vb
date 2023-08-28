@@ -1,5 +1,4 @@
-﻿Imports System
-Imports System.IO
+﻿Imports System.IO
 Imports System.Windows.Forms
 Imports DoenaSoft.DVDProfiler.CastCrewEdit2
 
@@ -33,6 +32,11 @@ Public Class MainForm
     End Sub
 
     Private Sub HandleStartCastCrewButtonClick(sender As Object, e As EventArgs) Handles StartCastCrewButton.Click
+        If String.IsNullOrWhiteSpace(CastCrewEditExe.Text) OrElse Not File.Exists(CastCrewEditExe.Text) Then
+            MessageBox.Show("Cast/Crew Edit 2 does not exist in selected location", String.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+            Exit Sub
+        End If
         If (CastCrewEditManager Is Nothing AndAlso CastCrewEditExe.Text <> String.Empty) Then
             Dim exe As New FileInfo(CastCrewEditExe.Text)
 

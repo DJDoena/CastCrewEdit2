@@ -1,6 +1,4 @@
-﻿Imports System
-
-''' <summary>
+﻿''' <summary>
 ''' Represents the eventing interface between Cast/Crew Edit 2 and a hosting process.
 ''' </summary>
 Public Interface ICastCrewEditAdapterEventHandler

@@ -1,6 +1,4 @@
-﻿Imports System
-
-''' <summary>
+﻿''' <summary>
 ''' Contains the cast or crew information as XML text.
 ''' </summary>
 Public Class XmlEventArgs
