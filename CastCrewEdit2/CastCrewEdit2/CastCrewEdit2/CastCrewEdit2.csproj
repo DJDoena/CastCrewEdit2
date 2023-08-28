@@ -11,6 +11,7 @@
 		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2</RootNamespace>
 		<AssemblyName>CastCrewEdit2</AssemblyName>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<ApplicationIcon>Resources\djdsoft.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='UnitTest'">
@@ -19,6 +20,10 @@
 
 	<ItemGroup>
 	  <Compile Include="..\CastCrewEdit2.AssemblyInfo.cs" Link="Properties\CastCrewEdit2.AssemblyInfo.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Resources\djdsoft.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
