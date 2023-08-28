@@ -1,10 +1,7 @@
 ﻿using System.Windows;
 using DoenaSoft.AbstractionLayer.IOServices;
-using DoenaSoft.AbstractionLayer.IOServices.Implementations;
 using DoenaSoft.AbstractionLayer.UIServices;
-using DoenaSoft.AbstractionLayer.UIServices.Implementations;
 using DoenaSoft.AbstractionLayer.WebServices;
-using DoenaSoft.AbstractionLayer.WebServices.Implementations;
 using DoenaSoft.DVDProfiler.FindMergedCastCrew.Main;
 using DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations;
 using DoenaSoft.DVDProfiler.FindMergedCastCrew.Output;

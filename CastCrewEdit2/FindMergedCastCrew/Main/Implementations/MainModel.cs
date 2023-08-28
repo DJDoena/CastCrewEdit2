@@ -5,7 +5,7 @@ using DoenaSoft.AbstractionLayer.IOServices;
 using DoenaSoft.AbstractionLayer.UIServices;
 using DoenaSoft.AbstractionLayer.WebServices;
 using DoenaSoft.DVDProfiler.CastCrewEdit2;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using DoenaSoft.ToolBox.Generics;
 
 namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 {
@@ -120,7 +120,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             {
                 using (Stream stream = IOServices.GetFileStream(SourceFile, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    personInfoList = DVDProfilerSerializer<PersonInfos>.Deserialize(stream);
+                    personInfoList = Serializer<PersonInfos>.Deserialize(stream);
                 }
             }
             catch
@@ -147,7 +147,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
                     using (Stream stream = IOServices.GetFileStream(TargetFile, FileMode.Create, FileAccess.Write, FileShare.Read))
                     {
-                        DVDProfilerSerializer<PersonInfos>.Serialize(stream, personInfos);
+                        Serializer<PersonInfos>.Serialize(stream, personInfos);
                     }
                 }
                 catch

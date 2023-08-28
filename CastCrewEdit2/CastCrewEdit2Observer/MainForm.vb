@@ -8,7 +8,7 @@ Public Class MainForm
     Private CastCrewEditManager As CastCrewEditManager = Nothing
 
     Private Sub HandleFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim path As String = Settings.Default.CastCrewEditPath
+        Dim path As String = My.Settings.Default.CastCrewEditPath
 
         If File.Exists(path) Then
             CastCrewEditExe.Text = path
@@ -28,8 +28,8 @@ Public Class MainForm
             CastCrewEditManager = Nothing
         End If
 
-        Settings.Default.CastCrewEditPath = CastCrewEditExe.Text
-        Settings.Default.Save()
+        My.Settings.Default.CastCrewEditPath = CastCrewEditExe.Text
+        My.Settings.Default.Save()
     End Sub
 
     Private Sub HandleStartCastCrewButtonClick(sender As Object, e As EventArgs) Handles StartCastCrewButton.Click

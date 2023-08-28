@@ -1,22 +1,23 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Net;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Web;
-    using System.Windows.Forms;
-    using DVDProfilerHelper;
-    using Extended;
-    using Resources;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web;
+using System.Windows.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
+using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using DoenaSoft.ToolBox.Generics;
 
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+{
     public delegate void SetProgress();
 
     internal static class IMDbParser
@@ -406,7 +407,7 @@
             {
                 try
                 {
-                    TransformationData = DVDProfilerSerializer<IMDbToDVDProfilerCrewRoleTransformation>.Deserialize(fileName);
+                    TransformationData = Serializer<IMDbToDVDProfilerCrewRoleTransformation>.Deserialize(fileName);
                 }
                 catch
                 {

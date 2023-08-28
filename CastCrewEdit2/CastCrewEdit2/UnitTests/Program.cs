@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using DoenaSoft.AbstractionLayer.WebServices;
 using DoenaSoft.DVDProfiler.CastCrewEdit2;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
@@ -720,7 +720,7 @@ namespace UnitTests
         private static void CreateMockWebResponse(String baseUrl, String key, String appendix)
         {
             String targetUrl;
-            WebResponse webResponse;
+            IWebResponse webResponse;
             String fileName;
 
             targetUrl = baseUrl + key;
@@ -738,7 +738,7 @@ namespace UnitTests
                 targetUrl += "/" + appendix;
             }
             fileName += ".html.txt";
-            webResponse = OnlineAccess.CreateSystemSettingsWebRequest(targetUrl);
+            webResponse = OnlineAccess.GetSystemSettingsWebResponseAsync(targetUrl).GetAwaiter().GetResult();
             using (Stream webStream = webResponse.GetResponseStream())
             {
                 using (StreamReader sr = new StreamReader(webStream, IMDbParser.Encoding))

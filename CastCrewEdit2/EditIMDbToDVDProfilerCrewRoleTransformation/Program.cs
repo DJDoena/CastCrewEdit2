@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Xml.Serialization;
-using DoenaSoft.DVDProfiler.CastCrewEdit2;
 using System.IO;
 using System.Windows.Forms;
-using System.Text;
-using DoenaSoft.DVDProfiler.DVDProfilerXML;
+using DoenaSoft.DVDProfiler.CastCrewEdit2;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using DoenaSoft.ToolBox.Generics;
 
 namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
 {
-    static class Program
+    internal static class Program
     {
         internal static Settings Settings;
 
@@ -21,7 +19,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
 
         private static readonly String FileName;
 
-        private static WindowHandle WindowHandle;
+        private static readonly WindowHandle WindowHandle;
 
         static Program()
         {
@@ -30,12 +28,12 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
             RegistryAccess.Init("Doena Soft.", "CastCrewEdit2");
             WindowHandle = new WindowHandle();
             rootPath = RegistryAccess.DataRootPath;
-            if(String.IsNullOrEmpty(rootPath))
+            if (String.IsNullOrEmpty(rootPath))
             {
                 rootPath = Application.StartupPath;
             }
             SettingsFile = rootPath + @"\Data\EditIMDbToDVDProfilerCrewRoleTransformationSettings.xml";
-            ErrorFile = Environment.GetEnvironmentVariable("TEMP") 
+            ErrorFile = Environment.GetEnvironmentVariable("TEMP")
                 + @"\EditIMDbToDVDProfilerCrewRoleTransformationCrash.xml";
             FileName = rootPath + @"\Data\IMDbToDVDProfilerCrewRoleTransformation.xml";
         }
@@ -44,7 +42,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
         /// The main entry point for the application.
         /// </summary>
         [STAThread()]
-        static void Main(String[] args)
+        private static void Main(String[] args)
         {
             try
             {
@@ -55,18 +53,18 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                 {
                     try
                     {
-                        Settings = DVDProfilerSerializer<Settings>.Deserialize(SettingsFile);
+                        Settings = Serializer<Settings>.Deserialize(SettingsFile);
                     }
                     catch
                     {
                     }
                 }
                 CreateSettings();
-                if(File.Exists(FileName))
+                if (File.Exists(FileName))
                 {
                     try
                     {
-                        TransformationData = DVDProfilerSerializer<IMDbToDVDProfilerCrewRoleTransformation>.Deserialize(FileName);
+                        TransformationData = Serializer<IMDbToDVDProfilerCrewRoleTransformation>.Deserialize(FileName);
                     }
                     catch
                     {
@@ -77,24 +75,24 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                 Application.SetCompatibleTextRenderingDefault(false);
                 if ((args != null) && (args.Length == 1) && (args[0] == "/skipversioncheck"))
                 {
-                    mainForm = new MainForm(true);                    
+                    mainForm = new MainForm(true);
                 }
                 else
                 {
-                    mainForm = new MainForm(false);                    
-                }                
+                    mainForm = new MainForm(false);
+                }
                 Application.Run(mainForm);
-                if(mainForm.DialogResult == DialogResult.Yes)
+                if (mainForm.DialogResult == DialogResult.Yes)
                 {
-                    if(File.Exists(FileName + ".bak"))
+                    if (File.Exists(FileName + ".bak"))
                     {
                         File.Delete(FileName + ".bak");
                     }
-                    if(File.Exists(FileName))
+                    if (File.Exists(FileName))
                     {
                         File.Move(FileName, FileName + ".bak");
                     }
-                    DVDProfilerSerializer<IMDbToDVDProfilerCrewRoleTransformation>.Serialize(FileName, TransformationData);
+                    Serializer<IMDbToDVDProfilerCrewRoleTransformation>.Serialize(FileName, TransformationData);
                     Environment.ExitCode = 1;
                 }
                 else
@@ -103,7 +101,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                 }
                 try
                 {
-                    DVDProfilerSerializer<Settings>.Serialize(SettingsFile, Settings);
+                    Serializer<Settings>.Serialize(SettingsFile, Settings);
                 }
                 catch
                 {
@@ -121,7 +119,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                         File.Delete(ErrorFile);
                     }
                     exceptionXml = new ExceptionXml(ex);
-                    DVDProfilerSerializer<ExceptionXml>.Serialize(ErrorFile, exceptionXml);
+                    Serializer<ExceptionXml>.Serialize(ErrorFile, exceptionXml);
                 }
                 catch
                 {
@@ -135,7 +133,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
 
             settingsFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
                + "\\Doena Soft\\EditIMDbToDVDProfilerCrewRoleTransformation\\settings.xml";
-            if((File.Exists(settingsFile)) && (File.Exists(SettingsFile) == false))
+            if ((File.Exists(settingsFile)) && (File.Exists(SettingsFile) == false))
             {
                 File.Move(settingsFile, SettingsFile);
             }

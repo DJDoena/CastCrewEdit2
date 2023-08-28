@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations"
         mc:Ignorable="d"
-        Title="Find Merged IMDb Cast &amp; Crew" Height="170" Width="640" Icon="/FindMergedCastCrew;component/DJDSOFT.ICO" ResizeMode="NoResize">
+        Title="Find Merged IMDb Cast &amp; Crew" Height="170" Width="640" ResizeMode="NoResize" Icon="/djdsoft.ico">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="bvc"/>
     </Window.Resources>

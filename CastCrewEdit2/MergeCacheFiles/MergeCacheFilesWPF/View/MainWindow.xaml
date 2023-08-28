@@ -1,7 +1,7 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles.MainWindow"
-        Title="Merge Cast/Crew Edit 2 Cache Files" Height="220" Width="710" ResizeMode="CanMinimize" Icon="..\DJDSOFT.ICO">
+        Title="Merge Cast/Crew Edit 2 Cache Files" Height="220" Width="710" ResizeMode="CanMinimize" Icon="../djdsoft.ico">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="bvc"/>
     </Window.Resources>

@@ -125,7 +125,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         {
             IWebRequest request = WebServices.CreateWebRequest(PersonUrl + person.PersonLink);
 
-            using (IWebResponse response = request.GetResponse())
+            using (IWebResponse response = request.GetResponseAsync().GetAwaiter().GetResult())
             {
                 ProcessResponse(response, person);
             }

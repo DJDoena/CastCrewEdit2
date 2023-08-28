@@ -6,12 +6,12 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Doena Soft.")]
 [assembly: AssemblyProduct("Find Merged Cast/Crew")]
-[assembly: AssemblyCopyright("Copyright © Doena Soft. 2016 - 2018")]
+[assembly: AssemblyCopyright("Copyright © Doena Soft. 2016 - 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersion("0.9.0.1")]
-[assembly: AssemblyFileVersion("0.9.0.1")]
+[assembly: AssemblyVersion("0.9.0.2")]
+[assembly: AssemblyFileVersion("0.9.0.2")]
 
 //In order to begin building localizable applications, set 
 //<UICulture>CultureYouAreCodingWith</UICulture> in your .csproj file

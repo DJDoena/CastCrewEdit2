@@ -1,453 +1,191 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FF2B79D8-3E3D-47F2-B3B6-0CF9F6902372}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2</RootNamespace>
-    <AssemblyName>CastCrewEdit2</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ApplicationIcon>Resources\djdsoft.ico</ApplicationIcon>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\CastCrewEdit2\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UnitTest|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\UnitTest\CastCrewEdit2\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;UnitTest</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\CastCrewEdit2\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UnitTest|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\UnitTest\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;UnitTest</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Release\CastCrewEdit2\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Optimize>true</Optimize>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Release\CastCrewEdit2\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
-    <Optimize>true</Optimize>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Design" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\CastCrewEdit2.AssemblyInfo.cs">
-      <Link>Properties\CastCrewEdit2.AssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="CastCrewEditAdapterEventHandler.cs" />
-    <Compile Include="Extended\ExtendedCrewInformation.cs" />
-    <Compile Include="Extended\ExtendedCastInformation.cs" />
-    <Compile Include="Extended\ExtendedCastDivider.cs" />
-    <Compile Include="Extended\ExtendedCrewDivider.cs" />
-    <Compile Include="Extended\ExtendedSerializer.cs" />
-    <Compile Include="Extended\ExtendedCrewSorter.cs" />
-    <Compile Include="Extended\NoTypeAttributeXmlWriter.cs" />
-    <Compile Include="Extended\SoundtrackMatch.cs" />
-    <Compile Include="Forms\CastCrewEdit2BaseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EditKnownNamesConfigFileForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EditKnownNamesConfigFileForm.designer.cs">
-      <DependentUpon>EditKnownNamesConfigFileForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Helper\BirthYearGetter.cs" />
-    <Compile Include="Helper\BrowserControlSelection.cs" />
-    <Compile Include="Helper\CastCrewCopyPasteSender.cs" />
-    <Compile Include="Helper\CastCrewReceiverServiceContract.cs" />
-    <Compile Include="Helper\CastLineProcessor.cs" />
-    <Compile Include="Extended\ExtendedCrewMember.cs" />
-    <Compile Include="Extended\ExtendedCastMember.cs" />
-    <Compile Include="Helper\CrewLineProcessor.cs" />
-    <Compile Include="Helper\FileNameType.cs" />
-    <Compile Include="Helper\FirstNames.cs" />
-    <Compile Include="Helper\HeadshotGetter.cs" />
-    <Compile Include="Helper\MessageEntry.cs" />
-    <Compile Include="Helper\Log.cs" />
-    <Compile Include="Forms\CastCrewEdit2ParseBaseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Helper\CastInfo.cs" />
-    <Compile Include="Helper\CrewInfo.cs" />
-    <Compile Include="Helper\DataGridViewHelper.cs" />
-    <Compile Include="Helper\Name.cs" />
-    <Compile Include="Helper\NameParser.cs" />
-    <Compile Include="Helper\SountrackLineProcessor.cs" />
-    <Compile Include="Properties\Resource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\DataGridViewTexts.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataGridViewTexts.resx</DependentUpon>
-    </Compile>
-    <Compile Include="DefaultValues.cs" />
-    <Compile Include="Forms\EpisodeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EpisodeForm.Designer.cs">
-      <DependentUpon>EpisodeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Helper\EpisodeInfo.cs" />
-    <Compile Include="Forms\EpisodesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EpisodesForm.Designer.cs">
-      <DependentUpon>EpisodesForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\EditConfigFileForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EditConfigFileForm.designer.cs">
-      <DependentUpon>EditConfigFileForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\CacheForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CacheForm.Designer.cs">
-      <DependentUpon>CacheForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Helper\IMDbParser.cs" />
-    <Compile Include="Forms\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\EditWindowNames.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EditWindowNames.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="SessionData.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="Forms\SettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SettingsForm.designer.cs">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\MessageBoxTexts.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MessageBoxTexts.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Forms\EditConfigFileForm.de.resx">
-      <DependentUpon>EditConfigFileForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditKnownNamesConfigFileForm.de.resx">
-      <DependentUpon>EditKnownNamesConfigFileForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditKnownNamesConfigFileForm.resx">
-      <DependentUpon>EditKnownNamesConfigFileForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\DataGridViewTexts.de.resx">
-      <DependentUpon>DataGridViewTexts.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\DataGridViewTexts.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DataGridViewTexts.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EpisodeForm.de.resx">
-      <DependentUpon>EpisodeForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EpisodeForm.resx">
-      <DependentUpon>EpisodeForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EpisodesForm.de.resx">
-      <DependentUpon>EpisodesForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EpisodesForm.resx">
-      <DependentUpon>EpisodesForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditConfigFileForm.resx">
-      <DependentUpon>EditConfigFileForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CacheForm.resx">
-      <DependentUpon>CacheForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainForm.de.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\EditWindowNames.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>EditWindowNames.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\EditWindowNames.de.resx">
-      <DependentUpon>EditWindowNames.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Resources.de.resx">
-      <DependentUpon>Resources.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SettingsForm.de.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\MessageBoxTexts.de.resx">
-      <DependentUpon>MessageBoxTexts.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\MessageBoxTexts.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MessageBoxTexts.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SettingsForm.resx">
-      <DependentUpon>SettingsForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Resources\doener.jpg" />
-    <None Include="ReadMe\CCE2_ReadMe.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\CastCrewEdit2Library\CastCrewEdit2Library.csproj">
-      <Project>{287660C9-FD98-457D-A652-702F754D4033}</Project>
-      <Name>CastCrewEdit2Library</Name>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\CastCrewEdit2Adapter\CastCrewEdit2Adapter.vbproj">
-      <Project>{C65D2EEC-45B1-40B4-9246-22DFFBAEE256}</Project>
-      <Name>CastCrewEdit2Adapter</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\KnownFirstnamePrefixes.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\KnownNames.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\KnownLastnamePrefixes.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\KnownLastNameSuffixes.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ReadMe\english.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe\german.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ReadMe\CCE2_LiesMich.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\readme.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\liesmich.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\CastCrewEdit2\" />
-    <Folder Include="Images\CCViewer\" />
-    <Folder Include="Images\DVD Profiler\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ReadMe\movie1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe\movie2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe\movie3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe\movie4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe\movie5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe\movie6.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ReadMe\tvshow1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe\tvshow2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe\tvshow3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe\tvshow4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe\tvshow5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe\tvshow6.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe\tvshow7.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ReadMe\tvshow8.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\ForcedFakeBirthYears.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\djdsoft.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="DoenaSoft.DVDProfilerXML">
-      <Version>4.1.7</Version>
-    </PackageReference>
-    <PackageReference Include="DoenaSoft.WindowsAPICodePack">
-      <Version>1.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Forms.UI.Controls.WebView">
-      <Version>6.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Web.WebView2">
-      <Version>1.0.1418.22</Version>
-    </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ReadMe\2192_SongWriter.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net472</TargetFrameworks>
+		<UseWindowsForms>true</UseWindowsForms>
+		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Platforms>x86;x64</Platforms>
+		<Configurations>Debug;Release;UnitTest</Configurations>
+		<OutputType>WinExe</OutputType>
+		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2</RootNamespace>
+		<AssemblyName>CastCrewEdit2</AssemblyName>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='UnitTest'">
+	  <DefineConstants>$(DefineConstants);UnitTest</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Include="..\CastCrewEdit2.AssemblyInfo.cs" Link="Properties\CastCrewEdit2.AssemblyInfo.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="DoenaSoft.WindowsAPICodePack" Version="1.1.2" />
+		<PackageReference Include="Microsoft.Toolkit.Forms.UI.Controls.WebView" Version="6.1.2" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1938.49" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\CastCrewEdit2Library\CastCrewEdit2Library.csproj" />
+		<ProjectReference Include="..\CastCrewEdit2Adapter\CastCrewEdit2Adapter.vbproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="System.ServiceModel" />
+		<Reference Include="System.Web" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Properties\Resource.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resource.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\DataGridViewTexts.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DataGridViewTexts.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\EditWindowNames.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>EditWindowNames.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\MessageBoxTexts.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>MessageBoxTexts.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resource.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resource.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\DataGridViewTexts.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>DataGridViewTexts.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\DataGridViewTexts.de.resx">
+			<DependentUpon>DataGridViewTexts.resx</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\EditWindowNames.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>EditWindowNames.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\EditWindowNames.de.resx">
+			<DependentUpon>EditWindowNames.resx</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\MessageBoxTexts.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>MessageBoxTexts.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\MessageBoxTexts.de.resx">
+			<DependentUpon>MessageBoxTexts.resx</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\Resources.de.resx">
+			<DependentUpon>Resources.resx</DependentUpon>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Data\ForcedFakeBirthYears.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Data\KnownFirstnamePrefixes.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Data\KnownLastnamePrefixes.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Data\KnownLastNameSuffixes.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Data\KnownNames.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\liesmich.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Images\readme.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\2192_SongWriter.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\CCE2_LiesMich.html">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\CCE2_ReadMe.html">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\english.gif">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\german.gif">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\movie1.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\movie2.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\movie3.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\movie4.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\movie5.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\movie6.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\tvshow1.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\tvshow2.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\tvshow3.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\tvshow4.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\tvshow5.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\tvshow6.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\tvshow7.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ReadMe\tvshow8.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Images\CastCrewEdit2\" />
+	  <Folder Include="Images\CCViewer\" />
+	  <Folder Include="Images\DVD Profiler\" />
+	</ItemGroup>
+
 </Project>

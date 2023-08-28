@@ -1,19 +1,20 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.IO;
-    using System.Text;
-    using System.Threading;
-    using System.Windows.Forms;
-    using DVDProfilerHelper;
-    using Forms;
-    using Helper;
-    using Microsoft.Win32;
-    using Resources;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
+using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using DoenaSoft.ToolBox.Generics;
+using Microsoft.Win32;
 
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+{
     public static class Program
     {
         public static readonly CastCrewEditAdapterEventHandler AdapterEventHandler;
@@ -213,7 +214,7 @@
                 {
                     try
                     {
-                        Settings = DVDProfilerSerializer<Settings>.Deserialize(_settingsFile);
+                        Settings = Serializer<Settings>.Deserialize(_settingsFile);
                     }
                     catch
                     {
@@ -246,7 +247,7 @@
                 {
                     try
                     {
-                        DVDProfilerSerializer<Settings>.Serialize(_settingsFile, Settings);
+                        Serializer<Settings>.Serialize(_settingsFile, Settings);
                     }
                     catch
                     {
@@ -272,7 +273,7 @@
 
                     var exceptionXml = new ExceptionXml(ex);
 
-                    DVDProfilerSerializer<ExceptionXml>.Serialize(_errorFile, exceptionXml);
+                    Serializer<ExceptionXml>.Serialize(_errorFile, exceptionXml);
 
                     WriteError(ex, true);
                 }
@@ -528,7 +529,7 @@
                     Directory.CreateDirectory("errors");
                 }
 
-                DVDProfilerSerializer<ExceptionXml>.Serialize(@"errors\" + filename.ToString(), xml);
+                Serializer<ExceptionXml>.Serialize(@"errors\" + filename.ToString(), xml);
             }
         }
     }

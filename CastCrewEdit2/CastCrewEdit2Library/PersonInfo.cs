@@ -1,15 +1,15 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Windows.Forms;
-    using System.Xml.Serialization;
-    using DVDProfilerHelper;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Xml.Serialization;
+using DoenaSoft.ToolBox.Generics;
 
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+{
     public class PersonInfos
     {
         public PersonInfo[] PersonInfoList;
@@ -28,7 +28,7 @@
                 }
             }
 
-            DVDProfilerSerializer<PersonInfos>.Serialize(fileName, this);
+            Serializer<PersonInfos>.Serialize(fileName, this);
         }
 
         public static PersonInfos Deserialize(string fileName)
@@ -37,7 +37,7 @@
             {
                 PersonInfo.CreatorActive = true;
 
-                PersonInfos personInfos = DVDProfilerSerializer<PersonInfos>.Deserialize(fs);
+                PersonInfos personInfos = Serializer<PersonInfos>.Deserialize(fs);
 
                 PersonInfo.CreatorActive = false;
 

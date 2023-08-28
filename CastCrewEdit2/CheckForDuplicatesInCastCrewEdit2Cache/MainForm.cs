@@ -12,7 +12,7 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
 {
     public partial class MainForm : Form
     {
-        private Boolean SkipVersionCheck;
+        private readonly Boolean SkipVersionCheck;
 
         private PersonInfos m_Cache;
 
@@ -22,6 +22,7 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
         {
             SkipVersionCheck = skipVersionCheck;
             InitializeComponent();
+            this.Icon = Properties.Resource.djdsoft;
             if ((String.IsNullOrEmpty(Settings.Default.CacheFile) == false) && (File.Exists(Settings.Default.CacheFile)))
             {
                 CacheFileTextBox.Text = Settings.Default.CacheFile;

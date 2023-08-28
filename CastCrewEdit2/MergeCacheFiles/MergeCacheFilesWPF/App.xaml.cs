@@ -1,8 +1,6 @@
 ﻿using System.Windows;
 using DoenaSoft.AbstractionLayer.IOServices;
-using DoenaSoft.AbstractionLayer.IOServices.Implementations;
 using DoenaSoft.AbstractionLayer.UIServices;
-using DoenaSoft.AbstractionLayer.UIServices.Implementations;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 {
@@ -11,7 +9,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
     /// </summary>
     public partial class App : Application
     {
-        IViewModelWPF m_ViewModel;
+        private IViewModelWPF m_ViewModel;
 
         protected override void OnStartup(StartupEventArgs e)
         {

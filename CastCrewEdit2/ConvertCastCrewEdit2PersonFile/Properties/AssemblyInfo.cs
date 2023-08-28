@@ -5,9 +5,9 @@
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Doena Soft.")]
 [assembly: AssemblyProduct("Convert Cast/Crew Edit 2 Person File")]
-[assembly: AssemblyCopyright("Copyright © Doena Soft. 2011 - 2015")]
+[assembly: AssemblyCopyright("Copyright © Doena Soft. 2011 - 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyFileVersion("1.0.0.1")]

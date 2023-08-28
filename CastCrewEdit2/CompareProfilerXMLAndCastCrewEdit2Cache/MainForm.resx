@@ -112,44 +112,22 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="CacheFirstName.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="CacheFirstName.UserAddedColumn" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <metadata name="CacheMiddleName.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="CacheMiddleName.UserAddedColumn" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <metadata name="CacheLastName.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="CacheLastName.UserAddedColumn" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <metadata name="CacheBirthYear.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="CacheBirthYear.UserAddedColumn" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAABAAIAICAQAAAABADoAgAAJgAAABAQEAAAAAQAKAEAAA4DAAAoAAAAIAAAAEAAAAABAAQAAAAAAAAC
-        AAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAgAAAgAAAAICAAIAAAACAAIAAgIAAAICAgADAwMAAAAD/AAD/
-        AAAA//8A/wAAAP8A/wD//wAA////AIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiI
-        iIiIiIiIiIiIiIiIiIiIiIiIiIgAAACIiIiIiIiIiIiIiIiAAAAACIiIiIiIiIiIiIiIAAAAAACIiIiI
-        iIiIiIiIiAAIiIAACIiIiIiIiIiIiIgACIiIAAiIiIiIiIiIiIiIiIiIiAAIiIiIiIiIiIiIiIiAAAAA
-        CIiIiIiIiIiIiIiIAAAAAIiIiIiIiIiIiIiIgAAAAAiIiIiIiIiIiIiIiIAAiIiIiIiIiIiIiIiIiIiA
-        AIiIiIiIiIiAAAAIiIiIiAAIiIiIiIiAAAAAAAiIiIgAAAAAiIiIgAAAAAAAiIiIgAAAAIiIiIAAiIgA
-        AIiIiIgAAAiIiIiAAIiIgAAIiIiIiIiIiIiIgACIiIgACIiIiIiIiIiIiIAAiIiIAAiIiIiIiIiIiIiA
-        AIiIiAAIiIiIiIiIiIiIgACIiIAACIiIiIiIiIiIiIAAiIiAAIiIiIiIiIiIiIiAAIiAAAiIiIiIiIiI
-        iIiIgACAAACIiIiIiIiIiIiIiIAAAAAIiIiIiIiIiIiIiIiAAACIiIiIiIiIiIiIiIiIgACIiIiIiIiI
-        iIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAoAAAAEAAAACAAAAABAAQAAAAAAIAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAgAAAgAAAAICAAIAA
-        AACAAIAAgIAAAMDAwACAgIAAAAD/AAD/AAAA//8A/wAAAP8A/wD//wAA////AHd3d3d3d3d3d3d3d3AA
-        B3d3d3d3AAAAB3d3d3cHd3AHd3d3d3cAAAd3d3d3cAAAd3d3d3dwB3d3cAAHd3cAAHdwAAB3d3AAd3AH
-        cAd3d3d3cAdwB3d3d3dwB3AHd3d3d3AHAHd3d3d3cAAAd3d3d3dwAHd3d3d3d3d3d3d3d3d3AAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
-</value>
   </data>
 </root>

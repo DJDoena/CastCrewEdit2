@@ -14,6 +14,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             m_ViewModel.RightFileNameChanged += OnRightFileNameChanged;
             m_ViewModel.TargetFileNameChanged += OnTargetFileNameChanged;
             InitializeComponent();
+            this.Icon = Properties.Resource.djdsoft;
         }
 
         void OnLeftFileNameChanged(Object sender, EventArgs e)

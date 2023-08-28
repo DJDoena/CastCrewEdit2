@@ -8,17 +8,19 @@ using DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache.Properties;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 using DoenaSoft.DVDProfiler.DVDProfilerXML;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
+using DoenaSoft.ToolBox.Generics;
 
 namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
 {
     internal partial class MainForm : Form
     {
-        private Boolean SkipVersionCheck;
+        private readonly Boolean SkipVersionCheck;
 
         public MainForm(Boolean skipVersionCheck)
         {
             SkipVersionCheck = skipVersionCheck;
             InitializeComponent();
+            this.Icon = Properties.Resource.djdsoft;
             if ((String.IsNullOrEmpty(Settings.Default.CacheFile) == false) && (File.Exists(Settings.Default.CacheFile)))
             {
                 CacheFileTextBox.Text = Settings.Default.CacheFile;
@@ -56,7 +58,7 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
                     DataGridViewRow row;
                     List<DataGridViewRow> rowList;
 
-                    collection = DVDProfilerSerializer<Collection>.Deserialize(DVDProfilerXMLTextBox.Text);
+                    collection = Serializer<Collection>.Deserialize(DVDProfilerXMLTextBox.Text);
                     cache = PersonInfos.Deserialize(CacheFileTextBox.Text);
                     collectionHash = new Dictionary<String, IPerson>(cache.PersonInfoList.Length);
                     if ((collection != null) && (collection.DVDList != null) && (collection.DVDList.Length > 0))

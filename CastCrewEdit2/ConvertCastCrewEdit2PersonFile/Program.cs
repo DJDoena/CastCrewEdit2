@@ -6,13 +6,14 @@ using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 using DoenaSoft.DVDProfiler.DVDProfilerXML;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
+using DoenaSoft.ToolBox.Generics;
 using Microsoft.Win32;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 {
     public static class Program
     {
-        private static WindowHandle s_WindowHandle = new WindowHandle();
+        private static readonly WindowHandle s_WindowHandle = new WindowHandle();
 
         [STAThread()]
         public static void Main()
@@ -85,7 +86,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                     File.Copy(personsFile, personsFile + ".org", true);
                 }
                 personInfoList = PersonInfos.Deserialize(personsFile);
-                collection = DVDProfilerSerializer<Collection>.Deserialize(collectionFile);
+                collection = Serializer<Collection>.Deserialize(collectionFile);
                 if ((personInfoList != null) && (personInfoList.PersonInfoList != null)
                   && (personInfoList.PersonInfoList.Length > 0))
                 {

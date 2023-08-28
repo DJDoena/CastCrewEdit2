@@ -40,6 +40,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
         {
             SkipVersionCheck = skipVersionCheck;
             InitializeComponent();
+            this.Icon = Properties.Resource.djdsoft;
         }
 
         private void OnMainFormLoad(Object sender, EventArgs e)

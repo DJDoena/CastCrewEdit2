@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Windows.Forms;
 using DoenaSoft.AbstractionLayer.IOServices;
-using DoenaSoft.AbstractionLayer.IOServices.Implementations;
 using DoenaSoft.AbstractionLayer.UIServices;
-using DoenaSoft.AbstractionLayer.UIServices.Implementations;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             IUIServices uiServices;
             IIOServices ioServices;

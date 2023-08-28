@@ -5,9 +5,9 @@
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Doena Soft.")]
 [assembly: AssemblyProduct("Merge Cast/Crew Edit 2 Person Files")]
-[assembly: AssemblyCopyright("Copyright © Doena Soft. 2014 - 2018")]
+[assembly: AssemblyCopyright("Copyright © Doena Soft. 2014 - 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersion("1.1.0.2")]
-[assembly: AssemblyFileVersion("1.1.0.2")]
+[assembly: AssemblyVersion("1.1.0.3")]
+[assembly: AssemblyFileVersion("1.1.0.3")]

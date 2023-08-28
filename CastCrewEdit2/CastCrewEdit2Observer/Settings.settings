@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="CastCrewEditPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">..\..\..\..\CastCrewEdit2\CastCrewEdit2\bin\x86\CastCrewEdit2\CastCrewEdit2.exe</Value>
+      <Value Profile="(Default)">..\..\..\..\..\CastCrewEdit2\CastCrewEdit2\bin\x86\Debug\net472\CastCrewEdit2.exe</Value>
     </Setting>
   </Settings>
 </SettingsFile>

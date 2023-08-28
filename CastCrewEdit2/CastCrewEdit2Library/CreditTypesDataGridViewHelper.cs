@@ -1,7 +1,7 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2
-{
-    using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+{
     public static class CreditTypesDataGridViewHelper
     {
         public static class CreditTypes
