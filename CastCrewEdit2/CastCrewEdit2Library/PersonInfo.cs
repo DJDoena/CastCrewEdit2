@@ -37,7 +37,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             {
                 PersonInfo.CreatorActive = true;
 
-                PersonInfos personInfos = Serializer<PersonInfos>.Deserialize(fs);
+                var personInfos = Serializer<PersonInfos>.Deserialize(fs);
 
                 PersonInfo.CreatorActive = false;
 
@@ -73,7 +73,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             {
                 if (_firstName != value)
                 {
-                    this.SetTimestamp();
+                    SetTimestamp();
                 }
 
                 _firstName = value;
@@ -90,7 +90,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             {
                 if (_middleName != value)
                 {
-                    this.SetTimestamp();
+                    SetTimestamp();
                 }
 
                 _middleName = value;
@@ -107,7 +107,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             {
                 if (_lastName != value)
                 {
-                    this.SetTimestamp();
+                    SetTimestamp();
                 }
 
                 _lastName = value;
@@ -124,7 +124,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             {
                 if (_birthYear != value)
                 {
-                    this.SetTimestamp();
+                    SetTimestamp();
                 }
 
                 _birthYear = value;
@@ -141,7 +141,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             {
                 if (_birthYearWasRetrieved != value)
                 {
-                    this.SetTimestamp();
+                    SetTimestamp();
                 }
 
                 _birthYearWasRetrieved = value;
@@ -156,7 +156,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             {
                 if (_personLink != value)
                 {
-                    this.SetTimestamp();
+                    SetTimestamp();
                 }
 
                 _personLink = value;
@@ -171,7 +171,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             {
                 if (_fakeBirthYear != value)
                 {
-                    this.SetTimestamp();
+                    SetTimestamp();
                 }
 
                 _fakeBirthYear = value;
@@ -187,13 +187,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 if ((_filmInfoList != null && value == null)
                     || (_filmInfoList == null && value != null))
                 {
-                    this.SetTimestamp();
+                    SetTimestamp();
                 }
                 else if (_filmInfoList != null)
                 {
                     if (_filmInfoList.Length != value.Length)
                     {
-                        this.SetTimestamp();
+                        SetTimestamp();
                     }
                     else
                     {
@@ -205,7 +205,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
                             if (oldFI.FilmLink != newFi.FilmLink || oldFI.Name != newFi.Name)
                             {
-                                this.SetTimestamp();
+                                SetTimestamp();
                             }
                         }
                     }
@@ -250,47 +250,47 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
             if (value != null)
             {
-                this.LastName = value.ToString();
+                LastName = value.ToString();
             }
             else
             {
-                this.LastName = string.Empty;
+                LastName = string.Empty;
             }
 
             value = row.Cells[ColumnNames.MiddleName].Value;
 
             if (value != null)
             {
-                this.MiddleName = value.ToString();
+                MiddleName = value.ToString();
             }
             else
             {
-                this.MiddleName = string.Empty;
+                MiddleName = string.Empty;
             }
 
             value = row.Cells[ColumnNames.FirstName].Value;
 
             if (value != null)
             {
-                this.FirstName = value.ToString();
+                FirstName = value.ToString();
             }
             else
             {
-                this.FirstName = string.Empty;
+                FirstName = string.Empty;
             }
 
             value = row.Cells[ColumnNames.BirthYear].Value;
 
             if (value != null)
             {
-                this.BirthYear = value.ToString();
+                BirthYear = value.ToString();
             }
             else
             {
-                this.BirthYear = string.Empty;
+                BirthYear = string.Empty;
             }
 
-            this.PersonLink = row.Cells[ColumnNames.Link].Value.ToString();
+            PersonLink = row.Cells[ColumnNames.Link].Value.ToString();
 
             Type = type;
         }
@@ -299,14 +299,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
         {
             CreatorActive = true;
 
-            this.LastName = personInfo.LastName;
-            this.MiddleName = personInfo.MiddleName;
-            this.FirstName = personInfo.FirstName;
-            this.BirthYear = personInfo.BirthYear;
-            this.BirthYearWasRetrieved = personInfo.BirthYearWasRetrieved;
-            this.PersonLink = personInfo.PersonLink;
-            this.FakeBirthYear = personInfo.FakeBirthYear;
-            this.FilmInfoList = personInfo.FilmInfoList;
+            LastName = personInfo.LastName;
+            MiddleName = personInfo.MiddleName;
+            FirstName = personInfo.FirstName;
+            BirthYear = personInfo.BirthYear;
+            BirthYearWasRetrieved = personInfo.BirthYearWasRetrieved;
+            PersonLink = personInfo.PersonLink;
+            FakeBirthYear = personInfo.FakeBirthYear;
+            FilmInfoList = personInfo.FilmInfoList;
 
             Type = personInfo.Type;
             LastModified = personInfo.LastModified;
@@ -325,7 +325,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             }
         }
 
-        public override int GetHashCode() => this.PersonLink.GetHashCode();
+        public override int GetHashCode() => PersonLink.GetHashCode();
 
         public override bool Equals(object obj)
         {
@@ -335,44 +335,44 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             }
             else
             {
-                return this.PersonLink == other.PersonLink;
+                return PersonLink == other.PersonLink;
             }
         }
 
-        public override string ToString() => this.FormatActorNameWithBirthYearWithMarkers(true);
+        public override string ToString() => FormatActorNameWithBirthYearWithMarkers(true);
 
         private string FormatPersonNameWithMarkers(bool withFilmList)
         {
             var name = new StringBuilder();
 
-            if (!string.IsNullOrEmpty(this.FirstName))
+            if (!string.IsNullOrEmpty(FirstName))
             {
-                name.Append("<" + this.FirstName + ">");
+                name.Append("<" + FirstName + ">");
             }
 
-            if (!string.IsNullOrEmpty(this.MiddleName))
+            if (!string.IsNullOrEmpty(MiddleName))
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append("{" + this.MiddleName + "}");
+                name.Append("{" + MiddleName + "}");
             }
 
-            if (!string.IsNullOrEmpty(this.LastName))
+            if (!string.IsNullOrEmpty(LastName))
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append("[" + this.LastName + "]");
+                name.Append("[" + LastName + "]");
             }
 
             if (withFilmList)
             {
-                this.AppendFilmInfoList(name);
+                AppendFilmInfoList(name);
             }
 
             return name.ToString();
@@ -386,7 +386,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
             var nameParts = others.Select(getNamePart);
 
-            var padding = this.GetMaxPadding(namePart, nameParts);
+            var padding = GetMaxPadding(namePart, nameParts);
 
             for (var i = namePart.Length; i < padding; i++)
             {
@@ -398,7 +398,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         private int GetMaxPadding(string namePart, IEnumerable<string> others)
         {
-            int padding = namePart.Length;
+            var padding = namePart.Length;
 
             foreach (var other in others)
             {
@@ -413,7 +413,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         private void AppendFilmInfoList(StringBuilder name)
         {
-            if (this.FilmInfoList?.Length > 0)
+            if (FilmInfoList?.Length > 0)
             {
                 if (name.Length != 0)
                 {
@@ -421,22 +421,22 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 }
 
                 name.Append("(");
-                name.Append(this.FilmInfoList[this.FilmInfoList.Length - 1].Name);
+                name.Append(FilmInfoList[FilmInfoList.Length - 1].Name);
                 name.Append(")");
             }
         }
 
-        public string FormatPersonNameWithMarkers() => this.FormatPersonNameWithMarkers(false);
+        public string FormatPersonNameWithMarkers() => FormatPersonNameWithMarkers(false);
 
         private string FormatPersonNameWithMarkersAsHtml(bool withFilmList, IEnumerable<PersonInfo> others)
         {
             var name = new StringBuilder();
 
-            var namePart = this.PadNamePart(this.FirstName, others, (pi) => pi.FirstName);
+            var namePart = PadNamePart(FirstName, others, (pi) => pi.FirstName);
 
             name.Append("<span style=\"color:Blue;\">" + namePart + "</span>");
 
-            namePart = this.PadNamePart(this.MiddleName, others, (pi) => pi.MiddleName);
+            namePart = PadNamePart(MiddleName, others, (pi) => pi.MiddleName);
 
             if (!string.IsNullOrEmpty(namePart) && name.Length != 0)
             {
@@ -445,7 +445,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
             name.Append("<span style=\"color:White; background-color:Black\"><strong>" + namePart + "</strong></span>");
 
-            namePart = this.PadNamePart(this.LastName, others, (pi) => pi.LastName);
+            namePart = PadNamePart(LastName, others, (pi) => pi.LastName);
 
             if (!string.IsNullOrEmpty(namePart) && name.Length != 0)
             {
@@ -456,7 +456,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
             if (withFilmList)
             {
-                this.AppendFilmInfoListAsHtml(name);
+                AppendFilmInfoListAsHtml(name);
             }
 
             return name.ToString();
@@ -464,7 +464,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         private void AppendFilmInfoListAsHtml(StringBuilder name)
         {
-            if (this.FilmInfoList?.Length > 0)
+            if (FilmInfoList?.Length > 0)
             {
                 if (name.Length != 0)
                 {
@@ -473,9 +473,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
                 name.Append("(");
 
-                for (var i = this.FilmInfoList.Length - 1; i >= 0; i--)
+                for (var i = FilmInfoList.Length - 1; i >= 0; i--)
                 {
-                    var fi = this.FilmInfoList[i];
+                    var fi = FilmInfoList[i];
 
                     name.Append("<a href=\"https://www.imdb.com/title/");
                     name.Append(fi.FilmLink);
@@ -493,101 +493,101 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             }
         }
 
-        public string FormatPersonNameWithMarkersAsHtml(IEnumerable<PersonInfo> others) => this.FormatPersonNameWithMarkersAsHtml(false, others);
+        public string FormatPersonNameWithMarkersAsHtml(IEnumerable<PersonInfo> others) => FormatPersonNameWithMarkersAsHtml(false, others);
 
         public string FormatPersonNameWithoutMarkers()
         {
             var name = new StringBuilder();
 
-            if (!string.IsNullOrEmpty(this.FirstName))
+            if (!string.IsNullOrEmpty(FirstName))
             {
-                name.Append(this.FirstName);
+                name.Append(FirstName);
             }
 
-            if (!string.IsNullOrEmpty(this.MiddleName))
+            if (!string.IsNullOrEmpty(MiddleName))
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append(this.MiddleName);
+                name.Append(MiddleName);
             }
 
-            if (!string.IsNullOrEmpty(this.LastName))
+            if (!string.IsNullOrEmpty(LastName))
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append(this.LastName);
+                name.Append(LastName);
             }
 
             return name.ToString();
         }
 
-        public string FormatActorNameWithBirthYearWithMarkers(bool useFakeBirthYear) => this.FormatActorNameWithBirthYearWithMarkers(useFakeBirthYear, false);
+        public string FormatActorNameWithBirthYearWithMarkers(bool useFakeBirthYear) => FormatActorNameWithBirthYearWithMarkers(useFakeBirthYear, false);
 
         public string FormatActorNameWithBirthYearWithMarkers(bool useFakeBirthYear, bool withFilmList)
         {
-            var name = new StringBuilder(this.FormatPersonNameWithMarkers(false));
+            var name = new StringBuilder(FormatPersonNameWithMarkers(false));
 
-            if (!string.IsNullOrEmpty(this.BirthYear))
+            if (!string.IsNullOrEmpty(BirthYear))
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append("(" + this.BirthYear + ")");
+                name.Append("(" + BirthYear + ")");
             }
-            else if (useFakeBirthYear && !string.IsNullOrEmpty(this.FakeBirthYear) && this.FakeBirthYear != "0")
+            else if (useFakeBirthYear && !string.IsNullOrEmpty(FakeBirthYear) && FakeBirthYear != "0")
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append("(" + this.FakeBirthYear + ")");
+                name.Append("(" + FakeBirthYear + ")");
             }
 
             if (withFilmList)
             {
-                this.AppendFilmInfoList(name);
+                AppendFilmInfoList(name);
             }
 
             return name.ToString();
         }
 
-        public string FormatActorNameWithBirthYearWithMarkersAsHtml(bool useFakeBirthYear, IEnumerable<PersonInfo> others) => this.FormatActorNameWithBirthYearWithMarkersAsHtml(useFakeBirthYear, false, others);
+        public string FormatActorNameWithBirthYearWithMarkersAsHtml(bool useFakeBirthYear, IEnumerable<PersonInfo> others) => FormatActorNameWithBirthYearWithMarkersAsHtml(useFakeBirthYear, false, others);
 
         public string FormatActorNameWithBirthYearWithMarkersAsHtml(bool useFakeBirthYear, bool withFilmList, IEnumerable<PersonInfo> others)
         {
-            var name = new StringBuilder(this.FormatPersonNameWithMarkersAsHtml(false, others));
+            var name = new StringBuilder(FormatPersonNameWithMarkersAsHtml(false, others));
 
-            if (!string.IsNullOrEmpty(this.BirthYear))
+            if (!string.IsNullOrEmpty(BirthYear))
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append("(" + this.BirthYear + ")");
+                name.Append("(" + BirthYear + ")");
             }
-            else if (useFakeBirthYear && !string.IsNullOrEmpty(this.FakeBirthYear) && this.FakeBirthYear != "0")
+            else if (useFakeBirthYear && !string.IsNullOrEmpty(FakeBirthYear) && FakeBirthYear != "0")
             {
                 if (name.Length != 0)
                 {
                     name.Append(" ");
                 }
 
-                name.Append("(" + this.FakeBirthYear + ")");
+                name.Append("(" + FakeBirthYear + ")");
             }
 
             if (withFilmList)
             {
-                this.AppendFilmInfoListAsHtml(name);
+                AppendFilmInfoListAsHtml(name);
             }
 
             return name.ToString();
@@ -595,9 +595,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
         public void AddFilmInfo(string link, string name)
         {
-            var filmInfoList = this.FilmInfoList == null
+            var filmInfoList = FilmInfoList == null
                 ? new List<FilmInfo>(1)
-                : new List<FilmInfo>(this.FilmInfoList);
+                : new List<FilmInfo>(FilmInfoList);
 
             var contains = false;
 
@@ -632,7 +632,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 filmInfoList.RemoveAt(0);
             }
 
-            this.FilmInfoList = filmInfoList.ToArray();
+            FilmInfoList = filmInfoList.ToArray();
         }
 
         public static int CompareForSorting(PersonInfo left, PersonInfo right)
@@ -672,7 +672,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
         public PersonInfoWithoutBirthYear(PersonInfo personInfo) : base(personInfo)
         { }
 
-        public override int GetHashCode() => this.FirstName.GetHashCode() ^ this.MiddleName.GetHashCode() ^ this.LastName.GetHashCode();
+        public override int GetHashCode() => FirstName.GetHashCode() ^ MiddleName.GetHashCode() ^ LastName.GetHashCode();
 
         public override bool Equals(object obj)
         {
@@ -682,9 +682,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             }
             else
             {
-                var result = this.LastName == other.LastName
-                    && this.MiddleName == other.MiddleName
-                    && this.FirstName == other.FirstName;
+                var result = LastName == other.LastName
+                    && MiddleName == other.MiddleName
+                    && FirstName == other.FirstName;
 
                 return result;
             }

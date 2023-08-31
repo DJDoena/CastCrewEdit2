@@ -388,7 +388,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 {
                     if (!NameParser.IsKnownName(split[0]) && !string.IsNullOrEmpty(split[1]))
                     {
-                        if (ushort.TryParse(split[1], out ushort birthYear))
+                        if (ushort.TryParse(split[1], out var birthYear))
                         {
                             ForcedFakeBirthYears.Add(split[0], birthYear);
                         }
@@ -827,7 +827,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
         {
             var result = new List<CrewInfo>();
 
-            foreach (Match crewMatch in crewMatches)
+            foreach (var crewMatch in crewMatches)
             {
                 if (crewMatch.Success)
                 {

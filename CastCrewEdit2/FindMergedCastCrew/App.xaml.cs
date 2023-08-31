@@ -9,7 +9,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew
     /// </summary>    
     public partial class App : Application
     {
-        private UInt32 PreviousExecutionState { get; set; }
+        private uint PreviousExecutionState { get; set; }
 
         [STAThread]
         protected override void OnStartup(StartupEventArgs e)

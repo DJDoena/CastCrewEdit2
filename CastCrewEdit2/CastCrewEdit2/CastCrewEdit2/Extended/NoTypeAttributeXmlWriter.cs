@@ -15,7 +15,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
         {
             if ((ns == "http://www.w3.org/2001/XMLSchema-instance") && (localName == "type"))
             {
-                this.SkipAttribute = true;
+                SkipAttribute = true;
             }
             else
             {
@@ -25,7 +25,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
 
         public override void WriteString(string text)
         {
-            if (!this.SkipAttribute)
+            if (!SkipAttribute)
             {
                 base.WriteString(text);
             }
@@ -33,12 +33,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
 
         public override void WriteEndAttribute()
         {
-            if (!this.SkipAttribute)
+            if (!SkipAttribute)
             {
                 base.WriteEndAttribute();
             }
 
-            this.SkipAttribute = false;
+            SkipAttribute = false;
         }
     }
 }

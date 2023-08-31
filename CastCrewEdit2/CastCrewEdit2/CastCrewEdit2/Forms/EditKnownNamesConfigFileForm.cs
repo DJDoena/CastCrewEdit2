@@ -17,27 +17,27 @@
         {
             _fileName = fileName;
 
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.Text = string.Format(EditWindowNames.EditConfigFile, name);
+            Text = string.Format(EditWindowNames.EditConfigFile, name);
 
-            this.DialogResult = DialogResult.None;
+            DialogResult = DialogResult.None;
 
             using (var sr = new StreamReader(_fileName))
             {
                 _fileContent = sr.ReadToEnd().Trim();
             }
 
-            this.Icon = Properties.Resource.djdsoft;
+            Icon = Properties.Resource.djdsoft;
         }
 
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            if (this.GetDataFromGrid(out var newFileContent))
+            if (GetDataFromGrid(out var newFileContent))
             {
-                this.SaveData(newFileContent);
+                SaveData(newFileContent);
 
-                this.Close();
+                Close();
             }
         }
 
@@ -58,14 +58,14 @@
                 sw.Write(newFileContent);
             }
 
-            this.DialogResult = DialogResult.Yes;
+            DialogResult = DialogResult.Yes;
         }
 
         private void OnEditConfigFileFormFormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this.DialogResult != DialogResult.Yes && this.DialogResult != DialogResult.No)
+            if (DialogResult != DialogResult.Yes && DialogResult != DialogResult.No)
             {
-                if (!this.GetDataFromGrid(out var newFileContent))
+                if (!GetDataFromGrid(out var newFileContent))
                 {
                     e.Cancel = true;
 
@@ -84,25 +84,25 @@
                     }
                     else if (result == DialogResult.Yes)
                     {
-                        this.SaveData(newFileContent);
+                        SaveData(newFileContent);
                     }
                     else
                     {
-                        this.DialogResult = DialogResult.No;
+                        DialogResult = DialogResult.No;
                     }
                 }
                 else
                 {
-                    this.DialogResult = DialogResult.No;
+                    DialogResult = DialogResult.No;
                 }
             }
 
-            Program.Settings.EditKnownNamesConfigFileForm.Left = this.Left;
-            Program.Settings.EditKnownNamesConfigFileForm.Top = this.Top;
-            Program.Settings.EditKnownNamesConfigFileForm.Width = this.Width;
-            Program.Settings.EditKnownNamesConfigFileForm.Height = this.Height;
-            Program.Settings.EditKnownNamesConfigFileForm.WindowState = this.WindowState;
-            Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds = this.RestoreBounds;
+            Program.Settings.EditKnownNamesConfigFileForm.Left = Left;
+            Program.Settings.EditKnownNamesConfigFileForm.Top = Top;
+            Program.Settings.EditKnownNamesConfigFileForm.Width = Width;
+            Program.Settings.EditKnownNamesConfigFileForm.Height = Height;
+            Program.Settings.EditKnownNamesConfigFileForm.WindowState = WindowState;
+            Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds = RestoreBounds;
         }
 
         private bool GetDataFromGrid(out string newFileContent)
@@ -193,33 +193,33 @@
 
         private void OnEditConfigFileFormLoad(object sender, EventArgs e)
         {
-            this.SuspendLayout();
+            SuspendLayout();
 
             if (Program.Settings.EditConfigFilesForm.WindowState == FormWindowState.Normal)
             {
-                this.Left = Program.Settings.EditKnownNamesConfigFileForm.Left;
-                this.Top = Program.Settings.EditKnownNamesConfigFileForm.Top;
-                this.Width = Program.Settings.EditKnownNamesConfigFileForm.Width;
-                this.Height = Program.Settings.EditKnownNamesConfigFileForm.Height;
+                Left = Program.Settings.EditKnownNamesConfigFileForm.Left;
+                Top = Program.Settings.EditKnownNamesConfigFileForm.Top;
+                Width = Program.Settings.EditKnownNamesConfigFileForm.Width;
+                Height = Program.Settings.EditKnownNamesConfigFileForm.Height;
             }
             else
             {
-                this.Left = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.X;
-                this.Top = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.Y;
-                this.Width = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.Width;
-                this.Height = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.Height;
+                Left = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.X;
+                Top = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.Y;
+                Width = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.Width;
+                Height = Program.Settings.EditKnownNamesConfigFileForm.RestoreBounds.Height;
             }
 
             if (Program.Settings.EditConfigFilesForm.WindowState != FormWindowState.Minimized)
             {
-                this.WindowState = Program.Settings.EditConfigFilesForm.WindowState;
+                WindowState = Program.Settings.EditConfigFilesForm.WindowState;
             }
 
-            this.CreateDataGrid();
+            CreateDataGrid();
 
-            this.LoadData();
+            LoadData();
 
-            this.ResumeLayout();
+            ResumeLayout();
         }
 
         private void LoadData()
@@ -295,11 +295,11 @@
 
         private void OnCloseWithoutSavingButtonClick(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.No;
+            DialogResult = DialogResult.No;
 
-            this.Close();
+            Close();
         }
 
-        private void OnCloseButtonClick(object sender, EventArgs e) => this.Close();
+        private void OnCloseButtonClick(object sender, EventArgs e) => Close();
     }
 }

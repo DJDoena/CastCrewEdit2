@@ -27,18 +27,18 @@
         {
             _episodes = episodes;
 
-            this.InitializeComponent();
+            InitializeComponent();
 
             _progressBar = ProgressBar;
 
-            this.Icon = Properties.Resource.djdsoft;
+            Icon = Properties.Resource.djdsoft;
         }
 
         private void OnEpisodesFormLoad(object sender, EventArgs e)
         {
-            this.LayoutForm();
+            LayoutForm();
 
-            this.CreateDataGridViewColumns();
+            CreateDataGridViewColumns();
 
             foreach (var episode in _episodes)
             {
@@ -52,45 +52,45 @@
                 row.Tag = episode;
             }
 
-            this.RegisterEvents();
+            RegisterEvents();
 
             var resources = new ComponentResourceManager(typeof(EpisodesForm));
 
             if (!string.IsNullOrEmpty(_tvShowTitle))
             {
-                this.Text = resources.GetString("$this.Text") + " - " + _tvShowTitle;
+                Text = resources.GetString("$this.Text") + " - " + _tvShowTitle;
             }
             else
             {
-                this.Text = resources.GetString("$this.Text");
+                Text = resources.GetString("$this.Text");
             }
         }
 
         private void RegisterEvents()
         {
-            SettingsToolStripMenuItem.Click += this.OnSettingsToolStripMenuItemClick;
+            SettingsToolStripMenuItem.Click += OnSettingsToolStripMenuItemClick;
 
-            FirstnamePrefixesToolStripMenuItem.Click += this.OnFirstnamePrefixesToolStripMenuItemClick;
+            FirstnamePrefixesToolStripMenuItem.Click += OnFirstnamePrefixesToolStripMenuItemClick;
 
-            LastnamePrefixesToolStripMenuItem.Click += this.OnLastnamePrefixesToolStripMenuItemClick;
+            LastnamePrefixesToolStripMenuItem.Click += OnLastnamePrefixesToolStripMenuItemClick;
 
-            LastnameSuffixesToolStripMenuItem.Click += this.OnLastnameSuffixesToolStripMenuItemClick;
+            LastnameSuffixesToolStripMenuItem.Click += OnLastnameSuffixesToolStripMenuItemClick;
 
-            KnownNamesToolStripMenuItem.Click += this.OnKnownNamesToolStripMenuItemClick;
+            KnownNamesToolStripMenuItem.Click += OnKnownNamesToolStripMenuItemClick;
 
-            IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Click += this.OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick;
+            IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Click += OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick;
 
-            IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Click += this.OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick;
+            IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Click += OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick;
 
-            ForcedFakeBirthYearsToolStripMenuItem.Click += this.OnForcedFakeBirthYearsToolStripMenuItemClick;
+            ForcedFakeBirthYearsToolStripMenuItem.Click += OnForcedFakeBirthYearsToolStripMenuItemClick;
 
-            IMDbToDVDProfilerTransformationDataToolStripMenuItem.Click += this.OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick;
+            IMDbToDVDProfilerTransformationDataToolStripMenuItem.Click += OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick;
 
-            ReadmeToolStripMenuItem.Click += this.OnReadmeToolStripMenuItemClick;
+            ReadmeToolStripMenuItem.Click += OnReadmeToolStripMenuItemClick;
 
-            AboutToolStripMenuItem.Click += this.OnAboutToolStripMenuItemClick;
+            AboutToolStripMenuItem.Click += OnAboutToolStripMenuItemClick;
 
-            DataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
+            DataGridView.CellContentClick += OnDataGridViewCellContentClick;
         }
 
         private void CreateDataGridViewColumns()
@@ -135,54 +135,54 @@
         {
             if (Program.Settings.EpisodesForm.WindowState == FormWindowState.Normal)
             {
-                this.Left = Program.Settings.EpisodesForm.Left;
-                this.Top = Program.Settings.EpisodesForm.Top;
+                Left = Program.Settings.EpisodesForm.Left;
+                Top = Program.Settings.EpisodesForm.Top;
 
-                if (Program.Settings.EpisodesForm.Width > this.MinimumSize.Width)
+                if (Program.Settings.EpisodesForm.Width > MinimumSize.Width)
                 {
-                    this.Width = Program.Settings.EpisodesForm.Width;
+                    Width = Program.Settings.EpisodesForm.Width;
                 }
                 else
                 {
-                    this.Width = this.MinimumSize.Width;
+                    Width = MinimumSize.Width;
                 }
 
-                if (Program.Settings.EpisodesForm.Height > this.MinimumSize.Height)
+                if (Program.Settings.EpisodesForm.Height > MinimumSize.Height)
                 {
-                    this.Height = Program.Settings.EpisodesForm.Height;
+                    Height = Program.Settings.EpisodesForm.Height;
                 }
                 else
                 {
-                    this.Height = this.MinimumSize.Height;
+                    Height = MinimumSize.Height;
                 }
             }
             else
             {
-                this.Left = Program.Settings.EpisodesForm.RestoreBounds.X;
-                this.Top = Program.Settings.EpisodesForm.RestoreBounds.Y;
+                Left = Program.Settings.EpisodesForm.RestoreBounds.X;
+                Top = Program.Settings.EpisodesForm.RestoreBounds.Y;
 
-                if (Program.Settings.EpisodesForm.RestoreBounds.Width > this.MinimumSize.Width)
+                if (Program.Settings.EpisodesForm.RestoreBounds.Width > MinimumSize.Width)
                 {
-                    this.Width = Program.Settings.EpisodesForm.RestoreBounds.Width;
+                    Width = Program.Settings.EpisodesForm.RestoreBounds.Width;
                 }
                 else
                 {
-                    this.Width = this.MinimumSize.Width;
+                    Width = MinimumSize.Width;
                 }
 
-                if (Program.Settings.EpisodesForm.RestoreBounds.Height > this.MinimumSize.Height)
+                if (Program.Settings.EpisodesForm.RestoreBounds.Height > MinimumSize.Height)
                 {
-                    this.Height = Program.Settings.EpisodesForm.RestoreBounds.Height;
+                    Height = Program.Settings.EpisodesForm.RestoreBounds.Height;
                 }
                 else
                 {
-                    this.Height = this.MinimumSize.Height;
+                    Height = MinimumSize.Height;
                 }
             }
 
             if (Program.Settings.EpisodesForm.WindowState != FormWindowState.Minimized)
             {
-                this.WindowState = Program.Settings.EpisodesForm.WindowState;
+                WindowState = Program.Settings.EpisodesForm.WindowState;
             }
         }
 
@@ -196,12 +196,12 @@
 
         private void OnEpisodeFormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.Settings.EpisodesForm.Left = this.Left;
-            Program.Settings.EpisodesForm.Top = this.Top;
-            Program.Settings.EpisodesForm.Width = this.Width;
-            Program.Settings.EpisodesForm.Height = this.Height;
-            Program.Settings.EpisodesForm.WindowState = this.WindowState;
-            Program.Settings.EpisodesForm.RestoreBounds = this.RestoreBounds;
+            Program.Settings.EpisodesForm.Left = Left;
+            Program.Settings.EpisodesForm.Top = Top;
+            Program.Settings.EpisodesForm.Width = Width;
+            Program.Settings.EpisodesForm.Height = Height;
+            Program.Settings.EpisodesForm.WindowState = WindowState;
+            Program.Settings.EpisodesForm.RestoreBounds = RestoreBounds;
         }
 
         private void OnScanEpisodesButtonClick(object sender, EventArgs e)
@@ -216,7 +216,7 @@
             {
                 try
                 {
-                    this.ScanRows(DataGridView.SelectedRows);
+                    ScanRows(DataGridView.SelectedRows);
                 }
                 catch (AggregateException ex)
                 {
@@ -235,9 +235,9 @@
 
         private void ScanRows(IEnumerable rows)
         {
-            this.StartLongAction();
+            StartLongAction();
 
-            this.SuspendLayout();
+            SuspendLayout();
 
             var episodes = new List<EpisodeInfo>();
 
@@ -260,25 +260,25 @@
 
                 try
                 {
-                    this.StartProgress(episodes.Count, Color.LightBlue);
+                    StartProgress(episodes.Count, Color.LightBlue);
 
                     foreach (var episode in episodes)
                     {
-                        this.ParseIMDb(episode);
+                        ParseIMDb(episode);
 
-                        this.SetProgress();
+                        SetProgress();
                     }
                 }
                 finally
                 {
-                    this.EndProgress();
+                    EndProgress();
                 }
             }
             finally
             {
                 Program.FlushPersonCache();
 
-                this.EndLongAction();
+                EndLongAction();
             }
 
             using (var castForm = new EpisodeForm(episodes))
@@ -289,7 +289,7 @@
 
         private void ParseIMDb(EpisodeInfo episode)
         {
-            var defaultValues = this.GetDefaultValues();
+            var defaultValues = GetDefaultValues();
 
             ParseCastAndCrew(episode.Link, true, true, true, true, ref episode.CastMatches, ref episode.CastList, ref episode.CrewMatches, ref episode.CrewList, ref episode.SoundtrackMatches);
 
@@ -297,7 +297,7 @@
 
             try
             {
-                this.ProcessLines(episode.CastList, episode.CastMatches, episode.CrewList, episode.CrewMatches, episode.SoundtrackMatches, defaultValues);
+                ProcessLines(episode.CastList, episode.CastMatches, episode.CrewList, episode.CrewMatches, episode.SoundtrackMatches, defaultValues);
             }
             finally
             {
@@ -319,7 +319,7 @@
             return compare;
         }
 
-        private void OnCloseButtonClick(object sender, EventArgs e) => this.Close();
+        private void OnCloseButtonClick(object sender, EventArgs e) => Close();
 
         private void OnSettingsToolStripMenuItemClick(object sender, EventArgs e)
         {
@@ -340,7 +340,7 @@
         {
             try
             {
-                this.ScanRows(DataGridView.Rows);
+                ScanRows(DataGridView.Rows);
             }
             catch (AggregateException ex)
             {

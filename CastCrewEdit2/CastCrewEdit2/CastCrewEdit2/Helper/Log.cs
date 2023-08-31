@@ -53,7 +53,7 @@
 
             using (var sw = new StreamWriter(file, false, Encoding.UTF8))
             {
-                sw.Write(this.ToString());
+                sw.Write(ToString());
             }
 
             webBrowser.Navigate(file);

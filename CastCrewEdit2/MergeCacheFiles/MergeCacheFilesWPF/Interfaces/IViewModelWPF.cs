@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
@@ -18,12 +17,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 
         ICommand ClearFileNamesCommand { get; }
 
-        Boolean TaskIsRunning { get; }
+        bool TaskIsRunning { get; }
 
-        Int32 ProgressMax { get; }
+        int ProgressMax { get; }
 
-        Int32 ProgressValue { get; }
+        int ProgressValue { get; }
 
-        Boolean ProgressInfinity { get; }
+        bool ProgressInfinity { get; }
     }
 }

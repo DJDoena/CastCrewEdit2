@@ -1,18 +1,17 @@
-﻿using System;
-using DoenaSoft.AbstractionLayer.IOServices;
+﻿using DoenaSoft.AbstractionLayer.IOServices;
 
 namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 {
     internal static class BackupHelper
     {
-        internal static void BackupFile(String fileName
+        internal static void BackupFile(string fileName
             , IIOServices ioServices)
         {
             if (ioServices.File.Exists(fileName))
             {
-                IFileInfo fi = ioServices.GetFileInfo(fileName);
+                var fi = ioServices.GetFileInfo(fileName);
 
-                String backupFile = fi.Name + ".bak";
+                var backupFile = fi.Name + ".bak";
 
                 backupFile = ioServices.Path.Combine(fi.FolderName, backupFile);
 

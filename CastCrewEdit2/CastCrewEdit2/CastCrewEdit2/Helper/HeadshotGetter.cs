@@ -19,7 +19,7 @@
 
         internal static void Get(bool useFakeBirthYears, bool isCast, Action<MessageEntry> addMessage, PersonInfo person)
         {
-            if (person.FirstName != FirstNames.Title 
+            if (person.FirstName != FirstNames.Title
                 && person.FirstName != FirstNames.Divider
                 && person.FirstName != FirstNames.GroupDividerStart
                 && person.FirstName != FirstNames.GroupDividerEnd)

@@ -39,21 +39,21 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         /// <summary>
         /// for access: only use the property to make sure it's thread-safe
         /// </summary>
-        private Boolean m_TaskIsRunning;
+        private bool m_TaskIsRunning;
 
         /// <summary>
         /// for access: only use the property to make sure it's thread-safe
         /// </summary>
-        private Int32 m_ProgressValue;
+        private int m_ProgressValue;
 
         /// <summary>
         /// for access: only use the property to make sure it's thread-safe
         /// </summary>
-        private Int32 m_ProgressMax;
+        private int m_ProgressMax;
 
-        private String m_SourceFile;
+        private string m_SourceFile;
 
-        private String m_TargetFile;
+        private string m_TargetFile;
 
         private ICancelableCommand m_ProcessCommand;
 
@@ -85,11 +85,11 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             FileHelper = new FileHelper(ioServices, uiServices);
             Synchronizer = new Synchronizer(Application.Current.Dispatcher);
 
-            m_SourceFile = String.Empty;
-            m_TargetFile = String.Empty;
+            m_SourceFile = string.Empty;
+            m_TargetFile = string.Empty;
             m_TaskIsRunning = false;
             m_ProgressValue = 0;
-            m_ProgressMax = Int32.MaxValue;
+            m_ProgressMax = int.MaxValue;
 
             Model.ProgressMaxChanged += OnModelProgressMaxChanged;
             Model.ProgressValueChanged += OnModelProgressValueChanged;
@@ -121,8 +121,8 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         public ICommand PauseCommand
             => (new RelayCommand(PauseProcess, CanExecutePause));
 
-        public Boolean ProgressIndeterminate
-            => (Synchronizer.InvokeOnUIThread(() => (m_ProgressMax == Int32.MaxValue)));
+        public bool ProgressIndeterminate
+            => (Synchronizer.InvokeOnUIThread(() => (m_ProgressMax == int.MaxValue)));
 
         public ICommand LoadSessionDataCommand
             => (new RelayCommand(LoadSessionData, CanExecute));
@@ -130,7 +130,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         public ICommand SaveSessionDataCommand
             => (new RelayCommand(SaveSessionData, CanExecute));
 
-        public Int32 ProgressMax
+        public int ProgressMax
         {
             get
             {
@@ -156,7 +156,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
         }
 
-        public Int32 ProgressValue
+        public int ProgressValue
         {
             get
             {
@@ -181,18 +181,18 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
         }
 
-        public String ProgressText
+        public string ProgressText
         {
             get
             {
-                Func<String> func = () =>
+                Func<string> func = () =>
                     {
-                        if ((TaskIsNotRunning) || (ProgressMax == Int32.MaxValue))
+                        if ((TaskIsNotRunning) || (ProgressMax == int.MaxValue))
                         {
-                            return (String.Empty);
+                            return (string.Empty);
                         }
 
-                        String remaining = RemainingTimeCalculator.Get(ProgressValue, ProgressMax);
+                        var remaining = RemainingTimeCalculator.Get(ProgressValue, ProgressMax);
 
                         return ($"{ProgressValue:#,##0} / {ProgressMax:#,##0}{remaining}");
                     };
@@ -207,7 +207,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         public ICommand SelectTargetFileCommand
             => (new RelayCommand(SelectTargetFile, CanExecute));
 
-        public String SourceFileName
+        public string SourceFileName
         {
             get
             {
@@ -224,7 +224,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
         }
 
-        public String TargetFileName
+        public string TargetFileName
         {
             get
             {
@@ -241,7 +241,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
         }
 
-        public Boolean TaskIsRunning
+        public bool TaskIsRunning
         {
             get
             {
@@ -267,22 +267,22 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
         }
 
-        public Boolean TaskIsNotRunning
+        public bool TaskIsNotRunning
             => (TaskIsRunning == false);
 
         #endregion
 
         #region CanExecute
 
-        private Boolean CanExecute()
+        private bool CanExecute()
             => (TaskIsNotRunning);
 
-        private Boolean CanExecuteProcess()
+        private bool CanExecuteProcess()
             => ((CanExecute())
-                && (String.IsNullOrEmpty(SourceFileName) == false)
-                && (String.IsNullOrEmpty(TargetFileName) == false));
+                && (string.IsNullOrEmpty(SourceFileName) == false)
+                && (string.IsNullOrEmpty(TargetFileName) == false));
 
-        private Boolean CanExecutePause()
+        private bool CanExecutePause()
             => ((TaskIsRunning) && (ProcessCommand.CancellationTokenSource?.IsCancellationRequested == false));
 
         #endregion
@@ -293,11 +293,11 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         private void SelectSourceFile()
         {
-            const String filter = "Cast file|cast*.xml|Crew file|crew*.xml";
+            const string filter = "Cast file|cast*.xml|Crew file|crew*.xml";
 
-            const String title = "Please select source cache file";
+            const string title = "Please select source cache file";
 
-            String fileName;
+            string fileName;
             if (FileHelper.ShowOpenFileDialog(SourceFileName, filter, title, out fileName))
             {
                 SourceFileName = fileName;
@@ -306,11 +306,11 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         private void SelectTargetFile()
         {
-            const String filter = "Cast file|cast*.xml|Crew file|crew*.xml";
+            const string filter = "Cast file|cast*.xml|Crew file|crew*.xml";
 
-            const String title = "Please select target cache file.";
+            const string title = "Please select target cache file.";
 
-            String fileName;
+            string fileName;
             if (FileHelper.ShowSaveFileDialog(TargetFileName, filter, title, out fileName))
             {
                 TargetFileName = fileName;
@@ -327,7 +327,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
             ProgressValue = 0;
 
-            ProgressMax = Int32.MaxValue;
+            ProgressMax = int.MaxValue;
 
             TaskIsRunning = true;
 
@@ -356,7 +356,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
             if (cancellationToken.IsCancellationRequested == false)
             {
-                String logFile = GetLogFileName();
+                var logFile = GetLogFileName();
 
                 BackupHelper.BackupFile(logFile, IOServices);
 
@@ -366,11 +366,11 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
         }
 
-        private String GetLogFileName()
+        private string GetLogFileName()
         {
-            IFileInfo fi = IOServices.GetFileInfo(TargetFileName);
+            var fi = IOServices.GetFileInfo(TargetFileName);
 
-            String logFile = fi.NameWithoutExtension + ".html";
+            var logFile = fi.NameWithoutExtension + ".html";
 
             logFile = IOServices.Path.Combine(fi.FolderName, logFile);
 
@@ -379,7 +379,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         #endregion
 
-        private Boolean ClearCachedData()
+        private bool ClearCachedData()
             => ((ProcessData.ProcessedPersons.Count == 0)
                 || (UIServices.ShowMessageBox("There is cached data from a previous run. Reset (yes) or continue (no)?", "Reset or continue?", Buttons.YesNo, Icon.Question) == Result.Yes));
 
@@ -390,7 +390,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         {
             if (ClearCachedData())
             {
-                IProcessDataForSerialization processData = FileHelper.LoadSessionData(SourceFileName);
+                var processData = FileHelper.LoadSessionData(SourceFileName);
 
                 if (processData != null)
                 {
@@ -428,19 +428,19 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         #region EventHandlers
 
-        private void OnPropertyChanged(String attribute)
+        private void OnPropertyChanged(string attribute)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(attribute));
         }
 
         private void OnModelProgressValueChanged(Object sender
-            , EventArgs<Int32> e)
+            , EventArgs<int> e)
         {
             ProgressValue = e.Value;
         }
 
         private void OnModelProgressMaxChanged(Object sender
-            , EventArgs<Int32> e)
+            , EventArgs<int> e)
         {
             if (e.Value >= 0)
             {
@@ -448,7 +448,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
             else
             {
-                ProgressMax = Int32.MaxValue;
+                ProgressMax = int.MaxValue;
             }
         }
 

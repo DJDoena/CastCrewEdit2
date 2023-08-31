@@ -23,9 +23,9 @@
         {
             using (var ms = new MemoryStream())
             {
-                this.Serialize(ms, instance);
+                Serialize(ms, instance);
 
-                string text = _encoding.GetString(ms.ToArray());
+                var text = _encoding.GetString(ms.ToArray());
 
                 return text;
             }

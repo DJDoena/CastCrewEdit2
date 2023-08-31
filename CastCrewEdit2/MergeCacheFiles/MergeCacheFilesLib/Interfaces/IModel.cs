@@ -4,11 +4,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 {
     public interface IModel
     {
-        String LeftFileName { get; set; }
+        string LeftFileName { get; set; }
 
-        String RightFileName { get; set; }
+        string RightFileName { get; set; }
 
-        String TargetFileName { get; set; }
+        string TargetFileName { get; set; }
 
         void SaveSettings();
 
@@ -16,8 +16,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 
         void MergeIntoThirdFile();
 
-        event EventHandler<EventArgs<Int32>> ProgressMaxChanged;
+        event EventHandler<EventArgs<int>> ProgressMaxChanged;
 
-        event EventHandler<EventArgs<Int32>> ProgressValueChanged;
+        event EventHandler<EventArgs<int>> ProgressValueChanged;
     }
 }

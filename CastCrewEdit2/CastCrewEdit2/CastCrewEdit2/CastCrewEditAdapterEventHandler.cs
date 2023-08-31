@@ -15,7 +15,7 @@
 
         public void Close()
         {
-            this.MainForm?.Close();
+            MainForm?.Close();
         }
 
         internal void RaiseCastCompleted(string xml)

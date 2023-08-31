@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using DoenaSoft.AbstractionLayer.Commands;
 
@@ -7,9 +6,9 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 {
     internal interface IMainViewModel : INotifyPropertyChanged
     {
-        String SourceFileName { get; }
+        string SourceFileName { get; }
 
-        String TargetFileName { get; }
+        string TargetFileName { get; }
 
         ICommand SelectSourceFileCommand { get; }
 
@@ -23,16 +22,16 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
         ICommand SaveSessionDataCommand { get; }
 
-        Boolean TaskIsRunning { get; }
+        bool TaskIsRunning { get; }
 
-        Boolean TaskIsNotRunning { get; }
+        bool TaskIsNotRunning { get; }
 
-        Int32 ProgressMax { get; }
+        int ProgressMax { get; }
 
-        Int32 ProgressValue { get; }
+        int ProgressValue { get; }
 
-        String ProgressText { get; }
+        string ProgressText { get; }
 
-        Boolean ProgressIndeterminate { get; }
+        bool ProgressIndeterminate { get; }
     }
 }

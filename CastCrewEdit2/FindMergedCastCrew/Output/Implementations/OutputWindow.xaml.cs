@@ -16,7 +16,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Output
         private void OnLoaded(Object sender
             , RoutedEventArgs e)
         {
-            IOutputViewModel viewModel = (IOutputViewModel)DataContext;
+            var viewModel = (IOutputViewModel)DataContext;
 
             WB.NavigateToString(viewModel.Source);
         }

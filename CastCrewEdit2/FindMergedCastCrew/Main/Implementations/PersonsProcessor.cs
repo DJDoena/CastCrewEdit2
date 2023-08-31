@@ -8,11 +8,11 @@ using DoenaSoft.DVDProfiler.CastCrewEdit2;
 
 namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 {
-    internal delegate Boolean TryGetValue(String key, out PersonInfo value);
+    internal delegate bool TryGetValue(string key, out PersonInfo value);
 
     internal sealed class PersonsProcessor : IPersonsProcessor
     {
-        const Int32 MaxTasks = 5;
+        private const int MaxTasks = 5;
 
         private readonly IProcessData ProcessData;
 
@@ -26,19 +26,19 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         private readonly Object UpdateLock;
 
-        private Dictionary<String, PersonInfo> PersonInfos { get; set; }
+        private Dictionary<string, PersonInfo> PersonInfos { get; set; }
 
-        private Int32 Step { get; set; }
+        private int Step { get; set; }
 
-        private Int32 ProgressMax { get; set; }
+        private int ProgressMax { get; set; }
 
-        private HashSet<String> Removals
+        private HashSet<string> Removals
             => (ProcessData.Removals);
 
-        private Dictionary<String, String> Updates
+        private Dictionary<string, string> Updates
             => (ProcessData.Updates);
 
-        private HashSet<String> ProcessedPersons
+        private HashSet<string> ProcessedPersons
             => (ProcessData.ProcessedPersons);
 
         public PersonsProcessor(IProcessData processData
@@ -57,9 +57,9 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         #region IPersonsProcessor
 
-        public event EventHandler<EventArgs<Int32>> ProgressMaxChanged;
+        public event EventHandler<EventArgs<int>> ProgressMaxChanged;
 
-        public event EventHandler<EventArgs<Int32>> ProgressValueChanged;
+        public event EventHandler<EventArgs<int>> ProgressValueChanged;
 
         public PersonInfos Process(PersonInfos persons)
         {
@@ -71,7 +71,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
             UpdateNewLinks();
 
-            PersonInfos personInfos = GetOutput();
+            var personInfos = GetOutput();
 
             return (personInfos);
         }
@@ -91,15 +91,15 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             FireProgressValueChanged(0);
         }
 
-        private Dictionary<String, PersonInfo> GetDictionary(PersonInfos list)
+        private Dictionary<string, PersonInfo> GetDictionary(PersonInfos list)
         {
-            Dictionary<String, PersonInfo> dict = new Dictionary<String, PersonInfo>(list.PersonInfoList.Length);
+            var dict = new Dictionary<string, PersonInfo>(list.PersonInfoList.Length);
 
-            List<PersonInfo> sorted = new List<PersonInfo>(list.PersonInfoList);
+            var sorted = new List<PersonInfo>(list.PersonInfoList);
 
             sorted.Sort((left, right) => right.LastModified.CompareTo(left.LastModified));
 
-            foreach (PersonInfo pi in sorted)
+            foreach (var pi in sorted)
             {
                 dict.Add(pi.PersonLink, pi);
             }
@@ -107,11 +107,11 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             return (dict);
         }
 
-        private Int32 GetStep()
+        private int GetStep()
         {
-            Int32 maxSteps = (ProgressMax > 10000) ? 1000 : 100;
+            var maxSteps = (ProgressMax > 10000) ? 1000 : 100;
 
-            Int32 step = 1;
+            var step = 1;
 
             if (ProgressMax > maxSteps)
             {
@@ -132,13 +132,13 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         private void Process()
         {
-            List<PersonInfo> personInfos = PersonInfos.Values.ToList();
+            var personInfos = PersonInfos.Values.ToList();
 
-            Int32 progress = 0;
+            var progress = 0;
 
-            for (Int32 personIndex = 0; personIndex < personInfos.Count;)
+            for (var personIndex = 0; personIndex < personInfos.Count;)
             {
-                Int32 previousProgress = progress;
+                var previousProgress = progress;
 
                 try
                 {
@@ -146,12 +146,12 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
                 }
                 catch (AggregateException aggrEx)
                 {
-                    Exception ex = aggrEx.InnerExceptions.First();
+                    var ex = aggrEx.InnerExceptions.First();
 
                     throw (new Exception(aggrEx.Message, ex));
                 }
 
-                for (Int32 i = previousProgress; i < progress; i++)
+                for (var i = previousProgress; i < progress; i++)
                 {
                     FireProgressValueChanged(i);
                 }
@@ -163,16 +163,16 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
         }
 
-        private Int32 RunTasks(List<PersonInfo> personInfos
-            , ref Int32 personIndex)
+        private int RunTasks(List<PersonInfo> personInfos
+            , ref int personIndex)
         {
-            Int32 maxCount = personInfos.Count;
+            var maxCount = personInfos.Count;
 
-            Int32 maxTasks = ((personIndex + MaxTasks - 1) < maxCount) ? MaxTasks : (maxCount - personIndex);
+            var maxTasks = ((personIndex + MaxTasks - 1) < maxCount) ? MaxTasks : (maxCount - personIndex);
 
-            List<Task> tasks = new List<Task>(MaxTasks);
+            var tasks = new List<Task>(MaxTasks);
 
-            for (Int32 taskIndex = 0; taskIndex < maxTasks; taskIndex++, personIndex++)
+            for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, personIndex++)
             {
                 TryRunTask(personInfos[personIndex], tasks);
             }
@@ -187,7 +187,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         {
             if (ProcessedPersons.Contains(personInfo.PersonLink) == false)
             {
-                Task task = ProcessPerson(personInfo);
+                var task = ProcessPerson(personInfo);
 
                 tasks.Add(task);
 
@@ -215,7 +215,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         private void RemoveOldDuplicates()
         {
-            foreach (String key in Removals)
+            foreach (var key in Removals)
             {
                 PersonInfos.Remove(key);
             }
@@ -223,13 +223,13 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         private void UpdateNewLinks()
         {
-            foreach (KeyValuePair<String, String> kvp in Updates)
+            foreach (var kvp in Updates)
             {
                 TryUpdateNewLink(kvp);
             }
         }
 
-        private void TryUpdateNewLink(KeyValuePair<String, String> update)
+        private void TryUpdateNewLink(KeyValuePair<string, string> update)
         {
             PersonInfo personInfo;
             if (PersonInfos.TryGetValue(update.Key, out personInfo))
@@ -238,7 +238,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
         }
 
-        private void UpdateNewLink(KeyValuePair<String, String> update
+        private void UpdateNewLink(KeyValuePair<string, string> update
             , PersonInfo personInfo)
         {
             PersonInfos.Remove(update.Key);
@@ -253,9 +253,9 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         private PersonInfos GetOutput()
         {
-            PersonInfos personInfos = new PersonInfos();
+            var personInfos = new PersonInfos();
 
-            List<PersonInfo> list = PersonInfos.Values.ToList();
+            var list = PersonInfos.Values.ToList();
 
             list.Sort(PersonInfo.CompareForSorting);
 
@@ -264,11 +264,11 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             return (personInfos);
         }
 
-        private void FireProgressValueChanged(Int32 value)
+        private void FireProgressValueChanged(int value)
         {
             if ((value % Step) == 0)
             {
-                ProgressValueChanged?.Invoke(this, new EventArgs<Int32>(value));
+                ProgressValueChanged?.Invoke(this, new EventArgs<int>(value));
             }
         }
 
@@ -276,12 +276,12 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         {
             Step = GetStep();
 
-            ProgressMaxChanged?.Invoke(this, new EventArgs<Int32>(ProgressMax));
+            ProgressMaxChanged?.Invoke(this, new EventArgs<int>(ProgressMax));
         }
 
         #region Delegates
 
-        private void AddRemoval(String link)
+        private void AddRemoval(string link)
         {
             lock (RemovalLock)
             {
@@ -289,14 +289,14 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
         }
 
-        private String AddUpdate(String oldLink
-            , String newLink)
+        private string AddUpdate(string oldLink
+            , string newLink)
         {
             lock (UpdateLock)
             {
-                String otherOldLink = Updates.Where(item => item.Value == newLink).FirstOrDefault().Key;
+                var otherOldLink = Updates.Where(item => item.Value == newLink).FirstOrDefault().Key;
 
-                if (String.IsNullOrEmpty(otherOldLink))
+                if (string.IsNullOrEmpty(otherOldLink))
                 {
                     Updates.Add(oldLink, newLink);
                 }

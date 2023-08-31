@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using DoenaSoft.DVDProfiler.CastCrewEdit2;
 
@@ -7,21 +6,21 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew
 {
     internal interface ILog
     {
-        Int32 Length { get; }
+        int Length { get; }
 
-        void AppendParagraph(String text
+        void AppendParagraph(string text
             , Color color);
 
         void Clear();
 
-        String CreateMultiplePersonOutput(IEnumerable<PersonInfo> persons);
+        string CreateMultiplePersonOutput(IEnumerable<PersonInfo> persons);
 
-        String CreatePersonOutput(PersonInfo person);
+        string CreatePersonOutput(PersonInfo person);
 
-        String CreatePersonLinkHtml(String personLink);
+        string CreatePersonLinkHtml(string personLink);
 
-        void FromString(String log);
+        void FromString(string log);
 
-        void Save(String fileName);
+        void Save(string fileName);
     }
 }

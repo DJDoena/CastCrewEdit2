@@ -5,9 +5,9 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 {
     internal interface IPersonsProcessor
     {
-        event EventHandler<EventArgs<Int32>> ProgressMaxChanged;
+        event EventHandler<EventArgs<int>> ProgressMaxChanged;
 
-        event EventHandler<EventArgs<Int32>> ProgressValueChanged;
+        event EventHandler<EventArgs<int>> ProgressValueChanged;
 
         PersonInfos Process(PersonInfos persons);
     }

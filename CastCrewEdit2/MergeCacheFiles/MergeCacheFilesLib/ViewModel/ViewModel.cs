@@ -35,7 +35,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 
         #region IViewModel Members
 
-        public virtual String LeftFileName
+        public virtual string LeftFileName
         {
             get
             {
@@ -47,7 +47,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        public virtual String RightFileName
+        public virtual string RightFileName
         {
             get
             {
@@ -59,7 +59,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        public virtual String TargetFileName
+        public virtual string TargetFileName
         {
             get
             {
@@ -71,23 +71,23 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        public virtual Boolean CanExecuteMerge()
+        public virtual bool CanExecuteMerge()
         {
-            return ((String.IsNullOrEmpty(LeftFileName) == false)
-                && (String.IsNullOrEmpty(RightFileName) == false));
+            return ((string.IsNullOrEmpty(LeftFileName) == false)
+                && (string.IsNullOrEmpty(RightFileName) == false));
         }
 
-        public virtual Boolean CanExecuteMergeIntoThirdFile()
+        public virtual bool CanExecuteMergeIntoThirdFile()
         {
             return ((CanExecuteMerge())
-                && (String.IsNullOrEmpty(TargetFileName) == false));
+                && (string.IsNullOrEmpty(TargetFileName) == false));
         }
 
-        public virtual Boolean CanExecuteClearFileNames()
+        public virtual bool CanExecuteClearFileNames()
         {
-            return ((String.IsNullOrEmpty(LeftFileName) == false)
-              || (String.IsNullOrEmpty(RightFileName) == false)
-              || (String.IsNullOrEmpty(TargetFileName)) == false);
+            return ((string.IsNullOrEmpty(LeftFileName) == false)
+              || (string.IsNullOrEmpty(RightFileName) == false)
+              || (string.IsNullOrEmpty(TargetFileName)) == false);
         }
 
         public void Save()
@@ -97,7 +97,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 
         public void SelectLeftFileName()
         {
-            String fileName;
+            string fileName;
 
             if (ShowOpenFileDialog(LeftFileName, out fileName))
             {
@@ -107,7 +107,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 
         public void SelectRightFileName()
         {
-            String fileName;
+            string fileName;
 
             if (ShowOpenFileDialog(RightFileName, out fileName))
             {
@@ -117,7 +117,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 
         public void SelectTargetFileName()
         {
-            String fileName;
+            string fileName;
 
             if (ShowSaveFileDialog(TargetFileName, out fileName))
             {
@@ -127,9 +127,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 
         public void ClearFileNames()
         {
-            LeftFileName = String.Empty;
-            RightFileName = String.Empty;
-            TargetFileName = String.Empty;
+            LeftFileName = string.Empty;
+            RightFileName = string.Empty;
+            TargetFileName = string.Empty;
         }
 
         public virtual void Merge()
@@ -171,8 +171,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        private Boolean ShowOpenFileDialog(String currentFileName
-            , out String fileName)
+        private bool ShowOpenFileDialog(string currentFileName
+            , out string fileName)
         {
             OpenFileDialogOptions options;
 
@@ -185,8 +185,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             return (UIServices.ShowOpenFileDialog(options, out fileName));
         }
 
-        private Boolean ShowSaveFileDialog(String currentFileName
-            , out String fileName)
+        private bool ShowSaveFileDialog(string currentFileName
+            , out string fileName)
         {
             SaveFileDialogOptions options;
 
@@ -202,13 +202,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             return (UIServices.ShowSaveFileDialog(options, out fileName));
         }
 
-        private String GetInitialDirectory(String fileName)
+        private string GetInitialDirectory(string fileName)
         {
-            String iniDir = null;
+            string iniDir = null;
 
-            if ((String.IsNullOrEmpty(fileName) == false) && (IOServices.File.Exists(fileName)))
+            if ((string.IsNullOrEmpty(fileName) == false) && (IOServices.File.Exists(fileName)))
             {
-                IFileInfo fi = IOServices.GetFileInfo(fileName);
+                var fi = IOServices.GetFileInfo(fileName);
 
                 iniDir = fi.FolderName + @"\";
             }

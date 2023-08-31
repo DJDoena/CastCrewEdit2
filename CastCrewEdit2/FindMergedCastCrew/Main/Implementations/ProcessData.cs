@@ -13,27 +13,27 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
         #region IProcessDataForSerialization
 
-        public String Log { get; set; }
+        public string Log { get; set; }
 
         #endregion
 
         #region IProcessData       
 
-        public HashSet<String> Removals { get; private set; }
+        public HashSet<string> Removals { get; private set; }
 
-        public Dictionary<String, String> Updates { get; private set; }
+        public Dictionary<string, string> Updates { get; private set; }
 
-        public HashSet<String> ProcessedPersons { get; private set; }
+        public HashSet<string> ProcessedPersons { get; private set; }
 
         public void Clear()
         {
             Log = null;
 
-            ProcessedPersons = new HashSet<String>();
+            ProcessedPersons = new HashSet<string>();
 
-            Removals = new HashSet<String>();
+            Removals = new HashSet<string>();
 
-            Updates = new Dictionary<String, String>();
+            Updates = new Dictionary<string, string>();
         }
 
         #endregion

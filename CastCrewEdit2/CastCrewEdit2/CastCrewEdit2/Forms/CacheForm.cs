@@ -15,16 +15,16 @@
         {
             _persons = persons;
 
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.Text = cacheName;
-            this.Icon = Properties.Resource.djdsoft;
+            Text = cacheName;
+            Icon = Properties.Resource.djdsoft;
         }
 
         private void OnFormLoad(object sender, EventArgs e)
         {
-            this.UseWaitCursor = true;
-            this.Cursor = Cursors.WaitCursor;
+            UseWaitCursor = true;
+            Cursor = Cursors.WaitCursor;
 
             var lastNameColumn = new DataGridViewTextBoxColumn()
             {
@@ -101,10 +101,10 @@
                 row.Cells["Type"].Value = person.Type;
             }
 
-            DataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
+            DataGridView.CellContentClick += OnDataGridViewCellContentClick;
 
-            this.Cursor = Cursors.Default;
-            this.UseWaitCursor = false;
+            Cursor = Cursors.Default;
+            UseWaitCursor = false;
         }
 
         private void OnDataGridViewCellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -115,6 +115,6 @@
             }
         }
 
-        private void OnCloseButtonClick(object sender, EventArgs e) => this.Close();
+        private void OnCloseButtonClick(object sender, EventArgs e) => Close();
     }
 }

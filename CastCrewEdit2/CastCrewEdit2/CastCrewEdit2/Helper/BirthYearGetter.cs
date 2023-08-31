@@ -324,7 +324,7 @@
             {
                 var person = (PersonInfo)(row.Tag);
 
-                if (!dict.TryGetValue(person.PersonLink, out List<DataGridViewRow> list))
+                if (!dict.TryGetValue(person.PersonLink, out var list))
                 {
                     list = new List<DataGridViewRow>(1);
 

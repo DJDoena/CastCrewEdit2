@@ -1,20 +1,18 @@
-﻿using System;
-
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 {
     public interface IViewModel
     {
-        String LeftFileName { get; }
+        string LeftFileName { get; }
 
-        String RightFileName { get; }
+        string RightFileName { get; }
 
-        String TargetFileName { get; }
+        string TargetFileName { get; }
 
-        Boolean CanExecuteMerge();
+        bool CanExecuteMerge();
 
-        Boolean CanExecuteMergeIntoThirdFile();
+        bool CanExecuteMergeIntoThirdFile();
 
-        Boolean CanExecuteClearFileNames();
+        bool CanExecuteClearFileNames();
 
         void Save();
 

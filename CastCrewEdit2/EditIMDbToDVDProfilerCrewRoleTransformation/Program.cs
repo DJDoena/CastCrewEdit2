@@ -11,24 +11,24 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
     {
         internal static Settings Settings;
 
-        private static readonly String SettingsFile;
+        private static readonly string SettingsFile;
 
-        private static readonly String ErrorFile;
+        private static readonly string ErrorFile;
 
         internal static IMDbToDVDProfilerCrewRoleTransformation TransformationData;
 
-        private static readonly String FileName;
+        private static readonly string FileName;
 
         private static readonly WindowHandle WindowHandle;
 
         static Program()
         {
-            String rootPath;
+            string rootPath;
 
             RegistryAccess.Init("Doena Soft.", "CastCrewEdit2");
             WindowHandle = new WindowHandle();
             rootPath = RegistryAccess.DataRootPath;
-            if (String.IsNullOrEmpty(rootPath))
+            if (string.IsNullOrEmpty(rootPath))
             {
                 rootPath = Application.StartupPath;
             }
@@ -42,7 +42,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
         /// The main entry point for the application.
         /// </summary>
         [STAThread()]
-        private static void Main(String[] args)
+        private static void Main(string[] args)
         {
             try
             {
@@ -129,7 +129,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
 
         private static void MoveFilesFromOldVersion()
         {
-            String settingsFile;
+            string settingsFile;
 
             settingsFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
                + "\\Doena Soft\\EditIMDbToDVDProfilerCrewRoleTransformation\\settings.xml";

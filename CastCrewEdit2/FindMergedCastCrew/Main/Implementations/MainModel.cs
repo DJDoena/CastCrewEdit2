@@ -21,9 +21,9 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         private CancellationToken CancellationToken { get; set; }
 
-        private String SourceFile { get; set; }
+        private string SourceFile { get; set; }
 
-        private String TargetFile { get; set; }
+        private string TargetFile { get; set; }
 
         private IProcessData ProcessData { get; set; }
 
@@ -38,12 +38,12 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         #region IMainModel
 
-        public event EventHandler<EventArgs<Int32>> ProgressMaxChanged;
+        public event EventHandler<EventArgs<int>> ProgressMaxChanged;
 
-        public event EventHandler<EventArgs<Int32>> ProgressValueChanged;
+        public event EventHandler<EventArgs<int>> ProgressValueChanged;
 
-        public void Process(String sourceFile
-            , String targetFile
+        public void Process(string sourceFile
+            , string targetFile
             , IProcessData processData
             , ILog log
             , CancellationToken cancellationToken)
@@ -110,7 +110,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
         }
 
-        private Boolean ReadCache(out PersonInfos personInfoList)
+        private bool ReadCache(out PersonInfos personInfoList)
         {
             personInfoList = null;
 
@@ -118,7 +118,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
             try
             {
-                using (Stream stream = IOServices.GetFileStream(SourceFile, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var stream = IOServices.GetFileStream(SourceFile, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     personInfoList = Serializer<PersonInfos>.Deserialize(stream);
                 }
@@ -145,7 +145,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
                 {
                     BackupHelper.BackupFile(TargetFile, IOServices);
 
-                    using (Stream stream = IOServices.GetFileStream(TargetFile, FileMode.Create, FileAccess.Write, FileShare.Read))
+                    using (var stream = IOServices.GetFileStream(TargetFile, FileMode.Create, FileAccess.Write, FileShare.Read))
                     {
                         Serializer<PersonInfos>.Serialize(stream, personInfos);
                     }
@@ -158,13 +158,13 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         }
 
         private void OnProcessorProgressValueChanged(Object sender
-            , EventArgs<Int32> e)
+            , EventArgs<int> e)
         {
             ProgressValueChanged?.Invoke(this, e);
         }
 
         private void OnProcessorProgressMaxChanged(Object sender
-            , EventArgs<Int32> e)
+            , EventArgs<int> e)
         {
             ProgressMaxChanged?.Invoke(this, e);
         }

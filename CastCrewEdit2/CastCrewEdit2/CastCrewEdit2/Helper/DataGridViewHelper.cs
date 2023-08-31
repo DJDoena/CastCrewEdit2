@@ -53,7 +53,7 @@
                 }
                 catch (AggregateException aggrEx)
                 {
-                    Exception ex = aggrEx.InnerExceptions.First();
+                    var ex = aggrEx.InnerExceptions.First();
 
                     throw ex;
                 }
@@ -171,7 +171,7 @@
                 }
                 catch (AggregateException aggrEx)
                 {
-                    Exception ex = aggrEx.InnerExceptions.First();
+                    var ex = aggrEx.InnerExceptions.First();
 
                     throw ex;
                 }
@@ -1417,7 +1417,7 @@
         {
             public DataGridViewDisableButtonColumn()
             {
-                this.CellTemplate = new DataGridViewDisableButtonCell();
+                CellTemplate = new DataGridViewDisableButtonCell();
             }
         }
 
@@ -1428,7 +1428,7 @@
             // By default, enable the button cell.
             public DataGridViewDisableButtonCell()
             {
-                this.Enabled = true;
+                Enabled = true;
             }
 
             // Override the Clone method so that the Enabled property is copied.
@@ -1436,7 +1436,7 @@
             {
                 var cell = (DataGridViewDisableButtonCell)(base.Clone());
 
-                cell.Enabled = this.Enabled;
+                cell.Enabled = Enabled;
 
                 return cell;
             }
@@ -1445,7 +1445,7 @@
             {
                 // The button cell is disabled, so paint the border,  
                 // background, and disabled button for the cell.
-                if (!this.Enabled)
+                if (!Enabled)
                 {
                     // Draw the cell background, if specified.
                     if ((paintParts & DataGridViewPaintParts.Background) == DataGridViewPaintParts.Background)
@@ -1460,13 +1460,13 @@
                     // Draw the cell borders, if specified.
                     if ((paintParts & DataGridViewPaintParts.Border) == DataGridViewPaintParts.Border)
                     {
-                        this.PaintBorder(graphics, clipBounds, cellBounds, cellStyle, advancedBorderStyle);
+                        PaintBorder(graphics, clipBounds, cellBounds, cellStyle, advancedBorderStyle);
                     }
 
                     // Calculate the area in which to draw the button.
                     var buttonArea = cellBounds;
 
-                    var buttonAdjustment = this.BorderWidths(advancedBorderStyle);
+                    var buttonAdjustment = BorderWidths(advancedBorderStyle);
 
                     buttonArea.X += buttonAdjustment.X;
                     buttonArea.Y += buttonAdjustment.Y;
@@ -1477,9 +1477,9 @@
                     ButtonRenderer.DrawButton(graphics, buttonArea, PushButtonState.Disabled);
 
                     // Draw the disabled button text. 
-                    if (this.FormattedValue is string)
+                    if (FormattedValue is string)
                     {
-                        TextRenderer.DrawText(graphics, (string)(this.FormattedValue), this.DataGridView.Font, buttonArea, SystemColors.GrayText);
+                        TextRenderer.DrawText(graphics, (string)(FormattedValue), DataGridView.Font, buttonArea, SystemColors.GrayText);
                     }
                 }
                 else

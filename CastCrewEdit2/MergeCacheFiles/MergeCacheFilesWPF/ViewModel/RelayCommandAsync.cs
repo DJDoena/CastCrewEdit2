@@ -7,7 +7,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
     internal sealed class RelayCommandAsync : RelayCommand
     {
         public RelayCommandAsync(Action executeCallback
-            , Func<Boolean> canExecuteCallback = null)
+            , Func<bool> canExecuteCallback = null)
             : base(executeCallback, canExecuteCallback)
         { }
 

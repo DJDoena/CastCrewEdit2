@@ -10,13 +10,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
     internal sealed class ViewModelWPF : ViewModel, IViewModelWPF
     {
         // for access only use the property to make sure it's thread-safe
-        private Boolean m_TaskIsRunning;
+        private bool m_TaskIsRunning;
 
         // for access only use the property to make sure it's thread-safe
-        private Int32 m_ProgressValue;
+        private int m_ProgressValue;
 
         // for access only use the property to make sure it's thread-safe
-        private Int32 m_ProgressMax;
+        private int m_ProgressMax;
 
         public ViewModelWPF(IUIServices uiServices
             , IIOServices ioServices
@@ -27,7 +27,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             model.ProgressValueChanged += OnModelProgressValueChanged;
             m_TaskIsRunning = false;
             m_ProgressValue = 0;
-            m_ProgressMax = Int32.MaxValue;
+            m_ProgressMax = int.MaxValue;
         }
 
         #region INotifyPropertyChanged Members
@@ -38,7 +38,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 
         #region IViewModel Members
 
-        public override String LeftFileName
+        public override string LeftFileName
         {
             get
             {
@@ -51,7 +51,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        public override String RightFileName
+        public override string RightFileName
         {
             get
             {
@@ -64,7 +64,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        public override String TargetFileName
+        public override string TargetFileName
         {
             get
             {
@@ -91,17 +91,17 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             UnsetTaskIsRunning();
         }
 
-        public override Boolean CanExecuteMerge()
+        public override bool CanExecuteMerge()
         {
             return ((CanExecute()) && (base.CanExecuteMerge()));
         }
 
-        public override Boolean CanExecuteMergeIntoThirdFile()
+        public override bool CanExecuteMergeIntoThirdFile()
         {
             return ((CanExecute()) && (base.CanExecuteMergeIntoThirdFile()));
         }
 
-        public override Boolean CanExecuteClearFileNames()
+        public override bool CanExecuteClearFileNames()
         {
             return ((CanExecute()) && (base.CanExecuteClearFileNames()));
         }
@@ -157,13 +157,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        public Boolean TaskIsRunning
+        public bool TaskIsRunning
         {
             get
             {
-                Func<Boolean> func;
+                Func<bool> func;
 
-                func = delegate()
+                func = delegate ()
                     {
                         return (m_TaskIsRunning);
                     };
@@ -173,14 +173,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                 }
                 else
                 {
-                    return (Application.Current.Dispatcher.Invoke<Boolean>(func));
+                    return (Application.Current.Dispatcher.Invoke<bool>(func));
                 }
             }
             set
             {
                 Action action;
 
-                action = delegate()
+                action = delegate ()
                     {
                         m_TaskIsRunning = value;
                         OnPropertyChanged("TaskIsRunning");
@@ -196,13 +196,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        public Int32 ProgressMax
+        public int ProgressMax
         {
             get
             {
-                Func<Int32> func;
+                Func<int> func;
 
-                func = delegate()
+                func = delegate ()
                     {
                         return (m_ProgressMax);
                     };
@@ -212,14 +212,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                 }
                 else
                 {
-                    return (Application.Current.Dispatcher.Invoke<Int32>(func));
+                    return (Application.Current.Dispatcher.Invoke<int>(func));
                 }
             }
             private set
             {
                 Action action;
 
-                action = delegate()
+                action = delegate ()
                     {
                         m_ProgressMax = value;
                         OnPropertyChanged("ProgressMax");
@@ -236,13 +236,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        public Int32 ProgressValue
+        public int ProgressValue
         {
             get
             {
-                Func<Int32> func;
+                Func<int> func;
 
-                func = delegate()
+                func = delegate ()
                     {
                         return (m_ProgressValue);
                     };
@@ -252,14 +252,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                 }
                 else
                 {
-                    return (Application.Current.Dispatcher.Invoke<Int32>(func));
+                    return (Application.Current.Dispatcher.Invoke<int>(func));
                 }
             }
             private set
             {
                 Action action;
 
-                action = delegate()
+                action = delegate ()
                     {
                         m_ProgressValue = value;
                         OnPropertyChanged("ProgressValue");
@@ -275,15 +275,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        public Boolean ProgressInfinity
+        public bool ProgressInfinity
         {
             get
             {
-                Func<Boolean> func;
+                Func<bool> func;
 
-                func = delegate()
+                func = delegate ()
                     {
-                        return (m_ProgressMax == Int32.MaxValue);
+                        return (m_ProgressMax == int.MaxValue);
                     };
                 if (Application.Current.Dispatcher.CheckAccess())
                 {
@@ -291,19 +291,19 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                 }
                 else
                 {
-                    return (Application.Current.Dispatcher.Invoke<Boolean>(func));
+                    return (Application.Current.Dispatcher.Invoke<bool>(func));
                 }
             }
         }
 
         #endregion
 
-        private void OnModelProgressValueChanged(Object sender, EventArgs<Int32> e)
+        private void OnModelProgressValueChanged(Object sender, EventArgs<int> e)
         {
             ProgressValue = e.Value;
         }
 
-        private void OnModelProgressMaxChanged(Object sender, EventArgs<Int32> e)
+        private void OnModelProgressMaxChanged(Object sender, EventArgs<int> e)
         {
             if (e.Value >= 0)
             {
@@ -311,11 +311,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
             else
             {
-                ProgressMax = Int32.MaxValue;
+                ProgressMax = int.MaxValue;
             }
         }
 
-        private void OnPropertyChanged(String attribute)
+        private void OnPropertyChanged(string attribute)
         {
             if (PropertyChanged != null)
             {
@@ -333,7 +333,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             TaskIsRunning = false;
         }
 
-        private Boolean CanExecute()
+        private bool CanExecute()
         {
             return (TaskIsRunning == false);
         }

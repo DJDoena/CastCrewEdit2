@@ -21,12 +21,12 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
         #region IFileHelper
 
-        public Boolean ShowOpenFileDialog(String suggestedFileName
-            , String filter
-            , String title
-            , out String fileName)
+        public bool ShowOpenFileDialog(string suggestedFileName
+            , string filter
+            , string title
+            , out string fileName)
         {
-            OpenFileDialogOptions options = new OpenFileDialogOptions();
+            var options = new OpenFileDialogOptions();
 
             options.CheckFileExists = true;
             options.Filter = filter;
@@ -35,17 +35,17 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
             options.Title = title;
             options.FileName = GetInitialFileName(suggestedFileName, true);
 
-            Boolean result = UIServices.ShowOpenFileDialog(options, out fileName);
+            var result = UIServices.ShowOpenFileDialog(options, out fileName);
 
             return (result);
         }
 
-        public Boolean ShowSaveFileDialog(String suggestedFileName
-            , String filter
-            , String title
-            , out String fileName)
+        public bool ShowSaveFileDialog(string suggestedFileName
+            , string filter
+            , string title
+            , out string fileName)
         {
-            SaveFileDialogOptions options = new SaveFileDialogOptions();
+            var options = new SaveFileDialogOptions();
 
             options.AddExtension = true;
             options.DefaultExt = ".xml";
@@ -57,16 +57,16 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
             options.Title = title;
             options.FileName = GetInitialFileName(suggestedFileName, false);
 
-            Boolean result = UIServices.ShowSaveFileDialog(options, out fileName);
+            var result = UIServices.ShowSaveFileDialog(options, out fileName);
 
             return (result);
         }
 
-        public IProcessDataForSerialization LoadSessionData(String fileName)
+        public IProcessDataForSerialization LoadSessionData(string fileName)
         {
-            const String filter = "Session cache file|*.cache";
+            const string filter = "Session cache file|*.cache";
 
-            const String title = "Please select session cache file";
+            const string title = "Please select session cache file";
 
             IProcessDataForSerialization processData = null;
 
@@ -87,12 +87,12 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
             return (processData);
         }
 
-        public void SaveSessionData(String fileName
+        public void SaveSessionData(string fileName
             , IProcessDataForSerialization processData)
         {
-            const String filter = "Session cache file|*.cache";
+            const string filter = "Session cache file|*.cache";
 
-            const String title = "Please select session cache file";
+            const string title = "Please select session cache file";
 
             fileName = SuggestSessionFileName(fileName);
 
@@ -104,13 +104,13 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
         #endregion
 
-        private String GetInitialDirectory(String fileName)
+        private string GetInitialDirectory(string fileName)
         {
-            String iniDir = null;
+            string iniDir = null;
 
-            if ((String.IsNullOrEmpty(fileName) == false) && (IOServices.File.Exists(fileName)))
+            if ((string.IsNullOrEmpty(fileName) == false) && (IOServices.File.Exists(fileName)))
             {
-                IFileInfo fi = IOServices.GetFileInfo(fileName);
+                var fi = IOServices.GetFileInfo(fileName);
 
                 iniDir = fi.FolderName + @"\";
             }
@@ -118,14 +118,14 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
             return (iniDir);
         }
 
-        private String GetInitialFileName(String fileName
-            , Boolean mustExist)
+        private string GetInitialFileName(string fileName
+            , bool mustExist)
         {
-            String iniFile = null;
+            string iniFile = null;
 
-            if (String.IsNullOrEmpty(fileName) == false)
+            if (string.IsNullOrEmpty(fileName) == false)
             {
-                IFileInfo fi = IOServices.GetFileInfo(fileName);
+                var fi = IOServices.GetFileInfo(fileName);
 
                 if ((mustExist == false) || (fi.Exists))
                 {
@@ -138,36 +138,36 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
         #region SessionData
 
-        private IProcessDataForSerialization TryLoadSessionData(String fileName)
+        private IProcessDataForSerialization TryLoadSessionData(string fileName)
         {
-            using (Stream fs = IOServices.GetFileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var fs = IOServices.GetFileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                BinaryFormatter bf = new BinaryFormatter();
+                var bf = new BinaryFormatter();
 
-                IProcessDataForSerialization processData = (IProcessDataForSerialization)(bf.Deserialize(fs));
+                var processData = (IProcessDataForSerialization)(bf.Deserialize(fs));
 
                 return (processData);
             }
         }
 
-        private void CommenceSaveSessionData(String fileName
+        private void CommenceSaveSessionData(string fileName
             , IProcessDataForSerialization processData)
         {
-            using (Stream fs = IOServices.GetFileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
+            using (var fs = IOServices.GetFileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
             {
-                BinaryFormatter bf = new BinaryFormatter();
+                var bf = new BinaryFormatter();
 
                 bf.Serialize(fs, processData);
             }
         }
 
-        private String SuggestSessionFileName(String currentFileName)
+        private string SuggestSessionFileName(string currentFileName)
         {
-            String fileName = String.Empty;
+            var fileName = string.Empty;
 
-            if (String.IsNullOrEmpty(currentFileName) == false)
+            if (string.IsNullOrEmpty(currentFileName) == false)
             {
-                IFileInfo fi = IOServices.GetFileInfo(currentFileName);
+                var fi = IOServices.GetFileInfo(currentFileName);
 
                 fileName = fi.NameWithoutExtension + ".cache";
 

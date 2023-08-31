@@ -20,17 +20,17 @@ namespace UnitTests
     {
         private static readonly WindowHandle s_WindowHandle = new WindowHandle();
 
-        private const String Winnetou = "tt0057687";
-        private const String EmmaWatson = "nm0914612";
-        private const String AlexanderRhodes = "nm4659673";
-        //private const String Tamara = "nm0848453";
-        private const String ThisIsSpinalTap = "tt0088258";
-        private const String Ferdinand = "tt1307254";
-        private const String Yojimbo = "tt0055630";
-        private const String HotShots = "tt0102059";
-        private const String LoveIsTheDrug = "tt0266732";
-        private const String FridayNightLights = "tt0758745";
-        private const String ABiggerSplash = "tt2056771";
+        private const string Winnetou = "tt0057687";
+        private const string EmmaWatson = "nm0914612";
+        private const string AlexanderRhodes = "nm4659673";
+        //private const string Tamara = "nm0848453";
+        private const string ThisIsSpinalTap = "tt0088258";
+        private const string Ferdinand = "tt1307254";
+        private const string Yojimbo = "tt0055630";
+        private const string HotShots = "tt0102059";
+        private const string LoveIsTheDrug = "tt0266732";
+        private const string FridayNightLights = "tt0758745";
+        private const string ABiggerSplash = "tt2056771";
         private const string Roots = "tt4338588";
 
         [STAThread]
@@ -86,7 +86,7 @@ namespace UnitTests
         private static void MovieCastABiggerSplash()
         {
             List<Match> castMatches;
-            Int32 progressBarMaxValue;
+            int progressBarMaxValue;
             List<CastInfo> castList;
             FileInfo existing;
             FileInfo current;
@@ -100,7 +100,7 @@ namespace UnitTests
         private static void MovieCastHotShots()
         {
             List<Match> castMatches;
-            Int32 progressBarMaxValue;
+            int progressBarMaxValue;
             List<CastInfo> castList;
             FileInfo existing;
             FileInfo current;
@@ -114,7 +114,7 @@ namespace UnitTests
         private static void MovieCrewHotShots()
         {
             List<KeyValuePair<Match, List<Match>>> crewMatches;
-            Int32 progressBarMaxValue;
+            int progressBarMaxValue;
             List<CrewInfo> crewList;
             FileInfo existing;
             FileInfo current;
@@ -167,7 +167,7 @@ namespace UnitTests
         {
             List<CrewInfo> crewList;
             List<KeyValuePair<Match, List<Match>>> crewMatches;
-            Int32 progressBarMaxValue;
+            int progressBarMaxValue;
             FileInfo existing;
             FileInfo current;
 
@@ -194,7 +194,7 @@ namespace UnitTests
         {
             List<CrewInfo> crewList;
             List<KeyValuePair<Match, List<Match>>> crewMatches;
-            Int32 progressBarMaxValue;
+            int progressBarMaxValue;
             FileInfo existing;
             FileInfo current;
 
@@ -208,7 +208,7 @@ namespace UnitTests
         private static void MovieCastWinnetou()
         {
             List<Match> castMatches;
-            Int32 progressBarMaxValue;
+            int progressBarMaxValue;
             List<CastInfo> castList;
             FileInfo existing;
             FileInfo current;
@@ -230,7 +230,7 @@ namespace UnitTests
         {
             Dictionary<string, List<SoundtrackMatch>> matches;
             List<CrewInfo> crewList;
-            Int32 progressBarMaxValue;
+            int progressBarMaxValue;
             FileInfo existing;
             FileInfo current;
 
@@ -317,10 +317,10 @@ namespace UnitTests
             }
         }
 
-        private static void Goofs(String key)
+        private static void Goofs(string key)
         {
             Program.Settings.DefaultValues.DownloadGoofs = true;
-            using (MainForm mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
+            using (var mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
             {
                 Type mainFormType;
                 FieldInfo fieldInfo;
@@ -337,13 +337,13 @@ namespace UnitTests
                 fieldInfo = mainFormType.GetField("GoofsTextBox", BindingFlags.Instance | BindingFlags.NonPublic);
                 Assert.IsNotNull(fieldInfo, "fieldInfo");
                 goofsTextBox = (TextBox)(fieldInfo.GetValue(mainForm));
-                using (StreamWriter sw = new StreamWriter(@"Current\" + key + ".goofs.txt", false, Encoding.UTF8))
+                using (var sw = new StreamWriter(@"Current\" + key + ".goofs.txt", false, Encoding.UTF8))
                 {
                     sw.Write(goofsTextBox.Text);
                 }
-                using (StreamReader sr = new StreamReader(@"Existing\" + key + ".goofs.txt", Encoding.UTF8))
+                using (var sr = new StreamReader(@"Existing\" + key + ".goofs.txt", Encoding.UTF8))
                 {
-                    String existing;
+                    string existing;
 
                     existing = sr.ReadToEnd();
                     Assert.AreEqual(existing.Length, goofsTextBox.Text.Length, "goofsTextBox.Text.Length");
@@ -351,10 +351,10 @@ namespace UnitTests
             }
         }
 
-        private static void Trivia(String key)
+        private static void Trivia(string key)
         {
             Program.Settings.DefaultValues.DownloadTrivia = true;
-            using (MainForm mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
+            using (var mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
             {
                 Type mainFormType;
                 FieldInfo fieldInfo;
@@ -371,13 +371,13 @@ namespace UnitTests
                 fieldInfo = mainFormType.GetField("TriviaTextBox", BindingFlags.Instance | BindingFlags.NonPublic);
                 Assert.IsNotNull(fieldInfo, "fieldInfo");
                 triviaTextBox = (TextBox)(fieldInfo.GetValue(mainForm));
-                using (StreamWriter sw = new StreamWriter(@"Current\" + key + ".trivia.txt", false, Encoding.UTF8))
+                using (var sw = new StreamWriter(@"Current\" + key + ".trivia.txt", false, Encoding.UTF8))
                 {
                     sw.Write(triviaTextBox.Text);
                 }
-                using (StreamReader sr = new StreamReader(@"Existing\" + key + ".trivia.txt", Encoding.UTF8))
+                using (var sr = new StreamReader(@"Existing\" + key + ".trivia.txt", Encoding.UTF8))
                 {
-                    String existing;
+                    string existing;
 
                     existing = sr.ReadToEnd();
                     Assert.AreEqual(existing.Length, triviaTextBox.Text.Length, "triviaTextBox.Text.Length");
@@ -391,7 +391,7 @@ namespace UnitTests
 
             episodes = new List<EpisodeInfo>(1);
             episodes.Add(episodeInfo);
-            using (EpisodesForm episodesForm = new EpisodesForm(episodes))
+            using (var episodesForm = new EpisodesForm(episodes))
             {
                 Type episodesFormType;
                 MethodInfo methodInfo;
@@ -425,7 +425,7 @@ namespace UnitTests
 
             episodes = new List<EpisodeInfo>(1);
             episodes.Add(episodeInfo);
-            using (EpisodesForm episodesForm = new EpisodesForm(episodes))
+            using (var episodesForm = new EpisodesForm(episodes))
             {
                 Type episodesFormType;
                 MethodInfo methodInfo;
@@ -463,14 +463,14 @@ namespace UnitTests
             }
         }
 
-        private static void MovieCrew(String key
+        private static void MovieCrew(string key
             , out List<KeyValuePair<Match, List<Match>>> crewMatches
             , out List<CrewInfo> crewList
-            , out Int32 progressBarMaxValue
+            , out int progressBarMaxValue
             , out FileInfo existing
             , out FileInfo current)
         {
-            DefaultValues defaultValues = new DefaultValues();
+            var defaultValues = new DefaultValues();
 
             defaultValues.ParseCrew = true;
             defaultValues.CapitalizeCustomRole = true;
@@ -489,7 +489,7 @@ namespace UnitTests
             defaultValues.RetainOriginalCredit = true;
             defaultValues.CheckPersonLinkForRedirect = false;
 
-            using (MainForm mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
+            using (var mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
             {
                 Type mainFormType;
                 MethodInfo methodInfo;
@@ -523,8 +523,8 @@ namespace UnitTests
                 crewMatches = (List<KeyValuePair<Match, List<Match>>>)(parameters[7]);
                 crewList = (List<CrewInfo>)(parameters[8]);
                 mainForm._progressMax = 0;
-                mainForm._progressInterval = Int32.MaxValue;
-                foreach (KeyValuePair<Match, List<Match>> kvp in crewMatches)
+                mainForm._progressInterval = int.MaxValue;
+                foreach (var kvp in crewMatches)
                 {
                     mainForm._progressMax += kvp.Value.Count;
                 }
@@ -545,10 +545,10 @@ namespace UnitTests
             }
         }
 
-        private static void MovieCast(String key
+        private static void MovieCast(string key
             , out List<Match> castMatches
             , out List<CastInfo> castList
-            , out Int32 progressBarMaxValue
+            , out int progressBarMaxValue
             , out FileInfo existing
             , out FileInfo current)
         {
@@ -566,7 +566,7 @@ namespace UnitTests
             defaultValues.ParseVoiceOf = true;
             defaultValues.RetainCastCreditedAs = true;
             defaultValues.CheckPersonLinkForRedirect = false;
-            using (MainForm mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
+            using (var mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
             {
                 Type mainFormType;
                 MethodInfo methodInfo;
@@ -600,7 +600,7 @@ namespace UnitTests
                 castMatches = (List<Match>)(parameters[5]);
                 castList = (List<CastInfo>)(parameters[6]);
                 mainForm._progressMax = castMatches.Count;
-                mainForm._progressInterval = Int32.MaxValue;
+                mainForm._progressInterval = int.MaxValue;
                 mainForm._progressBar = new ColorProgressBar();
                 mainForm._progressBar.Minimum = 0;
                 mainForm._progressBar.Maximum = mainForm._progressMax;
@@ -618,10 +618,10 @@ namespace UnitTests
             }
         }
 
-        private static void Soundtrack(String key
+        private static void Soundtrack(string key
             , out Dictionary<string, List<SoundtrackMatch>> matches
             , out List<CrewInfo> crewList
-            , out Int32 progressBarMaxValue
+            , out int progressBarMaxValue
             , out FileInfo existing, out FileInfo current)
         {
             MethodInfo methodInfo;
@@ -634,10 +634,10 @@ namespace UnitTests
             matches = (Dictionary<string, List<SoundtrackMatch>>)(methodInfo.Invoke(null, new Object[] { key }));
             Assert.IsNotNull(matches, "matches");
 
-            using (MainForm mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
+            using (var mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))
             {
                 mainForm._progressMax = 0;
-                mainForm._progressInterval = Int32.MaxValue;
+                mainForm._progressInterval = int.MaxValue;
                 foreach (var kvp in matches)
                 {
                     mainForm._progressMax += kvp.Value.Count;
@@ -665,20 +665,20 @@ namespace UnitTests
         private static CrewMember ConvertCrew(CrewInfo crewInfo)
         {
             CrewMember crewMember;
-            Int32 birthYear;
+            int birthYear;
 
             crewMember = new CrewMember();
             crewMember.LastName = crewInfo.LastName;
             crewMember.FirstName = crewInfo.FirstName;
             crewMember.MiddleName = crewInfo.MiddleName;
-            if (Int32.TryParse(crewInfo.BirthYear, out birthYear))
+            if (int.TryParse(crewInfo.BirthYear, out birthYear))
             {
                 crewMember.BirthYear = birthYear;
             }
             crewMember.CreditedAs = crewInfo.CreditedAs;
             crewMember.CreditSubtype = crewInfo.CreditSubtype;
             crewMember.CreditType = crewInfo.CreditType;
-            if (String.IsNullOrEmpty(crewInfo.CustomRole) == false)
+            if (string.IsNullOrEmpty(crewInfo.CustomRole) == false)
             {
                 crewMember.CustomRole = crewInfo.CustomRole;
                 crewMember.CustomRoleSpecified = true;
@@ -689,24 +689,24 @@ namespace UnitTests
         private static CastMember ConvertCast(CastInfo castInfo)
         {
             CastMember castMember;
-            Int32 birthYear;
+            int birthYear;
 
             castMember = new CastMember();
             castMember.LastName = castInfo.LastName;
             castMember.FirstName = castInfo.FirstName;
             castMember.MiddleName = castInfo.MiddleName;
-            if (Int32.TryParse(castInfo.BirthYear, out birthYear))
+            if (int.TryParse(castInfo.BirthYear, out birthYear))
             {
                 castMember.BirthYear = birthYear;
             }
             castMember.CreditedAs = castInfo.CreditedAs;
             castMember.Role = castInfo.Role;
-            castMember.Uncredited = Boolean.Parse(castInfo.Uncredited);
-            castMember.Voice = Boolean.Parse(castInfo.Voice);
+            castMember.Uncredited = bool.Parse(castInfo.Uncredited);
+            castMember.Voice = bool.Parse(castInfo.Voice);
             return (castMember);
         }
 
-        private static FileInfo GetHeadshot(String key)
+        private static FileInfo GetHeadshot(string key)
         {
             PersonInfo personInfo;
             FileInfo fileInfo;
@@ -717,20 +717,20 @@ namespace UnitTests
             return (fileInfo);
         }
 
-        private static void CreateMockWebResponse(String baseUrl, String key, String appendix)
+        private static void CreateMockWebResponse(string baseUrl, string key, string appendix)
         {
-            String targetUrl;
+            string targetUrl;
             IWebResponse webResponse;
-            String fileName;
+            string fileName;
 
             targetUrl = baseUrl + key;
             fileName = @"Current\" + key;
             if (appendix != null)
             {
-                String fileAppendix;
+                string fileAppendix;
 
                 fileAppendix = appendix;
-                foreach (Char c in Path.GetInvalidFileNameChars())
+                foreach (var c in Path.GetInvalidFileNameChars())
                 {
                     fileAppendix = fileAppendix.Replace(c, '_');
                 }
@@ -739,13 +739,13 @@ namespace UnitTests
             }
             fileName += ".html.txt";
             webResponse = OnlineAccess.GetSystemSettingsWebResponseAsync(targetUrl).GetAwaiter().GetResult();
-            using (Stream webStream = webResponse.GetResponseStream())
+            using (var webStream = webResponse.GetResponseStream())
             {
-                using (StreamReader sr = new StreamReader(webStream, IMDbParser.Encoding))
+                using (var sr = new StreamReader(webStream, IMDbParser.Encoding))
                 {
-                    using (FileStream fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
+                    using (var fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
                     {
-                        using (StreamWriter sw = new StreamWriter(fileStream, IMDbParser.Encoding))
+                        using (var sw = new StreamWriter(fileStream, IMDbParser.Encoding))
                         {
                             sw.Write(sr.ReadToEnd());
                         }
@@ -756,7 +756,7 @@ namespace UnitTests
             webResponse.Close();
         }
 
-        private static void CreateMockWebResponse(String baseUrl, String key)
+        private static void CreateMockWebResponse(string baseUrl, string key)
         {
             CreateMockWebResponse(baseUrl, key, null);
         }

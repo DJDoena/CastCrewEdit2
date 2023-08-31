@@ -7,7 +7,7 @@ internal interface ILogger
         , PersonInfo newPerson);
 
     void LogChange(PersonInfo oldPerson
-        , String newLink);
+        , string newLink);
 
     void LogException(Exception exception, PersonInfo person);
 }

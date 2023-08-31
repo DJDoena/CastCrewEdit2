@@ -10,7 +10,7 @@
 
     public sealed class Log : ILog
     {
-        private const String PersonUrl = @"http://www.imdb.com/name/";
+        private const string PersonUrl = @"http://www.imdb.com/name/";
 
         private readonly StringBuilder LogBuilder;
 
@@ -29,7 +29,7 @@
 
         #region ILog
 
-        public Int32 Length
+        public int Length
         {
             get
             {
@@ -40,10 +40,10 @@
             }
         }
 
-        public void AppendParagraph(String text
+        public void AppendParagraph(string text
             , Color color)
         {
-            String rgb = GetRgb(color);
+            var rgb = GetRgb(color);
 
             lock (Lock)
             {
@@ -64,13 +64,13 @@
             }
         }
 
-        public String CreateMultiplePersonOutput(IEnumerable<PersonInfo> persons)
+        public string CreateMultiplePersonOutput(IEnumerable<PersonInfo> persons)
         {
-            StringBuilder nameList = new StringBuilder();
+            var nameList = new StringBuilder();
 
-            foreach (PersonInfo item in persons)
+            foreach (var item in persons)
             {
-                String name = CreatePersonOutput(item, persons);
+                var name = CreatePersonOutput(item, persons);
 
                 nameList.Append(name);
             }
@@ -78,26 +78,26 @@
             return (nameList.ToString());
         }
 
-        public String CreatePersonOutput(PersonInfo person)
+        public string CreatePersonOutput(PersonInfo person)
             => (CreatePersonOutput(person, null));
 
-        public String CreatePersonLinkHtml(String personLink)
+        public string CreatePersonLinkHtml(string personLink)
             => ($"<a href=\"{PersonUrl}{personLink}/\" target=\"_blank\">{personLink}</a>");
 
-        public void Save(String fileName)
+        public void Save(string fileName)
         {
-            using (Stream fs = IOServices.GetFileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
+            using (var fs = IOServices.GetFileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
             {
-                using (StreamWriter sr = new StreamWriter(fs, Encoding.UTF8))
+                using (var sr = new StreamWriter(fs, Encoding.UTF8))
                 {
-                    String text = ToString();
+                    var text = ToString();
 
                     sr.Write(text);
                 }
             }
         }
 
-        public void FromString(String log)
+        public void FromString(string log)
         {
             lock (Lock)
             {
@@ -109,10 +109,10 @@
 
         #endregion
 
-        private String CreatePersonOutput(PersonInfo person
+        private string CreatePersonOutput(PersonInfo person
             , IEnumerable<PersonInfo> others)
         {
-            StringBuilder name = new StringBuilder();
+            var name = new StringBuilder();
 
             name.Append(CreatePersonLinkHtml(person));
             name.Append(": ");
@@ -121,10 +121,10 @@
             return (name.ToString());
         }
 
-        private String CreatePersonLinkHtml(PersonInfo person)
+        private string CreatePersonLinkHtml(PersonInfo person)
             => (CreatePersonLinkHtml(person.PersonLink));
 
-        public override String ToString()
+        public override string ToString()
         {
             lock (Lock)
             {
@@ -132,7 +132,7 @@
             }
         }
 
-        private static String GetRgb(Color color)
+        private static string GetRgb(Color color)
             => ($"#{color.R:X2}{color.G:X2}{color.B:X2}");
     }
 }

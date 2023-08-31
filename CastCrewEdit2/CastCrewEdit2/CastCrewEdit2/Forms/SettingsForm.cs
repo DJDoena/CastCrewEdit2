@@ -24,9 +24,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             _showCrewOptions = crewOptions;
 
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.Icon = Properties.Resource.djdsoft;
+            Icon = Properties.Resource.djdsoft;
         }
 
         public void SetValues(int left, int top, DefaultValues defaultValues)
@@ -157,29 +157,29 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
             DebugModeCheckBox.Checked = Program.DebugMode;
 
-            this.OnEpisodeFormatChanged(null, null);
+            OnEpisodeFormatChanged(null, null);
 
-            this.OnParseCastCheckBoxCheckedChanged(null, null);
+            OnParseCastCheckBoxCheckedChanged(null, null);
 
-            this.OnParseCrewCheckBoxCheckedChanged(null, null);
+            OnParseCrewCheckBoxCheckedChanged(null, null);
 
-            this.OnTakeBirthYearFromLocalPersonCacheCheckBoxCheckedChanged(null, null);
+            OnTakeBirthYearFromLocalPersonCacheCheckBoxCheckedChanged(null, null);
         }
 
         private void OnCancelButtonClick(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
 
-            this.Close();
+            Close();
         }
 
         private void OnAcceptButtonClick(object sender, EventArgs e)
         {
-            this.SaveDataSettings();
+            SaveDataSettings();
 
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
 
-            this.Close();
+            Close();
         }
 
         private void SaveDataSettings()
@@ -243,11 +243,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void OnSettingsFormLoad(object sender, EventArgs e)
         {
-            this.Left = _formLeft;
+            Left = _formLeft;
 
-            this.Top = _formTop;
+            Top = _formTop;
 
-            this.LoadDataSettings();
+            LoadDataSettings();
 
             if (!_showCastOptions)
             {
@@ -267,9 +267,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
 
         private void OnSettingsFormClosing(object sender, FormClosingEventArgs e)
         {
-            _formLeft = this.Left;
+            _formLeft = Left;
 
-            _formTop = this.Top;
+            _formTop = Top;
         }
 
         private void OnTakeBirthYearFromLocalPersonCacheCheckBoxCheckedChanged(object sender, EventArgs e)

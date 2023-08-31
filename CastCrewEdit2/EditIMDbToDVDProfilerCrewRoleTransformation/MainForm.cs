@@ -1,16 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Net;
-using System.Xml.Serialization;
-using System.Reflection;
-using DoenaSoft.DVDProfiler.DVDProfilerXML;
-using System.IO;
-using System.Diagnostics;
 using DoenaSoft.DVDProfiler.CastCrewEdit2;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 
@@ -20,27 +10,27 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
     {
         private static class ColumnNames
         {
-            public static String IMDbCreditType = "IMDb Category";
-            public static String DVDProfilerCreditType = "DVD Profiler Category";
-            public static String IMDbCreditSubtype = "IMDb Role";
-            public static String DVDProfilerCreditSubtype = "DVD Profiler Role";
-            public static String DVDProfilerCustomRole = "DVD Profiler CustomRole";
-            public static String StartsWith = "Starts With";
+            public static string IMDbCreditType = "IMDb Category";
+            public static string DVDProfilerCreditType = "DVD Profiler Category";
+            public static string IMDbCreditSubtype = "IMDb Role";
+            public static string DVDProfilerCreditSubtype = "DVD Profiler Role";
+            public static string DVDProfilerCustomRole = "DVD Profiler CustomRole";
+            public static string StartsWith = "Starts With";
         }
 
-        private Boolean SkipVersionCheck;
-        private Int32 PreviousRow = -1;
+        private readonly bool SkipVersionCheck;
+        private int PreviousRow = -1;
         private List<DoenaSoft.DVDProfiler.CastCrewEdit2.CreditType> CreditTypes;
-        private Boolean IsInit = false;
-        private Boolean NeedToSave = false;
-        private Boolean NewCreditTypeRow = false;
-        private Boolean CellChangeOnNewCreditTypeRow = false;
+        private bool IsInit = false;
+        private bool NeedToSave = false;
+        private bool NewCreditTypeRow = false;
+        private bool CellChangeOnNewCreditTypeRow = false;
 
-        public MainForm(Boolean skipVersionCheck)
+        public MainForm(bool skipVersionCheck)
         {
             SkipVersionCheck = skipVersionCheck;
             InitializeComponent();
-            this.Icon = Properties.Resource.djdsoft;
+            Icon = Properties.Resource.djdsoft;
         }
 
         private void OnMainFormLoad(Object sender, EventArgs e)
@@ -76,7 +66,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
             if (Program.TransformationData.CreditTypeList != null)
             {
                 CreditTypes = new List<CastCrewEdit2.CreditType>(Program.TransformationData.CreditTypeList);
-                foreach (CastCrewEdit2.CreditType creditType in CreditTypes)
+                foreach (var creditType in CreditTypes)
                 {
                     DataGridViewRow row;
 
@@ -125,7 +115,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                     }
                     else
                     {
-                        creditType.IMDbCreditType = String.Empty;
+                        creditType.IMDbCreditType = string.Empty;
                     }
                     if (creditTypeRow.Cells[ColumnNames.DVDProfilerCreditType].Value == null)
                     {
@@ -153,7 +143,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                         {
                             CellChangeOnNewCreditTypeRow = true;
                         }
-                        CreditTypes[e.RowIndex].IMDbCreditType = String.Empty;
+                        CreditTypes[e.RowIndex].IMDbCreditType = string.Empty;
                         CellChangeOnNewCreditTypeRow = false;
                     }
                 }
@@ -161,7 +151,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                 {
                     CreditTypes[e.RowIndex].DVDProfilerCreditType = CreditTypeDataGridView.Rows[e.RowIndex]
                         .Cells[ColumnNames.DVDProfilerCreditType].Value.ToString();
-                    for (Int32 i = 0; i < CreditSubtypeDataGridView.Rows.Count - 1; i++)
+                    for (var i = 0; i < CreditSubtypeDataGridView.Rows.Count - 1; i++)
                     {
                         DataGridViewRow creditSubtypeRow;
 
@@ -169,7 +159,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                         creditSubtypeRow.Cells[ColumnNames.DVDProfilerCreditSubtype].Value = null;
                     }
                     SetDropDownValues(CreditTypes[e.RowIndex]);
-                    for (Int32 i = 0; i < CreditSubtypeDataGridView.Rows.Count - 1; i++)
+                    for (var i = 0; i < CreditSubtypeDataGridView.Rows.Count - 1; i++)
                     {
                         DataGridViewRow creditSubtypeRow;
 
@@ -183,19 +173,19 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
         private void OnCreditTypeDataGridViewDefaultValuesNeeded(Object sender, DataGridViewRowEventArgs e)
         {
             NewCreditTypeRow = true;
-            e.Row.Cells[ColumnNames.IMDbCreditType].Value = String.Empty;
+            e.Row.Cells[ColumnNames.IMDbCreditType].Value = string.Empty;
             e.Row.Cells[ColumnNames.DVDProfilerCreditType].Value = CreditTypesDataGridViewHelper.CreditTypes.Direction;
             NewCreditTypeRow = false;
         }
 
         private void OnCreditSubtypeDataGridViewDefaultValuesNeeded(Object sender, DataGridViewRowEventArgs e)
         {
-            e.Row.Cells[ColumnNames.IMDbCreditSubtype].Value = String.Empty;
+            e.Row.Cells[ColumnNames.IMDbCreditSubtype].Value = string.Empty;
             if (PreviousRow != -1)
             {
                 e.Row.Cells[ColumnNames.DVDProfilerCreditSubtype].Value = CreditTypesDataGridViewHelper.CreditSubtypes.Custom;
             }
-            e.Row.Cells[ColumnNames.DVDProfilerCustomRole].Value = String.Empty;
+            e.Row.Cells[ColumnNames.DVDProfilerCustomRole].Value = string.Empty;
         }
 
         private void OnCreditTypeDataGridViewSelectionChanged(Object sender, EventArgs e)
@@ -215,14 +205,14 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
             if (creditTypeRow != null)
             {
                 CastCrewEdit2.CreditType creditType;
-                Boolean needToSave;
+                bool needToSave;
 
                 creditType = CreditTypes[creditTypeRow.Index];
                 needToSave = NeedToSave;
                 CreditSubtypeDataGridView.Rows.Clear();
                 NeedToSave = needToSave;
                 SetDropDownValues(creditType);
-                foreach (CastCrewEdit2.CreditSubtype creditSubtype in creditType.CreditSubtypeList)
+                foreach (var creditSubtype in creditType.CreditSubtypeList)
                 {
                     DataGridViewRow creditSubtypeRow;
 
@@ -233,7 +223,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                     }
                     else
                     {
-                        creditSubtypeRow.Cells[ColumnNames.IMDbCreditSubtype].Value = String.Empty;
+                        creditSubtypeRow.Cells[ColumnNames.IMDbCreditSubtype].Value = string.Empty;
                     }
                     creditSubtypeRow.Cells[ColumnNames.DVDProfilerCreditSubtype].Value = creditSubtype.DVDProfilerCreditSubtype;
                     if (creditSubtype.DVDProfilerCustomRole != null)
@@ -242,7 +232,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                     }
                     else
                     {
-                        creditSubtypeRow.Cells[ColumnNames.DVDProfilerCustomRole].Value = String.Empty;
+                        creditSubtypeRow.Cells[ColumnNames.DVDProfilerCustomRole].Value = string.Empty;
                     }
                     if (creditSubtype.IMDbCreditSubtype != null)
                     {
@@ -275,7 +265,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                 creditType = CreditTypes[PreviousRow];
                 creditType.CreditSubtypeList
                     = new CastCrewEdit2.CreditSubtype[CreditSubtypeDataGridView.RowCount - 1];
-                for (Int32 i = 0; i < CreditSubtypeDataGridView.Rows.Count - 1; i++)
+                for (var i = 0; i < CreditSubtypeDataGridView.Rows.Count - 1; i++)
                 {
                     DataGridViewRow creditSubtypeRow;
 
@@ -289,7 +279,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                     }
                     else
                     {
-                        creditType.CreditSubtypeList[i].IMDbCreditSubtype.Value = String.Empty;
+                        creditType.CreditSubtypeList[i].IMDbCreditSubtype.Value = string.Empty;
                     }
                     creditType.CreditSubtypeList[i].DVDProfilerCreditSubtype
                         = creditSubtypeRow.Cells[ColumnNames.DVDProfilerCreditSubtype].Value.ToString();
@@ -300,13 +290,13 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                     }
                     else
                     {
-                        creditType.CreditSubtypeList[i].DVDProfilerCustomRole = String.Empty;
+                        creditType.CreditSubtypeList[i].DVDProfilerCustomRole = string.Empty;
                     }
                     if (creditSubtypeRow.Cells[ColumnNames.StartsWith].Value != null)
                     {
-                        Boolean startsWith;
+                        bool startsWith;
 
-                        startsWith = Boolean.Parse(creditSubtypeRow.Cells[ColumnNames.StartsWith].Value.ToString());
+                        startsWith = bool.Parse(creditSubtypeRow.Cells[ColumnNames.StartsWith].Value.ToString());
                         if (startsWith)
                         {
                             creditType.CreditSubtypeList[i].IMDbCreditSubtype.StartsWith = true;
@@ -388,7 +378,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                 }
                 else if (result == DialogResult.Yes)
                 {
-                    for (Int32 i = CreditTypes.Count - 1; i >= 0; i--)
+                    for (var i = CreditTypes.Count - 1; i >= 0; i--)
                     {
                         if ((CreditTypes[i].CreditSubtypeList == null)
                             || (CreditTypes[i].CreditSubtypeList.Length == 0))

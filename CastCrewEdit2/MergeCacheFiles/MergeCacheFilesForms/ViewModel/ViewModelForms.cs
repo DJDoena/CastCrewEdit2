@@ -15,7 +15,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 
         #region IViewModel Members
 
-        public override String LeftFileName
+        public override string LeftFileName
         {
             get
             {
@@ -28,7 +28,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        public override String RightFileName
+        public override string RightFileName
         {
             get
             {
@@ -41,7 +41,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        public override String TargetFileName
+        public override string TargetFileName
         {
             get
             {

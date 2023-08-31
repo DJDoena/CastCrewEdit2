@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Output.Implementations
 {
@@ -10,11 +9,11 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Output.Implementations
             Source = GetSource(log);
         }
 
-        public String Source { get; private set; }
+        public string Source { get; private set; }
 
-        private String GetSource(ILog log)
+        private string GetSource(ILog log)
         {
-            StringBuilder html = new StringBuilder();
+            var html = new StringBuilder();
 
             html.AppendLine("<html>");
             html.AppendLine("<head>");

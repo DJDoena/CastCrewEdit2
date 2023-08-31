@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Output
+﻿namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Output
 {
     internal interface IOutputViewModel
     {
-        String Source { get; }
+        string Source { get; }
     }
 }

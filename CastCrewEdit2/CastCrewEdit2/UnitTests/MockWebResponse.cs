@@ -1,16 +1,15 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 
 namespace UnitTests
 {
     internal class MockWebResponse : WebResponse
     {
-        private String FileName { get; set; }
+        private string FileName { get; set; }
 
         private Stream FileStream { get; set; }
 
-        public MockWebResponse(String fileName)
+        public MockWebResponse(string fileName)
         {
             FileName = fileName;
         }

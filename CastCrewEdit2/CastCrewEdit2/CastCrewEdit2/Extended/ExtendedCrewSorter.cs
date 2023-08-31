@@ -19,27 +19,27 @@
 
             private ExtendedCrewDivider CrewDivider { get; set; }
 
-            internal object CrewEntry => this.CrewMember != null
-                ? (object)this.CrewMember
-                : this.CrewDivider;
+            internal object CrewEntry => CrewMember != null
+                ? (object)CrewMember
+                : CrewDivider;
 
             private CrewComparer(int episodeId, int groupId, int originalOrderId)
             {
-                this.EpisodeId = episodeId;
+                EpisodeId = episodeId;
 
-                this.GroupId = groupId;
+                GroupId = groupId;
 
-                this.OriginalOrderId = originalOrderId;
+                OriginalOrderId = originalOrderId;
             }
 
             internal CrewComparer(int episodeId, int groupId, int originalOrderId, ExtendedCrewMember crewMember) : this(episodeId, groupId, originalOrderId)
             {
-                this.CrewMember = crewMember;
+                CrewMember = crewMember;
             }
 
             internal CrewComparer(int episodeId, int groupId, int originalOrderId, ExtendedCrewDivider crewDivider) : this(episodeId, groupId, originalOrderId)
             {
-                this.CrewDivider = crewDivider;
+                CrewDivider = crewDivider;
             }
 
             public int CompareTo(CrewComparer other)
@@ -49,27 +49,27 @@
                     return 1;
                 }
 
-                var compare = this.EpisodeId.CompareTo(other.EpisodeId);
+                var compare = EpisodeId.CompareTo(other.EpisodeId);
 
                 if (compare != 0)
                 {
                     return compare;
                 }
-                compare = GetCompareValue(this.CrewEntry, other.CrewEntry);
-
-                if (compare != 0)
-                {
-                    return compare;
-                }
-
-                compare = this.GroupId.CompareTo(other.GroupId);
+                compare = GetCompareValue(CrewEntry, other.CrewEntry);
 
                 if (compare != 0)
                 {
                     return compare;
                 }
 
-                return this.OriginalOrderId.CompareTo(other.OriginalOrderId);
+                compare = GroupId.CompareTo(other.GroupId);
+
+                if (compare != 0)
+                {
+                    return compare;
+                }
+
+                return OriginalOrderId.CompareTo(other.OriginalOrderId);
             }
 
             private static int GetCompareValue(object left, object right)

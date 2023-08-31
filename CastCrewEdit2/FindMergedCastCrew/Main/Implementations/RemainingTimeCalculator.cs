@@ -18,34 +18,34 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
             StartTime = DateTime.Now;
         }
 
-        public String Get(Int32 value
-            , Int32 max)
+        public string Get(int value
+            , int max)
         {
             if (value == 0)
             {
-                return (String.Empty);
+                return (string.Empty);
             }
 
-            TimeSpan elapsed = DateTime.Now.Subtract(StartTime);
+            var elapsed = DateTime.Now.Subtract(StartTime);
 
-            Double complete = (elapsed.TotalSeconds / value) * max;
+            var complete = (elapsed.TotalSeconds / value) * max;
 
-            TimeSpan remaining = TimeSpan.FromSeconds(complete - elapsed.TotalSeconds);
+            var remaining = TimeSpan.FromSeconds(complete - elapsed.TotalSeconds);
 
-            String text = GetRemainingText(remaining);
+            var text = GetRemainingText(remaining);
 
             return (text);
         }
 
         #endregion
 
-        private static String GetRemainingText(TimeSpan remaining)
+        private static string GetRemainingText(TimeSpan remaining)
         {
-            Int32 days = remaining.Days;
+            var days = remaining.Days;
 
-            Int32 hours = remaining.Hours;
+            var hours = remaining.Hours;
 
-            Int32 minutes = (remaining.Seconds >= 30) ? (remaining.Minutes + 1) : remaining.Minutes;
+            var minutes = (remaining.Seconds >= 30) ? (remaining.Minutes + 1) : remaining.Minutes;
 
             if (minutes == 60)
             {
@@ -61,11 +61,11 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
                 hours = 0;
             }
 
-            String dayString = (days > 0) ? $"{days}d " : String.Empty;
+            var dayString = (days > 0) ? $"{days}d " : string.Empty;
 
-            String hourString = ((days > 0) || (hours > 0)) ? $"{hours}h " : String.Empty;
+            var hourString = ((days > 0) || (hours > 0)) ? $"{hours}h " : string.Empty;
 
-            String text = $" (est. {dayString}{hourString}{minutes}m remaining)";
+            var text = $" (est. {dayString}{hourString}{minutes}m remaining)";
 
             return (text);
         }

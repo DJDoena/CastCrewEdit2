@@ -17,72 +17,72 @@
         {
             _episodes = episodes;
 
-            this.InitializeComponent();
+            InitializeComponent();
 
             _progressBar = ProgressBar;
 
-            this.Icon = Properties.Resource.djdsoft;
+            Icon = Properties.Resource.djdsoft;
         }
 
         private void OnFormLoad(object sender, EventArgs e)
         {
-            this.SuspendLayout();
+            SuspendLayout();
 
-            this.LayoutForm();
+            LayoutForm();
 
-            this.CreateDataGridViewColumns();
+            CreateDataGridViewColumns();
 
-            this.SetCheckBoxes();
+            SetCheckBoxes();
 
-            this.ResumeLayout();
+            ResumeLayout();
 
-            this.RegisterEvents();
+            RegisterEvents();
 
             var resources = new ComponentResourceManager(typeof(EpisodeForm));
 
             if (!string.IsNullOrEmpty(_tvShowTitle))
             {
-                this.Text = resources.GetString("$this.Text") + " - " + _tvShowTitle;
+                Text = resources.GetString("$this.Text") + " - " + _tvShowTitle;
             }
             else
             {
-                this.Text = resources.GetString("$this.Text");
+                Text = resources.GetString("$this.Text");
             }
         }
 
         private void RegisterEvents()
         {
-            CastDataGridView.CellValueChanged += this.OnCastDataGridViewCellValueChanged;
-            CastDataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
+            CastDataGridView.CellValueChanged += OnCastDataGridViewCellValueChanged;
+            CastDataGridView.CellContentClick += OnDataGridViewCellContentClick;
 
-            CrewDataGridView.CellValueChanged += this.OnCrewDataGridViewCellValueChanged;
-            CrewDataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
+            CrewDataGridView.CellValueChanged += OnCrewDataGridViewCellValueChanged;
+            CrewDataGridView.CellContentClick += OnDataGridViewCellContentClick;
 
-            SettingsToolStripMenuItem.Click += this.OnSettingsToolStripMenuItemClick;
+            SettingsToolStripMenuItem.Click += OnSettingsToolStripMenuItemClick;
 
-            FirstnamePrefixesToolStripMenuItem.Click += this.OnFirstnamePrefixesToolStripMenuItemClick;
+            FirstnamePrefixesToolStripMenuItem.Click += OnFirstnamePrefixesToolStripMenuItemClick;
 
-            LastnamePrefixesToolStripMenuItem.Click += this.OnLastnamePrefixesToolStripMenuItemClick;
+            LastnamePrefixesToolStripMenuItem.Click += OnLastnamePrefixesToolStripMenuItemClick;
 
-            LastnameSuffixesToolStripMenuItem.Click += this.OnLastnameSuffixesToolStripMenuItemClick;
+            LastnameSuffixesToolStripMenuItem.Click += OnLastnameSuffixesToolStripMenuItemClick;
 
-            KnownNamesToolStripMenuItem.Click += this.OnKnownNamesToolStripMenuItemClick;
+            KnownNamesToolStripMenuItem.Click += OnKnownNamesToolStripMenuItemClick;
 
-            IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Click += this.OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick;
+            IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Click += OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick;
 
-            IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Click += this.OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick;
+            IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Click += OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick;
 
-            ForcedFakeBirthYearsToolStripMenuItem.Click += this.OnForcedFakeBirthYearsToolStripMenuItemClick;
+            ForcedFakeBirthYearsToolStripMenuItem.Click += OnForcedFakeBirthYearsToolStripMenuItemClick;
 
-            IMDbToDVDProfilerTransformationDataToolStripMenuItem.Click += this.OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick;
+            IMDbToDVDProfilerTransformationDataToolStripMenuItem.Click += OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick;
 
-            ReadmeToolStripMenuItem.Click += this.OnReadmeToolStripMenuItemClick;
+            ReadmeToolStripMenuItem.Click += OnReadmeToolStripMenuItemClick;
 
-            AboutToolStripMenuItem.Click += this.OnAboutToolStripMenuItemClick;
+            AboutToolStripMenuItem.Click += OnAboutToolStripMenuItemClick;
 
-            BirthYearsInLocalCacheLabel.LinkClicked += this.OnBirthYearsInLocalCacheLabelLinkClicked;
+            BirthYearsInLocalCacheLabel.LinkClicked += OnBirthYearsInLocalCacheLabelLinkClicked;
 
-            PersonsInLocalCacheLabel.LinkClicked += this.OnPersonsInLocalCacheLabelLinkClicked;
+            PersonsInLocalCacheLabel.LinkClicked += OnPersonsInLocalCacheLabelLinkClicked;
         }
 
         private void CreateDataGridViewColumns()
@@ -95,54 +95,54 @@
         {
             if (Program.Settings.EpisodeForm.WindowState == FormWindowState.Normal)
             {
-                this.Left = Program.Settings.EpisodeForm.Left;
-                this.Top = Program.Settings.EpisodeForm.Top;
+                Left = Program.Settings.EpisodeForm.Left;
+                Top = Program.Settings.EpisodeForm.Top;
 
-                if (Program.Settings.EpisodeForm.Width > this.MinimumSize.Width)
+                if (Program.Settings.EpisodeForm.Width > MinimumSize.Width)
                 {
-                    this.Width = Program.Settings.EpisodeForm.Width;
+                    Width = Program.Settings.EpisodeForm.Width;
                 }
                 else
                 {
-                    this.Width = this.MinimumSize.Width;
+                    Width = MinimumSize.Width;
                 }
 
-                if (Program.Settings.EpisodeForm.Height > this.MinimumSize.Height)
+                if (Program.Settings.EpisodeForm.Height > MinimumSize.Height)
                 {
-                    this.Height = Program.Settings.EpisodeForm.Height;
+                    Height = Program.Settings.EpisodeForm.Height;
                 }
                 else
                 {
-                    this.Height = this.MinimumSize.Height;
+                    Height = MinimumSize.Height;
                 }
             }
             else
             {
-                this.Left = Program.Settings.EpisodeForm.RestoreBounds.X;
-                this.Top = Program.Settings.EpisodeForm.RestoreBounds.Y;
+                Left = Program.Settings.EpisodeForm.RestoreBounds.X;
+                Top = Program.Settings.EpisodeForm.RestoreBounds.Y;
 
-                if (Program.Settings.EpisodeForm.RestoreBounds.Width > this.MinimumSize.Width)
+                if (Program.Settings.EpisodeForm.RestoreBounds.Width > MinimumSize.Width)
                 {
-                    this.Width = Program.Settings.EpisodeForm.RestoreBounds.Width;
+                    Width = Program.Settings.EpisodeForm.RestoreBounds.Width;
                 }
                 else
                 {
-                    this.Width = this.MinimumSize.Width;
+                    Width = MinimumSize.Width;
                 }
 
-                if (Program.Settings.EpisodeForm.RestoreBounds.Height > this.MinimumSize.Height)
+                if (Program.Settings.EpisodeForm.RestoreBounds.Height > MinimumSize.Height)
                 {
-                    this.Height = Program.Settings.EpisodeForm.RestoreBounds.Height;
+                    Height = Program.Settings.EpisodeForm.RestoreBounds.Height;
                 }
                 else
                 {
-                    this.Height = this.MinimumSize.Height;
+                    Height = MinimumSize.Height;
                 }
             }
 
             if (Program.Settings.EpisodeForm.WindowState != FormWindowState.Minimized)
             {
-                this.WindowState = Program.Settings.EpisodeForm.WindowState;
+                WindowState = Program.Settings.EpisodeForm.WindowState;
             }
         }
 
@@ -207,23 +207,23 @@
 
             CrewDataGridView.Rows.Clear();
 
-            this.CreateCastTitleRow();
+            CreateCastTitleRow();
 
-            this.CreateCrewTitleRow();
+            CreateCrewTitleRow();
 
             for (var episodeIndex = 0; episodeIndex < _episodes.Count; episodeIndex++)
             {
-                this.UpdateUI(_episodes[episodeIndex], episodeIndex == 0, episodeIndex == _episodes.Count - 1);
+                UpdateUI(_episodes[episodeIndex], episodeIndex == 0, episodeIndex == _episodes.Count - 1);
             }
         }
 
         private void UpdateUI(EpisodeInfo episode, bool isFirstDivider, bool isLastDivider)
         {
-            this.UpdateCastUI(episode, isFirstDivider, isLastDivider);
+            UpdateCastUI(episode, isFirstDivider, isLastDivider);
 
-            this.UpdateCrewUI(episode);
+            UpdateCrewUI(episode);
 
-            this.UpdateUI(episode.CastList, episode.CrewList, CastDataGridView, CrewDataGridView, ParseCastCheckBox.Checked, ParseCrewCheckBox.Checked, _tvShowTitleLink, _tvShowTitle);
+            UpdateUI(episode.CastList, episode.CrewList, CastDataGridView, CrewDataGridView, ParseCastCheckBox.Checked, ParseCrewCheckBox.Checked, _tvShowTitleLink, _tvShowTitle);
 
             if (_log.Length > 0)
             {
@@ -352,36 +352,36 @@
 
         private void OnCastFormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.Settings.EpisodeForm.Left = this.Left;
-            Program.Settings.EpisodeForm.Top = this.Top;
-            Program.Settings.EpisodeForm.Width = this.Width;
-            Program.Settings.EpisodeForm.Height = this.Height;
-            Program.Settings.EpisodeForm.WindowState = this.WindowState;
-            Program.Settings.EpisodeForm.RestoreBounds = this.RestoreBounds;
+            Program.Settings.EpisodeForm.Left = Left;
+            Program.Settings.EpisodeForm.Top = Top;
+            Program.Settings.EpisodeForm.Width = Width;
+            Program.Settings.EpisodeForm.Height = Height;
+            Program.Settings.EpisodeForm.WindowState = WindowState;
+            Program.Settings.EpisodeForm.RestoreBounds = RestoreBounds;
         }
 
-        private void OnCastGenerateButtonClick(object sender, EventArgs e) => this.GenerateCastXml(true);
+        private void OnCastGenerateButtonClick(object sender, EventArgs e) => GenerateCastXml(true);
 
-        private string GenerateCastXml(bool showMessageBox) => this.GenerateCastXml(CastDataGridView, _tvShowTitle, showMessageBox, LogWebBrowser);
+        private string GenerateCastXml(bool showMessageBox) => GenerateCastXml(CastDataGridView, _tvShowTitle, showMessageBox, LogWebBrowser);
 
-        private void OnCrewGenerateButtonClick(object sender, EventArgs e) => this.GenerateCrewXml(true);
+        private void OnCrewGenerateButtonClick(object sender, EventArgs e) => GenerateCrewXml(true);
 
-        private string GenerateCrewXml(bool showMessageBox) => this.GenerateCrewXml(CrewDataGridView, _tvShowTitle, showMessageBox, LogWebBrowser);
+        private string GenerateCrewXml(bool showMessageBox) => GenerateCrewXml(CrewDataGridView, _tvShowTitle, showMessageBox, LogWebBrowser);
 
-        private void OnCloseButtonClick(object sender, EventArgs e) => this.Close();
+        private void OnCloseButtonClick(object sender, EventArgs e) => Close();
 
         private void OnGetBirthYearsButtonClick(object sender, EventArgs e)
         {
-            this.GetBirthYears(false, CastDataGridView, CrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
+            GetBirthYears(false, CastDataGridView, CrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
 
-            this.ProcessMessageQueue();
+            ProcessMessageQueue();
         }
 
         private void OnFormShown(object sender, EventArgs e)
         {
-            this.StartLongAction();
+            StartLongAction();
 
-            this.FillRows();
+            FillRows();
 
             BirthYearsInLocalCacheLabel.Text = IMDbParser.PersonHashCount;
 
@@ -392,28 +392,28 @@
                 _log.Show(LogWebBrowser);
             }
 
-            this.EndLongActionWithGrids();
+            EndLongActionWithGrids();
 
             if (!Program.DefaultValues.DisableParsingCompleteMessageBox
                 && !Program.DefaultValues.GetBirthYearsDirectlyAfterNameParsing
                 && !Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
             {
-                this.ProcessMessageQueue();
+                ProcessMessageQueue();
 
                 MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             if (Program.DefaultValues.GetBirthYearsDirectlyAfterNameParsing)
             {
-                this.GetBirthYears(Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing, CastDataGridView, CrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
+                GetBirthYears(Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing, CastDataGridView, CrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
             }
 
             if (Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
             {
-                this.OnGetHeadshotsButtonClick(sender, e);
+                OnGetHeadshotsButtonClick(sender, e);
             }
 
-            this.ProcessMessageQueue();
+            ProcessMessageQueue();
 
             DataGridViewHelper.CopyCastToClipboard(CastDataGridView, _tvShowTitle, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage, true);
             DataGridViewHelper.CopyCrewToClipboard(CrewDataGridView, _tvShowTitle, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage, true);
@@ -421,7 +421,7 @@
 
         private void EndLongActionWithGrids()
         {
-            this.EndLongAction();
+            EndLongAction();
 
             CastDataGridView.Refresh();
 
@@ -440,7 +440,7 @@
 
                 if (settingsForm.ShowDialog(this) == DialogResult.OK)
                 {
-                    this.SetCheckBoxes();
+                    SetCheckBoxes();
 
                     _settingsHaveChanged = true;
                 }
@@ -451,9 +451,9 @@
 
         private void OnReApplySettingsAndFiltersButtonClick(object sender, EventArgs e)
         {
-            this.StartLongAction();
+            StartLongAction();
 
-            var defaultValues = this.GetDefaultValues();
+            var defaultValues = GetDefaultValues();
 
             var progressMax = 0;
 
@@ -472,37 +472,37 @@
                 }
             }
 
-            this.StartProgress(progressMax, Color.LightBlue);
+            StartProgress(progressMax, Color.LightBlue);
 
             foreach (var episode in _episodes)
             {
                 episode.CastList = new List<CastInfo>();
                 episode.CrewList = new List<CrewInfo>();
 
-                this.ProcessLines(episode.CastList, episode.CastMatches, episode.CrewList, episode.CrewMatches, episode.SoundtrackMatches, defaultValues);
+                ProcessLines(episode.CastList, episode.CastMatches, episode.CrewList, episode.CrewMatches, episode.SoundtrackMatches, defaultValues);
             }
 
-            this.FillRows();
+            FillRows();
 
             if (_log.Length > 0)
             {
                 _log.Show(LogWebBrowser);
             }
 
-            this.EndLongActionWithGrids();
+            EndLongActionWithGrids();
 
             if (!Program.DefaultValues.DisableParsingCompleteMessageBox
                 && !Program.DefaultValues.GetBirthYearsDirectlyAfterNameParsing
                 && !Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
             {
-                this.ProcessMessageQueue();
+                ProcessMessageQueue();
 
                 MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             if (Program.DefaultValues.GetBirthYearsDirectlyAfterNameParsing)
             {
-                this.GetBirthYears(Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing, CastDataGridView, CrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
+                GetBirthYears(Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing, CastDataGridView, CrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
             }
             else
             {
@@ -511,10 +511,10 @@
 
             if (Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
             {
-                this.GetHeadshots(CastDataGridView, CrewDataGridView, GetHeadshotsButton);
+                GetHeadshots(CastDataGridView, CrewDataGridView, GetHeadshotsButton);
             }
 
-            this.ProcessMessageQueue();
+            ProcessMessageQueue();
 
             DataGridViewHelper.CopyCastToClipboard(CastDataGridView, _tvShowTitle, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage, true);
             DataGridViewHelper.CopyCrewToClipboard(CrewDataGridView, _tvShowTitle, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage, true);
@@ -564,7 +564,7 @@
                 {
                     episode.CastList.RemoveAt(index);
 
-                    this.UpdateUI();
+                    UpdateUI();
 
                     break;
                 }
@@ -609,7 +609,7 @@
                         _episodes[index + 1] = temp;
                     }
 
-                    this.UpdateUI();
+                    UpdateUI();
                 }
                 else
                 {
@@ -624,7 +624,7 @@
 
                     if (index != -1)
                     {
-                        CastInfo temp = episode.CastList[index];
+                        var temp = episode.CastList[index];
 
                         if (up)
                         {
@@ -639,7 +639,7 @@
                             episode.CastList[index + 1] = temp;
                         }
 
-                        this.UpdateUI();
+                        UpdateUI();
 
                         break;
                     }
@@ -656,17 +656,17 @@
         {
             CastDataGridView.Rows.Clear();
 
-            this.CreateCastTitleRow();
+            CreateCastTitleRow();
 
             for (var episodeIndex = 0; episodeIndex < _episodes.Count; episodeIndex++)
             {
-                this.UpdateCastUI(_episodes[episodeIndex], episodeIndex == 0, episodeIndex == _episodes.Count - 1);
+                UpdateCastUI(_episodes[episodeIndex], episodeIndex == 0, episodeIndex == _episodes.Count - 1);
 
-                this.UpdateUI(_episodes[episodeIndex].CastList, null, CastDataGridView, null, true, false, _tvShowTitleLink, _tvShowTitle);
+                UpdateUI(_episodes[episodeIndex].CastList, null, CastDataGridView, null, true, false, _tvShowTitleLink, _tvShowTitle);
             }
         }
 
-        private void OnGetHeadshotsButtonClick(object sender, EventArgs e) => this.GetHeadshots(CastDataGridView, CrewDataGridView, GetHeadshotsButton);
+        private void OnGetHeadshotsButtonClick(object sender, EventArgs e) => GetHeadshots(CastDataGridView, CrewDataGridView, GetHeadshotsButton);
 
         private void OnLogWebBrowserNavigating(object sender, WebBrowserNavigatingEventArgs e)
         {
@@ -692,7 +692,7 @@
 
             _log.Show(LogWebBrowser);
 
-            this.ProcessMessageQueue();
+            ProcessMessageQueue();
 
             if (!Program.DefaultValues.DisableCopyingSuccessfulMessageBox)
             {
@@ -716,7 +716,7 @@
 
             _log.Show(LogWebBrowser);
 
-            this.ProcessMessageQueue();
+            ProcessMessageQueue();
 
             if (!Program.DefaultValues.DisableCopyingSuccessfulMessageBox)
             {
@@ -735,14 +735,14 @@
                     {
                         if (ParseCastCheckBox.Checked)
                         {
-                            var xml = this.GenerateCastXml(false);
+                            var xml = GenerateCastXml(false);
 
                             await CastCrewCopyPasteSender.Send(xml);
                         }
 
                         if (ParseCrewCheckBox.Checked)
                         {
-                            var xml = this.GenerateCrewXml(false);
+                            var xml = GenerateCrewXml(false);
 
                             await CastCrewCopyPasteSender.Send(xml);
                         }
@@ -752,11 +752,11 @@
                 {
                     if (TabControl.SelectedIndex == 0)
                     {
-                        this.OnCastGenerateButtonClick(this, EventArgs.Empty);
+                        OnCastGenerateButtonClick(this, EventArgs.Empty);
                     }
                     else if (TabControl.SelectedIndex == 1)
                     {
-                        this.OnCrewGenerateButtonClick(this, EventArgs.Empty);
+                        OnCrewGenerateButtonClick(this, EventArgs.Empty);
                     }
                 }
             }

@@ -5,14 +5,14 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 {
     internal interface IMainModel
     {
-        void Process(String sourceFile
-            , String targetFile
+        void Process(string sourceFile
+            , string targetFile
             , IProcessData processData
             , ILog log
             , CancellationToken cancellationToken);
 
-        event EventHandler<EventArgs<Int32>> ProgressMaxChanged;
+        event EventHandler<EventArgs<int>> ProgressMaxChanged;
 
-        event EventHandler<EventArgs<Int32>> ProgressValueChanged;
+        event EventHandler<EventArgs<int>> ProgressValueChanged;
     }
 }

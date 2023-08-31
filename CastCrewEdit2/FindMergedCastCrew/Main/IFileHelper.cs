@@ -1,22 +1,20 @@
-﻿using System;
-
-namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
+﻿namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 {
     internal interface IFileHelper
     {
-        Boolean ShowOpenFileDialog(String suggestedFileName
-            , String filter
-            , String title
-            , out String fileName);
+        bool ShowOpenFileDialog(string suggestedFileName
+            , string filter
+            , string title
+            , out string fileName);
 
-        Boolean ShowSaveFileDialog(String suggestedFileName
-            , String filter
-            , String title
-            , out String fileName);
+        bool ShowSaveFileDialog(string suggestedFileName
+            , string filter
+            , string title
+            , out string fileName);
 
-        IProcessDataForSerialization LoadSessionData(String sourceFileName);
+        IProcessDataForSerialization LoadSessionData(string sourceFileName);
 
-        void SaveSessionData(String sourceFileName
+        void SaveSessionData(string sourceFileName
             , IProcessDataForSerialization processData);
     }
 }

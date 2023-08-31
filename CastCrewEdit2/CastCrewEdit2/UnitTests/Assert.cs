@@ -6,11 +6,11 @@ namespace UnitTests
     [DebuggerStepThrough()]
     internal static class Assert
     {
-        internal static void AreEqual<T>(T expected, T actual, String parameterName) where T : struct
+        internal static void AreEqual<T>(T expected, T actual, string parameterName) where T : struct
         {
             if (expected.Equals(actual) == false)
             {
-                String message;
+                string message;
 
                 message = BuildErrorMessage(expected, actual, parameterName);
                 Debug.Assert(false, message);
@@ -18,39 +18,39 @@ namespace UnitTests
             }
         }
 
-        internal static void AreEqual(String expected, String actual, String parameterName)
+        internal static void AreEqual(string expected, string actual, string parameterName)
         {
             if (expected != actual)
             {
-                String message;
+                string message;
                 message = BuildErrorMessage(expected, actual, parameterName);
                 Debug.Assert(false, message);
                 throw (new AssertionException(message));
             }
         }
 
-        private static String BuildErrorMessage<T>(T expected, T actual, String parameterName)
+        private static string BuildErrorMessage<T>(T expected, T actual, string parameterName)
         {
-            String message;
+            string message;
             StackTrace stackTrace;
             StackFrame stackFrame;
 
             stackTrace = new StackTrace();
             stackFrame = stackTrace.GetFrame(2);
-            message = String.Format("{3}()\n{2} was wrong!\nExpected: <{0}>\nbut was: <{1}>", expected, actual, parameterName, stackFrame.GetMethod().Name);
+            message = string.Format("{3}()\n{2} was wrong!\nExpected: <{0}>\nbut was: <{1}>", expected, actual, parameterName, stackFrame.GetMethod().Name);
             return message;
         }
 
-        //internal static void AreEqual(String expected, String actual)
+        //internal static void AreEqual(string expected, string actual)
         //{
-        //    AreEqual(expected, actual, String.Empty);
+        //    AreEqual(expected, actual, string.Empty);
         //}
 
-        internal static void IsNotNull(Object obj, String parameterName)
+        internal static void IsNotNull(Object obj, string parameterName)
         {
             if (obj == null)
             {
-                String message;
+                string message;
 
                 message = BuildErrorMessage("not null", "null", parameterName);
                 Debug.Assert(false, message);
@@ -58,11 +58,11 @@ namespace UnitTests
             }
         }
 
-        internal static void IsNull(Object obj, String parameterName)
+        internal static void IsNull(Object obj, string parameterName)
         {
             if (obj != null)
             {
-                String message;
+                string message;
 
                 message = BuildErrorMessage("null", "not null", parameterName);
                 Debug.Assert(false, message);
@@ -70,11 +70,11 @@ namespace UnitTests
             }
         }
 
-        internal static void IsTrue(Boolean actual, String parameterName)
+        internal static void IsTrue(bool actual, string parameterName)
         {
             if (actual == false)
             {
-                String message;
+                string message;
 
                 message = BuildErrorMessage(true, actual, parameterName);
                 Debug.Assert(false, message);
@@ -90,7 +90,7 @@ namespace UnitTests
         {
         }
 
-        public AssertionException(String message)
+        public AssertionException(string message)
             : base(message)
         {
         }

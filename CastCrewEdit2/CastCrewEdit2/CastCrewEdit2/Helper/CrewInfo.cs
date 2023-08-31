@@ -22,9 +22,9 @@
 
     internal sealed class CrewResult : Tuple<List<CrewInfo>, int>
     {
-        public List<CrewInfo> CrewMembers => this.Item1;
+        public List<CrewInfo> CrewMembers => Item1;
 
-        public int MatchCount => this.Item2;
+        public int MatchCount => Item2;
 
         public CrewResult(List<CrewInfo> crewMembers, int matchCount) : base(crewMembers, matchCount)
         {

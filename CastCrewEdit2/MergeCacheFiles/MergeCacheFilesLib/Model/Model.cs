@@ -29,11 +29,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
         }
 
         #region IModel Members
-        public String LeftFileName { get; set; }
+        public string LeftFileName { get; set; }
 
-        public String RightFileName { get; set; }
+        public string RightFileName { get; set; }
 
-        public String TargetFileName { get; set; }
+        public string TargetFileName { get; set; }
 
         public void SaveSettings()
         {
@@ -51,7 +51,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             if (CheckPreconditions(out left, out right))
             {
                 PersonInfos leftList;
-                String fileName;
+                string fileName;
 
                 fileName = left.FullName;
                 if ((GetCache(fileName, out leftList)) && (CheckMergeEligibility(leftList, fileName)))
@@ -68,7 +68,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                         {
                             if (Serialize(right, targetList))
                             {
-                                m_UIServices.ShowMessageBox("Done.", String.Empty, Buttons.OK, Icon.Information);
+                                m_UIServices.ShowMessageBox("Done.", string.Empty, Buttons.OK, Icon.Information);
                             }
                         }
                     }
@@ -85,7 +85,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             if (CheckPreconditions(out left, out right, out target))
             {
                 PersonInfos leftList;
-                String fileName;
+                string fileName;
 
                 fileName = left.FullName;
                 if ((GetCache(fileName, out leftList)) && (CheckMergeEligibility(leftList, fileName)))
@@ -100,16 +100,16 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                         targetList = Merge(leftList, rightList);
                         if (Serialize(target, targetList))
                         {
-                            m_UIServices.ShowMessageBox("Done.", String.Empty, Buttons.OK, Icon.Information);
+                            m_UIServices.ShowMessageBox("Done.", string.Empty, Buttons.OK, Icon.Information);
                         }
                     }
                 }
             }
         }
 
-        public event EventHandler<EventArgs<Int32>> ProgressMaxChanged;
+        public event EventHandler<EventArgs<int>> ProgressMaxChanged;
 
-        public event EventHandler<EventArgs<Int32>> ProgressValueChanged;
+        public event EventHandler<EventArgs<int>> ProgressValueChanged;
         #endregion
 
         private void Load()
@@ -122,15 +122,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
         private PersonInfos Merge(PersonInfos leftList
             , PersonInfos rightList)
         {
-            Dictionary<String, PersonInfo> leftDict;
-            Dictionary<String, PersonInfo> rightDict;
-            Dictionary<String, PersonInfo> targetDict;
+            Dictionary<string, PersonInfo> leftDict;
+            Dictionary<string, PersonInfo> rightDict;
+            Dictionary<string, PersonInfo> targetDict;
             PersonInfos target;
             List<PersonInfo> list;
-            const Int32 Buffer = 1000;
-            Int32 progress;
-            Int32 maxProgress;
-            Int32 step;
+            const int Buffer = 1000;
+            int progress;
+            int maxProgress;
+            int step;
 
             leftDict = GetDictionary(leftList);
             rightDict = GetDictionary(rightList);
@@ -139,15 +139,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             FireProgressMaxChanged(maxProgress);
             if (leftDict.Count > rightDict.Count)
             {
-                targetDict = new Dictionary<String, PersonInfo>(leftDict.Count + Buffer);
+                targetDict = new Dictionary<string, PersonInfo>(leftDict.Count + Buffer);
             }
             else
             {
-                targetDict = new Dictionary<String, PersonInfo>(rightDict.Count + Buffer);
+                targetDict = new Dictionary<string, PersonInfo>(rightDict.Count + Buffer);
             }
             progress = 0;
             FireProgressValueChanged(progress, step);
-            foreach (KeyValuePair<String, PersonInfo> kvp in leftDict)
+            foreach (var kvp in leftDict)
             {
                 PersonInfo rightValue;
 
@@ -171,7 +171,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                 }
                 FireProgressValueChanged(progress, step);
             }
-            foreach (KeyValuePair<String, PersonInfo> kvp in rightDict)
+            foreach (var kvp in rightDict)
             {
                 targetDict.Add(kvp.Key, kvp.Value);
                 progress++;
@@ -179,7 +179,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
             progress = 0;
             FireProgressValueChanged(progress, step);
-            FireProgressMaxChanged(Int32.MinValue);
+            FireProgressMaxChanged(int.MinValue);
             list = new List<PersonInfo>(targetDict.Values);
             list.Sort(new Comparison<PersonInfo>(PersonInfo.CompareForSorting));
             target = new PersonInfos();
@@ -187,9 +187,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             return (target);
         }
 
-        private Int32 GetStep(Int32 maxProgress)
+        private int GetStep(int maxProgress)
         {
-            Int32 step;
+            int step;
 
             step = 1;
             if (maxProgress > 100)
@@ -203,12 +203,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             return (step);
         }
 
-        private void FireProgressMaxChanged(Int32 value)
+        private void FireProgressMaxChanged(int value)
         {
             FireProgressChanged(ProgressMaxChanged, value);
         }
 
-        private void FireProgressValueChanged(Int32 value, Int32 step)
+        private void FireProgressValueChanged(int value, int step)
         {
             if ((value % step) == 0)
             {
@@ -216,36 +216,36 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        private void FireProgressChanged(EventHandler<EventArgs<Int32>> handler, Int32 value)
+        private void FireProgressChanged(EventHandler<EventArgs<int>> handler, int value)
         {
             if (handler != null)
             {
-                handler(this, new EventArgs<Int32>(value));
+                handler(this, new EventArgs<int>(value));
             }
         }
 
-        private static Dictionary<String, PersonInfo> GetDictionary(PersonInfos list)
+        private static Dictionary<string, PersonInfo> GetDictionary(PersonInfos list)
         {
-            Dictionary<String, PersonInfo> dict;
+            Dictionary<string, PersonInfo> dict;
 
             if ((list.PersonInfoList != null)
                 && (list.PersonInfoList.Length > 0))
             {
-                dict = new Dictionary<String, PersonInfo>(list.PersonInfoList.Length);
-                foreach (PersonInfo pi in list.PersonInfoList)
+                dict = new Dictionary<string, PersonInfo>(list.PersonInfoList.Length);
+                foreach (var pi in list.PersonInfoList)
                 {
                     dict.Add(pi.PersonLink, pi);
                 }
             }
             else
             {
-                dict = new Dictionary<String, PersonInfo>(0);
+                dict = new Dictionary<string, PersonInfo>(0);
             }
             return (dict);
         }
 
-        private Boolean CheckMergeEligibility(PersonInfos list
-            , String fileName)
+        private bool CheckMergeEligibility(PersonInfos list
+            , string fileName)
         {
             if ((list.PersonInfoList != null)
                 && (list.PersonInfoList.Length > 0))
@@ -255,9 +255,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                 missingTags = list.PersonInfoList.Where(pi => pi.LastModifiedSpecified == false);
                 if (missingTags.Count() > 0)
                 {
-                    String text;
+                    string text;
 
-                    text = String.Format("'{0}' was not created with Cast/Crew Edit 2 v1.8.9.1 or higher!", fileName);
+                    text = string.Format("'{0}' was not created with Cast/Crew Edit 2 v1.8.9.1 or higher!", fileName);
                     m_UIServices.ShowMessageBox(text, "Error", Buttons.OK, Icon.Error);
                     return (false);
                 }
@@ -265,7 +265,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             return (true);
         }
 
-        private Boolean GetCache(String fileName
+        private bool GetCache(string fileName
             , out PersonInfos personInfoList)
         {
             personInfoList = null;
@@ -275,16 +275,16 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
             catch
             {
-                String text;
+                string text;
 
-                text = String.Format("Could not read '{0}'", fileName);
+                text = string.Format("Could not read '{0}'", fileName);
                 m_UIServices.ShowMessageBox(text, "Error", Buttons.OK, Icon.Error);
                 return (false);
             }
             return (true);
         }
 
-        private Boolean CheckPreconditions(out IFileInfo left
+        private bool CheckPreconditions(out IFileInfo left
             , out IFileInfo right
             , out IFileInfo target)
         {
@@ -327,13 +327,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             return (true);
         }
 
-        private IFileInfo GetFile(String fileName
-            , Boolean fileMustExist)
+        private IFileInfo GetFile(string fileName
+            , bool fileMustExist)
         {
             IFileInfo fi;
 
             fi = null;
-            if (String.IsNullOrEmpty(fileName) == false)
+            if (string.IsNullOrEmpty(fileName) == false)
             {
                 if (fileMustExist)
                 {
@@ -350,13 +350,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             return (fi);
         }
 
-        private Boolean CheckPreconditions(out IFileInfo left
+        private bool CheckPreconditions(out IFileInfo left
             , out IFileInfo right)
         {
             IFileInfo tempLeft;
             IFileInfo tempRight;
-            String leftFileName;
-            String rightFileName;
+            string leftFileName;
+            string rightFileName;
 
             left = null;
             right = null;
@@ -393,12 +393,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             return (true);
         }
 
-        private Boolean Serialize(IFileInfo fileInfo
+        private bool Serialize(IFileInfo fileInfo
             , PersonInfos targetList)
         {
             try
             {
-                String backupFile;
+                string backupFile;
 
                 backupFile = fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length);
                 backupFile += ".bak";
@@ -415,9 +415,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
             catch
             {
-                String text;
+                string text;
 
-                text = String.Format("Could not write '{0}'", fileInfo.FullName);
+                text = string.Format("Could not write '{0}'", fileInfo.FullName);
                 m_UIServices.ShowMessageBox(text, "Error", Buttons.OK, Icon.Error);
                 return (false);
             }

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 {
     internal interface IProcessData
     {
-        HashSet<String> Removals { get; }
+        HashSet<string> Removals { get; }
 
-        Dictionary<String, String> Updates { get; }
+        Dictionary<string, string> Updates { get; }
 
-        HashSet<String> ProcessedPersons { get; }
+        HashSet<string> ProcessedPersons { get; }
 
         void Clear();
     }

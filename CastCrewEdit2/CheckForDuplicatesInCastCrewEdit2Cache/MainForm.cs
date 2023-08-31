@@ -12,18 +12,18 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
 {
     public partial class MainForm : Form
     {
-        private readonly Boolean SkipVersionCheck;
+        private readonly bool SkipVersionCheck;
 
         private PersonInfos m_Cache;
 
-        private Boolean m_CacheHasChanged;
+        private bool m_CacheHasChanged;
 
-        public MainForm(Boolean skipVersionCheck)
+        public MainForm(bool skipVersionCheck)
         {
             SkipVersionCheck = skipVersionCheck;
             InitializeComponent();
-            this.Icon = Properties.Resource.djdsoft;
-            if ((String.IsNullOrEmpty(Settings.Default.CacheFile) == false) && (File.Exists(Settings.Default.CacheFile)))
+            Icon = Properties.Resource.djdsoft;
+            if ((string.IsNullOrEmpty(Settings.Default.CacheFile) == false) && (File.Exists(Settings.Default.CacheFile)))
             {
                 CacheFileTextBox.Text = Settings.Default.CacheFile;
             }
@@ -34,7 +34,7 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
         {
             if (CheckCacheChange())
             {
-                using (OpenFileDialog ofd = new OpenFileDialog())
+                using (var ofd = new OpenFileDialog())
                 {
                     ofd.CheckFileExists = true;
                     ofd.Filter = "Cast|Cast.xml|Crew|Crew.xml";
@@ -45,7 +45,7 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
                     {
                         ofd.InitialDirectory = Environment.CurrentDirectory + @"\Data";
                     }
-                    if (String.IsNullOrEmpty(Settings.Default.CacheFile) == false)
+                    if (string.IsNullOrEmpty(Settings.Default.CacheFile) == false)
                     {
                         FileInfo fi;
 
@@ -66,7 +66,7 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
         {
             if (CheckCacheChange())
             {
-                if (String.IsNullOrEmpty(CacheFileTextBox.Text) == false)
+                if (string.IsNullOrEmpty(CacheFileTextBox.Text) == false)
                 {
                     DifferentInParsingDataGridView.Rows.Clear();
                     DifferentBirthYearsDataGridView.Rows.Clear();
@@ -74,18 +74,18 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
                     EverythingIdenticalgDataGridView.Rows.Clear();
                     try
                     {
-                        Dictionary<String, List<PersonInfo>> cacheHash;
-                        Dictionary<String, List<PersonInfo>> cacheHash2;
+                        Dictionary<string, List<PersonInfo>> cacheHash;
+                        Dictionary<string, List<PersonInfo>> cacheHash2;
 
                         m_Cache = PersonInfos.Deserialize(CacheFileTextBox.Text);
                         m_CacheHasChanged = false;
-                        cacheHash = new Dictionary<String, List<PersonInfo>>(m_Cache.PersonInfoList.Length);
-                        cacheHash2 = new Dictionary<String, List<PersonInfo>>(m_Cache.PersonInfoList.Length);
+                        cacheHash = new Dictionary<string, List<PersonInfo>>(m_Cache.PersonInfoList.Length);
+                        cacheHash2 = new Dictionary<string, List<PersonInfo>>(m_Cache.PersonInfoList.Length);
                         if ((m_Cache != null) && (m_Cache.PersonInfoList != null) && (m_Cache.PersonInfoList.Length > 0))
                         {
-                            foreach (PersonInfo person in m_Cache.PersonInfoList)
+                            foreach (var person in m_Cache.PersonInfoList)
                             {
-                                String key;
+                                string key;
 
                                 key = person.FirstName + person.MiddleName + person.LastName + person.BirthYear;
                                 key = key.ToLower();
@@ -115,28 +115,28 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
             }
         }
 
-        private void CheckBirthYearDifferences(Dictionary<String, List<PersonInfo>> cacheHash)
+        private void CheckBirthYearDifferences(Dictionary<string, List<PersonInfo>> cacheHash)
         {
-            Boolean oddRow1;
-            Boolean oddRow2;
+            bool oddRow1;
+            bool oddRow2;
             List<List<PersonInfo>> list;
 
             oddRow1 = true;
             oddRow2 = true;
             list = new List<List<PersonInfo>>(cacheHash.Values);
             list.Sort(new Comparison<List<PersonInfo>>(SortList));
-            foreach (List<PersonInfo> personList in list)
+            foreach (var personList in list)
             {
                 if (personList.Count > 1)
                 {
-                    Boolean allHaveBirthYear;
-                    Boolean noneHaveBirthYear;
+                    bool allHaveBirthYear;
+                    bool noneHaveBirthYear;
 
                     allHaveBirthYear = true;
                     noneHaveBirthYear = true;
-                    foreach (PersonInfo person in personList)
+                    foreach (var person in personList)
                     {
-                        if (String.IsNullOrEmpty(person.BirthYear))
+                        if (string.IsNullOrEmpty(person.BirthYear))
                         {
                             allHaveBirthYear = false;
                         }
@@ -159,11 +159,11 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
             }
         }
 
-        private static Int32 SortList(List<PersonInfo> left, List<PersonInfo> right)
+        private static int SortList(List<PersonInfo> left, List<PersonInfo> right)
         {
             PersonInfo firstLeftPerson;
             PersonInfo firstRightPerson;
-            Int32 compare;
+            int compare;
 
             firstLeftPerson = left[0];
             firstRightPerson = right[0];
@@ -183,7 +183,7 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
             return (compare);
         }
 
-        private static Int32 CompareString(String left, String right)
+        private static int CompareString(string left, string right)
         {
             if (left == null)
             {
@@ -199,9 +199,9 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
             return (left.CompareTo(right));
         }
 
-        private static void FillRows(List<PersonInfo> personList, Boolean oddRow, DataGridView dataGridView, Boolean isEverythingGrid)
+        private static void FillRows(List<PersonInfo> personList, bool oddRow, DataGridView dataGridView, bool isEverythingGrid)
         {
-            foreach (PersonInfo person in personList)
+            foreach (var person in personList)
             {
                 DataGridViewRow row;
 
@@ -223,30 +223,30 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
             }
         }
 
-        private void CheckParsingDifferences(Dictionary<String, List<PersonInfo>> cacheHash)
+        private void CheckParsingDifferences(Dictionary<string, List<PersonInfo>> cacheHash)
         {
-            Boolean oddRow1;
-            Boolean oddRow2;
+            bool oddRow1;
+            bool oddRow2;
             List<List<PersonInfo>> list;
 
             oddRow1 = true;
             oddRow2 = true;
             list = new List<List<PersonInfo>>(cacheHash.Values);
             list.Sort(new Comparison<List<PersonInfo>>(SortList));
-            foreach (List<PersonInfo> personList in list)
+            foreach (var personList in list)
             {
                 if (personList.Count > 1)
                 {
-                    Boolean parsingDifference;
-                    String firstName;
-                    String middleName;
-                    String lastName;
+                    bool parsingDifference;
+                    string firstName;
+                    string middleName;
+                    string lastName;
 
                     firstName = personList[0].FirstName;
                     middleName = personList[0].MiddleName;
                     lastName = personList[0].LastName;
                     parsingDifference = false;
-                    for (Int32 i = 1; i < personList.Count; i++)
+                    for (var i = 1; i < personList.Count; i++)
                     {
                         if ((personList[i].FirstName != firstName)
                             || (personList[i].MiddleName != middleName)
@@ -350,20 +350,20 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
             else if ((e.ColumnIndex == 6) && (e.RowIndex != -1))
             {
                 List<PersonInfo> personInfos;
-                String imdbLink;
+                string imdbLink;
 
                 imdbLink = dataGridView.Rows[e.RowIndex].Cells["IMDbLink"].Value.ToString();
                 personInfos = new List<PersonInfo>(m_Cache.PersonInfoList);
-                for (Int32 i = 0; i < personInfos.Count; i++)
+                for (var i = 0; i < personInfos.Count; i++)
                 {
                     if (personInfos[i].PersonLink == imdbLink)
                     {
-                        if (MessageBox.Show(String.Format("Permanently remove {0} ({1}) from cache?", personInfos[i].ToString(), imdbLink)
+                        if (MessageBox.Show(string.Format("Permanently remove {0} ({1}) from cache?", personInfos[i].ToString(), imdbLink)
                             , "Remove?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            if (String.IsNullOrEmpty(personInfos[i].FakeBirthYear) == false)
+                            if (string.IsNullOrEmpty(personInfos[i].FakeBirthYear) == false)
                             {
-                                MessageBox.Show(String.Format("Warning: {0} has the fake birth year {1} assigned, which means he is probably in your DVD Profiler database!"
+                                MessageBox.Show(string.Format("Warning: {0} has the fake birth year {1} assigned, which means he is probably in your DVD Profiler database!"
                                     , personInfos[i].ToString(), personInfos[i].FakeBirthYear), "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             personInfos.RemoveAt(i);
@@ -384,7 +384,7 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
             }
         }
 
-        private Boolean CheckCacheChange()
+        private bool CheckCacheChange()
         {
             if (m_CacheHasChanged)
             {

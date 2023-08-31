@@ -56,25 +56,25 @@
 
         protected void OnBirthYearsInLocalCacheLabelLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
+            Cursor = Cursors.WaitCursor;
 
             var persons = new PersonInfo[IMDbParser.PersonHash.Keys.Count];
 
             IMDbParser.PersonHash.Keys.CopyTo(persons, 0);
 
-            this.ShowCache(new List<PersonInfo>(persons), "Local Birth Year Cache");
+            ShowCache(new List<PersonInfo>(persons), "Local Birth Year Cache");
         }
 
         protected void OnPersonsInLocalCacheLabelLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
+            Cursor = Cursors.WaitCursor;
 
             var persons = new PersonInfo[Program.PersonCacheCount];
 
             Program.CastCache.Values.CopyTo(persons, 0);
             Program.CrewCache.Values.CopyTo(persons, Program.CastCache.Values.Count);
 
-            this.ShowCache(new List<PersonInfo>(persons), "Local Person Cache");
+            ShowCache(new List<PersonInfo>(persons), "Local Person Cache");
         }
 
         protected string GenerateCastXml(DataGridView castDataGridView, string title, bool showMessageBox, WebBrowser logWebBrowser)
@@ -93,7 +93,7 @@
 
             _log.Show(logWebBrowser);
 
-            this.ProcessMessageQueue();
+            ProcessMessageQueue();
 
             if (showMessageBox && !Program.DefaultValues.DisableCopyingSuccessfulMessageBox)
             {
@@ -119,7 +119,7 @@
 
             _log.Show(logWebBrowser);
 
-            this.ProcessMessageQueue();
+            ProcessMessageQueue();
 
             if (showMessageBox && !Program.DefaultValues.DisableCopyingSuccessfulMessageBox)
             {
@@ -133,7 +133,7 @@
         {
             persons.Sort(ComparePersonInfos);
 
-            this.Cursor = Cursors.Default;
+            Cursor = Cursors.Default;
 
             using (var form = new CacheForm(persons, cacheName))
             {
@@ -216,7 +216,7 @@
 
                 if (cell.Enabled)
                 {
-                    this.MoveRow((CastInfo)row.Tag, true);
+                    MoveRow((CastInfo)row.Tag, true);
                 }
             }
             else if (grid.Columns[e.ColumnIndex].Name == ColumnNames.MoveDown)
@@ -227,7 +227,7 @@
 
                 if (cell.Enabled)
                 {
-                    this.MoveRow((CastInfo)row.Tag, false);
+                    MoveRow((CastInfo)row.Tag, false);
                 }
             }
             else if (grid.Columns[e.ColumnIndex].Name == ColumnNames.RemoveRow)
@@ -238,7 +238,7 @@
 
                 if (cell.Enabled)
                 {
-                    this.RemoveRow((CastInfo)(row.Tag));
+                    RemoveRow((CastInfo)(row.Tag));
                 }
             }
         }
@@ -533,15 +533,15 @@
                 progressMax += crewDataGridView.RowCount;
             }
 
-            this.StartProgress(progressMax, Color.LightGreen);
+            StartProgress(progressMax, Color.LightGreen);
 
             try
             {
-                this.GetHeadshots(1, castDataGridView, crewDataGridView, headshotButtonText);
+                GetHeadshots(1, castDataGridView, crewDataGridView, headshotButtonText);
             }
             finally
             {
-                this.EndProgress();
+                EndProgress();
             }
         }
 
@@ -549,16 +549,16 @@
         {
             try
             {
-                this.RestartProgress();
+                RestartProgress();
 
                 if (Program.DefaultValues.GetCastHeadShots)
                 {
-                    DataGridViewHelper.GetHeadshots(castDataGridView, Program.DefaultValues.UseFakeBirthYears, true, AddMessage, this.SetProgress);
+                    DataGridViewHelper.GetHeadshots(castDataGridView, Program.DefaultValues.UseFakeBirthYears, true, AddMessage, SetProgress);
                 }
 
                 if (Program.DefaultValues.GetCrewHeadShots)
                 {
-                    DataGridViewHelper.GetHeadshots(crewDataGridView, Program.DefaultValues.UseFakeBirthYears, false, AddMessage, this.SetProgress);
+                    DataGridViewHelper.GetHeadshots(crewDataGridView, Program.DefaultValues.UseFakeBirthYears, false, AddMessage, SetProgress);
                 }
 
                 if (Program.DefaultValues.AutoCopyHeadShots)
@@ -587,7 +587,7 @@
 
                 if (!Program.DefaultValues.DisableParsingCompleteMessageBoxForGetHeadshots)
                 {
-                    this.ProcessMessageQueue();
+                    ProcessMessageQueue();
 
                     MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -608,7 +608,7 @@
                     {
                         Thread.Sleep(5000);
 
-                        this.GetHeadshots(counter, castDataGridView, crewDataGridView, headshotButtonText);
+                        GetHeadshots(counter, castDataGridView, crewDataGridView, headshotButtonText);
                     }
                 }
                 else
@@ -645,7 +645,7 @@
 
         protected void GetHeadshots(DataGridView castDataGridView, DataGridView crewDataGridView, Button getHeadshotButton)
         {
-            this.StartLongAction();
+            StartLongAction();
 
             try
             {
@@ -686,7 +686,7 @@
                     Directory.CreateDirectory(Program.RootPath + @"\Images\CCViewer");
                 }
 
-                this.GetHeadshots(castDataGridView, crewDataGridView, getHeadshotButton.Text);
+                GetHeadshots(castDataGridView, crewDataGridView, getHeadshotButton.Text);
             }
             catch (AggregateException ex)
             {
@@ -704,7 +704,7 @@
             {
                 FirstRunGetHeadShots = false;
 
-                this.EndLongAction();
+                EndLongAction();
             }
         }
 
@@ -730,11 +730,11 @@
 
         protected void GetBirthYears(bool parseHeadshotsFollows, DataGridView castDataGridView, DataGridView crewDataGridView, LinkLabel birthYearsInLocalCacheLabel, Button getBirthYearsButton, WebBrowser logWebBrowser)
         {
-            this.StartLongAction();
+            StartLongAction();
 
             try
             {
-                this.GetBirthYears(parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButton.Text, logWebBrowser);
+                GetBirthYears(parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButton.Text, logWebBrowser);
             }
             catch (AggregateException ex)
             {
@@ -754,7 +754,7 @@
 
                 birthYearsInLocalCacheLabel.Text = IMDbParser.PersonHashCount;
 
-                this.EndLongAction();
+                EndLongAction();
             }
         }
 
@@ -768,15 +768,15 @@
 
             progressMax += crewDataGridView.RowCount;
 
-            this.StartProgress(progressMax, Color.LightCoral);
+            StartProgress(progressMax, Color.LightCoral);
 
             try
             {
-                this.GetBirthYears(1, parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButtonText, logWebBrowser);
+                GetBirthYears(1, parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButtonText, logWebBrowser);
             }
             finally
             {
-                this.EndProgress();
+                EndProgress();
             }
         }
 
@@ -784,11 +784,11 @@
         {
             try
             {
-                this.RestartProgress();
+                RestartProgress();
 
-                DataGridViewHelper.GetBirthYears(castDataGridView, Program.CastCache, Program.DefaultValues, _log, true, AddMessage, this.SetProgress);
+                DataGridViewHelper.GetBirthYears(castDataGridView, Program.CastCache, Program.DefaultValues, _log, true, AddMessage, SetProgress);
 
-                DataGridViewHelper.GetBirthYears(crewDataGridView, Program.CrewCache, Program.DefaultValues, _log, false, AddMessage, this.SetProgress);
+                DataGridViewHelper.GetBirthYears(crewDataGridView, Program.CrewCache, Program.DefaultValues, _log, false, AddMessage, SetProgress);
 
                 if (_log.Length > 0)
                 {
@@ -797,7 +797,7 @@
 
                 if (!Program.DefaultValues.DisableParsingCompleteMessageBoxForGetBirthYears && !parseHeadshotsFollows)
                 {
-                    this.ProcessMessageQueue();
+                    ProcessMessageQueue();
 
                     MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -818,7 +818,7 @@
                     {
                         Thread.Sleep(5000);
 
-                        this.GetBirthYears(counter, parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButtonText, logWebBrowser);
+                        GetBirthYears(counter, parseHeadshotsFollows, castDataGridView, crewDataGridView, getBirthYearsButtonText, logWebBrowser);
                     }
                 }
                 else

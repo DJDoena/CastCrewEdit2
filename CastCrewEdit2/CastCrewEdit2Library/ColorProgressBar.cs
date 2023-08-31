@@ -1,345 +1,344 @@
 using System;
 using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 {
-	[Description("Color Progress Bar")]
-	[ToolboxBitmap(typeof(ProgressBar))]
+    [Description("Color Progress Bar")]
+    [ToolboxBitmap(typeof(ProgressBar))]
     //[Designer(typeof(ColorProgressBarDesigner))]
-	public class ColorProgressBar : System.Windows.Forms.Control
-	{	
-	
-		//
-		// set default values
-		//
-		private int _Value = 0;
-		private int _Minimum = 0;
-		private int _Maximum = 100;
-		private int _Step = 10;
-		
-		private FillStyles _FillStyle = FillStyles.Solid;
+    public class ColorProgressBar : System.Windows.Forms.Control
+    {
 
-		private Color _BarColor = Color.FromArgb(255, 128, 128);
-		private Color _BorderColor = Color.Black;
+        //
+        // set default values
+        //
+        private int _Value = 0;
+        private int _Minimum = 0;
+        private int _Maximum = 100;
+        private int _Step = 10;
 
-		public enum FillStyles
-		{
-			Solid,
-			Dashed
-		}
+        private FillStyles _FillStyle = FillStyles.Solid;
 
-		public ColorProgressBar()
-		{
-			base.Size = new Size(150, 15);
-			SetStyle(
-				ControlStyles.AllPaintingInWmPaint |
-				ControlStyles.ResizeRedraw |
-				ControlStyles.DoubleBuffer,
-				true
-				);
-		}
+        private Color _BarColor = Color.FromArgb(255, 128, 128);
+        private Color _BorderColor = Color.Black;
 
-		[Description( "ColorProgressBar color")]
-		[Category( "ColorProgressBar" )]
-		public Color BarColor
-		{
-			get
-			{
-				return _BarColor;
-			}
-			set
-			{
-				_BarColor = value;
-				Invalidate();
-			}
-		}
+        public enum FillStyles
+        {
+            Solid,
+            Dashed
+        }
 
-		[Description( "ColorProgressBar fill style")]
-		[Category( "ColorProgressBar" )]
-		public FillStyles FillStyle
-		{
-			get
-			{
-				return _FillStyle;
-			}
-			set
-			{
-				_FillStyle = value;
-				Invalidate();
-			}
-		}
+        public ColorProgressBar()
+        {
+            base.Size = new Size(150, 15);
+            SetStyle(
+                ControlStyles.AllPaintingInWmPaint |
+                ControlStyles.ResizeRedraw |
+                ControlStyles.DoubleBuffer,
+                true
+                );
+        }
 
-		[Description( "The current value for the ColorProgressBar, "+
-			 "in the range specified by the Minimum and Maximum properties." )]
-		[Category( "ColorProgressBar" )]
-		// the rest of the Properties windows must be updated when this peroperty is changed.
-		[RefreshProperties(RefreshProperties.All)]
-		public int Value
-		{
-			get
-			{
-				return _Value;
-			}
-			set
-			{
-				if (value < _Minimum)
-				{
-					throw new ArgumentException("'"+value+"' is not a valid value for 'Value'.\n"+
-						"'Value' must be between 'Minimum' and 'Maximum'.");
-				}
+        [Description("ColorProgressBar color")]
+        [Category("ColorProgressBar")]
+        public Color BarColor
+        {
+            get
+            {
+                return _BarColor;
+            }
+            set
+            {
+                _BarColor = value;
+                Invalidate();
+            }
+        }
 
-				if (value > _Maximum)
-				{
-					throw new ArgumentException("'"+value+"' is not a valid value for 'Value'.\n"+
-						"'Value' must be between 'Minimum' and 'Maximum'.");
-				}
+        [Description("ColorProgressBar fill style")]
+        [Category("ColorProgressBar")]
+        public FillStyles FillStyle
+        {
+            get
+            {
+                return _FillStyle;
+            }
+            set
+            {
+                _FillStyle = value;
+                Invalidate();
+            }
+        }
 
-				_Value = value;			
-				Invalidate();
-			}
-		}
-		
-		[Description("The lower bound of the range this ColorProgressbar is working with.")]
-		[Category("ColorProgressBar")]
-		[RefreshProperties(RefreshProperties.All)]
-		public int Minimum
-		{
-			get
-			{
-				return _Minimum;
-			}
-			set
-			{
-				_Minimum = value;
+        [Description("The current value for the ColorProgressBar, " +
+             "in the range specified by the Minimum and Maximum properties.")]
+        [Category("ColorProgressBar")]
+        // the rest of the Properties windows must be updated when this peroperty is changed.
+        [RefreshProperties(RefreshProperties.All)]
+        public int Value
+        {
+            get
+            {
+                return _Value;
+            }
+            set
+            {
+                if (value < _Minimum)
+                {
+                    throw new ArgumentException("'" + value + "' is not a valid value for 'Value'.\n" +
+                        "'Value' must be between 'Minimum' and 'Maximum'.");
+                }
 
-				if (_Minimum > _Maximum)
-					_Maximum = _Minimum;
-				if (_Minimum > _Value)
-					_Value = _Minimum;
+                if (value > _Maximum)
+                {
+                    throw new ArgumentException("'" + value + "' is not a valid value for 'Value'.\n" +
+                        "'Value' must be between 'Minimum' and 'Maximum'.");
+                }
 
-				Invalidate();
-			}
-		}
+                _Value = value;
+                Invalidate();
+            }
+        }
 
-		[Description("The uppper bound of the range this ColorProgressbar is working with.")]
-		[Category("ColorProgressBar")]
-		[RefreshProperties(RefreshProperties.All)]
-		public int Maximum
-		{
-			get
-			{
-				return _Maximum;
-			}
-			set
-			{
-				_Maximum = value;
+        [Description("The lower bound of the range this ColorProgressbar is working with.")]
+        [Category("ColorProgressBar")]
+        [RefreshProperties(RefreshProperties.All)]
+        public int Minimum
+        {
+            get
+            {
+                return _Minimum;
+            }
+            set
+            {
+                _Minimum = value;
 
-				if (_Maximum < _Value)
-					_Value = _Maximum;
-				if (_Maximum < _Minimum)
-					_Minimum = _Maximum;
+                if (_Minimum > _Maximum)
+                    _Maximum = _Minimum;
+                if (_Minimum > _Value)
+                    _Value = _Minimum;
 
-				Invalidate();
-			}
-		}
+                Invalidate();
+            }
+        }
 
-		[Description("The amount to jump the current value of the control by when the Step() method is called.")]
-		[Category("ColorProgressBar")]		
-		public int Step
-		{
-			get
-			{
-				return _Step;
-			}
-			set
-			{
-				_Step = value;
-				Invalidate();
-			}
-		}
+        [Description("The uppper bound of the range this ColorProgressbar is working with.")]
+        [Category("ColorProgressBar")]
+        [RefreshProperties(RefreshProperties.All)]
+        public int Maximum
+        {
+            get
+            {
+                return _Maximum;
+            }
+            set
+            {
+                _Maximum = value;
 
-		[Description("The border color of ColorProgressBar")]
-		[Category("ColorProgressBar")]		
-		public Color BorderColor
-		{
-			get
-			{
-				return _BorderColor;
-			}
-			set
-			{
-				_BorderColor = value;
-				Invalidate();
-			}
-		}
-		
-		//
-		// Call the PerformStep() method to increase the value displayed by the amount set in the Step property
-		//
-		public void PerformStep()
-		{
-			if (_Value < _Maximum)
-				_Value += _Step;
-			else
-				_Value = _Maximum;
+                if (_Maximum < _Value)
+                    _Value = _Maximum;
+                if (_Maximum < _Minimum)
+                    _Minimum = _Maximum;
 
-			Invalidate();
-		}
-		
-		//
-		// Call the PerformStepBack() method to decrease the value displayed by the amount set in the Step property
-		//
-		public void PerformStepBack()
-		{
-			if (_Value > _Minimum)
-				_Value -= _Step;
-			else
-				_Value = _Minimum;
+                Invalidate();
+            }
+        }
 
-			Invalidate();
-		}
+        [Description("The amount to jump the current value of the control by when the Step() method is called.")]
+        [Category("ColorProgressBar")]
+        public int Step
+        {
+            get
+            {
+                return _Step;
+            }
+            set
+            {
+                _Step = value;
+                Invalidate();
+            }
+        }
 
-		//
-		// Call the Increment() method to increase the value displayed by an integer you specify
-		// 
-		public void Increment(int value)
-		{
-			if (_Value < _Maximum)
-				_Value += value;
-			else
-				_Value = _Maximum;
+        [Description("The border color of ColorProgressBar")]
+        [Category("ColorProgressBar")]
+        public Color BorderColor
+        {
+            get
+            {
+                return _BorderColor;
+            }
+            set
+            {
+                _BorderColor = value;
+                Invalidate();
+            }
+        }
 
-			Invalidate();
-		}
-		
-		//
-		// Call the Decrement() method to decrease the value displayed by an integer you specify
-		// 
-		public void Decrement(int value)
-		{
-			if (_Value > _Minimum)
-				_Value -= value;
-			else
-				_Value = _Minimum;
+        //
+        // Call the PerformStep() method to increase the value displayed by the amount set in the Step property
+        //
+        public void PerformStep()
+        {
+            if (_Value < _Maximum)
+                _Value += _Step;
+            else
+                _Value = _Maximum;
 
-			Invalidate();
-		}
-		
-		protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
-		{
-			//
-			// Calculate matching colors
-			//
-			Color darkColor = ControlPaint.Dark(_BarColor);
-			Color bgColor = ControlPaint.Dark(_BarColor);
+            Invalidate();
+        }
 
-			//
-			// Fill background
-			//
-			SolidBrush bgBrush = new SolidBrush(bgColor);
-			e.Graphics.FillRectangle(bgBrush, ClientRectangle);
-			bgBrush.Dispose();
-			
-			// 
-			// Check for value
-			//
-			if (_Maximum == _Minimum || _Value == 0)
-			{
-				// Draw border only and exit;
-				drawBorder(e.Graphics);
-				return;
-			}
+        //
+        // Call the PerformStepBack() method to decrease the value displayed by the amount set in the Step property
+        //
+        public void PerformStepBack()
+        {
+            if (_Value > _Minimum)
+                _Value -= _Step;
+            else
+                _Value = _Minimum;
 
-			//
-			// The following is the width of the bar. This will vary with each value.
-			//
-			int fillWidth = (Width * _Value) / (_Maximum - _Minimum);
-			
-			//
-			// GDI+ doesn't like rectangles 0px wide or high
-			//
-			if (fillWidth == 0)
-			{
-				// Draw border only and exti;
-				drawBorder(e.Graphics);
-				return;
-			}
+            Invalidate();
+        }
 
-			//
-			// Rectangles for upper and lower half of bar
-			//
-			Rectangle topRect = new Rectangle(0, 0, fillWidth, Height / 2);
-			Rectangle buttomRect = new Rectangle(0, Height / 2, fillWidth, Height / 2);
+        //
+        // Call the Increment() method to increase the value displayed by an integer you specify
+        // 
+        public void Increment(int value)
+        {
+            if (_Value < _Maximum)
+                _Value += value;
+            else
+                _Value = _Maximum;
 
-			//
-			// The gradient brush
-			//
-			LinearGradientBrush brush;
+            Invalidate();
+        }
 
-			//
-			// Paint upper half
-			//
-			brush = new LinearGradientBrush(new Point(0, 0),
-				new Point(0, Height / 2), darkColor, _BarColor);
-			e.Graphics.FillRectangle(brush, topRect);
-			brush.Dispose();
+        //
+        // Call the Decrement() method to decrease the value displayed by an integer you specify
+        // 
+        public void Decrement(int value)
+        {
+            if (_Value > _Minimum)
+                _Value -= value;
+            else
+                _Value = _Minimum;
 
-			//
-			// Paint lower half
-			// (Height/2 - 1 because there would be a dark line in the middle of the bar)
-			//
-			brush = new LinearGradientBrush(new Point(0, Height / 2 - 1),
-				new Point(0, Height), _BarColor, darkColor);
-			e.Graphics.FillRectangle(brush, buttomRect);
-			brush.Dispose();
+            Invalidate();
+        }
 
-			//
-			// Calculate separator's setting
-			//
-			int sepWidth = (int)(Height * .67);
-			int sepCount = (int)(fillWidth / sepWidth);
-			Color sepColor = ControlPaint.LightLight(_BarColor);
+        protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
+        {
+            //
+            // Calculate matching colors
+            //
+            var darkColor = ControlPaint.Dark(_BarColor);
+            var bgColor = ControlPaint.Dark(_BarColor);
 
-			//
-			// Paint separators
-			//
-			switch (_FillStyle)
-			{
-				case FillStyles.Dashed:
-					// Draw each separator line
-					for (int i = 1; i <= sepCount; i++)
-					{
-						e.Graphics.DrawLine(new Pen(sepColor, 1),
-							sepWidth * i, 0, sepWidth * i, Height);
-					}
-					break;
+            //
+            // Fill background
+            //
+            var bgBrush = new SolidBrush(bgColor);
+            e.Graphics.FillRectangle(bgBrush, ClientRectangle);
+            bgBrush.Dispose();
 
-				case FillStyles.Solid:
-					// Draw nothing
-					break;
+            // 
+            // Check for value
+            //
+            if (_Maximum == _Minimum || _Value == 0)
+            {
+                // Draw border only and exit;
+                drawBorder(e.Graphics);
+                return;
+            }
 
-				default:
-					break;
-			}
+            //
+            // The following is the width of the bar. This will vary with each value.
+            //
+            var fillWidth = (Width * _Value) / (_Maximum - _Minimum);
 
-			//
-			// Draw border and exit
-			//
-			drawBorder(e.Graphics);
-		}
+            //
+            // GDI+ doesn't like rectangles 0px wide or high
+            //
+            if (fillWidth == 0)
+            {
+                // Draw border only and exti;
+                drawBorder(e.Graphics);
+                return;
+            }
 
-		//
-		// Draw border
-		//
-		protected void drawBorder(Graphics g)
-		{
-			Rectangle borderRect = new Rectangle(0, 0,
-				ClientRectangle.Width - 1, ClientRectangle.Height - 1);
-			g.DrawRectangle(new Pen(_BorderColor, 1), borderRect);
-		}
-	}
+            //
+            // Rectangles for upper and lower half of bar
+            //
+            var topRect = new Rectangle(0, 0, fillWidth, Height / 2);
+            var buttomRect = new Rectangle(0, Height / 2, fillWidth, Height / 2);
+
+            //
+            // The gradient brush
+            //
+            LinearGradientBrush brush;
+
+            //
+            // Paint upper half
+            //
+            brush = new LinearGradientBrush(new Point(0, 0),
+                new Point(0, Height / 2), darkColor, _BarColor);
+            e.Graphics.FillRectangle(brush, topRect);
+            brush.Dispose();
+
+            //
+            // Paint lower half
+            // (Height/2 - 1 because there would be a dark line in the middle of the bar)
+            //
+            brush = new LinearGradientBrush(new Point(0, Height / 2 - 1),
+                new Point(0, Height), _BarColor, darkColor);
+            e.Graphics.FillRectangle(brush, buttomRect);
+            brush.Dispose();
+
+            //
+            // Calculate separator's setting
+            //
+            var sepWidth = (int)(Height * .67);
+            var sepCount = fillWidth / sepWidth;
+            var sepColor = ControlPaint.LightLight(_BarColor);
+
+            //
+            // Paint separators
+            //
+            switch (_FillStyle)
+            {
+                case FillStyles.Dashed:
+                    // Draw each separator line
+                    for (var i = 1; i <= sepCount; i++)
+                    {
+                        e.Graphics.DrawLine(new Pen(sepColor, 1),
+                            sepWidth * i, 0, sepWidth * i, Height);
+                    }
+                    break;
+
+                case FillStyles.Solid:
+                    // Draw nothing
+                    break;
+
+                default:
+                    break;
+            }
+
+            //
+            // Draw border and exit
+            //
+            drawBorder(e.Graphics);
+        }
+
+        //
+        // Draw border
+        //
+        protected void drawBorder(Graphics g)
+        {
+            var borderRect = new Rectangle(0, 0,
+                ClientRectangle.Width - 1, ClientRectangle.Height - 1);
+            g.DrawRectangle(new Pen(_BorderColor, 1), borderRect);
+        }
+    }
 }

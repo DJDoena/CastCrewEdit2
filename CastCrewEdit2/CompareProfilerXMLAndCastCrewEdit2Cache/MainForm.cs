@@ -14,18 +14,18 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
 {
     internal partial class MainForm : Form
     {
-        private readonly Boolean SkipVersionCheck;
+        private readonly bool SkipVersionCheck;
 
-        public MainForm(Boolean skipVersionCheck)
+        public MainForm(bool skipVersionCheck)
         {
             SkipVersionCheck = skipVersionCheck;
             InitializeComponent();
-            this.Icon = Properties.Resource.djdsoft;
-            if ((String.IsNullOrEmpty(Settings.Default.CacheFile) == false) && (File.Exists(Settings.Default.CacheFile)))
+            Icon = Properties.Resource.djdsoft;
+            if ((string.IsNullOrEmpty(Settings.Default.CacheFile) == false) && (File.Exists(Settings.Default.CacheFile)))
             {
                 CacheFileTextBox.Text = Settings.Default.CacheFile;
             }
-            if ((String.IsNullOrEmpty(Settings.Default.DVDProfilerXMLFile) == false)
+            if ((string.IsNullOrEmpty(Settings.Default.DVDProfilerXMLFile) == false)
                 && (File.Exists(Settings.Default.DVDProfilerXMLFile)))
             {
                 DVDProfilerXMLTextBox.Text = Settings.Default.DVDProfilerXMLFile;
@@ -44,39 +44,39 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
 
         private void OnStartButtonClick(Object sender, EventArgs e)
         {
-            if ((String.IsNullOrEmpty(CacheFileTextBox.Text) == false)
-                && (String.IsNullOrEmpty(DVDProfilerXMLTextBox.Text) == false))
+            if ((string.IsNullOrEmpty(CacheFileTextBox.Text) == false)
+                && (string.IsNullOrEmpty(DVDProfilerXMLTextBox.Text) == false))
             {
                 CacheDataGridView.Rows.Clear();
                 CollectionDataGridView.Rows.Clear();
                 try
                 {
                     PersonInfos cache;
-                    Dictionary<String, List<PersonInfo>> cacheHash;
+                    Dictionary<string, List<PersonInfo>> cacheHash;
                     Collection collection;
-                    Dictionary<String, IPerson> collectionHash;
+                    Dictionary<string, IPerson> collectionHash;
                     DataGridViewRow row;
                     List<DataGridViewRow> rowList;
 
                     collection = Serializer<Collection>.Deserialize(DVDProfilerXMLTextBox.Text);
                     cache = PersonInfos.Deserialize(CacheFileTextBox.Text);
-                    collectionHash = new Dictionary<String, IPerson>(cache.PersonInfoList.Length);
+                    collectionHash = new Dictionary<string, IPerson>(cache.PersonInfoList.Length);
                     if ((collection != null) && (collection.DVDList != null) && (collection.DVDList.Length > 0))
                     {
-                        foreach (DVD dvd in collection.DVDList)
+                        foreach (var dvd in collection.DVDList)
                         {
                             if (Settings.Default.CacheFileIsCast)
                             {
                                 if ((dvd.CastList != null) && (dvd.CastList.Length > 0))
                                 {
-                                    foreach (Object castEntry in dvd.CastList)
+                                    foreach (var castEntry in dvd.CastList)
                                     {
                                         CastMember cast;
 
                                         cast = castEntry as CastMember;
                                         if (cast != null)
                                         {
-                                            String key;
+                                            string key;
 
                                             if (cast.BirthYear == 0)
                                             {
@@ -98,14 +98,14 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
                             {
                                 if ((dvd.CrewList != null) && (dvd.CrewList.Length > 0))
                                 {
-                                    foreach (Object crewEntry in dvd.CrewList)
+                                    foreach (var crewEntry in dvd.CrewList)
                                     {
                                         CrewMember crew;
 
                                         crew = crewEntry as CrewMember;
                                         if (crew != null)
                                         {
-                                            String key;
+                                            string key;
 
                                             if (crew.BirthYear == 0)
                                             {
@@ -125,20 +125,20 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
                             }
                         }
                     }
-                    cacheHash = new Dictionary<String, List<PersonInfo>>(cache.PersonInfoList.Length);
+                    cacheHash = new Dictionary<string, List<PersonInfo>>(cache.PersonInfoList.Length);
                     if ((cache != null) && (cache.PersonInfoList != null) && (cache.PersonInfoList.Length > 0))
                     {
-                        foreach (PersonInfo person in cache.PersonInfoList)
+                        foreach (var person in cache.PersonInfoList)
                         {
-                            String key;
+                            string key;
 
-                            if (String.IsNullOrEmpty(person.BirthYear) == false)
+                            if (string.IsNullOrEmpty(person.BirthYear) == false)
                             {
-                                key = person.LastName + "_" + person.FirstName + "_" + person.MiddleName + "_" + Int32.Parse(person.BirthYear);
+                                key = person.LastName + "_" + person.FirstName + "_" + person.MiddleName + "_" + int.Parse(person.BirthYear);
                             }
-                            else if ((String.IsNullOrEmpty(person.FakeBirthYear) == false) && (person.FakeBirthYear != "0"))
+                            else if ((string.IsNullOrEmpty(person.FakeBirthYear) == false) && (person.FakeBirthYear != "0"))
                             {
-                                key = person.LastName + "_" + person.FirstName + "_" + person.MiddleName + "_" + Int32.Parse(person.FakeBirthYear);
+                                key = person.LastName + "_" + person.FirstName + "_" + person.MiddleName + "_" + int.Parse(person.FakeBirthYear);
                             }
                             else
                             {
@@ -160,7 +160,7 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
                         }
                     }
                     rowList = new List<DataGridViewRow>();
-                    foreach (KeyValuePair<String, IPerson> keyValue in collectionHash)
+                    foreach (var keyValue in collectionHash)
                     {
                         if (cacheHash.ContainsKey(keyValue.Key) == false)
                         {
@@ -193,11 +193,11 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
                         ));
                     CacheDataGridView.Rows.AddRange(rowList.ToArray());
                     rowList = new List<DataGridViewRow>();
-                    foreach (KeyValuePair<String, List<PersonInfo>> keyValue in cacheHash)
+                    foreach (var keyValue in cacheHash)
                     {
                         if (collectionHash.ContainsKey(keyValue.Key) == false)
                         {
-                            foreach (PersonInfo person in keyValue.Value)
+                            foreach (var person in keyValue.Value)
                             {
                                 DataGridViewCell cell;
 
@@ -216,7 +216,7 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
                                 row.Cells[0].Value = person.FirstName;
                                 row.Cells[1].Value = person.MiddleName;
                                 row.Cells[2].Value = person.LastName;
-                                if (String.IsNullOrEmpty(person.BirthYear) == false)
+                                if (string.IsNullOrEmpty(person.BirthYear) == false)
                                 {
                                     row.Cells[3].Value = person.BirthYear;
                                 }
@@ -247,14 +247,14 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
 
         private void OnSelectCacheFileButtonClick(Object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            using (var ofd = new OpenFileDialog())
             {
                 ofd.CheckFileExists = true;
                 ofd.Filter = "Cast|Cast.xml|Crew|Crew.xml";
                 ofd.Multiselect = false;
                 ofd.Title = "Select Cast/Crew Edit 2 Cache File";
                 ofd.RestoreDirectory = true;
-                if (String.IsNullOrEmpty(Settings.Default.CacheFile) == false)
+                if (string.IsNullOrEmpty(Settings.Default.CacheFile) == false)
                 {
                     FileInfo fi;
 
@@ -281,14 +281,14 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
 
         private void OnSelectDVDProfilerXMLButtonClick(Object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            using (var ofd = new OpenFileDialog())
             {
                 ofd.CheckFileExists = true;
                 ofd.Filter = "Collection.xml|*.xml";
                 ofd.Multiselect = false;
                 ofd.Title = "Select DVD Profiler XML File";
                 ofd.RestoreDirectory = true;
-                if (String.IsNullOrEmpty(Settings.Default.DVDProfilerXMLFile) == false)
+                if (string.IsNullOrEmpty(Settings.Default.DVDProfilerXMLFile) == false)
                 {
                     FileInfo fi;
 

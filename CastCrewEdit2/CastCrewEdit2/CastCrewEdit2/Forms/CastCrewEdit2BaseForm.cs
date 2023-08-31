@@ -86,7 +86,7 @@
 
         protected void OnAboutToolStripMenuItemClick(object sender, EventArgs e)
         {
-            using (var aboutBox = new AboutBox(this.GetType().Assembly))
+            using (var aboutBox = new AboutBox(GetType().Assembly))
             {
                 aboutBox.ShowDialog(this);
             }
@@ -279,7 +279,7 @@
             }
         }
 
-        protected void OnReadmeToolStripMenuItemClick(object sender, EventArgs e) => this.OpenReadme();
+        protected void OnReadmeToolStripMenuItemClick(object sender, EventArgs e) => OpenReadme();
 
         protected void OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick(object sender, EventArgs e)
         {
@@ -302,7 +302,7 @@
 
                     if (counter % 8 == 0)
                     {
-                        this.Refresh();
+                        Refresh();
                     }
 
                     Thread.Sleep(250);
@@ -319,19 +319,19 @@
             }
         }
 
-        protected void OnKnownNamesToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\KnownNames.txt", EditWindowNames.KnownNames, FileNameType.KnownNames, false);
+        protected void OnKnownNamesToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\KnownNames.txt", EditWindowNames.KnownNames, FileNameType.KnownNames, false);
 
-        protected void OnLastnameSuffixesToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\KnownLastNameSuffixes.txt", EditWindowNames.KnownLastnameSuffixes, FileNameType.LastnameSuffixes, false);
+        protected void OnLastnameSuffixesToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\KnownLastNameSuffixes.txt", EditWindowNames.KnownLastnameSuffixes, FileNameType.LastnameSuffixes, false);
 
-        protected void OnLastnamePrefixesToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\KnownLastnamePrefixes.txt", EditWindowNames.KnownLastnamePrefixes, FileNameType.LastnamePrefixes, false);
+        protected void OnLastnamePrefixesToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\KnownLastnamePrefixes.txt", EditWindowNames.KnownLastnamePrefixes, FileNameType.LastnamePrefixes, false);
 
-        protected void OnFirstnamePrefixesToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\KnownFirstnamePrefixes.txt", EditWindowNames.KnownFirstnamePrefixes, FileNameType.FirstnamePrefixes, false);
+        protected void OnFirstnamePrefixesToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\KnownFirstnamePrefixes.txt", EditWindowNames.KnownFirstnamePrefixes, FileNameType.FirstnamePrefixes, false);
 
-        protected void OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\IgnoreCustomInIMDbCategory.txt", EditWindowNames.IgnoreCustominIMDbCategory, FileNameType.IgnoreCustomInIMDbCreditType, true);
+        protected void OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\IgnoreCustomInIMDbCategory.txt", EditWindowNames.IgnoreCustominIMDbCategory, FileNameType.IgnoreCustomInIMDbCreditType, true);
 
-        protected void OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\IgnoreIMDbCategoryInOther.txt", EditWindowNames.IgnoreIMDbCategoryinOther, FileNameType.IgnoreIMDbCreditTypeInOther, true);
+        protected void OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\IgnoreIMDbCategoryInOther.txt", EditWindowNames.IgnoreIMDbCategoryinOther, FileNameType.IgnoreIMDbCreditTypeInOther, true);
 
-        protected void OnForcedFakeBirthYearsToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\ForcedFakeBirthYears.txt", EditWindowNames.IgnoreIMDbCategoryinOther, FileNameType.ForcedFakeBirthYears, true);
+        protected void OnForcedFakeBirthYearsToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\ForcedFakeBirthYears.txt", EditWindowNames.IgnoreIMDbCategoryinOther, FileNameType.ForcedFakeBirthYears, true);
 
         protected static Dictionary<string, List<SoundtrackMatch>> ParseSoundtrack(string titleLink)
         {
@@ -399,7 +399,7 @@
         {
             if (!_suppressProgress)
             {
-                this.SetProgressSafe();
+                SetProgressSafe();
             }
         }
 
@@ -411,20 +411,20 @@
 
                 if (_progressValue == _progressMax || (_progressValue % _progressInterval) == 0)
                 {
-                    this.SetProgressBarValue();
+                    SetProgressBarValue();
                 }
             }
         }
 
         private void SetProgressBarValue()
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                this.Invoke(new SetProgress(this.SetProgressBarValueSync));
+                Invoke(new SetProgress(SetProgressBarValueSync));
             }
             else
             {
-                this.SetProgressBarValueSync();
+                SetProgressBarValueSync();
             }
         }
 
@@ -465,11 +465,11 @@
 
             _progressMax = maxValue;
 
-            this.CalculateUpdateInterval();
+            CalculateUpdateInterval();
 
             if (TaskbarManager.IsPlatformSupported)
             {
-                TaskbarManager.Instance.OwnerHandle = this.Handle;
+                TaskbarManager.Instance.OwnerHandle = Handle;
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
                 TaskbarManager.Instance.SetProgressValue(_progressValue, _progressMax);
             }
@@ -481,7 +481,7 @@
             Application.DoEvents();
         }
 
-        protected void RestartProgress() => this.StartProgress(_progressMax, _progressBar.BarColor);
+        protected void RestartProgress() => StartProgress(_progressMax, _progressBar.BarColor);
 
         private void CalculateUpdateInterval()
         {
@@ -491,7 +491,7 @@
             {
                 _progressInterval = _progressMax / OneHundred;
 
-                if (this.IsNotDivisibleWithoutRemainder())
+                if (IsNotDivisibleWithoutRemainder())
                 {
                     //We don't want to finish after we've reached 100%
                     _progressInterval++;
@@ -507,31 +507,31 @@
 
         protected void ProcessLines(List<CastInfo> castList, List<Match> castMatches, List<CrewInfo> crewList, List<KeyValuePair<Match, List<Match>>> crewMatches, Dictionary<string, List<SoundtrackMatch>> sountrackMatches, DefaultValues defaultValues)
         {
-            IMDbParser.ProcessCastLine(castList, castMatches, defaultValues, this.SetProgress);
+            IMDbParser.ProcessCastLine(castList, castMatches, defaultValues, SetProgress);
 
-            IMDbParser.ProcessCrewLine(crewList, crewMatches, defaultValues, this.SetProgress);
+            IMDbParser.ProcessCrewLine(crewList, crewMatches, defaultValues, SetProgress);
 
-            IMDbParser.ProcessSoundtrackLine(crewList, sountrackMatches, defaultValues, this.SetProgress);
+            IMDbParser.ProcessSoundtrackLine(crewList, sountrackMatches, defaultValues, SetProgress);
         }
 
         protected void StartLongAction()
         {
-            this.Enabled = false;
+            Enabled = false;
 
-            this.UseWaitCursor = true;
+            UseWaitCursor = true;
 
-            this.Cursor = Cursors.WaitCursor;
+            Cursor = Cursors.WaitCursor;
 
             Application.DoEvents();
         }
 
         protected void EndLongAction()
         {
-            this.UseWaitCursor = false;
+            UseWaitCursor = false;
 
-            this.Cursor = Cursors.Default;
+            Cursor = Cursors.Default;
 
-            this.Enabled = true;
+            Enabled = true;
 
             Application.DoEvents();
         }
