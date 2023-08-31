@@ -433,13 +433,13 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(attribute));
         }
 
-        private void OnModelProgressValueChanged(Object sender
+        private void OnModelProgressValueChanged(object sender
             , EventArgs<int> e)
         {
             ProgressValue = e.Value;
         }
 
-        private void OnModelProgressMaxChanged(Object sender
+        private void OnModelProgressMaxChanged(object sender
             , EventArgs<int> e)
         {
             if (e.Value >= 0)

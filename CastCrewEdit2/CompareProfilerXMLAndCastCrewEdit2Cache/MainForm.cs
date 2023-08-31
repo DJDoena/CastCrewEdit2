@@ -42,7 +42,7 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
             }
         }
 
-        private void OnStartButtonClick(Object sender, EventArgs e)
+        private void OnStartButtonClick(object sender, EventArgs e)
         {
             if ((string.IsNullOrEmpty(CacheFileTextBox.Text) == false)
                 && (string.IsNullOrEmpty(DVDProfilerXMLTextBox.Text) == false))
@@ -245,7 +245,7 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
             }
         }
 
-        private void OnSelectCacheFileButtonClick(Object sender, EventArgs e)
+        private void OnSelectCacheFileButtonClick(object sender, EventArgs e)
         {
             using (var ofd = new OpenFileDialog())
             {
@@ -279,7 +279,7 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
             }
         }
 
-        private void OnSelectDVDProfilerXMLButtonClick(Object sender, EventArgs e)
+        private void OnSelectDVDProfilerXMLButtonClick(object sender, EventArgs e)
         {
             using (var ofd = new OpenFileDialog())
             {
@@ -304,12 +304,12 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
             }
         }
 
-        private void OnMainFormLoad(Object sender, EventArgs e)
+        private void OnMainFormLoad(object sender, EventArgs e)
         {
             CheckForNewVersion();
         }
 
-        private void OnCollectionDataGridViewCellContentClick(Object sender, DataGridViewCellEventArgs e)
+        private void OnCollectionDataGridViewCellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if ((e.ColumnIndex == 4) && (e.RowIndex != -1))
             {

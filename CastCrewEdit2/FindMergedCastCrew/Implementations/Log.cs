@@ -16,7 +16,7 @@
 
         private readonly IIOServices IOServices;
 
-        private readonly Object Lock;
+        private readonly object Lock;
 
         public Log(IIOServices ioServices)
         {
@@ -24,7 +24,7 @@
 
             LogBuilder = new StringBuilder();
 
-            Lock = new Object();
+            Lock = new object();
         }
 
         #region ILog

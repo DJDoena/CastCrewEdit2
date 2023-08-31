@@ -12,7 +12,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
         { }
 
         #region ICommand Members
-        public override void Execute(Object parameter)
+        public override void Execute(object parameter)
         {
             if (CanExecute(parameter))
             {

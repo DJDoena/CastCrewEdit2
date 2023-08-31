@@ -13,7 +13,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Output
             InitializeComponent();
         }
 
-        private void OnLoaded(Object sender
+        private void OnLoaded(object sender
             , RoutedEventArgs e)
         {
             var viewModel = (IOutputViewModel)DataContext;

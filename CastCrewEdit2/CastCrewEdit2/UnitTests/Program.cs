@@ -415,7 +415,7 @@ namespace UnitTests
                 Program.Settings.DefaultValues.RetainCrewCreditedAs = true;
                 Program.Settings.DefaultValues.RetainOriginalCredit = true;
                 Program.Settings.DefaultValues.CheckPersonLinkForRedirect = false;
-                methodInfo.Invoke(episodesForm, new Object[] { episodeInfo });
+                methodInfo.Invoke(episodesForm, new object[] { episodeInfo });
             }
         }
 
@@ -459,7 +459,7 @@ namespace UnitTests
                 //Program.Settings.DefaultValues.RetainCrewCreditedAs = true;
                 //Program.Settings.DefaultValues.RetainOriginalCredit = true;
                 Program.Settings.DefaultValues.CheckPersonLinkForRedirect = false;
-                methodInfo.Invoke(episodesForm, new Object[] { episodeInfo });
+                methodInfo.Invoke(episodesForm, new object[] { episodeInfo });
             }
         }
 
@@ -495,7 +495,7 @@ namespace UnitTests
                 MethodInfo methodInfo;
                 FieldInfo fieldInfo;
                 CheckBox parseCrewCheckBox;
-                Object[] parameters;
+                object[] parameters;
                 CrewInformation crewInformation;
 
                 mainFormType = mainForm.GetType();
@@ -507,7 +507,7 @@ namespace UnitTests
                 Assert.IsNotNull(methodInfo, "methodInfo");
                 crewMatches = new List<KeyValuePair<Match, List<Match>>>();
                 crewList = new List<CrewInfo>();
-                parameters = new Object[10];
+                parameters = new object[10];
                 //parameters[0] = defaultValues;
                 parameters[0] = key;
                 parameters[1] = false;
@@ -572,7 +572,7 @@ namespace UnitTests
                 MethodInfo methodInfo;
                 FieldInfo fieldInfo;
                 CheckBox parseCastCheckBox;
-                Object[] parameters;
+                object[] parameters;
                 CastInformation castInformation;
 
                 mainFormType = mainForm.GetType();
@@ -584,7 +584,7 @@ namespace UnitTests
                 Assert.IsNotNull(methodInfo, "methodInfo");
                 castMatches = new List<Match>();
                 castList = new List<CastInfo>();
-                parameters = new Object[10];
+                parameters = new object[10];
                 //parameters[0] = defaultValues;
                 parameters[0] = key;
                 parameters[1] = true;
@@ -631,7 +631,7 @@ namespace UnitTests
             methodInfo = typeof(CastCrewEdit2BaseForm).GetMethod("ParseSoundtrack"
                 , BindingFlags.NonPublic | BindingFlags.Static);
             Assert.IsNotNull(methodInfo, "methodInfo");
-            matches = (Dictionary<string, List<SoundtrackMatch>>)(methodInfo.Invoke(null, new Object[] { key }));
+            matches = (Dictionary<string, List<SoundtrackMatch>>)(methodInfo.Invoke(null, new object[] { key }));
             Assert.IsNotNull(matches, "matches");
 
             using (var mainForm = new MainForm(true, BrowserControlSelection.FormsDefault))

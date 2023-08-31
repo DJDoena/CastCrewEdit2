@@ -46,7 +46,7 @@ namespace UnitTests
         //    AreEqual(expected, actual, string.Empty);
         //}
 
-        internal static void IsNotNull(Object obj, string parameterName)
+        internal static void IsNotNull(object obj, string parameterName)
         {
             if (obj == null)
             {
@@ -58,7 +58,7 @@ namespace UnitTests
             }
         }
 
-        internal static void IsNull(Object obj, string parameterName)
+        internal static void IsNull(object obj, string parameterName)
         {
             if (obj != null)
             {

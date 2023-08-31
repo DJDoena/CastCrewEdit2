@@ -30,7 +30,7 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
             m_CacheHasChanged = false;
         }
 
-        private void OnSelectCacheFileButtonClick(Object sender, EventArgs e)
+        private void OnSelectCacheFileButtonClick(object sender, EventArgs e)
         {
             if (CheckCacheChange())
             {
@@ -62,7 +62,7 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
             }
         }
 
-        private void OnStartButtonClick(Object sender, EventArgs e)
+        private void OnStartButtonClick(object sender, EventArgs e)
         {
             if (CheckCacheChange())
             {
@@ -270,7 +270,7 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
             }
         }
 
-        private void OnMainFormLoad(Object sender, EventArgs e)
+        private void OnMainFormLoad(object sender, EventArgs e)
         {
             DataGridViewButtonColumn removeColumn;
 
@@ -338,7 +338,7 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
             }
         }
 
-        private void OnDataGridViewCellContentClick(Object sender, DataGridViewCellEventArgs e)
+        private void OnDataGridViewCellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView dataGridView;
 
@@ -376,7 +376,7 @@ namespace DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache
             }
         }
 
-        private void OnMainFormClosing(Object sender, FormClosingEventArgs e)
+        private void OnMainFormClosing(object sender, FormClosingEventArgs e)
         {
             if (CheckCacheChange() == false)
             {

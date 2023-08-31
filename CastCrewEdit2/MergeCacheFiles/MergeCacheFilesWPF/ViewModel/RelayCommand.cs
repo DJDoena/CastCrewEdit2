@@ -22,7 +22,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 
         #region ICommand Members
 
-        public bool CanExecute(Object parameter)
+        public bool CanExecute(object parameter)
         {
             if (CanExecuteCallback != null)
             {
@@ -34,7 +34,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             }
         }
 
-        public virtual void Execute(Object parameter)
+        public virtual void Execute(object parameter)
         {
             if (CanExecute(parameter))
             {

@@ -17,19 +17,19 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             Icon = Properties.Resource.djdsoft;
         }
 
-        private void OnLeftFileNameChanged(Object sender, EventArgs e)
+        private void OnLeftFileNameChanged(object sender, EventArgs e)
         {
             LeftFileTextBox.Text = m_ViewModel.LeftFileName;
             ValidateButtons();
         }
 
-        private void OnRightFileNameChanged(Object sender, EventArgs e)
+        private void OnRightFileNameChanged(object sender, EventArgs e)
         {
             RightFileTextBox.Text = m_ViewModel.RightFileName;
             ValidateButtons();
         }
 
-        private void OnTargetFileNameChanged(Object sender, EventArgs e)
+        private void OnTargetFileNameChanged(object sender, EventArgs e)
         {
             TargetFileTextBox.Text = m_ViewModel.TargetFileName;
             ValidateButtons();
@@ -42,7 +42,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             ClearFileNamesButton.Enabled = m_ViewModel.CanExecuteClearFileNames();
         }
 
-        private void OnMainFormLoad(Object sender
+        private void OnMainFormLoad(object sender
             , EventArgs e)
         {
             OnLeftFileNameChanged(this, EventArgs.Empty);
@@ -50,37 +50,37 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             OnTargetFileNameChanged(this, EventArgs.Empty);
         }
 
-        private void OnSelectLeftFileButtonClick(Object sender
+        private void OnSelectLeftFileButtonClick(object sender
             , EventArgs e)
         {
             m_ViewModel.SelectLeftFileName();
         }
 
-        private void OnSelectRightFileButtonClick(Object sender
+        private void OnSelectRightFileButtonClick(object sender
             , EventArgs e)
         {
             m_ViewModel.SelectRightFileName();
         }
 
-        private void OnSelectTargetFileButtonClick(Object sender
+        private void OnSelectTargetFileButtonClick(object sender
             , EventArgs e)
         {
             m_ViewModel.SelectTargetFileName();
         }
 
-        private void OnMergeThirdFileButtonClick(Object sender
+        private void OnMergeThirdFileButtonClick(object sender
             , EventArgs e)
         {
             m_ViewModel.MergeThirdFile();
         }
 
-        private void OnMergeButtonClick(Object sender
+        private void OnMergeButtonClick(object sender
             , EventArgs e)
         {
             m_ViewModel.Merge();
         }
 
-        private void OnClearFileNamesButtonClick(Object sender
+        private void OnClearFileNamesButtonClick(object sender
             , EventArgs e)
         {
             m_ViewModel.ClearFileNames();

@@ -157,13 +157,13 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
         }
 
-        private void OnProcessorProgressValueChanged(Object sender
+        private void OnProcessorProgressValueChanged(object sender
             , EventArgs<int> e)
         {
             ProgressValueChanged?.Invoke(this, e);
         }
 
-        private void OnProcessorProgressMaxChanged(Object sender
+        private void OnProcessorProgressMaxChanged(object sender
             , EventArgs<int> e)
         {
             ProgressMaxChanged?.Invoke(this, e);

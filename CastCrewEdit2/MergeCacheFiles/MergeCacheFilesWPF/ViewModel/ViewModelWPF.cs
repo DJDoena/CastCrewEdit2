@@ -298,12 +298,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
 
         #endregion
 
-        private void OnModelProgressValueChanged(Object sender, EventArgs<int> e)
+        private void OnModelProgressValueChanged(object sender, EventArgs<int> e)
         {
             ProgressValue = e.Value;
         }
 
-        private void OnModelProgressMaxChanged(Object sender, EventArgs<int> e)
+        private void OnModelProgressMaxChanged(object sender, EventArgs<int> e)
         {
             if (e.Value >= 0)
             {

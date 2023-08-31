@@ -22,9 +22,9 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         private readonly CancellationToken CancellationToken;
 
-        private readonly Object RemovalLock;
+        private readonly object RemovalLock;
 
-        private readonly Object UpdateLock;
+        private readonly object UpdateLock;
 
         private Dictionary<string, PersonInfo> PersonInfos { get; set; }
 
@@ -51,8 +51,8 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             WebServices = webServices;
             CancellationToken = cancellationToken;
 
-            RemovalLock = new Object();
-            UpdateLock = new Object();
+            RemovalLock = new object();
+            UpdateLock = new object();
         }
 
         #region IPersonsProcessor

@@ -173,7 +173,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             }
         }
 
-        private static void CheckForMatch(Dictionary<string, List<PersonInfo>> personCache, Object[] list, Dictionary<string, List<PersonInfo>> cache)
+        private static void CheckForMatch(Dictionary<string, List<PersonInfo>> personCache, object[] list, Dictionary<string, List<PersonInfo>> cache)
         {
             if ((list != null) && (list.Length > 0))
             {

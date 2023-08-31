@@ -33,7 +33,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
             Icon = Properties.Resource.djdsoft;
         }
 
-        private void OnMainFormLoad(Object sender, EventArgs e)
+        private void OnMainFormLoad(object sender, EventArgs e)
         {
             IsInit = true;
             SuspendLayout();
@@ -88,17 +88,17 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
             IsInit = false;
         }
 
-        private void OnCreditSubtypeDataGridViewRowsRemoved(Object sender, DataGridViewRowsRemovedEventArgs e)
+        private void OnCreditSubtypeDataGridViewRowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             NeedToSave = true;
         }
 
-        private void OnDataGridViewCellBeginEdit(Object sender, DataGridViewCellCancelEventArgs e)
+        private void OnDataGridViewCellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             NeedToSave = true;
         }
 
-        private void OnCreditTypeDataGridViewCellValueChanged(Object sender, DataGridViewCellEventArgs e)
+        private void OnCreditTypeDataGridViewCellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if ((IsInit == false) && (CellChangeOnNewCreditTypeRow == false))
             {
@@ -170,7 +170,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
             }
         }
 
-        private void OnCreditTypeDataGridViewDefaultValuesNeeded(Object sender, DataGridViewRowEventArgs e)
+        private void OnCreditTypeDataGridViewDefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
             NewCreditTypeRow = true;
             e.Row.Cells[ColumnNames.IMDbCreditType].Value = string.Empty;
@@ -178,7 +178,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
             NewCreditTypeRow = false;
         }
 
-        private void OnCreditSubtypeDataGridViewDefaultValuesNeeded(Object sender, DataGridViewRowEventArgs e)
+        private void OnCreditSubtypeDataGridViewDefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
             e.Row.Cells[ColumnNames.IMDbCreditSubtype].Value = string.Empty;
             if (PreviousRow != -1)
@@ -188,7 +188,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
             e.Row.Cells[ColumnNames.DVDProfilerCustomRole].Value = string.Empty;
         }
 
-        private void OnCreditTypeDataGridViewSelectionChanged(Object sender, EventArgs e)
+        private void OnCreditTypeDataGridViewSelectionChanged(object sender, EventArgs e)
         {
             DataGridViewRow creditTypeRow;
 
@@ -362,7 +362,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
             CreditSubtypeDataGridView.Columns.Add(startsWithDataGridViewCheckBoxColumn);
         }
 
-        private void OnMainFormFormClosing(Object sender, FormClosingEventArgs e)
+        private void OnMainFormFormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult result;
 
@@ -408,7 +408,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
             CreditSubtypeDataGridView.RowsRemoved += OnCreditSubtypeDataGridViewRowsRemoved;
         }
 
-        private void OnCreditTypeDataGridViewRowsRemoved(Object sender, DataGridViewRowsRemovedEventArgs e)
+        private void OnCreditTypeDataGridViewRowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             NeedToSave = true;
             CreditTypes.RemoveAt(e.RowIndex);
