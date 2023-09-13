@@ -11,6 +11,7 @@
 		<AssemblyName>CheckForDuplicatesInCastCrewEdit2Cache</AssemblyName>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 	</PropertyGroup>
 
 	<ItemGroup>

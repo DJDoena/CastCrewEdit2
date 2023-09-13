@@ -11,6 +11,7 @@
 		<AssemblyName>EditIMDbToDVDProfilerCrewRoleTransformation</AssemblyName>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 	</PropertyGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">

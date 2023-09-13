@@ -12,6 +12,7 @@
 		<AssemblyName>CastCrewEdit2</AssemblyName>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<ApplicationIcon>Resources\djdsoft.ico</ApplicationIcon>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='UnitTest'">

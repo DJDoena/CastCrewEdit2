@@ -11,6 +11,7 @@
 		<AssemblyName>ConvertCastCrewEdit2PersonFile</AssemblyName>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 	</PropertyGroup>
 
 	<ItemGroup>

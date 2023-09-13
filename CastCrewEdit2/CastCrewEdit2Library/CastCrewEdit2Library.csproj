@@ -11,6 +11,7 @@
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>CastCrewEdit2Library.snk</AssemblyOriginatorKeyFile>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -11,6 +11,7 @@
 		<AssemblyName>MergeCacheFilesForms</AssemblyName>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 	</PropertyGroup>
 
 	<ItemGroup>
