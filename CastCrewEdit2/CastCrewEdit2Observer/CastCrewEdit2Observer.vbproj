@@ -12,6 +12,7 @@
 		<RootNamespace>DoenaSoft.CastCrewEdit2Observer</RootNamespace>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 	</PropertyGroup>
 
 	<ItemGroup>
