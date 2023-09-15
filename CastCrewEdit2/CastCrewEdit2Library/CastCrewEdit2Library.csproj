@@ -19,7 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="DoenaSoft.DVDProfilerXML" Version="5.0.4" />
+	  <PackageReference Include="DoenaSoft.DVDProfiler.Xml" Version="5.0.5" />
 	</ItemGroup>
 
 	<ItemGroup>
