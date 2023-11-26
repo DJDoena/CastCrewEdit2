@@ -202,7 +202,7 @@
 
                             roles[roleIndex] = CheckForVoiceOf(roles[roleIndex], additionalCastMember, defaultValues);
 
-                            additionalCastMember.Role = roles[roleIndex].Trim();
+                            additionalCastMember.Role = FormatRole(roles[roleIndex]);
 
                             if (castMember.IsBracketVoice)
                             {
@@ -221,7 +221,7 @@
                 {
                     role = CheckForVoiceOf(role, castMember, defaultValues);
 
-                    castMember.Role = role.Trim();
+                    castMember.Role = FormatRole(role);
 
                     var roles = castMember.Role.Split('/');
 
@@ -231,15 +231,30 @@
 
                         for (var roleIndex = 0; roleIndex < roles.Length - 1; roleIndex++)
                         {
-                            castMember.Role += roles[roleIndex].Trim() + " / ";
+                            castMember.Role += FormatRole(roles[roleIndex]) + " / ";
                         }
 
-                        castMember.Role += roles[roles.Length - 1];
+                        castMember.Role += FormatRole(roles[roles.Length - 1]);
                     }
                 }
             }
 
             return castList;
+        }
+
+        private static string FormatRole(string role)
+        {
+            var formattedRole = role.Trim();
+
+            for (var roleIndex = formattedRole.Length - 1; roleIndex > 0; roleIndex--)
+            {
+                if (formattedRole[roleIndex] == '(' && formattedRole[roleIndex - 1] != ' ')
+                {
+                    formattedRole = formattedRole.Insert(roleIndex, " ");
+                }
+            }
+
+            return formattedRole;
         }
 
         private static string CheckForVoiceOf(string role, CastInfo castMember, DefaultValues defaultValues)
