@@ -12,6 +12,8 @@
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>CastCrewEdit2Library.snk</AssemblyOriginatorKeyFile>
 		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
+		<DebugType>full</DebugType>
+		<Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -19,7 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="DoenaSoft.DVDProfiler.Xml" Version="5.0.5" />
+	  <PackageReference Include="DoenaSoft.DVDProfiler.Xml" Version="5.0.6" />
 	</ItemGroup>
 
 	<ItemGroup>

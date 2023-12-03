@@ -13,10 +13,12 @@
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<ApplicationIcon>Resources\djdsoft.ico</ApplicationIcon>
 		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
+		<DebugType>full</DebugType>
+		<Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='UnitTest'">
-	  <DefineConstants>$(DefineConstants);UnitTest</DefineConstants>
+		<DefineConstants>$(DefineConstants);UnitTest</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

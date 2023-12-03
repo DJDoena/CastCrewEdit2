@@ -18,10 +18,11 @@
 		<Authors>DJ Doena</Authors>
 		<Version>1.0.1</Version>
 		<FileVersion>1.0.1</FileVersion>
+		<DebugType>full</DebugType>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.Resources.Extensions" Version="7.0.0" />
+		<PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
 	</ItemGroup>
 
 </Project>

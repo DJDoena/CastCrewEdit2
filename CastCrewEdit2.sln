@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MergeCacheFiles", "MergeCac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CastCrewEdit2", "CastCrewEdit2\CastCrewEdit2\CastCrewEdit2\CastCrewEdit2.csproj", "{FF2B79D8-3E3D-47F2-B3B6-0CF9F6902372}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CastCrewEdit2Adapter", "CastCrewEdit2\CastCrewEdit2\CastCrewEdit2Adapter\CastCrewEdit2Adapter.vbproj", "{C65D2EEC-45B1-40B4-9246-22DFFBAEE256}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "CastCrewEdit2Adapter", "CastCrewEdit2\CastCrewEdit2\CastCrewEdit2Adapter\CastCrewEdit2Adapter.vbproj", "{C65D2EEC-45B1-40B4-9246-22DFFBAEE256}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CastCrewEdit2Library", "CastCrewEdit2\CastCrewEdit2Library\CastCrewEdit2Library.csproj", "{287660C9-FD98-457D-A652-702F754D4033}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CastCrewEdit2Observer", "CastCrewEdit2\CastCrewEdit2Observer\CastCrewEdit2Observer.vbproj", "{9D9AAB44-7DC1-4A3B-BD5B-0AFCB5D27A5C}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "CastCrewEdit2Observer", "CastCrewEdit2\CastCrewEdit2Observer\CastCrewEdit2Observer.vbproj", "{9D9AAB44-7DC1-4A3B-BD5B-0AFCB5D27A5C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MergeCacheFilesLib", "CastCrewEdit2\MergeCacheFiles\MergeCacheFilesLib\MergeCacheFilesLib.csproj", "{798B664F-55B8-4270-88DF-9C416CFCE277}"
 EndProject
@@ -25,15 +25,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MergeCacheFilesWPF", "CastC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckForDuplicatesInCastCrewEdit2Cache", "CastCrewEdit2\CheckForDuplicatesInCastCrewEdit2Cache\CheckForDuplicatesInCastCrewEdit2Cache.csproj", "{5E597E0A-62CA-44A4-8F59-462088012A52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompareProfilerXMLAndCastCrewEdit2Cache", "CastCrewEdit2\CompareProfilerXMLAndCastCrewEdit2Cache\CompareProfilerXMLAndCastCrewEdit2Cache.csproj", "{FF4D14CB-0919-436E-BC1B-885491453B0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompareProfilerXMLAndCastCrewEdit2Cache", "CastCrewEdit2\CompareProfilerXMLAndCastCrewEdit2Cache\CompareProfilerXMLAndCastCrewEdit2Cache.csproj", "{FF4D14CB-0919-436E-BC1B-885491453B0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConvertCastCrewEdit2PersonFile", "CastCrewEdit2\ConvertCastCrewEdit2PersonFile\ConvertCastCrewEdit2PersonFile.csproj", "{6171E33E-117E-4AED-85C7-93ADF7D01EAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConvertCastCrewEdit2PersonFile", "CastCrewEdit2\ConvertCastCrewEdit2PersonFile\ConvertCastCrewEdit2PersonFile.csproj", "{6171E33E-117E-4AED-85C7-93ADF7D01EAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditIMDbToDVDProfilerCrewRoleTransformation", "CastCrewEdit2\EditIMDbToDVDProfilerCrewRoleTransformation\EditIMDbToDVDProfilerCrewRoleTransformation.csproj", "{004AF11A-7FFF-4CC4-8FB0-590A256D578E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EditIMDbToDVDProfilerCrewRoleTransformation", "CastCrewEdit2\EditIMDbToDVDProfilerCrewRoleTransformation\EditIMDbToDVDProfilerCrewRoleTransformation.csproj", "{004AF11A-7FFF-4CC4-8FB0-590A256D578E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{675CA1E2-2FC3-4567-9D76-AF4900B5A6D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindMergedCastCrew", "CastCrewEdit2\FindMergedCastCrew\FindMergedCastCrew.csproj", "{3261FC2E-60B3-4333-A775-FF49950CC0FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindMergedCastCrew", "CastCrewEdit2\FindMergedCastCrew\FindMergedCastCrew.csproj", "{3261FC2E-60B3-4333-A775-FF49950CC0FE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "CastCrewEdit2\CastCrewEdit2\UnitTests\UnitTests.csproj", "{1A9D26DE-2040-4AE9-A6A5-43AFD13C16A3}"
 EndProject
