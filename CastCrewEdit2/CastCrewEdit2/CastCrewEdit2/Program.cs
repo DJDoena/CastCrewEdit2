@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -465,40 +466,68 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 Settings = new Settings();
             }
 
-            if (Settings.MainForm == null)
-            {
-                Settings.MainForm = new SizableForm();
-            }
+            EnsureSetting(ref Settings.MainForm);
 
-            if (Settings.EpisodesForm == null)
-            {
-                Settings.EpisodesForm = new SizableForm();
-            }
+            EnsureSetting(ref Settings.EpisodesForm);
 
-            if (Settings.EpisodeForm == null)
-            {
-                Settings.EpisodeForm = new SizableForm();
-            }
+            EnsureSetting(ref Settings.EpisodeForm);
 
-            if (Settings.SettingsForm == null)
-            {
-                Settings.SettingsForm = new BaseForm();
-            }
+            EnsureSetting(ref Settings.SettingsForm);
 
-            if (Settings.EditConfigFilesForm == null)
-            {
-                Settings.EditConfigFilesForm = new SizableForm();
-            }
+            EnsureSetting(ref Settings.EditConfigFilesForm);
 
-            if (Settings.EditKnownNamesConfigFileForm == null)
-            {
-                Settings.EditKnownNamesConfigFileForm = new SizableForm();
-            }
+            EnsureSetting(ref Settings.EditKnownNamesConfigFileForm);
 
             if (Settings.DefaultValues == null)
             {
                 Settings.DefaultValues = new DefaultValues();
             }
+        }
+
+        private static void EnsureSetting(ref SizableForm form)
+        {
+            if (form == null || !IsOnScreen(form))
+            {
+                form = new SizableForm();
+            }
+        }
+
+        private static bool IsOnScreen(SizableForm form)
+        {
+            foreach (var screen in Screen.AllScreens)
+            {
+                var formRectangle = new Rectangle(form.Left, form.Top, form.Width, form.Height);
+
+                if (screen.WorkingArea.Contains(formRectangle))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static void EnsureSetting(ref BaseForm form)
+        {
+            if (form == null || !IsOnScreen(form))
+            {
+                form = new SizableForm();
+            }
+        }
+
+        private static bool IsOnScreen(BaseForm form)
+        {
+            foreach (var screen in Screen.AllScreens)
+            {
+                var formTopLeft = new Point(form.Left, form.Top);
+
+                if (screen.WorkingArea.Contains(formTopLeft))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         internal static void WriteError(Exception ex, bool forceWrite = false)
