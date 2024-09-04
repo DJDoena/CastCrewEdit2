@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<AssemblyName>CheckForDuplicatesInCastCrewEdit2Cache</AssemblyName>
+		<RootNamespace>DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache</RootNamespace>
+		<OutputType>WinExe</OutputType>
 		<TargetFrameworks>net472</TargetFrameworks>
+		<Platforms>x86;x64</Platforms>
+		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
 		<UseWindowsForms>true</UseWindowsForms>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<Platforms>x86;x64</Platforms>
-		<OutputType>WinExe</OutputType>
-		<RootNamespace>DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache</RootNamespace>
-		<AssemblyName>CheckForDuplicatesInCastCrewEdit2Cache</AssemblyName>
-		<GenerateDocumentationFile>False</GenerateDocumentationFile>
-		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
 		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

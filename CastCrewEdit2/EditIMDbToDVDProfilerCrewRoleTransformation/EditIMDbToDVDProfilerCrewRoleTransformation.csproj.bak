@@ -1,25 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyName>MergeCacheFilesForms</AssemblyName>
-		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles</RootNamespace>
-		<OutputType>WinExe</OutputType>
 		<TargetFrameworks>net472</TargetFrameworks>
-		<Platforms>x86;x64</Platforms>
-		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
 		<UseWindowsForms>true</UseWindowsForms>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Platforms>x86;x64</Platforms>
+		<OutputType>WinExe</OutputType>
+		<RootNamespace>DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation</RootNamespace>
+		<AssemblyName>EditIMDbToDVDProfilerCrewRoleTransformation</AssemblyName>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Compile Include="..\MergeCacheFilesLib\Properties\MergeCacheFiles.AssemblyInfo.cs" Link="Properties\MergeCacheFiles.AssemblyInfo.cs" />
-	</ItemGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="copy.cmd $(PlatformName) $(ConfigurationName)" />
+	</Target>
 
 	<ItemGroup>
-		<ProjectReference Include="..\MergeCacheFilesLib\MergeCacheFilesLib.csproj" />
+	  <ProjectReference Include="..\CastCrewEdit2Library\CastCrewEdit2Library.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -36,5 +36,5 @@
 	    <LastGenOutput>Resource.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
-
+	
 </Project>

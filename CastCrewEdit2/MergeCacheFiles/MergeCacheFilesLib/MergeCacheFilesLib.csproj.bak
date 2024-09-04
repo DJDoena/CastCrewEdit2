@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyName>MergeCacheFilesLib</AssemblyName>
-		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles</RootNamespace>
-		<OutputType>Library</OutputType>
 		<TargetFrameworks>net472</TargetFrameworks>
-		<Platforms>x86;x64</Platforms>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Platforms>x86;x64</Platforms>
+		<OutputType>Library</OutputType>
+		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles</RootNamespace>
+		<AssemblyName>MergeCacheFilesLib</AssemblyName>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="DoenaSoft.AbstractionLayer.IO" Version="2.0.9" />
+	  <PackageReference Include="DoenaSoft.AbstractionLayer.IO" Version="1.0.7" />
 	</ItemGroup>
 
 	<ItemGroup>

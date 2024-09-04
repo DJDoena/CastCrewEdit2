@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyName>MergeCacheFiles</AssemblyName>
-		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles</RootNamespace>
-		<OutputType>WinExe</OutputType>
 		<TargetFrameworks>net472</TargetFrameworks>
-		<Platforms>x86;x64</Platforms>
-		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
-		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 		<UseWPF>true</UseWPF>
+		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Platforms>x86;x64</Platforms>
+		<OutputType>WinExe</OutputType>
+		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles</RootNamespace>
+		<AssemblyName>MergeCacheFiles</AssemblyName>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="DoenaSoft.AbstractionLayer.WPF" Version="2.0.1" />
+	  <PackageReference Include="DoenaSoft.AbstractionLayer.WPF" Version="1.1.8" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -99,15 +99,15 @@
 
             _soundtrackMatches = new Dictionary<string, List<SoundtrackMatch>>();
 
-            InitializeComponent();
+            this.InitializeComponent();
 
-            WebBrowser = InitWebBrowser();
+            WebBrowser = this.InitWebBrowser();
 
             _progressBar = ProgressBar;
 
-            Icon = Properties.Resource.djdsoft;
+            this.Icon = Properties.Resource.djdsoft;
 
-            Shown += OnMainFormShown;
+            Shown += this.OnMainFormShown;
         }
 
         private Control InitWebBrowser()
@@ -117,25 +117,25 @@
             {
                 case BrowserControlSelection.FormsDefault:
                     {
-                        webBrowser = InitWebBrowserFormsDefault();
+                        webBrowser = this.InitWebBrowserFormsDefault();
 
                         break;
                     }
                 case BrowserControlSelection.WebViewCompatible:
                     {
-                        webBrowser = InitWebBrowserWebViewCompatible();
+                        webBrowser = this.InitWebBrowserWebViewCompatible();
 
                         break;
                     }
                 case BrowserControlSelection.WebView:
                     {
-                        webBrowser = InitWebBrowserWebView();
+                        webBrowser = this.InitWebBrowserWebView();
 
                         break;
                     }
                 case BrowserControlSelection.WebView2:
                     {
-                        webBrowser = InitWebBrowserWebView2();
+                        webBrowser = this.InitWebBrowserWebView2();
 
                         break;
                     }
@@ -174,8 +174,8 @@
                 ScriptErrorsSuppressed = true,
             };
 
-            webBrowser.Navigating += OnWebBrowserNavigating;
-            webBrowser.Navigated += OnWebBrowserNavigated;
+            webBrowser.Navigating += this.OnWebBrowserNavigating;
+            webBrowser.Navigated += this.OnWebBrowserNavigated;
 
             return webBrowser;
         }
@@ -184,8 +184,8 @@
         {
             var webBrowser = new Microsoft.Toolkit.Forms.UI.Controls.WebViewCompatible();
 
-            webBrowser.NavigationStarting += OnWebViewNavigationStarting;
-            webBrowser.NavigationCompleted += OnWebViewNavigationCompleted;
+            webBrowser.NavigationStarting += this.OnWebViewNavigationStarting;
+            webBrowser.NavigationCompleted += this.OnWebViewNavigationCompleted;
 
             return webBrowser;
         }
@@ -194,8 +194,8 @@
         {
             var webBrowser = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
 
-            webBrowser.NavigationStarting += OnWebViewNavigationStarting;
-            webBrowser.NavigationCompleted += OnWebViewNavigationCompleted;
+            webBrowser.NavigationStarting += this.OnWebViewNavigationStarting;
+            webBrowser.NavigationCompleted += this.OnWebViewNavigationCompleted;
 
             return webBrowser;
         }
@@ -204,8 +204,8 @@
         {
             var webBrowser = new Microsoft.Web.WebView2.WinForms.WebView2();
 
-            webBrowser.NavigationStarting += OnWebView2NavigationStarting;
-            webBrowser.NavigationCompleted += OnWebView2NavigationCompleted;
+            webBrowser.NavigationStarting += this.OnWebView2NavigationStarting;
+            webBrowser.NavigationCompleted += this.OnWebView2NavigationCompleted;
 
             return webBrowser;
         }
@@ -214,7 +214,7 @@
         {
             var failed = false;
 
-            StartLongAction();
+            this.StartLongAction();
 
             try
             {
@@ -243,13 +243,13 @@
                 {
                     _movieTitleLink = match.Groups["TitleLink"].Value.ToString();
 
-                    ParseIMDb(_movieTitleLink);
+                    this.ParseIMDb(_movieTitleLink);
 
                     if (!Program.DefaultValues.DisableParsingCompleteMessageBox
                         && !Program.DefaultValues.GetBirthYearsDirectlyAfterNameParsing
                         && !Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
                     {
-                        ProcessMessageQueue();
+                        this.ProcessMessageQueue();
 
                         MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -292,22 +292,22 @@
 
                 PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
 
-                SetMovieFormText();
+                this.SetMovieFormText();
 
-                EndLongActionWithGrids();
+                this.EndLongActionWithGrids();
             }
 
             if (!failed && Program.DefaultValues.GetBirthYearsDirectlyAfterNameParsing)
             {
-                GetBirthYears(Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing);
+                this.GetBirthYears(Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing);
             }
 
             if (!failed && Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
             {
-                OnGetHeadshotsButtonClick(sender, e);
+                this.OnGetHeadshotsButtonClick(sender, e);
             }
 
-            ProcessMessageQueue();
+            this.ProcessMessageQueue();
 
             if (!failed)
             {
@@ -318,7 +318,7 @@
 
         private void EndLongActionWithGrids()
         {
-            EndLongAction();
+            this.EndLongAction();
 
             MovieCastDataGridView.Refresh();
             MovieCrewDataGridView.Refresh();
@@ -328,22 +328,22 @@
         {
             if (!string.IsNullOrEmpty(_movieTitle))
             {
-                Text = "Cast/Crew Edit 2 - " + _movieTitle;
+                this.Text = "Cast/Crew Edit 2 - " + _movieTitle;
             }
             else
             {
-                Text = "Cast/Crew Edit 2";
+                this.Text = "Cast/Crew Edit 2";
             }
         }
 
         private void ParseIMDb(string key)
         {
-            var defaultValues = GetDefaultValues();
+            var defaultValues = this.GetDefaultValues();
 
             _castList = new List<CastInfo>();
             _crewList = new List<CrewInfo>();
 
-            ParseTitle(key);
+            this.ParseTitle(key);
 
             ParseCastAndCrew(key, ParseCastCheckBox.Checked, ParseCrewCheckBox.Checked, ParseCrewCheckBox.Checked, false, ref _castMatches, ref _castList, ref _crewMatches, ref _crewList, ref _soundtrackMatches);
 
@@ -361,20 +361,20 @@
                     progressMax += kvp.Value.Count;
                 }
 
-                StartProgress(progressMax, Color.LightBlue);
+                this.StartProgress(progressMax, Color.LightBlue);
 
-                ProcessLines(_castList, _castMatches, _crewList, _crewMatches, _soundtrackMatches, defaultValues);
+                this.ProcessLines(_castList, _castMatches, _crewList, _crewMatches, _soundtrackMatches, defaultValues);
             }
             finally
             {
-                EndProgress();
+                this.EndProgress();
             }
 
-            UpdateUI();
+            this.UpdateUI();
 
-            ParseTrivia();
+            this.ParseTrivia();
 
-            ParseGoofs();
+            this.ParseGoofs();
         }
 
         private void ParseTitle(string key)
@@ -401,7 +401,7 @@
 
                             _movieTitle = _movieTitle.Replace(" - IMDb", string.Empty).Replace(" - Full Cast & Crew", string.Empty).Trim();
 
-                            CreateTitleRow();
+                            this.CreateTitleRow();
 
                             break;
                         }
@@ -422,49 +422,98 @@
 
                 var webSite = IMDbParser.GetWebSite(triviaUrl);
 
-                using (var sr = new StringReader(webSite))
+                var triviaResult = this.ParseTriviaNewStyle(triviaUrl, webSite);
+
+                if (triviaResult == null || triviaResult.Length == 0)
                 {
-                    var triviaFound = false;
+                    triviaResult = this.ParseTriviaOldStyle(triviaUrl, webSite);
+                }
 
-                    var trivia = new StringBuilder();
-
-                    while (sr.Peek() != -1)
-                    {
-                        var line = sr.ReadLine();
-
-                        if (!triviaFound)
-                        {
-                            var beginMatch = IMDbParser.TriviaStartRegex.Match(line);
-
-                            if (beginMatch.Success)
-                            {
-                                triviaFound = true;
-
-                                continue;
-                            }
-                        }
-
-                        if (triviaFound)
-                        {
-                            trivia.AppendLine(line);
-                        }
-                    }
-
-                    if (trivia.Length > 0)
-                    {
-                        ParseTrivia(trivia, triviaUrl);
-                    }
+                if (triviaResult != null)
+                {
+                    TriviaTextBox.Text = triviaResult.ToString();
                 }
             }
         }
 
-        private void ParseTrivia(StringBuilder trivia, string triviaUrl)
+        private StringBuilder ParseTriviaNewStyle(string triviaUrl, string webSite)
         {
-            var matches = IMDbParser.TriviaLiRegex.Matches(trivia.ToString());
+            using (var sr = new StringReader(webSite))
+            {
+                string trivia = null;
+                while (sr.Peek() != -1)
+                {
+                    var line = sr.ReadLine();
 
-            trivia = new StringBuilder();
+                    var indexOf = line.IndexOf(IMDbParser.TriviaStartNewStyle);
 
-            trivia.AppendLine("<div style=\"display:none\">");
+                    if (indexOf != -1)
+                    {
+                        trivia = line.Substring(indexOf);
+
+                        break;
+                    }
+                }
+
+                if (trivia != null)
+                {
+                    var triviasResult = IMDbParser.ParseTriviaNewStyle(triviaUrl, trivia);
+
+                    return triviasResult;
+                }
+            }
+
+            return null;
+        }
+
+        private StringBuilder ParseTriviaOldStyle(string triviaUrl, string webSite)
+        {
+            using (var sr = new StringReader(webSite))
+            {
+                var triviaFound = false;
+
+                var trivia = new StringBuilder();
+
+                while (sr.Peek() != -1)
+                {
+                    var line = sr.ReadLine();
+
+                    if (!triviaFound)
+                    {
+                        var beginMatch = IMDbParser.TriviaStartRegex.Match(line);
+
+                        if (beginMatch.Success)
+                        {
+                            triviaFound = true;
+
+                            continue;
+                        }
+                    }
+
+                    if (triviaFound)
+                    {
+                        trivia.AppendLine(line);
+                    }
+                }
+
+                if (trivia.Length > 0)
+                {
+                    var triviaResult = this.ParseTrivia(trivia, triviaUrl);
+
+                    return triviaResult;
+                }
+            }
+
+            return null;
+        }
+
+        private StringBuilder ParseTrivia(StringBuilder triviaResults, string triviaUrl)
+        {
+            var matches = IMDbParser.TriviaLiRegex.Matches(triviaResults.ToString());
+
+            triviaResults = new StringBuilder();
+
+            triviaResults.AppendLine("<div style=\"display:none\">");
 
             if (matches.Count > 0)
             {
@@ -472,33 +521,19 @@
                 {
                     if (match.Groups["Trivia"].Success)
                     {
-                        var value = match.Groups["Trivia"].Value.Trim();
+                        var triviaResult = match.Groups["Trivia"].Value.Trim();
 
-                        if (!string.IsNullOrEmpty(value))
-                        {
-                            value = value.Replace("href=\"#", "href=\"" + triviaUrl + "#");
-                            value = value.Replace("href=\"/", "href=\"" + IMDbParser.BaseUrl + "/");
-                            value = value.Replace("href=\"?", "href=\"" + IMDbParser.BaseUrl + "?");
-                            value = value.Replace(" />", ">");
-                            value = value.Replace("/>", ">");
-                            value = value.Trim();
-
-                            while (value.EndsWith("<br>"))
-                            {
-                                value = value.Substring(0, value.Length - 4).TrimEnd();
-                            }
-
-                            trivia.AppendLine("<trivia=" + value + " />");
-                            trivia.AppendLine();
-                        }
+                        IMDbParser.AddTriviaResult(triviaUrl, triviaResult, triviaResults);
                     }
                 }
             }
 
-            trivia.AppendLine("</div>");
+            triviaResults.AppendLine("</div>");
 
-            TriviaTextBox.Text = trivia.ToString();
+            return triviaResults;
         }
+
+
 
         private void ParseGoofs()
         {
@@ -510,49 +545,98 @@
 
                 var webSite = IMDbParser.GetWebSite(goofsUrl);
 
-                using (var sr = new StringReader(webSite))
+                var goofsResult = this.ParseGoofsNewStyle(goofsUrl, webSite);
+
+                if (goofsResult == null || goofsResult.Length == 0)
                 {
-                    var goofsFound = false;
+                    goofsResult = this.ParseGoofsOldStyle(goofsUrl, webSite);
+                }
 
-                    var goofs = new StringBuilder();
-
-                    while (sr.Peek() != -1)
-                    {
-                        var line = sr.ReadLine();
-
-                        if (!goofsFound)
-                        {
-                            var beginMatch = IMDbParser.GoofsStartRegex.Match(line);
-
-                            if (beginMatch.Success)
-                            {
-                                goofsFound = true;
-
-                                continue;
-                            }
-                        }
-
-                        if (goofsFound)
-                        {
-                            goofs.AppendLine(line);
-                        }
-                    }
-
-                    if (goofs.Length > 0)
-                    {
-                        ParseGoofs(goofs, goofsUrl);
-                    }
+                if (goofsResult != null)
+                {
+                    GoofsTextBox.Text = goofsResult.ToString();
                 }
             }
         }
 
-        private void ParseGoofs(StringBuilder goofs, string goofsUrl)
+        private StringBuilder ParseGoofsNewStyle(string goofsUrl, string webSite)
         {
-            var matches = IMDbParser.GoofsLiRegex.Matches(goofs.ToString());
+            using (var sr = new StringReader(webSite))
+            {
+                string goofs = null;
+                while (sr.Peek() != -1)
+                {
+                    var line = sr.ReadLine();
 
-            goofs = new StringBuilder();
+                    var indexOf = line.IndexOf(IMDbParser.GoofsStartNewStyle);
 
-            goofs.AppendLine("<div style=\"display:none\">");
+                    if (indexOf != -1)
+                    {
+                        goofs = line.Substring(indexOf);
+
+                        break;
+                    }
+                }
+
+                if (goofs != null)
+                {
+                    var goofsResult = IMDbParser.ParseGoofsNewStyle(goofsUrl, goofs);
+
+                    return goofsResult;
+                }
+            }
+
+            return null;
+        }
+
+        private StringBuilder ParseGoofsOldStyle(string goofsUrl, string webSite)
+        {
+            using (var sr = new StringReader(webSite))
+            {
+                var goofsFound = false;
+
+                var goofs = new StringBuilder();
+
+                while (sr.Peek() != -1)
+                {
+                    var line = sr.ReadLine();
+
+                    if (!goofsFound)
+                    {
+                        var beginMatch = IMDbParser.GoofsStartOldStyleRegex.Match(line);
+
+                        if (beginMatch.Success)
+                        {
+                            goofsFound = true;
+
+                            continue;
+                        }
+                    }
+
+                    if (goofsFound)
+                    {
+                        goofs.AppendLine(line);
+                    }
+                }
+
+                if (goofs.Length > 0)
+                {
+                    var goofsResult = this.ParseGoofsOldStyle(goofs, goofsUrl);
+
+                    return goofsResult;
+                }
+            }
+
+            return null;
+        }
+
+        private StringBuilder ParseGoofsOldStyle(StringBuilder goofs, string goofsUrl)
+        {
+            var matches = IMDbParser.GoofsLiOldStyleRegex.Matches(goofs.ToString());
+
+            var goofsResult = new StringBuilder();
+
+            goofsResult.AppendLine("<div style=\"display:none\">");
 
             if (matches.Count > 0)
             {
@@ -560,40 +644,23 @@
                 {
                     if (match.Groups["Goof"].Success)
                     {
-                        var value = match.Groups["Goof"].Value.Trim();
+                        var goofResult = match.Groups["Goof"].Value.Trim();
 
-                        var spoilerMatch = IMDbParser.GoofSpoilerRegex.Match(value);
+                        var spoilerMatch = IMDbParser.GoofSpoilerldStyleRegex.Match(goofResult);
 
                         if (spoilerMatch.Success)
                         {
-                            value = spoilerMatch.Groups["Goof"].Value;
+                            goofResult = spoilerMatch.Groups["Goof"].Value;
                         }
 
-                        if (!string.IsNullOrEmpty(value))
-                        {
-                            value = value.Replace("&nbsp;", " ");
-                            value = value.Replace("href=\"#", "href=\"" + goofsUrl + "#");
-                            value = value.Replace("href=\"/", "href=\"" + IMDbParser.BaseUrl + "/");
-                            value = value.Replace("href=\"?", "href=\"" + IMDbParser.BaseUrl + "?");
-                            value = value.Replace(" />", ">");
-                            value = value.Replace("/>", ">");
-                            value = value.Trim();
-
-                            while (value.EndsWith("<br>"))
-                            {
-                                value = value.Substring(0, value.Length - 4).TrimEnd();
-                            }
-
-                            goofs.AppendLine("<goof=" + value + " />");
-                            goofs.AppendLine();
-                        }
+                        IMDbParser.AddGoofResult(goofsUrl, goofResult, goofsResult);
                     }
                 }
             }
 
-            goofs.AppendLine("</div>");
+            goofsResult.AppendLine("</div>");
 
-            GoofsTextBox.Text = goofs.ToString();
+            return goofsResult;
         }
 
         private void CreateTitleRow()
@@ -637,7 +704,7 @@
 
         private void UpdateUI()
         {
-            UpdateUI(_castList, _crewList, MovieCastDataGridView, MovieCrewDataGridView, ParseCastCheckBox.Checked, ParseCrewCheckBox.Checked, _movieTitleLink, _movieTitle);
+            this.UpdateUI(_castList, _crewList, MovieCastDataGridView, MovieCrewDataGridView, ParseCastCheckBox.Checked, ParseCrewCheckBox.Checked, _movieTitleLink, _movieTitle);
 
             if (_log.Length > 0)
             {
@@ -647,37 +714,37 @@
 
         private async void OnMainFormShown(object sender, EventArgs e)
         {
-            SuspendLayout();
+            this.SuspendLayout();
 
-            LayoutForm();
+            this.LayoutForm();
 
-            CreateDataGridViewColumns();
+            this.CreateDataGridViewColumns();
 
-            SetCheckBoxes();
+            this.SetCheckBoxes();
 
             if (ItsMe)
             {
                 MenuStrip.Items.Add(sessionDataToolStripMenuItem);
             }
 
-            ResumeLayout();
+            this.ResumeLayout();
 
             BirthYearsInLocalCacheLabel.Text = IMDbParser.PersonHashCount;
 
             PersonsInLocalCacheLabel.Text = Program.PersonCacheCountString;
 
-            RegisterEvents();
+            this.RegisterEvents();
 
             if (Program.Settings.CurrentVersion != Assembly.GetExecutingAssembly().GetName().Version.ToString())
             {
-                OpenReadme();
+                this.OpenReadme();
 
                 Program.Settings.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
 
-            CheckForNewVersion(true);
+            this.CheckForNewVersion(true);
 
-            await InitialNavigate();
+            await this.InitialNavigate();
 
             BrowserSearchTextBox.Focus();
         }
@@ -691,7 +758,7 @@
                 await ((Microsoft.Web.WebView2.WinForms.WebView2)WebBrowser).EnsureCoreWebView2Async(environment);
             }
 
-            NavigateTo("https://www.imdb.com/find?s=tt&q=");
+            this.NavigateTo("https://www.imdb.com/find?s=tt&q=");
         }
 
         private void CheckForNewVersion(bool silently)
@@ -700,12 +767,12 @@
             {
                 if (!_skipVersionCheck)
                 {
-                    OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/3.9.0/versions.xml", this, "CastCrewEdit2", GetType().Assembly, silently);
+                    OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/3.9.0/versions.xml", this, "CastCrewEdit2", this.GetType().Assembly, silently);
                 }
             }
             else
             {
-                OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/3.9.0/versions.xml", this, "CastCrewEdit2", GetType().Assembly, silently);
+                OnlineAccess.CheckForNewVersion("http://doena-soft.de/dvdprofiler/3.9.0/versions.xml", this, "CastCrewEdit2", this.GetType().Assembly, silently);
             }
         }
 
@@ -729,100 +796,100 @@
         {
             if (Program.Settings.MainForm.WindowState == FormWindowState.Normal)
             {
-                Left = Program.Settings.MainForm.Left;
+                this.Left = Program.Settings.MainForm.Left;
 
-                Top = Program.Settings.MainForm.Top;
+                this.Top = Program.Settings.MainForm.Top;
 
-                if (Program.Settings.MainForm.Width > MinimumSize.Width)
+                if (Program.Settings.MainForm.Width > this.MinimumSize.Width)
                 {
-                    Width = Program.Settings.MainForm.Width;
+                    this.Width = Program.Settings.MainForm.Width;
                 }
                 else
                 {
-                    Width = MinimumSize.Width;
+                    this.Width = this.MinimumSize.Width;
                 }
 
-                if (Program.Settings.MainForm.Height > MinimumSize.Height)
+                if (Program.Settings.MainForm.Height > this.MinimumSize.Height)
                 {
-                    Height = Program.Settings.MainForm.Height;
+                    this.Height = Program.Settings.MainForm.Height;
                 }
                 else
                 {
-                    Height = MinimumSize.Height;
+                    this.Height = this.MinimumSize.Height;
                 }
             }
             else
             {
-                Left = Program.Settings.MainForm.RestoreBounds.X;
+                this.Left = Program.Settings.MainForm.RestoreBounds.X;
 
-                Top = Program.Settings.MainForm.RestoreBounds.Y;
+                this.Top = Program.Settings.MainForm.RestoreBounds.Y;
 
-                if (Program.Settings.MainForm.RestoreBounds.Width > MinimumSize.Width)
+                if (Program.Settings.MainForm.RestoreBounds.Width > this.MinimumSize.Width)
                 {
-                    Width = Program.Settings.MainForm.RestoreBounds.Width;
+                    this.Width = Program.Settings.MainForm.RestoreBounds.Width;
                 }
                 else
                 {
-                    Width = MinimumSize.Width;
+                    this.Width = this.MinimumSize.Width;
                 }
 
-                if (Program.Settings.MainForm.RestoreBounds.Height > MinimumSize.Height)
+                if (Program.Settings.MainForm.RestoreBounds.Height > this.MinimumSize.Height)
                 {
-                    Height = Program.Settings.MainForm.RestoreBounds.Height;
+                    this.Height = Program.Settings.MainForm.RestoreBounds.Height;
                 }
                 else
                 {
-                    Height = MinimumSize.Height;
+                    this.Height = this.MinimumSize.Height;
                 }
             }
 
             if (Program.Settings.MainForm.WindowState != FormWindowState.Minimized)
             {
-                WindowState = Program.Settings.MainForm.WindowState;
+                this.WindowState = Program.Settings.MainForm.WindowState;
             }
         }
 
         private void RegisterEvents()
         {
-            MovieCastDataGridView.CellValueChanged += OnMovieCastDataGridViewCellValueChanged;
+            MovieCastDataGridView.CellValueChanged += this.OnMovieCastDataGridViewCellValueChanged;
 
-            MovieCrewDataGridView.CellValueChanged += OnMovieCrewDataGridViewCellValueChanged;
+            MovieCrewDataGridView.CellValueChanged += this.OnMovieCrewDataGridViewCellValueChanged;
 
-            MovieCastDataGridView.CellContentClick += OnDataGridViewCellContentClick;
+            MovieCastDataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
 
-            MovieCrewDataGridView.CellContentClick += OnDataGridViewCellContentClick;
+            MovieCrewDataGridView.CellContentClick += this.OnDataGridViewCellContentClick;
 
-            SettingsToolStripMenuItem.Click += OnSettingsToolStripMenuItemClick;
+            SettingsToolStripMenuItem.Click += this.OnSettingsToolStripMenuItemClick;
 
-            FirstnamePrefixesToolStripMenuItem.Click += OnFirstnamePrefixesToolStripMenuItemClick;
+            FirstnamePrefixesToolStripMenuItem.Click += this.OnFirstnamePrefixesToolStripMenuItemClick;
 
-            LastnamePrefixesToolStripMenuItem.Click += OnLastnamePrefixesToolStripMenuItemClick;
+            LastnamePrefixesToolStripMenuItem.Click += this.OnLastnamePrefixesToolStripMenuItemClick;
 
-            LastnameSuffixesToolStripMenuItem.Click += OnLastnameSuffixesToolStripMenuItemClick;
+            LastnameSuffixesToolStripMenuItem.Click += this.OnLastnameSuffixesToolStripMenuItemClick;
 
-            KnownNamesToolStripMenuItem.Click += OnKnownNamesToolStripMenuItemClick;
+            KnownNamesToolStripMenuItem.Click += this.OnKnownNamesToolStripMenuItemClick;
 
-            IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Click += OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick;
+            IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Click += this.OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick;
 
-            IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Click += OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick;
+            IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Click += this.OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick;
 
-            ForcedFakeBirthYearsToolStripMenuItem.Click += OnForcedFakeBirthYearsToolStripMenuItemClick;
+            ForcedFakeBirthYearsToolStripMenuItem.Click += this.OnForcedFakeBirthYearsToolStripMenuItemClick;
 
-            IMDbToDVDProfilerTransformationDataToolStripMenuItem.Click += OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick;
+            IMDbToDVDProfilerTransformationDataToolStripMenuItem.Click += this.OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick;
 
-            ReadmeToolStripMenuItem.Click += OnReadmeToolStripMenuItemClick;
+            ReadmeToolStripMenuItem.Click += this.OnReadmeToolStripMenuItemClick;
 
-            AboutToolStripMenuItem.Click += OnAboutToolStripMenuItemClick;
+            AboutToolStripMenuItem.Click += this.OnAboutToolStripMenuItemClick;
 
-            BirthYearsInLocalCacheLabel.LinkClicked += OnBirthYearsInLocalCacheLabelLinkClicked;
+            BirthYearsInLocalCacheLabel.LinkClicked += this.OnBirthYearsInLocalCacheLabelLinkClicked;
 
-            PersonsInLocalCacheLabel.LinkClicked += OnPersonsInLocalCacheLabelLinkClicked;
+            PersonsInLocalCacheLabel.LinkClicked += this.OnPersonsInLocalCacheLabelLinkClicked;
 
-            FormClosing += OnMainFormClosing;
+            FormClosing += this.OnMainFormClosing;
 
-            KeyPreview = true;
+            this.KeyPreview = true;
 
-            KeyDown += OnMainFormKeyDown;
+            KeyDown += this.OnMainFormKeyDown;
         }
 
         private void OnMainFormClosing(object sender, FormClosingEventArgs e)
@@ -835,22 +902,22 @@
                 }
             }
 
-            Program.Settings.MainForm.Left = Left;
-            Program.Settings.MainForm.Top = Top;
-            Program.Settings.MainForm.Width = Width;
-            Program.Settings.MainForm.Height = Height;
-            Program.Settings.MainForm.WindowState = WindowState;
-            Program.Settings.MainForm.RestoreBounds = RestoreBounds;
+            Program.Settings.MainForm.Left = this.Left;
+            Program.Settings.MainForm.Top = this.Top;
+            Program.Settings.MainForm.Width = this.Width;
+            Program.Settings.MainForm.Height = this.Height;
+            Program.Settings.MainForm.WindowState = this.WindowState;
+            Program.Settings.MainForm.RestoreBounds = this.RestoreBounds;
         }
 
         private void OnGetBirthYearsButtonClick(object sender, EventArgs e)
         {
-            GetBirthYears(false);
+            this.GetBirthYears(false);
 
-            ProcessMessageQueue();
+            this.ProcessMessageQueue();
         }
 
-        private void GetBirthYears(bool parseHeadshotsFollows) => GetBirthYears(parseHeadshotsFollows, MovieCastDataGridView, MovieCrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
+        private void GetBirthYears(bool parseHeadshotsFollows) => this.GetBirthYears(parseHeadshotsFollows, MovieCastDataGridView, MovieCrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
 
         private void SetCheckBoxes()
         {
@@ -911,17 +978,17 @@
 
         private void OnMovieCastDataGridViewCellValueChanged(object sender, DataGridViewCellEventArgs e) => DataGridViewHelper.OnCastDataGridViewCellValueChanged(sender, e);
 
-        private void OnMovieCastGenerateButtonClick(object sender, EventArgs e) => GenerateCastXml(true);
+        private void OnMovieCastGenerateButtonClick(object sender, EventArgs e) => this.GenerateCastXml(true);
 
-        private string GenerateCastXml(bool showMessageBox) => GenerateCastXml(MovieCastDataGridView, _movieTitle, showMessageBox, LogWebBrowser);
+        private string GenerateCastXml(bool showMessageBox) => this.GenerateCastXml(MovieCastDataGridView, _movieTitle, showMessageBox, LogWebBrowser);
 
-        private void OnMovieCrewGenerateButtonClick(object sender, EventArgs e) => GenerateCrewXml(true);
+        private void OnMovieCrewGenerateButtonClick(object sender, EventArgs e) => this.GenerateCrewXml(true);
 
-        private string GenerateCrewXml(bool showMessageBox) => GenerateCrewXml(MovieCrewDataGridView, _movieTitle, showMessageBox, LogWebBrowser);
+        private string GenerateCrewXml(bool showMessageBox) => this.GenerateCrewXml(MovieCrewDataGridView, _movieTitle, showMessageBox, LogWebBrowser);
 
         private void OnTVShowScanPageButtonClick(object sender, EventArgs e)
         {
-            StartLongAction();
+            this.StartLongAction();
 
             try
             {
@@ -949,11 +1016,11 @@
 
                 try
                 {
-                    ScanForSeasons();
+                    this.ScanForSeasons();
 
                     if (!Program.DefaultValues.DisableParsingCompleteMessageBox)
                     {
-                        ProcessMessageQueue();
+                        this.ProcessMessageQueue();
 
                         MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -985,9 +1052,9 @@
             }
             finally
             {
-                SetTVShowFormText();
+                this.SetTVShowFormText();
 
-                EndLongActionWithGrids();
+                this.EndLongActionWithGrids();
             }
         }
 
@@ -995,11 +1062,11 @@
         {
             if (!string.IsNullOrEmpty(_tvShowTitle))
             {
-                Text = "Cast/Crew Edit 2 For TV Shows - " + Resources.Seasons + " - " + _tvShowTitle;
+                this.Text = "Cast/Crew Edit 2 For TV Shows - " + Resources.Seasons + " - " + _tvShowTitle;
             }
             else
             {
-                Text = "Cast/Crew Edit 2 For TV Shows";
+                this.Text = "Cast/Crew Edit 2 For TV Shows";
             }
         }
 
@@ -1013,9 +1080,9 @@
             }
             else
             {
-                StartLongAction();
+                this.StartLongAction();
 
-                SuspendLayout();
+                this.SuspendLayout();
 
                 var episodes = new List<EpisodeInfo>();
 
@@ -1060,9 +1127,9 @@
                 }
                 finally
                 {
-                    ResumeLayout();
+                    this.ResumeLayout();
 
-                    EndLongActionWithGrids();
+                    this.EndLongActionWithGrids();
                 }
 
                 if (episodes.Count == 0)
@@ -1075,7 +1142,7 @@
                 {
                     if (!Program.DefaultValues.DisableParsingCompleteMessageBox)
                     {
-                        ProcessMessageQueue();
+                        this.ProcessMessageQueue();
 
                         MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -1088,7 +1155,7 @@
 
                         if (_settingsHaveChanged)
                         {
-                            SetCheckBoxes();
+                            this.SetCheckBoxes();
 
                             _settingsHaveChanged = false;
                         }
@@ -1115,7 +1182,7 @@
 
                     //var episodeStartMatch = _episodeStartRegex.Match(line);
 
-                    var indexOfEpisodes = line.IndexOf("\"episodes\":", StringComparison.InvariantCultureIgnoreCase);
+                    var indexOfEpisodes = line.IndexOf("\"episodes\":{\"items\":", StringComparison.InvariantCultureIgnoreCase);
 
                     if (indexOfEpisodes != -1)
                     {
@@ -1262,9 +1329,9 @@
 
             var webSite = IMDbParser.GetWebSite(targetUrl);
 
-            if (!ScanForSeasonsNewStyle(webSite))
+            if (!this.ScanForSeasonsNewStyle(webSite))
             {
-                ScanForSeasonsOldStyle(webSite);
+                this.ScanForSeasonsOldStyle(webSite);
             }
         }
 
@@ -1295,7 +1362,7 @@
                         }
                     }
 
-                    var indexOfSeasons = line.IndexOf("\"seasons\":", StringComparison.InvariantCultureIgnoreCase);
+                    var indexOfSeasons = line.IndexOf("\"seasons\":[{\"id\":", StringComparison.InvariantCultureIgnoreCase);
 
                     if (indexOfSeasons != -1)
                     {
@@ -1417,11 +1484,11 @@
 
             if (tabControl.SelectedTab == MovieTab)
             {
-                SetMovieFormText();
+                this.SetMovieFormText();
             }
             else if (tabControl.SelectedTab == TVShowTab)
             {
-                SetTVShowFormText();
+                this.SetTVShowFormText();
             }
         }
 
@@ -1433,7 +1500,7 @@
 
                 if (settingsForm.ShowDialog(this) == DialogResult.OK)
                 {
-                    SetCheckBoxes();
+                    this.SetCheckBoxes();
                 }
 
                 settingsForm.GetValues(out Program.Settings.SettingsForm.Left, out Program.Settings.SettingsForm.Top);
@@ -1442,7 +1509,7 @@
 
         private void OnReApplySettingsAndFiltersButtonClick(object sender, EventArgs e)
         {
-            StartLongAction();
+            this.StartLongAction();
 
             MovieCastDataGridView.Rows.Clear();
 
@@ -1452,9 +1519,9 @@
 
             _crewList = new List<CrewInfo>();
 
-            CreateTitleRow();
+            this.CreateTitleRow();
 
-            var defaultValues = GetDefaultValues();
+            var defaultValues = this.GetDefaultValues();
 
             try
             {
@@ -1470,31 +1537,31 @@
                     progressMax += kvp.Value.Count;
                 }
 
-                StartProgress(progressMax, Color.LightBlue);
+                this.StartProgress(progressMax, Color.LightBlue);
 
-                ProcessLines(_castList, _castMatches, _crewList, _crewMatches, _soundtrackMatches, defaultValues);
+                this.ProcessLines(_castList, _castMatches, _crewList, _crewMatches, _soundtrackMatches, defaultValues);
             }
             finally
             {
-                EndProgress();
+                this.EndProgress();
             }
 
-            UpdateUI();
+            this.UpdateUI();
 
-            EndLongActionWithGrids();
+            this.EndLongActionWithGrids();
 
             if (!Program.DefaultValues.DisableParsingCompleteMessageBox
                 && !Program.DefaultValues.GetBirthYearsDirectlyAfterNameParsing
                 && !Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
             {
-                ProcessMessageQueue();
+                this.ProcessMessageQueue();
 
                 MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             if (Program.DefaultValues.GetBirthYearsDirectlyAfterNameParsing)
             {
-                GetBirthYears(Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing);
+                this.GetBirthYears(Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing);
             }
             else
             {
@@ -1503,10 +1570,10 @@
 
             if (Program.DefaultValues.GetHeadShotsDirectlyAfterNameParsing)
             {
-                OnGetHeadshotsButtonClick(sender, e);
+                this.OnGetHeadshotsButtonClick(sender, e);
             }
 
-            ProcessMessageQueue();
+            this.ProcessMessageQueue();
 
             DataGridViewHelper.CopyCastToClipboard(MovieCastDataGridView, _movieTitle, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage, true);
             DataGridViewHelper.CopyCrewToClipboard(MovieCrewDataGridView, _movieTitle, _log, Program.DefaultValues.UseFakeBirthYears, AddMessage, true);
@@ -1565,7 +1632,7 @@
 
                 MovieCastDataGridView.Rows.Clear();
 
-                UpdateUI(_castList, null, MovieCastDataGridView, null, true, false, _movieTitleLink, _movieTitle);
+                this.UpdateUI(_castList, null, MovieCastDataGridView, null, true, false, _movieTitleLink, _movieTitle);
             }
             else
             {
@@ -1583,7 +1650,7 @@
 
                 MovieCastDataGridView.Rows.Clear();
 
-                UpdateUI(_castList, null, MovieCastDataGridView, null, true, false, _movieTitleLink, _movieTitle);
+                this.UpdateUI(_castList, null, MovieCastDataGridView, null, true, false, _movieTitleLink, _movieTitle);
             }
             else
             {
@@ -1591,9 +1658,9 @@
             }
         }
 
-        private void OnGetHeadshotsButtonClick(object sender, EventArgs e) => GetHeadshots(MovieCastDataGridView, MovieCrewDataGridView, GetHeadshotsButton);
+        private void OnGetHeadshotsButtonClick(object sender, EventArgs e) => this.GetHeadshots(MovieCastDataGridView, MovieCrewDataGridView, GetHeadshotsButton);
 
-        private void OnBrowseButtonClick(object sender, EventArgs e) => NavigateTo(BrowserUrlComboBox.Text);
+        private void OnBrowseButtonClick(object sender, EventArgs e) => this.NavigateTo(BrowserUrlComboBox.Text);
 
         private void OnBrowserSearchButtonClick(object sender, EventArgs e)
         {
@@ -1601,7 +1668,7 @@
 
             var url = BaseUrl + System.Web.HttpUtility.UrlEncode(BrowserSearchTextBox.Text);
 
-            NavigateTo(url);
+            this.NavigateTo(url);
         }
 
         private void NavigateTo(string url)
@@ -1639,7 +1706,7 @@
         {
             if (e.KeyCode == Keys.Enter)
             {
-                OnBrowseButtonClick(this, null);
+                this.OnBrowseButtonClick(this, null);
             }
         }
 
@@ -1647,7 +1714,7 @@
         {
             if (e.KeyCode == Keys.Enter)
             {
-                OnBrowserSearchButtonClick(this, null);
+                this.OnBrowserSearchButtonClick(this, null);
             }
         }
 
@@ -1710,7 +1777,7 @@
             { }
         }
 
-        private void OnCheckForUpdateToolStripMenuItemClick(object sender, EventArgs e) => CheckForNewVersion(false);
+        private void OnCheckForUpdateToolStripMenuItemClick(object sender, EventArgs e) => this.CheckForNewVersion(false);
 
         private void OnLogWebBrowserNavigating(object sender, WebBrowserNavigatingEventArgs e)
         {
@@ -1738,7 +1805,7 @@
 
             _log.Show(LogWebBrowser);
 
-            ProcessMessageQueue();
+            this.ProcessMessageQueue();
 
             if (!Program.DefaultValues.DisableCopyingSuccessfulMessageBox)
             {
@@ -1762,7 +1829,7 @@
 
             _log.Show(LogWebBrowser);
 
-            ProcessMessageQueue();
+            this.ProcessMessageQueue();
 
             if (!Program.DefaultValues.DisableCopyingSuccessfulMessageBox)
             {
@@ -1777,17 +1844,17 @@
             obj.SetClientSite(this);
         }
 
-        private void OnWebBrowserNavigated(object sender, WebBrowserNavigatedEventArgs e) => UpdateUri(e.Url);
+        private void OnWebBrowserNavigated(object sender, WebBrowserNavigatedEventArgs e) => this.UpdateUri(e.Url);
 
-        private void OnWebViewNavigationStarting(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationStartingEventArgs e) => UpdateUri(e.Uri);
+        private void OnWebViewNavigationStarting(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationStartingEventArgs e) => this.UpdateUri(e.Uri);
 
-        private void OnWebViewNavigationCompleted(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e) => UpdateUri(e.Uri);
+        private void OnWebViewNavigationCompleted(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e) => this.UpdateUri(e.Uri);
 
-        private void OnWebView2NavigationStarting(object sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs e) => UpdateUriFromWebView2();
+        private void OnWebView2NavigationStarting(object sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs e) => this.UpdateUriFromWebView2();
 
-        private void OnWebView2NavigationCompleted(object sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs e) => UpdateUriFromWebView2();
+        private void OnWebView2NavigationCompleted(object sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs e) => this.UpdateUriFromWebView2();
 
-        private void UpdateUriFromWebView2() => UpdateUri(((Microsoft.Web.WebView2.WinForms.WebView2)WebBrowser).Source);
+        private void UpdateUriFromWebView2() => this.UpdateUri(((Microsoft.Web.WebView2.WinForms.WebView2)WebBrowser).Source);
 
         private void UpdateUri(Uri uri)
         {
@@ -1820,14 +1887,14 @@
                     {
                         if (ParseCastCheckBox.Checked)
                         {
-                            var xml = GenerateCastXml(false);
+                            var xml = this.GenerateCastXml(false);
 
                             await CastCrewCopyPasteSender.Send(xml);
                         }
 
                         if (ParseCrewCheckBox.Checked)
                         {
-                            var xml = GenerateCrewXml(false);
+                            var xml = this.GenerateCrewXml(false);
 
                             await CastCrewCopyPasteSender.Send(xml);
                         }
@@ -1837,11 +1904,11 @@
                 {
                     if (MovieCastCrewTabControl.SelectedIndex == 0)
                     {
-                        OnMovieCastGenerateButtonClick(this, EventArgs.Empty);
+                        this.OnMovieCastGenerateButtonClick(this, EventArgs.Empty);
                     }
                     else if (MovieCastCrewTabControl.SelectedIndex == 1)
                     {
-                        OnMovieCrewGenerateButtonClick(this, EventArgs.Empty);
+                        this.OnMovieCrewGenerateButtonClick(this, EventArgs.Empty);
                     }
                 }
             }

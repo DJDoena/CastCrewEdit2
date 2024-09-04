@@ -6,6 +6,7 @@ using System.Windows.Input;
 using DoenaSoft.AbstractionLayer.Commands;
 using DoenaSoft.AbstractionLayer.IOServices;
 using DoenaSoft.AbstractionLayer.Threading;
+using DoenaSoft.AbstractionLayer.UI.Contracts;
 using DoenaSoft.AbstractionLayer.UIServices;
 
 namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
@@ -79,7 +80,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             Log = log;
             WindowFactory = windowFactory;
 
-            ProcessData = new ProcessData();
+            this.ProcessData = new ProcessData();
             WindowsProgressBarHandler = new WindowsProgressBarHandler();
             RemainingTimeCalculator = new RemainingTimeCalculator();
             FileHelper = new FileHelper(ioServices, uiServices);
@@ -91,8 +92,8 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             m_ProgressValue = 0;
             m_ProgressMax = int.MaxValue;
 
-            Model.ProgressMaxChanged += OnModelProgressMaxChanged;
-            Model.ProgressValueChanged += OnModelProgressValueChanged;
+            Model.ProgressMaxChanged += this.OnModelProgressMaxChanged;
+            Model.ProgressValueChanged += this.OnModelProgressValueChanged;
         }
 
         #endregion
@@ -111,7 +112,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             {
                 if (m_ProcessCommand == null)
                 {
-                    m_ProcessCommand = new CancelableRelayCommandAsync(Process, CanExecuteProcess);
+                    m_ProcessCommand = new CancelableRelayCommandAsync(this.Process, this.CanExecuteProcess);
                 }
 
                 return (m_ProcessCommand);
@@ -119,22 +120,22 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         }
 
         public ICommand PauseCommand
-            => (new RelayCommand(PauseProcess, CanExecutePause));
+            => (new RelayCommand(this.PauseProcess, this.CanExecutePause));
 
         public bool ProgressIndeterminate
-            => (Synchronizer.InvokeOnUIThread(() => (m_ProgressMax == int.MaxValue)));
+            => (Synchronizer.Invoke(() => (m_ProgressMax == int.MaxValue)));
 
         public ICommand LoadSessionDataCommand
-            => (new RelayCommand(LoadSessionData, CanExecute));
+            => (new RelayCommand(this.LoadSessionData, this.CanExecute));
 
         public ICommand SaveSessionDataCommand
-            => (new RelayCommand(SaveSessionData, CanExecute));
+            => (new RelayCommand(this.SaveSessionData, this.CanExecute));
 
         public int ProgressMax
         {
             get
             {
-                return (Synchronizer.InvokeOnUIThread(() => m_ProgressMax));
+                return (Synchronizer.Invoke(() => m_ProgressMax));
             }
             private set
             {
@@ -144,15 +145,15 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
                         {
                             m_ProgressMax = value;
 
-                            SetWindowsProgressBar();
+                            this.SetWindowsProgressBar();
 
-                            OnPropertyChanged(nameof(ProgressMax));
-                            OnPropertyChanged(nameof(ProgressIndeterminate));
-                            OnPropertyChanged(nameof(ProgressText));
+                            this.OnPropertyChanged(nameof(this.ProgressMax));
+                            this.OnPropertyChanged(nameof(this.ProgressIndeterminate));
+                            this.OnPropertyChanged(nameof(this.ProgressText));
                         }
                     };
 
-                Synchronizer.InvokeOnUIThread(action);
+                Synchronizer.Invoke(action);
             }
         }
 
@@ -160,7 +161,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         {
             get
             {
-                return (Synchronizer.InvokeOnUIThread(() => m_ProgressValue));
+                return (Synchronizer.Invoke(() => m_ProgressValue));
             }
             private set
             {
@@ -170,14 +171,14 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
                         {
                             m_ProgressValue = value;
 
-                            SetWindowsProgressBar();
+                            this.SetWindowsProgressBar();
 
-                            OnPropertyChanged(nameof(ProgressValue));
-                            OnPropertyChanged(nameof(ProgressText));
+                            this.OnPropertyChanged(nameof(this.ProgressValue));
+                            this.OnPropertyChanged(nameof(this.ProgressText));
                         }
                     };
 
-                Synchronizer.InvokeOnUIThread(action);
+                Synchronizer.Invoke(action);
             }
         }
 
@@ -187,25 +188,25 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             {
                 Func<string> func = () =>
                     {
-                        if ((TaskIsNotRunning) || (ProgressMax == int.MaxValue))
+                        if ((this.TaskIsNotRunning) || (this.ProgressMax == int.MaxValue))
                         {
                             return (string.Empty);
                         }
 
-                        var remaining = RemainingTimeCalculator.Get(ProgressValue, ProgressMax);
+                        var remaining = RemainingTimeCalculator.Get(this.ProgressValue, this.ProgressMax);
 
-                        return ($"{ProgressValue:#,##0} / {ProgressMax:#,##0}{remaining}");
+                        return ($"{this.ProgressValue:#,##0} / {this.ProgressMax:#,##0}{remaining}");
                     };
 
-                return (Synchronizer.InvokeOnUIThread(func));
+                return (Synchronizer.Invoke(func));
             }
         }
 
         public ICommand SelectSourceFileCommand
-            => (new RelayCommand(SelectSourceFile, CanExecute));
+            => (new RelayCommand(this.SelectSourceFile, this.CanExecute));
 
         public ICommand SelectTargetFileCommand
-            => (new RelayCommand(SelectTargetFile, CanExecute));
+            => (new RelayCommand(this.SelectTargetFile, this.CanExecute));
 
         public string SourceFileName
         {
@@ -219,7 +220,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
                 {
                     m_SourceFile = value;
 
-                    OnPropertyChanged(nameof(SourceFileName));
+                    this.OnPropertyChanged(nameof(this.SourceFileName));
                 }
             }
         }
@@ -236,7 +237,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
                 {
                     m_TargetFile = value;
 
-                    OnPropertyChanged(nameof(TargetFileName));
+                    this.OnPropertyChanged(nameof(this.TargetFileName));
                 }
             }
         }
@@ -245,7 +246,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         {
             get
             {
-                return (Synchronizer.InvokeOnUIThread(() => m_TaskIsRunning));
+                return (Synchronizer.Invoke(() => m_TaskIsRunning));
             }
             private set
             {
@@ -255,35 +256,35 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
                         {
                             m_TaskIsRunning = value;
 
-                            SetWindowsProgressBar();
+                            this.SetWindowsProgressBar();
 
-                            OnPropertyChanged(nameof(TaskIsNotRunning));
-                            OnPropertyChanged(nameof(TaskIsRunning));
-                            OnPropertyChanged(nameof(ProgressText));
+                            this.OnPropertyChanged(nameof(this.TaskIsNotRunning));
+                            this.OnPropertyChanged(nameof(this.TaskIsRunning));
+                            this.OnPropertyChanged(nameof(this.ProgressText));
                         }
                     };
 
-                Synchronizer.InvokeOnUIThread(action);
+                Synchronizer.Invoke(action);
             }
         }
 
         public bool TaskIsNotRunning
-            => (TaskIsRunning == false);
+            => (this.TaskIsRunning == false);
 
         #endregion
 
         #region CanExecute
 
         private bool CanExecute()
-            => (TaskIsNotRunning);
+            => (this.TaskIsNotRunning);
 
         private bool CanExecuteProcess()
-            => ((CanExecute())
-                && (string.IsNullOrEmpty(SourceFileName) == false)
-                && (string.IsNullOrEmpty(TargetFileName) == false));
+            => ((this.CanExecute())
+                && (string.IsNullOrEmpty(this.SourceFileName) == false)
+                && (string.IsNullOrEmpty(this.TargetFileName) == false));
 
         private bool CanExecutePause()
-            => ((TaskIsRunning) && (ProcessCommand.CancellationTokenSource?.IsCancellationRequested == false));
+            => ((this.TaskIsRunning) && (this.ProcessCommand.CancellationTokenSource?.IsCancellationRequested == false));
 
         #endregion
 
@@ -298,9 +299,9 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             const string title = "Please select source cache file";
 
             string fileName;
-            if (FileHelper.ShowOpenFileDialog(SourceFileName, filter, title, out fileName))
+            if (FileHelper.ShowOpenFileDialog(this.SourceFileName, filter, title, out fileName))
             {
-                SourceFileName = fileName;
+                this.SourceFileName = fileName;
             }
         }
 
@@ -311,9 +312,9 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             const string title = "Please select target cache file.";
 
             string fileName;
-            if (FileHelper.ShowSaveFileDialog(TargetFileName, filter, title, out fileName))
+            if (FileHelper.ShowSaveFileDialog(this.TargetFileName, filter, title, out fileName))
             {
-                TargetFileName = fileName;
+                this.TargetFileName = fileName;
             }
         }
 
@@ -325,50 +326,50 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         {
             RemainingTimeCalculator.Start();
 
-            ProgressValue = 0;
+            this.ProgressValue = 0;
 
-            ProgressMax = int.MaxValue;
+            this.ProgressMax = int.MaxValue;
 
-            TaskIsRunning = true;
+            this.TaskIsRunning = true;
 
             try
             {
-                TryProcess(cancellationToken);
+                this.TryProcess(cancellationToken);
             }
             catch (Exception ex)
             {
                 UIServices.ShowMessageBox(ex.Message, "Error", Buttons.OK, Icon.Error);
             }
 
-            TaskIsRunning = false;
+            this.TaskIsRunning = false;
         }
 
         private void TryProcess(CancellationToken cancellationToken)
         {
-            if (ClearCachedData())
+            if (this.ClearCachedData())
             {
                 Log.Clear();
 
-                ProcessData.Clear();
+                this.ProcessData.Clear();
             }
 
-            Model.Process(SourceFileName, TargetFileName, ProcessData, Log, cancellationToken);
+            Model.Process(this.SourceFileName, this.TargetFileName, this.ProcessData, Log, cancellationToken);
 
             if (cancellationToken.IsCancellationRequested == false)
             {
-                var logFile = GetLogFileName();
+                var logFile = this.GetLogFileName();
 
                 BackupHelper.BackupFile(logFile, IOServices);
 
                 Log.Save(logFile);
 
-                OpenOutputWindow();
+                this.OpenOutputWindow();
             }
         }
 
         private string GetLogFileName()
         {
-            var fi = IOServices.GetFileInfo(TargetFileName);
+            var fi = IOServices.GetFileInfo(this.TargetFileName);
 
             var logFile = fi.NameWithoutExtension + ".html";
 
@@ -380,7 +381,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         #endregion
 
         private bool ClearCachedData()
-            => ((ProcessData.ProcessedPersons.Count == 0)
+            => ((this.ProcessData.ProcessedPersons.Count == 0)
                 || (UIServices.ShowMessageBox("There is cached data from a previous run. Reset (yes) or continue (no)?", "Reset or continue?", Buttons.YesNo, Icon.Question) == Result.Yes));
 
 
@@ -388,40 +389,40 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         private void LoadSessionData()
         {
-            if (ClearCachedData())
+            if (this.ClearCachedData())
             {
-                var processData = FileHelper.LoadSessionData(SourceFileName);
+                var processData = FileHelper.LoadSessionData(this.SourceFileName);
 
                 if (processData != null)
                 {
-                    ProcessData = processData;
+                    this.ProcessData = processData;
 
-                    Log.FromString(ProcessData.Log);
+                    Log.FromString(this.ProcessData.Log);
 
-                    ProcessData.Log = null;
+                    this.ProcessData.Log = null;
                 }
             }
         }
 
         private void SaveSessionData()
         {
-            ProcessData.Log = Log.ToString();
+            this.ProcessData.Log = Log.ToString();
 
-            FileHelper.SaveSessionData(SourceFileName, ProcessData);
+            FileHelper.SaveSessionData(this.SourceFileName, this.ProcessData);
 
-            ProcessData.Log = null;
+            this.ProcessData.Log = null;
         }
 
         #endregion
 
         private void PauseProcess()
         {
-            ProcessCommand.CancellationTokenSource.Cancel();
+            this.ProcessCommand.CancellationTokenSource.Cancel();
         }
 
         private void OpenOutputWindow()
         {
-            Synchronizer.InvokeOnUIThread(() => WindowFactory.OpenOutputWindow(Log));
+            Synchronizer.Invoke(() => WindowFactory.OpenOutputWindow(Log));
         }
 
         #endregion
@@ -436,7 +437,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         private void OnModelProgressValueChanged(object sender
             , EventArgs<int> e)
         {
-            ProgressValue = e.Value;
+            this.ProgressValue = e.Value;
         }
 
         private void OnModelProgressMaxChanged(object sender
@@ -444,11 +445,11 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
         {
             if (e.Value >= 0)
             {
-                ProgressMax = e.Value;
+                this.ProgressMax = e.Value;
             }
             else
             {
-                ProgressMax = int.MaxValue;
+                this.ProgressMax = int.MaxValue;
             }
         }
 
@@ -456,7 +457,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         private void SetWindowsProgressBar()
         {
-            WindowsProgressBarHandler.Set(TaskIsRunning ? ProgressValue : -1, ProgressMax);
+            WindowsProgressBarHandler.Set(this.TaskIsRunning ? this.ProgressValue : -1, this.ProgressMax);
         }
     }
 }

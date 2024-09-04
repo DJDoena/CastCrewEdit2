@@ -32,6 +32,8 @@ namespace UnitTests
         private const string FridayNightLights = "tt0758745";
         private const string ABiggerSplash = "tt2056771";
         private const string Roots = "tt4338588";
+        private const string Tracker = "tt13875494";
+        private const string Grease = "tt0077631";
 
         [STAThread]
         public static void Main()
@@ -42,6 +44,7 @@ namespace UnitTests
 
         private static void Tests()
         {
+            //Test(TVSeasons);
             Test(MovieCrewLoveIsTheDrug);
             Test(MovieCastWinnetou);
             Test(MovieCrewWinnetou);
@@ -59,6 +62,7 @@ namespace UnitTests
             Test(MovieCastABiggerSplash);
             Test(EpisodeCrewRoots);
             Test(StageNameSplit);
+            Test(TriviaGrease);
         }
 
         private static void TestFixtureSetup()
@@ -80,9 +84,19 @@ namespace UnitTests
             CreateMockWebResponse(IMDbParser.TitleUrl, ABiggerSplash, "fullcredits");
             CreateMockWebResponse(IMDbParser.TitleUrl, Roots, "fullcredits");
             CreateMockWebResponse(IMDbParser.TitleUrl, Roots, "soundtrack");
+            CreateMockWebResponse(IMDbParser.TitleUrl, Tracker, "episodes");
+            CreateMockWebResponse(IMDbParser.TitleUrl, Tracker, "episodes?season=1");
+            CreateMockWebResponse(IMDbParser.TitleUrl, Grease, "trivia");
         }
 
         #region Tests
+
+        private static void TVSeasons()
+        {
+            CleanUp();
+            Program.Main(null);
+        }
+
         private static void MovieCastABiggerSplash()
         {
             List<Match> castMatches;
@@ -92,8 +106,8 @@ namespace UnitTests
             FileInfo current;
             MovieCast(ABiggerSplash, out castMatches, out castList, out progressBarMaxValue, out existing, out current);
 
-            Assert.AreEqual(33, castMatches.Count, "castMatches.Count");
-            Assert.AreEqual(33, castList.Count, "castList.Count");
+            Assert.AreEqual(35, castMatches.Count, "castMatches.Count");
+            Assert.AreEqual(35, castList.Count, "castList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
@@ -106,8 +120,8 @@ namespace UnitTests
             FileInfo current;
 
             MovieCast(HotShots, out castMatches, out castList, out progressBarMaxValue, out existing, out current);
-            Assert.AreEqual(73, castMatches.Count, "castMatches.Count");
-            Assert.AreEqual(78, castList.Count, "castList.Count");
+            Assert.AreEqual(74, castMatches.Count, "castMatches.Count");
+            Assert.AreEqual(79, castList.Count, "castList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
@@ -121,7 +135,7 @@ namespace UnitTests
 
             MovieCrew(HotShots, out crewMatches, out crewList, out progressBarMaxValue, out existing, out current);
             Assert.AreEqual(27, crewMatches.Count, "castMatches.Count");
-            Assert.AreEqual(204, progressBarMaxValue, "progressBarMaxValue");
+            Assert.AreEqual(215, progressBarMaxValue, "progressBarMaxValue");
             Assert.AreEqual(194, crewList.Count, "castList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
@@ -135,8 +149,8 @@ namespace UnitTests
             episodeInfo.SeasonNumber = "1";
             episodeInfo.EpisodeNumber = "1";
             EpisodeCrew(episodeInfo);
-            Assert.AreEqual(19, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
-            Assert.AreEqual(30, episodeInfo.CrewList.Count, "episodeInfo.CrewList.Count");
+            Assert.AreEqual(20, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
+            Assert.AreEqual(32, episodeInfo.CrewList.Count, "episodeInfo.CrewList.Count");
         }
 
         private static void EpisodeCastFerdinand()
@@ -173,8 +187,8 @@ namespace UnitTests
 
             MovieCrew(LoveIsTheDrug, out crewMatches, out crewList, out progressBarMaxValue, out existing, out current);
             Assert.AreEqual(24, crewMatches.Count, "crewMatches.Count");
-            Assert.AreEqual(105, progressBarMaxValue, "progressBarMaxValue");
-            Assert.AreEqual(109, crewList.Count, "crewList.Count");
+            Assert.AreEqual(106, progressBarMaxValue, "progressBarMaxValue");
+            Assert.AreEqual(110, crewList.Count, "crewList.Count");
             Assert.AreEqual("Steven", crewList[51].FirstName, "crewList[51].FirstName");
             Assert.AreEqual("Avila", crewList[51].LastName, "crewList[51].LastName");
             Assert.AreEqual("Sound Designer", crewList[51].CreditSubtype, "crewList[51].CreditSubtype");
@@ -236,8 +250,8 @@ namespace UnitTests
 
             Soundtrack(ThisIsSpinalTap, out matches, out crewList, out progressBarMaxValue, out existing, out current);
             Assert.AreEqual(17, matches.Count, "matches.Count");
-            Assert.AreEqual(95, progressBarMaxValue, "progressBarMaxValue");
-            Assert.AreEqual(95, crewList.Count, "crewList.Count");
+            Assert.AreEqual(73, progressBarMaxValue, "progressBarMaxValue");
+            Assert.AreEqual(73, crewList.Count, "crewList.Count");
             Assert.AreEqual(existing.Length, current.Length, "current.Length");
         }
 
@@ -251,7 +265,7 @@ namespace UnitTests
             episodeInfo.EpisodeNumber = "1";
             EpisodeCrew(episodeInfo);
             Assert.AreEqual(28, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
-            Assert.AreEqual(293, episodeInfo.CrewList.Count, "episodeInfo.CrewList.Count");
+            Assert.AreEqual(311, episodeInfo.CrewList.Count, "episodeInfo.CrewList.Count");
         }
 
         private static void StageNameSplit()
@@ -299,6 +313,12 @@ namespace UnitTests
             fileInfo = GetHeadshot(AlexanderRhodes);
             Assert.IsNull(fileInfo, "FileInfo is not null!");
         }
+
+        private static void TriviaGrease()
+        {
+            Trivia(Grease);
+        }
+
         #endregion
 
         #region Helper
@@ -736,6 +756,10 @@ namespace UnitTests
                 }
                 fileName += "." + fileAppendix;
                 targetUrl += "/" + appendix;
+            }
+            else if (!targetUrl.EndsWith("/"))
+            {
+                targetUrl += "/";
             }
             fileName += ".html.txt";
             webResponse = OnlineAccess.GetSystemSettingsWebResponseAsync(targetUrl).GetAwaiter().GetResult();

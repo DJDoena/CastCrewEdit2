@@ -14,7 +14,7 @@
     <Actor Role="Jim 'Wash Out' Pfaffenbach" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Jon" MiddleName="" LastName="Cryer" BirthYear="0" CreditedAs="" />
     <Actor Role="Pete 'Dead Meat' Thompson" Voice="false" Uncredited="false" Puppeteer="false" FirstName="William" MiddleName="" LastName="O'Leary" BirthYear="0" CreditedAs="" />
     <Actor Role="Kowalski" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Kristy" MiddleName="" LastName="Swanson" BirthYear="0" CreditedAs="" />
-    <Actor Role="Wilson" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Efrem" MiddleName="" LastName="Zimbalist, jr." BirthYear="0" CreditedAs="" />
+    <Actor Role="Wilson" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Efrem" MiddleName="" LastName="Zimbalist Jr." BirthYear="0" CreditedAs="" />
     <Actor Role="Buzz Harley" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Bill" MiddleName="" LastName="Irwin" BirthYear="0" CreditedAs="" />
     <Actor Role="Mrs. 'Dead Meat' Thompson" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Heidi" MiddleName="" LastName="Swedberg" BirthYear="0" CreditedAs="" />
     <Actor Role="'Red' Herring" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Bruce" MiddleName="A." LastName="Young" BirthYear="0" CreditedAs="" />
@@ -28,7 +28,7 @@
     <Actor Role="Paramedic" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Don" MiddleName="" LastName="Luce" BirthYear="0" CreditedAs="" />
     <Actor Role="Nurse" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Judith" MiddleName="" LastName="Kahan" BirthYear="0" CreditedAs="" />
     <Actor Role="Communications Officer" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Jeff" MiddleName="" LastName="Bright" BirthYear="0" CreditedAs="" />
-    <Actor Role="Ring Announcer" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Jimmy" MiddleName="" LastName="Lennon, jr." BirthYear="0" CreditedAs="" />
+    <Actor Role="Ring Announcer" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Jimmy" MiddleName="" LastName="Lennon Jr." BirthYear="0" CreditedAs="" />
     <Actor Role="Francine - the Secretary" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Marie" MiddleName="" LastName="Thomas" BirthYear="0" CreditedAs="" />
     <Actor Role="Scooter" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Ryan" MiddleName="" LastName="Fitzgerald" BirthYear="0" CreditedAs="" />
     <Actor Role="Jazz" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Al" MiddleName="" LastName="Clegg" BirthYear="0" CreditedAs="" />
@@ -40,8 +40,8 @@
     <Actor Role="Amish Man" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Jimmie" MiddleName="Ray" LastName="Weeks" BirthYear="0" CreditedAs="" />
     <Actor Role="Amish Woman" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Annie" MiddleName="" LastName="O'Donnell" BirthYear="0" CreditedAs="" />
     <Actor Role="Eskimo" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Mack" MiddleName="" LastName="Yamaguchi" BirthYear="0" CreditedAs="" />
-    <Actor Role="Self" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Charles" MiddleName="" LastName="Barkley" BirthYear="0" CreditedAs="" />
-    <Actor Role="Self" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Bill" MiddleName="" LastName="Laimbeer" BirthYear="0" CreditedAs="" />
+    <Actor Role="Charles Barkley" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Charles" MiddleName="" LastName="Barkley" BirthYear="0" CreditedAs="" />
+    <Actor Role="Bill Laimbeer" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Bill" MiddleName="" LastName="Laimbeer" BirthYear="0" CreditedAs="" />
     <Actor Role="Pope John Paul II" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Eugene" MiddleName="" LastName="Greytak" BirthYear="0" CreditedAs="Gene Greytak" />
     <Actor Role="Humphrey 'Bogie' Bogart" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Tony" MiddleName="" LastName="Lorea" BirthYear="0" CreditedAs="" />
     <Actor Role="Saddam Hussein" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Jerry" MiddleName="" LastName="Haleva" BirthYear="0" CreditedAs="Jerry Halera" />
@@ -80,5 +80,6 @@
     <Actor Role="Navy Pilot" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Jim" MiddleName="" LastName="Rhine" BirthYear="0" CreditedAs="" />
     <Actor Role="" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Rebecca" MiddleName="" LastName="Ryiz" BirthYear="0" CreditedAs="" />
     <Actor Role="Dancing Cadet" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Vincent" MiddleName="" LastName="Tumeo" BirthYear="0" CreditedAs="" />
+    <Actor Role="Aircraft Carrier Crew Member" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Richard" MiddleName="" LastName="Yett" BirthYear="0" CreditedAs="" />
   </Actors>
 </CastInformation>

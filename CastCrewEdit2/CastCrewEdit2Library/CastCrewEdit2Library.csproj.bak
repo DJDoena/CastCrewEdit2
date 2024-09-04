@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyName>CastCrewEdit2Library</AssemblyName>
-		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2</RootNamespace>
-		<OutputType>Library</OutputType>
 		<TargetFrameworks>net472</TargetFrameworks>
-		<Platforms>x86;x64</Platforms>
-		<Optimize>False</Optimize>
 		<UseWindowsForms>true</UseWindowsForms>
-		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Platforms>x86;x64</Platforms>
+		<OutputType>Library</OutputType>
+		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2</RootNamespace>
+		<AssemblyName>CastCrewEdit2Library</AssemblyName>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
-		<DebugType>full</DebugType>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>CastCrewEdit2Library.snk</AssemblyOriginatorKeyFile>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
+		<DebugType>full</DebugType>
+		<Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -21,7 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="DoenaSoft.DVDProfiler.Xml" Version="5.0.10" />
+	  <PackageReference Include="DoenaSoft.DVDProfiler.Xml" Version="5.0.8" />
 	</ItemGroup>
 
 	<ItemGroup>

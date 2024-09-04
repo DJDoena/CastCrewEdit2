@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyName>ConvertCastCrewEdit2PersonFile</AssemblyName>
-		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2</RootNamespace>
-		<OutputType>Exe</OutputType>
 		<TargetFrameworks>net472</TargetFrameworks>
-		<Platforms>x86;x64</Platforms>
-		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
 		<UseWindowsForms>true</UseWindowsForms>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Platforms>x86;x64</Platforms>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2</RootNamespace>
+		<AssemblyName>ConvertCastCrewEdit2PersonFile</AssemblyName>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 	</PropertyGroup>
 
 	<ItemGroup>

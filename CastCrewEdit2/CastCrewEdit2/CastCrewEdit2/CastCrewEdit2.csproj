@@ -1,20 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<AssemblyName>CastCrewEdit2</AssemblyName>
+		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2</RootNamespace>
+		<OutputType>WinExe</OutputType>
 		<TargetFrameworks>net472</TargetFrameworks>
-		<UseWindowsForms>true</UseWindowsForms>
-		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<Platforms>x86;x64</Platforms>
 		<Configurations>Debug;Release;UnitTest</Configurations>
-		<OutputType>WinExe</OutputType>
-		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2</RootNamespace>
-		<AssemblyName>CastCrewEdit2</AssemblyName>
-		<GenerateDocumentationFile>False</GenerateDocumentationFile>
-		<ApplicationIcon>Resources\djdsoft.ico</ApplicationIcon>
-		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
-		<DebugType>full</DebugType>
 		<Optimize>False</Optimize>
+		<ApplicationIcon>Resources\djdsoft.ico</ApplicationIcon>
+		<UseWindowsForms>true</UseWindowsForms>
+		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<DebugType>full</DebugType>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='UnitTest'">
@@ -30,10 +30,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="DoenaSoft.JsonFragmentParser" Version="1.0.0" />
 		<PackageReference Include="DoenaSoft.WindowsAPICodePack" Version="2.0.0" />
 		<PackageReference Include="Microsoft.Toolkit.Forms.UI.Controls.WebView" Version="6.1.2" />
-		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2151.40" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2739.15" />
 	</ItemGroup>
 
 	<ItemGroup>

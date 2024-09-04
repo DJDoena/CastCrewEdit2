@@ -1,22 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyName>CompareProfilerXMLAndCastCrewEdit2Cache</AssemblyName>
-		<RootNamespace>DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache</RootNamespace>
-		<OutputType>WinExe</OutputType>
 		<TargetFrameworks>net472</TargetFrameworks>
-		<Platforms>x86;x64</Platforms>
-		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
 		<UseWindowsForms>true</UseWindowsForms>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Platforms>x86;x64</Platforms>
+		<OutputType>WinExe</OutputType>
+		<RootNamespace>DoenaSoft.DVDProfiler.CheckForDuplicatesInCastCrewEdit2Cache</RootNamespace>
+		<AssemblyName>CheckForDuplicatesInCastCrewEdit2Cache</AssemblyName>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 	</PropertyGroup>
-
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-	  <Exec Command="copy.cmd $(PlatformName) $(ConfigurationName)" />
-	</Target>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\CastCrewEdit2Library\CastCrewEdit2Library.csproj" />
@@ -43,10 +39,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="CheckForDuplicates_LiesMich.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="CheckForDuplicates_ReadMe.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Properties\Settings.settings">
 	    <Generator>SettingsSingleFileGenerator</Generator>
 	    <LastGenOutput>Settings.Designer.cs</LastGenOutput>
 	  </None>
 	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="copy.cmd $(PlatformName) $(ConfigurationName)" />
+	</Target>
 
 </Project>

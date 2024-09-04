@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyName>FindMergedCastCrew</AssemblyName>
-		<RootNamespace>DoenaSoft.DVDProfiler.FindMergedCastCrew</RootNamespace>
-		<OutputType>WinExe</OutputType>
 		<TargetFrameworks>net472</TargetFrameworks>
-		<Platforms>x86;x64</Platforms>
-		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
-		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 		<UseWPF>true</UseWPF>
+		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Platforms>x86;x64</Platforms>
+		<OutputType>WinExe</OutputType>
+		<RootNamespace>DoenaSoft.DVDProfiler.FindMergedCastCrew</RootNamespace>
+		<AssemblyName>FindMergedCastCrew</AssemblyName>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -18,8 +18,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="DoenaSoft.AbstractionLayer.IO" Version="2.0.9" />
-	  <PackageReference Include="DoenaSoft.AbstractionLayer.WPF" Version="2.0.1" />
+	  <PackageReference Include="DoenaSoft.AbstractionLayer.IO" Version="1.0.7" />
+	  <PackageReference Include="DoenaSoft.AbstractionLayer.WPF" Version="1.1.8" />
 	  <PackageReference Include="DoenaSoft.WindowsAPICodePack" Version="2.0.0" />
 	</ItemGroup>
 

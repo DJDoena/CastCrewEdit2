@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<AssemblyName>EditIMDbToDVDProfilerCrewRoleTransformation</AssemblyName>
+		<RootNamespace>DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation</RootNamespace>
+		<OutputType>WinExe</OutputType>
 		<TargetFrameworks>net472</TargetFrameworks>
+		<Platforms>x86;x64</Platforms>
+		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
 		<UseWindowsForms>true</UseWindowsForms>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<Platforms>x86;x64</Platforms>
-		<OutputType>WinExe</OutputType>
-		<RootNamespace>DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation</RootNamespace>
-		<AssemblyName>EditIMDbToDVDProfilerCrewRoleTransformation</AssemblyName>
-		<GenerateDocumentationFile>False</GenerateDocumentationFile>
-		<ApplicationIcon>djdsoft.ico</ApplicationIcon>
 		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">

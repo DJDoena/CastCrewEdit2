@@ -86,7 +86,7 @@
 
         protected void OnAboutToolStripMenuItemClick(object sender, EventArgs e)
         {
-            using (var aboutBox = new AboutBox(GetType().Assembly))
+            using (var aboutBox = new AboutBox(this.GetType().Assembly))
             {
                 aboutBox.ShowDialog(this);
             }
@@ -279,7 +279,7 @@
             }
         }
 
-        protected void OnReadmeToolStripMenuItemClick(object sender, EventArgs e) => OpenReadme();
+        protected void OnReadmeToolStripMenuItemClick(object sender, EventArgs e) => this.OpenReadme();
 
         protected void OnIMDbToDVDProfilerTransformationDataToolStripMenuItemClick(object sender, EventArgs e)
         {
@@ -302,7 +302,7 @@
 
                     if (counter % 8 == 0)
                     {
-                        Refresh();
+                        this.Refresh();
                     }
 
                     Thread.Sleep(250);
@@ -319,19 +319,19 @@
             }
         }
 
-        protected void OnKnownNamesToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\KnownNames.txt", EditWindowNames.KnownNames, FileNameType.KnownNames, false);
+        protected void OnKnownNamesToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\KnownNames.txt", EditWindowNames.KnownNames, FileNameType.KnownNames, false);
 
-        protected void OnLastnameSuffixesToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\KnownLastNameSuffixes.txt", EditWindowNames.KnownLastnameSuffixes, FileNameType.LastnameSuffixes, false);
+        protected void OnLastnameSuffixesToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\KnownLastNameSuffixes.txt", EditWindowNames.KnownLastnameSuffixes, FileNameType.LastnameSuffixes, false);
 
-        protected void OnLastnamePrefixesToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\KnownLastnamePrefixes.txt", EditWindowNames.KnownLastnamePrefixes, FileNameType.LastnamePrefixes, false);
+        protected void OnLastnamePrefixesToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\KnownLastnamePrefixes.txt", EditWindowNames.KnownLastnamePrefixes, FileNameType.LastnamePrefixes, false);
 
-        protected void OnFirstnamePrefixesToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\KnownFirstnamePrefixes.txt", EditWindowNames.KnownFirstnamePrefixes, FileNameType.FirstnamePrefixes, false);
+        protected void OnFirstnamePrefixesToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\KnownFirstnamePrefixes.txt", EditWindowNames.KnownFirstnamePrefixes, FileNameType.FirstnamePrefixes, false);
 
-        protected void OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\IgnoreCustomInIMDbCategory.txt", EditWindowNames.IgnoreCustominIMDbCategory, FileNameType.IgnoreCustomInIMDbCreditType, true);
+        protected void OnIgnoreCustomInIMDbCreditTypeToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\IgnoreCustomInIMDbCategory.txt", EditWindowNames.IgnoreCustominIMDbCategory, FileNameType.IgnoreCustomInIMDbCreditType, true);
 
-        protected void OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\IgnoreIMDbCategoryInOther.txt", EditWindowNames.IgnoreIMDbCategoryinOther, FileNameType.IgnoreIMDbCreditTypeInOther, true);
+        protected void OnIgnoreIMDbCreditTypeInOtherToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\IgnoreIMDbCategoryInOther.txt", EditWindowNames.IgnoreIMDbCategoryinOther, FileNameType.IgnoreIMDbCreditTypeInOther, true);
 
-        protected void OnForcedFakeBirthYearsToolStripMenuItemClick(object sender, EventArgs e) => EditConfigFile(Program.RootPath + @"\Data\ForcedFakeBirthYears.txt", EditWindowNames.IgnoreIMDbCategoryinOther, FileNameType.ForcedFakeBirthYears, true);
+        protected void OnForcedFakeBirthYearsToolStripMenuItemClick(object sender, EventArgs e) => this.EditConfigFile(Program.RootPath + @"\Data\ForcedFakeBirthYears.txt", EditWindowNames.IgnoreIMDbCategoryinOther, FileNameType.ForcedFakeBirthYears, true);
 
         protected static Dictionary<string, List<SoundtrackMatch>> ParseSoundtrack(string titleLink)
         {
@@ -341,6 +341,49 @@
 
             var webSite = IMDbParser.GetWebSite(soundtrackUrl);
 
+            ParseSoundtrackNewStyle(webSite, ref soundtrackEntries);
+
+            if (soundtrackEntries == null || soundtrackEntries.Count == 0)
+            {
+                ParseSoundtrackOldStyle(webSite, ref soundtrackEntries);
+            }
+
+            if (soundtrackEntries == null)
+            {
+                soundtrackEntries = new Dictionary<string, List<SoundtrackMatch>>(0);
+            }
+
+            return soundtrackEntries;
+        }
+
+        private static void ParseSoundtrackNewStyle(string webSite, ref Dictionary<string, List<SoundtrackMatch>> soundtrackEntries)
+        {
+            using (var sr = new StringReader(webSite))
+            {
+                string soundtrack = null;
+                while (sr.Peek() != -1)
+                {
+                    var line = ReadLine(sr);
+
+                    var indexOf = line.IndexOf(IMDbParser.SoundtrackStartNewStyle);
+
+                    if (indexOf != -1)
+                    {
+                        soundtrack = line.Substring(indexOf);
+
+                        break;
+                    }
+                }
+
+                if (soundtrack != null)
+                {
+                    soundtrackEntries = IMDbParser.ParseSoundtrackNewStyle(soundtrack);
+                }
+            }
+        }
+
+        private static void ParseSoundtrackOldStyle(string webSite, ref Dictionary<string, List<SoundtrackMatch>> soundtrackEntries)
+        {
             using (var sr = new StringReader(webSite))
             {
                 var soundtrackFound = false;
@@ -353,7 +396,7 @@
 
                     if (!soundtrackFound)
                     {
-                        var beginMatch = IMDbParser.SoundtrackStartRegex.Match(line);
+                        var beginMatch = IMDbParser.SoundtrackStartOldStyleRegex.Match(line);
 
                         if (beginMatch.Success)
                         {
@@ -371,16 +414,9 @@
 
                 if (soundtrack.Length > 0)
                 {
-                    soundtrackEntries = IMDbParser.ParseSoundtrack(soundtrack);
+                    soundtrackEntries = IMDbParser.ParseSoundtrackOldStyle(soundtrack);
                 }
             }
-
-            if (soundtrackEntries == null)
-            {
-                soundtrackEntries = new Dictionary<string, List<SoundtrackMatch>>(0);
-            }
-
-            return soundtrackEntries;
         }
 
         #region Progress
@@ -399,7 +435,7 @@
         {
             if (!_suppressProgress)
             {
-                SetProgressSafe();
+                this.SetProgressSafe();
             }
         }
 
@@ -411,29 +447,31 @@
 
                 if (_progressValue == _progressMax || (_progressValue % _progressInterval) == 0)
                 {
-                    SetProgressBarValue();
+                    this.SetProgressBarValue();
                 }
             }
         }
 
         private void SetProgressBarValue()
         {
-            if (InvokeRequired)
+            if (this.InvokeRequired)
             {
-                Invoke(new SetProgress(SetProgressBarValueSync));
+                this.Invoke(new SetProgress(this.SetProgressBarValueSync));
             }
             else
             {
-                SetProgressBarValueSync();
+                this.SetProgressBarValueSync();
             }
         }
 
         private void SetProgressBarValueSync()
         {
+#if !UnitTest
             if (TaskbarManager.IsPlatformSupported)
             {
                 TaskbarManager.Instance.SetProgressValue(_progressValue, _progressMax);
             }
+#endif
 
             _progressBar.Value = _progressValue;
 
@@ -465,11 +503,11 @@
 
             _progressMax = maxValue;
 
-            CalculateUpdateInterval();
+            this.CalculateUpdateInterval();
 
             if (TaskbarManager.IsPlatformSupported)
             {
-                TaskbarManager.Instance.OwnerHandle = Handle;
+                TaskbarManager.Instance.OwnerHandle = this.Handle;
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
                 TaskbarManager.Instance.SetProgressValue(_progressValue, _progressMax);
             }
@@ -481,7 +519,7 @@
             Application.DoEvents();
         }
 
-        protected void RestartProgress() => StartProgress(_progressMax, _progressBar.BarColor);
+        protected void RestartProgress() => this.StartProgress(_progressMax, _progressBar.BarColor);
 
         private void CalculateUpdateInterval()
         {
@@ -491,7 +529,7 @@
             {
                 _progressInterval = _progressMax / OneHundred;
 
-                if (IsNotDivisibleWithoutRemainder())
+                if (this.IsNotDivisibleWithoutRemainder())
                 {
                     //We don't want to finish after we've reached 100%
                     _progressInterval++;
@@ -507,31 +545,31 @@
 
         protected void ProcessLines(List<CastInfo> castList, List<Match> castMatches, List<CrewInfo> crewList, List<KeyValuePair<Match, List<Match>>> crewMatches, Dictionary<string, List<SoundtrackMatch>> sountrackMatches, DefaultValues defaultValues)
         {
-            IMDbParser.ProcessCastLine(castList, castMatches, defaultValues, SetProgress);
+            IMDbParser.ProcessCastLine(castList, castMatches, defaultValues, this.SetProgress);
 
-            IMDbParser.ProcessCrewLine(crewList, crewMatches, defaultValues, SetProgress);
+            IMDbParser.ProcessCrewLine(crewList, crewMatches, defaultValues, this.SetProgress);
 
-            IMDbParser.ProcessSoundtrackLine(crewList, sountrackMatches, defaultValues, SetProgress);
+            IMDbParser.ProcessSoundtrackLine(crewList, sountrackMatches, defaultValues, this.SetProgress);
         }
 
         protected void StartLongAction()
         {
-            Enabled = false;
+            this.Enabled = false;
 
-            UseWaitCursor = true;
+            this.UseWaitCursor = true;
 
-            Cursor = Cursors.WaitCursor;
+            this.Cursor = Cursors.WaitCursor;
 
             Application.DoEvents();
         }
 
         protected void EndLongAction()
         {
-            UseWaitCursor = false;
+            this.UseWaitCursor = false;
 
-            Cursor = Cursors.Default;
+            this.Cursor = Cursors.Default;
 
-            Enabled = true;
+            this.Enabled = true;
 
             Application.DoEvents();
         }

@@ -49,7 +49,7 @@
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Second Second Assistant Director" FirstName="Taylor" MiddleName="" LastName="Phillips" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="First Assistant Director" FirstName="Martin" MiddleName="" LastName="Veselich" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Props Buyer" FirstName="Carol" MiddleName="" LastName="Hummel" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Set Dresser" FirstName="Kevin" MiddleName="" LastName="Hummel" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Set Dresser" FirstName="Ian" MiddleName="" LastName="Hummel" BirthYear="0" CreditedAs="Kevin Hummel" />
     <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Prop Master" FirstName="Robert" MiddleName="" LastName="Hummel" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Lead Man" FirstName="Chris" MiddleName="" LastName="Lockett" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Swing" FirstName="Michael" MiddleName="" LastName="O'Luasaigh" BirthYear="0" CreditedAs="" />
@@ -79,6 +79,7 @@
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Electrician" FirstName="Greg" MiddleName="" LastName="HecQ" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Director Of Photography: Second Unit" FirstName="James" MiddleName="" LastName="Mann" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Additional Electrician" FirstName="Alex" MiddleName="" LastName="Markle" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Lighting Technician" FirstName="Conan" MiddleName="" LastName="Mastrangelo" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Camera Loader" FirstName="Ethan" MiddleName="" LastName="McDonald" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Grip" FirstName="Nicholas" MiddleName="" LastName="Rini" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Key Grip" FirstName="Joseph" MiddleName="" LastName="Ruiz" BirthYear="0" CreditedAs="Joe Ruiz" />

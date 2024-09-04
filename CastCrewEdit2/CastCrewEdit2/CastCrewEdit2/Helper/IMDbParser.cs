@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using DoenaSoft.JsonFragmentParser;
 using DoenaSoft.ToolBox.Generics;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
@@ -42,11 +43,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         public static Regex TriviaLiRegex { get; }
 
-        public static Regex GoofsStartRegex { get; }
+        public static Regex GoofsStartOldStyleRegex { get; }
 
-        public static Regex GoofsLiRegex { get; }
+        public static Regex GoofsLiOldStyleRegex { get; }
 
-        public static Regex GoofSpoilerRegex { get; }
+        public static Regex GoofSpoilerldStyleRegex { get; }
 
 #if UnitTest
 
@@ -68,7 +69,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         internal static Regex CreditedAsRegex { get; }
 
-        internal static Regex SoundtrackStartRegex { get; }
+        internal static Regex SoundtrackStartOldStyleRegex { get; }
+
+        internal static string SoundtrackStartNewStyle { get; }
+
+        internal static string GoofsStartNewStyle { get; }
+
+        public static string TriviaStartNewStyle { get; }
 
         internal static Dictionary<PersonInfo, string> BirthYearCache => SessionData.BirthYearCache;
 
@@ -96,13 +103,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         private static readonly Regex _photoUrlRegex;
 
-        private static readonly Regex _soundtrackLiRegex;
+        private static readonly Regex _soundtrackLiOldStyleRegex;
 
-        private static readonly Regex _soundtrackTitleRegex;
+        private static readonly Regex _soundtrackTitleOldStyleRegex;
 
         private static readonly Regex _soundtrackPersonRegex;
 
         private static readonly Regex _personUrlRegex;
+
+        private static readonly Regex _hrefRegex;
 
         private static readonly object _updatedPersonLock;
 
@@ -156,23 +165,31 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
             TriviaLiRegex = new Regex("<div class=\"sodatext\">(?'Trivia'.+?)</div>", RegexOptions.Singleline | RegexOptions.Compiled);
 
-            GoofsStartRegex = new Regex("<h4 class=\"li_group\">", RegexOptions.Compiled);
+            GoofsStartOldStyleRegex = new Regex("<h4 class=\"li_group\">", RegexOptions.Compiled);
 
-            GoofsLiRegex = new Regex("<div class=\"sodatext\">(?'Goof'.+?)</div>", RegexOptions.Singleline);
+            GoofsLiOldStyleRegex = new Regex("<div class=\"sodatext\">(?'Goof'.+?)</div>", RegexOptions.Singleline);
 
-            GoofSpoilerRegex = new Regex("<h4 class=\"inline\">.+?</h4>(?'Goof'.*)", RegexOptions.Singleline | RegexOptions.Compiled);
+            GoofSpoilerldStyleRegex = new Regex("<h4 class=\"inline\">.+?</h4>(?'Goof'.*)", RegexOptions.Singleline | RegexOptions.Compiled);
 
-            SoundtrackStartRegex = new Regex("<div id=\"soundtracks_content\"", RegexOptions.Compiled);
+            SoundtrackStartOldStyleRegex = new Regex("<div id=\"soundtracks_content\"", RegexOptions.Compiled);
 
-            _soundtrackLiRegex = new Regex("<div id=\"(?'Soundtrack'.+?)</div>", RegexOptions.Singleline | RegexOptions.Compiled);
+            _soundtrackLiOldStyleRegex = new Regex("<div id=\"(?'Soundtrack'.+?)</div>", RegexOptions.Singleline | RegexOptions.Compiled);
 
-            _soundtrackTitleRegex = new Regex("\"(?'Title'.+?)\"", RegexOptions.Compiled);
+            _soundtrackTitleOldStyleRegex = new Regex("\"(?'Title'.+?)\"", RegexOptions.Compiled);
 
-            _soundtrackPersonRegex = new Regex("<a href=\"/name/(?'PersonLink'[a-z0-9]+)(.+?)\">(?'PersonName'.+?)</a>", RegexOptions.Compiled);
+            _soundtrackPersonRegex = new Regex("<a(.+?)href=\"/name/(?'PersonLink'[a-z0-9]+)(.+?)\">(?'PersonName'.+?)</a>", RegexOptions.Compiled);
+
+            SoundtrackStartNewStyle = "\"section\":{\"items\":[{\"id\"";
+
+            GoofsStartNewStyle = "\"categories\":[{\"id\"";
+
+            TriviaStartNewStyle = "\"categories\":[{\"id\"";
 
             SessionData = new SessionData();
 
             _personUrlRegex = new Regex(DomainPrefix + "name/(?'PersonLink'nm[0-9]+)/.*$", RegexOptions.Compiled);
+
+            _hrefRegex = new Regex("<a(.+?)href=\"(?'Link'.+?)\"(.*?)>", RegexOptions.Compiled);
 
             _updatedPersonLinks = new Dictionary<string, string>();
 
@@ -195,7 +212,22 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
 #if UnitTest
 
-            return WebResponses[targetUrl];
+            if (WebResponses.TryGetValue(targetUrl, out var webResponse))
+            {
+                return webResponse;
+            }
+            else if (!targetUrl.EndsWith("/") && WebResponses.TryGetValue(targetUrl + "/", out webResponse))
+            {
+                return webResponse;
+            }
+            else if (targetUrl.EndsWith("/") && WebResponses.TryGetValue(targetUrl.Substring(0, targetUrl.Length - 1), out webResponse))
+            {
+                return webResponse;
+            }
+            else
+            {
+                throw new ArgumentException($"Key '{targetUrl}' not found!");
+            }
 
 #else
 
@@ -889,6 +921,8 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             return new CrewResult(result, crewMatches.Count);
         }
 
+        #region Soundrack
+
         public static void ProcessSoundtrackLine(List<CrewInfo> crewList, Dictionary<string, List<SoundtrackMatch>> soundtrackMatches, DefaultValues defaultValues, SetProgress setProgress)
         {
             if (defaultValues.CreditTypeSoundtrack)
@@ -931,9 +965,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             }
         }
 
-        public static Dictionary<string, List<SoundtrackMatch>> ParseSoundtrack(StringBuilder soundtrack)
+        public static Dictionary<string, List<SoundtrackMatch>> ParseSoundtrackOldStyle(StringBuilder soundtrack)
         {
-            var matches = _soundtrackLiRegex.Matches(soundtrack.ToString());
+            var matches = _soundtrackLiOldStyleRegex.Matches(soundtrack.ToString());
 
             var liMatches = new Dictionary<string, List<SoundtrackMatch>>(matches.Count);
 
@@ -957,7 +991,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                         titleSection = titleSection.Substring(indexOf + 2);
                     }
 
-                    var titleMatch = _soundtrackTitleRegex.Match(titleSection);
+                    var titleMatch = _soundtrackTitleOldStyleRegex.Match(titleSection);
 
                     string key;
                     if (titleMatch.Success)
@@ -1011,6 +1045,113 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             return liMatches;
         }
 
+        public static Dictionary<string, List<SoundtrackMatch>> ParseSoundtrackNewStyle(string segment)
+        {
+            const string StartSegment = "{";
+
+            var indexOfStart = segment.IndexOf(StartSegment);
+
+            if (indexOfStart == -1)
+            {
+                return null;
+            }
+
+            var soundtrack = segment.Substring(indexOfStart);
+
+            const string EndSegment = ",\"requestContext\":";
+
+            var indexOfEnd = soundtrack.IndexOf(EndSegment);
+
+            if (indexOfEnd != -1)
+            {
+                soundtrack = soundtrack.Substring(0, indexOfEnd);
+            }
+
+            JsonNode soundtrackNodes;
+            try
+            {
+                var cleanedSoundtrack = (new EndOfJsonParser()).GetJson(soundtrack);
+
+                var rootNode = JsonTreeBuilder.Build(cleanedSoundtrack);
+
+                soundtrackNodes = rootNode["items"];
+            }
+            catch
+            {
+                return null;
+            }
+
+            var matches = new Dictionary<string, List<SoundtrackMatch>>();
+
+            foreach (var soundtrackNode in soundtrackNodes)
+            {
+                TryAddSoundtrackEntries(matches, soundtrackNode);
+            }
+
+            return matches;
+        }
+
+        private static void TryAddSoundtrackEntries(Dictionary<string, List<SoundtrackMatch>> matches, JsonNode soundtrackNode)
+        {
+            var titleNode = soundtrackNode["rowTitle"];
+
+            var title = titleNode?.ValueAsString;
+
+            if (string.IsNullOrEmpty(title))
+            {
+                return;
+            }
+
+            var listContentNodes = soundtrackNode["listContent"];
+
+            if (listContentNodes != null)
+            {
+                foreach (var detailNodes in listContentNodes)
+                {
+                    foreach (var detailNode in detailNodes)
+                    {
+                        TryAddSoundtrackEntry(matches, title, detailNode.ValueAsString);
+                    }
+                }
+            }
+        }
+
+        private static void TryAddSoundtrackEntry(Dictionary<string, List<SoundtrackMatch>> matches, string title, string detail)
+        {
+            if (string.IsNullOrEmpty(detail))
+            {
+                return;
+            }
+
+            var personMatches = _soundtrackPersonRegex.Matches(detail);
+
+            if (personMatches.Count > 0)
+            {
+                if (!matches.TryGetValue(title, out var titleMatches))
+                {
+                    titleMatches = new List<SoundtrackMatch>();
+
+                    matches.Add(title, titleMatches);
+                }
+
+                foreach (Match personMatch in personMatches)
+                {
+                    if (TryGetSoundtrackSubtypeMatch(detail, out var subType))
+                    {
+                        titleMatches.Add(new SoundtrackMatch(subType, true, personMatch));
+                    }
+                    else if (TryGetCustomSoundtrackJob(detail, out var job))
+                    {
+                        titleMatches.Add(new SoundtrackMatch(job, false, personMatch));
+                    }
+                    else
+                    {
+                        titleMatches.Add(new SoundtrackMatch(null, false, personMatch));
+                    }
+                }
+            }
+        }
+
         private static bool TryGetSoundtrackSubtypeMatch(string line, out string subType)
         {
             var musicSubTypes = TransformationData.CreditTypeList
@@ -1052,6 +1193,195 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 return false;
             }
         }
+
+        #endregion
+
+        #region Trivia
+
+        internal static StringBuilder ParseTriviaNewStyle(string triviaUrl, string segment)
+        {
+            const string StartSegment = "[";
+
+            var indexOfStart = segment.IndexOf(StartSegment);
+
+            if (indexOfStart == -1)
+            {
+                return null;
+            }
+
+            var trivias = segment.Substring(indexOfStart);
+
+            const string EndSegment = ",\"requestContext\":";
+
+            var indexOfEnd = trivias.IndexOf(EndSegment);
+
+            if (indexOfEnd != -1)
+            {
+                trivias = trivias.Substring(0, indexOfEnd);
+            }
+
+            JsonRootNode triviaNode;
+            try
+            {
+                var cleanedTrivia = (new EndOfJsonParser()).GetJson(trivias);
+
+                triviaNode = JsonTreeBuilder.Build(cleanedTrivia);
+            }
+            catch
+            {
+                return null;
+            }
+
+            var result = TryAddGoofOrTriviaEntries(triviaUrl, triviaNode, AddTriviaResult);
+
+            return result;
+
+        }
+
+        internal static void AddTriviaResult(string url, string value, StringBuilder result)
+        {
+            if (!string.IsNullOrEmpty(value))
+            {
+                var hrefMatches = _hrefRegex.Matches(value);
+
+                foreach (Match match in hrefMatches)
+                {
+                    value = value.Replace(match.Value, $"<a href=\"{match.Groups["Link"]}\">");
+                }
+
+
+                value = value.Replace("href=\"#", "href=\"" + url + "#");
+                value = value.Replace("href=\"/", "href=\"" + BaseUrl + "/");
+                value = value.Replace("href=\"?", "href=\"" + BaseUrl + "?");
+                value = value.Replace(" />", ">");
+                value = value.Replace("/>", ">");
+                value = value.Trim();
+
+                while (value.EndsWith("<br>"))
+                {
+                    value = value.Substring(0, value.Length - 4).TrimEnd();
+                }
+
+                result.AppendLine("<trivia=" + value + " />");
+                result.AppendLine();
+            }
+        }
+
+        #endregion
+
+        #region Goof or Trivia
+
+        private static StringBuilder TryAddGoofOrTriviaEntries(string url, JsonRootNode rootNode, AddGoofOrTriviaDelegate addGoofOrTrivia)
+        {
+            var result = new StringBuilder();
+
+            result.AppendLine("<div style=\"display:none\">");
+
+            foreach (var categoryNode in rootNode)
+            {
+                TryAddGoofOrTriviaEntries(url, categoryNode["section"], result, addGoofOrTrivia);
+
+                TryAddGoofOrTriviaEntries(url, categoryNode["spoilerSection"], result, addGoofOrTrivia);
+            }
+
+            result.AppendLine("</div>");
+
+            return result;
+        }
+
+        private static void TryAddGoofOrTriviaEntries(string url, JsonNode sectionNode, StringBuilder results, AddGoofOrTriviaDelegate addGoofOrTrivia)
+        {
+            if (sectionNode == null)
+            {
+                return;
+            }
+
+            var itemsNode = sectionNode["items"];
+
+            if (itemsNode == null)
+            {
+                return;
+            }
+
+            foreach (var itemNode in itemsNode)
+            {
+                var value = itemNode["cardHtml"]?.ValueAsString;
+
+                if (!string.IsNullOrEmpty(value))
+                {
+                    addGoofOrTrivia(url, value, results);
+                }
+            }
+        }
+
+        private delegate void AddGoofOrTriviaDelegate(string url, string value, StringBuilder result);
+
+        #endregion
+
+        #region Goofs
+
+        internal static StringBuilder ParseGoofsNewStyle(string goofsUrl, string segment)
+        {
+            const string StartSegment = "[";
+
+            var indexOfStart = segment.IndexOf(StartSegment);
+
+            if (indexOfStart == -1)
+            {
+                return null;
+            }
+
+            var goofs = segment.Substring(indexOfStart);
+
+            const string EndSegment = ",\"requestContext\":";
+
+            var indexOfEnd = goofs.IndexOf(EndSegment);
+
+            if (indexOfEnd != -1)
+            {
+                goofs = goofs.Substring(0, indexOfEnd);
+            }
+
+            JsonRootNode goofsNode;
+            try
+            {
+                var cleanedGoofs = (new EndOfJsonParser()).GetJson(goofs);
+
+                goofsNode = JsonTreeBuilder.Build(cleanedGoofs);
+            }
+            catch
+            {
+                return null;
+            }
+
+            var result = TryAddGoofOrTriviaEntries(goofsUrl, goofsNode, AddGoofResult);
+
+            return result;
+        }
+
+        internal static void AddGoofResult(string url, string value, StringBuilder result)
+        {
+            if (!string.IsNullOrEmpty(value))
+            {
+                value = value.Replace("&nbsp;", " ");
+                value = value.Replace("href=\"#", "href=\"" + url + "#");
+                value = value.Replace("href=\"/", "href=\"" + BaseUrl + "/");
+                value = value.Replace("href=\"?", "href=\"" + BaseUrl + "?");
+                value = value.Replace(" />", ">");
+                value = value.Replace("/>", ">");
+                value = value.Trim();
+
+                while (value.EndsWith("<br>"))
+                {
+                    value = value.Substring(0, value.Length - 4).TrimEnd();
+                }
+
+                result.AppendLine("<goof=" + value + " />");
+                result.AppendLine();
+            }
+        }
+
+        #endregion
 
         private static bool StartsWith(string line, string search) => line.TrimStart().StartsWith(search, StringComparison.InvariantCultureIgnoreCase);
 
@@ -1112,6 +1442,5 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
                 }
             }
         }
-
     }
 }

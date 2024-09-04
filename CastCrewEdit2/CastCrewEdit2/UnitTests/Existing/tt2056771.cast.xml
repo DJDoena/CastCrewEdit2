@@ -35,5 +35,7 @@
     <Actor Role="Carabiniere 3" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Antonio" MiddleName="Simone" LastName="Farina" BirthYear="0" CreditedAs="" />
     <Actor Role="Notary" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Fausto" MiddleName="" LastName="Amato" BirthYear="0" CreditedAs="" />
     <Actor Role="Stage Hand" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Camillo" MiddleName="" LastName="Piarulli" BirthYear="0" CreditedAs="" />
+    <Actor Role="Club Dancer" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Valentina" MiddleName="Laura" LastName="Agostini" BirthYear="0" CreditedAs="" />
+    <Actor Role="Drunk Australian" Voice="false" Uncredited="true" Puppeteer="false" FirstName="David" MiddleName="" LastName="Kajganich" BirthYear="0" CreditedAs="" />
   </Actors>
 </CastInformation>
