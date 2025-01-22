@@ -753,6 +753,8 @@
         {
             if (_selectedBrowserControl == BrowserControlSelection.WebView2)
             {
+                Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--lang=en-US");
+
                 var environment = await Microsoft.Web.WebView2.Core.CoreWebView2Environment.CreateAsync(null, Path.Combine(Path.GetTempPath(), "CCE2browser"));
 
                 await ((Microsoft.Web.WebView2.WinForms.WebView2)WebBrowser).EnsureCoreWebView2Async(environment);
@@ -1099,7 +1101,7 @@
 
                     foreach (var season in seasons)
                     {
-                        var targetUrl = $"{IMDbParser.TitleUrl}{_tvShowTitleLink}/episodes?season={season}";
+                        var targetUrl = $"{IMDbParser.TitleUrl}{_tvShowTitleLink}/episodes/?season={season}";
 
                         var webSite = IMDbParser.GetWebSite(targetUrl);
 
@@ -1325,7 +1327,7 @@
 
         private void ScanForSeasons()
         {
-            var targetUrl = $"{IMDbParser.TitleUrl}{_tvShowTitleLink}/episodes";
+            var targetUrl = $"{IMDbParser.TitleUrl}{_tvShowTitleLink}/episodes/";
 
             var webSite = IMDbParser.GetWebSite(targetUrl);
 

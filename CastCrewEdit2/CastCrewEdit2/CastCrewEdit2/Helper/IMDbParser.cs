@@ -133,7 +133,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
         static IMDbParser()
         {
-            const string DomainPrefix = "https?://((akas.)*|(www.)*|(us.)*|(german.)*)imdb.(com|de)/";
+            const string DomainPrefix = "https?:\\/\\/((akas.)*|(www.)*|(us.)*|(german.)*)imdb.(com|de)\\/([a-z]{2}\\/)?";
 
             _updatedPersonLock = new object();
 
@@ -143,7 +143,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
 
             Encoding = Encoding.GetEncoding("UTF-8");
 
-            TitleUrlRegex = new Regex(DomainPrefix + "title/(?'TitleLink'tt[0-9]+)/.*$", RegexOptions.Compiled);
+            TitleUrlRegex = new Regex(DomainPrefix + "title\\/(?'TitleLink'tt[0-9]+)\\/.*$", RegexOptions.Compiled);
 
             TitleRegex = new Regex(@"<title>(?'Title'.+?)</title>", RegexOptions.Compiled);
 
