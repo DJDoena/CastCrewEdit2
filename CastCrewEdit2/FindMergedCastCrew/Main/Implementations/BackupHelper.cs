@@ -9,7 +9,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
         {
             if (ioServices.File.Exists(fileName))
             {
-                var fi = ioServices.GetFileInfo(fileName);
+                var fi = ioServices.GetFile(fileName);
 
                 var backupFile = fi.Name + ".bak";
 

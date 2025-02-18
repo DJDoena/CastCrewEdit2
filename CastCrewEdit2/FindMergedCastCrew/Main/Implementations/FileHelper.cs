@@ -30,10 +30,10 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
             options.CheckFileExists = true;
             options.Filter = filter;
-            options.InitialFolder = GetInitialDirectory(suggestedFileName);
+            options.InitialFolder = this.GetInitialDirectory(suggestedFileName);
             options.RestoreFolder = true;
             options.Title = title;
-            options.FileName = GetInitialFileName(suggestedFileName, true);
+            options.FileName = this.GetInitialFileName(suggestedFileName, true);
 
             var result = UIServices.ShowOpenFileDialog(options, out fileName);
 
@@ -50,12 +50,12 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
             options.AddExtension = true;
             options.DefaultExt = ".xml";
             options.Filter = filter;
-            options.InitialFolder = GetInitialDirectory(suggestedFileName);
+            options.InitialFolder = this.GetInitialDirectory(suggestedFileName);
             options.OverwritePrompt = true;
             options.RestoreFolder = true;
             options.ValidateName = true;
             options.Title = title;
-            options.FileName = GetInitialFileName(suggestedFileName, false);
+            options.FileName = this.GetInitialFileName(suggestedFileName, false);
 
             var result = UIServices.ShowSaveFileDialog(options, out fileName);
 
@@ -70,13 +70,13 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
             IProcessDataForSerialization processData = null;
 
-            fileName = SuggestSessionFileName(fileName);
+            fileName = this.SuggestSessionFileName(fileName);
 
-            if (ShowOpenFileDialog(fileName, filter, title, out fileName))
+            if (this.ShowOpenFileDialog(fileName, filter, title, out fileName))
             {
                 try
                 {
-                    processData = TryLoadSessionData(fileName);
+                    processData = this.TryLoadSessionData(fileName);
                 }
                 catch (Exception ex)
                 {
@@ -94,11 +94,11 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
             const string title = "Please select session cache file";
 
-            fileName = SuggestSessionFileName(fileName);
+            fileName = this.SuggestSessionFileName(fileName);
 
-            if (ShowSaveFileDialog(fileName, filter, title, out fileName))
+            if (this.ShowSaveFileDialog(fileName, filter, title, out fileName))
             {
-                CommenceSaveSessionData(fileName, processData);
+                this.CommenceSaveSessionData(fileName, processData);
             }
         }
 
@@ -110,7 +110,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
             if ((string.IsNullOrEmpty(fileName) == false) && (IOServices.File.Exists(fileName)))
             {
-                var fi = IOServices.GetFileInfo(fileName);
+                var fi = IOServices.GetFile(fileName);
 
                 iniDir = fi.FolderName + @"\";
             }
@@ -125,7 +125,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
             if (string.IsNullOrEmpty(fileName) == false)
             {
-                var fi = IOServices.GetFileInfo(fileName);
+                var fi = IOServices.GetFile(fileName);
 
                 if ((mustExist == false) || (fi.Exists))
                 {
@@ -167,7 +167,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
 
             if (string.IsNullOrEmpty(currentFileName) == false)
             {
-                var fi = IOServices.GetFileInfo(currentFileName);
+                var fi = IOServices.GetFile(currentFileName);
 
                 fileName = fi.NameWithoutExtension + ".cache";
 

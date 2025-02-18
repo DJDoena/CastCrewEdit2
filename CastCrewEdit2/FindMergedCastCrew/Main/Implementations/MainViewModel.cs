@@ -369,7 +369,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         private string GetLogFileName()
         {
-            var fi = IOServices.GetFileInfo(this.TargetFileName);
+            var fi = IOServices.GetFile(this.TargetFileName);
 
             var logFile = fi.NameWithoutExtension + ".html";
 

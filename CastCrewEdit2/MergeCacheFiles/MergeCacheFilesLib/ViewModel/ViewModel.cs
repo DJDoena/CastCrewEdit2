@@ -39,11 +39,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
         {
             get
             {
-                return (Model.LeftFileName);
+                return (this.Model.LeftFileName);
             }
             protected set
             {
-                Model.LeftFileName = value;
+                this.Model.LeftFileName = value;
             }
         }
 
@@ -51,11 +51,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
         {
             get
             {
-                return (Model.RightFileName);
+                return (this.Model.RightFileName);
             }
             protected set
             {
-                Model.RightFileName = value;
+                this.Model.RightFileName = value;
             }
         }
 
@@ -63,45 +63,45 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
         {
             get
             {
-                return (Model.TargetFileName);
+                return (this.Model.TargetFileName);
             }
             protected set
             {
-                Model.TargetFileName = value;
+                this.Model.TargetFileName = value;
             }
         }
 
         public virtual bool CanExecuteMerge()
         {
-            return ((string.IsNullOrEmpty(LeftFileName) == false)
-                && (string.IsNullOrEmpty(RightFileName) == false));
+            return ((string.IsNullOrEmpty(this.LeftFileName) == false)
+                && (string.IsNullOrEmpty(this.RightFileName) == false));
         }
 
         public virtual bool CanExecuteMergeIntoThirdFile()
         {
-            return ((CanExecuteMerge())
-                && (string.IsNullOrEmpty(TargetFileName) == false));
+            return ((this.CanExecuteMerge())
+                && (string.IsNullOrEmpty(this.TargetFileName) == false));
         }
 
         public virtual bool CanExecuteClearFileNames()
         {
-            return ((string.IsNullOrEmpty(LeftFileName) == false)
-              || (string.IsNullOrEmpty(RightFileName) == false)
-              || (string.IsNullOrEmpty(TargetFileName)) == false);
+            return ((string.IsNullOrEmpty(this.LeftFileName) == false)
+              || (string.IsNullOrEmpty(this.RightFileName) == false)
+              || (string.IsNullOrEmpty(this.TargetFileName)) == false);
         }
 
         public void Save()
         {
-            Model.SaveSettings();
+            this.Model.SaveSettings();
         }
 
         public void SelectLeftFileName()
         {
             string fileName;
 
-            if (ShowOpenFileDialog(LeftFileName, out fileName))
+            if (this.ShowOpenFileDialog(this.LeftFileName, out fileName))
             {
-                LeftFileName = fileName;
+                this.LeftFileName = fileName;
             }
         }
 
@@ -109,9 +109,9 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
         {
             string fileName;
 
-            if (ShowOpenFileDialog(RightFileName, out fileName))
+            if (this.ShowOpenFileDialog(this.RightFileName, out fileName))
             {
-                RightFileName = fileName;
+                this.RightFileName = fileName;
             }
         }
 
@@ -119,27 +119,27 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
         {
             string fileName;
 
-            if (ShowSaveFileDialog(TargetFileName, out fileName))
+            if (this.ShowSaveFileDialog(this.TargetFileName, out fileName))
             {
-                TargetFileName = fileName;
+                this.TargetFileName = fileName;
             }
         }
 
         public void ClearFileNames()
         {
-            LeftFileName = string.Empty;
-            RightFileName = string.Empty;
-            TargetFileName = string.Empty;
+            this.LeftFileName = string.Empty;
+            this.RightFileName = string.Empty;
+            this.TargetFileName = string.Empty;
         }
 
         public virtual void Merge()
         {
-            Model.Merge();
+            this.Model.Merge();
         }
 
         public virtual void MergeThirdFile()
         {
-            Model.MergeIntoThirdFile();
+            this.Model.MergeIntoThirdFile();
         }
 
         #endregion
@@ -179,10 +179,10 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             options = new OpenFileDialogOptions();
             options.CheckFileExists = true;
             options.Filter = "Cast file|cast*.xml|Crew file|crew*.xml";
-            options.InitialFolder = GetInitialDirectory(currentFileName);
+            options.InitialFolder = this.GetInitialDirectory(currentFileName);
             options.RestoreFolder = true;
             options.Title = "Please select cache file.";
-            return (UIServices.ShowOpenFileDialog(options, out fileName));
+            return (this.UIServices.ShowOpenFileDialog(options, out fileName));
         }
 
         private bool ShowSaveFileDialog(string currentFileName
@@ -194,21 +194,21 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             options.AddExtension = true;
             options.DefaultExt = ".xml";
             options.Filter = "Cast file|cast*.xml|Crew file|crew*.xml";
-            options.InitialFolder = GetInitialDirectory(currentFileName);
+            options.InitialFolder = this.GetInitialDirectory(currentFileName);
             options.OverwritePrompt = true;
             options.RestoreFolder = true;
             options.ValidateName = true;
             options.Title = "Please select target cache file.";
-            return (UIServices.ShowSaveFileDialog(options, out fileName));
+            return (this.UIServices.ShowSaveFileDialog(options, out fileName));
         }
 
         private string GetInitialDirectory(string fileName)
         {
             string iniDir = null;
 
-            if ((string.IsNullOrEmpty(fileName) == false) && (IOServices.File.Exists(fileName)))
+            if ((string.IsNullOrEmpty(fileName) == false) && (this.IOServices.File.Exists(fileName)))
             {
-                var fi = IOServices.GetFileInfo(fileName);
+                var fi = this.IOServices.GetFile(fileName);
 
                 iniDir = fi.FolderName + @"\";
             }
