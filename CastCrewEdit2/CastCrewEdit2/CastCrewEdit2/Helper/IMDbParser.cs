@@ -439,7 +439,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
             {
                 try
                 {
-                    TransformationData = Serializer<IMDbToDVDProfilerCrewRoleTransformation>.Deserialize(fileName);
+                    TransformationData = XmlSerializer<IMDbToDVDProfilerCrewRoleTransformation>.Deserialize(fileName);
                 }
                 catch
                 {

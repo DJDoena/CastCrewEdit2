@@ -120,7 +120,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             {
                 using (var stream = IOServices.GetFileStream(SourceFile, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    personInfoList = Serializer<PersonInfos>.Deserialize(stream);
+                    personInfoList = XmlSerializer<PersonInfos>.Deserialize(stream);
                 }
             }
             catch
@@ -147,7 +147,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
                     using (var stream = IOServices.GetFileStream(TargetFile, FileMode.Create, FileAccess.Write, FileShare.Read))
                     {
-                        Serializer<PersonInfos>.Serialize(stream, personInfos);
+                        XmlSerializer<PersonInfos>.Serialize(stream, personInfos);
                     }
                 }
                 catch

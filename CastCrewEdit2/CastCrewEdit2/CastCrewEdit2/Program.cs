@@ -215,7 +215,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 {
                     try
                     {
-                        Settings = Serializer<Settings>.Deserialize(_settingsFile);
+                        Settings = XmlSerializer<Settings>.Deserialize(_settingsFile);
                     }
                     catch
                     {
@@ -248,7 +248,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 {
                     try
                     {
-                        Serializer<Settings>.Serialize(_settingsFile, Settings);
+                        XmlSerializer<Settings>.Serialize(_settingsFile, Settings);
                     }
                     catch
                     {
@@ -274,7 +274,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 
                     var exceptionXml = new ExceptionXml(ex);
 
-                    Serializer<ExceptionXml>.Serialize(_errorFile, exceptionXml);
+                    XmlSerializer<ExceptionXml>.Serialize(_errorFile, exceptionXml);
 
                     WriteError(ex, true);
                 }
@@ -558,7 +558,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                     Directory.CreateDirectory("errors");
                 }
 
-                Serializer<ExceptionXml>.Serialize(@"errors\" + filename.ToString(), xml);
+                XmlSerializer<ExceptionXml>.Serialize(@"errors\" + filename.ToString(), xml);
             }
         }
     }

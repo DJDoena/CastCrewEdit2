@@ -86,7 +86,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                     File.Copy(personsFile, personsFile + ".org", true);
                 }
                 personInfoList = PersonInfos.Deserialize(personsFile);
-                collection = Serializer<Collection>.Deserialize(collectionFile);
+                collection = XmlSerializer<Collection>.Deserialize(collectionFile);
                 if ((personInfoList != null) && (personInfoList.PersonInfoList != null)
                   && (personInfoList.PersonInfoList.Length > 0))
                 {

@@ -28,7 +28,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 }
             }
 
-            Serializer<PersonInfos>.Serialize(fileName, this);
+            XmlSerializer<PersonInfos>.Serialize(fileName, this);
         }
 
         public static PersonInfos Deserialize(string fileName)
@@ -37,7 +37,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             {
                 PersonInfo.CreatorActive = true;
 
-                var personInfos = Serializer<PersonInfos>.Deserialize(fs);
+                var personInfos = XmlSerializer<PersonInfos>.Deserialize(fs);
 
                 PersonInfo.CreatorActive = false;
 

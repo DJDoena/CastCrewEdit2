@@ -58,7 +58,7 @@ namespace DoenaSoft.DVDProfiler.CompareProfilerXMLAndCastCrewEdit2Cache
                     DataGridViewRow row;
                     List<DataGridViewRow> rowList;
 
-                    collection = Serializer<Collection>.Deserialize(DVDProfilerXMLTextBox.Text);
+                    collection = XmlSerializer<Collection>.Deserialize(DVDProfilerXMLTextBox.Text);
                     cache = PersonInfos.Deserialize(CacheFileTextBox.Text);
                     collectionHash = new Dictionary<string, IPerson>(cache.PersonInfoList.Length);
                     if ((collection != null) && (collection.DVDList != null) && (collection.DVDList.Length > 0))

@@ -53,7 +53,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                 {
                     try
                     {
-                        Settings = Serializer<Settings>.Deserialize(SettingsFile);
+                        Settings = XmlSerializer<Settings>.Deserialize(SettingsFile);
                     }
                     catch
                     {
@@ -64,7 +64,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                 {
                     try
                     {
-                        TransformationData = Serializer<IMDbToDVDProfilerCrewRoleTransformation>.Deserialize(FileName);
+                        TransformationData = XmlSerializer<IMDbToDVDProfilerCrewRoleTransformation>.Deserialize(FileName);
                     }
                     catch
                     {
@@ -92,7 +92,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                     {
                         File.Move(FileName, FileName + ".bak");
                     }
-                    Serializer<IMDbToDVDProfilerCrewRoleTransformation>.Serialize(FileName, TransformationData);
+                    XmlSerializer<IMDbToDVDProfilerCrewRoleTransformation>.Serialize(FileName, TransformationData);
                     Environment.ExitCode = 1;
                 }
                 else
@@ -101,7 +101,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                 }
                 try
                 {
-                    Serializer<Settings>.Serialize(SettingsFile, Settings);
+                    XmlSerializer<Settings>.Serialize(SettingsFile, Settings);
                 }
                 catch
                 {
@@ -119,7 +119,7 @@ namespace DoenaSoft.DVDProfiler.EditIMDbToDVDProfilerCrewRoleTransformation
                         File.Delete(ErrorFile);
                     }
                     exceptionXml = new ExceptionXml(ex);
-                    Serializer<ExceptionXml>.Serialize(ErrorFile, exceptionXml);
+                    XmlSerializer<ExceptionXml>.Serialize(ErrorFile, exceptionXml);
                 }
                 catch
                 {
