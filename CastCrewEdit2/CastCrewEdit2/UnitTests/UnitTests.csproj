@@ -1,17 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyName>UnitTests</AssemblyName>
-		<RootNamespace>UnitTests</RootNamespace>
-		<OutputType>Exe</OutputType>
+		<AssemblyName>CastCrewEdit2.UnitTests</AssemblyName>
+		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2.UnitTests</RootNamespace>
 		<TargetFrameworks>net472</TargetFrameworks>
 		<Platforms>x86;x64</Platforms>
+		<LangVersion>10.0</LangVersion>
 		<Configurations>Debug;Release;UnitTest</Configurations>
 		<UseWindowsForms>true</UseWindowsForms>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
 	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='UnitTest'">
+		<DefineConstants>$(DefineConstants);UnitTest;DEBUG</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="MSTest.TestAdapter" Version="3.8.3" />
+	  <PackageReference Include="MSTest.TestFramework" Version="3.8.3" />
+	  <PackageReference Include="System.Resources.Extensions" Version="9.0.3" />
+	  <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.1" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\CastCrewEdit2\CastCrewEdit2.csproj" />
@@ -51,6 +64,21 @@
 	  <None Update="Existing\tt0057687.fullcredits.html.txt">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
+	  <None Update="Existing\tt0077631.trivia.html.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Existing\tt0077631.trivia.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Existing\tt0078435.cast.xml">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Existing\tt0078435.crew.xml">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Existing\tt0078435.fullcredits.html.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Existing\tt0088258.soundtrack.html.txt">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
@@ -78,7 +106,10 @@
 	  <None Update="Existing\tt1307254.fullcredits.html.txt">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Existing\tt1307254.soundtrack.html.txt">
+	  <None Update="Existing\tt13875494.episodes.html.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Existing\tt13875494.episodes_season=1.html.txt">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Existing\tt2056771.cast.xml">
@@ -88,9 +119,6 @@
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Existing\tt4338588.fullcredits.html.txt">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="Existing\tt4338588.soundtrack.html.txt">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>

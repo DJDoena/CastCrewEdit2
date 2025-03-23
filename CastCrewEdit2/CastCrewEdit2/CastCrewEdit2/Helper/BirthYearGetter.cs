@@ -6,6 +6,7 @@
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
+    using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
     using Resources;
 
     internal static class BirthYearGetter
@@ -29,7 +30,7 @@
 
         internal static string Get(string personId)
         {
-            var webSite = IMDbParser.GetWebSite($"{IMDbParser.PersonUrl}{personId}/");
+            var webSite = IMDbParser.GetWebSite($"{PersonLinkParser.PersonUrl}{personId}/");
 
             using (var sr = new StringReader(webSite))
             {
@@ -136,7 +137,7 @@
 
             var other = persons[person.PersonLink];
 
-            if (IMDbParser.ForcedFakeBirthYears.ContainsKey(person.PersonLink))
+            if (BirthYearParser.ForcedFakeBirthYears.ContainsKey(person.PersonLink))
             {
                 UseForcedFakeBirthYear(row, person, other, log, castMember, addMessage, invokeResults);
             }
@@ -166,7 +167,7 @@
             }
 
             other.BirthYear = string.Empty;
-            other.FakeBirthYear = IMDbParser.ForcedFakeBirthYears[person.PersonLink].ToString();
+            other.FakeBirthYear = BirthYearParser.ForcedFakeBirthYears[person.PersonLink].ToString();
             other.BirthYearWasRetrieved = false;
 
             person.BirthYear = other.BirthYear;
@@ -259,7 +260,7 @@
         {
             var invokeResults = new List<IAsyncResult>();
 
-            IMDbParser.GetBirthYear(person);
+            BirthYearParser.GetBirthYear(person);
 
             ExecuteAction(row, invokeResults, () => row.Cells[ColumnNames.BirthYear].Value = person.BirthYear);
 

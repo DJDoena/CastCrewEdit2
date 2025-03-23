@@ -1272,6 +1272,11 @@
           <DVDProfilerCreditSubtype>Film Editor</DVDProfilerCreditSubtype>
           <DVDProfilerCustomRole />
         </CreditSubtype>
+		<CreditSubtype>
+		  <IMDbCreditSubtype>editor</IMDbCreditSubtype>
+		  <DVDProfilerCreditSubtype>Film Editor</DVDProfilerCreditSubtype>
+		  <DVDProfilerCustomRole />
+		</CreditSubtype>
         <CreditSubtype>
           <IMDbCreditSubtype>edited by</IMDbCreditSubtype>
           <DVDProfilerCreditSubtype>Film Editor</DVDProfilerCreditSubtype>

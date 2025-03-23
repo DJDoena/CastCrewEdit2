@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Runtime.Serialization.Formatters.Binary;
-    using Helper;
+    using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 
     [Serializable]
     public sealed class SessionData
@@ -42,57 +42,47 @@
         {
             try
             {
-                using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+                var bf = new BinaryFormatter();
+
+                var sd = (SessionData)(bf.Deserialize(fs));
+
+                sd.BirthYearCache ??= new Dictionary<PersonInfo, string>(1000);
+
+                sd.HeadshotCache ??= new Dictionary<PersonInfo, FileInfo>(1000);
+
+                sd.WebSites ??= new Dictionary<string, string>();
+
+                var headshotCache = HeadshotParser.HeadshotCache;
+
+                foreach (var kvp in sd.HeadshotCache)
                 {
-                    var bf = new BinaryFormatter();
-
-                    var sd = (SessionData)(bf.Deserialize(fs));
-
-                    if (sd.BirthYearCache == null)
+                    if (kvp.Value != null)
                     {
-                        sd.BirthYearCache = new Dictionary<PersonInfo, string>(1000);
-                    }
+                        kvp.Value.Refresh();
 
-                    if (sd.HeadshotCache == null)
-                    {
-                        sd.HeadshotCache = new Dictionary<PersonInfo, FileInfo>(1000);
-                    }
-
-                    if (sd.WebSites == null)
-                    {
-                        sd.WebSites = new Dictionary<string, string>();
-                    }
-
-                    var headshotCache = IMDbParser.HeadshotCache;
-
-                    foreach (var kvp in sd.HeadshotCache)
-                    {
-                        if (kvp.Value != null)
-                        {
-                            kvp.Value.Refresh();
-
-                            if (kvp.Value.Exists)
-                            {
-                                headshotCache.Add(kvp.Key, kvp.Value);
-                            }
-                        }
-                        else
+                        if (kvp.Value.Exists)
                         {
                             headshotCache.Add(kvp.Key, kvp.Value);
                         }
                     }
-
-                    sd.HeadshotCache = headshotCache;
-
-                    IMDbParser.SessionData = sd;
+                    else
+                    {
+                        headshotCache.Add(kvp.Key, kvp.Value);
+                    }
                 }
+
+                sd.HeadshotCache = headshotCache;
+
+                IMDbParser.SessionData = sd;
             }
             catch
             {
                 IMDbParser.SessionData = new SessionData();
             }
 
-            return IMDbParser.BirthYearCache.Count.ToString();
+            return BirthYearParser.BirthYearCache.Count.ToString();
         }
     }
 }

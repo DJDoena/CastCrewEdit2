@@ -1,4 +1,4 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser
 {
     using System.Collections.Generic;
     using Extended;
@@ -83,7 +83,7 @@
                 FirstName = name.FirstName.ToString(),
                 MiddleName = name.MiddleName.ToString(),
                 LastName = name.LastName.ToString(),
-                PersonLink = defaultValues.CheckPersonLinkForRedirect ? IMDbParser.GetUpdatedPersonLink(personLink) : personLink,
+                PersonLink = defaultValues.CheckPersonLinkForRedirect ? PersonLinkParser.GetUpdatedPersonLink(personLink) : personLink,
                 CreditType = CreditTypesDataGridViewHelper.CreditTypes.Music,
                 CreditSubtype = creditSubType,
             };

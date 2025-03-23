@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
     using DVDProfilerHelper;
 
     internal static class HeadshotGetter
@@ -45,7 +46,7 @@
                 }
 
                 FileInfo source = CanGetPhoto(person.PersonLink, out source)
-                    ? IMDbParser.GetHeadshot(person)
+                    ? HeadshotParser.GetHeadshot(person)
                     : source;
 
                 if (source == null)

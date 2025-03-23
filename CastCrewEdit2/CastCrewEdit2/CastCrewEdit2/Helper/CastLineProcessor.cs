@@ -1,276 +1,275 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Web;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
+
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
+internal static class CastLineProcessor
 {
-    using System.Collections.Generic;
-    using System.Text.RegularExpressions;
-    using System.Web;
+    private static readonly Regex _multiLanguageVoiceRegex;
 
-    internal static class CastLineProcessor
+    private static readonly Regex _creditOnlyRegex;
+
+    private static readonly Regex _scenesDeletedRegex;
+
+    private static readonly Regex _archiveFootageRegex;
+
+    private static readonly Regex _languageVersionRegex;
+
+    private static readonly Regex _voiceRegex;
+
+    private static readonly Regex _unconfirmedRegex;
+
+    static CastLineProcessor()
     {
-        private static readonly Regex _multiLanguageVoiceRegex;
+        _voiceRegex = new Regex(@"\(voice\)", RegexOptions.Compiled);
 
-        private static readonly Regex _creditOnlyRegex;
+        _multiLanguageVoiceRegex = new Regex(@"\(voice: ", RegexOptions.Compiled);
 
-        private static readonly Regex _scenesDeletedRegex;
+        _creditOnlyRegex = new Regex(@"\(credit only\)", RegexOptions.Compiled);
 
-        private static readonly Regex _archiveFootageRegex;
+        _scenesDeletedRegex = new Regex(@"\(scenes{0,1} deleted\)", RegexOptions.Compiled);
 
-        private static readonly Regex _languageVersionRegex;
+        _archiveFootageRegex = new Regex(@"\(archive footage\)", RegexOptions.Compiled);
 
-        private static readonly Regex _voiceRegex;
+        _languageVersionRegex = new Regex(@"\([A-Za-z]+ version\)", RegexOptions.Compiled);
 
-        private static readonly Regex _unconfirmedRegex;
+        _unconfirmedRegex = new Regex(@"(unconfirmed)", RegexOptions.Compiled);
+    }
 
-        static CastLineProcessor()
+    internal static List<CastInfo> Process(CastMatch match, DefaultValues defaultValues)
+    {
+        var castList = new List<CastInfo>(2);
+
+        var name = NameParser.Parse(match.Name, defaultValues.StandardizeJuniorSenior);
+
+        var castMember = new CastInfo
         {
-            _voiceRegex = new Regex(@"\(voice\)", RegexOptions.Compiled);
+            FirstName = name.FirstName.ToString(),
+            MiddleName = name.MiddleName.ToString(),
+            LastName = name.LastName.ToString(),
+        };
 
-            _multiLanguageVoiceRegex = new Regex(@"\(voice: ", RegexOptions.Compiled);
+        if (match.RoleSuccess)
+        {
+            castMember.Voice = "False";
+            castMember.IsBracketVoice = false;
+            castMember.Uncredited = "False";
+            castMember.CreditedAs = string.Empty;
 
-            _creditOnlyRegex = new Regex(@"\(credit only\)", RegexOptions.Compiled);
+            var role = match.Role;
 
-            _scenesDeletedRegex = new Regex(@"\(scenes{0,1} deleted\)", RegexOptions.Compiled);
+            role = Regex.Replace(role, "<a .+?>", string.Empty, RegexOptions.Compiled);
+            role = role.Replace("</a>", string.Empty);
+            role = HttpUtility.HtmlDecode(role);
 
-            _archiveFootageRegex = new Regex(@"\(archive footage\)", RegexOptions.Compiled);
+            castMember.OriginalCredit = role;
 
-            _languageVersionRegex = new Regex(@"\([A-Za-z]+ version\)", RegexOptions.Compiled);
+            var newMatch = _voiceRegex.Match(role);
 
-            _unconfirmedRegex = new Regex(@"(unconfirmed)", RegexOptions.Compiled);
+            if (newMatch.Success)
+            {
+                castMember.Voice = "True";
+                castMember.IsBracketVoice = true;
+
+                role = role.Replace("(voice)", string.Empty);
+            }
+
+            newMatch = _multiLanguageVoiceRegex.Match(role);
+
+            if (newMatch.Success)
+            {
+                castMember.Voice = "True";
+                castMember.IsBracketVoice = true;
+
+                role = role.Replace("(voice: ", "(");
+            }
+
+            newMatch = IMDbParser.UncreditedRegex.Match(role);
+
+            if (newMatch.Success)
+            {
+                if (defaultValues.IgnoreUncredited)
+                {
+                    return castList;
+                }
+
+                castMember.Uncredited = "True";
+
+                role = role.Replace("(uncredited)", string.Empty);
+            }
+
+            if (defaultValues.IgnoreCreditOnly)
+            {
+                newMatch = _creditOnlyRegex.Match(role);
+
+                if (newMatch.Success)
+                {
+                    return castList;
+                }
+            }
+
+            if (defaultValues.IgnoreScenesDeleted)
+            {
+                newMatch = _scenesDeletedRegex.Match(role);
+
+                if (newMatch.Success)
+                {
+                    return castList;
+                }
+            }
+
+            if (defaultValues.IgnoreArchiveFootage)
+            {
+                newMatch = _archiveFootageRegex.Match(role);
+
+                if (newMatch.Success)
+                {
+                    return castList;
+                }
+            }
+
+            if (defaultValues.IgnoreLanguageVersion)
+            {
+                newMatch = _languageVersionRegex.Match(role);
+
+                if (newMatch.Success)
+                {
+                    return castList;
+                }
+            }
+
+            if (defaultValues.IgnoreUnconfirmed)
+            {
+                newMatch = _unconfirmedRegex.Match(role);
+
+                if (newMatch.Success)
+                {
+                    return castList;
+                }
+            }
+
+            var personLink = match.Link;
+
+            PersonLinkParser.CheckPersonLinkForRedirect(defaultValues, Program.CastCache, castMember, personLink);
+
+            castList.Add(castMember);
+
+            newMatch = IMDbParser.CreditedAsRegex.Match(role);
+
+            if (newMatch.Success)
+            {
+                if (defaultValues.RetainCastCreditedAs)
+                {
+                    castMember.CreditedAs = newMatch.Groups["CreditedAs"].ToString();
+                }
+
+                role = role.Replace("(as " + newMatch.Groups["CreditedAs"].ToString() + ")", string.Empty);
+            }
+            else
+            {
+                if (name.OriginalName != name.PlainName && defaultValues.RetainCastCreditedAs)
+                {
+                    castMember.CreditedAs = name.OriginalName;
+                }
+            }
+
+            if (defaultValues.ParseRoleSlash)
+            {
+                var roles = role.Split('/');
+
+                roles[0] = CheckForVoiceOf(roles[0], castMember, defaultValues);
+
+                castMember.Role = roles[0].Trim();
+
+                if (roles.Length > 1)
+                {
+                    for (var roleIndex = 1; roleIndex < roles.Length; roleIndex++)
+                    {
+                        var additionalCastMember = new CastInfo()
+                        {
+                            PersonLink = castMember.PersonLink,
+                            IsAdditionalRow = true,
+                            FirstName = castMember.FirstName,
+                            MiddleName = castMember.MiddleName,
+                            LastName = castMember.LastName,
+                            BirthYear = castMember.BirthYear,
+                            IsBracketVoice = castMember.IsBracketVoice,
+                            Uncredited = castMember.Uncredited,
+                            CreditedAs = castMember.CreditedAs,
+                            OriginalCredit = castMember.OriginalCredit,
+                        };
+
+                        roles[roleIndex] = CheckForVoiceOf(roles[roleIndex], additionalCastMember, defaultValues);
+
+                        additionalCastMember.Role = FormatRole(roles[roleIndex]);
+
+                        if (castMember.IsBracketVoice)
+                        {
+                            additionalCastMember.Voice = castMember.Voice;
+                        }
+                        else
+                        {
+                            additionalCastMember.Voice = "False";
+                        }
+
+                        castList.Add(additionalCastMember);
+                    }
+                }
+            }
+            else
+            {
+                role = CheckForVoiceOf(role, castMember, defaultValues);
+
+                castMember.Role = FormatRole(role);
+
+                var roles = castMember.Role.Split('/');
+
+                if (roles.Length > 1)
+                {
+                    castMember.Role = string.Empty;
+
+                    for (var roleIndex = 0; roleIndex < roles.Length - 1; roleIndex++)
+                    {
+                        castMember.Role += FormatRole(roles[roleIndex]) + " / ";
+                    }
+
+                    castMember.Role += FormatRole(roles[roles.Length - 1]);
+                }
+            }
         }
 
-        internal static List<CastInfo> Process(Match match, DefaultValues defaultValues)
+        return castList;
+    }
+
+    private static string FormatRole(string role)
+    {
+        var formattedRole = role.Trim();
+
+        for (var roleIndex = formattedRole.Length - 1; roleIndex > 0; roleIndex--)
         {
-            var castList = new List<CastInfo>(2);
-
-            var name = NameParser.Parse(match.Groups["PersonName"].Value, defaultValues.StandardizeJuniorSenior);
-
-            var castMember = new CastInfo
+            if (formattedRole[roleIndex] == '(' && formattedRole[roleIndex - 1] != ' ')
             {
-                FirstName = name.FirstName.ToString(),
-                MiddleName = name.MiddleName.ToString(),
-                LastName = name.LastName.ToString(),
-            };
+                formattedRole = formattedRole.Insert(roleIndex, " ");
+            }
+        }
 
-            if (match.Groups[ColumnNames.Role].Success)
+        return formattedRole;
+    }
+
+    private static string CheckForVoiceOf(string role, CastInfo castMember, DefaultValues defaultValues)
+    {
+        if (defaultValues.ParseVoiceOf)
+        {
+            if (role.ToLower().Trim().StartsWith("voice of "))
             {
-                castMember.Voice = "False";
+                castMember.Voice = "True";
                 castMember.IsBracketVoice = false;
-                castMember.Uncredited = "False";
-                castMember.CreditedAs = string.Empty;
 
-                var role = match.Groups[ColumnNames.Role].Value;
-
-                role = Regex.Replace(role, "<a .+?>", string.Empty, RegexOptions.Compiled);
-                role = role.Replace("</a>", string.Empty);
-                role = HttpUtility.HtmlDecode(role);
-
-                castMember.OriginalCredit = role;
-
-                var newMatch = _voiceRegex.Match(role);
-
-                if (newMatch.Success)
-                {
-                    castMember.Voice = "True";
-                    castMember.IsBracketVoice = true;
-
-                    role = role.Replace("(voice)", string.Empty);
-                }
-
-                newMatch = _multiLanguageVoiceRegex.Match(role);
-
-                if (newMatch.Success)
-                {
-                    castMember.Voice = "True";
-                    castMember.IsBracketVoice = true;
-
-                    role = role.Replace("(voice: ", "(");
-                }
-
-                newMatch = IMDbParser.UncreditedRegex.Match(role);
-
-                if (newMatch.Success)
-                {
-                    if (defaultValues.IgnoreUncredited)
-                    {
-                        return castList;
-                    }
-
-                    castMember.Uncredited = "True";
-
-                    role = role.Replace("(uncredited)", string.Empty);
-                }
-
-                if (defaultValues.IgnoreCreditOnly)
-                {
-                    newMatch = _creditOnlyRegex.Match(role);
-
-                    if (newMatch.Success)
-                    {
-                        return castList;
-                    }
-                }
-
-                if (defaultValues.IgnoreScenesDeleted)
-                {
-                    newMatch = _scenesDeletedRegex.Match(role);
-
-                    if (newMatch.Success)
-                    {
-                        return castList;
-                    }
-                }
-
-                if (defaultValues.IgnoreArchiveFootage)
-                {
-                    newMatch = _archiveFootageRegex.Match(role);
-
-                    if (newMatch.Success)
-                    {
-                        return castList;
-                    }
-                }
-
-                if (defaultValues.IgnoreLanguageVersion)
-                {
-                    newMatch = _languageVersionRegex.Match(role);
-
-                    if (newMatch.Success)
-                    {
-                        return castList;
-                    }
-                }
-
-                if (defaultValues.IgnoreUnconfirmed)
-                {
-                    newMatch = _unconfirmedRegex.Match(role);
-
-                    if (newMatch.Success)
-                    {
-                        return castList;
-                    }
-                }
-
-                var personLink = match.Groups["PersonLink"].Value;
-
-                IMDbParser.CheckPersonLinkForRedirect(defaultValues, Program.CastCache, castMember, personLink);
-
-                castList.Add(castMember);
-
-                newMatch = IMDbParser.CreditedAsRegex.Match(role);
-
-                if (newMatch.Success)
-                {
-                    if (defaultValues.RetainCastCreditedAs)
-                    {
-                        castMember.CreditedAs = newMatch.Groups["CreditedAs"].ToString();
-                    }
-
-                    role = role.Replace("(as " + newMatch.Groups["CreditedAs"].ToString() + ")", string.Empty);
-                }
-                else
-                {
-                    if (name.OriginalName != name.PlainName && defaultValues.RetainCastCreditedAs)
-                    {
-                        castMember.CreditedAs = name.OriginalName;
-                    }
-                }
-
-                if (defaultValues.ParseRoleSlash)
-                {
-                    var roles = role.Split('/');
-
-                    roles[0] = CheckForVoiceOf(roles[0], castMember, defaultValues);
-
-                    castMember.Role = roles[0].Trim();
-
-                    if (roles.Length > 1)
-                    {
-                        for (var roleIndex = 1; roleIndex < roles.Length; roleIndex++)
-                        {
-                            var additionalCastMember = new CastInfo()
-                            {
-                                PersonLink = castMember.PersonLink,
-                                IsAdditionalRow = true,
-                                FirstName = castMember.FirstName,
-                                MiddleName = castMember.MiddleName,
-                                LastName = castMember.LastName,
-                                BirthYear = castMember.BirthYear,
-                                IsBracketVoice = castMember.IsBracketVoice,
-                                Uncredited = castMember.Uncredited,
-                                CreditedAs = castMember.CreditedAs,
-                                OriginalCredit = castMember.OriginalCredit,
-                            };
-
-                            roles[roleIndex] = CheckForVoiceOf(roles[roleIndex], additionalCastMember, defaultValues);
-
-                            additionalCastMember.Role = FormatRole(roles[roleIndex]);
-
-                            if (castMember.IsBracketVoice)
-                            {
-                                additionalCastMember.Voice = castMember.Voice;
-                            }
-                            else
-                            {
-                                additionalCastMember.Voice = "False";
-                            }
-
-                            castList.Add(additionalCastMember);
-                        }
-                    }
-                }
-                else
-                {
-                    role = CheckForVoiceOf(role, castMember, defaultValues);
-
-                    castMember.Role = FormatRole(role);
-
-                    var roles = castMember.Role.Split('/');
-
-                    if (roles.Length > 1)
-                    {
-                        castMember.Role = string.Empty;
-
-                        for (var roleIndex = 0; roleIndex < roles.Length - 1; roleIndex++)
-                        {
-                            castMember.Role += FormatRole(roles[roleIndex]) + " / ";
-                        }
-
-                        castMember.Role += FormatRole(roles[roles.Length - 1]);
-                    }
-                }
+                role = role.Substring(9);
             }
-
-            return castList;
         }
 
-        private static string FormatRole(string role)
-        {
-            var formattedRole = role.Trim();
-
-            for (var roleIndex = formattedRole.Length - 1; roleIndex > 0; roleIndex--)
-            {
-                if (formattedRole[roleIndex] == '(' && formattedRole[roleIndex - 1] != ' ')
-                {
-                    formattedRole = formattedRole.Insert(roleIndex, " ");
-                }
-            }
-
-            return formattedRole;
-        }
-
-        private static string CheckForVoiceOf(string role, CastInfo castMember, DefaultValues defaultValues)
-        {
-            if (defaultValues.ParseVoiceOf)
-            {
-                if (role.ToLower().Trim().StartsWith("voice of "))
-                {
-                    castMember.Voice = "True";
-                    castMember.IsBracketVoice = false;
-
-                    role = role.Substring(9);
-                }
-            }
-
-            return role;
-        }
+        return role;
     }
 }

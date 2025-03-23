@@ -9,6 +9,7 @@
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using System.Windows.Forms.VisualStyles;
+    using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
     using DVDProfilerXML;
     using DVDProfilerXML.Version400;
     using Extended;
@@ -1417,7 +1418,7 @@
         {
             public DataGridViewDisableButtonColumn()
             {
-                CellTemplate = new DataGridViewDisableButtonCell();
+                this.CellTemplate = new DataGridViewDisableButtonCell();
             }
         }
 
@@ -1428,7 +1429,7 @@
             // By default, enable the button cell.
             public DataGridViewDisableButtonCell()
             {
-                Enabled = true;
+                this.Enabled = true;
             }
 
             // Override the Clone method so that the Enabled property is copied.
@@ -1436,7 +1437,7 @@
             {
                 var cell = (DataGridViewDisableButtonCell)(base.Clone());
 
-                cell.Enabled = Enabled;
+                cell.Enabled = this.Enabled;
 
                 return cell;
             }
@@ -1445,7 +1446,7 @@
             {
                 // The button cell is disabled, so paint the border,  
                 // background, and disabled button for the cell.
-                if (!Enabled)
+                if (!this.Enabled)
                 {
                     // Draw the cell background, if specified.
                     if ((paintParts & DataGridViewPaintParts.Background) == DataGridViewPaintParts.Background)
@@ -1460,13 +1461,13 @@
                     // Draw the cell borders, if specified.
                     if ((paintParts & DataGridViewPaintParts.Border) == DataGridViewPaintParts.Border)
                     {
-                        PaintBorder(graphics, clipBounds, cellBounds, cellStyle, advancedBorderStyle);
+                        this.PaintBorder(graphics, clipBounds, cellBounds, cellStyle, advancedBorderStyle);
                     }
 
                     // Calculate the area in which to draw the button.
                     var buttonArea = cellBounds;
 
-                    var buttonAdjustment = BorderWidths(advancedBorderStyle);
+                    var buttonAdjustment = this.BorderWidths(advancedBorderStyle);
 
                     buttonArea.X += buttonAdjustment.X;
                     buttonArea.Y += buttonAdjustment.Y;
@@ -1477,9 +1478,9 @@
                     ButtonRenderer.DrawButton(graphics, buttonArea, PushButtonState.Disabled);
 
                     // Draw the disabled button text. 
-                    if (FormattedValue is string)
+                    if (this.FormattedValue is string)
                     {
-                        TextRenderer.DrawText(graphics, (string)(FormattedValue), DataGridView.Font, buttonArea, SystemColors.GrayText);
+                        TextRenderer.DrawText(graphics, (string)(this.FormattedValue), this.DataGridView.Font, buttonArea, SystemColors.GrayText);
                     }
                 }
                 else

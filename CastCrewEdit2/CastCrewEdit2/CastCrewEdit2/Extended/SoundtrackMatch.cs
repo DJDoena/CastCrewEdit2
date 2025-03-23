@@ -1,18 +1,19 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
+﻿using System.Text.RegularExpressions;
+
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
+
+public sealed class SoundtrackMatch
 {
-    using System;
-    using System.Text.RegularExpressions;
+    public string Job { get; }
 
-    public sealed class SoundtrackMatch : Tuple<string, bool, Match>
+    public bool IsSubtypeMatch { get; }
+
+    public Match CrewMatch { get; }
+
+    public SoundtrackMatch(string job, bool isSubTypeMatch, Match match)
     {
-        public string Job => Item1;
-
-        public bool IsSubtypeMatch => Item2;
-
-        public Match CrewMatch => Item3;
-
-        public SoundtrackMatch(string job, bool isSubTypeMatch, Match match) : base(job, isSubTypeMatch, match)
-        {
-        }
+        this.Job = job;
+        this.IsSubtypeMatch = isSubTypeMatch;
+        this.CrewMatch = match;
     }
 }
