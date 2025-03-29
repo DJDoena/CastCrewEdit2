@@ -3,6 +3,12 @@
   <Title>tt0102059</Title>
   <Credits>
     <Credit CreditType="Direction" CreditSubtype="Director" CustomRole="Directed By" FirstName="Jim" MiddleName="" LastName="Abrahams" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Direction" CreditSubtype="Director" FirstName="Ernie" MiddleName="F." LastName="Orsatti" BirthYear="0" CreditedAs="Ernie Orsatti" />
+    <Credit CreditType="Direction" CreditSubtype="Director" FirstName="Matthew" MiddleName="H." LastName="Rowland" BirthYear="0" CreditedAs="Matthew Rowland" />
+    <Credit CreditType="Direction" CreditSubtype="Director" FirstName="John" MiddleName="P." LastName="Fasal" BirthYear="0" CreditedAs="John Paul Fasal" />
+    <Credit CreditType="Direction" CreditSubtype="Director" FirstName="Ernie" MiddleName="F." LastName="Orsatti" BirthYear="0" CreditedAs="Ernie Orsatti" />
+    <Credit CreditType="Direction" CreditSubtype="Director" FirstName="Mary" MiddleName="" LastName="Nelson-Duerrstein" BirthYear="0" CreditedAs="Mary Nelson Duerrstein" />
+    <Credit CreditType="Direction" CreditSubtype="Director" FirstName="Sandy" MiddleName="" LastName="De Crescent" BirthYear="0" CreditedAs="Sandy DeCrescent" />
     <Credit CreditType="Writing" CreditSubtype="Writer" CustomRole="Written By" FirstName="Jim" MiddleName="" LastName="Abrahams" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Writing" CreditSubtype="Writer" CustomRole="Written By" FirstName="Pat" MiddleName="" LastName="Proft" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Production" CreditSubtype="Producer" FirstName="Bill" MiddleName="" LastName="Badalato" BirthYear="0" CreditedAs="" />
@@ -21,43 +27,39 @@
     <Credit CreditType="Art" CreditSubtype="Art Director" CustomRole="Supervising Art Director" FirstName="Greg" MiddleName="" LastName="Papalia" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Set Decorator" FirstName="Jerie" MiddleName="" LastName="Kelter" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Art" CreditSubtype="Costume Designer" FirstName="Mary" MiddleName="" LastName="Malin" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Special Makeup Designer" FirstName="Allan" MiddleName="A." LastName="Apone" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Special Makeup Effects Artist" FirstName="John" MiddleName="R." LastName="Fifer" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Special Makeup Effects Artist" FirstName="Mark" MiddleName="" LastName="Maitre" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Special Makeup Effects Artist" FirstName="Douglas" MiddleName="J." LastName="White" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Special Makeup Designer" FirstName="Allan" MiddleName="A." LastName="Apone" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Special Makeup Effects Artist" FirstName="John" MiddleName="R." LastName="Fifer" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Art" CreditSubtype="Make-up Artist" CustomRole="Makeup Artist" FirstName="Deborah" MiddleName="" LastName="Humphries" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Art" CreditSubtype="Make-up Artist" CustomRole="Makeup Artist" FirstName="Dayne" MiddleName="" LastName="Johnson" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Special Makeup Effects Artist" FirstName="Mark" MiddleName="" LastName="Maitre" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Makeup Department Head" FirstName="Ann" MiddleName="" LastName="Masterson" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Special Makeup Effects Artist" FirstName="Douglas" MiddleName="J." LastName="White" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Art" CreditSubtype="Make-up Artist" CustomRole="Makeup Artist" FirstName="Cindy" MiddleName="J." LastName="Williams" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Makeup Department Head" FirstName="Ann" MiddleName="" LastName="Masterson" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Unit Production Manager" FirstName="Stephen" MiddleName="" LastName="McEveety" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="First Assistant Director" FirstName="Tom" MiddleName="" LastName="Davies" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Second Second Assistant Director" FirstName="Robin" MiddleName="Leigh" LastName="Fleck" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Second Second Assistant Director" FirstName="Sean" MiddleName="" LastName="Hobin" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Flight Deck Title Sequence Coordinator" FirstName="Robert" MiddleName="" LastName="Hicks" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="As Ernie Orsatti" FirstName="Ernie" MiddleName="F." LastName="Orsatti" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="As Ernie Orsatti" FirstName="Ernie" MiddleName="F." LastName="Orsatti" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="As Matthew Rowland" FirstName="Matthew" MiddleName="H." LastName="Rowland" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Second Unit Director: Flying Sequences" FirstName="Richard" MiddleName="T." LastName="Stevens" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Set Dresser" FirstName="G." MiddleName="Roger" LastName="Abell" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Set Dresser" FirstName="Glen" MiddleName="" LastName="Kennedy" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Set Dresser" FirstName="Glenn" MiddleName="H." LastName="Roberts" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant Property Master" FirstName="Nat" MiddleName="" LastName="Bocking" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="General Foreman" FirstName="David" MiddleName="B." LastName="Brenner" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Plaster Foreman" FirstName="Elixandro" MiddleName="" LastName="Diaz Jr." BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Props" FirstName="Joseph" MiddleName="" LastName="Genna" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Lead Man" FirstName="Robert" MiddleName="" LastName="Lucas" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Property Master" FirstName="Don" MiddleName="" LastName="Miloyevich" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Standby Painter" FirstName="Joe" MiddleName="" LastName="Northrop" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Set Dresser" FirstName="G." MiddleName="Roger" LastName="Abell" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Assistant Property Master" FirstName="Nat" MiddleName="" LastName="Bocking" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="General Foreman" FirstName="David" MiddleName="B." LastName="Brenner" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Plaster Foreman" FirstName="Elixandro" MiddleName="" LastName="Diaz Jr." BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Props" FirstName="Joseph" MiddleName="" LastName="Genna" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Set Dresser" FirstName="Glen" MiddleName="" LastName="Kennedy" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Lead Man" FirstName="Robert" MiddleName="" LastName="Lucas" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Property Master" FirstName="Don" MiddleName="" LastName="Miloyevich" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Standby Painter" FirstName="Joe" MiddleName="" LastName="Northrop" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Set Dresser" FirstName="Glenn" MiddleName="H." LastName="Roberts" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Sound" CreditSubtype="Sound Designer" FirstName="Randle" MiddleName="" LastName="Akerson" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Sound" CreditSubtype="Sound Designer" FirstName="Sandy" MiddleName="" LastName="Berman" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Sound" CreditSubtype="Production Sound Mixer" CustomRole="Sound Mixer" FirstName="Thomas" MiddleName="" LastName="Causey" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Sound" CreditSubtype="Sound Editor" FirstName="David" MiddleName="B." LastName="Cohn" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Sound" CreditSubtype="Sound Editor" FirstName="Susan" MiddleName="" LastName="Dudeck" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Sound" CreditSubtype="Custom" CustomRole="As Scott A. Hecker" FirstName="Scott" MiddleName="" LastName="Hecker" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Custom" CustomRole="Machine Operator" FirstName="Nerses" MiddleName="" LastName="Gezalyan" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Custom" CustomRole="Assistant Sound Editor" FirstName="Meredith" MiddleName="" LastName="Gold" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Custom" FirstName="Scott" MiddleName="" LastName="Hecker" BirthYear="0" CreditedAs="Scott A. Hecker" />
     <Credit CreditType="Sound" CreditSubtype="Production Sound Mixer" FirstName="Jeffrey" MiddleName="M." LastName="Jones" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="As John Paul Fasal" FirstName="John" MiddleName="P." LastName="Fasal" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Machine Operator" FirstName="Nerses" MiddleName="" LastName="Gezalyan" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant Sound Editor" FirstName="Meredith" MiddleName="" LastName="Gold" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Special Effects Coordinator" FirstName="Phil" MiddleName="" LastName="Cory" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Art" CreditSubtype="Visual Effects" CustomRole="Special Effects" FirstName="Robert" MiddleName="" LastName="DeVine" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Special Effects Technician" FirstName="Hans" MiddleName="" LastName="Metz" BirthYear="0" CreditedAs="" />
@@ -101,18 +103,16 @@
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="First Assistant Editor" FirstName="Margaret" MiddleName="" LastName="Goodspeed" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Color Timer" FirstName="Phil" MiddleName="" LastName="Hetos" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant Editor" FirstName="L." MiddleName="James" LastName="Langlois" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="As Mary Nelson Duerrstein" FirstName="Mary" MiddleName="" LastName="Nelson-Duerrstein" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Location Manager" FirstName="Ronald" MiddleName="L." LastName="Carr" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Location Representative: Los Angeles Harbor" FirstName="Jay" MiddleName="" LastName="Gowey" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Scoring Crew" FirstName="Terry" MiddleName="" LastName="Brown" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Scoring Crew" FirstName="John" MiddleName="" LastName="Bruno" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Scoring Crew" FirstName="Chuck" MiddleName="" LastName="Garsha" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="As Sandy Decrescent" FirstName="Sandy" MiddleName="" LastName="De Crescent" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant Music Editor" FirstName="Alex" MiddleName="" LastName="Garcia" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Music Playback Operator" FirstName="Brian" MiddleName="L." LastName="McCarty" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Mixing Engineer" FirstName="Brian" MiddleName="" LastName="Reeves" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Scoring Mixer" FirstName="Armin" MiddleName="" LastName="Steiner" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Music Editor" FirstName="Ted" MiddleName="" LastName="Whitfield" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Scoring Crew" FirstName="Terry" MiddleName="" LastName="Brown" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Scoring Crew" FirstName="John" MiddleName="" LastName="Bruno" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Assistant Music Editor" FirstName="Alex" MiddleName="" LastName="Garcia" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Scoring Crew" FirstName="Chuck" MiddleName="" LastName="Garsha" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Music Playback Operator" FirstName="Brian" MiddleName="L." LastName="McCarty" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Mixing Engineer" FirstName="Brian" MiddleName="" LastName="Reeves" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Scoring Mixer" FirstName="Armin" MiddleName="" LastName="Steiner" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Music Editor" FirstName="Ted" MiddleName="" LastName="Whitfield" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Transportation Captain" FirstName="William" MiddleName="" LastName="Ballard" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Driver: Honeywagon" FirstName="Roger" MiddleName="" LastName="Bojarski Jr." BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Transportation" FirstName="Timothy" MiddleName="P." LastName="Ryan" BirthYear="0" CreditedAs="" />

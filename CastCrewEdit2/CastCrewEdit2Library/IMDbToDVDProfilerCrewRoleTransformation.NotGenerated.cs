@@ -1,5 +1,14 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+﻿using System.Diagnostics;
+
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2
 {
+
+    [DebuggerDisplay("{IMDbCreditType}")]
+    public partial class CreditType
+    {
+    }
+
+    [DebuggerDisplay("{Value}")]
     public partial class IMDbCreditSubtype
     {
         public IMDbCreditSubtype()

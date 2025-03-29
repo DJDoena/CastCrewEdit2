@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 using DoenaSoft.ToolBox.Generics;
@@ -116,7 +117,7 @@ internal static class IMDbParser
                 {
                     //var wr = OnlineAccess.CreateSystemSettingsWebRequest(targetUrl, CultureInfo.GetCultureInfo("en-US"));
 
-                    var wr = CreateSystemSettingsWebRequest(targetUrl, CultureInfo.GetCultureInfo("en-US"));
+                    var wr = CreateSystemSettingsWebRequestAsync(targetUrl, CultureInfo.GetCultureInfo("en-US")).GetAwaiter().GetResult();
 
                     LastRequestTimestamp = DateTime.Now;
 
@@ -172,9 +173,11 @@ internal static class IMDbParser
 
     }
 
-    private static WebResponse CreateSystemSettingsWebRequest(string targetUrl, CultureInfo ci = null)
+    internal static async Task<WebResponse> CreateSystemSettingsWebRequestAsync(string targetUrl, CultureInfo ci = null)
     {
-        var webRequest = WebRequest.Create(targetUrl);
+        var webRequest = (HttpWebRequest)WebRequest.Create(targetUrl);
+
+        //webRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.1; Windows XP; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
 
         if (ci != null)
         {
@@ -188,7 +191,7 @@ internal static class IMDbParser
 
         try
         {
-            var webResponse = webRequest.GetResponse();
+            var webResponse = await webRequest.GetResponseAsync().ConfigureAwait(false);
 
             return webResponse;
         }
@@ -204,7 +207,7 @@ internal static class IMDbParser
 
                     var newTargetUrl = $"{targetUri.Scheme}://{targetUri.Host}{redirectTo}";
 
-                    var webResponse = CreateSystemSettingsWebRequest(newTargetUrl, ci);
+                    var webResponse = await CreateSystemSettingsWebRequestAsync(newTargetUrl, ci).ConfigureAwait(false);
 
                     return webResponse;
                 }
@@ -225,7 +228,11 @@ internal static class IMDbParser
 
             var cacheFile = GetCacheFileName(targetUrl);
 
+#if !UnitTest
             if (cacheFile.Exists && cacheFile.LastWriteTimeUtc > DateTime.UtcNow.AddDays(-7)) //one week
+#else
+            if (false)
+#endif
             {
                 using var fileStreamReader = new StreamReader(cacheFile.FullName, Encoding);
 

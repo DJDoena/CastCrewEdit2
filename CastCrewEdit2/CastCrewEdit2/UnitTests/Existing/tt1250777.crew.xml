@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<CrewInformation>
+  <Title>tt1250777</Title>
+  <Credits>
+    <Credit CreditType="Art" CreditSubtype="Art Director" FirstName="Sarah" MiddleName="" LastName="Bicknell" BirthYear="0" CreditedAs="Sarah Stuart" />
+    <Credit CreditType="Art" CreditSubtype="Art Director" FirstName="Joe" MiddleName="" LastName="Howard" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Art Director" CustomRole="Supervising Art Director" FirstName="John" MiddleName="" LastName="King" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Make-up Artist" CustomRole="Makeup Artist" FirstName="Johann" MiddleName="" LastName="Benét" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Additional Hair Stylist" FirstName="Amy" MiddleName="" LastName="Byrne" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Additional Makeup Artist" FirstName="Amy" MiddleName="" LastName="Byrne" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Assistant Makeup Artist" FirstName="Amber" MiddleName="" LastName="Chase" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Prosthetics Sculptor" FirstName="Barrie" MiddleName="" LastName="Gower" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Make-up Artist" CustomRole="Makeup Artist: Toronto" FirstName="Liz" MiddleName="" LastName="Gruszka" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Make-up Artist" CustomRole="Make-Up And Hair Designer" FirstName="Fae" MiddleName="" LastName="Hammond" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Hair Stylist: Mr. Cage" FirstName="Ilona" MiddleName="" LastName="Herman" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Make-up Artist" CustomRole="Makeup Artist: Mr. Cage" FirstName="Ilona" MiddleName="" LastName="Herman" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Stunt Prosthetics" FirstName="Paul" MiddleName="" LastName="Jones" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Tattoo Makeup Artist" FirstName="Daniel" MiddleName="" LastName="Lee" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Prosthetic Makeup Artist" FirstName="Stephen" MiddleName="" LastName="Murphy" BirthYear="0" CreditedAs="" />
+  </Credits>
+</CrewInformation>

@@ -18,6 +18,7 @@ public class MovieTests : TestBase
     private const string LoveIsTheDrugLink = "tt0266732";
     private const string HotShotsLink = "tt0102059";
     private const string UchuLink = "tt0078435";
+    private const string KickAssLink = "tt1250777";
 
     [ClassInitialize]
     public static void ClassInitialize(TestContext _)
@@ -27,14 +28,14 @@ public class MovieTests : TestBase
         CreateMockWebResponse(IMDbParser.TitleUrl, LoveIsTheDrugLink, "fullcredits");
         CreateMockWebResponse(IMDbParser.TitleUrl, HotShotsLink, "fullcredits");
         CreateMockWebResponse(IMDbParser.TitleUrl, UchuLink, "fullcredits");
-
+        CreateMockWebResponse(IMDbParser.TitleUrl, KickAssLink, "fullcredits");
     }
 
     [TestMethod]
     public void CrewWinnetou()
     {
         Crew(WinnetouLink, out var crewMatches, out var crewList, out var progressBarMaxValue, out var existing, out var current);
-        Assert.AreEqual(15, crewMatches.Count, "crewMatches.Count");
+        Assert.AreEqual(14, crewMatches.Count, "crewMatches.Count");
         Assert.AreEqual(19, progressBarMaxValue, "progressBarMaxValue");
         Assert.AreEqual(18, crewList.Count, "crewList.Count");
         Assert.AreEqual(existing.Length, current.Length, "current.Length");
@@ -70,21 +71,21 @@ public class MovieTests : TestBase
     public void CrewLoveIsTheDrug()
     {
         Crew(LoveIsTheDrugLink, out var crewMatches, out var crewList, out var progressBarMaxValue, out var existing, out var current);
-        Assert.AreEqual(24, crewMatches.Count, "crewMatches.Count");
-        Assert.AreEqual(106, progressBarMaxValue, "progressBarMaxValue");
-        Assert.AreEqual(110, crewList.Count, "crewList.Count");
-        Assert.AreEqual("Steven", crewList[51].FirstName, "crewList[51].FirstName");
-        Assert.AreEqual("Avila", crewList[51].LastName, "crewList[51].LastName");
-        Assert.AreEqual("Sound Designer", crewList[51].CreditSubtype, "crewList[51].CreditSubtype");
-        Assert.AreEqual("Steven", crewList[52].FirstName, "crewList[52].FirstName");
-        Assert.AreEqual("Avila", crewList[52].LastName, "crewList[52].LastName");
-        Assert.AreEqual("Custom", crewList[52].CreditSubtype, "crewList[52].CreditSubtype");
-        Assert.AreEqual("Trip", crewList[54].FirstName, "crewList[54].FirstName");
-        Assert.AreEqual("Brock", crewList[54].LastName, "crewList[54].LastName");
-        Assert.AreEqual("Sound Re-Recording Mixer", crewList[54].CreditSubtype, "crewList[54].CreditSubtype");
-        Assert.AreEqual("Trip", crewList[55].FirstName, "crewList[55].FirstName");
-        Assert.AreEqual("Brock", crewList[55].LastName, "crewList[55].LastName");
-        Assert.AreEqual("Supervising Sound Editor", crewList[55].CreditSubtype, "crewList[55].CreditSubtype");
+        Assert.AreEqual(39, crewMatches.Count, "crewMatches.Count");
+        Assert.AreEqual(82, progressBarMaxValue, "progressBarMaxValue");
+        Assert.AreEqual(82, crewList.Count, "crewList.Count");
+        Assert.AreEqual("Steven", crewList[44].FirstName, "crewList[44].FirstName");
+        Assert.AreEqual("Avila", crewList[44].LastName, "crewList[44].LastName");
+        Assert.AreEqual("Sound Designer", crewList[44].CreditSubtype, "crewList[44].CreditSubtype");
+        Assert.AreEqual("Steven", crewList[45].FirstName, "crewList[45].FirstName");
+        Assert.AreEqual("Avila", crewList[45].LastName, "crewList[45].LastName");
+        Assert.AreEqual("Custom", crewList[45].CreditSubtype, "crewList[45].CreditSubtype");
+        Assert.AreEqual("Trip", crewList[47].FirstName, "crewList[47].FirstName");
+        Assert.AreEqual("Brock", crewList[47].LastName, "crewList[47].LastName");
+        Assert.AreEqual("Sound Re-Recording Mixer", crewList[47].CreditSubtype, "crewList[47].CreditSubtype");
+        Assert.AreEqual("Trip", crewList[48].FirstName, "crewList[48].FirstName");
+        Assert.AreEqual("Brock", crewList[48].LastName, "crewList[48].LastName");
+        Assert.AreEqual("Supervising Sound Editor", crewList[48].CreditSubtype, "crewList[48].CreditSubtype");
         Assert.AreEqual(existing.Length, current.Length, "current.Length");
     }
 
@@ -101,7 +102,7 @@ public class MovieTests : TestBase
     public void CrewHotShots()
     {
         Crew(HotShotsLink, out var crewMatches, out var crewList, out var progressBarMaxValue, out var existing, out var current);
-        Assert.AreEqual(69, crewMatches.Count, "castMatches.Count");
+        Assert.AreEqual(46, crewMatches.Count, "castMatches.Count");
         Assert.AreEqual(123, progressBarMaxValue, "progressBarMaxValue");
         Assert.AreEqual(116, crewList.Count, "crewList.Count");
         Assert.AreEqual(existing.Length, current.Length, "current.Length");
@@ -125,14 +126,78 @@ public class MovieTests : TestBase
         Assert.AreEqual(existing.Length, current.Length, "current.Length");
     }
 
-    private static void Crew(string key
+    [TestMethod]
+    public void CrewKickAss()
+    {
+        ParseCrew(KickAssLink, out var crewMatches, out var crewList, out var defaultValues);
+
+        var artCrewMatches = crewMatches
+            .Where(m => m.Key.CreditType == "Art Direction by")
+            .ToList();
+
+        ProcessCrewLine(KickAssLink, artCrewMatches, crewList, out var progressBarMaxValue, out var existing, out var current, defaultValues);
+
+        const string SarahBicknellLink = "nm0999406";
+
+        var sarahMatch = crewMatches
+            .FirstOrDefault(m => m.Key.CreditType == "Art Direction by").Value?
+            .FirstOrDefault(m => m.Link == SarahBicknellLink);
+
+        Assert.IsNotNull(sarahMatch);
+        Assert.AreEqual("(as Sarah Stuart)", sarahMatch.Credit);
+
+        var sarahCrew = crewList.FirstOrDefault(c => c.PersonLink == SarahBicknellLink);
+
+        Assert.IsNotNull(sarahCrew);
+        Assert.IsNull(sarahCrew.CustomRole);
+        Assert.AreEqual("Sarah Stuart", sarahCrew.CreditedAs);
+        Assert.AreEqual("(as Sarah Stuart)", sarahCrew.OriginalCredit);
+        Assert.AreEqual("Art", sarahCrew.CreditType);
+        Assert.AreEqual("Art Director", sarahCrew.CreditSubtype);
+
+        var makeupDepartmentMatches = crewMatches
+            .Where(m => m.Key.CreditType == "Makeup Department")
+            .ToList();
+
+        ProcessCrewLine(KickAssLink, makeupDepartmentMatches, crewList, out progressBarMaxValue, out existing, out current, defaultValues);
+
+        const string AmberChaseLink = "nm0153681";
+
+        var amberMatch = crewMatches
+            .FirstOrDefault(m => m.Key.CreditType == "Makeup Department").Value?
+            .FirstOrDefault(m => m.Link == AmberChaseLink);
+
+        Assert.IsNotNull(amberMatch);
+        Assert.AreEqual("assistant makeup artist", amberMatch.Credit);
+
+        var amberCrew = crewList.FirstOrDefault(c => c.PersonLink == AmberChaseLink);
+
+        Assert.IsNotNull(amberCrew);
+        Assert.AreEqual("Assistant Makeup Artist", amberCrew.CustomRole);
+        Assert.AreEqual("", amberCrew.CreditedAs);
+        Assert.AreEqual("assistant makeup artist", amberCrew.OriginalCredit);
+        Assert.AreEqual("Art", amberCrew.CreditType);
+        Assert.AreEqual("Custom", amberCrew.CreditSubtype);
+    }
+
+    internal static void Crew(string key
         , out List<KeyValuePair<CreditTypeMatch, List<CrewMatch>>> crewMatches
         , out List<CrewInfo> crewList
         , out int progressBarMaxValue
         , out FileInfo existing
         , out FileInfo current)
     {
-        var defaultValues = new DefaultValues()
+        ParseCrew(key, out crewMatches, out crewList, out var defaultValues);
+
+        ProcessCrewLine(key, crewMatches, crewList, out progressBarMaxValue, out existing, out current, defaultValues);
+    }
+
+    private static void ParseCrew(string key
+        , out List<KeyValuePair<CreditTypeMatch, List<CrewMatch>>> crewMatches
+        , out List<CrewInfo> crewList
+        , out DefaultValues defaultValues)
+    {
+        defaultValues = new DefaultValues()
         {
             ParseCrew = true,
             CapitalizeCustomRole = true,
@@ -152,37 +217,6 @@ public class MovieTests : TestBase
             CheckPersonLinkForRedirect = false,
         };
 
-        //using var mainForm = new MainForm(true, BrowserControlSelection.FormsDefault);
-
-        //var mainFormType = mainForm.GetType();
-        //var fieldInfo = mainFormType.GetField("ParseCrewCheckBox", BindingFlags.Instance | BindingFlags.NonPublic);
-        //Assert.IsNotNull(fieldInfo, "fieldInfo");
-        //var parseCrewCheckBox = (CheckBox)(fieldInfo.GetValue(mainForm));
-        //parseCrewCheckBox.Checked = true;
-        //var methodInfo = mainFormType.GetMethod("ParseCastAndCrew", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
-        //Assert.IsNotNull(methodInfo, "methodInfo");
-        //crewMatches = new List<KeyValuePair<CreditTypeMatch, List<CrewMatch>>>();
-        //crewList = new List<CrewInfo>();
-        //var parameters = new object[10]
-        //{
-        //   
-        //};
-        //methodInfo.Invoke(mainForm, parameters);
-        //crewMatches = (List<KeyValuePair<CreditTypeMatch, List<CrewMatch>>>)(parameters[7]);
-        //crewList = (List<CrewInfo>)(parameters[8]);
-        //mainForm._progressMax = 0;
-        //mainForm._progressInterval = int.MaxValue;
-        //foreach (var kvp in crewMatches)
-        //{
-        //    mainForm._progressMax += kvp.Value.Count;
-        //}
-        //mainForm._progressBar = new()
-        //{
-        //    Minimum = 0,
-        //    Maximum = mainForm._progressMax,
-        //};
-        //mainForm._progressValue = 0;
-
         var castMatches = new List<CastMatch>();
         var castList = new List<CastInfo>();
         crewMatches = new List<KeyValuePair<CreditTypeMatch, List<CrewMatch>>>();
@@ -199,7 +233,10 @@ public class MovieTests : TestBase
             , ref crewMatches
             , ref crewList
             , ref soundtrackMatches);
+    }
 
+    private static void ProcessCrewLine(string key, List<KeyValuePair<CreditTypeMatch, List<CrewMatch>>> crewMatches, List<CrewInfo> crewList, out int progressBarMaxValue, out FileInfo existing, out FileInfo current, DefaultValues defaultValues)
+    {
         var progressMax = 0;
         CrewParser.ProcessCrewLine(crewList, crewMatches, defaultValues, () => progressMax++);
         var crewInformation = new CrewInformation()

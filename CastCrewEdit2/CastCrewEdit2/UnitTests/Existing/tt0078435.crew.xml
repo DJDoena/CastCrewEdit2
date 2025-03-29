@@ -2,9 +2,9 @@
 <CrewInformation>
   <Title>tt0078435</Title>
   <Credits>
-    <Credit CreditType="Direction" CreditSubtype="Director" FirstName="Kinji" MiddleName="" LastName="Fukasaku" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Direction" CreditSubtype="Director" FirstName="Kinji" MiddleName="" LastName="Fukasaku" BirthYear="0" />
     <Credit CreditType="Writing" CreditSubtype="Story By" CustomRole="Story" FirstName="Kinji" MiddleName="" LastName="Fukasaku" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Writing" CreditSubtype="Custom" CustomRole="As Shôtarô Ishinomori" FirstName="Shotaro" MiddleName="" LastName="Ishinomori" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Writing" CreditSubtype="Story By" CustomRole="Story" FirstName="Shotaro" MiddleName="" LastName="Ishinomori" BirthYear="0" CreditedAs="Shôtarô Ishinomori" />
     <Credit CreditType="Writing" CreditSubtype="Writer" FirstName="Hirô" MiddleName="" LastName="Matsuda" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Writing" CreditSubtype="Story By" CustomRole="Story" FirstName="Masahiro" MiddleName="" LastName="Noda" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Production" CreditSubtype="Producer" FirstName="Tôru" MiddleName="" LastName="Hirayama" BirthYear="0" CreditedAs="" />
@@ -13,17 +13,17 @@
     <Credit CreditType="Production" CreditSubtype="Producer" FirstName="Naoyuki" MiddleName="" LastName="Sugimoto" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Production" CreditSubtype="Executive Producer" FirstName="Tan" MiddleName="" LastName="Takaiwa" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Production" CreditSubtype="Producer" FirstName="Simon" MiddleName="" LastName="Tse" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Production" CreditSubtype="Custom" CustomRole="As Banjiro Uemura" FirstName="Banjirô" MiddleName="" LastName="Uemura" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Production" CreditSubtype="Executive Producer" FirstName="Banjirô" MiddleName="" LastName="Uemura" BirthYear="0" CreditedAs="Banjiro Uemura" />
     <Credit CreditType="Production" CreditSubtype="Executive Producer" FirstName="Yoshinori" MiddleName="" LastName="Watanabe" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="As Ken-Ichiro Morioka" FirstName="Ken'ichirô" MiddleName="" LastName="Morioka" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Cinematography" CreditSubtype="Cinematographer" FirstName="Tôru" MiddleName="" LastName="Nakajima" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Film Editing" CreditSubtype="Film Editor" CustomRole="Editor" FirstName="Isamu" MiddleName="" LastName="Ichida" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Art" CreditSubtype="Art Director" FirstName="Michio" MiddleName="" LastName="Mikami" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Set Decorator" FirstName="Tadao" MiddleName="" LastName="Nishida" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Composer" FirstName="Ken'ichirô" MiddleName="" LastName="Morioka" BirthYear="0" CreditedAs="Ken-Ichiro Morioka" />
+    <Credit CreditType="Cinematography" CreditSubtype="Director of Photography" FirstName="Tôru" MiddleName="" LastName="Nakajima" BirthYear="0" />
+    <Credit CreditType="Film Editing" CreditSubtype="Film Editor" FirstName="Isamu" MiddleName="" LastName="Ichida" BirthYear="0" />
+    <Credit CreditType="Art" CreditSubtype="Art Director" FirstName="Michio" MiddleName="" LastName="Mikami" BirthYear="0" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Set Decoration by" FirstName="Tadao" MiddleName="" LastName="Nishida" BirthYear="0" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Production Chief" FirstName="Isao" MiddleName="" LastName="Nagaoka" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant Director" FirstName="Akiyasu" MiddleName="" LastName="Tawarazaka" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Set Designer" FirstName="Genbee" MiddleName="" LastName="Inada" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="As Shôtarô Ishinomori" FirstName="Shotaro" MiddleName="" LastName="Ishinomori" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Set Designer" FirstName="Genbee" MiddleName="" LastName="Inada" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Mechanical Design" FirstName="Shotaro" MiddleName="" LastName="Ishinomori" BirthYear="0" CreditedAs="Shôtarô Ishinomori" />
     <Credit CreditType="Sound" CreditSubtype="Sound" CustomRole="Sound Recordist" FirstName="Teruhiko" MiddleName="" LastName="Arakawa" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Art" CreditSubtype="Visual Effects" CustomRole="Special Effects" FirstName="Shotaru" MiddleName="" LastName="Ishinori" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Art" CreditSubtype="Visual Effects" CustomRole="Special Effects" FirstName="Kiyotaka" MiddleName="" LastName="Matsumoto" BirthYear="0" CreditedAs="" />
@@ -37,7 +37,7 @@
     <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Visual Effects Artist" FirstName="Minoru" MiddleName="" LastName="Nakano" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Gaffer" FirstName="Tokuji" MiddleName="" LastName="Wakagi" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Gaffer: Special Effects Unit" FirstName="Mitsuo" MiddleName="" LastName="Ônishi" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Music Producer" FirstName="Hidetoshi" MiddleName="" LastName="Kimura" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Music Producer" FirstName="Hidetoshi" MiddleName="" LastName="Kimura" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Continuity" FirstName="Misae" MiddleName="" LastName="Tanaka" BirthYear="0" CreditedAs="" />
   </Credits>
 </CrewInformation>

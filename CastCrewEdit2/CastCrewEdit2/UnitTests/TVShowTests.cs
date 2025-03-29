@@ -18,8 +18,10 @@ public class TVShowTests : TestBase
     public static void ClassInitialize(TestContext _)
     {
         CreateMockWebResponse(IMDbParser.TitleUrl, FerdinandLink, "fullcredits");
+        CreateMockWebResponse(IMDbParser.TitleUrl, FerdinandLink, "soundtrack");
         CreateMockWebResponse(IMDbParser.TitleUrl, FridayNightLightsLink, "episodes?season=1");
         CreateMockWebResponse(IMDbParser.TitleUrl, RootsLink, "fullcredits");
+        CreateMockWebResponse(IMDbParser.TitleUrl, RootsLink, "soundtrack");
         CreateMockWebResponse(IMDbParser.TitleUrl, TrackerLink, "episodes");
         CreateMockWebResponse(IMDbParser.TitleUrl, TrackerLink, "episodes?season=1");
     }
@@ -34,7 +36,7 @@ public class TVShowTests : TestBase
             EpisodeNumber = "1",
         };
         Crew(episodeInfo);
-        Assert.AreEqual(20, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
+        Assert.AreEqual(21, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
         Assert.AreEqual(32, episodeInfo.CrewList.Count, "episodeInfo.CrewList.Count");
     }
 
@@ -63,7 +65,7 @@ public class TVShowTests : TestBase
             EpisodeNumber = "1",
         };
         Crew(episodeInfo);
-        Assert.AreEqual(104, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
+        Assert.AreEqual(69, episodeInfo.CrewMatches.Count, "episodeInfo.CrewMatches.Count");
         Assert.AreEqual(153, episodeInfo.CrewList.Count, "episodeInfo.CrewList.Count");
     }
 

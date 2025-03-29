@@ -253,25 +253,32 @@ internal sealed class JsonCrewParser
     {
         if (!string.IsNullOrWhiteSpace(attributeRootNode?.ValueAsString))
         {
-            var attributeText = attributeRootNode.ValueAsString;
-
-            Debug.WriteLine($"Attribute {name}: {attributeText}");
-
-            attributes.Add(attributeText);
+            TryAddAttributeText(name, attributes, attributeRootNode.ValueAsString);
         }
         else if (attributeRootNode?.Any() == true)
         {
             foreach (var attributeNode in attributeRootNode.Where(n => n is not null))
             {
-                var attributeText = attributeNode["text"]?.ValueAsString;
-
-                if (!string.IsNullOrWhiteSpace(attributeText))
-                {
-                    Debug.WriteLine($"Attribute {name}: {attributeText}");
-
-                    attributes.Add(attributeText);
-                }
+                TryAddAttributeText(name, attributes, attributeNode["text"]?.ValueAsString);
             }
+        }
+    }
+
+    private static void TryAddAttributeText(string name
+        , List<string> attributes
+        , string attributeText)
+    {
+        attributeText = attributeText?.Trim();
+
+        if (!string.IsNullOrWhiteSpace(attributeText))
+        {
+            attributeText = attributeText.TrimStart('(').TrimEnd(')');
+
+            attributeText = $"({attributeText})";
+
+            Debug.WriteLine($"Attribute {name}: {attributeText}");
+
+            attributes.Add(attributeText);
         }
     }
 
@@ -300,10 +307,26 @@ internal sealed class JsonCrewParser
 
         var imdbJob = _transformationData.FirstOrDefault(tuple => this.MatchesCreditSubType(tuple, jobText))?.Type;
 
+        imdbJob ??= _transformationData.FirstOrDefault(tuple => this.MatchesCreditType(tuple, jobText))?.Type;
+
         imdbJob ??= this.GetFromHardMapping(jobText);
 
         return imdbJob;
     }
+
+    private CreditType FindByCreditType(string searchText)
+        => _transformationData.FirstOrDefault(tuple => tuple.Type.IMDbCreditType == searchText)?.Type;
+
+    private bool MatchesCreditSubType(CreditTypeTuple tuple
+        , string searchText)
+        => Equals(searchText, tuple.SubType.IMDbCreditSubtype?.Value)
+            || Equals(searchText, tuple.SubType.DVDProfilerCreditSubtype)
+            || Equals(searchText, tuple.SubType.DVDProfilerCustomRole);
+
+    private bool MatchesCreditType(CreditTypeTuple tuple
+        , string searchText)
+        => Equals(searchText, tuple.Type.IMDbCreditType)
+            || Equals(searchText, tuple.Type.DVDProfilerCreditType);
 
     private CreditType GetFromHardMapping(string jobText)
     {
@@ -321,18 +344,42 @@ internal sealed class JsonCrewParser
         return imdbJob;
     }
 
-    private CreditType FindByCreditType(string searchText)
-        => _transformationData.FirstOrDefault(tuple => tuple.Type.IMDbCreditType == searchText)?.Type;
-
-    private bool MatchesCreditSubType(CreditTypeTuple tuple
-        , string searchText)
-        => Equals(searchText, tuple.SubType.IMDbCreditSubtype?.Value)
-            || Equals(searchText, tuple.SubType.DVDProfilerCreditSubtype)
-            || Equals(searchText, tuple.SubType.DVDProfilerCustomRole);
 
     private static bool Equals(string searchText
         , string compareText)
-        => string.Equals(searchText, compareText, StringComparison.InvariantCultureIgnoreCase);
+    {
+        Trim(ref searchText);
+
+        Trim(ref compareText);
+
+        if (string.Equals(searchText, compareText, StringComparison.InvariantCultureIgnoreCase))
+        {
+            return true;
+        }
+        else
+        {
+            Clean(ref searchText);
+
+            Clean(ref compareText);
+
+            if (string.Equals(searchText, compareText, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return true;
+            }
+        }
+
+        return false;
+
+        static void Trim(ref string text)
+        {
+            text = text?.Trim() ?? string.Empty;
+        }
+
+        static void Clean(ref string text)
+        {
+            text = text.Replace(" ", string.Empty).Replace("-", string.Empty);
+        }
+    }
 
     private bool GetImdbCreditType(string jobText
         , string personCreditType

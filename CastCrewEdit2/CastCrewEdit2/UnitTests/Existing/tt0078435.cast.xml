@@ -19,7 +19,7 @@
     <Actor Role="Dark" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Hideyo" MiddleName="" LastName="Amamoto" BirthYear="0" CreditedAs="" />
     <Actor Role="Kido" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Junkichi" MiddleName="" LastName="Orimoto" BirthYear="0" CreditedAs="" />
     <Actor Role="Lazare" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Harumi" MiddleName="" LastName="Sone" BirthYear="0" CreditedAs="" />
-    <Actor Role="Narrator (Japanese version)" Voice="true" Uncredited="false" Puppeteer="false" FirstName="Takayuki" MiddleName="" LastName="Akutagawa" BirthYear="0" CreditedAs="" />
+    <Actor Role="Narrator" Voice="true" Uncredited="false" Puppeteer="false" FirstName="Takayuki" MiddleName="" LastName="Akutagawa" BirthYear="0" CreditedAs="" />
     <Actor Role="" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Daisuke" MiddleName="" LastName="Awaji" BirthYear="0" CreditedAs="" />
     <Actor Role="" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Tetsuo" MiddleName="" LastName="Fujisawa" BirthYear="0" CreditedAs="" />
     <Actor Role="" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Hiroshi" MiddleName="" LastName="Hatano" BirthYear="0" CreditedAs="" />
@@ -34,11 +34,11 @@
     <Actor Role="" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Satoshi" MiddleName="" LastName="Kurihara" BirthYear="0" CreditedAs="" />
     <Actor Role="" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Emiko" MiddleName="" LastName="Maekawa" BirthYear="0" CreditedAs="" />
     <Actor Role="" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Rantaro" MiddleName="" LastName="Mine" BirthYear="0" CreditedAs="" />
-    <Actor Role="Commander-In-Chief (Japanese version)" Voice="true" Uncredited="false" Puppeteer="false" FirstName="Hiroshi" MiddleName="" LastName="Mizushima" BirthYear="0" CreditedAs="" />
+    <Actor Role="Commander-In-Chief" Voice="true" Uncredited="false" Puppeteer="false" FirstName="Hiroshi" MiddleName="" LastName="Mizushima" BirthYear="0" CreditedAs="" />
     <Actor Role="Aide" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Hirohisa" MiddleName="" LastName="Nakata" BirthYear="0" CreditedAs="" />
     <Actor Role="Hikiroku" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Masataka" MiddleName="" LastName="Naruse" BirthYear="0" CreditedAs="Tadashi Naruse" />
-    <Actor Role="Meia Long (English version)" Voice="true" Uncredited="false" Puppeteer="false" FirstName="Mari" MiddleName="" LastName="Okamoto" BirthYear="0" CreditedAs="" />
-    <Actor Role="Opening Narrator (English version)" Voice="true" Uncredited="false" Puppeteer="false" FirstName="Norman" MiddleName="" LastName="Rose" BirthYear="0" CreditedAs="" />
+    <Actor Role="Meia Long" Voice="true" Uncredited="false" Puppeteer="false" FirstName="Mari" MiddleName="" LastName="Okamoto" BirthYear="0" CreditedAs="" />
+    <Actor Role="Opening Narrator" Voice="true" Uncredited="false" Puppeteer="false" FirstName="Norman" MiddleName="" LastName="Rose" BirthYear="0" CreditedAs="" />
     <Actor Role="Mea's Ship Captain" Voice="false" Uncredited="false" Puppeteer="false" FirstName="William" MiddleName="" LastName="Ross" BirthYear="0" CreditedAs="" />
     <Actor Role="" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Shunji" MiddleName="" LastName="Sasaki" BirthYear="0" CreditedAs="" />
     <Actor Role="1st guard, at Headquarters entrance" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Charles" MiddleName="" LastName="Scawthorn" BirthYear="0" CreditedAs="" />
@@ -50,7 +50,7 @@
     <Actor Role="" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Yûsuke" MiddleName="" LastName="Tsukasa" BirthYear="0" CreditedAs="" />
     <Actor Role="General Garuda" Voice="true" Uncredited="false" Puppeteer="false" FirstName="Genzô" MiddleName="" LastName="Wakayama" BirthYear="0" CreditedAs="" />
     <Actor Role="" Voice="false" Uncredited="false" Puppeteer="false" FirstName="Yoshiaki" MiddleName="" LastName="Yabe" BirthYear="0" CreditedAs="" />
-    <Actor Role="Big Sam (Japanese version)" Voice="true" Uncredited="false" Puppeteer="false" FirstName="Shôzô" MiddleName="" LastName="Îzuka" BirthYear="0" CreditedAs="" />
+    <Actor Role="Big Sam" Voice="true" Uncredited="false" Puppeteer="false" FirstName="Shôzô" MiddleName="" LastName="Îzuka" BirthYear="0" CreditedAs="" />
     <Actor Role="Bar Patron" Voice="false" Uncredited="true" Puppeteer="false" FirstName="Chris" MiddleName="" LastName="Isaak" BirthYear="0" CreditedAs="" />
   </Actors>
 </CastInformation>

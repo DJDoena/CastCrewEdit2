@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<CrewInformation>
+  <Title>tt2056771OS</Title>
+  <Credits>
+    <Credit CreditType="Direction" CreditSubtype="Director" FirstName="Luca" MiddleName="" LastName="Guadagnino" BirthYear="0" />
+    <Credit CreditType="Writing" CreditSubtype="Screenwriter" CustomRole="Screenplay By" FirstName="David" MiddleName="" LastName="Kajganich" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Writing" CreditSubtype="Original Material By" CustomRole="Based On The Film &quot;La Piscine&quot; Directed By" FirstName="Jacques" MiddleName="" LastName="Deray" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Writing" CreditSubtype="Original Material By" CustomRole="Based On An Original Screenplay By" FirstName="Alain" MiddleName="" LastName="Page" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Writing" CreditSubtype="Original Material By" CustomRole="Based On His Novel &quot;La Piscine&quot;" FirstName="Alain" MiddleName="" LastName="Page" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Writing" CreditSubtype="Custom" CustomRole="Adaptation" FirstName="Jacques" MiddleName="" LastName="Deray" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Writing" CreditSubtype="Custom" CustomRole="Adaptation" FirstName="Jean-Claude" MiddleName="" LastName="Carrière" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Writing" CreditSubtype="Custom" CustomRole="Dialogue By" FirstName="Jacques" MiddleName="" LastName="Deray" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Writing" CreditSubtype="Custom" CustomRole="Dialogue By" FirstName="Jean-Claude" MiddleName="" LastName="Carrière" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Production" CreditSubtype="Custom" CustomRole="Co-Producer" FirstName="Yvan" MiddleName="" LastName="Attal" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Production" CreditSubtype="Custom" CustomRole="Producer , Produced By" FirstName="Michael" MiddleName="" LastName="Costigan" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Production" CreditSubtype="Executive Producer" FirstName="Olivier" MiddleName="" LastName="Courson" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Production" CreditSubtype="Custom" CustomRole="Studio Executive" FirstName="David" MiddleName="" LastName="Greenbaum" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Production" CreditSubtype="Custom" CustomRole="Producer , Produced By" FirstName="Luca" MiddleName="" LastName="Guadagnino" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Production" CreditSubtype="Custom" CustomRole="Co-Producer" FirstName="Stephen" MiddleName="E." LastName="Hagen" BirthYear="0" CreditedAs="Stephen Hagen" />
+    <Credit CreditType="Production" CreditSubtype="Executive Producer" FirstName="Ron" MiddleName="" LastName="Halpern" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Production" CreditSubtype="Executive Producer" FirstName="David" MiddleName="" LastName="Kajganich" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Production" CreditSubtype="Custom" CustomRole="Co-Producer" FirstName="Sonya" MiddleName="" LastName="Lunsford" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Production" CreditSubtype="Custom" CustomRole="Line Producer" FirstName="Nuno" MiddleName="" LastName="Martins" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Production" CreditSubtype="Executive Producer" FirstName="Marco" MiddleName="" LastName="Morabito" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Cinematography" CreditSubtype="Director of Photography" FirstName="Yorick" MiddleName="" LastName="Le Saux" BirthYear="0" CreditedAs="Yorick LeSaux" />
+    <Credit CreditType="Film Editing" CreditSubtype="Film Editor" FirstName="Walter" MiddleName="" LastName="Fasano" BirthYear="0" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Casting By" FirstName="Avy" MiddleName="" LastName="Kaufman" BirthYear="0" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Casting By" FirstName="Stella" MiddleName="" LastName="Savino" BirthYear="0" />
+    <Credit CreditType="Art" CreditSubtype="Production Designer" FirstName="Maria" MiddleName="" LastName="Djurkovic" BirthYear="0" />
+    <Credit CreditType="Art" CreditSubtype="Art Director" FirstName="Roberta" MiddleName="" LastName="Federico" BirthYear="0" />
+    <Credit CreditType="Art" CreditSubtype="Art Director" CustomRole="Supervising Art Director" FirstName="Zsuzsa" MiddleName="" LastName="Kismarty-Lechner" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Set Decoration by" FirstName="Tatiana" MiddleName="" LastName="Macdonald" BirthYear="0" />
+    <Credit CreditType="Art" CreditSubtype="Costume Designer" FirstName="Giulia" MiddleName="" LastName="Piersanti" BirthYear="0" />
+    <Credit CreditType="Art" CreditSubtype="Make-up Artist" CustomRole="Makeup Artist" FirstName="Paola" MiddleName="" LastName="Cristofaroni" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Hair Colorist" FirstName="Noémie" MiddleName="" LastName="Dewitte" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Hair Stylist: Milan" FirstName="Elisabetta" MiddleName="" LastName="Flotta" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Hair Creator" FirstName="Manolo" MiddleName="" LastName="García" BirthYear="0" CreditedAs="Manolo Garcia" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Additional Makeup Artist" FirstName="Paola" MiddleName="" LastName="Gattabrusi" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Hair Colorist" FirstName="Émilie" MiddleName="" LastName="Passelande" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Special Makeup Effects Artist" FirstName="Lucia" MiddleName="" LastName="Patullo" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Makeup Creator" FirstName="Fernanda" MiddleName="" LastName="Perez" BirthYear="0" CreditedAs="Fernanda Lucia Perez" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Hair Stylist" FirstName="Luca" MiddleName="" LastName="Pompozzi" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Unit Manager" FirstName="Lucia" MiddleName="" LastName="Guidano" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Unit Manager" FirstName="Piernicola" MiddleName="" LastName="Pinnola" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Unit Production Manager" FirstName="Francesco" MiddleName="" LastName="Ruggeri" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Executive In Charge Of Production" FirstName="Stella" MiddleName="" LastName="Savino" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Trainee Assistant Director" FirstName="Alessandro" MiddleName="" LastName="Bonsignori" BirthYear="0" CreditedAs="Alessandro 'Baffo' Bonsignori" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="First Assistant Director: UK" FirstName="Jude" MiddleName="" LastName="Campbell" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Second Unit Director" FirstName="Ferdinando" MiddleName="Cito" LastName="Filomarino" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Second Assistant Director" FirstName="Evelina" MiddleName="" LastName="De Gaudenzi" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Third Assistant Director: UK" FirstName="Jacopo" MiddleName="" LastName="Miceli" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant Director: Second Unit" FirstName="Marilena" MiddleName="" LastName="Mondati" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Art Department Coordinator" FirstName="Francesca" MiddleName="" LastName="Birri" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="On-Set Dresser" FirstName="Adonay" MiddleName="Marin" LastName="Conde" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Swing Gang" FirstName="Massimo" MiddleName="" LastName="Eleonori" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Painter" FirstName="Sandro" MiddleName="" LastName="Ercolini" BirthYear="0" CreditedAs="Sandro Erdolini" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Graphic Designer" FirstName="Silvia" MiddleName="" LastName="Fontana" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Assistant Set Decorator" FirstName="Sandro" MiddleName="" LastName="Piccarozzi" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Painter" FirstName="Paola" MiddleName="" LastName="Sforzini" BirthYear="0" CreditedAs="Paolo Sforzini" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Set Designer" FirstName="Briseide" MiddleName="" LastName="Siciliano" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Construction Foreman" FirstName="Armando" MiddleName="" LastName="Vici" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Assistant Set Decorator" FirstName="Daniela" MiddleName="" LastName="Zorzetto" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Custom" CustomRole="Sound Effects Editor" FirstName="Paolo" MiddleName="" LastName="Amici" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Custom" CustomRole="Boom Operator" FirstName="Yannick" MiddleName="" LastName="Blanquet" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Custom" CustomRole="Foley Artist" FirstName="Italo" MiddleName="" LastName="Cameracanna" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Sound Editor" FirstName="Emanuela" MiddleName="" LastName="Di Giunta" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Custom" CustomRole="Supervising Dialogue Editor" FirstName="Davide" MiddleName="" LastName="Favargiotti" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Custom" CustomRole="Trailer Mixer" FirstName="Simon" MiddleName="" LastName="Hill" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Sound Re-Recording Mixer" CustomRole="Re-Recording Mixer" FirstName="Jean-Pierre" MiddleName="" LastName="Laforce" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Production Sound Mixer" CustomRole="Sound Mixer: Second Unit" FirstName="Ivano" MiddleName="" LastName="Mataldi" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Production Sound Mixer" FirstName="Yves-Marie" MiddleName="" LastName="Omnes" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Custom" CustomRole="Sound Effects Editor , English Version" FirstName="Daniele" MiddleName="" LastName="Quadroli" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Custom" CustomRole="Sound Effects Editor" FirstName="David" MiddleName="" LastName="Quadroli" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Custom" CustomRole="Sound Effects Editor" FirstName="Fabrizio" MiddleName="" LastName="Quadroli" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Custom" CustomRole="Assistant Sound Re-Recording Mixer" FirstName="Damiano" MiddleName="" LastName="Silva" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Sound" CreditSubtype="Custom" CustomRole="Sound Transfer Recordist" FirstName="John" MiddleName="" LastName="Soukup" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Special Effects Coordinator" FirstName="Richard" MiddleName="" LastName="Grant" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Special Effects Technician" FirstName="Nathanial" MiddleName="" LastName="Harrison" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Special Effects Technician" FirstName="Howard" MiddleName="" LastName="Moore" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Visual Effects" CustomRole="Special Effects Supervisor" FirstName="Jason" MiddleName="" LastName="Troughton" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Digital Compositor" FirstName="Valentina" MiddleName="" LastName="Biffi" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Visual Effects Producer: Metaphyx" FirstName="Virginia" MiddleName="" LastName="Cefaly" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Digital Compositor" FirstName="Stefano" MiddleName="" LastName="Colaprete" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Digital Compositor" FirstName="Alessandro" MiddleName="" LastName="D'Arcangeli" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Modeler: 4Th Creative Party" FirstName="Jihyun" MiddleName="" LastName="Jung" BirthYear="0" CreditedAs="Ji-Hyun Jung" />
+    <Credit CreditType="Art" CreditSubtype="Visual Effects" CustomRole="Visual Effects Supervisor: Chromatica" FirstName="Rodolfo" MiddleName="" LastName="Migliari" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Digital Compositor" FirstName="Chiara" MiddleName="" LastName="Milita" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Digital Compositor" FirstName="Dafne" MiddleName="" LastName="Sartori" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Visual Effects" CustomRole="Visual Effects Supervisor: Metaphyx" FirstName="Luca" MiddleName="" LastName="Saviotti" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Stunt Double: Ralph Fiennes" FirstName="Agostino" MiddleName="" LastName="De Cesaris" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Stunts" FirstName="Emanuele" MiddleName="" LastName="Freddo" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Stunt Double: Dakota Johnson" FirstName="Federico" MiddleName="" LastName="Grillo" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Stunt Coordinator" FirstName="Claudio" MiddleName="" LastName="Pacifico" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Stunt Double: Tilda Swinton" FirstName="Danilo" MiddleName="" LastName="Regini" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Stunt Double: Lily Mcmenamy" FirstName="Gabriele" MiddleName="" LastName="Scilla" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Stunt Double: Matthias Schoenaerts" FirstName="Gianluigi" MiddleName="" LastName="Scilla" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Digital Image Technician: Milano Unit" FirstName="Salvatore" MiddleName="" LastName="Addezio" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Electrician" FirstName="Matteo" MiddleName="" LastName="Attolini" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Second Assistant Camera" FirstName="Niccolò" MiddleName="" LastName="Brindasso" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Camera Loader" FirstName="Davide" MiddleName="" LastName="Carbonari" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="First Assiatant &quot;A&quot; Camera" FirstName="Fabio" MiddleName="" LastName="Ciotto" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="First Assistant Camera: UK" FirstName="Adam" MiddleName="" LastName="Coles" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="First Assistant Camera" FirstName="Pierluigi" MiddleName="" LastName="De Palo" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Steadicam Operator" FirstName="Luca" MiddleName="" LastName="Dell'Oro" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Still Photographer" FirstName="Jack" MiddleName="" LastName="English" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="First Assistant Camera" FirstName="Gaia" MiddleName="" LastName="Ferme" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Underwater Camera Operator" FirstName="Rob" MiddleName="" LastName="Franklin" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="B Camera Operator" FirstName="Giacomo" MiddleName="" LastName="Frittelli" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Grip" FirstName="Alessio" MiddleName="Federico" LastName="Fugolo" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Gaffer" FirstName="Francesco" MiddleName="" LastName="Galli" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Data Manager" FirstName="Elisabetta" MiddleName="" LastName="Giri" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Grip: UK" FirstName="Llewellyn" MiddleName="" LastName="Harrison" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Still Photographer" FirstName="Sandro" MiddleName="" LastName="Kopp" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="First Assistant Camera" FirstName="Massimiliano" MiddleName="" LastName="Kuveiller" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Electrician" FirstName="Alessandro" MiddleName="" LastName="Magno" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Second Assistant Camera: UK" FirstName="Howard" MiddleName="" LastName="Mills" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Grip" FirstName="Emilio" MiddleName="" LastName="Quinzi" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Director Of Photography: UK" FirstName="Peter" MiddleName="" LastName="Suschitzky" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Technician: Scubacam" FirstName="Luciano" MiddleName="" LastName="Teolis" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Grip" FirstName="Diego" MiddleName="" LastName="Tessarin" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Casting Assistant" FirstName="Alex" MiddleName="" LastName="Christopoulos" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Crowd Casting" FirstName="Claudio" MiddleName="" LastName="Colomba" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Crowd Casting" FirstName="Marcello" MiddleName="" LastName="Monacò" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Crowd Casting" FirstName="Roberto" MiddleName="" LastName="Monticciolo" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Casting Director: Italy" FirstName="Stella" MiddleName="" LastName="Savino" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Extras Casting" FirstName="Hannah" MiddleName="Marie" LastName="Williams" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Seamstress" FirstName="Ornella" MiddleName="" LastName="Cassinari" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Costume Department Intern" FirstName="Alice" MiddleName="" LastName="Dogliotti" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Seamstress" FirstName="Saskia" MiddleName="" LastName="Irrgang" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Costume Department Intern" FirstName="Chiara" MiddleName="" LastName="Muscarà" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Custom" CustomRole="Costume Department Intern" FirstName="Margherita" MiddleName="" LastName="Pozzali" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Costume Designer" CustomRole="Wardrobe Supervisor" FirstName="Fulvia" MiddleName="" LastName="Roverselli" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Art" CreditSubtype="Costume Designer" CustomRole="Wardrobe: Marianne Lane" FirstName="Raf" MiddleName="" LastName="Simons" BirthYear="0" CreditedAs="Raf Simons for Christian Dior" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Second Assistant Editor" FirstName="Francesca" MiddleName="" LastName="Addonizio" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Digital Imaging Engineer" FirstName="Rosario" MiddleName="" LastName="Balistreri" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Post Production Supervisor" FirstName="Andrea" MiddleName="" LastName="Baracca" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Film Scanning: Trailer" FirstName="Donato" MiddleName="" LastName="Casale" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="First Assistant Editor" FirstName="Silvia" MiddleName="" LastName="De Rose" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Colorist" FirstName="Angelo" MiddleName="" LastName="Francavilla" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant Editor: EPK And BTS" FirstName="Zach" MiddleName="" LastName="Marshall" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Post-Production Assistant" FirstName="Julien" MiddleName="" LastName="Panzarasa" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Post Production Manager" FirstName="Claudio" MiddleName="" LastName="Trotti" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Location Manager" FirstName="Antongiulio" MiddleName="" LastName="Dell'Orco" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Location Manager" FirstName="Ivan" MiddleName="" LastName="Ferrandes" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Vocal Coach" FirstName="David" MiddleName="" LastName="Combes" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Vocal Coach" FirstName="David" MiddleName="" LastName="Combes" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Music Consultant" FirstName="Gerry" MiddleName="" LastName="Gershman" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Vocal Coach" FirstName="Annie" MiddleName="" LastName="Skates" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Music" CreditSubtype="Custom" CustomRole="Music Supervisor" FirstName="Robin" MiddleName="" LastName="Urdang" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Script Supervisor" FirstName="Susanna" MiddleName="" LastName="Lenton" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Unit Driver" FirstName="Paolo" MiddleName="" LastName="Bernardini" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Production Accountant" FirstName="Massimo" MiddleName="" LastName="Aversano" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant: Ms. Johnson" FirstName="Ashley" MiddleName="" LastName="Ayre" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Milan Crew Unit Manager" FirstName="Filippo" MiddleName="" LastName="Broglia" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Voice Dubbing: Dakota Johnson" FirstName="Rossa" MiddleName="" LastName="Caputo" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant Accountant" FirstName="Cristina" MiddleName="" LastName="Catapano" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Production Counsel" FirstName="Manuela" MiddleName="" LastName="Cavallo" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant: Mr. Fiennes" FirstName="Laura" MiddleName="" LastName="Coates" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Voice Dubbing: Tilda Swinton" FirstName="Franca" MiddleName="" LastName="D'Amato" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Legal Services" FirstName="Nick" MiddleName="" LastName="D'Benedetto" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Payroll Accountant" FirstName="Federica" MiddleName="" LastName="De Vita" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant: Mr. Guadagnino" FirstName="Philip" MiddleName="" LastName="Fajardo" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Voice Dubbing: Lily Mcmenamy" FirstName="Valentina" MiddleName="" LastName="Favazza" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant To Executive Producer" FirstName="Emma" MiddleName="" LastName="Galli" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Production Coordinator: Milan" FirstName="Emma" MiddleName="" LastName="Galli" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Visual And Imagery Research" FirstName="Giangi" MiddleName="" LastName="Giordano" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant: Mr. Guadagnino" FirstName="Tommaso" MiddleName="" LastName="Landucci" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Head Of Physical Production: Studiocanal" FirstName="Sandrine" MiddleName="Legrand" LastName="Dealbera" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Voice Dubbing: Aurore Clément" FirstName="Melina" MiddleName="" LastName="Martello" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Epk Producer" FirstName="Matt" MiddleName="" LastName="McNally" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Voice Dubbing: Matthias Schoenaerts" FirstName="Andrea" MiddleName="" LastName="Mete" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant: Ms. Swinton" FirstName="Erminia" MiddleName="" LastName="Modica" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Financial Consultant" FirstName="Mauro" MiddleName="" LastName="Monachini" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Production Assistant" FirstName="Adriano" MiddleName="" LastName="Monetti" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant Production Coordinator: Prep Only" FirstName="Stefania" MiddleName="" LastName="Monetti" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Production Runner: UK" FirstName="Nicolas" MiddleName="Andrew" LastName="Motte" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Financial Consultant" FirstName="Salvatore" MiddleName="" LastName="Pecoraro" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Voice Dubbing: Ralph Fiennes" FirstName="Roberto" MiddleName="" LastName="Pedicini" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant: Mr. Guadagnino, Milan" FirstName="Luca" MiddleName="" LastName="Piccin" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Legal Affairs" FirstName="Lisa" MiddleName="" LastName="Rhyne" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Coordinator Assistant" FirstName="Carolina" MiddleName="" LastName="Rubino" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant Payroll Accountant" FirstName="Francesca" MiddleName="" LastName="Scutti" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Assistant: Mr. Costigan" FirstName="Hélène" MiddleName="" LastName="Sevaux" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Production Coordinator: UK" FirstName="Helen" MiddleName="" LastName="Swanwick-Thorpe" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Production Legal Counsel" FirstName="Eric" MiddleName="W." LastName="Thompson" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Frenesy Coordinator" FirstName="Daniela" MiddleName="" LastName="Venturelli" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Line Producer: UK" FirstName="Rob" MiddleName="" LastName="Watson" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Movement Director" FirstName="Ann" MiddleName="" LastName="Yee" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Carlo" MiddleName="" LastName="Antonelli" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Christina" MiddleName="" LastName="Bazdekis" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Simon" MiddleName="" LastName="Beresford" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Special Thanks" FirstName="Olivier" MiddleName="" LastName="Bialobos" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Alessio" MiddleName="" LastName="Bolzoni" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Producers Wish To Thank" FirstName="Harald" MiddleName="" LastName="Buggenig" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Piero" MiddleName="" LastName="Castellini" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Rosalie" MiddleName="" LastName="Cimino" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Roberto" MiddleName="" LastName="D'Agostino" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Silvia" MiddleName="" LastName="Damiani" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Leslee" MiddleName="" LastName="Dart" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Producers Wish To Thank" FirstName="Romilda" MiddleName="" LastName="De Luca" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Piera" MiddleName="" LastName="Detassis" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Producers Wish To Thank" FirstName="Alessio" MiddleName="" LastName="di Cosimo" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Producers Wish To Thank" FirstName="Riccardo" MiddleName="" LastName="Di Tizio" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Ida" MiddleName="" LastName="Dominijanni" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Pierre" MiddleName="Alexis" LastName="Dumas" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Andrew" MiddleName="" LastName="Dunlap" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Emanuele" MiddleName="Cito" LastName="Filomarino" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Producers Wish To Thank" FirstName="Ron" MiddleName="" LastName="Galella" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Producers Wish To Thank" FirstName="Armando" MiddleName="" LastName="Gallo" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Claudio" MiddleName="" LastName="Gioè" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Marco" MiddleName="" LastName="Giusti" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Carlos" MiddleName="K." LastName="Goodman" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Special Thanks" FirstName="Christopher" MiddleName="" LastName="Granier-Deferre" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Jake" MiddleName="" LastName="Gyllenhaal" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Special Thanks" FirstName="Jefferson" MiddleName="" LastName="Hack" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="David" MiddleName="" LastName="Hockney" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Christian" MiddleName="" LastName="Hodell" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="James" MiddleName="" LastName="Ivory" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Special Thanks" FirstName="Sophie" MiddleName="" LastName="Kopaczynski" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Carlo" MiddleName="" LastName="Lavagna" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Special Thanks" FirstName="Sandrine" MiddleName="Legrand" LastName="Dealbera" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Amelianna" MiddleName="" LastName="Loiacono" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Angus" MiddleName="" LastName="MacLellan" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Special Thanks" FirstName="Emilie" MiddleName="" LastName="Martel" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Producers Wish To Thank" FirstName="Federico" MiddleName="Martini" LastName="Crotti" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Vincent" MiddleName="" LastName="Mendoza" BirthYear="0" CreditedAs="Vince Mendoza" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Producers Wish To Thank" FirstName="Paolo" MiddleName="" LastName="Mercogliano" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Paolo" MiddleName="" LastName="Mereghetti" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="In Loving Memory Of" FirstName="Mitzu" MiddleName="" LastName="" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Special Thanks" FirstName="Pieter" MiddleName="" LastName="Mulier" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Karla" MiddleName="" LastName="Otto" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Paola" MiddleName="" LastName="Piacenza" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Hylda" MiddleName="" LastName="Queally" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Producers Wish To Thank" FirstName="Armando" MiddleName="" LastName="Roncaglia" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Paolo" MiddleName="" LastName="Roversi" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Producers Wish To Thank" FirstName="Frida" MiddleName="" LastName="Ruggeri" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="Special Thanks" FirstName="Vanessa" MiddleName="" LastName="Saunoi-Caumartin" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Franca" MiddleName="" LastName="Sozzani" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Producers Wish To Thank" FirstName="Giuseppe" MiddleName="" LastName="Spata" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Peter" MiddleName="" LastName="Spears" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Justin" MiddleName="Grey" LastName="Stone" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Peter" MiddleName="" LastName="Suschitzky" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Brian" MiddleName="" LastName="Swardstrom" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Honor" MiddleName="Swinton" LastName="Byrne" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Maria" MiddleName="Sole" LastName="Tognazzi" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Francesca" MiddleName="" LastName="Valiani" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Massimiliano" MiddleName="" LastName="Violante" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Director Wishes To Thank" FirstName="Bart" MiddleName="" LastName="Walker" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Other" CreditSubtype="Custom" CustomRole="The Producers Wish To Thank" FirstName="Laura" MiddleName="" LastName="Zagordi" BirthYear="0" CreditedAs="" />
+  </Credits>
+</CrewInformation>

@@ -9,7 +9,6 @@ public sealed class CreditTypeMatch : Tuple<string>
     public string CreditType
         => this.Item1;
 
-
     public CreditTypeMatch(string creditType) : base(creditType)
     {
     }

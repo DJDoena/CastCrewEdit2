@@ -4,7 +4,7 @@
   <Credits>
     <Credit CreditType="Direction" CreditSubtype="Director" FirstName="Harald" MiddleName="" LastName="Reinl" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Writing" CreditSubtype="Original Material By" CustomRole="Novel" FirstName="Karl" MiddleName="" LastName="May" BirthYear="0" CreditedAs="" />
-    <Credit CreditType="Writing" CreditSubtype="Custom" CustomRole="As H.G. Petersson" FirstName="Harald" MiddleName="G." LastName="Petersson" BirthYear="0" CreditedAs="" />
+    <Credit CreditType="Writing" CreditSubtype="Custom" FirstName="Harald" MiddleName="G." LastName="Petersson" BirthYear="0" CreditedAs="H.G. Petersson" />
     <Credit CreditType="Production" CreditSubtype="Producer" FirstName="Horst" MiddleName="" LastName="Wendlandt" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Music" CreditSubtype="Composer" FirstName="Martin" MiddleName="" LastName="Böttcher" BirthYear="0" CreditedAs="" />
     <Credit CreditType="Cinematography" CreditSubtype="Cinematographer" FirstName="Ernst" MiddleName="W." LastName="Kalinke" BirthYear="0" CreditedAs="" />

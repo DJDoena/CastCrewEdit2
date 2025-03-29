@@ -2,10 +2,8 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using DoenaSoft.AbstractionLayer.WebServices;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnitTests;
@@ -16,7 +14,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.UnitTests;
 public abstract class TestBase
 {
     [AssemblyInitialize]
-    public static void BeforeClass(TestContext _)
+    public static void AssemblyInitialize(TestContext _)
     {
         var assembly = typeof(TestBase).Assembly;
 
@@ -51,30 +49,31 @@ public abstract class TestBase
 
     protected static void CreateMockWebResponse(string baseUrl, string key, string appendix)
     {
-        string targetUrl;
-        IWebResponse webResponse;
-        string fileName;
+        var targetUrl = baseUrl + key;
 
-        targetUrl = baseUrl + key;
-        fileName = @"Current\" + key;
+        var fileName = @"Current\" + key;
+
         if (appendix != null)
         {
-            string fileAppendix;
+            var fileAppendix = appendix;
 
-            fileAppendix = appendix;
             foreach (var c in Path.GetInvalidFileNameChars())
             {
                 fileAppendix = fileAppendix.Replace(c, '_');
             }
+
             fileName += "." + fileAppendix;
+
             targetUrl += "/" + appendix;
         }
         else if (!targetUrl.EndsWith("/"))
         {
             targetUrl += "/";
         }
+
         fileName += ".html.txt";
-        webResponse = OnlineAccess.GetSystemSettingsWebResponseAsync(targetUrl).GetAwaiter().GetResult();
+
+        using var webResponse = IMDbParser.CreateSystemSettingsWebRequestAsync(targetUrl).GetAwaiter().GetResult();
 
         using var webStream = webResponse.GetResponseStream();
 
@@ -120,7 +119,7 @@ public abstract class TestBase
         if (int.TryParse(crewInfo.BirthYear, out var birthYear))
         {
             crewMember.BirthYear = birthYear;
-        }  
+        }
         if (string.IsNullOrEmpty(crewInfo.CustomRole) == false)
         {
             crewMember.CustomRole = crewInfo.CustomRole;
