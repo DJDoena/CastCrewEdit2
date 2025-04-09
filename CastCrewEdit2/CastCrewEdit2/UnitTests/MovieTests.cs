@@ -19,6 +19,7 @@ public class MovieTests : TestBase
     private const string HotShotsLink = "tt0102059";
     private const string UchuLink = "tt0078435";
     private const string KickAssLink = "tt1250777";
+    private const string StarTrek1Link = "tt0079945";
 
     [ClassInitialize]
     public static void ClassInitialize(TestContext _)
@@ -29,6 +30,7 @@ public class MovieTests : TestBase
         CreateMockWebResponse(IMDbParser.TitleUrl, HotShotsLink, "fullcredits");
         CreateMockWebResponse(IMDbParser.TitleUrl, UchuLink, "fullcredits");
         CreateMockWebResponse(IMDbParser.TitleUrl, KickAssLink, "fullcredits");
+        CreateMockWebResponse(IMDbParser.TitleUrl, StarTrek1Link, "fullcredits");
     }
 
     [TestMethod]
@@ -178,6 +180,18 @@ public class MovieTests : TestBase
         Assert.AreEqual("assistant makeup artist", amberCrew.OriginalCredit);
         Assert.AreEqual("Art", amberCrew.CreditType);
         Assert.AreEqual("Custom", amberCrew.CreditSubtype);
+    }
+
+    [TestMethod]
+    public void CrewStarTrek1()
+    {
+        Crew(StarTrek1Link, out var crewMatches, out var crewList, out var progressBarMaxValue, out var existing, out var current);
+        Assert.AreEqual(43, crewMatches.Count);
+
+        var directors = crewMatches.FirstOrDefault(kvp => kvp.Key.CreditType == "Directed by");
+
+        Assert.IsNotNull(directors.Value);
+        Assert.AreEqual(1, directors.Value.Count);
     }
 
     internal static void Crew(string key

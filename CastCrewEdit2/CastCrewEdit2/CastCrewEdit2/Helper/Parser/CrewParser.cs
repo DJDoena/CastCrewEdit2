@@ -34,11 +34,11 @@ internal static class CrewParser
     {
         crewMatches = null;
 
-        JsonCrewParser.Parse(webSite, ref crewMatches);
+        ParseCrewOldStyle(webSite, ref crewMatches);
 
         if (crewMatches == null || crewMatches.Count == 0)
         {
-            ParseCrewOldStyle(webSite, ref crewMatches);
+            JsonCrewParser.Parse(webSite, ref crewMatches);
         }
     }
 

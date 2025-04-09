@@ -61,7 +61,10 @@ public static class Program
 
     private static BrowserControlSelection _selectedBrowserControl;
 
-    internal static DefaultValues DefaultValues => Settings.DefaultValues;
+    internal static DefaultValues DefaultValues
+        => Settings.DefaultValues;
+
+    internal static bool UseBrowserWindow { get; private set; }
 
     static Program()
     {
@@ -196,6 +199,10 @@ public static class Program
                 else if (arg == "/browser=webview2")
                 {
                     _selectedBrowserControl = BrowserControlSelection.WebView2;
+                }
+                else if (arg == "/usebrowserwindow")
+                {
+                    //UseBrowserWindow = true;
                 }
             }
 

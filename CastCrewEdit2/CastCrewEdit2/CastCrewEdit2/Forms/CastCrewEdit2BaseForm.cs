@@ -92,7 +92,7 @@ public class CastCrewEdit2BaseForm : Form
     {
         var targetUrl = $"{IMDbParser.TitleUrl}{key}/fullcredits";
 
-        var webSite = IMDbParser.GetWebSite(targetUrl);
+        var webSite = WebSiteReader.GetWebSite(targetUrl, true);
 
         if (initializeLists)
         {

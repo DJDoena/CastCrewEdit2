@@ -1,39 +1,38 @@
 ﻿using System.IO;
 using System.Net;
 
-namespace UnitTests
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2.UnitTests;
+
+internal class MockWebResponse : WebResponse
 {
-    internal class MockWebResponse : WebResponse
+    private string FileName { get; set; }
+
+    private Stream FileStream { get; set; }
+
+    public MockWebResponse(string fileName)
     {
-        private string FileName { get; set; }
+        FileName = fileName;
+    }
 
-        private Stream FileStream { get; set; }
-
-        public MockWebResponse(string fileName)
+    public override void Close()
+    {
+        if (FileStream != null)
         {
-            FileName = fileName;
+            FileStream.Close();
+            FileStream.Dispose();
+            FileStream = null;
+        }
+    }
+
+    public override Stream GetResponseStream()
+    {
+        if (FileStream != null)
+        {
+            Close();
         }
 
-        public override void Close()
-        {
-            if (FileStream != null)
-            {
-                FileStream.Close();
-                FileStream.Dispose();
-                FileStream = null;
-            }
-        }
+        FileStream = new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.Read);
 
-        public override Stream GetResponseStream()
-        {
-            if (FileStream != null)
-            {
-                Close();
-            }
-
-            FileStream = new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-
-            return (FileStream);
-        }
+        return (FileStream);
     }
 }

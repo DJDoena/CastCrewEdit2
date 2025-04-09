@@ -305,6 +305,11 @@ internal sealed class JsonCrewParser
             jobText = jobText.Substring(0, indexOfBracket).TrimEnd();
         }
 
+        if (string.IsNullOrWhiteSpace(jobText))
+        {
+            return null;
+        }
+
         var imdbJob = _transformationData.FirstOrDefault(tuple => this.MatchesCreditSubType(tuple, jobText))?.Type;
 
         imdbJob ??= _transformationData.FirstOrDefault(tuple => this.MatchesCreditType(tuple, jobText))?.Type;

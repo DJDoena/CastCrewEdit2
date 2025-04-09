@@ -595,7 +595,7 @@ public class CastCrewEdit2ParseBaseForm : CastCrewEdit2BaseForm
         }
         catch (WebException webEx)
         {
-            if (!IMDbParser.PageNotFound(webEx))
+            if (!WebSiteReader.PageNotFound(webEx))
             {
                 counter++;
 
@@ -729,7 +729,12 @@ public class CastCrewEdit2ParseBaseForm : CastCrewEdit2BaseForm
         }
     }
 
-    protected void GetBirthYears(bool parseHeadshotsFollows, DataGridView castDataGridView, DataGridView crewDataGridView, LinkLabel birthYearsInLocalCacheLabel, Button getBirthYearsButton, WebBrowser logWebBrowser)
+    protected void GetBirthYears(bool parseHeadshotsFollows
+        , DataGridView castDataGridView
+        , DataGridView crewDataGridView
+        , LinkLabel birthYearsInLocalCacheLabel
+        , Button getBirthYearsButton
+        , WebBrowser logWebBrowser)
     {
         this.StartLongAction();
 
@@ -805,7 +810,7 @@ public class CastCrewEdit2ParseBaseForm : CastCrewEdit2BaseForm
         }
         catch (WebException webEx)
         {
-            if (!IMDbParser.PageNotFound(webEx))
+            if (!WebSiteReader.PageNotFound(webEx))
             {
                 counter++;
 

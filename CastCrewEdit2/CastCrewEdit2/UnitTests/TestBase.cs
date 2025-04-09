@@ -1,52 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
+﻿using System.IO;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UnitTests;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.UnitTests;
 
-[TestClass]
 public abstract class TestBase
 {
-    [AssemblyInitialize]
-    public static void AssemblyInitialize(TestContext _)
-    {
-        var assembly = typeof(TestBase).Assembly;
-
-        AppDomain.CurrentDomain.AssemblyResolve += OnCurrentDomainAssemblyResolve;
-
-        CleanUp();
-
-        Program.RootPath = (new FileInfo(assembly.Location)).DirectoryName;
-
-        Program.InitDataPaths();
-
-        Program.Main(null);
-    }
-
-    private static Assembly OnCurrentDomainAssemblyResolve(object sender, ResolveEventArgs args)
-    {
-        var assemblyName = args.Name.Split(',')[0];
-
-        var assemblyFileName = Path.Combine(Program.RootPath, $"{assemblyName}.dll");
-
-        if (File.Exists(assemblyFileName))
-        {
-            var assembly = Assembly.LoadFrom(assemblyFileName);
-
-            return assembly;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
     protected static void CreateMockWebResponse(string baseUrl, string key, string appendix)
     {
         var targetUrl = baseUrl + key;
@@ -73,19 +33,19 @@ public abstract class TestBase
 
         fileName += ".html.txt";
 
-        using var webResponse = IMDbParser.CreateSystemSettingsWebRequestAsync(targetUrl).GetAwaiter().GetResult();
+        using var webResponse = WebSiteReader.CreateSystemSettingsWebRequestAsync(targetUrl).GetAwaiter().GetResult();
 
         using var webStream = webResponse.GetResponseStream();
 
-        using var sr = new StreamReader(webStream, IMDbParser.Encoding);
+        using var sr = new StreamReader(webStream, WebSiteReader.Encoding);
 
         using var fileStream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None);
 
-        using var sw = new StreamWriter(fileStream, IMDbParser.Encoding);
+        using var sw = new StreamWriter(fileStream, WebSiteReader.Encoding);
 
         sw.Write(sr.ReadToEnd());
 
-        IMDbParser.WebResponses[targetUrl] = new MockWebResponse(fileName);
+        WebSiteReader.WebResponses[targetUrl] = new MockWebResponse(fileName);
 
         webResponse.Close();
     }
@@ -93,16 +53,6 @@ public abstract class TestBase
     protected static void CreateMockWebResponse(string baseUrl, string key)
     {
         CreateMockWebResponse(baseUrl, key, null);
-    }
-
-    private static void CleanUp()
-    {
-        Process p;
-
-        p = new Process();
-        p.StartInfo = new ProcessStartInfo("CleanUp.cmd");
-        p.Start();
-        p.WaitForExit();
     }
 
     protected static CrewMember ConvertCrew(CrewInfo crewInfo)

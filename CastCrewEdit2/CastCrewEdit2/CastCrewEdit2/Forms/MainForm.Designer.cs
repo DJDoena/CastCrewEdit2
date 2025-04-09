@@ -128,6 +128,7 @@
             this.ReadmeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openBrowserFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MovieTVShowTabControl.SuspendLayout();
             this.BrowserTab.SuspendLayout();
             this.MovieTab.SuspendLayout();
@@ -812,7 +813,8 @@
             // 
             this.ExtendedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CopyExtendedCastToClipboardToolStripMenuItem,
-            this.CopyExtendedCrewToClipboardToolStripMenuItem});
+            this.CopyExtendedCrewToClipboardToolStripMenuItem,
+            this.openBrowserFormToolStripMenuItem});
             this.ExtendedToolStripMenuItem.Name = "ExtendedToolStripMenuItem";
             resources.ApplyResources(this.ExtendedToolStripMenuItem, "ExtendedToolStripMenuItem");
             // 
@@ -852,6 +854,12 @@
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
             resources.ApplyResources(this.AboutToolStripMenuItem, "AboutToolStripMenuItem");
+            // 
+            // openBrowserFormToolStripMenuItem
+            // 
+            this.openBrowserFormToolStripMenuItem.Name = "openBrowserFormToolStripMenuItem";
+            resources.ApplyResources(this.openBrowserFormToolStripMenuItem, "openBrowserFormToolStripMenuItem");
+            this.openBrowserFormToolStripMenuItem.Click += new System.EventHandler(this.OnOpenBrowserFormToolStripMenuItemClick);
             // 
             // MainForm
             // 
@@ -989,6 +997,7 @@
         private System.Windows.Forms.ToolStripMenuItem CopyExtendedCastToClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CopyExtendedCrewToClipboardToolStripMenuItem;        
         public ColorProgressBar ProgressBar;
+        private System.Windows.Forms.ToolStripMenuItem openBrowserFormToolStripMenuItem;
     }
 }
 

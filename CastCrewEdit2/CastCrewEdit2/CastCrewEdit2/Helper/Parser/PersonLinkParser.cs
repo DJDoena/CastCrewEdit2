@@ -21,7 +21,6 @@ internal static class PersonLinkParser
         _personUrlRegex = new Regex(IMDbParser.DomainPrefix + "name/(?'PersonLink'nm[0-9]+)/.*$", RegexOptions.Compiled);
 
         _updatedPersonLinks = new Dictionary<string, string>();
-
     }
 
     internal static string GetUpdatedPersonLink(string personLink)
@@ -34,7 +33,7 @@ internal static class PersonLinkParser
             }
         }
 
-        using var response = IMDbParser.GetWebResponse(PersonUrl + personLink + "/");
+        using var response = WebSiteReader.GetWebResponse(PersonUrl + personLink + "/");
 
         var responseUri = response.ResponseUri.AbsoluteUri;
 

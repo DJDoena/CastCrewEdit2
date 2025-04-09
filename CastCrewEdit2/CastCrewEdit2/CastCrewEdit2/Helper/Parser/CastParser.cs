@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
-using DoenaSoft.JsonFragmentParser;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 
@@ -34,17 +32,15 @@ internal static class CastParser
     {
         castMatches = null;
 
-        JsonCastParser.Parse(webSite, ref castMatches);
+        ParseCastOldStyle(webSite, ref castMatches);
 
         if (castMatches == null || castMatches.Count == 0)
         {
-            ParseCastOldStyle(webSite, ref castMatches);
+            JsonCastParser.Parse(webSite, ref castMatches);
         }
 
         castMatches ??= new();
     }
-
-
 
     private static void ParseCastOldStyle(string webSite, ref List<CastMatch> castMatches)
     {
@@ -84,7 +80,7 @@ internal static class CastParser
     }
 
 
- 
+
 
     private static void ProcessCastLine(string linePart, ref List<CastMatch> matches)
     {

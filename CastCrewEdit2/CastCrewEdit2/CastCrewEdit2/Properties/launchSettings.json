@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "CastCrewEdit2": {
-      "commandName": "Project",
-      "commandLineArgs": "/browser=ie6"
-    }
-  }
-}

@@ -382,7 +382,7 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
     {
         var targetUrl = $"{IMDbParser.TitleUrl}{key}/fullcredits";
 
-        var webSite = IMDbParser.GetWebSite(targetUrl);
+        var webSite = WebSiteReader.GetWebSite(targetUrl, true);
 
         #region Parse for Title
 
@@ -536,9 +536,7 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
     {
         if (_selectedBrowserControl == BrowserControlSelection.WebView2)
         {
-            Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--lang=en-US");
-
-            var environment = await Microsoft.Web.WebView2.Core.CoreWebView2Environment.CreateAsync(null, Path.Combine(Path.GetTempPath(), "CCE2browser"));
+            var environment = await BrowserForm.InitWebView2();
 
             await ((Microsoft.Web.WebView2.WinForms.WebView2)WebBrowser).EnsureCoreWebView2Async(environment);
         }
@@ -702,7 +700,8 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
         this.ProcessMessageQueue();
     }
 
-    private void GetBirthYears(bool parseHeadshotsFollows) => this.GetBirthYears(parseHeadshotsFollows, MovieCastDataGridView, MovieCrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
+    private void GetBirthYears(bool parseHeadshotsFollows)
+        => this.GetBirthYears(parseHeadshotsFollows, MovieCastDataGridView, MovieCrewDataGridView, BirthYearsInLocalCacheLabel, GetBirthYearsButton, LogWebBrowser);
 
     private void SetCheckBoxes()
     {
@@ -886,7 +885,7 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
                 {
                     var targetUrl = $"{IMDbParser.TitleUrl}{_tvShowTitleLink}/episodes/?season={season}";
 
-                    var webSite = IMDbParser.GetWebSite(targetUrl);
+                    var webSite = WebSiteReader.GetWebSite(targetUrl, true);
 
                     var seasonEpisodes = ScanForEpisodesNewStyle(webSite);
 
@@ -1112,7 +1111,7 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
     {
         var targetUrl = $"{IMDbParser.TitleUrl}{_tvShowTitleLink}/episodes/";
 
-        var webSite = IMDbParser.GetWebSite(targetUrl);
+        var webSite = WebSiteReader.GetWebSite(targetUrl);
 
         if (!this.ScanForSeasonsNewStyle(webSite))
         {
@@ -1515,7 +1514,7 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
 
     private void OnBackupToolStripMenuItemClick(object sender, EventArgs e)
     {
-        using (var sfd = new SaveFileDialog()
+        using var sfd = new SaveFileDialog()
         {
             DefaultExt = "bin",
             Filter = "Binary Files|*.bin",
@@ -1523,18 +1522,17 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
             RestoreDirectory = true,
             FileName = "cce2.bin",
             Title = "Select Session Data backup file",
-        })
+        };
+
+        if (sfd.ShowDialog() == DialogResult.OK)
         {
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                SessionData.Serialize(sfd.FileName);
-            }
+            SessionData.Serialize(sfd.FileName);
         }
     }
 
     private void OnRestoreToolStripMenuItemClick(object sender, EventArgs e)
     {
-        using (var ofd = new OpenFileDialog()
+        using var ofd = new OpenFileDialog()
         {
             DefaultExt = "bin",
             Filter = "Binary Files|*.bin",
@@ -1543,12 +1541,21 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
             Title = "Select Session Data backup file",
             FileName = "cce2.bin",
             CheckFileExists = true,
-        })
+        };
+
+        if (ofd.ShowDialog() == DialogResult.OK)
         {
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                BirthYearsInLocalCacheLabel.Text = SessionData.Deserialize(ofd.FileName);
-            }
+            BirthYearsInLocalCacheLabel.Text = SessionData.Deserialize(ofd.FileName);
+        }
+    }
+
+    private void OnOpenBrowserFormToolStripMenuItemClick(object sender, EventArgs e)
+    {
+        if (!string.IsNullOrEmpty(MovieUrlTextBox.Text))
+        {
+            var browserForm = new BrowserForm(MovieUrlTextBox.Text);
+
+            browserForm.ShowDialog();
         }
     }
 

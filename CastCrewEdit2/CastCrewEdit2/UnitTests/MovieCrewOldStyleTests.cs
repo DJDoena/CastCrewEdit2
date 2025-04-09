@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UnitTests;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.UnitTests;
 
@@ -17,7 +16,7 @@ public class MovieCrewOldStyleTests : TestBase
 
         const string ABiggerSplashOldStyleLink = $"{ABiggerSplashLink}OS";
 
-        IMDbParser.WebResponses[$"https://www.imdb.com/title/{ABiggerSplashOldStyleLink}/fullcredits"] = new MockWebResponse($@"Existing\{ABiggerSplashOldStyleLink}.fullcredits.html.txt");
+        WebSiteReader.WebResponses[$"https://www.imdb.com/title/{ABiggerSplashOldStyleLink}/fullcredits"] = new MockWebResponse($@"Existing\{ABiggerSplashOldStyleLink}.fullcredits.html.txt");
 
         MovieTests.Crew(ABiggerSplashOldStyleLink, out var crewMatches, out var crewList, out var progressBarMaxValue, out var existing, out var current);
 

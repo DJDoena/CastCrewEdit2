@@ -41,7 +41,7 @@ internal static class SoundtrackParser
 
         var soundtrackUrl = $"{IMDbParser.TitleUrl}{titleLink}/soundtrack/";
 
-        var webSite = IMDbParser.GetWebSite(soundtrackUrl);
+        var webSite = WebSiteReader.GetWebSite(soundtrackUrl, true);
 
         ParseSoundtrackNewStyle(webSite, ref soundtrackEntries);
 

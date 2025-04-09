@@ -26,7 +26,7 @@ internal static class GoofsParser
 
     internal static StringBuilder ParseGoofs(string goofsUrl)
     {
-        var webSite = IMDbParser.GetWebSite(goofsUrl);
+        var webSite = WebSiteReader.GetWebSite(goofsUrl);
 
         var goofsResult = ParseGoofsNewStyle(goofsUrl, webSite);
 

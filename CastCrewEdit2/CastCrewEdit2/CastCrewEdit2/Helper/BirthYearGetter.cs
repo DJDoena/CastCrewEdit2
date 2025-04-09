@@ -21,7 +21,7 @@
         {
             _jsonBirthYearRegex = new Regex("\"birthDate\":\"(?'BirthYear'[0-9]{4})", RegexOptions.Compiled);
 
-            _birthYearRegex = new Regex("<span class=\".+?\">.+? (?'BirthYear'[0-9]{4})</span>", RegexOptions.Compiled);
+            _birthYearRegex = new Regex("<span class=\".+?\">.*?(?'BirthYear'[0-9]{4})</span>", RegexOptions.Compiled);
 
             //_bornRegex = new Regex("<span class=\".+?\">Born</span>", RegexOptions.Compiled);
         }
@@ -30,7 +30,7 @@
 
         internal static string Get(string personId)
         {
-            var webSite = IMDbParser.GetWebSite($"{PersonLinkParser.PersonUrl}{personId}/");
+            var webSite = WebSiteReader.GetWebSite($"{PersonLinkParser.PersonUrl}{personId}/");
 
             using (var sr = new StringReader(webSite))
             {
@@ -118,7 +118,12 @@
 
         #region GetBirthYear
 
-        internal static List<IAsyncResult> GetBirthYear(Dictionary<string, PersonInfo> persons, DefaultValues defaultValues, Log log, bool isCast, Action<MessageEntry> addMessage, DataGridViewRow row)
+        internal static List<IAsyncResult> GetBirthYear(Dictionary<string, PersonInfo> persons
+            , DefaultValues defaultValues
+            , Log log
+            , bool isCast
+            , Action<MessageEntry> addMessage
+            , DataGridViewRow row)
         {
             var invokeResults = new List<IAsyncResult>();
 
@@ -232,7 +237,13 @@
             }
         }
 
-        private static void DownloadBirthYear(DataGridViewRow row, PersonInfo person, PersonInfo other, Log log, CastInfo castMember, Action<MessageEntry> addMessage, List<IAsyncResult> invokeResults)
+        private static void DownloadBirthYear(DataGridViewRow row
+            , PersonInfo person
+            , PersonInfo other
+            , Log log
+            , CastInfo castMember
+            , Action<MessageEntry> addMessage
+            , List<IAsyncResult> invokeResults)
         {
             var previousBirthYear = other.BirthYear;
 
@@ -256,7 +267,12 @@
             }
         }
 
-        private static List<IAsyncResult> GetBirthYear(DataGridViewRow row, PersonInfo person, PersonInfo other, Log log, CastInfo castMember, Action<MessageEntry> addMessage)
+        private static List<IAsyncResult> GetBirthYear(DataGridViewRow row
+            , PersonInfo person
+            , PersonInfo other
+            , Log log
+            , CastInfo castMember
+            , Action<MessageEntry> addMessage)
         {
             var invokeResults = new List<IAsyncResult>();
 

@@ -154,7 +154,7 @@
     <value>ProgressBar</value>
   </data>
   <data name="&gt;&gt;ProgressBar.Type" xml:space="preserve">
-    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.ColorProgressBar, CastCrewEdit2Library, Version=2.1.7.0, Culture=neutral, PublicKeyToken=c87f42288e849a4f</value>
+    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.ColorProgressBar, CastCrewEdit2Library, Version=2.1.13.1, Culture=neutral, PublicKeyToken=c87f42288e849a4f</value>
   </data>
   <data name="&gt;&gt;ProgressBar.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2198,49 +2198,49 @@
     <value>&amp;Settings</value>
   </data>
   <data name="FirstnamePrefixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="FirstnamePrefixesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Firstname Prefixes</value>
   </data>
   <data name="LastnamePrefixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="LastnamePrefixesToolStripMenuItem.Text" xml:space="preserve">
     <value>Lastname &amp;Prefixes</value>
   </data>
   <data name="LastnameSuffixesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="LastnameSuffixesToolStripMenuItem.Text" xml:space="preserve">
     <value>Lastname &amp;Suffixes</value>
   </data>
   <data name="KnownNamesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="KnownNamesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Known Names</value>
   </data>
   <data name="IMDbToDVDProfilerTransformationDataToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="IMDbToDVDProfilerTransformationDataToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;IMDb to DVD Profiler Transformation Data</value>
   </data>
   <data name="IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="IgnoreCustomInIMDbCreditTypeToolStripMenuItem.Text" xml:space="preserve">
     <value>Ignore "&amp;Custom" in IMDb Category</value>
   </data>
   <data name="IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="IgnoreIMDbCreditTypeInOtherToolStripMenuItem.Text" xml:space="preserve">
     <value>Ignore IMDb Categroy in "&amp;Other"</value>
   </data>
   <data name="ForcedFakeBirthYearsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 22</value>
+    <value>295, 22</value>
   </data>
   <data name="ForcedFakeBirthYearsToolStripMenuItem.Text" xml:space="preserve">
     <value>Forced Fake &amp;Birth Years</value>
@@ -2252,19 +2252,25 @@
     <value>&amp;Edit Config File</value>
   </data>
   <data name="CopyExtendedCastToClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="CopyExtendedCastToClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>Copy Extended Cast to Clipboard</value>
   </data>
   <data name="CopyExtendedCrewToClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 22</value>
+    <value>252, 22</value>
   </data>
   <data name="CopyExtendedCrewToClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>Copy Extended Crew to Clipboard</value>
   </data>
+  <data name="openBrowserFormToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 22</value>
+  </data>
+  <data name="openBrowserFormToolStripMenuItem.Text" xml:space="preserve">
+    <value>Open Browser Form</value>
+  </data>
   <data name="ExtendedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 20</value>
+    <value>67, 20</value>
   </data>
   <data name="ExtendedToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xtended</value>
@@ -2452,10 +2458,16 @@
   <data name="&gt;&gt;AboutToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;openBrowserFormToolStripMenuItem.Name" xml:space="preserve">
+    <value>openBrowserFormToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;openBrowserFormToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.Forms.CastCrewEdit2ParseBaseForm, CastCrewEdit2, Version=2.1.7.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>DoenaSoft.DVDProfiler.CastCrewEdit2.Forms.CastCrewEdit2ParseBaseForm, CastCrewEdit2, Version=2.1.13.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

@@ -26,7 +26,7 @@ internal static class TriviaParser
 
     internal static StringBuilder ParseTrivia(string triviaUrl)
     {
-        var webSite = IMDbParser.GetWebSite(triviaUrl);
+        var webSite = WebSiteReader.GetWebSite(triviaUrl);
 
         var triviaResult = ParseTriviaNewStyle(triviaUrl, webSite);
 

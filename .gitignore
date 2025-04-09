@@ -250,3 +250,4 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/CastCrewEdit2/CastCrewEdit2/CastCrewEdit2/Properties/launchSettings.json

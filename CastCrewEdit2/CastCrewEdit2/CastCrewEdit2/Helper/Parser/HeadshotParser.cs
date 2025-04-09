@@ -38,11 +38,11 @@ internal static class HeadshotParser
         string webSite;
         try
         {
-            webSite = IMDbParser.GetWebSite(targetUrl);
+            webSite = WebSiteReader.GetWebSite(targetUrl);
         }
         catch (WebException webEx)
         {
-            if (IMDbParser.PageNotFound(webEx))
+            if (WebSiteReader.PageNotFound(webEx))
             {
                 return CheckExistingFile(person, jpg, gif, png);
             }
@@ -112,7 +112,7 @@ internal static class HeadshotParser
         }
         catch (WebException webEx)
         {
-            if (IMDbParser.PageNotFound(webEx))
+            if (WebSiteReader.PageNotFound(webEx))
             {
                 return CheckExistingFile(person, jpg, gif, png);
             }
@@ -127,11 +127,11 @@ internal static class HeadshotParser
 
     private static void DownloadFile(FileInfo imageFileInfo, string remoteFile)
     {
-        lock (IMDbParser.GetImdbLock)
+        lock (WebSiteReader.GetImdbLock)
         {
             var retryCount = 0;
 
-            if (IMDbParser.LastRequestTimestamp.AddSeconds(1) >= DateTime.Now)
+            if (WebSiteReader.LastRequestTimestamp.AddSeconds(1) >= DateTime.Now)
             {
                 Task.Delay(100).Wait();
             }
