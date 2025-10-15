@@ -10,10 +10,12 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 
 internal static class JsonCastParser
 {
-    private const string CastStartNewStyle = "{\"id\":\"cast\",\"name\":\"Cast\"";
+    private const string CastStartNewStyle = "\"id\":\"amzn1.imdb.concept.name_credit_group.7caf7d16-5db9-4f4f-8864-d4c6e711c686\",";
 
     internal static void Parse(string webSite, ref List<CastMatch> castMatches)
     {
+        DebugHelper.FormatJson(webSite);
+
         using var sr = new StringReader(webSite);
 
         string cast = null;
@@ -58,7 +60,7 @@ internal static class JsonCastParser
 
             var rootNode = JsonTreeBuilder.Build(cleaned);
 
-            nodes = rootNode["section"]["items"];
+            nodes = rootNode["items"];
         }
         catch
         {

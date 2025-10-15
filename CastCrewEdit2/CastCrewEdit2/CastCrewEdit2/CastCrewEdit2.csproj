@@ -6,7 +6,6 @@
 		<OutputType>WinExe</OutputType>
 		<TargetFrameworks>net472</TargetFrameworks>
 		<Platforms>x86;x64</Platforms>
-		<LangVersion>10.0</LangVersion>
 		<Configurations>Debug;Release;UnitTest</Configurations>
 		<Optimize>False</Optimize>
 		<ApplicationIcon>Resources\djdsoft.ico</ApplicationIcon>
@@ -16,6 +15,7 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<DebugType>full</DebugType>
+		<LangVersion>12.0</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='UnitTest'">
@@ -34,7 +34,7 @@
 		<PackageReference Include="DoenaSoft.JsonFragmentParser" Version="1.0.0" />
 		<PackageReference Include="DoenaSoft.WindowsAPICodePack" Version="2.0.0" />
 		<PackageReference Include="Microsoft.Toolkit.Forms.UI.Controls.WebView" Version="6.1.2" />
-		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3124.44" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" />
 	</ItemGroup>
 
 	<ItemGroup>

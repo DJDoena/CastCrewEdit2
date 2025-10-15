@@ -10,7 +10,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 
 internal sealed class JsonCrewParser
 {
-    private const string CrewNewStyle = "\"creditCategories\":[{\"category\"";
+    private const string CrewNewStyle = "{\"id\":\"amzn1.imdb.concept.name_credit_category";
 
     private readonly List<CreditTypeTuple> _transformationData;
 
@@ -28,56 +28,67 @@ internal sealed class JsonCrewParser
 
     internal static void Parse(string webSite, ref List<KeyValuePair<CreditTypeMatch, List<CrewMatch>>> crewMatches)
     {
+        DebugHelper.FormatJson(webSite);
+
         using var sr = new StringReader(webSite);
 
-        string crew = null;
+        var jsonCrewParser = new JsonCrewParser();
 
         while (sr.Peek() != -1)
         {
             var line = LineReader.ReadLine(sr);
 
-            var indexOf = line.IndexOf(CrewNewStyle);
-
-            if (indexOf != -1)
+            var previousIndexOf = 0;
+            int indexOf;
+            do
             {
-                crew = line.Substring(indexOf);
+                indexOf = line.IndexOf(CrewNewStyle, previousIndexOf);
 
-                break;
-            }
-        }
+                if (indexOf != -1)
+                {
+                    var crew = line.Substring(indexOf);
 
-        if (crew != null)
-        {
-            crewMatches = (new JsonCrewParser()).ParseSegment(crew);
+                    var currentCrewMatches = jsonCrewParser.ParseSegment(crew);
+
+                    if (currentCrewMatches?.Any() == true)
+                    {
+                        crewMatches ??= new();
+
+                        crewMatches.AddRange(currentCrewMatches);
+                    }
+
+                    previousIndexOf = indexOf + CrewNewStyle.Length;
+                }
+            } while (indexOf != -1);
         }
     }
 
     private List<KeyValuePair<CreditTypeMatch, List<CrewMatch>>> ParseSegment(string segment)
     {
-        const string StartSegment = "[";
+        //const string StartSegment = "[";
 
-        var indexOfStart = segment.IndexOf(StartSegment);
+        //var indexOfStart = segment.IndexOf(StartSegment);
 
-        if (indexOfStart == -1)
-        {
-            return null;
-        }
+        //if (indexOfStart == -1)
+        //{
+        //    return null;
+        //}
 
-        var targetSegment = segment.Substring(indexOfStart);
+        //var targetSegment = segment.Substring(indexOfStart);
 
-        const string EndSegment = ",\"fullCredits\":";
+        //const string EndSegment = ",\"fullCredits\":";
 
-        var indexOfEnd = targetSegment.IndexOf(EndSegment);
+        //var indexOfEnd = targetSegment.IndexOf(EndSegment);
 
-        if (indexOfEnd != -1)
-        {
-            targetSegment = targetSegment.Substring(0, indexOfEnd);
-        }
+        //if (indexOfEnd != -1)
+        //{
+        //    targetSegment = targetSegment.Substring(0, indexOfEnd);
+        //}
 
         JsonRootNode nodes;
         try
         {
-            var cleaned = (new EndOfJsonParser()).GetJson(targetSegment);
+            var cleaned = (new EndOfJsonParser()).GetJson(segment);
 
             nodes = JsonTreeBuilder.Build(cleaned);
         }
@@ -91,67 +102,92 @@ internal sealed class JsonCrewParser
             return null;
         }
 
+        var groupCreditTypeNode = nodes["name"];
+
+        var groupCreditType = groupCreditTypeNode?.ValueAsString;
+
+        if (string.IsNullOrEmpty(groupCreditType) || groupCreditType.ToLower() == "cast")
+        {
+            return null;
+        }
+
+        var crewNodes = nodes["section"]?["items"];
+
+        if (crewNodes == null || !crewNodes.Any())
+        {
+            return null;
+        }
+
         _matches = new();
 
-        foreach (var node in nodes.Where(n => n is not null))
+        foreach (var crewNode in crewNodes.Where(n => n is not null))
         {
-            var creditNodes = node?["credits"]?["edges"];
+            var isCastNode = crewNode["isCast"];
 
-            if (creditNodes == null || !creditNodes.Any())
+            if (isCastNode?.ValueAsString?.ToLower() == "true")
             {
                 continue;
             }
 
-            var groupCreditType = node["category"]?["id"]?.ValueAsString?.Replace("_", " ");
+            //var creditNodes = node?["credits"]?["edges"];
 
-            switch (groupCreditType)
-            {
-                case "cast":
-                case "miscellaneous":
-                    {
-                        continue;
-                    }
-            }
+            //if (creditNodes == null || !creditNodes.Any())
+            //{
+            //    continue;
+            //}
 
-            this.ProcessNode(creditNodes, groupCreditType);
+            //var groupCreditType = node["category"]?["id"]?.ValueAsString?.Replace("_", " ");
+
+            //switch (groupCreditType)
+            //{
+            //    case "cast":
+            //    case "miscellaneous":
+            //        {
+            //            continue;
+            //        }
+            //}
+
+            var creditSubTypeNode = crewNode["attributes"];
+
+            this.ProcessCrewNode(groupCreditType, creditSubTypeNode, crewNode);
         }
 
         return _matches.ToList();
     }
 
-    private void ProcessNode(JsonNode creditNodes
-        , string groupCreditType)
-    {
-        foreach (var intermediateNode in creditNodes.Where(n => n is not null))
-        {
-            var creditNode = intermediateNode["node"];
+    //private void ProcessNode(JsonNode creditNodes
+    //    , string groupCreditType)
+    //{
+    //    foreach (var intermediateNode in creditNodes.Where(n => n is not null))
+    //    {
+    //        var creditNode = intermediateNode["node"];
 
-            if (creditNode == null)
-            {
-                continue;
-            }
+    //        if (creditNode == null)
+    //        {
+    //            continue;
+    //        }
 
-            var nameNode = creditNode["name"];
+    //        var nameNode = creditNode["name"];
 
-            if (nameNode == null)
-            {
-                continue;
-            }
+    //        if (nameNode == null)
+    //        {
+    //            continue;
+    //        }
 
-            var personCreditTypNode = creditNode["category"];
+    //        var personCreditTypNode = creditNode["category"];
 
-            var creditSubTypeNode = creditNode["jobDetails"];
+    //        var creditSubTypeNode = creditNode["jobDetails"];
 
-            this.ProcessCrewNode(groupCreditType, personCreditTypNode, creditSubTypeNode, nameNode);
-        }
-    }
+    //        this.ProcessCrewNode(groupCreditType, personCreditTypNode, creditSubTypeNode, nameNode);
+    //    }
+    //}
 
     private void ProcessCrewNode(string groupCreditType
-        , JsonNode personCreditTypNode
+        //, JsonNode personCreditTypNode
         , JsonNode creditSubTypeNode
         , JsonNode nameNode)
     {
-        var personCreditType = personCreditTypNode?["id"]?.ValueAsString.Replace("_", " ");
+        //var personCreditType = personCreditTypNode?["id"]?.ValueAsString.Replace("_", " ");
 
         var link = nameNode["id"]?.ValueAsString;
 
@@ -160,50 +196,52 @@ internal sealed class JsonCrewParser
             return;
         }
 
-        var name = nameNode["nameText"]?["text"]?.ValueAsString;
+        var name = nameNode["rowTitle"].ValueAsString;
 
         if (string.IsNullOrEmpty(name))
         {
             return;
         }
 
-        if (creditSubTypeNode?.Any() == true)
-        {
-            foreach (var jobDetailsNode in creditSubTypeNode.Where(n => n is not null))
-            {
-                this.ProcessJobNode(groupCreditType, personCreditType, link, name, jobDetailsNode);
-            }
-        }
-        else
-        {
-            this.TryAddCredit(null, groupCreditType, personCreditType, link, name, null);
-        }
+        //if (creditSubTypeNode?.Any() == true)
+        //{
+        //    foreach (var jobDetailsNode in creditSubTypeNode.Where(n => n is not null))
+        //    {
+        //        this.ProcessJobNode(groupCreditType, personCreditType, link, name, jobDetailsNode);
+        //    }
+        //}
+        //else
+        //{
+        //    this.TryAddCredit(null, groupCreditType, personCreditType, link, name, null);
+        //}
+
+        this.TryAddCredit(null, groupCreditType, null, link, name, creditSubTypeNode);
     }
 
-    private void ProcessJobNode(string groupCreditType
-        , string personCreditType
-        , string link
-        , string name
-        , JsonNode jobDetailsNode)
-    {
-        var attributeNodes = jobDetailsNode["attributes"];
+    //private void ProcessJobNode(string groupCreditType
+    //    , string personCreditType
+    //    , string link
+    //    , string name
+    //    , JsonNode jobDetailsNode)
+    //{
+    //    var attributeNodes = jobDetailsNode["attributes"];
 
-        var jobNode = jobDetailsNode["job"];
+    //    var jobNode = jobDetailsNode["job"];
 
-        string jobText = null;
+    //    string jobText = null;
 
-        if (jobNode != null)
-        {
-            jobText = jobNode["text"]?.ValueAsString;
+    //    if (jobNode != null)
+    //    {
+    //        jobText = jobNode["text"]?.ValueAsString;
 
-            if (!string.IsNullOrWhiteSpace(jobText))
-            {
-                Debug.WriteLine($"Crew Job {name} {jobText}");
-            }
-        }
+    //        if (!string.IsNullOrWhiteSpace(jobText))
+    //        {
+    //            Debug.WriteLine($"Crew Job {name} {jobText}");
+    //        }
+    //    }
 
-        this.TryAddCredit(jobText, groupCreditType, personCreditType, link, name, attributeNodes);
-    }
+    //    this.TryAddCredit(jobText, groupCreditType, personCreditType, link, name, attributeNodes);
+    //}
 
     private void TryAddCredit(string jobText
         , string groupCreditType
@@ -298,11 +336,21 @@ internal sealed class JsonCrewParser
             jobText = jobText.Substring(0, indexOfColon).TrimEnd();
         }
 
-        var indexOfBracket = jobText.IndexOf("(");
+        var indexOfOpenBracket = jobText.IndexOf("(");
 
-        if (indexOfBracket >= 0)
+        if (indexOfOpenBracket == 0 && jobText.Length >= 4)
         {
-            jobText = jobText.Substring(0, indexOfBracket).TrimEnd();
+            var nextChars = jobText.Substring(indexOfOpenBracket + 1, 3);
+
+            if (nextChars.ToLower() != "as ")
+            {
+                var indexOfCloseBracket = jobText.IndexOf(")", indexOfOpenBracket + 1);
+
+                if (indexOfCloseBracket >= 0)
+                {
+                    jobText = jobText.Substring(1, indexOfCloseBracket - 1).Trim();
+                }
+            }
         }
 
         if (string.IsNullOrWhiteSpace(jobText))
@@ -324,7 +372,7 @@ internal sealed class JsonCrewParser
 
     private bool MatchesCreditSubType(CreditTypeTuple tuple
         , string searchText)
-        => Equals(searchText, tuple.SubType.IMDbCreditSubtype?.Value)
+        => Equals(searchText, tuple.SubType.IMDbCreditSubtype?.Value, tuple.SubType.IMDbCreditSubtype.StartsWithSpecified && tuple.SubType.IMDbCreditSubtype.StartsWith)
             || Equals(searchText, tuple.SubType.DVDProfilerCreditSubtype)
             || Equals(searchText, tuple.SubType.DVDProfilerCustomRole);
 
@@ -351,13 +399,18 @@ internal sealed class JsonCrewParser
 
 
     private static bool Equals(string searchText
-        , string compareText)
+        , string compareText
+        , bool startsWith = false)
     {
         Trim(ref searchText);
 
         Trim(ref compareText);
 
         if (string.Equals(searchText, compareText, StringComparison.InvariantCultureIgnoreCase))
+        {
+            return true;
+        }
+        else if (startsWith && searchText.StartsWith(compareText, StringComparison.InvariantCultureIgnoreCase))
         {
             return true;
         }
@@ -368,6 +421,10 @@ internal sealed class JsonCrewParser
             Clean(ref compareText);
 
             if (string.Equals(searchText, compareText, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return true;
+            }
+            else if (startsWith && searchText.StartsWith(compareText, StringComparison.InvariantCultureIgnoreCase))
             {
                 return true;
             }
