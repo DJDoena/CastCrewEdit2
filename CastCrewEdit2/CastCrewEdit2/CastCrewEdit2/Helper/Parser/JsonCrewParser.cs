@@ -18,12 +18,11 @@ internal sealed class JsonCrewParser
 
     private JsonCrewParser()
     {
-        _transformationData = (IMDbParser.TransformationData?.CreditTypeList ?? Enumerable.Empty<CreditType>())
+        _transformationData = [.. (IMDbParser.TransformationData?.CreditTypeList ?? Enumerable.Empty<CreditType>())
             .Where(ct => ct?.CreditSubtypeList?.Any() == true)
             .SelectMany(ct => ct.CreditSubtypeList
                 .Where(cst => cst != null)
-                .Select(cst => new CreditTypeTuple(ct, cst)))
-            .ToList();
+                .Select(cst => new CreditTypeTuple(ct, cst)))];
     }
 
     internal static void Parse(string webSite, ref List<KeyValuePair<CreditTypeMatch, List<CrewMatch>>> crewMatches)
