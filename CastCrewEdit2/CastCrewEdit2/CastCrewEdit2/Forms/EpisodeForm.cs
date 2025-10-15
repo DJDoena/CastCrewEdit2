@@ -731,17 +731,15 @@ internal partial class EpisodeForm : CastCrewEdit2ParseBaseForm
         {
             if (CtrlSWasPressed(e))
             {
-                if (Program.DefaultValues.SendToCastCrewCopyPaste
-                    && (TabControl.SelectedIndex == 0 || TabControl.SelectedIndex == 1))
+                if (Program.DefaultValues.SendToCastCrewCopyPaste)
                 {
-                    if (ParseCastCheckBox.Checked)
+                    if (TabControl.SelectedIndex == 0 && ParseCastCheckBox.Checked)
                     {
                         var xml = this.GenerateCastXml(false);
 
                         await CastCrewCopyPasteSender.Send(xml);
                     }
-
-                    if (ParseCrewCheckBox.Checked)
+                    else if (TabControl.SelectedIndex == 1 && ParseCrewCheckBox.Checked)
                     {
                         var xml = this.GenerateCrewXml(false);
 

@@ -1674,17 +1674,15 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
             }
             else if (CtrlSWasPressed(e))
             {
-                if (Program.DefaultValues.SendToCastCrewCopyPaste
-                    && (MovieCastCrewTabControl.SelectedIndex == 0 || MovieCastCrewTabControl.SelectedIndex == 1))
+                if (Program.DefaultValues.SendToCastCrewCopyPaste)
                 {
-                    if (ParseCastCheckBox.Checked)
+                    if (MovieCastCrewTabControl.SelectedIndex == 0 && ParseCastCheckBox.Checked)
                     {
                         var xml = this.GenerateCastXml(false);
 
                         await CastCrewCopyPasteSender.Send(xml);
                     }
-
-                    if (ParseCrewCheckBox.Checked)
+                    else if (MovieCastCrewTabControl.SelectedIndex == 1 && ParseCrewCheckBox.Checked)
                     {
                         var xml = this.GenerateCrewXml(false);
 
