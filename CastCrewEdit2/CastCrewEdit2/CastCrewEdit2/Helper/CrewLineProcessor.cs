@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
@@ -45,7 +44,7 @@ internal static class CrewLineProcessor
             }
 
             var creditParts = credit
-                .Split(new[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries)
+                .Split(['(', ')'], StringSplitOptions.RemoveEmptyEntries)
                 .Where(cp => !cp.StartsWith("segment"))
                 .Where(cp => !string.IsNullOrWhiteSpace(cp));
 
@@ -236,9 +235,7 @@ internal static class CrewLineProcessor
 
                                 break;
                             }
-                            else if (creditSubtype.IMDbCreditSubtype.StartsWithSpecified
-                                && creditSubtype.IMDbCreditSubtype.StartsWith
-                                && shortCredit.StartsWith(creditSubtype.IMDbCreditSubtype.Value + " ", StringComparison.InvariantCultureIgnoreCase))
+                            else if (StartsWith(creditSubtype.IMDbCreditSubtype.StartsWithSpecified && creditSubtype.IMDbCreditSubtype.StartsWith, shortCredit, creditSubtype.IMDbCreditSubtype.Value))
                             {
                                 SetCreditSubtype(defaultValues, crewMember, originalCredit, shortCredit, creditSubtype);
 
@@ -259,6 +256,13 @@ internal static class CrewLineProcessor
 
         return useCredit;
     }
+
+    internal static bool StartsWith(bool startsWithAllowed
+        , string searchText
+        , string compareText)
+        => startsWithAllowed
+            && (searchText.StartsWith(compareText + " ", StringComparison.InvariantCultureIgnoreCase)
+            || searchText.StartsWith(compareText + "s", StringComparison.InvariantCultureIgnoreCase));
 
     private static void SetCreditSubtype(DefaultValues defaultValues, CrewInfo crewMember, string originalCredit, string shortCredit, CreditSubtype creditSubtype)
     {

@@ -52,7 +52,7 @@ internal sealed class JsonCrewParser
 
                     if (currentCrewMatches?.Any() == true)
                     {
-                        crewMatches ??= new();
+                        crewMatches ??= [];
 
                         crewMatches.AddRange(currentCrewMatches);
                     }
@@ -65,26 +65,6 @@ internal sealed class JsonCrewParser
 
     private List<KeyValuePair<CreditTypeMatch, List<CrewMatch>>> ParseSegment(string segment)
     {
-        //const string StartSegment = "[";
-
-        //var indexOfStart = segment.IndexOf(StartSegment);
-
-        //if (indexOfStart == -1)
-        //{
-        //    return null;
-        //}
-
-        //var targetSegment = segment.Substring(indexOfStart);
-
-        //const string EndSegment = ",\"fullCredits\":";
-
-        //var indexOfEnd = targetSegment.IndexOf(EndSegment);
-
-        //if (indexOfEnd != -1)
-        //{
-        //    targetSegment = targetSegment.Substring(0, indexOfEnd);
-        //}
-
         JsonRootNode nodes;
         try
         {
@@ -118,7 +98,7 @@ internal sealed class JsonCrewParser
             return null;
         }
 
-        _matches = new();
+        _matches = [];
 
         foreach (var crewNode in crewNodes.Where(n => n is not null))
         {
@@ -129,66 +109,18 @@ internal sealed class JsonCrewParser
                 continue;
             }
 
-            //var creditNodes = node?["credits"]?["edges"];
-
-            //if (creditNodes == null || !creditNodes.Any())
-            //{
-            //    continue;
-            //}
-
-            //var groupCreditType = node["category"]?["id"]?.ValueAsString?.Replace("_", " ");
-
-            //switch (groupCreditType)
-            //{
-            //    case "cast":
-            //    case "miscellaneous":
-            //        {
-            //            continue;
-            //        }
-            //}
-
             var creditSubTypeNode = crewNode["attributes"];
 
             this.ProcessCrewNode(groupCreditType, creditSubTypeNode, crewNode);
         }
 
-        return _matches.ToList();
+        return [.. _matches];
     }
 
-    //private void ProcessNode(JsonNode creditNodes
-    //    , string groupCreditType)
-    //{
-    //    foreach (var intermediateNode in creditNodes.Where(n => n is not null))
-    //    {
-    //        var creditNode = intermediateNode["node"];
-
-    //        if (creditNode == null)
-    //        {
-    //            continue;
-    //        }
-
-    //        var nameNode = creditNode["name"];
-
-    //        if (nameNode == null)
-    //        {
-    //            continue;
-    //        }
-
-    //        var personCreditTypNode = creditNode["category"];
-
-    //        var creditSubTypeNode = creditNode["jobDetails"];
-
-    //        this.ProcessCrewNode(groupCreditType, personCreditTypNode, creditSubTypeNode, nameNode);
-    //    }
-    //}
-
     private void ProcessCrewNode(string groupCreditType
-        //, JsonNode personCreditTypNode
         , JsonNode creditSubTypeNode
         , JsonNode nameNode)
     {
-        //var personCreditType = personCreditTypNode?["id"]?.ValueAsString.Replace("_", " ");
-
         var link = nameNode["id"]?.ValueAsString;
 
         if (string.IsNullOrEmpty(link))
@@ -203,45 +135,8 @@ internal sealed class JsonCrewParser
             return;
         }
 
-        //if (creditSubTypeNode?.Any() == true)
-        //{
-        //    foreach (var jobDetailsNode in creditSubTypeNode.Where(n => n is not null))
-        //    {
-        //        this.ProcessJobNode(groupCreditType, personCreditType, link, name, jobDetailsNode);
-        //    }
-        //}
-        //else
-        //{
-        //    this.TryAddCredit(null, groupCreditType, personCreditType, link, name, null);
-        //}
-
         this.TryAddCredit(null, groupCreditType, null, link, name, creditSubTypeNode);
     }
-
-    //private void ProcessJobNode(string groupCreditType
-    //    , string personCreditType
-    //    , string link
-    //    , string name
-    //    , JsonNode jobDetailsNode)
-    //{
-    //    var attributeNodes = jobDetailsNode["attributes"];
-
-    //    var jobNode = jobDetailsNode["job"];
-
-    //    string jobText = null;
-
-    //    if (jobNode != null)
-    //    {
-    //        jobText = jobNode["text"]?.ValueAsString;
-
-    //        if (!string.IsNullOrWhiteSpace(jobText))
-    //        {
-    //            Debug.WriteLine($"Crew Job {name} {jobText}");
-    //        }
-    //    }
-
-    //    this.TryAddCredit(jobText, groupCreditType, personCreditType, link, name, attributeNodes);
-    //}
 
     private void TryAddCredit(string jobText
         , string groupCreditType
@@ -263,7 +158,7 @@ internal sealed class JsonCrewParser
 
         if (!_matches.TryGetValue(creditTypeMatch, out var crewMatches))
         {
-            crewMatches = new();
+            crewMatches = [];
 
             _matches.Add(creditTypeMatch, crewMatches);
         }
@@ -275,7 +170,7 @@ internal sealed class JsonCrewParser
         , JsonNode attributeRootNode
         , out List<string> attributes)
     {
-        attributes = new();
+        attributes = [];
 
         if (attributeRootNode is null)
         {
@@ -397,7 +292,6 @@ internal sealed class JsonCrewParser
         return imdbJob;
     }
 
-
     private static bool Equals(string searchText
         , string compareText
         , bool startsWith = false)
@@ -410,7 +304,7 @@ internal sealed class JsonCrewParser
         {
             return true;
         }
-        else if (startsWith && searchText.StartsWith(compareText, StringComparison.InvariantCultureIgnoreCase))
+        else if (CrewLineProcessor.StartsWith(startsWith, searchText, compareText))
         {
             return true;
         }
