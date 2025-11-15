@@ -113,26 +113,45 @@ internal static class CrewParser
                 ? IMDbParser.MaxTasks
                 : (maxCount - creditTypeIndex);
 
-            var tasks = new List<Task<CrewResult>>();
-
-            for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, creditTypeIndex++)
+            if (!Program.UseBrowserWindow)
             {
-                var kvp = matches[creditTypeIndex];
+                var tasks = new List<Task<CrewResult>>();
 
-                var task = Task.Run(() => ProcessCrewLine(kvp.Key, kvp.Value, defaultValues));
-
-                tasks.Add(task);
-            }
-
-            Task.WaitAll(tasks.ToArray());
-
-            foreach (var task in tasks)
-            {
-                crewList.AddRange(task.Result.CrewMembers);
-
-                for (var matchIndex = 0; matchIndex < task.Result.MatchCount; matchIndex++)
+                for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, creditTypeIndex++)
                 {
-                    setProgress();
+                    var kvp = matches[creditTypeIndex];
+
+                    var task = Task.Run(() => ProcessCrewLine(kvp.Key, kvp.Value, defaultValues));
+
+                    tasks.Add(task);
+                }
+
+                Task.WaitAll([.. tasks]);
+
+                foreach (var task in tasks)
+                {
+                    crewList.AddRange(task.Result.CrewMembers);
+
+                    for (var matchIndex = 0; matchIndex < task.Result.MatchCount; matchIndex++)
+                    {
+                        setProgress();
+                    }
+                }
+            }
+            else
+            {
+                for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, creditTypeIndex++)
+                {
+                    var kvp = matches[creditTypeIndex];
+
+                    var crewResult = ProcessCrewLine(kvp.Key, kvp.Value, defaultValues);
+
+                    crewList.AddRange(crewResult.CrewMembers);
+
+                    for (var matchIndex = 0; matchIndex < crewResult.MatchCount; matchIndex++)
+                    {
+                        setProgress();
+                    }
                 }
             }
         }

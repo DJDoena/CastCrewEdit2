@@ -64,7 +64,8 @@ public static class Program
     internal static DefaultValues DefaultValues
         => Settings.DefaultValues;
 
-    internal static bool UseBrowserWindow { get; private set; }
+    internal static bool UseBrowserWindow
+        => DefaultValues.UseBrowserWindowForDownload;
 
     static Program()
     {
@@ -142,9 +143,11 @@ public static class Program
         return rootPath;
     }
 
-    internal static int PersonCacheCount => CastCache.Values.Count + CrewCache.Values.Count;
+    internal static int PersonCacheCount
+        => CastCache.Values.Count + CrewCache.Values.Count;
 
-    internal static string PersonCacheCountString => PersonCacheCount.ToString("#,##0");
+    internal static string PersonCacheCountString
+        => PersonCacheCount.ToString("#,##0");
 
     [STAThread]
     public static void Main(string[] args)
@@ -199,10 +202,6 @@ public static class Program
                 else if (arg == "/browser=webview2")
                 {
                     _selectedBrowserControl = BrowserControlSelection.WebView2;
-                }
-                else if (arg == "/usebrowserwindow")
-                {
-                    //UseBrowserWindow = true;
                 }
             }
 
@@ -327,21 +326,20 @@ public static class Program
             }
         }
 
-        using (var mainForm = new MainForm(skipversioncheck, _selectedBrowserControl))
+        using var mainForm = new MainForm(skipversioncheck, _selectedBrowserControl);
+
+        AdapterEventHandler.MainForm = mainForm;
+
+        if (!embedded)
         {
-            AdapterEventHandler.MainForm = mainForm;
-
-            if (!embedded)
-            {
-                Application.Run(mainForm);
-            }
-            else
-            {
-                mainForm.ShowDialog();
-            }
-
-            AdapterEventHandler.MainForm = null;
+            Application.Run(mainForm);
         }
+        else
+        {
+            mainForm.ShowDialog();
+        }
+
+        AdapterEventHandler.MainForm = null;
     }
 
     private static void CreateCache(string cacheFile, ref Dictionary<string, PersonInfo> cache, ref Dictionary<PersonInfoWithoutBirthYear, List<PersonInfo>> possibleDuplicateCache, string type)

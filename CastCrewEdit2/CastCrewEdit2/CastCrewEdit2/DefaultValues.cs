@@ -111,6 +111,8 @@
 
         public bool IncludeCustomSoundtackCredits = true;
 
+        public bool UseBrowserWindowForDownload= false;
+
         [XmlIgnore]
         internal string CreditPhotosFolder
         {

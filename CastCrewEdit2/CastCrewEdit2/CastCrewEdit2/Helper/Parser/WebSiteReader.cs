@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
+
 internal static class WebSiteReader
 {
     private static readonly object _getWebsiteLock;
@@ -45,8 +46,7 @@ internal static class WebSiteReader
 #endif
     }
 
-    internal static string GetWebSite(string targetUrl
-       , bool tryUseBrowser = false)
+    internal static string GetWebSite(string targetUrl)
     {
         lock (_getWebsiteLock)
         {
@@ -65,7 +65,8 @@ internal static class WebSiteReader
             {
                 webSite = ReadFromCache(targetUrl, cacheFile);
             }
-            else
+
+            if (string.IsNullOrWhiteSpace(webSite))
             {
                 if (Program.UseBrowserWindow)
                 {
@@ -78,11 +79,12 @@ internal static class WebSiteReader
                 }
 
                 WriteCacheFile(webSite, cacheFile);
-
-                return webSite;
             }
 
-            WebSites.Add(targetUrl, webSite);
+            if (!string.IsNullOrWhiteSpace(webSite))
+            {
+                WebSites[targetUrl] = webSite;
+            }
 
             return webSite;
         }

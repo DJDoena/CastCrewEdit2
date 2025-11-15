@@ -10,8 +10,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 
 internal static class CastParser
 {
-
-
     private static readonly Regex _castRegex;
 
     private static readonly Regex _castBlockStartRegex;
@@ -117,24 +115,41 @@ internal static class CastParser
                 ? IMDbParser.MaxTasks
                 : (maxCount - castIndex);
 
-            var tasks = new List<Task<List<CastInfo>>>(maxTasks);
-
-            for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, castIndex++)
+            if (!Program.UseBrowserWindow)
             {
-                var match = matches[castIndex];
+                var tasks = new List<Task<List<CastInfo>>>(maxTasks);
 
-                var task = Task.Run(() => CastLineProcessor.Process(match, defaultValues));
-
-                tasks.Add(task);
-            }
-
-            Task.WaitAll(tasks.ToArray());
-
-            foreach (var task in tasks)
-            {
-                foreach (var castMember in task.Result)
+                for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, castIndex++)
                 {
-                    castList.Add(castMember);
+                    var match = matches[castIndex];
+
+                    var task = Task.Run(() => CastLineProcessor.Process(match, defaultValues));
+
+                    tasks.Add(task);
+                }
+
+                Task.WaitAll([.. tasks]);
+
+                foreach (var task in tasks)
+                {
+                    foreach (var castMember in task.Result)
+                    {
+                        castList.Add(castMember);
+                    }
+                }
+            }
+            else
+            {
+                for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, castIndex++)
+                {
+                    var match = matches[castIndex];
+
+                    var castMembers = CastLineProcessor.Process(match, defaultValues);
+
+                    foreach (var castMember in castMembers)
+                    {
+                        castList.Add(castMember);
+                    }
                 }
             }
 

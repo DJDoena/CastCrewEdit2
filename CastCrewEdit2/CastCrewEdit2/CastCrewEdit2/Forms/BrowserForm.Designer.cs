@@ -53,7 +53,7 @@ partial class BrowserForm
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.WebBrowser);
             this.Name = "BrowserForm";
-            this.Text = "BrowserForm";
+            this.Text = "CCE2 Browser";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnBrowserFormClosed);
             this.Load += new System.EventHandler(this.OnBrowserFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.WebBrowser)).EndInit();

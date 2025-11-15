@@ -86,7 +86,8 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
         _episodeRegexNewStyle = new Regex("\"id\":\"(?'EpisodeLink'[a-z0-9]+)\",\"type\":\"tvEpisode\",\"season\":\"(?'SeasonNumber'[0-9,]+)\",\"episode\":\"(?'EpisodeNumber'[0-9,]+)\",\"titleText\":\"(?'EpisodeName'.*?)\"", RegexOptions.Compiled);
     }
 
-    public MainForm(bool skipVersionCheck, BrowserControlSelection selectedBrowserControl)
+    public MainForm(bool skipVersionCheck
+        , BrowserControlSelection selectedBrowserControl)
     {
         _movieTitle = string.Empty;
 
@@ -94,11 +95,11 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
 
         _selectedBrowserControl = selectedBrowserControl;
 
-        _castMatches = new List<CastMatch>();
+        _castMatches = [];
 
-        _crewMatches = new List<KeyValuePair<CreditTypeMatch, List<CrewMatch>>>();
+        _crewMatches = [];
 
-        _soundtrackMatches = new Dictionary<string, List<SoundtrackMatch>>();
+        _soundtrackMatches = [];
 
         this.InitializeComponent();
 
@@ -341,12 +342,21 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
     {
         var defaultValues = this.GetDefaultValues();
 
-        _castList = new List<CastInfo>();
-        _crewList = new List<CrewInfo>();
+        _castList = [];
+        _crewList = [];
 
         this.ParseTitle(key);
 
-        ParseCastAndCrew(key, ParseCastCheckBox.Checked, ParseCrewCheckBox.Checked, ParseCrewCheckBox.Checked, false, ref _castMatches, ref _castList, ref _crewMatches, ref _crewList, ref _soundtrackMatches);
+        ParseCastAndCrew(key
+            , ParseCastCheckBox.Checked
+            , ParseCrewCheckBox.Checked
+            , ParseCrewCheckBox.Checked
+            , false
+            , ref _castMatches
+            , ref _castList
+            , ref _crewMatches
+            , ref _crewList
+            , ref _soundtrackMatches);
 
         try
         {
@@ -382,7 +392,7 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
     {
         var targetUrl = $"{IMDbParser.TitleUrl}{key}/fullcredits";
 
-        var webSite = WebSiteReader.GetWebSite(targetUrl, true);
+        var webSite = WebSiteReader.GetWebSite(targetUrl);
 
         #region Parse for Title
 
@@ -885,7 +895,7 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
                 {
                     var targetUrl = $"{IMDbParser.TitleUrl}{_tvShowTitleLink}/episodes/?season={season}";
 
-                    var webSite = WebSiteReader.GetWebSite(targetUrl, true);
+                    var webSite = WebSiteReader.GetWebSite(targetUrl);
 
                     var seasonEpisodes = ScanForEpisodesNewStyle(webSite);
 
@@ -1442,9 +1452,11 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
         }
     }
 
-    private void OnGetHeadshotsButtonClick(object sender, EventArgs e) => this.GetHeadshots(MovieCastDataGridView, MovieCrewDataGridView, GetHeadshotsButton);
+    private void OnGetHeadshotsButtonClick(object sender, EventArgs e) 
+        => this.GetHeadshots(MovieCastDataGridView, MovieCrewDataGridView, GetHeadshotsButton);
 
-    private void OnBrowseButtonClick(object sender, EventArgs e) => this.NavigateTo(BrowserUrlComboBox.Text);
+    private void OnBrowseButtonClick(object sender, EventArgs e)
+        => this.NavigateTo(BrowserUrlComboBox.Text);
 
     private void OnBrowserSearchButtonClick(object sender, EventArgs e)
     {

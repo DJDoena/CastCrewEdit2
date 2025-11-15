@@ -140,14 +140,13 @@ internal static class HeadshotParser
             {
                 try
                 {
-                    using (var webClient = OnlineAccess.CreateSystemSettingsWebClient())
-                    {
-                        webClient.DownloadFile(remoteFile, imageFileInfo.FullName);
+                    using var webClient = OnlineAccess.CreateSystemSettingsWebClient();
 
-                        imageFileInfo.Refresh();
+                    webClient.DownloadFile(remoteFile, imageFileInfo.FullName);
 
-                        return;
-                    }
+                    imageFileInfo.Refresh();
+
+                    return;
                 }
                 catch
                 {

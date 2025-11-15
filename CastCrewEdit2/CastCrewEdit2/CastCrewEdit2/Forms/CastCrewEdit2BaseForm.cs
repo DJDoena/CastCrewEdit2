@@ -26,17 +26,17 @@ public class CastCrewEdit2BaseForm : Form
 
     protected static bool _settingsHaveChanged;
 
-//#if UnitTest
+    //#if UnitTest
 
-//    public int _progressMax;
+    //    public int _progressMax;
 
-//    public int _progressInterval;
+    //    public int _progressInterval;
 
-//    public ColorProgressBar _progressBar;
+    //    public ColorProgressBar _progressBar;
 
-//    public int _progressValue;
+    //    public int _progressValue;
 
-//#else
+    //#else
 
     private int _progressMax;
 
@@ -46,7 +46,7 @@ public class CastCrewEdit2BaseForm : Form
 
     private int _progressValue;
 
-//#endif
+    //#endif
 
     protected bool _suppressProgress;
 
@@ -88,16 +88,25 @@ public class CastCrewEdit2BaseForm : Form
         }
     }
 
-    internal static void ParseCastAndCrew(string key, bool parseCast, bool parseCrew, bool parseSoundtrack, bool initializeLists, ref List<CastMatch> castMatches, ref List<CastInfo> castList, ref List<KeyValuePair<CreditTypeMatch, List<CrewMatch>>> crewMatches, ref List<CrewInfo> crewList, ref Dictionary<string, List<SoundtrackMatch>> soundtrackMatches)
+    internal static void ParseCastAndCrew(string key
+        , bool parseCast
+        , bool parseCrew
+        , bool parseSoundtrack
+        , bool initializeLists
+        , ref List<CastMatch> castMatches
+        , ref List<CastInfo> castList
+        , ref List<KeyValuePair<CreditTypeMatch, List<CrewMatch>>> crewMatches
+        , ref List<CrewInfo> crewList
+        , ref Dictionary<string, List<SoundtrackMatch>> soundtrackMatches)
     {
         var targetUrl = $"{IMDbParser.TitleUrl}{key}/fullcredits";
 
-        var webSite = WebSiteReader.GetWebSite(targetUrl, true);
+        var webSite = WebSiteReader.GetWebSite(targetUrl);
 
         if (initializeLists)
         {
-            castList = new List<CastInfo>();
-            crewList = new List<CrewInfo>();
+            castList = [];
+            crewList = [];
         }
 
         #region Parse for Cast
@@ -107,7 +116,7 @@ public class CastCrewEdit2BaseForm : Form
             CastParser.ParseCast(webSite, ref castMatches);
         }
 
-        castMatches ??= new();
+        castMatches ??= [];
 
         #endregion
 
@@ -118,7 +127,7 @@ public class CastCrewEdit2BaseForm : Form
             CrewParser.ParseCrew(webSite, ref crewMatches);
         }
 
-        crewMatches ??= new();
+        crewMatches ??= [];
 
         #endregion
 

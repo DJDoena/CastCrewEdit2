@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Web;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
 using DoenaSoft.JsonFragmentParser;
-using Windows.Graphics.Printing;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 
@@ -35,13 +34,14 @@ internal static class SoundtrackParser
         _soundtrackPersonRegex = new Regex("<a(.+?)href=\"/name/(?'PersonLink'[a-z0-9]+)(.+?)\">(?'PersonName'.+?)</a>", RegexOptions.Compiled);
     }
 
-    internal static void ParseSoundtrack(string titleLink, ref Dictionary<string, List<SoundtrackMatch>> soundtrackEntries)
+    internal static void ParseSoundtrack(string titleLink
+        , ref Dictionary<string, List<SoundtrackMatch>> soundtrackEntries)
     {
         soundtrackEntries = null;
 
         var soundtrackUrl = $"{IMDbParser.TitleUrl}{titleLink}/soundtrack/";
 
-        var webSite = WebSiteReader.GetWebSite(soundtrackUrl, true);
+        var webSite = WebSiteReader.GetWebSite(soundtrackUrl);
 
         ParseSoundtrackNewStyle(webSite, ref soundtrackEntries);
 
@@ -50,7 +50,7 @@ internal static class SoundtrackParser
             ParseSoundtrackOldStyle(webSite, ref soundtrackEntries);
         }
 
-        soundtrackEntries ??= new();
+        soundtrackEntries ??= [];
     }
 
     private static void ParseSoundtrackNewStyle(string webSite, ref Dictionary<string, List<SoundtrackMatch>> soundtrackEntries)
@@ -129,28 +129,49 @@ internal static class SoundtrackParser
                     ? IMDbParser.MaxTasks
                     : (maxCount - songIndex);
 
-                var tasks = new List<Task<CrewResult>>(maxTasks);
-
-                for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, songIndex++)
+                if (Program.UseBrowserWindow)
                 {
-                    var song = songs[songIndex];
+                    var tasks = new List<Task<CrewResult>>(maxTasks);
 
-                    var songMatches = soundtrackMatches[song];
-
-                    var task = Task.Run(() => SountrackLineProcessor.Process(song, songMatches, defaultValues));
-
-                    tasks.Add(task);
-                }
-
-                Task.WaitAll(tasks.ToArray());
-
-                foreach (var task in tasks)
-                {
-                    crewList.AddRange(task.Result.CrewMembers);
-
-                    for (var matchIndex = 0; matchIndex < task.Result.MatchCount; matchIndex++)
+                    for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, songIndex++)
                     {
-                        setProgress();
+                        var song = songs[songIndex];
+
+                        var songMatches = soundtrackMatches[song];
+
+                        var task = Task.Run(() => SountrackLineProcessor.Process(song, songMatches, defaultValues));
+
+                        tasks.Add(task);
+                    }
+
+                    Task.WaitAll([.. tasks]);
+
+                    foreach (var task in tasks)
+                    {
+                        crewList.AddRange(task.Result.CrewMembers);
+
+                        for (var matchIndex = 0; matchIndex < task.Result.MatchCount; matchIndex++)
+                        {
+                            setProgress();
+                        }
+                    }
+                }
+                else
+                {
+                    for (var taskIndex = 0; taskIndex < maxTasks; taskIndex++, songIndex++)
+                    {
+                        var song = songs[songIndex];
+
+                        var songMatches = soundtrackMatches[song];
+
+                        var crewResult = SountrackLineProcessor.Process(song, songMatches, defaultValues);
+
+                        crewList.AddRange(crewResult.CrewMembers);
+
+                        for (var matchIndex = 0; matchIndex < crewResult.MatchCount; matchIndex++)
+                        {
+                            setProgress();
+                        }
                     }
                 }
             }

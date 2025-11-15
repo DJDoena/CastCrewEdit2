@@ -35,6 +35,8 @@ internal partial class BrowserForm : Form
 
         this.InitializeComponent();
 
+        this.Icon = Properties.Resource.djdsoft;
+
         WebBrowser.NavigationCompleted += this.OnWebView2NavigationCompleted;
     }
 
@@ -58,18 +60,14 @@ internal partial class BrowserForm : Form
         }
     }
 
-
     private async void OnWebView2NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
     {
-        await WebBrowser.ExecuteScriptAsync("window.scroll(0, document.body.scrollHeight);");
+        for (var scrollIndex = 0; scrollIndex < 5; scrollIndex++)
+        {
+            await Task.Delay(1000);
 
-        await Task.Delay(1000);
-
-        await WebBrowser.ExecuteScriptAsync("window.scroll(0, document.body.scrollHeight);");
-
-        await Task.Delay(1000);
-
-        await WebBrowser.ExecuteScriptAsync("window.scroll(0, document.body.scrollHeight);");
+            await WebBrowser.ExecuteScriptAsync("window.scroll(0, document.body.scrollHeight);");
+        }
 
         this.Html = await this.GetHtml();
 

@@ -291,7 +291,16 @@ internal partial class EpisodesForm : CastCrewEdit2BaseForm
     {
         var defaultValues = this.GetDefaultValues();
 
-        ParseCastAndCrew(episode.Link, true, true, true, true, ref episode.CastMatches, ref episode.CastList, ref episode.CrewMatches, ref episode.CrewList, ref episode.SoundtrackMatches);
+        ParseCastAndCrew(episode.Link
+            , true
+            , true
+            , true
+            , true
+            , ref episode.CastMatches
+            , ref episode.CastList
+            , ref episode.CrewMatches
+            , ref episode.CrewList
+            , ref episode.SoundtrackMatches);
 
         _suppressProgress = true;
 

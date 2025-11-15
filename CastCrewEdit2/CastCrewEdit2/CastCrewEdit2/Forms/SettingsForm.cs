@@ -47,6 +47,8 @@ internal partial class SettingsForm : Form
 
     private void LoadDataSettings()
     {
+        UseBrowserWindowForDownloadCheckBox.Checked = _defaultValues.UseBrowserWindowForDownload;
+
         ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox.Checked = _defaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName;
 
         TakeBirthYearFromLocalPersonCacheCheckBox.Checked = _defaultValues.TakeBirthYearFromLocalCache;
@@ -184,6 +186,7 @@ internal partial class SettingsForm : Form
 
     private void SaveDataSettings()
     {
+        _defaultValues.UseBrowserWindowForDownload = UseBrowserWindowForDownloadCheckBox.Checked;
         _defaultValues.ParseFirstNameInitialsIntoFirstAndMiddleName = ParseFirstNameInitialsIntoFirstAndMiddleNameCheckBox.Checked;
         _defaultValues.TakeBirthYearFromLocalCache = TakeBirthYearFromLocalPersonCacheCheckBox.Checked;
         _defaultValues.RetrieveBirthYearWhenLocalCacheEmpty = RetrieveBirthYearWhenLocalCacheEmptyCheckBox.Checked;

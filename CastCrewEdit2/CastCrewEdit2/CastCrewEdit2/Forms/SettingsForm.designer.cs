@@ -33,6 +33,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.OKButton = new System.Windows.Forms.Button();
             this.SettingsTabControl = new System.Windows.Forms.TabControl();
             this.ParsingTab = new System.Windows.Forms.TabPage();
+            this.UseBrowserWindowForDownloadCheckBox = new System.Windows.Forms.CheckBox();
             this.ParsingTabControl = new System.Windows.Forms.TabControl();
             this.PeopleParsingTab = new System.Windows.Forms.TabPage();
             this.ParsingPeopleTabControl = new System.Windows.Forms.TabControl();
@@ -156,9 +157,16 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             // ParsingTab
             // 
             resources.ApplyResources(this.ParsingTab, "ParsingTab");
+            this.ParsingTab.Controls.Add(this.UseBrowserWindowForDownloadCheckBox);
             this.ParsingTab.Controls.Add(this.ParsingTabControl);
             this.ParsingTab.Name = "ParsingTab";
             this.ParsingTab.UseVisualStyleBackColor = true;
+            // 
+            // UseBrowserWindowForDownloadCheckBox
+            // 
+            resources.ApplyResources(this.UseBrowserWindowForDownloadCheckBox, "UseBrowserWindowForDownloadCheckBox");
+            this.UseBrowserWindowForDownloadCheckBox.Name = "UseBrowserWindowForDownloadCheckBox";
+            this.UseBrowserWindowForDownloadCheckBox.UseVisualStyleBackColor = true;
             // 
             // ParsingTabControl
             // 
@@ -695,6 +703,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
             this.Load += new System.EventHandler(this.OnSettingsFormLoad);
             this.SettingsTabControl.ResumeLayout(false);
             this.ParsingTab.ResumeLayout(false);
+            this.ParsingTab.PerformLayout();
             this.ParsingTabControl.ResumeLayout(false);
             this.PeopleParsingTab.ResumeLayout(false);
             this.ParsingPeopleTabControl.ResumeLayout(false);
@@ -804,5 +813,6 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms
         private System.Windows.Forms.CheckBox DebugModeCheckBox;
         private System.Windows.Forms.CheckBox NeverUpdatePersonNameCheckBox;
         private System.Windows.Forms.CheckBox IncludeCustomSoundtackCreditsCheckBox;
+        private System.Windows.Forms.CheckBox UseBrowserWindowForDownloadCheckBox;
     }
 }
