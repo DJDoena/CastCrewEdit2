@@ -173,26 +173,7 @@ internal static class CrewParser
 
                 var originalCredit = HttpUtility.HtmlDecode(credit);
 
-                if (credit.EndsWith(" and"))
-                {
-                    credit = credit.Substring(0, credit.Length - 4);
-                    credit = credit.Trim();
-                }
-
-                if (credit.EndsWith(" &amp;"))
-                {
-                    credit = credit.Substring(0, credit.Length - 6);
-                    credit = credit.Trim();
-                }
-
-                if (credit.EndsWith(" &"))
-                {
-                    credit = credit.Substring(0, credit.Length - 2);
-                    credit = credit.Trim();
-                }
-
-                credit = HttpUtility.HtmlDecode(credit);
-                credit = credit.Trim();
+                credit = CleanupCredit(credit);
 
                 var newMatch = IMDbParser.UncreditedRegex.Match(credit);
 
@@ -218,5 +199,31 @@ internal static class CrewParser
         }
 
         return new CrewResult(result, crewMatches.Count);
+    }
+
+    internal static string CleanupCredit(string credit)
+    {
+        if (credit.EndsWith(" and"))
+        {
+            credit = credit.Substring(0, credit.Length - 4);
+            credit = credit.Trim();
+        }
+
+        if (credit.EndsWith(" &amp;"))
+        {
+            credit = credit.Substring(0, credit.Length - 6);
+            credit = credit.Trim();
+        }
+
+        if (credit.EndsWith(" &"))
+        {
+            credit = credit.Substring(0, credit.Length - 2);
+            credit = credit.Trim();
+        }
+
+        credit = HttpUtility.HtmlDecode(credit);
+        credit = credit.Trim();
+
+        return credit;
     }
 }

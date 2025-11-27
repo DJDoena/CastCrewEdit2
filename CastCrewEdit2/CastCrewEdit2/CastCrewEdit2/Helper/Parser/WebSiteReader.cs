@@ -246,7 +246,7 @@ internal static class WebSiteReader
 
             var navigationCompleted = false;
 
-            browserForm.NavidationCompleted += (s, e) =>
+            browserForm.NavigationCompleted += (s, e) =>
             {
                 navigationCompleted = true;
             };

@@ -99,7 +99,7 @@ internal static class IMDbParser
             {
                 TransformationData = new IMDbToDVDProfilerCrewRoleTransformation()
                 {
-                    CreditTypeList = new CreditType[0],
+                    CreditTypeList = [],
                 };
 
                 MessageBox.Show(windowHandle, string.Format(MessageBoxTexts.FileCantBeRead, fileName), MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -109,7 +109,7 @@ internal static class IMDbParser
         {
             TransformationData = new IMDbToDVDProfilerCrewRoleTransformation()
             {
-                CreditTypeList = new CreditType[0],
+                CreditTypeList = [],
             };
 
             MessageBox.Show(windowHandle, string.Format(MessageBoxTexts.FileDoesNotExist, fileName), MessageBoxTexts.WarningHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);

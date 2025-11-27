@@ -1,0 +1,68 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+    <BuildType Name="UnitTest" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Folder Name="/SampleClient/">
+    <Project Path="CastCrewEdit2/CastCrewEdit2Observer/CastCrewEdit2Observer.vbproj">
+      <BuildType Solution="UnitTest|*" Project="Debug" />
+      <Platform Project="x64" />
+    </Project>
+  </Folder>
+  <Folder Name="/Tools/">
+    <Project Path="CastCrewEdit2/CheckForDuplicatesInCastCrewEdit2Cache/CheckForDuplicatesInCastCrewEdit2Cache.csproj">
+      <BuildType Solution="UnitTest|*" Project="Debug" />
+      <Platform Project="x64" />
+    </Project>
+    <Project Path="CastCrewEdit2/CompareProfilerXMLAndCastCrewEdit2Cache/CompareProfilerXMLAndCastCrewEdit2Cache.csproj">
+      <BuildType Solution="UnitTest|*" Project="Debug" />
+      <Platform Project="x64" />
+    </Project>
+    <Project Path="CastCrewEdit2/ConvertCastCrewEdit2PersonFile/ConvertCastCrewEdit2PersonFile.csproj">
+      <BuildType Solution="UnitTest|*" Project="Debug" />
+      <Platform Project="x64" />
+    </Project>
+    <Project Path="CastCrewEdit2/EditIMDbToDVDProfilerCrewRoleTransformation/EditIMDbToDVDProfilerCrewRoleTransformation.csproj">
+      <BuildType Solution="UnitTest|*" Project="Debug" />
+      <Platform Project="x64" />
+    </Project>
+    <Project Path="CastCrewEdit2/FindMergedCastCrew/FindMergedCastCrew.csproj">
+      <BuildType Solution="UnitTest|*" Project="Debug" />
+      <Platform Project="x64" />
+    </Project>
+  </Folder>
+  <Folder Name="/Tools/MergeCacheFiles/">
+    <Project Path="CastCrewEdit2/MergeCacheFiles/MergeCacheFilesForms/MergeCacheFilesForms.csproj">
+      <BuildType Solution="UnitTest|*" Project="Debug" />
+      <Platform Project="x64" />
+    </Project>
+    <Project Path="CastCrewEdit2/MergeCacheFiles/MergeCacheFilesLib/MergeCacheFilesLib.csproj">
+      <BuildType Solution="UnitTest|*" Project="Debug" />
+      <Platform Project="x64" />
+    </Project>
+    <Project Path="CastCrewEdit2/MergeCacheFiles/MergeCacheFilesWPF/MergeCacheFilesWPF.csproj">
+      <BuildType Solution="UnitTest|*" Project="Debug" />
+      <Platform Project="x64" />
+    </Project>
+  </Folder>
+  <Folder Name="/UnitTest/">
+    <Project Path="CastCrewEdit2/CastCrewEdit2/UnitTests/UnitTests.csproj">
+      <Platform Project="x64" />
+      <Build Solution="Debug|*" Project="false" />
+      <Build Solution="Release|*" Project="false" />
+    </Project>
+  </Folder>
+  <Project Path="CastCrewEdit2/CastCrewEdit2/CastCrewEdit2/CastCrewEdit2.csproj" DefaultStartup="true">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="CastCrewEdit2/CastCrewEdit2/CastCrewEdit2Adapter/CastCrewEdit2Adapter.vbproj">
+    <BuildType Solution="UnitTest|*" Project="Debug" />
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="CastCrewEdit2/CastCrewEdit2Library/CastCrewEdit2Library.csproj">
+    <BuildType Solution="UnitTest|*" Project="Debug" />
+    <Platform Project="x64" />
+  </Project>
+</Solution>

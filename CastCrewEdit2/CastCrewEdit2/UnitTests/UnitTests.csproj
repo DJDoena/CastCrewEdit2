@@ -20,9 +20,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="MSTest.TestAdapter" Version="4.0.1" />
-	  <PackageReference Include="MSTest.TestFramework" Version="4.0.1" />
-	  <PackageReference Include="System.Resources.Extensions" Version="8.0.0" />
+	  <PackageReference Include="MSTest.TestAdapter" Version="4.0.2" />
+	  <PackageReference Include="MSTest.TestFramework" Version="4.0.2" />
+	  <PackageReference Include="System.Resources.Extensions" Version="10.0.0" />
 	  <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
 	</ItemGroup>
 

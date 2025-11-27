@@ -59,7 +59,7 @@ public static class Program
 
     private static string _dataPath;
 
-    private static BrowserControlSelection _selectedBrowserControl;
+    internal static BrowserControlSelection SelectedBrowserControl;
 
     internal static DefaultValues DefaultValues
         => Settings.DefaultValues;
@@ -85,7 +85,7 @@ public static class Program
 
         DebugMode = false;
 
-        _selectedBrowserControl = BrowserControlSelection.Undefined;
+        SelectedBrowserControl = BrowserControlSelection.Undefined;
 
         AdapterEventHandler = new CastCrewEditAdapterEventHandler();
     }
@@ -189,19 +189,15 @@ public static class Program
                 }
                 else if (arg == "/forceoldbrowser" || arg == "/browser=ie6")
                 {
-                    _selectedBrowserControl = BrowserControlSelection.FormsDefault;
-                }
-                else if (arg == "/browser=webviewcompatible")
-                {
-                    _selectedBrowserControl = BrowserControlSelection.WebViewCompatible;
+                    SelectedBrowserControl = BrowserControlSelection.FormsDefault;
                 }
                 else if (arg == "/browser=webview")
                 {
-                    _selectedBrowserControl = BrowserControlSelection.WebView;
+                    SelectedBrowserControl = BrowserControlSelection.WebView;
                 }
                 else if (arg == "/browser=webview2")
                 {
-                    _selectedBrowserControl = BrowserControlSelection.WebView2;
+                    SelectedBrowserControl = BrowserControlSelection.WebView2;
                 }
             }
 
@@ -314,19 +310,19 @@ public static class Program
             }
         }
 
-        if (_selectedBrowserControl == BrowserControlSelection.Undefined)
+        if (SelectedBrowserControl == BrowserControlSelection.Undefined)
         {
             if (_isAtLeastWindows10Update1803 && !_runsAsElevated)
             {
-                _selectedBrowserControl = BrowserControlSelection.WebView;
+                SelectedBrowserControl = BrowserControlSelection.WebView;
             }
             else
             {
-                _selectedBrowserControl = BrowserControlSelection.FormsDefault;
+                SelectedBrowserControl = BrowserControlSelection.FormsDefault;
             }
         }
 
-        using var mainForm = new MainForm(skipversioncheck, _selectedBrowserControl);
+        using var mainForm = new MainForm(skipversioncheck);
 
         AdapterEventHandler.MainForm = mainForm;
 

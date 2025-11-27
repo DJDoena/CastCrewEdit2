@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
@@ -7,7 +8,11 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 
 internal static class CrewLineProcessor
 {
-    internal static CrewInfo Process(DefaultValues defaultValues, CreditTypeMatch creditTypeMatch, CrewMatch crewMatch, string credit, string originalCredit)
+    internal static CrewInfo Process(DefaultValues defaultValues
+        , CreditTypeMatch creditTypeMatch
+        , CrewMatch crewMatch
+        , string credit
+        , string originalCredit)
     {
         var name = NameParser.Parse(crewMatch.Name, defaultValues.StandardizeJuniorSenior);
 
@@ -19,6 +24,7 @@ internal static class CrewLineProcessor
             OriginalCredit = originalCredit,
         };
 
+        IEnumerable<string> creditParts;
         if (!string.IsNullOrEmpty(credit))
         {
             crewMember.CreditedAs = string.Empty;
@@ -43,14 +49,15 @@ internal static class CrewLineProcessor
                 }
             }
 
-            var creditParts = credit
+            creditParts = [.. credit
                 .Split(['(', ')'], StringSplitOptions.RemoveEmptyEntries)
                 .Where(cp => !cp.StartsWith("segment"))
-                .Where(cp => !string.IsNullOrWhiteSpace(cp));
-
-            credit = string.Join(", ", creditParts);
-
-            credit = credit.Trim();
+                .Where(cp => !string.IsNullOrWhiteSpace(cp))
+                .Select(CrewParser.CleanupCredit)];
+        }
+        else
+        {
+            creditParts = [];
         }
 
         var typeMatch = false;
@@ -59,7 +66,7 @@ internal static class CrewLineProcessor
 
         if (IMDbParser.TransformationData.CreditTypeList != null)
         {
-            var useCredit = FormatCreditType(defaultValues, creditTypeMatch, crewMember, credit, out subtypeMatch, out typeMatch);
+            var useCredit = FormatCreditType(defaultValues, creditTypeMatch, crewMember, creditParts, out subtypeMatch, out typeMatch);
 
             if (!useCredit)
             {
@@ -82,7 +89,7 @@ internal static class CrewLineProcessor
                 }
 
                 crewMember.CreditSubtype = CreditTypesDataGridViewHelper.CreditSubtypes.Custom;
-                crewMember.CustomRole = FormatCredit(credit, defaultValues.CapitalizeCustomRole);
+                crewMember.CustomRole = FormatCredit(creditParts, defaultValues.CapitalizeCustomRole);
             }
         }
         else
@@ -108,11 +115,11 @@ internal static class CrewLineProcessor
             {
                 if (defaultValues.IncludePrefixOnOtherCredits)
                 {
-                    crewMember.CustomRole = creditTypeMatch.CreditType + ": " + FormatCredit(credit, defaultValues.CapitalizeCustomRole);
+                    crewMember.CustomRole = creditTypeMatch.CreditType + ": " + FormatCredit(creditParts, defaultValues.CapitalizeCustomRole);
                 }
                 else
                 {
-                    crewMember.CustomRole = FormatCredit(credit, defaultValues.CapitalizeCustomRole);
+                    crewMember.CustomRole = FormatCredit(creditParts, defaultValues.CapitalizeCustomRole);
                 }
             }
         }
@@ -124,31 +131,60 @@ internal static class CrewLineProcessor
         return crewMember;
     }
 
-    private static string FormatCredit(string credit, bool capitalizeCustomRole)
+    private static string FormatCredit(IEnumerable<string> creditParts, bool capitalizeCustomRole)
     {
-        if (capitalizeCustomRole && !string.IsNullOrEmpty(credit))
+        string credit;
+        if (capitalizeCustomRole && creditParts.Any(credit => !string.IsNullOrWhiteSpace(credit)))
         {
-            credit = CultureInfo.GetCultureInfo("en-US").TextInfo.ToTitleCase(credit);
+            var formattedCreditParts = creditParts
+                .Where(credit => !string.IsNullOrWhiteSpace(credit))
+                .Select(credit => CultureInfo.GetCultureInfo("en-US").TextInfo.ToTitleCase(credit));
+
+            credit = string.Join(", ", formattedCreditParts);
+        }
+        else
+        {
+            credit = string.Empty;
         }
 
         return credit;
     }
 
-    private static bool FormatCreditType(DefaultValues defaultValues, CreditTypeMatch creditTypeMatch, CrewInfo crewMember, string originalCredit, out bool subtypeMatch, out bool typeMatch)
+    private static bool FormatCreditType(DefaultValues defaultValues
+        , CreditTypeMatch creditTypeMatch
+        , CrewInfo crewMember
+        , IEnumerable<string> originalCreditParts
+        , out bool subtypeMatch, out bool typeMatch)
     {
-        var useCredit = FormatCreditType(defaultValues, creditTypeMatch, crewMember, originalCredit, originalCredit, out subtypeMatch, out typeMatch);
+        var useCredit = FormatCreditType(defaultValues, creditTypeMatch, crewMember, originalCreditParts, originalCreditParts, out subtypeMatch, out typeMatch);
 
-        if (!subtypeMatch && originalCredit.Contains(":"))
+        if (!subtypeMatch)
         {
-            var shortCredit = originalCredit.Split(':')[0].TrimEnd();
+            foreach (var originalCredit in originalCreditParts)
+            {
+                if (originalCredit.Contains(":"))
+                {
+                    var shortCredit = originalCredit.Split(':')[0].TrimEnd();
 
-            useCredit = FormatCreditType(defaultValues, creditTypeMatch, crewMember, originalCredit, shortCredit, out subtypeMatch, out typeMatch);
+                    useCredit = FormatCreditType(defaultValues, creditTypeMatch, crewMember, [originalCredit], [shortCredit], out subtypeMatch, out typeMatch);
+
+                    if (subtypeMatch)
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
         return useCredit;
     }
 
-    private static bool FormatCreditType(DefaultValues defaultValues, CreditTypeMatch creditTypeMatch, CrewInfo crewMember, string originalCredit, string shortCredit, out bool subtypeMatch, out bool typeMatch)
+    private static bool FormatCreditType(DefaultValues defaultValues
+        , CreditTypeMatch creditTypeMatch
+        , CrewInfo crewMember
+        , IEnumerable<string> originalCreditParts
+        , IEnumerable<string> shortCreditParts
+        , out bool subtypeMatch, out bool typeMatch)
     {
         var useCredit = true;
 
@@ -227,17 +263,25 @@ internal static class CrewLineProcessor
                     {
                         if (creditSubtype.IMDbCreditSubtype != null)
                         {
-                            if (creditSubtype.IMDbCreditSubtype.Value.Equals(shortCredit, StringComparison.InvariantCultureIgnoreCase))
+                            if (shortCreditParts.Any(shortCredit => creditSubtype.IMDbCreditSubtype.Value.Equals(shortCredit, StringComparison.InvariantCultureIgnoreCase)))
                             {
-                                SetCreditSubtype(defaultValues, crewMember, originalCredit, shortCredit, creditSubtype);
+                                SetCreditSubtype(defaultValues, crewMember, originalCreditParts, shortCreditParts, creditSubtype);
 
                                 subtypeMatch = true;
 
                                 break;
                             }
-                            else if (StartsWith(creditSubtype.IMDbCreditSubtype.StartsWithSpecified && creditSubtype.IMDbCreditSubtype.StartsWith, shortCredit, creditSubtype.IMDbCreditSubtype.Value))
+                            else if (shortCreditParts.Any(shortCredit => StartsWith(creditSubtype.IMDbCreditSubtype.StartsWithSpecified && creditSubtype.IMDbCreditSubtype.StartsWith, shortCredit, creditSubtype.IMDbCreditSubtype.Value)))
                             {
-                                SetCreditSubtype(defaultValues, crewMember, originalCredit, shortCredit, creditSubtype);
+                                SetCreditSubtype(defaultValues, crewMember, originalCreditParts, shortCreditParts, creditSubtype);
+
+                                subtypeMatch = true;
+
+                                break;
+                            }
+                            else if (!shortCreditParts.Any() && string.IsNullOrEmpty(creditSubtype.IMDbCreditSubtype.Value))
+                            {
+                                SetCreditSubtype(defaultValues, crewMember, originalCreditParts, shortCreditParts, creditSubtype);
 
                                 subtypeMatch = true;
 
@@ -264,16 +308,20 @@ internal static class CrewLineProcessor
             && (searchText.StartsWith(compareText + " ", StringComparison.InvariantCultureIgnoreCase)
             || searchText.StartsWith(compareText + "s", StringComparison.InvariantCultureIgnoreCase));
 
-    private static void SetCreditSubtype(DefaultValues defaultValues, CrewInfo crewMember, string originalCredit, string shortCredit, CreditSubtype creditSubtype)
+    private static void SetCreditSubtype(DefaultValues defaultValues
+        , CrewInfo crewMember
+        , IEnumerable<string> originalCreditParts
+        , IEnumerable<string> shortCreditParts
+        , CreditSubtype creditSubtype)
     {
         crewMember.CreditSubtype = creditSubtype.DVDProfilerCreditSubtype;
 
         if (defaultValues.RetainOriginalCredit
-            && !creditSubtype.DVDProfilerCreditSubtype.Equals(shortCredit, StringComparison.InvariantCultureIgnoreCase))
+            && !shortCreditParts.Any(shortCredit => creditSubtype.DVDProfilerCreditSubtype.Equals(shortCredit, StringComparison.InvariantCultureIgnoreCase)))
         {
-            if (!string.IsNullOrEmpty(originalCredit))
+            if (originalCreditParts.Any(originalCredit => !string.IsNullOrEmpty(originalCredit)))
             {
-                crewMember.CustomRole = FormatCredit(originalCredit, defaultValues.CapitalizeCustomRole);
+                crewMember.CustomRole = FormatCredit(originalCreditParts, defaultValues.CapitalizeCustomRole);
             }
             else if (!string.IsNullOrEmpty(creditSubtype.DVDProfilerCustomRole))
             {
