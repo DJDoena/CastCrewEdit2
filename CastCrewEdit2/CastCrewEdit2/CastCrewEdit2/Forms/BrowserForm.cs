@@ -25,9 +25,12 @@ internal partial class BrowserForm : Form
     {
         if (_environment == null)
         {
-            Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--lang=en-US");
+            var options = new CoreWebView2EnvironmentOptions()
+            {
+                Language = "en-US",
+            };
 
-            _environment = await CoreWebView2Environment.CreateAsync(null, Path.Combine(Path.GetTempPath(), "CCE2browser"));
+            _environment = await CoreWebView2Environment.CreateAsync(null, Path.Combine(Path.GetTempPath(), "CCE2browser"), options);
         }
 
         return _environment;

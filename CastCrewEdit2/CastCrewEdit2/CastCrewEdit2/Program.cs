@@ -187,7 +187,7 @@ public static class Program
                 {
                     embedded = true;
                 }
-                else if (arg == "/forceoldbrowser" || arg == "/browser=ie6")
+                else if (arg is "/forceoldbrowser" or "/browser=ie6")
                 {
                     SelectedBrowserControl = BrowserControlSelection.FormsDefault;
                 }
@@ -197,6 +197,8 @@ public static class Program
                 }
                 else if (arg == "/browser=webview2")
                 {
+                    Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--lang=en-US");
+
                     SelectedBrowserControl = BrowserControlSelection.WebView2;
                 }
             }

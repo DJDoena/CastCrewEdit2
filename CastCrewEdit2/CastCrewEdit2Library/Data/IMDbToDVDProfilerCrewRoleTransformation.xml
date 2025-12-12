@@ -11,10 +11,20 @@
           <DVDProfilerCustomRole />
         </CreditSubtype>
         <CreditSubtype>
-          <IMDbCreditSubtype StartsWith="true">director</IMDbCreditSubtype>
+          <IMDbCreditSubtype>director</IMDbCreditSubtype>
           <DVDProfilerCreditSubtype>Director</DVDProfilerCreditSubtype>
           <DVDProfilerCustomRole />
         </CreditSubtype>
+		<CreditSubtype>
+		  <IMDbCreditSubtype>directors</IMDbCreditSubtype>
+		  <DVDProfilerCreditSubtype>Director</DVDProfilerCreditSubtype>
+		  <DVDProfilerCustomRole />
+		</CreditSubtype>
+		<CreditSubtype>
+		  <IMDbCreditSubtype>episode director</IMDbCreditSubtype>
+		  <DVDProfilerCreditSubtype>Director</DVDProfilerCreditSubtype>
+		  <DVDProfilerCustomRole />
+		</CreditSubtype>
         <CreditSubtype>
           <IMDbCreditSubtype>directed by</IMDbCreditSubtype>
           <DVDProfilerCreditSubtype>Director</DVDProfilerCreditSubtype>
@@ -37,10 +47,20 @@
           <DVDProfilerCustomRole />
         </CreditSubtype>
         <CreditSubtype>
-          <IMDbCreditSubtype StartsWith="true">director</IMDbCreditSubtype>
+          <IMDbCreditSubtype>director</IMDbCreditSubtype>
           <DVDProfilerCreditSubtype>Director</DVDProfilerCreditSubtype>
           <DVDProfilerCustomRole />
         </CreditSubtype>
+		<CreditSubtype>
+		  <IMDbCreditSubtype>directors</IMDbCreditSubtype>
+		  <DVDProfilerCreditSubtype>Director</DVDProfilerCreditSubtype>
+		  <DVDProfilerCustomRole />
+		</CreditSubtype>
+		<CreditSubtype>
+		  <IMDbCreditSubtype>episode director</IMDbCreditSubtype>
+		  <DVDProfilerCreditSubtype>Director</DVDProfilerCreditSubtype>
+		  <DVDProfilerCustomRole />
+		</CreditSubtype>
         <CreditSubtype>
           <IMDbCreditSubtype>directed by</IMDbCreditSubtype>
           <DVDProfilerCreditSubtype>Director</DVDProfilerCreditSubtype>
