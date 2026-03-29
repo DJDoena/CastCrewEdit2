@@ -64,7 +64,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
             catch (Exception ex)
             {
-                UIServices.ShowMessageBox(ex.Message, "Error", Buttons.OK, Icon.Error);
+                UIServices.ShowMessageBox(ex.Message, "Error", MessageButtons.OK, MessageIcon.Error);
             }
         }
 
@@ -125,7 +125,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
             catch
             {
-                UIServices.ShowMessageBox($"Could not read '{SourceFile}'", "Error", Buttons.OK, Icon.Error);
+                UIServices.ShowMessageBox($"Could not read '{SourceFile}'", "Error", MessageButtons.OK, MessageIcon.Error);
 
                 return (false);
             }
@@ -152,7 +152,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
                 }
                 catch
                 {
-                    UIServices.ShowMessageBox($"Could not write '{TargetFile}'", "Error", Buttons.OK, Icon.Error);
+                    UIServices.ShowMessageBox($"Could not write '{TargetFile}'", "Error", MessageButtons.OK, MessageIcon.Error);
                 }
             }
         }

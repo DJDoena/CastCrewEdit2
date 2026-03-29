@@ -80,7 +80,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main
                 }
                 catch (Exception ex)
                 {
-                    UIServices.ShowMessageBox($"The following error occured during load:{Environment.NewLine}{ex.Message}", "Error", Buttons.OK, Icon.Error);
+                    UIServices.ShowMessageBox($"The following error occured during load:{Environment.NewLine}{ex.Message}", "Error", MessageButtons.OK, MessageIcon.Error);
                 }
             }
 

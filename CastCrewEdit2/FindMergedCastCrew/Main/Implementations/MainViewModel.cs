@@ -338,7 +338,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
             }
             catch (Exception ex)
             {
-                UIServices.ShowMessageBox(ex.Message, "Error", Buttons.OK, Icon.Error);
+                UIServices.ShowMessageBox(ex.Message, "Error", MessageButtons.OK, MessageIcon.Error);
             }
 
             this.TaskIsRunning = false;
@@ -382,7 +382,7 @@ namespace DoenaSoft.DVDProfiler.FindMergedCastCrew.Main.Implementations
 
         private bool ClearCachedData()
             => ((this.ProcessData.ProcessedPersons.Count == 0)
-                || (UIServices.ShowMessageBox("There is cached data from a previous run. Reset (yes) or continue (no)?", "Reset or continue?", Buttons.YesNo, Icon.Question) == Result.Yes));
+                || (UIServices.ShowMessageBox("There is cached data from a previous run. Reset (yes) or continue (no)?", "Reset or continue?", MessageButtons.YesNo, MessageIcon.Question) == MessageResult.Yes));
 
 
         #region SessionData
