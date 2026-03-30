@@ -68,7 +68,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                         {
                             if (this.Serialize(right, targetList))
                             {
-                                m_UIServices.ShowMessageBox("Done.", string.Empty, Buttons.OK, Icon.Information);
+                                m_UIServices.ShowMessageBox("Done.", string.Empty, MessageButtons.OK, MessageIcon.Information);
                             }
                         }
                     }
@@ -100,7 +100,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                         targetList = this.Merge(leftList, rightList);
                         if (this.Serialize(target, targetList))
                         {
-                            m_UIServices.ShowMessageBox("Done.", string.Empty, Buttons.OK, Icon.Information);
+                            m_UIServices.ShowMessageBox("Done.", string.Empty, MessageButtons.OK, MessageIcon.Information);
                         }
                     }
                 }
@@ -258,7 +258,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                     string text;
 
                     text = string.Format("'{0}' was not created with Cast/Crew Edit 2 v1.8.9.1 or higher!", fileName);
-                    m_UIServices.ShowMessageBox(text, "Error", Buttons.OK, Icon.Error);
+                    m_UIServices.ShowMessageBox(text, "Error", MessageButtons.OK, MessageIcon.Error);
                     return (false);
                 }
             }
@@ -278,7 +278,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                 string text;
 
                 text = string.Format("Could not read '{0}'", fileName);
-                m_UIServices.ShowMessageBox(text, "Error", Buttons.OK, Icon.Error);
+                m_UIServices.ShowMessageBox(text, "Error", MessageButtons.OK, MessageIcon.Error);
                 return (false);
             }
             return (true);
@@ -302,13 +302,13 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             tempTarget = this.GetFile(this.TargetFileName, false);
             if (tempTarget == null)
             {
-                m_UIServices.ShowMessageBox("Target file name is empty!", "Error", Buttons.OK, Icon.Error);
+                m_UIServices.ShowMessageBox("Target file name is empty!", "Error", MessageButtons.OK, MessageIcon.Error);
                 return (false);
             }
             if (tempLeft.FullName == tempTarget.FullName)
             {
                 if (m_UIServices.ShowMessageBox("Your left file is the same as your target file. Do you want to overwrite it?", "Overwrite?"
-                    , Buttons.OK, Icon.Error) == Result.No)
+                    , MessageButtons.OK, MessageIcon.Error) == MessageResult.No)
                 {
                     return (false);
                 }
@@ -316,7 +316,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             else if (tempRight.FullName == tempTarget.FullName)
             {
                 if (m_UIServices.ShowMessageBox("Your right file is the same as your target file. Do you want to overwrite it?", "Overwrite?"
-                    , Buttons.OK, Icon.Error) == Result.No)
+                    , MessageButtons.OK, MessageIcon.Error) == MessageResult.No)
                 {
                     return (false);
                 }
@@ -363,18 +363,18 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
             tempLeft = this.GetFile(this.LeftFileName, true);
             if (tempLeft == null)
             {
-                m_UIServices.ShowMessageBox("Left file name is empty or file does not exist!", "Error", Buttons.OK, Icon.Error);
+                m_UIServices.ShowMessageBox("Left file name is empty or file does not exist!", "Error", MessageButtons.OK, MessageIcon.Error);
                 return (false);
             }
             tempRight = this.GetFile(this.RightFileName, true);
             if (tempRight == null)
             {
-                m_UIServices.ShowMessageBox("Right file name is empty or file does not exist!", "Error", Buttons.OK, Icon.Error);
+                m_UIServices.ShowMessageBox("Right file name is empty or file does not exist!", "Error", MessageButtons.OK, MessageIcon.Error);
                 return (false);
             }
             if (tempLeft.FullName == tempRight.FullName)
             {
-                m_UIServices.ShowMessageBox("Left and right file name are the same!", "Error", Buttons.OK, Icon.Error);
+                m_UIServices.ShowMessageBox("Left and right file name are the same!", "Error", MessageButtons.OK, MessageIcon.Error);
                 return (false);
             }
             leftFileName = tempLeft.Name.ToLower();
@@ -383,7 +383,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                 || (leftFileName.Contains("crew") && (rightFileName.Contains("cast"))))
             {
                 if (m_UIServices.ShowMessageBox("You're about to merge a cast and a crew file. You should not do that. Are you sure?", "Merge cast and crew?"
-                , Buttons.OK, Icon.Error) == Result.No)
+                , MessageButtons.OK, MessageIcon.Error) == MessageResult.No)
                 {
                     return (false);
                 }
@@ -418,7 +418,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2.MergeCacheFiles
                 string text;
 
                 text = string.Format("Could not write '{0}'", fileInfo.FullName);
-                m_UIServices.ShowMessageBox(text, "Error", Buttons.OK, Icon.Error);
+                m_UIServices.ShowMessageBox(text, "Error", MessageButtons.OK, MessageIcon.Error);
                 return (false);
             }
             return (true);

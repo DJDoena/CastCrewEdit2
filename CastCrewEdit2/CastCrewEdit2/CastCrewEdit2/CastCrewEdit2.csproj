@@ -31,7 +31,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DoenaSoft.JsonFragmentParser" Version="1.0.0" />
+		<PackageReference Include="DoenaSoft.JsonFragmentParser" Version="1.0.1" />
 		<PackageReference Include="DoenaSoft.WindowsAPICodePack" Version="4.7.5" />
 		<PackageReference Include="Microsoft.Toolkit.Forms.UI.Controls.WebView" Version="6.1.2" />
 		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3856.49" />
