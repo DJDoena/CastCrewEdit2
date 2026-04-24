@@ -4,7 +4,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using Microsoft.Web.WebView2.Core;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
@@ -52,33 +51,33 @@ internal partial class BrowserForm : Form
     private Control InitWebBrowser()
     {
         Control webBrowser;
-        switch (Program.SelectedBrowserControl)
-        {
-            case BrowserControlSelection.FormsDefault:
-                {
-                    webBrowser = this.InitWebBrowserFormsDefault();
+        //switch (Program.SelectedBrowserControl)
+        //{
+        //    case BrowserControlSelection.FormsDefault:
+        //        {
+        //            webBrowser = this.InitWebBrowserFormsDefault();
 
-                    break;
-                }
-            case BrowserControlSelection.WebView:
-                {
-                    webBrowser = this.InitWebBrowserWebView();
+        //            break;
+        //        }
+        //    case BrowserControlSelection.WebView:
+        //        {
+        //            webBrowser = this.InitWebBrowserWebView();
 
-                    break;
-                }
-            case BrowserControlSelection.WebView2:
-                {
-                    webBrowser = this.InitWebBrowserWebView2();
+        //            break;
+        //        }
+        //    case BrowserControlSelection.WebView2:
+        //        {
+        webBrowser = this.InitWebBrowserWebView2();
 
-                    break;
-                }
-            default:
-                {
-                    webBrowser = null;
+        //            break;
+        //        }
+        //    default:
+        //        {
+        //            webBrowser = null;
 
-                    break;
-                }
-        }
+        //            break;
+        //        }
+        //}
 
         if (webBrowser != null)
         {
@@ -99,27 +98,27 @@ internal partial class BrowserForm : Form
         return webBrowser;
     }
 
-    private Control InitWebBrowserFormsDefault()
-    {
-        var webBrowser = new System.Windows.Forms.WebBrowser()
-        {
-            AllowWebBrowserDrop = false,
-            ScriptErrorsSuppressed = true,
-        };
+    //private Control InitWebBrowserFormsDefault()
+    //{
+    //    var webBrowser = new System.Windows.Forms.WebBrowser()
+    //    {
+    //        AllowWebBrowserDrop = false,
+    //        ScriptErrorsSuppressed = true,
+    //    };
 
-        webBrowser.Navigated += this.OnWebBrowserNavigated;
+    //    webBrowser.Navigated += this.OnWebBrowserNavigated;
 
-        return webBrowser;
-    }
+    //    return webBrowser;
+    //}
 
-    private Control InitWebBrowserWebView()
-    {
-        var webBrowser = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
+    //private Control InitWebBrowserWebView()
+    //{
+    //    var webBrowser = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
 
-        webBrowser.NavigationCompleted += this.OnWebViewNavigationCompleted;
+    //    webBrowser.NavigationCompleted += this.OnWebViewNavigationCompleted;
 
-        return webBrowser;
-    }
+    //    return webBrowser;
+    //}
 
     private Control InitWebBrowserWebView2()
     {
@@ -134,57 +133,57 @@ internal partial class BrowserForm : Form
 
     #region OnWebBrowser
 
-    private async void OnWebBrowserNavigated(object sender, System.Windows.Forms.WebBrowserNavigatedEventArgs e)
-    {
-        if (_webBrowser is System.Windows.Forms.WebBrowser webBrowserForms)
-        {
-            for (var scrollIndex = 0; scrollIndex < 5; scrollIndex++)
-            {
-                await Task.Delay(1000);
-            }
+    //private async void OnWebBrowserNavigated(object sender, System.Windows.Forms.WebBrowserNavigatedEventArgs e)
+    //{
+    //    if (_webBrowser is System.Windows.Forms.WebBrowser webBrowserForms)
+    //    {
+    //        for (var scrollIndex = 0; scrollIndex < 5; scrollIndex++)
+    //        {
+    //            await Task.Delay(1000);
+    //        }
 
-            try
-            {
-                var document = webBrowserForms.Document;
+    //        try
+    //        {
+    //            var document = webBrowserForms.Document;
 
-                var html = document.Body?.OuterHtml ?? string.Empty;
+    //            var html = document.Body?.OuterHtml ?? string.Empty;
 
-                this.Html = html;
-            }
-            catch
-            {
-                this.Html = string.Empty;
-            }
-        }
+    //            this.Html = html;
+    //        }
+    //        catch
+    //        {
+    //            this.Html = string.Empty;
+    //        }
+    //    }
 
-        NavigationCompleted?.Invoke(this, EventArgs.Empty);
-    }
+    //    NavigationCompleted?.Invoke(this, EventArgs.Empty);
+    //}
 
-    private async void OnWebViewNavigationCompleted(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e)
-    {
-        if (_webBrowser is Microsoft.Toolkit.Forms.UI.Controls.WebView webView)
-        {
-            for (var scrollIndex = 0; scrollIndex < 5; scrollIndex++)
-            {
-                await Task.Delay(1000);
+    //private async void OnWebViewNavigationCompleted(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e)
+    //{
+    //    if (_webBrowser is Microsoft.Toolkit.Forms.UI.Controls.WebView webView)
+    //    {
+    //        for (var scrollIndex = 0; scrollIndex < 5; scrollIndex++)
+    //        {
+    //            await Task.Delay(1000);
 
-                await webView.InvokeScriptAsync("eval", ["window.scroll(0, document.body.scrollHeight);"]);
-            }
+    //            await webView.InvokeScriptAsync("eval", ["window.scroll(0, document.body.scrollHeight);"]);
+    //        }
 
-            try
-            {
-                var html = await webView.InvokeScriptAsync("eval", ["document.documentElement.outerHTML;"]);
+    //        try
+    //        {
+    //            var html = await webView.InvokeScriptAsync("eval", ["document.documentElement.outerHTML;"]);
 
-                this.Html = html;
-            }
-            catch
-            {
-                this.Html = string.Empty;
-            }
-        }
+    //            this.Html = html;
+    //        }
+    //        catch
+    //        {
+    //            this.Html = string.Empty;
+    //        }
+    //    }
 
-        NavigationCompleted?.Invoke(this, EventArgs.Empty);
-    }
+    //    NavigationCompleted?.Invoke(this, EventArgs.Empty);
+    //}
 
     #endregion
 
@@ -227,15 +226,16 @@ internal partial class BrowserForm : Form
 
     private async Task InitialNavigate()
     {
-        if (_webBrowser is System.Windows.Forms.WebBrowser webBrowserForms)
-        {
-            webBrowserForms.Navigate(_url);
-        }
-        else if (_webBrowser is Microsoft.Toolkit.Forms.UI.Controls.WebView webView)
-        {
-            webView.Source = new Uri(_url);
-        }
-        else if (_webBrowser is Microsoft.Web.WebView2.WinForms.WebView2 webView2)
+        //if (_webBrowser is System.Windows.Forms.WebBrowser webBrowserForms)
+        //{
+        //    webBrowserForms.Navigate(_url);
+        //}
+        //else if (_webBrowser is Microsoft.Toolkit.Forms.UI.Controls.WebView webView)
+        //{
+        //    webView.Source = new Uri(_url);
+        //}
+        //else
+        if (_webBrowser is Microsoft.Web.WebView2.WinForms.WebView2 webView2)
         {
             var environment = await InitWebView2();
 
@@ -247,15 +247,16 @@ internal partial class BrowserForm : Form
 
     private void OnBrowserFormClosed(object sender, FormClosedEventArgs e)
     {
-        if (_webBrowser is System.Windows.Forms.WebBrowser webBrowserForms)
-        {
-            webBrowserForms.Navigated -= this.OnWebBrowserNavigated;
-        }
-        else if (_webBrowser is Microsoft.Toolkit.Forms.UI.Controls.WebView webView)
-        {
-            webView.NavigationCompleted -= this.OnWebViewNavigationCompleted;
-        }
-        else if (_webBrowser is Microsoft.Web.WebView2.WinForms.WebView2 webView2)
+        //if (_webBrowser is System.Windows.Forms.WebBrowser webBrowserForms)
+        //{
+        //    webBrowserForms.Navigated -= this.OnWebBrowserNavigated;
+        //}
+        //else if (_webBrowser is Microsoft.Toolkit.Forms.UI.Controls.WebView webView)
+        //{
+        //    webView.NavigationCompleted -= this.OnWebViewNavigationCompleted;
+        //}
+        //else
+        if (_webBrowser is Microsoft.Web.WebView2.WinForms.WebView2 webView2)
         {
             webView2.NavigationCompleted -= this.OnWebView2NavigationCompleted;
         }

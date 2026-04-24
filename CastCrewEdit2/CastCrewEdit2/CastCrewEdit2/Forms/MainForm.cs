@@ -112,33 +112,33 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
     private Control InitWebBrowser()
     {
         Control webBrowser;
-        switch (Program.SelectedBrowserControl)
-        {
-            case BrowserControlSelection.FormsDefault:
-                {
-                    webBrowser = this.InitWebBrowserFormsDefault();
+        //switch (Program.SelectedBrowserControl)
+        //{
+        //    case BrowserControlSelection.FormsDefault:
+        //        {
+        //            webBrowser = this.InitWebBrowserFormsDefault();
 
-                    break;
-                }
-            case BrowserControlSelection.WebView:
-                {
-                    webBrowser = this.InitWebBrowserWebView();
+        //            break;
+        //        }
+        //    case BrowserControlSelection.WebView:
+        //        {
+        //            webBrowser = this.InitWebBrowserWebView();
 
-                    break;
-                }
-            case BrowserControlSelection.WebView2:
-                {
-                    webBrowser = this.InitWebBrowserWebView2();
+        //            break;
+        //        }
+        //    case BrowserControlSelection.WebView2:
+        //        {
+        webBrowser = this.InitWebBrowserWebView2();
 
-                    break;
-                }
-            default:
-                {
-                    webBrowser = null;
+        //            break;
+        //        }
+        //    default:
+        //        {
+        //            webBrowser = null;
 
-                    break;
-                }
-        }
+        //            break;
+        //        }
+        //}
 
         if (webBrowser != null)
         {
@@ -159,29 +159,29 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
         return webBrowser;
     }
 
-    private Control InitWebBrowserFormsDefault()
-    {
-        var webBrowser = new System.Windows.Forms.WebBrowser()
-        {
-            AllowWebBrowserDrop = false,
-            ScriptErrorsSuppressed = true,
-        };
+    //private Control InitWebBrowserFormsDefault()
+    //{
+    //    var webBrowser = new System.Windows.Forms.WebBrowser()
+    //    {
+    //        AllowWebBrowserDrop = false,
+    //        ScriptErrorsSuppressed = true,
+    //    };
 
-        webBrowser.Navigating += this.OnWebBrowserNavigating;
-        webBrowser.Navigated += this.OnWebBrowserNavigated;
+    //    webBrowser.Navigating += this.OnWebBrowserNavigating;
+    //    webBrowser.Navigated += this.OnWebBrowserNavigated;
 
-        return webBrowser;
-    }
+    //    return webBrowser;
+    //}
 
-    private Control InitWebBrowserWebView()
-    {
-        var webBrowser = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
+    //private Control InitWebBrowserWebView()
+    //{
+    //    var webBrowser = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
 
-        webBrowser.NavigationStarting += this.OnWebViewNavigationStarting;
-        webBrowser.NavigationCompleted += this.OnWebViewNavigationCompleted;
+    //    webBrowser.NavigationStarting += this.OnWebViewNavigationStarting;
+    //    webBrowser.NavigationCompleted += this.OnWebViewNavigationCompleted;
 
-        return webBrowser;
-    }
+    //    return webBrowser;
+    //}
 
     private Control InitWebBrowserWebView2()
     {
@@ -527,12 +527,12 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
 
     private async Task InitialNavigate()
     {
-        if (Program.SelectedBrowserControl == BrowserControlSelection.WebView2)
-        {
-            var environment = await BrowserForm.InitWebView2();
+        //if (Program.SelectedBrowserControl == BrowserControlSelection.WebView2)
+        //{
+        var environment = await BrowserForm.InitWebView2();
 
-            await ((Microsoft.Web.WebView2.WinForms.WebView2)_webBrowser).EnsureCoreWebView2Async(environment);
-        }
+        await ((Microsoft.Web.WebView2.WinForms.WebView2)_webBrowser).EnsureCoreWebView2Async(environment);
+        //}
 
         this.NavigateTo("https://www.imdb.com/find?s=tt&q=");
     }
@@ -1452,27 +1452,27 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
 
     private void NavigateTo(string url)
     {
-        switch (Program.SelectedBrowserControl)
-        {
-            case BrowserControlSelection.FormsDefault:
-                {
-                    ((System.Windows.Forms.WebBrowser)_webBrowser).Navigate(url);
+        //switch (Program.SelectedBrowserControl)
+        //{
+        //    case BrowserControlSelection.FormsDefault:
+        //        {
+        //            ((System.Windows.Forms.WebBrowser)_webBrowser).Navigate(url);
 
-                    break;
-                }
-            case BrowserControlSelection.WebView:
-                {
-                    ((Microsoft.Toolkit.Forms.UI.Controls.WebView)_webBrowser).Navigate(url);
+        //            break;
+        //        }
+        //    case BrowserControlSelection.WebView:
+        //        {
+        //            ((Microsoft.Toolkit.Forms.UI.Controls.WebView)_webBrowser).Navigate(url);
 
-                    break;
-                }
-            case BrowserControlSelection.WebView2:
-                {
-                    ((Microsoft.Web.WebView2.WinForms.WebView2)_webBrowser).Source = new Uri(url);
+        //            break;
+        //        }
+        //    case BrowserControlSelection.WebView2:
+        //        {
+        ((Microsoft.Web.WebView2.WinForms.WebView2)_webBrowser).Source = new Uri(url);
 
-                    break;
-                }
-        }
+        //            break;
+        //        }
+        //}
     }
 
     private void OnBrowserUrlComboBoxKeyUp(object sender, KeyEventArgs e)
@@ -1629,11 +1629,11 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
 
     private void OnWebBrowserNavigated(object sender, WebBrowserNavigatedEventArgs e) => this.UpdateUri(e.Url);
 
-    private void OnWebViewNavigationStarting(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationStartingEventArgs e)
-        => this.UpdateUri(e.Uri);
+    //private void OnWebViewNavigationStarting(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationStartingEventArgs e)
+    //    => this.UpdateUri(e.Uri);
 
-    private void OnWebViewNavigationCompleted(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e)
-        => this.UpdateUri(e.Uri);
+    //private void OnWebViewNavigationCompleted(object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e)
+    //    => this.UpdateUri(e.Uri);
 
     private void OnWebView2NavigationStarting(object sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs e)
         => this.UpdateUriFromWebView2();

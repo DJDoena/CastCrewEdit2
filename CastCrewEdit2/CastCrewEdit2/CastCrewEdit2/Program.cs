@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
@@ -47,9 +46,9 @@ public static class Program
 
     private static readonly WindowHandle _windowHandle;
 
-    private static readonly bool _isAtLeastWindows10Update1803;
+    //private static readonly bool _isAtLeastWindows10Update1803;
 
-    private static readonly bool _runsAsElevated;
+    //private static readonly bool _runsAsElevated;
 
     private static string _settingsFile;
 
@@ -59,7 +58,7 @@ public static class Program
 
     private static string _dataPath;
 
-    internal static BrowserControlSelection SelectedBrowserControl;
+    //internal static BrowserControlSelection SelectedBrowserControl;
 
     internal static DefaultValues DefaultValues
         => Settings.DefaultValues;
@@ -69,9 +68,9 @@ public static class Program
 
     static Program()
     {
-        _isAtLeastWindows10Update1803 = GetIsAtLeastWindows10Update1803();
+        //_isAtLeastWindows10Update1803 = GetIsAtLeastWindows10Update1803();
 
-        _runsAsElevated = false;
+        //_runsAsElevated = false;
 
         RegistryAccess.Init("Doena Soft.", "CastCrewEdit2");
 
@@ -85,7 +84,7 @@ public static class Program
 
         DebugMode = false;
 
-        SelectedBrowserControl = BrowserControlSelection.Undefined;
+        //SelectedBrowserControl = BrowserControlSelection.Undefined;
 
         AdapterEventHandler = new CastCrewEditAdapterEventHandler();
     }
@@ -106,30 +105,30 @@ public static class Program
         LogFile = Path.Combine(_dataPath, "Log.html");
     }
 
-    private static bool GetIsAtLeastWindows10Update1803()
-    {
-        var isAtLeastWindows10Update1803 = false;
+    //private static bool GetIsAtLeastWindows10Update1803()
+    //{
+    //    var isAtLeastWindows10Update1803 = false;
 
-        var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+    //    var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
 
-        var productName = key.GetValue("ProductName") as string ?? string.Empty;
+    //    var productName = key.GetValue("ProductName") as string ?? string.Empty;
 
-        if (productName.StartsWith("Windows 10"))
-        {
-            var releaseIdString = key.GetValue("ReleaseId") as string ?? string.Empty;
+    //    if (productName.StartsWith("Windows 10"))
+    //    {
+    //        var releaseIdString = key.GetValue("ReleaseId") as string ?? string.Empty;
 
-            if (int.TryParse(releaseIdString, out var releaseId) && releaseId >= 1803)
-            {
-                isAtLeastWindows10Update1803 = true;
-            }
-        }
-        else if (productName.StartsWith("Windows 11"))
-        {
-            isAtLeastWindows10Update1803 = true;
-        }
+    //        if (int.TryParse(releaseIdString, out var releaseId) && releaseId >= 1803)
+    //        {
+    //            isAtLeastWindows10Update1803 = true;
+    //        }
+    //    }
+    //    else if (productName.StartsWith("Windows 11"))
+    //    {
+    //        isAtLeastWindows10Update1803 = true;
+    //    }
 
-        return isAtLeastWindows10Update1803;
-    }
+    //    return isAtLeastWindows10Update1803;
+    //}
 
     internal static string GetRootPath()
     {
@@ -187,24 +186,26 @@ public static class Program
                 {
                     embedded = true;
                 }
-                else if (arg is "/forceoldbrowser" or "/browser=ie6")
-                {
-                    SelectedBrowserControl = BrowserControlSelection.FormsDefault;
-                }
-                else if (arg == "/browser=webview")
-                {
-                    SelectedBrowserControl = BrowserControlSelection.WebView;
-                }
-                else if (arg == "/browser=webview2")
-                {
-                    Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--lang=en-US");
+                //else if (arg is "/forceoldbrowser" or "/browser=ie6")
+                //{
+                //    SelectedBrowserControl = BrowserControlSelection.FormsDefault;
+                //}
+                //else if (arg == "/browser=webview")
+                //{
+                //    SelectedBrowserControl = BrowserControlSelection.WebView;
+                //}
+                //else if (arg == "/browser=webview2")
+                //{
+                //    Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--lang=en-US");
 
-                    SelectedBrowserControl = BrowserControlSelection.WebView2;
-                }
+                //    SelectedBrowserControl = BrowserControlSelection.WebView2;
+                //}
             }
-
-            MessageBoxTexts.Culture = Thread.CurrentThread.CurrentUICulture;
         }
+
+        MessageBoxTexts.Culture = Thread.CurrentThread.CurrentUICulture;
+        Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--lang=en-US");
+
         try
         {
             if (!Directory.Exists(_dataPath))
@@ -312,17 +313,17 @@ public static class Program
             }
         }
 
-        if (SelectedBrowserControl == BrowserControlSelection.Undefined)
-        {
-            if (_isAtLeastWindows10Update1803 && !_runsAsElevated)
-            {
-                SelectedBrowserControl = BrowserControlSelection.WebView;
-            }
-            else
-            {
-                SelectedBrowserControl = BrowserControlSelection.FormsDefault;
-            }
-        }
+        //if (SelectedBrowserControl == BrowserControlSelection.Undefined)
+        //{
+        //    if (_isAtLeastWindows10Update1803 && !_runsAsElevated)
+        //    {
+        //        SelectedBrowserControl = BrowserControlSelection.WebView;
+        //    }
+        //    else
+        //    {
+        //        SelectedBrowserControl = BrowserControlSelection.FormsDefault;
+        //    }
+        //}
 
         using var mainForm = new MainForm(skipversioncheck);
 
