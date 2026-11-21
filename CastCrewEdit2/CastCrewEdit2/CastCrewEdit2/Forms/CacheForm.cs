@@ -1,9 +1,9 @@
-﻿using System;
+﻿using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
 

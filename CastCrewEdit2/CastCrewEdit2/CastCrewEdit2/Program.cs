@@ -1,4 +1,9 @@
-﻿using System;
+﻿using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
+using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using DoenaSoft.ToolBox.Generics;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -7,12 +12,6 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
-using DoenaSoft.ToolBox.Generics;
-using Microsoft.Win32;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2;
 

@@ -1,12 +1,11 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended
-{
-    using System.Xml.Serialization;
-    using DVDProfilerXML.Version400;
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
 
-    [XmlRoot("CastInformation")]
-    public partial class ExtendedCastInformation : CastInformation
-    {
-        [XmlAttribute]
-        public string ImdbLink;
-    }
+using DVDProfilerXML.Version400;
+using System.Xml.Serialization;
+
+[XmlRoot("CastInformation")]
+public partial class ExtendedCastInformation : CastInformation
+{
+    [XmlAttribute]
+    public string ImdbLink;
 }

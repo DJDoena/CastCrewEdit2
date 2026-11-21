@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
+using DoenaSoft.ToolBox.Generics;
+using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-using DoenaSoft.ToolBox.Generics;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 
@@ -171,22 +170,20 @@ internal static class IMDbParser
             return false;
         }
 
-        using (var sr = new StreamReader(fileName))
+        using var sr = new StreamReader(fileName);
+        while (!sr.EndOfStream)
         {
-            while (!sr.EndOfStream)
-            {
-                var line = sr.ReadLine();
+            var line = sr.ReadLine();
 
-                if (!string.IsNullOrEmpty(line))
+            if (!string.IsNullOrEmpty(line))
+            {
+                if (toLower)
                 {
-                    if (toLower)
-                    {
-                        list.Add(line.ToLower());
-                    }
-                    else
-                    {
-                        list.Add(line);
-                    }
+                    list.Add(line.ToLower());
+                }
+                else
+                {
+                    list.Add(line);
                 }
             }
         }

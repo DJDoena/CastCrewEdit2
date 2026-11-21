@@ -1,88 +1,85 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2;
+
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
+[Serializable]
+public sealed class SessionData
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Runtime.Serialization.Formatters.Binary;
-    using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
+    public Dictionary<PersonInfo, string> BirthYearCache;
 
-    [Serializable]
-    public sealed class SessionData
+    public Dictionary<PersonInfo, FileInfo> HeadshotCache;
+
+    public Dictionary<string, string> WebSites;
+
+    public bool FirstRunGetHeadShots;
+
+    public SessionData()
     {
-        public Dictionary<PersonInfo, string> BirthYearCache;
+        BirthYearCache = new Dictionary<PersonInfo, string>(1000);
 
-        public Dictionary<PersonInfo, FileInfo> HeadshotCache;
+        HeadshotCache = new Dictionary<PersonInfo, FileInfo>(1000);
 
-        public Dictionary<string, string> WebSites;
+        WebSites = new Dictionary<string, string>();
+    }
 
-        public bool FirstRunGetHeadShots;
+    public static void Serialize(string fileName)
+    {
+        using var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None);
+        var sd = IMDbParser.SessionData;
 
-        public SessionData()
+        var bf = new BinaryFormatter();
+
+        bf.Serialize(fs, sd);
+    }
+
+    public static string Deserialize(string fileName)
+    {
+        try
         {
-            BirthYearCache = new Dictionary<PersonInfo, string>(1000);
+            using var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
 
-            HeadshotCache = new Dictionary<PersonInfo, FileInfo>(1000);
+            var bf = new BinaryFormatter();
 
-            WebSites = new Dictionary<string, string>();
-        }
+            var sd = (SessionData)(bf.Deserialize(fs));
 
-        public static void Serialize(string fileName)
-        {
-            using (var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
+            sd.BirthYearCache ??= new Dictionary<PersonInfo, string>(1000);
+
+            sd.HeadshotCache ??= new Dictionary<PersonInfo, FileInfo>(1000);
+
+            sd.WebSites ??= new Dictionary<string, string>();
+
+            var headshotCache = HeadshotParser.HeadshotCache;
+
+            foreach (var kvp in sd.HeadshotCache)
             {
-                var sd = IMDbParser.SessionData;
-
-                var bf = new BinaryFormatter();
-
-                bf.Serialize(fs, sd);
-            }
-        }
-
-        public static string Deserialize(string fileName)
-        {
-            try
-            {
-                using var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-
-                var bf = new BinaryFormatter();
-
-                var sd = (SessionData)(bf.Deserialize(fs));
-
-                sd.BirthYearCache ??= new Dictionary<PersonInfo, string>(1000);
-
-                sd.HeadshotCache ??= new Dictionary<PersonInfo, FileInfo>(1000);
-
-                sd.WebSites ??= new Dictionary<string, string>();
-
-                var headshotCache = HeadshotParser.HeadshotCache;
-
-                foreach (var kvp in sd.HeadshotCache)
+                if (kvp.Value != null)
                 {
-                    if (kvp.Value != null)
-                    {
-                        kvp.Value.Refresh();
+                    kvp.Value.Refresh();
 
-                        if (kvp.Value.Exists)
-                        {
-                            headshotCache.Add(kvp.Key, kvp.Value);
-                        }
-                    }
-                    else
+                    if (kvp.Value.Exists)
                     {
                         headshotCache.Add(kvp.Key, kvp.Value);
                     }
                 }
-
-                sd.HeadshotCache = headshotCache;
-
-                IMDbParser.SessionData = sd;
-            }
-            catch
-            {
-                IMDbParser.SessionData = new SessionData();
+                else
+                {
+                    headshotCache.Add(kvp.Key, kvp.Value);
+                }
             }
 
-            return BirthYearParser.BirthYearCache.Count.ToString();
+            sd.HeadshotCache = headshotCache;
+
+            IMDbParser.SessionData = sd;
         }
+        catch
+        {
+            IMDbParser.SessionData = new SessionData();
+        }
+
+        return BirthYearParser.BirthYearCache.Count.ToString();
     }
 }

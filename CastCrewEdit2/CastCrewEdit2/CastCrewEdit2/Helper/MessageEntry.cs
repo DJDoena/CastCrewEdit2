@@ -1,47 +1,46 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
+
+using System.Windows.Forms;
+
+public sealed class MessageEntry
 {
-    using System.Windows.Forms;
+    public readonly string Message;
 
-    public sealed class MessageEntry
+    public readonly string Header;
+
+    public readonly MessageBoxButtons Buttons;
+
+    public readonly MessageBoxIcon Icon;
+
+    private readonly int _hashCode;
+
+    public MessageEntry(string message, string header, MessageBoxButtons buttons, MessageBoxIcon icon)
     {
-        public readonly string Message;
+        Message = message;
 
-        public readonly string Header;
+        Header = header;
 
-        public readonly MessageBoxButtons Buttons;
+        Buttons = buttons;
 
-        public readonly MessageBoxIcon Icon;
+        Icon = icon;
 
-        private readonly int _hashCode;
+        _hashCode = Message.GetHashCode() ^ Header.GetHashCode() ^ Buttons.GetHashCode() ^ Icon.GetHashCode();
+    }
 
-        public MessageEntry(string message, string header, MessageBoxButtons buttons, MessageBoxIcon icon)
+    public override int GetHashCode() => _hashCode;
+
+    public override bool Equals(object obj)
+    {
+        if (!(obj is MessageEntry other))
         {
-            Message = message;
-
-            Header = header;
-
-            Buttons = buttons;
-
-            Icon = icon;
-
-            _hashCode = Message.GetHashCode() ^ Header.GetHashCode() ^ Buttons.GetHashCode() ^ Icon.GetHashCode();
+            return false;
         }
 
-        public override int GetHashCode() => _hashCode;
+        var result = Message == other.Message
+            && Header == other.Header
+            && Buttons == other.Buttons
+            && Icon == other.Icon;
 
-        public override bool Equals(object obj)
-        {
-            if (!(obj is MessageEntry other))
-            {
-                return false;
-            }
-
-            var result = Message == other.Message
-                && Header == other.Header
-                && Buttons == other.Buttons
-                && Icon == other.Icon;
-
-            return result;
-        }
+        return result;
     }
 }

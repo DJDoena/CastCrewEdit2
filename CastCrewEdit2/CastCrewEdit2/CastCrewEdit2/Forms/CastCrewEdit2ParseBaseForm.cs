@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -7,9 +10,6 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
 
@@ -136,10 +136,8 @@ public class CastCrewEdit2ParseBaseForm : CastCrewEdit2BaseForm
 
         this.Cursor = Cursors.Default;
 
-        using (var form = new CacheForm(persons, cacheName))
-        {
-            form.ShowDialog(this);
-        }
+        using var form = new CacheForm(persons, cacheName);
+        form.ShowDialog(this);
     }
 
     private static int ComparePersonInfos(PersonInfo left, PersonInfo right)

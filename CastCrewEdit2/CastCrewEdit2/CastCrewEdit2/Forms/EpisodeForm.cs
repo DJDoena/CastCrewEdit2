@@ -1,12 +1,12 @@
-﻿using System;
+﻿using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
 
@@ -435,19 +435,17 @@ internal partial class EpisodeForm : CastCrewEdit2ParseBaseForm
 
     private void OnSettingsToolStripMenuItemClick(object sender, EventArgs e)
     {
-        using (var settingsForm = new SettingsForm(true, true))
+        using var settingsForm = new SettingsForm(true, true);
+        settingsForm.SetValues(Program.Settings.SettingsForm.Left, Program.Settings.SettingsForm.Top, Program.DefaultValues);
+
+        if (settingsForm.ShowDialog(this) == DialogResult.OK)
         {
-            settingsForm.SetValues(Program.Settings.SettingsForm.Left, Program.Settings.SettingsForm.Top, Program.DefaultValues);
+            this.SetCheckBoxes();
 
-            if (settingsForm.ShowDialog(this) == DialogResult.OK)
-            {
-                this.SetCheckBoxes();
-
-                _settingsHaveChanged = true;
-            }
-
-            settingsForm.GetValues(out Program.Settings.SettingsForm.Left, out Program.Settings.SettingsForm.Top);
+            _settingsHaveChanged = true;
         }
+
+        settingsForm.GetValues(out Program.Settings.SettingsForm.Left, out Program.Settings.SettingsForm.Top);
     }
 
     private void OnReApplySettingsAndFiltersButtonClick(object sender, EventArgs e)

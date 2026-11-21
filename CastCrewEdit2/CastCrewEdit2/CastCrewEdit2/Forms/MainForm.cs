@@ -1,4 +1,9 @@
-﻿using System;
+﻿using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
+using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -10,11 +15,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
 
@@ -681,10 +681,8 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
     {
         if (Program.DefaultValues.SaveLogFile && _log.Length > 0)
         {
-            using (var sw = new StreamWriter(Program.LogFile, true, Encoding.UTF8))
-            {
-                sw.WriteLine(_log.ToString());
-            }
+            using var sw = new StreamWriter(Program.LogFile, true, Encoding.UTF8);
+            sw.WriteLine(_log.ToString());
         }
 
         Program.Settings.MainForm.Left = this.Left;
@@ -933,21 +931,19 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
                     MessageBox.Show(this, MessageBoxTexts.ParsingComplete, MessageBoxTexts.ParsingComplete, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                using (var episodesForm = new EpisodesForm(episodes))
+                using var episodesForm = new EpisodesForm(episodes);
+                _settingsHaveChanged = false;
+
+                episodesForm.ShowDialog(this);
+
+                if (_settingsHaveChanged)
                 {
+                    this.SetCheckBoxes();
+
                     _settingsHaveChanged = false;
-
-                    episodesForm.ShowDialog(this);
-
-                    if (_settingsHaveChanged)
-                    {
-                        this.SetCheckBoxes();
-
-                        _settingsHaveChanged = false;
-                    }
-
-                    _log.Show(LogWebBrowser);
                 }
+
+                _log.Show(LogWebBrowser);
             }
 
             BirthYearsInLocalCacheLabel.Text = IMDbParser.PersonHashCount;
@@ -1123,78 +1119,76 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
 
     private bool ScanForSeasonsNewStyle(string webSite)
     {
-        using (var sr = new StringReader(webSite))
+        using var sr = new StringReader(webSite);
+        while (sr.Peek() != -1)
         {
-            while (sr.Peek() != -1)
+            var line = sr.ReadLine();
+
+            if (string.IsNullOrEmpty(_tvShowTitle))
             {
-                var line = sr.ReadLine();
+                var titleMatch = IMDbParser.TitleRegex.Match(line);
 
-                if (string.IsNullOrEmpty(_tvShowTitle))
+                if (titleMatch.Success)
                 {
-                    var titleMatch = IMDbParser.TitleRegex.Match(line);
+                    _tvShowTitle = HttpUtility.HtmlDecode(titleMatch.Groups["Title"].Value);
 
-                    if (titleMatch.Success)
+                    _tvShowTitle = _tvShowTitle.Replace(" - IMDb", string.Empty).Replace(" - Episodes", string.Empty).Trim();
+
+                    if (_tvShowTitle.EndsWith(" list"))
                     {
-                        _tvShowTitle = HttpUtility.HtmlDecode(titleMatch.Groups["Title"].Value);
-
-                        _tvShowTitle = _tvShowTitle.Replace(" - IMDb", string.Empty).Replace(" - Episodes", string.Empty).Trim();
-
-                        if (_tvShowTitle.EndsWith(" list"))
-                        {
-                            _tvShowTitle = _tvShowTitle.Substring(0, _tvShowTitle.Length - 5);
-                        }
-
-                        continue;
+                        _tvShowTitle = _tvShowTitle.Substring(0, _tvShowTitle.Length - 5);
                     }
+
+                    continue;
+                }
+            }
+
+            var indexOfSeasons = line.IndexOf("\"seasons\":[{\"id\":", StringComparison.InvariantCultureIgnoreCase);
+
+            if (indexOfSeasons != -1)
+            {
+                line = line.Substring(indexOfSeasons);
+
+                while (!line.Contains("</script>"))
+                {
+                    line += sr.ReadLine();
                 }
 
-                var indexOfSeasons = line.IndexOf("\"seasons\":[{\"id\":", StringComparison.InvariantCultureIgnoreCase);
+                var indexOfScript = line.IndexOf("</script>", StringComparison.InvariantCultureIgnoreCase);
 
-                if (indexOfSeasons != -1)
+                if (indexOfScript != -1)
                 {
-                    line = line.Substring(indexOfSeasons);
+                    line = line.Substring(0, indexOfScript);
+                }
 
-                    while (!line.Contains("</script>"))
+                var indexOfYears = line.IndexOf("\"years\":", StringComparison.InvariantCultureIgnoreCase);
+
+                if (indexOfYears != -1)
+                {
+                    line = line.Substring(0, indexOfYears);
+                }
+
+                var matches = _seasonRegexNewStyle.Matches(line);
+
+                if (matches.Count > 0)
+                {
+                    var seasons = new HashSet<string>();
+
+                    foreach (Match match in matches)
                     {
-                        line += sr.ReadLine();
+                        seasons.Add(match.Groups["SeasonNumber"].Value.ToString());
                     }
 
-                    var indexOfScript = line.IndexOf("</script>", StringComparison.InvariantCultureIgnoreCase);
-
-                    if (indexOfScript != -1)
+                    foreach (var season in seasons)
                     {
-                        line = line.Substring(0, indexOfScript);
+                        var row = TVShowSeasonsDataGridView.Rows[TVShowSeasonsDataGridView.Rows.Add()];
+
+                        row.DefaultCellStyle.BackColor = Color.White;
+
+                        row.Cells["Season Number"].Value = season;
                     }
 
-                    var indexOfYears = line.IndexOf("\"years\":", StringComparison.InvariantCultureIgnoreCase);
-
-                    if (indexOfYears != -1)
-                    {
-                        line = line.Substring(0, indexOfYears);
-                    }
-
-                    var matches = _seasonRegexNewStyle.Matches(line);
-
-                    if (matches.Count > 0)
-                    {
-                        var seasons = new HashSet<string>();
-
-                        foreach (Match match in matches)
-                        {
-                            seasons.Add(match.Groups["SeasonNumber"].Value.ToString());
-                        }
-
-                        foreach (var season in seasons)
-                        {
-                            var row = TVShowSeasonsDataGridView.Rows[TVShowSeasonsDataGridView.Rows.Add()];
-
-                            row.DefaultCellStyle.BackColor = Color.White;
-
-                            row.Cells["Season Number"].Value = season;
-                        }
-
-                        return true;
-                    }
+                    return true;
                 }
             }
         }
@@ -1280,17 +1274,15 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
 
     private void OnSettingsToolStripMenuItemClick(object sender, EventArgs e)
     {
-        using (var settingsForm = new SettingsForm(true, true))
+        using var settingsForm = new SettingsForm(true, true);
+        settingsForm.SetValues(Program.Settings.SettingsForm.Left, Program.Settings.SettingsForm.Top, Program.DefaultValues);
+
+        if (settingsForm.ShowDialog(this) == DialogResult.OK)
         {
-            settingsForm.SetValues(Program.Settings.SettingsForm.Left, Program.Settings.SettingsForm.Top, Program.DefaultValues);
-
-            if (settingsForm.ShowDialog(this) == DialogResult.OK)
-            {
-                this.SetCheckBoxes();
-            }
-
-            settingsForm.GetValues(out Program.Settings.SettingsForm.Left, out Program.Settings.SettingsForm.Top);
+            this.SetCheckBoxes();
         }
+
+        settingsForm.GetValues(out Program.Settings.SettingsForm.Left, out Program.Settings.SettingsForm.Top);
     }
 
     private void OnReApplySettingsAndFiltersButtonClick(object sender, EventArgs e)

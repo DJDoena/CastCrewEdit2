@@ -1,21 +1,20 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
+
+public enum FileNameType
 {
-    public enum FileNameType
-    {
-        None = 0,
+    None = 0,
 
-        FirstnamePrefixes,
+    FirstnamePrefixes,
 
-        LastnamePrefixes,
+    LastnamePrefixes,
 
-        LastnameSuffixes,
+    LastnameSuffixes,
 
-        KnownNames,
+    KnownNames,
 
-        IgnoreCustomInIMDbCreditType,
+    IgnoreCustomInIMDbCreditType,
 
-        IgnoreIMDbCreditTypeInOther,
+    IgnoreIMDbCreditTypeInOther,
 
-        ForcedFakeBirthYears
-    }
+    ForcedFakeBirthYears
 }

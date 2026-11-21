@@ -1,36 +1,35 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2;
+
+using System;
+using System.Windows.Forms;
+
+public sealed class CastCrewEditAdapterEventHandler : ICastCrewEditAdapterEventHandler
 {
-    using System;
-    using System.Windows.Forms;
+    internal Form MainForm { get; set; }
 
-    public sealed class CastCrewEditAdapterEventHandler : ICastCrewEditAdapterEventHandler
+    public event EventHandler<XmlEventArgs> CastCompleted;
+
+    public event EventHandler<XmlEventArgs> CrewCompleted;
+
+    public event EventHandler ProgramClosed;
+
+    public void Close()
     {
-        internal Form MainForm { get; set; }
+        this.MainForm?.Close();
+    }
 
-        public event EventHandler<XmlEventArgs> CastCompleted;
+    internal void RaiseCastCompleted(string xml)
+    {
+        CastCompleted?.Invoke(this, new XmlEventArgs(xml));
+    }
 
-        public event EventHandler<XmlEventArgs> CrewCompleted;
+    internal void RaiseCrewCompleted(string xml)
+    {
+        CrewCompleted?.Invoke(this, new XmlEventArgs(xml));
+    }
 
-        public event EventHandler ProgramClosed;
-
-        public void Close()
-        {
-            MainForm?.Close();
-        }
-
-        internal void RaiseCastCompleted(string xml)
-        {
-            CastCompleted?.Invoke(this, new XmlEventArgs(xml));
-        }
-
-        internal void RaiseCrewCompleted(string xml)
-        {
-            CrewCompleted?.Invoke(this, new XmlEventArgs(xml));
-        }
-
-        internal void RaiseProgramClosed()
-        {
-            ProgramClosed?.Invoke(this, EventArgs.Empty);
-        }
+    internal void RaiseProgramClosed()
+    {
+        ProgramClosed?.Invoke(this, EventArgs.Empty);
     }
 }

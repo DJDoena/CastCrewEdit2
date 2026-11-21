@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
+using DoenaSoft.JsonFragmentParser;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,8 +8,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
-using DoenaSoft.JsonFragmentParser;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 

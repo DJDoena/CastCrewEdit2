@@ -34,7 +34,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
         public ColorProgressBar()
         {
             base.Size = new Size(150, 15);
-            SetStyle(
+            this.SetStyle(
                 ControlStyles.AllPaintingInWmPaint |
                 ControlStyles.ResizeRedraw |
                 ControlStyles.DoubleBuffer,
@@ -53,7 +53,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             set
             {
                 _BarColor = value;
-                Invalidate();
+                this.Invalidate();
             }
         }
 
@@ -68,7 +68,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             set
             {
                 _FillStyle = value;
-                Invalidate();
+                this.Invalidate();
             }
         }
 
@@ -98,7 +98,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 }
 
                 _Value = value;
-                Invalidate();
+                this.Invalidate();
             }
         }
 
@@ -120,7 +120,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 if (_Minimum > _Value)
                     _Value = _Minimum;
 
-                Invalidate();
+                this.Invalidate();
             }
         }
 
@@ -142,7 +142,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                 if (_Maximum < _Minimum)
                     _Minimum = _Maximum;
 
-                Invalidate();
+                this.Invalidate();
             }
         }
 
@@ -157,7 +157,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             set
             {
                 _Step = value;
-                Invalidate();
+                this.Invalidate();
             }
         }
 
@@ -172,7 +172,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             set
             {
                 _BorderColor = value;
-                Invalidate();
+                this.Invalidate();
             }
         }
 
@@ -186,7 +186,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             else
                 _Value = _Maximum;
 
-            Invalidate();
+            this.Invalidate();
         }
 
         //
@@ -199,7 +199,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             else
                 _Value = _Minimum;
 
-            Invalidate();
+            this.Invalidate();
         }
 
         //
@@ -212,7 +212,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             else
                 _Value = _Maximum;
 
-            Invalidate();
+            this.Invalidate();
         }
 
         //
@@ -225,7 +225,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             else
                 _Value = _Minimum;
 
-            Invalidate();
+            this.Invalidate();
         }
 
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
@@ -240,7 +240,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             // Fill background
             //
             var bgBrush = new SolidBrush(bgColor);
-            e.Graphics.FillRectangle(bgBrush, ClientRectangle);
+            e.Graphics.FillRectangle(bgBrush, this.ClientRectangle);
             bgBrush.Dispose();
 
             // 
@@ -249,14 +249,14 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             if (_Maximum == _Minimum || _Value == 0)
             {
                 // Draw border only and exit;
-                drawBorder(e.Graphics);
+                this.drawBorder(e.Graphics);
                 return;
             }
 
             //
             // The following is the width of the bar. This will vary with each value.
             //
-            var fillWidth = (Width * _Value) / (_Maximum - _Minimum);
+            var fillWidth = (this.Width * _Value) / (_Maximum - _Minimum);
 
             //
             // GDI+ doesn't like rectangles 0px wide or high
@@ -264,15 +264,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             if (fillWidth == 0)
             {
                 // Draw border only and exti;
-                drawBorder(e.Graphics);
+                this.drawBorder(e.Graphics);
                 return;
             }
 
             //
             // Rectangles for upper and lower half of bar
             //
-            var topRect = new Rectangle(0, 0, fillWidth, Height / 2);
-            var buttomRect = new Rectangle(0, Height / 2, fillWidth, Height / 2);
+            var topRect = new Rectangle(0, 0, fillWidth, this.Height / 2);
+            var buttomRect = new Rectangle(0, this.Height / 2, fillWidth, this.Height / 2);
 
             //
             // The gradient brush
@@ -283,7 +283,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             // Paint upper half
             //
             brush = new LinearGradientBrush(new Point(0, 0),
-                new Point(0, Height / 2), darkColor, _BarColor);
+                new Point(0, this.Height / 2), darkColor, _BarColor);
             e.Graphics.FillRectangle(brush, topRect);
             brush.Dispose();
 
@@ -291,15 +291,15 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             // Paint lower half
             // (Height/2 - 1 because there would be a dark line in the middle of the bar)
             //
-            brush = new LinearGradientBrush(new Point(0, Height / 2 - 1),
-                new Point(0, Height), _BarColor, darkColor);
+            brush = new LinearGradientBrush(new Point(0, this.Height / 2 - 1),
+                new Point(0, this.Height), _BarColor, darkColor);
             e.Graphics.FillRectangle(brush, buttomRect);
             brush.Dispose();
 
             //
             // Calculate separator's setting
             //
-            var sepWidth = (int)(Height * .67);
+            var sepWidth = (int)(this.Height * .67);
             var sepCount = fillWidth / sepWidth;
             var sepColor = ControlPaint.LightLight(_BarColor);
 
@@ -313,7 +313,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
                     for (var i = 1; i <= sepCount; i++)
                     {
                         e.Graphics.DrawLine(new Pen(sepColor, 1),
-                            sepWidth * i, 0, sepWidth * i, Height);
+                            sepWidth * i, 0, sepWidth * i, this.Height);
                     }
                     break;
 
@@ -328,7 +328,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
             //
             // Draw border and exit
             //
-            drawBorder(e.Graphics);
+            this.drawBorder(e.Graphics);
         }
 
         //
@@ -337,7 +337,7 @@ namespace DoenaSoft.DVDProfiler.CastCrewEdit2
         protected void drawBorder(Graphics g)
         {
             var borderRect = new Rectangle(0, 0,
-                ClientRectangle.Width - 1, ClientRectangle.Height - 1);
+                this.ClientRectangle.Width - 1, this.ClientRectangle.Height - 1);
             g.DrawRectangle(new Pen(_BorderColor, 1), borderRect);
         }
     }

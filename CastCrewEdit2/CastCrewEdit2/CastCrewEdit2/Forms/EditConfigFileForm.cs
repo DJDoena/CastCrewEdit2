@@ -1,7 +1,7 @@
-﻿using System;
+﻿using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
+using System;
 using System.IO;
 using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
 

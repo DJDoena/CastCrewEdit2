@@ -1,24 +1,23 @@
-namespace DoenaSoft.DVDProfiler.CastCrewEdit2
+namespace DoenaSoft.DVDProfiler.CastCrewEdit2;
+
+using System;
+
+[Serializable]
+public class Settings
 {
-    using System;
+    public SizableForm MainForm;
 
-    [Serializable]
-    public class Settings
-    {
-        public SizableForm MainForm;
+    public BaseForm SettingsForm;
 
-        public BaseForm SettingsForm;
+    public SizableForm EpisodesForm;
 
-        public SizableForm EpisodesForm;
+    public SizableForm EpisodeForm;
 
-        public SizableForm EpisodeForm;
+    public SizableForm EditConfigFilesForm;
 
-        public SizableForm EditConfigFilesForm;
+    public SizableForm EditKnownNamesConfigFileForm;
 
-        public SizableForm EditKnownNamesConfigFileForm;
+    public DefaultValues DefaultValues;
 
-        public DefaultValues DefaultValues;
-
-        public string CurrentVersion;
-    }
+    public string CurrentVersion;
 }

@@ -1,85 +1,84 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
+
+using DoenaSoft.DVDProfiler.CastCrewCopyPaste;
+using Resources;
+using System;
+using System.Net.Http;
+using System.Net.Sockets;
+using System.ServiceModel;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+internal static class CastCrewCopyPasteSender
 {
-    using System;
-    using System.Net.Http;
-    using System.Net.Sockets;
-    using System.ServiceModel;
-    using System.Threading.Tasks;
-    using System.Windows.Forms;
-    using DoenaSoft.DVDProfiler.CastCrewCopyPaste;
-    using Resources;
+    private static HttpClient _httpClient;
 
-    internal static class CastCrewCopyPasteSender
+    private static HttpClient HttpClient
     {
-        private static HttpClient _httpClient;
-
-        private static HttpClient HttpClient
+        get
         {
-            get
+            if (_httpClient == null)
             {
-                if (_httpClient == null)
-                {
-                    _httpClient = new HttpClient();
-                }
-
-                return _httpClient;
+                _httpClient = new HttpClient();
             }
+
+            return _httpClient;
         }
+    }
 
-        internal static Task Send(string xml)
+    internal static Task Send(string xml)
+    {
+        if (string.IsNullOrWhiteSpace(xml))
         {
-            if (string.IsNullOrWhiteSpace(xml))
-            {
-                return Task.CompletedTask;
-            }
-
-            TrySend(xml);
-
             return Task.CompletedTask;
         }
 
-        private static void TrySend(string xml)
-        {
-            try
-            {
-                ExecuteSend(xml);
-            }
-            catch (Exception ex)
-            {
-                while (ex.InnerException != null)
-                {
-                    ex = ex.InnerException;
-                }
+        TrySend(xml);
 
-                if (ex is SocketException socketEx && socketEx.SocketErrorCode == SocketError.ConnectionRefused)
-                {
-                    MessageBox.Show(MessageBoxTexts.CastCrewCopyPasteUnreachable, MessageBoxTexts.CastCrewCopyPasteUnreachableHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    MessageBox.Show(ex.Message, MessageBoxTexts.CastCrewCopyPasteUnreachableHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+        return Task.CompletedTask;
+    }
+
+    private static void TrySend(string xml)
+    {
+        try
+        {
+            ExecuteSend(xml);
+        }
+        catch (Exception ex)
+        {
+            while (ex.InnerException != null)
+            {
+                ex = ex.InnerException;
+            }
+
+            if (ex is SocketException socketEx && socketEx.SocketErrorCode == SocketError.ConnectionRefused)
+            {
+                MessageBox.Show(MessageBoxTexts.CastCrewCopyPasteUnreachable, MessageBoxTexts.CastCrewCopyPasteUnreachableHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                MessageBox.Show(ex.Message, MessageBoxTexts.CastCrewCopyPasteUnreachableHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+    }
 
-        private static void ExecuteSend(string xml)
+    private static void ExecuteSend(string xml)
+    {
+        var binding = new NetTcpBinding();
+
+        binding.Security.Mode = SecurityMode.None;
+
+        var channel = new ChannelFactory<ICastCrewReceiver>(binding, new EndpointAddress(CastCrewReceiverServiceContract.TcpAddress));
+
+        var serviceClient = channel.CreateChannel();
+
+        var response = serviceClient.Receive(xml);
+
+        if (response != "OK")
         {
-            var binding = new NetTcpBinding();
-
-            binding.Security.Mode = SecurityMode.None;
-
-            var channel = new ChannelFactory<ICastCrewReceiver>(binding, new EndpointAddress(CastCrewReceiverServiceContract.TcpAddress));
-
-            var serviceClient = channel.CreateChannel();
-
-            var response = serviceClient.Receive(xml);
-
-            if (response != "OK")
-            {
-                throw new Exception(response);
-            }
-
-            (serviceClient as IDisposable)?.Dispose();
+            throw new Exception(response);
         }
+
+        (serviceClient as IDisposable)?.Dispose();
     }
 }

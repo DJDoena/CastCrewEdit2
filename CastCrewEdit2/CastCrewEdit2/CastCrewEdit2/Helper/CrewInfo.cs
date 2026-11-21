@@ -1,33 +1,32 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
+
+using Resources;
+using System;
+using System.Collections.Generic;
+
+[Serializable]
+public sealed class CrewInfo : PersonInfo
 {
-    using System;
-    using System.Collections.Generic;
-    using Resources;
+    public string CreditType;
 
-    [Serializable]
-    public sealed class CrewInfo : PersonInfo
+    public string CreditSubtype;
+
+    public string CustomRole;
+
+    public string CreditedAs;
+
+    public CrewInfo() : base(DataGridViewTexts.Crew)
     {
-        public string CreditType;
-
-        public string CreditSubtype;
-
-        public string CustomRole;
-
-        public string CreditedAs;
-
-        public CrewInfo() : base(DataGridViewTexts.Crew)
-        {
-        }
     }
+}
 
-    internal sealed class CrewResult : Tuple<List<CrewInfo>, int>
+internal sealed class CrewResult : Tuple<List<CrewInfo>, int>
+{
+    public List<CrewInfo> CrewMembers => this.Item1;
+
+    public int MatchCount => this.Item2;
+
+    public CrewResult(List<CrewInfo> crewMembers, int matchCount) : base(crewMembers, matchCount)
     {
-        public List<CrewInfo> CrewMembers => Item1;
-
-        public int MatchCount => Item2;
-
-        public CrewResult(List<CrewInfo> crewMembers, int matchCount) : base(crewMembers, matchCount)
-        {
-        }
     }
 }

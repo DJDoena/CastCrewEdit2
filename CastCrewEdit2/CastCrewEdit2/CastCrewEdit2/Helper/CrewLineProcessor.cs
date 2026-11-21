@@ -1,8 +1,8 @@
-﻿using System;
+﻿using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 

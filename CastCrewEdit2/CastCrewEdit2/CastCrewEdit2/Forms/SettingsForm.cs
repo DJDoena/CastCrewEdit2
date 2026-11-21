@@ -1,8 +1,8 @@
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
+using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 using System;
 using System.IO;
 using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
 
@@ -308,86 +308,84 @@ internal partial class SettingsForm : Form
 
     private void OnSelectDataPathButtonClick(object sender, EventArgs e)
     {
-        using (var fbd = new FolderBrowserDialog()
+        using var fbd = new FolderBrowserDialog()
         {
             ShowNewFolderButton = true,
             SelectedPath = Program.RootPath,
             Description = Resources.Resources.SelectDataPath,
-        })
+        };
+        if (fbd.ShowDialog() == DialogResult.OK)
         {
-            if (fbd.ShowDialog() == DialogResult.OK)
+            var target = fbd.SelectedPath;
+
+            if (target != Program.RootPath)
             {
-                var target = fbd.SelectedPath;
-
-                if (target != Program.RootPath)
+                if (MessageBox.Show(MessageBoxTexts.FilesWillNowBeMoved, MessageBoxTexts.ContinueHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if (MessageBox.Show(MessageBoxTexts.FilesWillNowBeMoved, MessageBoxTexts.ContinueHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    try
                     {
-                        try
+                        if (!Directory.Exists(target + @"\Data"))
                         {
-                            if (!Directory.Exists(target + @"\Data"))
-                            {
-                                Directory.CreateDirectory(target + @"\Data");
-                            }
-
-                            if (!Directory.Exists(target + @"\Images"))
-                            {
-                                Directory.CreateDirectory(target + @"\Images");
-                            }
-
-                            if (!Directory.Exists(target + @"\Images\CastCrewEdit2"))
-                            {
-                                Directory.CreateDirectory(target + @"\Images\CastCrewEdit2");
-                            }
-
-                            if (!Directory.Exists(target + @"\Images\CCViewer"))
-                            {
-                                Directory.CreateDirectory(target + @"\Images\CCViewer");
-                            }
-
-                            if (!Directory.Exists(target + @"\Images\DVD Profiler"))
-                            {
-                                Directory.CreateDirectory(target + @"\Images\DVD Profiler");
-                            }
-
-                            var files = Directory.GetFiles(Program.RootPath + @"\Data", "*.*", SearchOption.AllDirectories);
-
-                            foreach (var file in files)
-                            {
-                                var newFile = file.Replace(Program.RootPath + @"\Data", target + @"\Data");
-
-                                File.Copy(file, newFile, true);
-                                File.Delete(file);
-                            }
-
-                            files = Directory.GetFiles(Program.RootPath + @"\Images", "*.*", SearchOption.AllDirectories);
-
-                            foreach (var file in files)
-                            {
-                                var newFile = file.Replace(Program.RootPath + @"\Images", target + @"\Images");
-
-                                File.Copy(file, newFile, true);
-                                //File.Delete(file);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                            Program.WriteError(ex);
-
-                            return;
+                            Directory.CreateDirectory(target + @"\Data");
                         }
 
-                        Directory.Delete(Program.RootPath + @"\Data", true);
-                        Directory.Delete(Program.RootPath + @"\Images", true);
+                        if (!Directory.Exists(target + @"\Images"))
+                        {
+                            Directory.CreateDirectory(target + @"\Images");
+                        }
 
-                        RegistryAccess.DataRootPath = target;
+                        if (!Directory.Exists(target + @"\Images\CastCrewEdit2"))
+                        {
+                            Directory.CreateDirectory(target + @"\Images\CastCrewEdit2");
+                        }
 
-                        Program.GetRootPath();
+                        if (!Directory.Exists(target + @"\Images\CCViewer"))
+                        {
+                            Directory.CreateDirectory(target + @"\Images\CCViewer");
+                        }
 
-                        DataPathTextBox.Text = target;
+                        if (!Directory.Exists(target + @"\Images\DVD Profiler"))
+                        {
+                            Directory.CreateDirectory(target + @"\Images\DVD Profiler");
+                        }
+
+                        var files = Directory.GetFiles(Program.RootPath + @"\Data", "*.*", SearchOption.AllDirectories);
+
+                        foreach (var file in files)
+                        {
+                            var newFile = file.Replace(Program.RootPath + @"\Data", target + @"\Data");
+
+                            File.Copy(file, newFile, true);
+                            File.Delete(file);
+                        }
+
+                        files = Directory.GetFiles(Program.RootPath + @"\Images", "*.*", SearchOption.AllDirectories);
+
+                        foreach (var file in files)
+                        {
+                            var newFile = file.Replace(Program.RootPath + @"\Images", target + @"\Images");
+
+                            File.Copy(file, newFile, true);
+                            //File.Delete(file);
+                        }
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, MessageBoxTexts.ErrorHeader, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                        Program.WriteError(ex);
+
+                        return;
+                    }
+
+                    Directory.Delete(Program.RootPath + @"\Data", true);
+                    Directory.Delete(Program.RootPath + @"\Images", true);
+
+                    RegistryAccess.DataRootPath = target;
+
+                    Program.GetRootPath();
+
+                    DataPathTextBox.Text = target;
                 }
             }
         }

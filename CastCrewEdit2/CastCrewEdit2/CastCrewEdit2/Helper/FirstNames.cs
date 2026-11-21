@@ -1,13 +1,12 @@
-﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper
+﻿namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
+
+internal static class FirstNames
 {
-    internal static class FirstNames
-    {
-        public const string Title = "<title>";
+    public const string Title = "<title>";
 
-        public const string Divider = "<divider>";
+    public const string Divider = "<divider>";
 
-        public const string GroupDividerStart = "<groupdividerstart>";
+    public const string GroupDividerStart = "<groupdividerstart>";
 
-        public const string GroupDividerEnd = "<groupdividerend>";
-    }
+    public const string GroupDividerEnd = "<groupdividerend>";
 }

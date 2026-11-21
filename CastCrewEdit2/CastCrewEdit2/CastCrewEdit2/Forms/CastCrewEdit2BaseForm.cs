@@ -1,4 +1,10 @@
-﻿using System;
+﻿using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
+using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
+using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using Microsoft.WindowsAPICodePack.Taskbar;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -6,12 +12,6 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
-using Microsoft.WindowsAPICodePack.Taskbar;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
 
@@ -68,10 +68,8 @@ public class CastCrewEdit2BaseForm : Form
 
     protected void OnAboutToolStripMenuItemClick(object sender, EventArgs e)
     {
-        using (var aboutBox = new AboutBox(this.GetType().Assembly))
-        {
-            aboutBox.ShowDialog(this);
-        }
+        using var aboutBox = new AboutBox(this.GetType().Assembly);
+        aboutBox.ShowDialog(this);
     }
 
     protected void OpenReadme()
@@ -80,11 +78,9 @@ public class CastCrewEdit2BaseForm : Form
 
         if (File.Exists(helpFile))
         {
-            using (var helpForm = new HelpForm(helpFile))
-            {
-                helpForm.Text = "Read Me";
-                helpForm.ShowDialog(this);
-            }
+            using var helpForm = new HelpForm(helpFile);
+            helpForm.Text = "Read Me";
+            helpForm.ShowDialog(this);
         }
     }
 

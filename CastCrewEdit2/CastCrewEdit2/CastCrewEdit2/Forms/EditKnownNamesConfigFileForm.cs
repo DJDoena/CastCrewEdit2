@@ -1,9 +1,9 @@
-﻿using System;
+﻿using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
 
@@ -224,30 +224,28 @@ internal partial class EditKnownNamesConfigFileForm : Form
 
     private void LoadData()
     {
-        using (var sr = new StringReader(_fileContent))
+        using var sr = new StringReader(_fileContent);
+        while (true)
         {
-            while (true)
+            var line = sr.ReadLine();
+
+            if (line != null)
             {
-                var line = sr.ReadLine();
+                var split = line.Split(';');
 
-                if (line != null)
+                if (split.Length == 4)
                 {
-                    var split = line.Split(';');
+                    var row = KnownNamesDataGridView.Rows[KnownNamesDataGridView.Rows.Add()];
 
-                    if (split.Length == 4)
-                    {
-                        var row = KnownNamesDataGridView.Rows[KnownNamesDataGridView.Rows.Add()];
-
-                        row.Cells["FullName"].Value = split[0];
-                        row.Cells["FirstName"].Value = split[1];
-                        row.Cells["MiddleName"].Value = split[2];
-                        row.Cells["LastName"].Value = split[3];
-                    }
+                    row.Cells["FullName"].Value = split[0];
+                    row.Cells["FirstName"].Value = split[1];
+                    row.Cells["MiddleName"].Value = split[2];
+                    row.Cells["LastName"].Value = split[3];
                 }
-                else
-                {
-                    break;
-                }
+            }
+            else
+            {
+                break;
             }
         }
     }

@@ -1,10 +1,10 @@
-﻿using System;
+﻿using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
 
@@ -52,43 +52,41 @@ internal static class HeadshotParser
             }
         }
 
-        using (var sr = new StringReader(webSite))
+        using var sr = new StringReader(webSite);
+        while (sr.Peek() != -1)
         {
-            while (sr.Peek() != -1)
+            var line = sr.ReadLine();
+
+            var indexOfPerson = line.IndexOf($"\"Person\",\"url\":\"https://www.imdb.com/name/{person.PersonLink}", StringComparison.InvariantCultureIgnoreCase);
+
+            if (indexOfPerson != -1)
             {
-                var line = sr.ReadLine();
+                line = line.Substring(indexOfPerson);
 
-                var indexOfPerson = line.IndexOf($"\"Person\",\"url\":\"https://www.imdb.com/name/{person.PersonLink}", StringComparison.InvariantCultureIgnoreCase);
-
-                if (indexOfPerson != -1)
+                while (!line.Contains("</script>"))
                 {
-                    line = line.Substring(indexOfPerson);
+                    line += sr.ReadLine();
+                }
 
-                    while (!line.Contains("</script>"))
-                    {
-                        line += sr.ReadLine();
-                    }
+                var indexOfScript = line.IndexOf("</script>", StringComparison.InvariantCultureIgnoreCase);
 
-                    var indexOfScript = line.IndexOf("</script>", StringComparison.InvariantCultureIgnoreCase);
+                if (indexOfScript != -1)
+                {
+                    line = line.Substring(0, indexOfScript);
+                }
 
-                    if (indexOfScript != -1)
-                    {
-                        line = line.Substring(0, indexOfScript);
-                    }
+                var match = _photoUrlRegex.Match(line);
 
-                    var match = _photoUrlRegex.Match(line);
-
-                    if (match.Success)
-                    {
-                        return GetHeadshot(match, person, jpg, gif, png);
-                    }
+                if (match.Success)
+                {
+                    return GetHeadshot(match, person, jpg, gif, png);
                 }
             }
-
-            var headshot = CheckExistingFile(person, jpg, gif, png);
-
-            return headshot;
         }
+
+        var headshot = CheckExistingFile(person, jpg, gif, png);
+
+        return headshot;
     }
 
     private static FileInfo GetHeadshot(Match match, PersonInfo person, FileInfo jpg, FileInfo gif, FileInfo png)

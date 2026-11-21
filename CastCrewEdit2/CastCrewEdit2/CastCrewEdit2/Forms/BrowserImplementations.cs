@@ -1,20 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Web;
-using System.Windows.Forms;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Resources;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Forms;
 

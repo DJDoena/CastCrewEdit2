@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
+﻿using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
+using System.Collections.Generic;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper;
 

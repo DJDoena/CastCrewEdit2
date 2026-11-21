@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Web;
-using DoenaSoft.DVDProfiler.CastCrewEdit2.Extended;
 
 namespace DoenaSoft.DVDProfiler.CastCrewEdit2.Helper.Parser;
+
 internal static class CastLineProcessor
 {
     private static readonly Regex _multiLanguageVoiceRegex;
