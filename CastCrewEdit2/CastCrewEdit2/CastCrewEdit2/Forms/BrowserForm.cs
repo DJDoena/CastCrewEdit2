@@ -191,15 +191,10 @@ internal partial class BrowserForm : Form
     {
         if (_webBrowser is Microsoft.Web.WebView2.WinForms.WebView2 webView2)
         {
-            for (var scrollIndex = 0; scrollIndex < 5; scrollIndex++)
-            {
-                await Task.Delay(1000);
-
-                await webView2.ExecuteScriptAsync("window.scroll(0, document.body.scrollHeight);");
-            }
-
             try
             {
+                await this.ScrollUntilStable(webView2);
+
                 var html = await webView2.ExecuteScriptAsync("document.documentElement.outerHTML");
 
                 html = Regex.Unescape(html);
@@ -216,6 +211,96 @@ internal partial class BrowserForm : Form
             }
 
             NavigationCompleted?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    #region Network activity tracking
+
+    private int _pendingRequests;
+
+    private long _lastNetworkActivityTicks = Environment.TickCount;
+
+    private void OnWebResourceRequested(object sender, CoreWebView2WebResourceRequestedEventArgs e)
+    {
+        _pendingRequests++;
+
+        _lastNetworkActivityTicks = Environment.TickCount;
+    }
+
+    private void OnWebResourceResponseReceived(object sender, CoreWebView2WebResourceResponseReceivedEventArgs e)
+    {
+        if (_pendingRequests > 0)
+        {
+            _pendingRequests--;
+        }
+
+        _lastNetworkActivityTicks = Environment.TickCount;
+    }
+
+    /// <summary>
+    /// Requests that never produce a response (failed, cancelled, long-polling) would keep the counter above zero forever,
+    /// so a silent network for a while is also treated as idle.
+    /// </summary>
+    private bool IsNetworkIdle()
+    {
+        if (_pendingRequests <= 0)
+        {
+            return true;
+        }
+
+        return unchecked(Environment.TickCount - _lastNetworkActivityTicks) > 3000;
+    }
+
+    #endregion
+
+    /// <summary>
+    /// Scrolls down viewport by viewport (so that content that loads when it enters the viewport gets triggered),
+    /// and finishes once the bottom is reached, the document is complete, the page has stopped growing
+    /// and no requests are in flight, or until a timeout is hit.
+    /// </summary>
+    private async Task ScrollUntilStable(Microsoft.Web.WebView2.WinForms.WebView2 webView2)
+    {
+        const string scrollScript = "(function(){var e=document.scrollingElement||document.documentElement;"
+            + "var step=Math.max(window.innerHeight*0.8,200);"
+            + "window.scrollBy(0,step);"
+            + "var atBottom=(window.scrollY+window.innerHeight)>=(e.scrollHeight-2);"
+            + "return document.readyState+'|'+e.scrollHeight+'|'+document.querySelectorAll('*').length+'|'+(atBottom?1:0);})()";
+
+        var timeout = TimeSpan.FromSeconds(60);
+        var pollInterval = TimeSpan.FromMilliseconds(300);
+        var requiredStableChecks = 3;
+
+        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+
+        string lastState = null;
+        var stableChecks = 0;
+
+        while (stopwatch.Elapsed < timeout)
+        {
+            await Task.Delay(pollInterval);
+
+            // "readyState|height|elementCount|atBottom" - height or DOM growth means more content arrived
+            var state = await webView2.ExecuteScriptAsync(scrollScript);
+
+            var isReady = state != null && state.StartsWith("\"complete|", StringComparison.Ordinal);
+
+            var atBottom = state != null && state.EndsWith("|1\"", StringComparison.Ordinal);
+
+            if (isReady && atBottom && state == lastState && this.IsNetworkIdle())
+            {
+                stableChecks++;
+
+                if (stableChecks >= requiredStableChecks)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                stableChecks = 0;
+            }
+
+            lastState = state;
         }
     }
 
@@ -241,6 +326,10 @@ internal partial class BrowserForm : Form
 
             await webView2.EnsureCoreWebView2Async(environment);
 
+            webView2.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
+            webView2.CoreWebView2.WebResourceRequested += this.OnWebResourceRequested;
+            webView2.CoreWebView2.WebResourceResponseReceived += this.OnWebResourceResponseReceived;
+
             webView2.Source = new Uri(_url);
         }
     }
@@ -259,6 +348,12 @@ internal partial class BrowserForm : Form
         if (_webBrowser is Microsoft.Web.WebView2.WinForms.WebView2 webView2)
         {
             webView2.NavigationCompleted -= this.OnWebView2NavigationCompleted;
+
+            if (webView2.CoreWebView2 != null)
+            {
+                webView2.CoreWebView2.WebResourceRequested -= this.OnWebResourceRequested;
+                webView2.CoreWebView2.WebResourceResponseReceived -= this.OnWebResourceResponseReceived;
+            }
         }
 
         Dispose(_webBrowser);
