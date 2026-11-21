@@ -5,7 +5,7 @@
 		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2</RootNamespace>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>net472</TargetFrameworks>
-		<Platforms>x86;x64</Platforms>
+		<Platforms>x64</Platforms>
 		<Optimize>False</Optimize>
 		<UseWindowsForms>true</UseWindowsForms>
 		<EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
@@ -14,6 +14,7 @@
 		<DebugType>full</DebugType>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>CastCrewEdit2Library.snk</AssemblyOriginatorKeyFile>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

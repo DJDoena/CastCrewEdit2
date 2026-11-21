@@ -5,7 +5,7 @@
 		<RootNamespace>DoenaSoft.DVDProfiler.CastCrewEdit2</RootNamespace>
 		<OutputType>WinExe</OutputType>
 		<TargetFrameworks>net472</TargetFrameworks>
-		<Platforms>x86;x64</Platforms>
+		<Platforms>x64</Platforms>
 		<Configurations>Debug;Release;UnitTest</Configurations>
 		<Optimize>False</Optimize>
 		<ApplicationIcon>Resources\djdsoft.ico</ApplicationIcon>
@@ -15,7 +15,7 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<DebugType>full</DebugType>
-		<LangVersion>12.0</LangVersion>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='UnitTest'">
@@ -23,11 +23,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Include="..\CastCrewEdit2.AssemblyInfo.cs" Link="Properties\CastCrewEdit2.AssemblyInfo.cs" />
+		<Compile Include="..\CastCrewEdit2.AssemblyInfo.cs" Link="Properties\CastCrewEdit2.AssemblyInfo.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="Resources\djdsoft.ico" />
+		<Content Include="Resources\djdsoft.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -191,9 +191,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Images\CastCrewEdit2\" />
-	  <Folder Include="Images\CCViewer\" />
-	  <Folder Include="Images\DVD Profiler\" />
+		<Folder Include="Images\CastCrewEdit2\" />
+		<Folder Include="Images\CCViewer\" />
+		<Folder Include="Images\DVD Profiler\" />
 	</ItemGroup>
 
 </Project>
