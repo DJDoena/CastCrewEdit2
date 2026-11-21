@@ -35,6 +35,19 @@ internal partial class BrowserForm : Form
         return _environment;
     }
 
+    internal static bool IsRuntimeMissing(Exception exception)
+        => exception is WebView2RuntimeNotFoundException or FileNotFoundException;
+
+    internal static void ShowRuntimeMissingMessage(IWin32Window owner)
+    {
+        MessageBox.Show(owner,
+            "The Microsoft Edge WebView2 Runtime could not be found." + Environment.NewLine
+            + "Please install the \"Evergreen\" runtime from https://developer.microsoft.com/microsoft-edge/webview2/ and restart the application.",
+            "WebView2 Runtime missing",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error);
+    }
+
     public BrowserForm(string url)
     {
         _url = url;
@@ -306,7 +319,17 @@ internal partial class BrowserForm : Form
 
     private async void OnBrowserFormLoad(object sender, EventArgs e)
     {
-        await this.InitialNavigate();
+        try
+        {
+            await this.InitialNavigate();
+        }
+        catch
+        {
+            // Without this the caller would wait forever for NavigationCompleted
+            this.Html = string.Empty;
+
+            NavigationCompleted?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     private async Task InitialNavigate()

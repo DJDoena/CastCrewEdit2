@@ -190,12 +190,20 @@ public class CastCrewEdit2BaseForm : Form
 
         if (File.Exists(fileName))
         {
-            var process = new Process()
+            using var process = new Process()
             {
                 StartInfo = new ProcessStartInfo(fileName)
             };
 
-            process.Start();
+            try
+            {
+                process.Start();
+            }
+            catch (System.ComponentModel.Win32Exception ex) when (ex.NativeErrorCode == 1223) // ERROR_CANCELLED
+            {
+                // The user declined the elevation (UAC) prompt
+                return;
+            }
 
             var counter = 0;
 

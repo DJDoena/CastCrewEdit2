@@ -529,9 +529,18 @@ public partial class MainForm : CastCrewEdit2ParseBaseForm, IOleClientSite, IDoc
     {
         //if (Program.SelectedBrowserControl == BrowserControlSelection.WebView2)
         //{
-        var environment = await BrowserForm.InitWebView2();
+        try
+        {
+            var environment = await BrowserForm.InitWebView2();
 
-        await ((Microsoft.Web.WebView2.WinForms.WebView2)_webBrowser).EnsureCoreWebView2Async(environment);
+            await ((Microsoft.Web.WebView2.WinForms.WebView2)_webBrowser).EnsureCoreWebView2Async(environment);
+        }
+        catch (Exception ex) when (BrowserForm.IsRuntimeMissing(ex))
+        {
+            BrowserForm.ShowRuntimeMissingMessage(this);
+
+            return;
+        }
         //}
 
         this.NavigateTo("https://www.imdb.com/find?s=tt&q=");
